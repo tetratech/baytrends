@@ -1,0 +1,34 @@
+Package: baytrends
+Type: Package
+Title: Long Term Water Quality Trend Analysis
+Description: Enables users to develop and apply general additive model (GAM) 
+  to long-term water quality monitoring data sets.
+Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum
+Version: 0.3.3
+Maintainer: Jon Harcum <jon.harcum@tetratech.com>
+Date: 2017-11-24
+Depends:
+    R (>= 3.2.0),
+    lubridate,
+    mgcv,
+    smwrQW
+License: GPL-3
+LazyData: TRUE
+RoxygenNote: 6.0.1
+Suggests:
+    dataRetrieval,
+    devtools,
+    fitdistrplus,
+    imputeTS,
+    knitr,
+    nlme,
+    pander,
+    plyr,
+    readxl,
+    rmarkdown,
+    smwrBase,
+    smwrGraphs,
+    smwrStats,
+    testthat
+Additional_repositories: http://owi.usgs.gov/R
+VignetteBuilder: knitr

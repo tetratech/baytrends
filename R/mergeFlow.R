@@ -1,0 +1,40 @@
+############################
+#' merge flow variable into analysis data frame and update iSpec with variable name
+#'
+#' @param ct1 analysis data frame
+#' @param iSpec iSpec
+#' @param gageID "q" + USGS gage ID
+#' @param hydro.var averaging windows
+#'
+#' @export
+#' @importFrom stats cor
+#'
+.mergeFlow <- function(ct1=ct1, iSpec=iSpec, gageID=gageID, hydro.var=hydro.var) {
+# -----< Change history >--------------------------------------------
+# 29Jul2017: JBH: first release
+
+  # merge detrended flow with dependent variable
+  tmp <- flow.detrended[[gageID]]
+  tmp <- merge(ct1[, c("date",iSpec$dep)],
+               tmp[ ,c("date",hydro.var)], by="date", all.x=TRUE)
+  tmp[,iSpec$dep] <- .impute(tmp[,iSpec$dep] )
+  # set up data frame to store correlation results
+  hydro.var.corr <- data.frame(hydro.var=hydro.var, spearman= NA_real_ ,
+                               chosen="-", stringsAsFactors = FALSE)
+  # compute spearman correlation
+  for (i in 1:nrow(hydro.var.corr)) {
+    hydro.var.corr[i,"spearman"] <- cor(y = tmp[,iSpec$dep], x = tmp[,hydro.var[i]],
+                                        use = "pairwise.complete.obs", method = "spearman")
+  }
+  # identify variable yields largest abs. correlation
+  hydro.var.corr[which.max(abs(hydro.var.corr[,"spearman"])),"chosen"] <- 'max'
+  iSpec$hydro.var.corr   <- hydro.var.corr
+  iSpec$hydroTermSel.var <- hydro.var.corr[which.max(abs(hydro.var.corr[,"spearman"])),"hydro.var"]
+  # now merge just the needed variable and rename to flw_sal
+  tmp <- flow.detrended[[gageID]]
+  tmp <- merge(ct1, tmp[ ,c("date",iSpec$hydroTermSel.var )], by="date", all.x=TRUE)
+  names(tmp)[names(tmp) == iSpec$hydroTermSel.var] <- 'flw_sal'
+  # pack up
+  ct1.list <- list(ct1=tmp,iSpec=iSpec)
+  return(ct1.list)
+}
