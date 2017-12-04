@@ -1,12 +1,12 @@
-Package: baytrends
+Package: baytrends033
 Type: Package
 Title: Long Term Water Quality Trend Analysis
 Description: Enables users to develop and apply general additive model (GAM) 
   to long-term water quality monitoring data sets.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum
-Version: 0.3.3
+Version: 0.3.3.9002
 Maintainer: Jon Harcum <jon.harcum@tetratech.com>
-Date: 2017-11-24
+Date: 2017-12-04
 Depends:
     R (>= 3.2.0),
     lubridate,

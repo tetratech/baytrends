@@ -1,0 +1,31 @@
+---
+title: "R Notebook"
+author: "Erik W. Leppo"
+date: "`r Sys.time()`"
+output: 
+  html_notebook:
+    toc: yes
+    depth: 3
+    number_sections: yes
+    toc_float: no
+---
+
+
+
+# Current Version
+## Install
+Install the latest version of baytrends (v0.3.3) from Jon.
+
+```{r}
+install.packages("C:/Users/Erik.Leppo/OneDrive - Tetra Tech, Inc/MyDocs_OneDrive/ChesBay_R/baytrends_20171125/baytrends_0.3.3.tar.gz", repos = NULL, type = "source")
+```
+
+
+## GitHub
+1. Unzip the tarball.
+2. Add to my GitHub folder as baytrends033.
+3. Then load to GitHub as v0.3.3.9001.
+
+# Modify
+Remove swmrQW and smwrStats packages.
+Repackage and load to GitHub.
