@@ -170,7 +170,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">R Notebook</h1>
 <h4 class="author"><em>Erik W. Leppo</em></h4>
-<h4 class="date"><em>2017-12-04 15:11:29</em></h4>
+<h4 class="date"><em>2017-12-04 15:53:29</em></h4>
 
 </div>
 
@@ -183,7 +183,8 @@ $(document).ready(function () {
 <li><a href="#modify"><span class="toc-section-number">2</span> Modify</a></li>
 <li><a href="#smwr-packages"><span class="toc-section-number">3</span> smwr Packages</a><ul>
 <li><a href="#install-packages"><span class="toc-section-number">3.1</span> Install packages</a></li>
-<li><a href="#functions-smwrqw"><span class="toc-section-number">3.2</span> Functions, smwrQW</a></li>
+<li><a href="#package-dependecies"><span class="toc-section-number">3.2</span> Package Dependecies</a></li>
+<li><a href="#functions"><span class="toc-section-number">3.3</span> Functions</a></li>
 </ul></li>
 </ul>
 </div>
@@ -234,8 +235,8 @@ install_github(&quot;USGS-R/smwrGraphs&quot;)</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="functions-smwrqw" class="section level2">
-<h2><span class="header-section-number">3.2</span> Functions, smwrQW</h2>
+<div id="package-dependecies" class="section level2">
+<h2><span class="header-section-number">3.2</span> Package Dependecies</h2>
 <p>Should be able to find with “smwrQW::” but 0 references.</p>
 <p>Only a few “smwrBase::”&quot; references searching for “smwr”</p>
 <p>DESCRIPTION results.</p>
@@ -314,11 +315,78 @@ install_github(&quot;USGS-R/smwrGraphs&quot;)</code></pre>
 <li><a href="https://github.com/USGS-R/smwrQW" class="uri">https://github.com/USGS-R/smwrQW</a></li>
 <li><a href="https://github.com/USGS-R/smwrStats" class="uri">https://github.com/USGS-R/smwrStats</a></li>
 </ul>
+</div>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">3.3</span> Functions</h2>
+<p>Find all functions in package <code>smwrQW</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzbXdyUVcpXG5wa2cuZnVuIDwtIGxzKFwicGFja2FnZTpzbXdyUVdcIilcbnByaW50KHBrZy5mdW4pXG5wcmludChwYXN0ZTAoXCJUb3RhbCBudW1iZXIgb2YgZnVuY3Rpb25zID0gXCIsbGVuZ3RoKHBrZy5mdW4pKSlcbmBgYCJ9 -->
+<pre class="r"><code>library(smwrQW)
+pkg.fun &lt;- ls(&quot;package:smwrQW&quot;)
+print(pkg.fun)
+print(paste0(&quot;Total number of functions = &quot;,length(pkg.fun)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>All functions in package <code>smwrStats</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzbXdyU3RhdHMpXG5wa2cuZnVuIDwtIGxzKFwicGFja2FnZTpzbXdyU3RhdHNcIilcbnByaW50KHBrZy5mdW4pXG5wcmludChwYXN0ZTAoXCJUb3RhbCBudW1iZXIgb2YgZnVuY3Rpb25zID0gXCIsbGVuZ3RoKHBrZy5mdW4pKSlcbmBgYCJ9 -->
+<pre class="r"><code>library(smwrStats)
+pkg.fun &lt;- ls(&quot;package:smwrStats&quot;)
+print(pkg.fun)
+print(paste0(&quot;Total number of functions = &quot;,length(pkg.fun)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Check for each function within the <code>baytrends033</code> package.</p>
+<p>Use RStudio’s “find in files” function test for presense/absens (T/F) for each function.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGtnLmZ1bi5wYSA8LSBjKHJlcChGQUxTRSw0KSAjMTcjMDEtMDRcbiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzE3ICMwNVxuICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjMTcgIzA5XG4gICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICAjMTNcbiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzE3XG4gICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICMyMVxuICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjMjVcbiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzI5XG4gICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICMzM1xuICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjMzdcbiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzQxXG4gICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICM0NVxuICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjNDlcbiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzUzXG4gICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICM1N1xuICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjNjFcbiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzY1XG4gICAgICAgICAgICAgICwgRkFMU0UsIEZBTFNFLCBGQUxTRSAjNjlcbiAgICAgICAgICAgICAgKVxuI1xuIyBmdW5jdGlvbnMgdGhhdCBhcmUgcHJlc2VudFxucHJpbnQocGtnLmZ1bi5wYS5uYW1lcyA8LSBwa2cuZnVuW3BrZy5mdW4ucGFdKVxuXG5gYGAifQ== -->
+<pre class="r"><code>pkg.fun.pa &lt;- c(rep(FALSE,4) #17#01-04
+              , rep(FALSE,4) #17 #05
+              , rep(FALSE,4) #17 #09
+              , rep(FALSE,4)  #13
+              , rep(FALSE,4) #17
+              , rep(FALSE,4) #21
+              , rep(FALSE,4) #25
+              , rep(FALSE,4) #29
+              , rep(FALSE,4) #33
+              , rep(FALSE,4) #37
+              , rep(FALSE,4) #41
+              , rep(FALSE,4) #45
+              , rep(FALSE,4) #49
+              , rep(FALSE,4) #53
+              , rep(FALSE,4) #57
+              , rep(FALSE,4) #61
+              , rep(FALSE,4) #65
+              , FALSE, FALSE, FALSE #69
+              )
+#
+# functions that are present
+print(pkg.fun.pa.names &lt;- pkg.fun[pkg.fun.pa])
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>None of the functions from <code>swmrQW</code> show up in <code>baytrends033</code> when searching manually.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwa2cuZnVuLmJ0KVxucGtnLmZ1bi5idCA8LSBscyhcInBhY2thZ2U6YmF5dHJlbmRzXCIpXG5wa2cuZnVuLmJ0W3BrZy5mdW4uYnQgJWluJSBwa2cuZnVuXVxuXG5gYGAifQ== -->
+<pre class="r"><code>library(pkg.fun.bt)
+pkg.fun.bt &lt;- ls(&quot;package:baytrends&quot;)
+pkg.fun.bt[pkg.fun.bt %in% pkg.fun]
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQphdXRob3I6ICJFcmlrIFcuIExlcHBvIg0KZGF0ZTogImByIFN5cy50aW1lKClgIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazoNCiAgICB0b2M6IHllcw0KICAgIGRlcHRoOiAzDQogICAgbnVtYmVyX3NlY3Rpb25zOiB5ZXMNCiAgICB0b2NfZmxvYXQ6IG5vDQotLS0NCg0KDQoNCiMgQ3VycmVudCBWZXJzaW9uDQojIyBJbnN0YWxsDQpJbnN0YWxsIHRoZSBsYXRlc3QgdmVyc2lvbiBvZiBiYXl0cmVuZHMgKHYwLjMuMykgZnJvbSBKb24uDQoNCmBgYHtyfQ0KaW5zdGFsbC5wYWNrYWdlcygiQzovVXNlcnMvRXJpay5MZXBwby9PbmVEcml2ZSAtIFRldHJhIFRlY2gsIEluYy9NeURvY3NfT25lRHJpdmUvQ2hlc0JheV9SL2JheXRyZW5kc18yMDE3MTEyNS9iYXl0cmVuZHNfMC4zLjMudGFyLmd6IiwgcmVwb3MgPSBOVUxMLCB0eXBlID0gInNvdXJjZSIpDQpgYGANCg0KDQojIyBHaXRIdWINCjEuIFVuemlwIHRoZSB0YXJiYWxsLg0KMi4gQWRkIHRvIG15IEdpdEh1YiBmb2xkZXIgYXMgYmF5dHJlbmRzMDMzLg0KMy4gVGhlbiBsb2FkIHRvIEdpdEh1YiBhcyB2MC4zLjMuOTAwMS4NCg0KIyBNb2RpZnkNClJlbW92ZSBzd21yUVcgYW5kIHNtd3JTdGF0cyBwYWNrYWdlcy4NClJlcGFja2FnZSBhbmQgbG9hZCB0byBHaXRIdWIuDQoNCiMgc213ciBQYWNrYWdlcw0KaHR0cHM6Ly9vd2kudXNncy5nb3YvUi9wYWNrYWdlcy5odG1sDQoNCiMjIEluc3RhbGwgcGFja2FnZXMNCkluc3RhbGwgVVNHUyBwYWNrYWdlcyBmcm9tIEdpdEh1Yi4NCmBgYHtyLCBFVkFMPUZBTFNFfQ0KbGlicmFyeShkZXZ0b29scykNCmluc3RhbGxfZ2l0aHViKCJVU0dTLVIvc213ckRhdGEiKQ0KaW5zdGFsbF9naXRodWIoIlVTR1MtUi9zbXdyUVciKQ0KaW5zdGFsbF9naXRodWIoIlVTR1MtUi9zbXdyQmFzZSIpDQppbnN0YWxsX2dpdGh1YigiVVNHUy1SL3Ntd3JTdGF0cyIpDQppbnN0YWxsX2dpdGh1YigiVVNHUy1SL3Ntd3JHcmFwaHMiKQ0KYGBgDQoNCiMjIEZ1bmN0aW9ucywgc213clFXDQpTaG91bGQgYmUgYWJsZSB0byBmaW5kIHdpdGggInNtd3JRVzo6IiBidXQgMCByZWZlcmVuY2VzLg0KDQpPbmx5IGEgZmV3ICJzbXdyQmFzZTo6IiIgcmVmZXJlbmNlcyBzZWFyY2hpbmcgZm9yICJzbXdyIg0KDQoNCkRFU0NSSVBUSU9OIHJlc3VsdHMuDQoNClBhY2thZ2UgICB8VVNHUyBTdGF0dXN8YmF5dHJlbmRzfEJhc2UgICB8RGF0YSAgICB8R3JhcGhzIHxRV3wgU3RhdHMNCi0tLS0tLS0tLS18LS0tLS0tLS0tLS18LS0tLS0tLS0tfC0tLS0tLS18LS0tLS0tLS18LS0tLS0tLXwtLXwtLS0tLS0NCnNtd3JCYXNlICB8UmVzZWFyY2ggICB8U3VnZ2VzdHMgfG5hICAgICB8U3VnZ2VzdHN8LSAgICAgIHwtIHwtDQpzbXdyRGF0YSAgfFJlc2VhcmNoICAgfC0gICAgICAgIHwtICAgICAgfG5hICAgICAgfC0gICAgICB8LSB8LQ0Kc213ckdyYXBoc3xTVVBQT1JUICAgIHxTdWdnZXN0cyB8REVQRU5EU3xTdWdnZXN0c3xuYSAgICAgfC0gfC0NCnNtd3JRVyAgICB8T1JQSEFOICAgICB8LSAgICAgICAgfERFUEVORFN8U3VnZ2VzdHN8REVQRU5EU3xuYXxERVBFTkRTDQpzbXdyU3RhdHMgfE9SUEhBTiAgICAgfFN1Z2dlc3RzIHxERVBFTkRTfFN1Z2dlc3RzfERFUEVORFN8LSB8bmENCg0KTm90IGFsbCBwYWNrYWdlcyBsaXN0ZWQgb24gdGhlIFVTR1Mgd2Vic2l0ZSBiZWxvdyBzbyB1c2VkIHRoZSBHaXRIdWIgbGluayBmb3IgZWFjaCBwYWNrYWdlIHRvIGdldCBzdGF0dXMuDQoNCiogaHR0cHM6Ly9vd2kudXNncy5nb3YvUi9wYWNrYWdlcy5odG1sDQoqIGh0dHBzOi8vZ2l0aHViLmNvbS9VU0dTLVIvc213ckJhc2UNCiogaHR0cHM6Ly9naXRodWIuY29tL1VTR1MtUi9zbXdyRGF0YQ0KKiBodHRwczovL2dpdGh1Yi5jb20vVVNHUy1SL3Ntd3JHcmFwaHMNCiogaHR0cHM6Ly9naXRodWIuY29tL1VTR1MtUi9zbXdyUVcNCiogaHR0cHM6Ly9naXRodWIuY29tL1VTR1MtUi9zbXdyU3RhdHMNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQphdXRob3I6ICJFcmlrIFcuIExlcHBvIg0KZGF0ZTogImByIFN5cy50aW1lKClgIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazoNCiAgICB0b2M6IHllcw0KICAgIGRlcHRoOiAzDQogICAgbnVtYmVyX3NlY3Rpb25zOiB5ZXMNCiAgICB0b2NfZmxvYXQ6IG5vDQotLS0NCg0KDQoNCiMgQ3VycmVudCBWZXJzaW9uDQojIyBJbnN0YWxsDQpJbnN0YWxsIHRoZSBsYXRlc3QgdmVyc2lvbiBvZiBiYXl0cmVuZHMgKHYwLjMuMykgZnJvbSBKb24uDQoNCmBgYHtyfQ0KaW5zdGFsbC5wYWNrYWdlcygiQzovVXNlcnMvRXJpay5MZXBwby9PbmVEcml2ZSAtIFRldHJhIFRlY2gsIEluYy9NeURvY3NfT25lRHJpdmUvQ2hlc0JheV9SL2JheXRyZW5kc18yMDE3MTEyNS9iYXl0cmVuZHNfMC4zLjMudGFyLmd6IiwgcmVwb3MgPSBOVUxMLCB0eXBlID0gInNvdXJjZSIpDQpgYGANCg0KDQojIyBHaXRIdWINCjEuIFVuemlwIHRoZSB0YXJiYWxsLg0KMi4gQWRkIHRvIG15IEdpdEh1YiBmb2xkZXIgYXMgYmF5dHJlbmRzMDMzLg0KMy4gVGhlbiBsb2FkIHRvIEdpdEh1YiBhcyB2MC4zLjMuOTAwMS4NCg0KIyBNb2RpZnkNClJlbW92ZSBzd21yUVcgYW5kIHNtd3JTdGF0cyBwYWNrYWdlcy4NClJlcGFja2FnZSBhbmQgbG9hZCB0byBHaXRIdWIuDQoNCiMgc213ciBQYWNrYWdlcw0KaHR0cHM6Ly9vd2kudXNncy5nb3YvUi9wYWNrYWdlcy5odG1sDQoNCiMjIEluc3RhbGwgcGFja2FnZXMNCkluc3RhbGwgVVNHUyBwYWNrYWdlcyBmcm9tIEdpdEh1Yi4NCmBgYHtyLCBFVkFMPUZBTFNFfQ0KbGlicmFyeShkZXZ0b29scykNCmluc3RhbGxfZ2l0aHViKCJVU0dTLVIvc213ckRhdGEiKQ0KaW5zdGFsbF9naXRodWIoIlVTR1MtUi9zbXdyUVciKQ0KaW5zdGFsbF9naXRodWIoIlVTR1MtUi9zbXdyQmFzZSIpDQppbnN0YWxsX2dpdGh1YigiVVNHUy1SL3Ntd3JTdGF0cyIpDQppbnN0YWxsX2dpdGh1YigiVVNHUy1SL3Ntd3JHcmFwaHMiKQ0KYGBgDQoNCiMjIFBhY2thZ2UgRGVwZW5kZWNpZXMNClNob3VsZCBiZSBhYmxlIHRvIGZpbmQgd2l0aCAic213clFXOjoiIGJ1dCAwIHJlZmVyZW5jZXMuDQoNCk9ubHkgYSBmZXcgInNtd3JCYXNlOjoiIiByZWZlcmVuY2VzIHNlYXJjaGluZyBmb3IgInNtd3IiDQoNCg0KREVTQ1JJUFRJT04gcmVzdWx0cy4NCg0KUGFja2FnZSAgIHxVU0dTIFN0YXR1c3xiYXl0cmVuZHN8QmFzZSAgIHxEYXRhICAgIHxHcmFwaHMgfFFXfCBTdGF0cw0KLS0tLS0tLS0tLXwtLS0tLS0tLS0tLXwtLS0tLS0tLS18LS0tLS0tLXwtLS0tLS0tLXwtLS0tLS0tfC0tfC0tLS0tLQ0Kc213ckJhc2UgIHxSZXNlYXJjaCAgIHxTdWdnZXN0cyB8bmEgICAgIHxTdWdnZXN0c3wtICAgICAgfC0gfC0NCnNtd3JEYXRhICB8UmVzZWFyY2ggICB8LSAgICAgICAgfC0gICAgICB8bmEgICAgICB8LSAgICAgIHwtIHwtDQpzbXdyR3JhcGhzfFNVUFBPUlQgICAgfFN1Z2dlc3RzIHxERVBFTkRTfFN1Z2dlc3RzfG5hICAgICB8LSB8LQ0Kc213clFXICAgIHxPUlBIQU4gICAgIHwtICAgICAgICB8REVQRU5EU3xTdWdnZXN0c3xERVBFTkRTfG5hfERFUEVORFMNCnNtd3JTdGF0cyB8T1JQSEFOICAgICB8U3VnZ2VzdHMgfERFUEVORFN8U3VnZ2VzdHN8REVQRU5EU3wtIHxuYQ0KDQpOb3QgYWxsIHBhY2thZ2VzIGxpc3RlZCBvbiB0aGUgVVNHUyB3ZWJzaXRlIGJlbG93IHNvIHVzZWQgdGhlIEdpdEh1YiBsaW5rIGZvciBlYWNoIHBhY2thZ2UgdG8gZ2V0IHN0YXR1cy4NCg0KKiBodHRwczovL293aS51c2dzLmdvdi9SL3BhY2thZ2VzLmh0bWwNCiogaHR0cHM6Ly9naXRodWIuY29tL1VTR1MtUi9zbXdyQmFzZQ0KKiBodHRwczovL2dpdGh1Yi5jb20vVVNHUy1SL3Ntd3JEYXRhDQoqIGh0dHBzOi8vZ2l0aHViLmNvbS9VU0dTLVIvc213ckdyYXBocw0KKiBodHRwczovL2dpdGh1Yi5jb20vVVNHUy1SL3Ntd3JRVw0KKiBodHRwczovL2dpdGh1Yi5jb20vVVNHUy1SL3Ntd3JTdGF0cw0KDQojIyBGdW5jdGlvbnMNCg0KRmluZCBhbGwgZnVuY3Rpb25zIGluIHBhY2thZ2UgYHNtd3JRV2AuDQpgYGB7ciBsaXN0IHBhY2thZ2UgZnVuY3Rpb25zLCBldmFsPVRSVUV9DQpsaWJyYXJ5KHNtd3JRVykNCnBrZy5mdW4gPC0gbHMoInBhY2thZ2U6c213clFXIikNCnByaW50KHBrZy5mdW4pDQpwcmludChwYXN0ZTAoIlRvdGFsIG51bWJlciBvZiBmdW5jdGlvbnMgPSAiLGxlbmd0aChwa2cuZnVuKSkpDQpgYGANCg0KQWxsIGZ1bmN0aW9ucyBpbiBwYWNrYWdlIGBzbXdyU3RhdHNgDQpgYGB7cn0NCmxpYnJhcnkoc213clN0YXRzKQ0KcGtnLmZ1biA8LSBscygicGFja2FnZTpzbXdyU3RhdHMiKQ0KcHJpbnQocGtnLmZ1bikNCnByaW50KHBhc3RlMCgiVG90YWwgbnVtYmVyIG9mIGZ1bmN0aW9ucyA9ICIsbGVuZ3RoKHBrZy5mdW4pKSkNCmBgYA0KDQoNCkNoZWNrIGZvciBlYWNoIGZ1bmN0aW9uIHdpdGhpbiB0aGUgYGJheXRyZW5kczAzM2AgcGFja2FnZS4NCg0KVXNlIFJTdHVkaW8ncyAiZmluZCBpbiBmaWxlcyIgZnVuY3Rpb24gdGVzdCBmb3IgcHJlc2Vuc2UvYWJzZW5zIChUL0YpIGZvciBlYWNoIGZ1bmN0aW9uLg0KYGBge3J9DQpwa2cuZnVuLnBhIDwtIGMocmVwKEZBTFNFLDQpICMxNyMwMS0wNA0KICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjMTcgIzA1DQogICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICMxNyAjMDkNCiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgICMxMw0KICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjMTcNCiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzIxDQogICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICMyNQ0KICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjMjkNCiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzMzDQogICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICMzNw0KICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjNDENCiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzQ1DQogICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICM0OQ0KICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjNTMNCiAgICAgICAgICAgICAgLCByZXAoRkFMU0UsNCkgIzU3DQogICAgICAgICAgICAgICwgcmVwKEZBTFNFLDQpICM2MQ0KICAgICAgICAgICAgICAsIHJlcChGQUxTRSw0KSAjNjUNCiAgICAgICAgICAgICAgLCBGQUxTRSwgRkFMU0UsIEZBTFNFICM2OQ0KICAgICAgICAgICAgICApDQojDQojIGZ1bmN0aW9ucyB0aGF0IGFyZSBwcmVzZW50DQpwcmludChwa2cuZnVuLnBhLm5hbWVzIDwtIHBrZy5mdW5bcGtnLmZ1bi5wYV0pDQoNCmBgYA0KDQoNCk5vbmUgb2YgdGhlIGZ1bmN0aW9ucyBmcm9tIGBzd21yUVdgIHNob3cgdXAgaW4gYGJheXRyZW5kczAzM2Agd2hlbiBzZWFyY2hpbmcgbWFudWFsbHkuDQoNCg0KYGBge3J9DQpsaWJyYXJ5KHBrZy5mdW4uYnQpDQpwa2cuZnVuLmJ0IDwtIGxzKCJwYWNrYWdlOmJheXRyZW5kcyIpDQpwa2cuZnVuLmJ0W3BrZy5mdW4uYnQgJWluJSBwa2cuZnVuXQ0KDQpgYGANCg0KDQo=</div>
 
 
 

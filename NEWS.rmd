@@ -1,3 +1,28 @@
+---
+title: "NEWS"
+output: github_document
+  #md_document:
+   # variant: markdown_github
+---
+
+<!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "NEWS-"
+)
+```
+
+```{r, echo = FALSE}
+cat(paste0("Last Update: ",Sys.time()))
+```
+
+v0.3.3.9004
+===========
+* 2017-12-04
+* Modified NEWS to NEWS.rmd.
 
 v0.3.3.9003
 ===========
@@ -13,6 +38,7 @@ v0.3.3.9002
 v0.3.3.9001
 ===========
 * 2017-12-04
+* Renamed to baytrends033
 * Test version to GitHub
 
 baytrends 0.3.3

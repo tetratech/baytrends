@@ -44,7 +44,7 @@ install_github("USGS-R/smwrStats")
 install_github("USGS-R/smwrGraphs")
 ```
 
-## Functions, smwrQW
+## Package Dependecies
 Should be able to find with "smwrQW::" but 0 references.
 
 Only a few "smwrBase::"" references searching for "smwr"
@@ -68,5 +68,64 @@ Not all packages listed on the USGS website below so used the GitHub link for ea
 * https://github.com/USGS-R/smwrGraphs
 * https://github.com/USGS-R/smwrQW
 * https://github.com/USGS-R/smwrStats
+
+## Functions
+
+Find all functions in package `smwrQW`.
+```{r list package functions, eval=TRUE}
+library(smwrQW)
+pkg.fun <- ls("package:smwrQW")
+print(pkg.fun)
+print(paste0("Total number of functions = ",length(pkg.fun)))
+```
+
+All functions in package `smwrStats`
+```{r}
+library(smwrStats)
+pkg.fun <- ls("package:smwrStats")
+print(pkg.fun)
+print(paste0("Total number of functions = ",length(pkg.fun)))
+```
+
+
+Check for each function within the `baytrends033` package.
+
+Use RStudio's "find in files" function test for presense/absens (T/F) for each function.
+```{r}
+pkg.fun.pa <- c(rep(FALSE,4) #17#01-04
+              , rep(FALSE,4) #17 #05
+              , rep(FALSE,4) #17 #09
+              , rep(FALSE,4)  #13
+              , rep(FALSE,4) #17
+              , rep(FALSE,4) #21
+              , rep(FALSE,4) #25
+              , rep(FALSE,4) #29
+              , rep(FALSE,4) #33
+              , rep(FALSE,4) #37
+              , rep(FALSE,4) #41
+              , rep(FALSE,4) #45
+              , rep(FALSE,4) #49
+              , rep(FALSE,4) #53
+              , rep(FALSE,4) #57
+              , rep(FALSE,4) #61
+              , rep(FALSE,4) #65
+              , FALSE, FALSE, FALSE #69
+              )
+#
+# functions that are present
+print(pkg.fun.pa.names <- pkg.fun[pkg.fun.pa])
+
+```
+
+
+None of the functions from `swmrQW` show up in `baytrends033` when searching manually.
+
+
+```{r}
+library(pkg.fun.bt)
+pkg.fun.bt <- ls("package:baytrends")
+pkg.fun.bt[pkg.fun.bt %in% pkg.fun]
+
+```
 
 
