@@ -1,4 +1,9 @@
 
+#v0.3.3.9003
+2017-12-04
+* Remove "smwrQW" from Depends in DESCRIPTION.
+* Remove "smwrStats" from Suggests in DESCRIPTION.
+
 # v0.3.3.9002
 2017-12-04
 * Add Notebooks for Library Creation and Testing to \inst\extdata.

@@ -29,3 +29,44 @@ install.packages("C:/Users/Erik.Leppo/OneDrive - Tetra Tech, Inc/MyDocs_OneDrive
 # Modify
 Remove swmrQW and smwrStats packages.
 Repackage and load to GitHub.
+
+# smwr Packages
+https://owi.usgs.gov/R/packages.html
+
+## Install packages
+Install USGS packages from GitHub.
+```{r, EVAL=FALSE}
+library(devtools)
+install_github("USGS-R/smwrData")
+install_github("USGS-R/smwrQW")
+install_github("USGS-R/smwrBase")
+install_github("USGS-R/smwrStats")
+install_github("USGS-R/smwrGraphs")
+```
+
+## Functions, smwrQW
+Should be able to find with "smwrQW::" but 0 references.
+
+Only a few "smwrBase::"" references searching for "smwr"
+
+
+DESCRIPTION results.
+
+Package   |USGS Status|baytrends|Base   |Data    |Graphs |QW| Stats
+----------|-----------|---------|-------|--------|-------|--|------
+smwrBase  |Research   |Suggests |na     |Suggests|-      |- |-
+smwrData  |Research   |-        |-      |na      |-      |- |-
+smwrGraphs|SUPPORT    |Suggests |DEPENDS|Suggests|na     |- |-
+smwrQW    |ORPHAN     |-        |DEPENDS|Suggests|DEPENDS|na|DEPENDS
+smwrStats |ORPHAN     |Suggests |DEPENDS|Suggests|DEPENDS|- |na
+
+Not all packages listed on the USGS website below so used the GitHub link for each package to get status.
+
+* https://owi.usgs.gov/R/packages.html
+* https://github.com/USGS-R/smwrBase
+* https://github.com/USGS-R/smwrData
+* https://github.com/USGS-R/smwrGraphs
+* https://github.com/USGS-R/smwrQW
+* https://github.com/USGS-R/smwrStats
+
+

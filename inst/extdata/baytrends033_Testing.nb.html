@@ -170,7 +170,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">R Notebook</h1>
 <h4 class="author"><em>Erik W. Leppo</em></h4>
-<h4 class="date"><em>2017-12-04 13:17:30</em></h4>
+<h4 class="date"><em>2017-12-04 15:11:29</em></h4>
 
 </div>
 
@@ -181,6 +181,10 @@ $(document).ready(function () {
 <li><a href="#github"><span class="toc-section-number">1.2</span> GitHub</a></li>
 </ul></li>
 <li><a href="#modify"><span class="toc-section-number">2</span> Modify</a></li>
+<li><a href="#smwr-packages"><span class="toc-section-number">3</span> smwr Packages</a><ul>
+<li><a href="#install-packages"><span class="toc-section-number">3.1</span> Install packages</a></li>
+<li><a href="#functions-smwrqw"><span class="toc-section-number">3.2</span> Functions, smwrQW</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -210,10 +214,111 @@ $(document).ready(function () {
 <div id="modify" class="section level1">
 <h1><span class="header-section-number">2</span> Modify</h1>
 <p>Remove swmrQW and smwrStats packages. Repackage and load to GitHub.</p>
+</div>
+<div id="smwr-packages" class="section level1">
+<h1><span class="header-section-number">3</span> smwr Packages</h1>
+<p><a href="https://owi.usgs.gov/R/packages.html" class="uri">https://owi.usgs.gov/R/packages.html</a></p>
+<div id="install-packages" class="section level2">
+<h2><span class="header-section-number">3.1</span> Install packages</h2>
+<p>Install USGS packages from GitHub.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkZXZ0b29scylcbmluc3RhbGxfZ2l0aHViKFwiVVNHUy1SL3Ntd3JEYXRhXCIpXG5pbnN0YWxsX2dpdGh1YihcIlVTR1MtUi9zbXdyUVdcIilcbmluc3RhbGxfZ2l0aHViKFwiVVNHUy1SL3Ntd3JCYXNlXCIpXG5pbnN0YWxsX2dpdGh1YihcIlVTR1MtUi9zbXdyU3RhdHNcIilcbmluc3RhbGxfZ2l0aHViKFwiVVNHUy1SL3Ntd3JHcmFwaHNcIilcbmBgYCJ9 -->
+<pre class="r"><code>library(devtools)
+install_github(&quot;USGS-R/smwrData&quot;)
+install_github(&quot;USGS-R/smwrQW&quot;)
+install_github(&quot;USGS-R/smwrBase&quot;)
+install_github(&quot;USGS-R/smwrStats&quot;)
+install_github(&quot;USGS-R/smwrGraphs&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="functions-smwrqw" class="section level2">
+<h2><span class="header-section-number">3.2</span> Functions, smwrQW</h2>
+<p>Should be able to find with “smwrQW::” but 0 references.</p>
+<p>Only a few “smwrBase::”&quot; references searching for “smwr”</p>
+<p>DESCRIPTION results.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>USGS Status</th>
+<th>baytrends</th>
+<th>Base</th>
+<th>Data</th>
+<th>Graphs</th>
+<th>QW</th>
+<th>Stats</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>smwrBase</td>
+<td>Research</td>
+<td>Suggests</td>
+<td>na</td>
+<td>Suggests</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>smwrData</td>
+<td>Research</td>
+<td>-</td>
+<td>-</td>
+<td>na</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>smwrGraphs</td>
+<td>SUPPORT</td>
+<td>Suggests</td>
+<td>DEPENDS</td>
+<td>Suggests</td>
+<td>na</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>smwrQW</td>
+<td>ORPHAN</td>
+<td>-</td>
+<td>DEPENDS</td>
+<td>Suggests</td>
+<td>DEPENDS</td>
+<td>na</td>
+<td>DEPENDS</td>
+</tr>
+<tr class="odd">
+<td>smwrStats</td>
+<td>ORPHAN</td>
+<td>Suggests</td>
+<td>DEPENDS</td>
+<td>Suggests</td>
+<td>DEPENDS</td>
+<td>-</td>
+<td>na</td>
+</tr>
+</tbody>
+</table>
+<p>Not all packages listed on the USGS website below so used the GitHub link for each package to get status.</p>
+<ul>
+<li><a href="https://owi.usgs.gov/R/packages.html" class="uri">https://owi.usgs.gov/R/packages.html</a></li>
+<li><a href="https://github.com/USGS-R/smwrBase" class="uri">https://github.com/USGS-R/smwrBase</a></li>
+<li><a href="https://github.com/USGS-R/smwrData" class="uri">https://github.com/USGS-R/smwrData</a></li>
+<li><a href="https://github.com/USGS-R/smwrGraphs" class="uri">https://github.com/USGS-R/smwrGraphs</a></li>
+<li><a href="https://github.com/USGS-R/smwrQW" class="uri">https://github.com/USGS-R/smwrQW</a></li>
+<li><a href="https://github.com/USGS-R/smwrStats" class="uri">https://github.com/USGS-R/smwrStats</a></li>
+</ul>
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQphdXRob3I6ICJFcmlrIFcuIExlcHBvIg0KZGF0ZTogImByIFN5cy50aW1lKClgIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazoNCiAgICB0b2M6IHllcw0KICAgIGRlcHRoOiAzDQogICAgbnVtYmVyX3NlY3Rpb25zOiB5ZXMNCiAgICB0b2NfZmxvYXQ6IG5vDQotLS0NCg0KDQoNCiMgQ3VycmVudCBWZXJzaW9uDQojIyBJbnN0YWxsDQpJbnN0YWxsIHRoZSBsYXRlc3QgdmVyc2lvbiBvZiBiYXl0cmVuZHMgKHYwLjMuMykgZnJvbSBKb24uDQoNCmBgYHtyfQ0KaW5zdGFsbC5wYWNrYWdlcygiQzovVXNlcnMvRXJpay5MZXBwby9PbmVEcml2ZSAtIFRldHJhIFRlY2gsIEluYy9NeURvY3NfT25lRHJpdmUvQ2hlc0JheV9SL2JheXRyZW5kc18yMDE3MTEyNS9iYXl0cmVuZHNfMC4zLjMudGFyLmd6IiwgcmVwb3MgPSBOVUxMLCB0eXBlID0gInNvdXJjZSIpDQpgYGANCg0KDQojIyBHaXRIdWINCjEuIFVuemlwIHRoZSB0YXJiYWxsLg0KMi4gQWRkIHRvIG15IEdpdEh1YiBmb2xkZXIgYXMgYmF5dHJlbmRzMDMzLg0KMy4gVGhlbiBsb2FkIHRvIEdpdEh1YiBhcyB2MC4zLjMuOTAwMS4NCg0KIyBNb2RpZnkNClJlbW92ZSBzd21yUVcgYW5kIHNtd3JTdGF0cyBwYWNrYWdlcy4NClJlcGFja2FnZSBhbmQgbG9hZCB0byBHaXRIdWIuDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQphdXRob3I6ICJFcmlrIFcuIExlcHBvIg0KZGF0ZTogImByIFN5cy50aW1lKClgIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazoNCiAgICB0b2M6IHllcw0KICAgIGRlcHRoOiAzDQogICAgbnVtYmVyX3NlY3Rpb25zOiB5ZXMNCiAgICB0b2NfZmxvYXQ6IG5vDQotLS0NCg0KDQoNCiMgQ3VycmVudCBWZXJzaW9uDQojIyBJbnN0YWxsDQpJbnN0YWxsIHRoZSBsYXRlc3QgdmVyc2lvbiBvZiBiYXl0cmVuZHMgKHYwLjMuMykgZnJvbSBKb24uDQoNCmBgYHtyfQ0KaW5zdGFsbC5wYWNrYWdlcygiQzovVXNlcnMvRXJpay5MZXBwby9PbmVEcml2ZSAtIFRldHJhIFRlY2gsIEluYy9NeURvY3NfT25lRHJpdmUvQ2hlc0JheV9SL2JheXRyZW5kc18yMDE3MTEyNS9iYXl0cmVuZHNfMC4zLjMudGFyLmd6IiwgcmVwb3MgPSBOVUxMLCB0eXBlID0gInNvdXJjZSIpDQpgYGANCg0KDQojIyBHaXRIdWINCjEuIFVuemlwIHRoZSB0YXJiYWxsLg0KMi4gQWRkIHRvIG15IEdpdEh1YiBmb2xkZXIgYXMgYmF5dHJlbmRzMDMzLg0KMy4gVGhlbiBsb2FkIHRvIEdpdEh1YiBhcyB2MC4zLjMuOTAwMS4NCg0KIyBNb2RpZnkNClJlbW92ZSBzd21yUVcgYW5kIHNtd3JTdGF0cyBwYWNrYWdlcy4NClJlcGFja2FnZSBhbmQgbG9hZCB0byBHaXRIdWIuDQoNCiMgc213ciBQYWNrYWdlcw0KaHR0cHM6Ly9vd2kudXNncy5nb3YvUi9wYWNrYWdlcy5odG1sDQoNCiMjIEluc3RhbGwgcGFja2FnZXMNCkluc3RhbGwgVVNHUyBwYWNrYWdlcyBmcm9tIEdpdEh1Yi4NCmBgYHtyLCBFVkFMPUZBTFNFfQ0KbGlicmFyeShkZXZ0b29scykNCmluc3RhbGxfZ2l0aHViKCJVU0dTLVIvc213ckRhdGEiKQ0KaW5zdGFsbF9naXRodWIoIlVTR1MtUi9zbXdyUVciKQ0KaW5zdGFsbF9naXRodWIoIlVTR1MtUi9zbXdyQmFzZSIpDQppbnN0YWxsX2dpdGh1YigiVVNHUy1SL3Ntd3JTdGF0cyIpDQppbnN0YWxsX2dpdGh1YigiVVNHUy1SL3Ntd3JHcmFwaHMiKQ0KYGBgDQoNCiMjIEZ1bmN0aW9ucywgc213clFXDQpTaG91bGQgYmUgYWJsZSB0byBmaW5kIHdpdGggInNtd3JRVzo6IiBidXQgMCByZWZlcmVuY2VzLg0KDQpPbmx5IGEgZmV3ICJzbXdyQmFzZTo6IiIgcmVmZXJlbmNlcyBzZWFyY2hpbmcgZm9yICJzbXdyIg0KDQoNCkRFU0NSSVBUSU9OIHJlc3VsdHMuDQoNClBhY2thZ2UgICB8VVNHUyBTdGF0dXN8YmF5dHJlbmRzfEJhc2UgICB8RGF0YSAgICB8R3JhcGhzIHxRV3wgU3RhdHMNCi0tLS0tLS0tLS18LS0tLS0tLS0tLS18LS0tLS0tLS0tfC0tLS0tLS18LS0tLS0tLS18LS0tLS0tLXwtLXwtLS0tLS0NCnNtd3JCYXNlICB8UmVzZWFyY2ggICB8U3VnZ2VzdHMgfG5hICAgICB8U3VnZ2VzdHN8LSAgICAgIHwtIHwtDQpzbXdyRGF0YSAgfFJlc2VhcmNoICAgfC0gICAgICAgIHwtICAgICAgfG5hICAgICAgfC0gICAgICB8LSB8LQ0Kc213ckdyYXBoc3xTVVBQT1JUICAgIHxTdWdnZXN0cyB8REVQRU5EU3xTdWdnZXN0c3xuYSAgICAgfC0gfC0NCnNtd3JRVyAgICB8T1JQSEFOICAgICB8LSAgICAgICAgfERFUEVORFN8U3VnZ2VzdHN8REVQRU5EU3xuYXxERVBFTkRTDQpzbXdyU3RhdHMgfE9SUEhBTiAgICAgfFN1Z2dlc3RzIHxERVBFTkRTfFN1Z2dlc3RzfERFUEVORFN8LSB8bmENCg0KTm90IGFsbCBwYWNrYWdlcyBsaXN0ZWQgb24gdGhlIFVTR1Mgd2Vic2l0ZSBiZWxvdyBzbyB1c2VkIHRoZSBHaXRIdWIgbGluayBmb3IgZWFjaCBwYWNrYWdlIHRvIGdldCBzdGF0dXMuDQoNCiogaHR0cHM6Ly9vd2kudXNncy5nb3YvUi9wYWNrYWdlcy5odG1sDQoqIGh0dHBzOi8vZ2l0aHViLmNvbS9VU0dTLVIvc213ckJhc2UNCiogaHR0cHM6Ly9naXRodWIuY29tL1VTR1MtUi9zbXdyRGF0YQ0KKiBodHRwczovL2dpdGh1Yi5jb20vVVNHUy1SL3Ntd3JHcmFwaHMNCiogaHR0cHM6Ly9naXRodWIuY29tL1VTR1MtUi9zbXdyUVcNCiogaHR0cHM6Ly9naXRodWIuY29tL1VTR1MtUi9zbXdyU3RhdHMNCg0KDQo=</div>
 
 
 
