@@ -120,6 +120,9 @@
 #' dateBegin - begin date
 #'
 #' dateEnd - end date
+#' 
+#' The baseDay and baseDay2decimal functions have been added to this package 
+#' from the smwrBase package.
 #'
 #' @return
 #'
@@ -445,7 +448,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
       stop("Could not calculate centered date without dyear or date.")
     }
     if( !("dyear" %in% names(df)) & "date" %in% names(df)) {
-      df$dyear <- year(df$date) + smwrBase::baseDay2decimal(smwrBase::baseDay(df$date, numeric=FALSE))
+      df$dyear <- year(df$date) + baseDay2decimal(baseDay(df$date, numeric=FALSE))
     }
     dtmp <- range(df$date, na.rm=FALSE)
     por  <- range(df$dyear, na.rm=FALSE)

@@ -139,6 +139,9 @@ yearend - period of record end year
 dateBegin - begin date
 
 dateEnd - end date
+
+The baseDay and baseDay2decimal functions have been added to this package 
+from the smwrBase package.
 }
 \examples{
 

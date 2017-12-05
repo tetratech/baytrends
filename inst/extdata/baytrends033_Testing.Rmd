@@ -128,13 +128,19 @@ None of the functions from `swmrQW` show up in `baytrends033` when searching man
 
 ```{r}
 library(pkg.fun.bt)
-pkg.fun.bt <- ls("package:baytrends")
+pkg.fun.bt <- ls("package:baytrends033")
 pkg.fun.bt[pkg.fun.bt %in% pkg.fun]
 
 ```
 
 # Run Examples
 Run examples for all functions in package.
+
+Only #2 fails without any swmr packages installed.
+
+After v0.3.3.9006 added 2 functions (and 2 classes).
+
+analysisOrganizeData and selectData no longer work without smwrQW along with gamDiff and gamTest.
 
 ```{r}
 library(baytrends033)
@@ -171,6 +177,10 @@ example("gamPlotDisp", package="baytrends033") #06 (no example)
 example("loadData", package="baytrends033") #09
 example("loadExcel", package="baytrends033") #10
 
+# New from smwrBase
+example("baseDay", package="baytrends033") #02/17
+example("baseDay2decimal", package="baytrends033") #03/17
+
 ```
 
 So 15 functions.  Run "Examples".
@@ -192,5 +202,17 @@ help(package="baytrends033")
 Open Vignette
 ```{r}
 browseVignettes("baytrends033")
+```
+
+## Find Functions
+https://rdrr.io/cran/NCmisc/man/list.functions.in.file.html
+
+Found a package that list all functions in a file.  Necessary for "imports".
+
+Applied to "gamTest.R" in baytrends.  Then the class objects for "qw" and "mcens".
+```{r}
+library(NCmisc)
+rfile <- file.choose()
+list.functions.in.file(rfile)
 ```
 

@@ -28,7 +28,10 @@ gamTest(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
 Returns a list with results
 }
 \description{
-Perform GAM analysis. Relies on mgcv::gam to perform general additive model
+Perform GAM analysis. Relies on mgcv::gam to perform general additive model.
+}
+\details{
+The baseDay function has been added to this package from the smwrBase package.
 }
 \examples{
 # specify parameter and station to analyze

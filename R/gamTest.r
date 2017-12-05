@@ -1,7 +1,9 @@
 # ####
 #' Perform GAM analysis
 #'
-#' Perform GAM analysis. Relies on mgcv::gam to perform general additive model
+#' Perform GAM analysis. Relies on mgcv::gam to perform general additive model.
+#' 
+#' The baseDay function has been added to this package from the smwrBase package.
 #'
 #' @param df data frame
 #' @param dep dependent variable
@@ -26,7 +28,7 @@
 #'
 #' @return Returns a list with results
 #' @export
-#' @import lubridate mgcv smwrQW
+#' @import lubridate mgcv
 #' @importFrom graphics grid lines plot points abline axis.POSIXct
 #' @importFrom graphics legend mtext par polygon title
 #' @importFrom stats AIC anova as.formula coef coefficients
@@ -99,7 +101,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     alpha       <- analySpec$gamAlpha
     seasons     <- analySpec$gamLegend[analySpec$gamLegend$season, "legend"]
     seasons     <- lubridate::mdy (paste0(seasons ,"/2000"))
-    q.doy       <- as.numeric(smwrBase::baseDay(seasons))
+    q.doy       <- as.numeric(baseDay(seasons))
     gamPenalty            <- analySpec$gamPenalty               #04Feb2017
     gamPenaltyCrit        <- analySpec$gamPenaltyCrit           #04Feb2017
     gamCoeffDeltaMaxCrit  <- analySpec$gamCoeffDeltaMaxCrit     #04Feb2017
@@ -618,7 +620,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
           # then compute doys for passing off to gamDiff
           if(!is.na(months[1]))      months <- months[months %in% c(1:12)]
           if(is.na(months[1]))       months <-  c(1:12)
-          doy.set <- smwrBase::baseDay(as.POSIXct(paste(2000,months,15,sep='-')))
+          doy.set <- baseDay(as.POSIXct(paste(2000,months,15,sep='-')))
 
           # Calculate gamDiff  30Sep2017: added analySpec to function call
           sub.gamDiff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=base.yr.set,

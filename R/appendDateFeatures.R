@@ -6,6 +6,9 @@
 #' date column is truncated to day. Columns for year, day of year (doy), decimal
 #' year (dyear), and month are added based on date. This function relies on
 #' smwrBase::baseDay and smwrBase::baseDay2decimal for doy and decimal year.
+#'   
+#' The baseDay and baseDay2decimal functions have been added to this package 
+#' from smwrBase package.
 #'
 #' @param df data frame
 #' @param var variable with stored date
@@ -45,8 +48,8 @@
   # 2/28 and 3/1 are always doy = 59 and 61, respectively when using
   # smwrBase::baseDay)
   df$year  <- lubridate::year(df$date)
-  df$doy   <- as.numeric(smwrBase::baseDay(df$date))
-  df$dyear <- df$year + smwrBase::baseDay2decimal(smwrBase::baseDay(df$date, numeric=FALSE))
+  df$doy   <- as.numeric(baseDay(df$date))
+  df$dyear <- df$year + baseDay2decimal(baseDay(df$date, numeric=FALSE))
 
   # Create month variables
   df$month <- months(df$date, abbreviate = TRUE)

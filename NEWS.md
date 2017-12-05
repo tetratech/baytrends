@@ -3,7 +3,19 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2017-12-05 11:37:43
+    #> Last Update: 2017-12-05 13:34:27
+
+v0.3.3.9006
+===========
+
+-   2017-12-05
+-   Removed swmr packages from R install.
+-   Rebuild baytrends with smwrBase functions included.
+    -   baseDay
+    -   baseDay2decimal
+-   Removed import from smwrQW from gamTest. Had import for smwrQW.
+-   Added class objects qw and mcens from smwrQW.
+-   Renamed all added R files with smwrBase\_ or smwrQW\_.
 
 v0.3.3.9005
 ===========

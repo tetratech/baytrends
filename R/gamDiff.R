@@ -33,6 +33,8 @@
 #'   use Jan-15, Feb-15, and Mar-15. (Keep in mind that this package uses a 366 day calendar every year
 #'   such that Mar-1 is always day 61, regardless of leap year.) If doy.set is left to the default
 #'   value of NA, then c(15, 46, 75, 106, 136, 167, 197, 228, 259, 289, 320, 350) is used.
+#'   
+#'   The baseDay function has been added to this package from the smwrBase package.
 #'
 #' @examples
 #' # run analysisOrganizeData function to create the list analySpec
@@ -130,7 +132,7 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
 
       # if doy.set is NA, then assume doy.set = 15th of each month
       if(is.na(doy.set[1])){
-        doy.set <-  smwrBase::baseDay(as.POSIXct(paste(2000,1:12,15,sep='-')))
+        doy.set <-  baseDay(as.POSIXct(paste(2000,1:12,15,sep='-')))
       }
 
       # set up base and test years to first two and last two records if base.yr.set
