@@ -185,6 +185,28 @@ example("baseDay2decimal", package="baytrends033") #03/17
 
 So 15 functions.  Run "Examples".
 
+#### Run down stray links
+
+* Fix functions and examples that are looking for smwrQW.
+    + analysisOrganizeData
+    + selectData
+    + gamDiff
+    + gamTest
+
+
+selectData uses analysisOrganizeData.
+
+analysisOrganizeData uses dataCensored  (relies on smwrQW)
+
+https://stackoverflow.com/questions/10526392/collate-field-in-package-description
+
+Collate: in DESCRIPTION.  force the class objects to load first.  These were listed first in the DESCRIPTION file for smwrQW.
+
+*HOWEVER* have to list *ALL* R code files.  Rename files so appear first.
+
+
+
+
 Run all examples using devtools.
 
 ```{r, eval=FALSE}

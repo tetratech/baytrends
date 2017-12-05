@@ -3,7 +3,20 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2017-12-05 13:34:27
+    #> Last Update: 2017-12-05 14:43:18
+
+v0.3.3.9007
+===========
+
+-   2017-12-05
+-   Rename new class objects to appear in R folder first. And will load first.
+    -   'smwrQW\_qw-class.R' (prefix "a1\_").
+    -   'smwrQW\_mcens-class.R' (prefix "a2\_").
+-   Fix functions and examples that are looking for smwrQW.
+    -   analysisOrganizeData
+    -   selectData
+    -   gamDiff
+    -   gamTest
 
 v0.3.3.9006
 ===========

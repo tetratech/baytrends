@@ -20,6 +20,18 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+v0.3.3.9007
+===========
+* 2017-12-05
+* Rename new class objects to appear in R folder first.  And will load first.
+    + 'smwrQW_qw-class.R' (prefix "a1_").
+    + 'smwrQW_mcens-class.R' (prefix "a2_").
+* Fix functions and examples that are looking for smwrQW.
+    + analysisOrganizeData
+    + selectData
+    + gamDiff
+    + gamTest
+
 v0.3.3.9006
 ===========
 * 2017-12-05
