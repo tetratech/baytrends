@@ -57,7 +57,7 @@ Package   |USGS Status|baytrends|Base   |Data    |Graphs |QW| Stats
 smwrBase  |Research   |Suggests |na     |Suggests|-      |- |-
 smwrData  |Research   |-        |-      |na      |-      |- |-
 smwrGraphs|SUPPORT    |Suggests |DEPENDS|Suggests|na     |- |-
-smwrQW    |ORPHAN     |-        |DEPENDS|Suggests|DEPENDS|na|DEPENDS
+smwrQW    |ORPHAN     |DEPENDS  |DEPENDS|Suggests|DEPENDS|na|DEPENDS
 smwrStats |ORPHAN     |Suggests |DEPENDS|Suggests|DEPENDS|- |na
 
 Not all packages listed on the USGS website below so used the GitHub link for each package to get status.
@@ -68,6 +68,11 @@ Not all packages listed on the USGS website below so used the GitHub link for ea
 * https://github.com/USGS-R/smwrGraphs
 * https://github.com/USGS-R/smwrQW
 * https://github.com/USGS-R/smwrStats
+
+BayTrends DEPENDS on QW
+QW DEPENDS on Base, Graphs, and STATS
+
+smwrData is not needed.
 
 ## Functions
 
@@ -128,4 +133,64 @@ pkg.fun.bt[pkg.fun.bt %in% pkg.fun]
 
 ```
 
+# Run Examples
+Run examples for all functions in package.
+
+```{r}
+library(baytrends033)
+pkg.fun <- as.vector(ls("package:baytrends033"))
+print(pkg.fun)
+print(paste0("Total number of functions = ",length(pkg.fun)))
+#
+## Examples by amount of output
+
+# long, includes plots
+example("gamDiff", package="baytrends033") #05 (lots of stuff)
+example("gamTest", package="baytrends033") #07 (lots of stuff)
+
+# long, no plots
+example("analysisOrganizeData", package="baytrends033") #01
+example("closeOut", package="baytrends033") #02
+example("selectData", package="baytrends033") #13
+
+# short, str
+example("parameterList", package="baytrends033") #11
+example("stationMasterList", package="baytrends033") #14
+example("usgsGages", package="baytrends033") #15
+
+# short, save file
+example("saveDF", package="baytrends033") #12
+
+# short, load data
+example("dataCensored", package="baytrends033") #03
+example("layerLukup", package="baytrends033") #08 (data only)
+
+# help file but no examples
+example("flwAveragePred", package="baytrends033") #04 (no example)
+example("gamPlotDisp", package="baytrends033") #06 (no example)
+example("loadData", package="baytrends033") #09
+example("loadExcel", package="baytrends033") #10
+
+```
+
+So 15 functions.  Run "Examples".
+
+Run all examples using devtools.
+
+```{r, eval=FALSE}
+library(devtools)
+setwd("..") 
+run_examples(pkg="baytrends033")
+```
+
+
+Go straight to index.
+```{r}
+help(package="baytrends033")
+```
+
+Open Vignette
+```{r}
+browseVignettes("baytrends033")
+```
 

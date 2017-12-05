@@ -1,8 +1,15 @@
 NEWS
 ================
+<Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2017-12-04 16:13:43
+    #> Last Update: 2017-12-05 11:37:43
+
+v0.3.3.9005
+===========
+
+-   2017-12-05
+-   Remove all smwrX packages (Base, Graphs, QW, and Stats). Not just the oprhaned QW and Stats. Base and Graphs DEPEND on QW as well.
 
 v0.3.3.9004
 ===========

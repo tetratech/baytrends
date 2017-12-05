@@ -116,15 +116,24 @@ help(package="baytrends033")
 ### Index
 Go straight to index.
 
-`help(package="baytrends033")`
+```{r}
+help(package="baytrends033")
+```
+
 
 ### Open Vignette
-`browseVignettes("baytrends033")`
+```{r}
+browseVignettes("baytrends033")
+```
+
 
 Then click on "HTML" to open.
 
 ### Run examples
-`example(RBIcalc)`
+```{r}
+example(analysisOrganizeData)
+```
+
 
 
 
