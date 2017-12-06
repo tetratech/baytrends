@@ -3,7 +3,15 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2017-12-05 14:43:18
+    #> Last Update: 2017-12-05 15:21:47
+
+v0.3.3.9008
+===========
+
+-   2017-12-05
+-   Resave dataCensored.rda. Installed smwrQW so could open and resets "qw" class to first reference in namespace (baytrends). Then saved and removed smwr packages.
+-   Add lscens class as well; a2\_smwrQW\_lcens-class.R.
+-   Rename mscens from a2 to a3 to preserve collate order of smwrQW.
 
 v0.3.3.9007
 ===========
@@ -12,7 +20,7 @@ v0.3.3.9007
 -   Rename new class objects to appear in R folder first. And will load first.
     -   'smwrQW\_qw-class.R' (prefix "a1\_").
     -   'smwrQW\_mcens-class.R' (prefix "a2\_").
--   Fix functions and examples that are looking for smwrQW.
+-   Need to fix functions and examples that are looking for smwrQW.
     -   analysisOrganizeData
     -   selectData
     -   gamDiff

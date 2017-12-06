@@ -204,6 +204,34 @@ Collate: in DESCRIPTION.  force the class objects to load first.  These were lis
 
 *HOWEVER* have to list *ALL* R code files.  Rename files so appear first.
 
+Load smwrQW then open dataCensored.  Works and defaults to first namespace (baytrends033).  Then resave.
+
+# dataCensored
+Recreate dataCensored.  Save to pieces then recreate without smwrQW installed.
+
+```{r}
+library(baytrends033)
+library(smwrQW)
+#
+str(dataCensored)
+# #
+# df.QW.no <- dataCensored[,1:3]
+# str(df.QW.no)
+# #
+# # have issues
+# df.QW.yes <- as.data.frame(dataCensored[,4:16])
+# 
+write.csv(dataCensored, "dataCensored.csv")
+# seems to have worked
+
+x <- read.csv("dataCensored.csv")
+str(x)
+
+
+
+
+```
+
 
 
 
