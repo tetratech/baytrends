@@ -152,86 +152,6 @@ for (i in myVar) {##FOR.i.START
   getSlots("qw")
   showClass("qw")
   }
-  # # same as qw-class.R
-  # setClass("qw2", slots=list(remark.codes="character", value.codes="character",
-  #                           reporting.level="numeric", reporting.method="character",
-  #                           reporting.units="character", analyte.method="character",
-  #                           analyte.name="character", rounding="numeric",
-  #                           unique.code="character",names="character"),
-  #          contains="matrix")
-  # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # setGeneric("as.qw2", function(values, remark.codes, value.codes, reporting.level,
-  #                              reporting.method, reporting.units, analyte.method,
-  #                              analyte.name, unique.code, value2)
-  #   standardGeneric("as.qw2")
-  # )
-  # 
-  # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # setMethod("as.qw2", signature(values="numeric", remark.codes="character",
-  #                              value.codes="character",
-  #                              reporting.level="numeric", reporting.method="character",
-  #                              reporting.units="character", analyte.method="character",
-  #                              analyte.name="character", unique.code="character", value2="missing"),
-  #           function(values, remark.codes, value.codes, reporting.level, reporting.method,
-  #                    reporting.units,analyte.method, analyte.name, unique.code, value2) {
-  #             ## Length of remark.codes must match length of values
-  #             N <- length(values)
-  #             if(length(remark.codes) != N)
-  #               stop("lengths of values and remark.codes must match")
-  #             ## In practical terms, it is conceivable that single values could be
-  #             ##  supplied by the rest
-  #             value.codes <- rep(value.codes, length.out=N)
-  #             reporting.level <- rep(reporting.level, length.out=N)
-  #             reporting.method <- rep(reporting.method, length.out=N)
-  #             reporting.units <- rep(reporting.units, length.out=N)
-  #             analyte.method <- rep(analyte.method, length.out=N)
-  #             analyte.name <- rep(analyte.name, length.out=N)
-  #             unique.code <- rep(unique.code, length.out=N)
-  #             value2 <- values
-  #             ## Logic check on remarks--only "<", ">", and " " make sense
-  #             remark.codes[is.na(remark.codes)] <- " "
-  #             remark.codes[remark.codes == ""] <- " "
-  #             ## Special check on remark code "M"
-  #             if(any(pickM <- remark.codes == "M")) { # recode to < RL if possible
-  #               picks <- !is.na(reporting.level) & pickM
-  #               if(any(picks)) {
-  #                 remark.codes[picks] <- "<"
-  #                 value2[picks] <- reporting.level[picks]
-  #                 values[picks] <- 0
-  #                 warning("Special remark code M converted to less-than value")
-  #               }
-  #             }
-  #             remarks.uniq <- unique(remark.codes)
-  #             remarks.ignore <- !(remarks.uniq %in% c("<", ">", " "))
-  #             if(any(remarks.ignore))
-  #               warning("Special remark.codes: ", paste(remarks.uniq[remarks.ignore], collapse=', '),
-  #                       " retained, but may require interpretation by the user.")
-  #             ## Modify value2 for > and values for <
-  #             value2[remark.codes == ">"] <- Inf
-  #             values[remark.codes == "<"] <- 0
-  #             ## Change lower limit if logged--will this ever happen?
-  #             LogVal <- grepl("^log\\(", reporting.units)
-  #             if(any(LogVal))
-  #               values[remark.codes == "<" & LogVal] <- 0
-  #             ## Pack it up and ship it off
-  #             mat <- cbind(values=values, value2=value2)
-  #             retval <- new("qw", mat, remark.codes=remark.codes,
-  #                           value.codes=value.codes,
-  #                           reporting.level=reporting.level,
-  #                           reporting.method=reporting.method,
-  #                           reporting.units=reporting.units,
-  #                           analyte.method=analyte.method, analyte.name=analyte.name,
-  #                           unique.code=unique.code, rounding=c(2L,3L),
-  #                           names=as.character(seq(N))
-  #                           )
-  #             # Not sure why necessary
-  #             retval@names <- as.character(seq(N))
-  #             return(retval)
-  #           })
-  # # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # 
-  # 
-  
   DF[,i] <- as.qw(values       = df.var.slotData[,"values"]
                   , value2           = df.var.slotData[,"value2"]
                   , remark.codes     = df.var.slotData[,"remark.codes"]
@@ -243,60 +163,15 @@ for (i in myVar) {##FOR.i.START
                   , analyte.name     = ""
                   , unique.code      = ""
                   )
-  # creates "qw" object file but assignment to data.frame is the issue
-  abc <- as.qw(values       = df.var.slotData[,"values"]
-               , value2           = df.var.slotData[,"value2"]
-               , remark.codes     = df.var.slotData[,"remark.codes"]
-               , value.codes      = ""
-               , reporting.level  = NA_real_
-               , reporting.method = ""
-               , reporting.units  = ""
-               , analyte.method   = ""
-               , analyte.name     = ""
-               , unique.code      = ""
-  )
-  str(abc)
-  
-  DF[,i] <- abc
-  
-  #assignInNamespace("as.qw","as.qw",ns="smwrQW",pos="package:smwrQW")
-  #https://stackoverflow.com/questions/38388570/how-to-modify-unexported-object-in-a-package
-  # this didn't go anywhere
-  
-  # Can't use "as".  No method for "coerce"
-  # x <- ""
-  # as(x, "qw") <- ""
-  
-#  DF[,i] <- as.qw(rep("",10))
-  
-  
-  #https://stackoverflow.com/questions/4713968/r-what-are-slots
-  
-  
-  # # Define class object (not sure if need baytrends::as.qw)
-  # DF[,i] <- as.qw(values       = df.var.slotData[,"values"]
-  #                         , value2           = df.var.slotData[,"value2"]
-  #                         , remark.codes     = df.var.slotData[,"remark.codes"]
-  #                         , value.codes      = ""
-  #                         , reporting.level  = NA_real_
-  #                         , reporting.method = ""
-  #                         , reporting.units  = ""
-  #                         , analyte.method   = ""
-  #                         , analyte.name     = ""
-  #                         , unique.code      = ""
-  #                         )
-  # # use @ to assign values
-  # DF[]
-  
-  
-  DF[,i]@rounding <- c(3,4)
-  
-  # define names
-  values.X <- df.var.slotData[,"values"]
-  N.X <- length(values.X)
-  names.X=as.character(seq(N.X))
-  DF[,i]@names <- as.character(seq(N.X))
-  str(DF)
+  #
+  DF[,i]@rounding <- c(3,4)  # default is 2,3
+  #
+  # # define names
+  # values.X <- df.var.slotData[,"values"]
+  # N.X <- length(values.X)
+  # names.X=as.character(seq(N.X))
+  # DF[,i]@names <- as.character(seq(N.X))
+  # str(DF)
   #View(#
 }##FOR.i.END
 
@@ -305,6 +180,6 @@ for (i in myVar) {##FOR.i.START
 # 2. Save as RDA for use in package####
 #
 dataCensored <- DF
-setwd("..")
+#setwd("..")
 devtools::use_data(dataCensored, overwrite = TRUE)
 

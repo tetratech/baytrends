@@ -19,9 +19,21 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+v0.3.3.9011
+===========
+* 2017-12-20
+* dataCensored
+    + Clean up "data-raw" folder and GenerateData script.
+    + Overwrite smwrQW dependant dataCensored.rda file with baytrends version.
+    + Remove dataCensored CSV files from \inst\extdata.
+* Move 
+* Rename temporary R scripts from "x_*" to "smwrQW_x_*".
+    + Known files that are needed already have smwrQW prefix.  Keep new ones different.
+
+
 v0.3.3.9010
 ===========
-* 207-12-19
+* 2017-12-19
 * Rebuild with minor edits for smwrQW references in files (Find in Files).
 * Added smwrQW_is.na.R.
 * Edits to _GenerateData_dataCensored.R.

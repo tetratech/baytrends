@@ -14,7 +14,7 @@ Helper code for creating library.
 Erik.Leppo@tetratech.com
 2017-09-26
 
-Copied from ContDataQC so parts are not needed.  2017-12-04.
+Copied from ContDataQC so some parts are not needed.  2017-12-04.
 
 # Package
 
@@ -121,13 +121,13 @@ help(package="baytrends")
 ### Index
 Go straight to index.
 
-```{r}
+```{r, eval=FALSE}
 help(package="baytrends")
 ```
 
 
 ### Open Vignette
-```{r}
+```{r, eval=FALSE}
 browseVignettes("baytrends")
 ```
 
@@ -135,7 +135,7 @@ browseVignettes("baytrends")
 Then click on "HTML" to open.
 
 ### Run examples
-```{r}
+```{r, eval=FALSE}
 example(analysisOrganizeData)
 ```
 

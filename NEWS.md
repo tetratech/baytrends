@@ -4,14 +4,30 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2017-12-19 14:12:12
+    #> Last Update: 2017-12-20 16:05:28
+
+# v0.3.3.9011
+
+  - 2017-12-20
+  - dataCensored
+      - Clean up “data-raw” folder and GenerateData script.
+      - Overwrite smwrQW dependant dataCensored.rda file with baytrends
+        version.
+      - Remove dataCensored CSV files from .
+  - Move
+  - Rename temporary R scripts from “x\_\*" to “smwrQW\_x\_\*“.
+      - Known files that are needed already have smwrQW prefix. Keep new
+        ones different.
 
 # v0.3.3.9010
 
-  - 207-12-19
+  - 2017-12-19
   - Rebuild with minor edits for smwrQW references in files (Find in
     Files).
   - Added smwrQW\_is.na.R.
+  - Edits to \_GenerateData\_dataCensored.R.
+      - qw object creates but still fails when adding to data.frame.
+  - Copy in all smwrQW function not already added. Test if builds.
 
 # v0.3.3.9009
 

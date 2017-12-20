@@ -10,13 +10,11 @@ output:
     toc_float: no
 ---
 
-
-
 # Current Version
 ## Install
 Install the latest version of baytrends (v0.3.3) from Jon.
 
-```{r}
+```{r, eval=FALSE}
 install.packages("C:/Users/Erik.Leppo/OneDrive - Tetra Tech, Inc/MyDocs_OneDrive/ChesBay_R/baytrends_20171125/baytrends_0.3.3.tar.gz", repos = NULL, type = "source")
 ```
 
@@ -86,7 +84,7 @@ smwrData is not needed.
 ## Functions
 
 Find all functions in package `smwrQW`.
-```{r list package functions, eval=TRUE}
+```{r list package functions, eval=FALSE}
 library(smwrQW)
 pkg.fun <- ls("package:smwrQW")
 print(pkg.fun)
@@ -94,7 +92,7 @@ print(paste0("Total number of functions = ",length(pkg.fun)))
 ```
 
 All functions in package `smwrStats`
-```{r}
+```{r, eval=FALSE}
 library(smwrStats)
 pkg.fun <- ls("package:smwrStats")
 print(pkg.fun)
@@ -105,7 +103,7 @@ print(paste0("Total number of functions = ",length(pkg.fun)))
 Check for each function within the `baytrends` package.
 
 Use RStudio's "find in files" function test for presense/absens (T/F) for each function.
-```{r}
+```{r, eval=FALSE}
 pkg.fun.pa <- c(rep(FALSE,4) #17#01-04
               , rep(FALSE,4) #17 #05
               , rep(FALSE,4) #17 #09
@@ -135,7 +133,7 @@ print(pkg.fun.pa.names <- pkg.fun[pkg.fun.pa])
 None of the functions from `swmrQW` show up in `baytrends` when searching manually.
 
 
-```{r}
+```{r, eval=FALSE}
 library(pkg.fun.bt)
 pkg.fun.bt <- ls("package:baytrends")
 pkg.fun.bt[pkg.fun.bt %in% pkg.fun]
@@ -151,7 +149,9 @@ After v0.3.3.9006 added 2 functions (and 2 classes).
 
 analysisOrganizeData and selectData no longer work without smwrQW along with gamDiff and gamTest.
 
-```{r}
+2017-12-20, more functions after adding in all of swmrQW functions.  Only testing original examples.
+
+```{r, eval=FALSE}
 library(baytrends)
 pkg.fun <- as.vector(ls("package:baytrends"))
 print(pkg.fun)
@@ -223,7 +223,7 @@ Load smwrQW then open dataCensored.  Works and defaults to first namespace (bayt
 # dataCensored
 Recreate dataCensored.  Save to pieces then recreate without smwrQW installed.
 
-```{r}
+```{r, eval=FALSE}
 library(baytrends)
 library(smwrQW)
 #
@@ -256,7 +256,7 @@ slot(dataCensored$secchi, "value.codes")
 
 Extract dataCensored slot values
 
-```{r}
+```{r, eval=FALSE}
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Loop through and save all data
@@ -299,7 +299,7 @@ for (i in myVar) {##FOR.i.START
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 # Reconstruct dataCensored from parts
 library(baytrends)
 #
@@ -349,12 +349,12 @@ run_examples(pkg="baytrends")
 
 
 Go straight to index.
-```{r}
+```{r, eval=FALSE}
 help(package="baytrends")
 ```
 
 Open Vignette
-```{r}
+```{r, eval=FALSE}
 browseVignettes("baytrends")
 ```
 
@@ -364,15 +364,16 @@ https://rdrr.io/cran/NCmisc/man/list.functions.in.file.html
 Found a package that list all functions in a file.  Necessary for "imports".
 
 Applied to "gamTest.R" in baytrends.  Then the class objects for "qw" and "mcens".
-```{r}
+```{r, eval=FALSE}
 library(NCmisc)
 rfile <- file.choose()
 list.functions.in.file(rfile)
 ```
 
-# Copy all smwrQW R to baytrends
+# smwr functions
+## Copy all to baytrends
 copy over all R scripts
-```{r}
+```{r, eval=FALSE}
 xdir <- "C:\\Users\\Erik.Leppo\\OneDrive - Tetra Tech, Inc\\MyDocs_OneDrive\\ChesBay_R\\smwr Libraries\\smwrQW-master\\R"
 #
 wd <- file.path(getwd(),"R")
@@ -396,6 +397,20 @@ fn.delete <- c("x_qw-class.R", "x_lcens-class.R", "x_mcens-class.R", "x_is.na.R"
                , "x_kendallATS.test.R")
 wd <- "C:/Users/Erik.Leppo/OneDrive - Tetra Tech, Inc/MyDocs_OneDrive/GitHub/baytrends/R"
 file.remove(file.path(wd, fn.delete))
-
 ```
+## Rename all
+For final version of package rename all "x_*" scripts to "smwrQW_x_*".  Want to keep the latest additions separate from the previously added smwrQW scripts.  The previous ones are known to be needed the "x" ones not as sure but the package works with them.  There are 85 "x" scripts out of 123 in the "R" folder.
+
+```{r, eval=FALSE}
+wd <- "C://Users//Erik.Leppo//OneDrive - Tetra Tech, Inc//MyDocs_OneDrive//GitHub//baytrends//R"
+#
+fn.orig <- list.files(path=wd, pattern="x_")
+fn.new <- paste0("smwrQW_",fn.orig)
+file.rename(file.path(wd,fn.orig), file.path(wd, fn.new))
+```
+
+
+
+
+
 
