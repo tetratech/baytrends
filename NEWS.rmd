@@ -19,6 +19,29 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+v0.3.3.9010
+===========
+* 207-12-19
+* Rebuild with minor edits for smwrQW references in files (Find in Files).
+* Added smwrQW_is.na.R.
+* Edits to _GenerateData_dataCensored.R.
+    + qw object creates but still fails when adding to data.frame.
+* Copy in all smwrQW function not already added.  Test if builds.
+
+v0.3.3.9009
+===========
+* 2017-12-06
+* Added function as.qw from smwrQW.
+    + Modified include from qw-class.R to a1_smwrQW_qw-class.R.
+    + Did not add as.lcens or as.mcens as they require other functions in smwrBase and smwrQW.
+* Added "data-raw" folder.
+* Created all parts of dataCensored object and saved to "data-raw".
+* Added script to build dataCensored.
+* Renamed back to baytrends on GitHub and in development code.
+* a1_smwrQW_qw-class.R
+    + Comment out "name" 
+* as.qw.R
+    + Comment out "See Also" (refers to function not ported from smwrQW).
 
 v0.3.3.9008
 ===========

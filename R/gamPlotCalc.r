@@ -102,7 +102,10 @@
     pdat <- data.frame(date = seq( as.Date(date.range[1]),as.Date(date.range[2]),by=dayStep))
     pdat$date  <- as.POSIXct(pdat$date)
     pdat$year  <- year(pdat$date)
-    pdat$doy   <- pdat$doy.actual <- as.numeric(smwrBase::baseDay(pdat$date))
+    #pdat$doy   <- pdat$doy.actual <- as.numeric(smwrBase::baseDay(pdat$date))
+    # smwrBase::baseDay added to baytrends package
+    pdat$doy   <- pdat$doy.actual <- as.numeric(baseDay(pdat$date))
+    
 
     pdat$cyear <- (pdat$year + (pdat$doy-1)/366) - centerYear # compute cyear
 
@@ -320,7 +323,9 @@
     sa.sig.dec <- NA
 
     if(t.deriv)   {
-      pdat$event  <- smwrBase::eventNum(pdat$sa.pred1.sig==1, reset=TRUE)
+      # smwrBase::eventNum added to baytrends package
+      #pdat$event  <- smwrBase::eventNum(pdat$sa.pred1.sig==1, reset=TRUE)
+      pdat$event  <- eventNum(pdat$sa.pred1.sig==1, reset=TRUE)
       events <- max(pdat$event)
       if(events>0) {
         sa.sig.inc <- NA
@@ -333,7 +338,9 @@
       }
 
       # identify date ranges of significant decreases
-      pdat$event  <- smwrBase::eventNum(pdat$sa.pred1.sig==-1, reset=TRUE)
+      # smwrBase::eventNum added to baytrends package
+      #pdat$event  <- smwrBase::eventNum(pdat$sa.pred1.sig==-1, reset=TRUE)
+      pdat$event  <- eventNum(pdat$sa.pred1.sig==-1, reset=TRUE)
       events <- max(pdat$event)
       if(events>0) {
         sa.sig.dec <- NA

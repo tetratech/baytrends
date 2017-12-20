@@ -3,7 +3,7 @@
 #'
 #' Impute value for multiply censored data.
 #'
-#' @param x vector of type smwrQW::qw or smwrQW::mcens 
+#' @param x vector of type baytrends::qw or baytrends::mcens 
 #' @param imputeOption imputation method [default= "mid"], valid impute
 #'   options are "lower", "upper", "mid", "uniform", "norm", "lnorm"
 #' @param test logical field [default=FALSE]. If TRUE, then 

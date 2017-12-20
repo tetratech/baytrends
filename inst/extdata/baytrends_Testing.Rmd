@@ -1,0 +1,401 @@
+---
+title: "R Notebook"
+author: "Erik W. Leppo"
+date: "`r Sys.time()`"
+output: 
+  html_notebook:
+    toc: yes
+    depth: 3
+    number_sections: yes
+    toc_float: no
+---
+
+
+
+# Current Version
+## Install
+Install the latest version of baytrends (v0.3.3) from Jon.
+
+```{r}
+install.packages("C:/Users/Erik.Leppo/OneDrive - Tetra Tech, Inc/MyDocs_OneDrive/ChesBay_R/baytrends_20171125/baytrends_0.3.3.tar.gz", repos = NULL, type = "source")
+```
+
+
+## GitHub
+1. Unzip the tarball.
+2. Add to my GitHub folder as baytrends.
+3. Then load to GitHub as v0.3.3.9001.
+
+# Modify
+Remove swmrQW and smwrStats packages.
+Repackage and load to GitHub.
+
+# smwr Packages
+https://owi.usgs.gov/R/packages.html
+
+## Install packages
+Install USGS packages from GitHub.
+```{r smwr_Install, EVAL=FALSE}
+library(devtools)
+install_github("USGS-R/smwrBase")
+install_github("USGS-R/smwrGraphs")
+install_github("USGS-R/smwrStats")
+install_github("USGS-R/smwrQW")
+install_github("USGS-R/smwrData")
+```
+
+```{r smwr_Remove, EVAL=FALSE}
+# Remove packages
+remove.packages("smwrData")
+remove.packages("smwrQW")
+remove.packages("smwrStats")
+remove.packages("smwrGraphs")
+remove.packages("smwrBase")
+```
+
+## Package Dependecies
+Should be able to find with "smwrQW::" but 0 references.
+
+Only a few "smwrBase::"" references searching for "smwr"
+
+
+DESCRIPTION results.
+
+Package   |USGS Status|baytrends|Base   |Data    |Graphs |QW| Stats
+----------|-----------|---------|-------|--------|-------|--|------
+smwrBase  |Research   |Suggests |na     |Suggests|-      |- |-
+smwrData  |Research   |-        |-      |na      |-      |- |-
+smwrGraphs|SUPPORT    |Suggests |DEPENDS|Suggests|na     |- |-
+smwrQW    |ORPHAN     |DEPENDS  |DEPENDS|Suggests|DEPENDS|na|DEPENDS
+smwrStats |ORPHAN     |Suggests |DEPENDS|Suggests|DEPENDS|- |na
+
+Not all packages listed on the USGS website below so used the GitHub link for each package to get status.
+
+* https://owi.usgs.gov/R/packages.html
+* https://github.com/USGS-R/smwrBase
+* https://github.com/USGS-R/smwrData
+* https://github.com/USGS-R/smwrGraphs
+* https://github.com/USGS-R/smwrQW
+* https://github.com/USGS-R/smwrStats
+
+BayTrends DEPENDS on QW
+QW DEPENDS on Base, Graphs, and STATS
+
+smwrData is not needed.
+
+## Functions
+
+Find all functions in package `smwrQW`.
+```{r list package functions, eval=TRUE}
+library(smwrQW)
+pkg.fun <- ls("package:smwrQW")
+print(pkg.fun)
+print(paste0("Total number of functions = ",length(pkg.fun)))
+```
+
+All functions in package `smwrStats`
+```{r}
+library(smwrStats)
+pkg.fun <- ls("package:smwrStats")
+print(pkg.fun)
+print(paste0("Total number of functions = ",length(pkg.fun)))
+```
+
+
+Check for each function within the `baytrends` package.
+
+Use RStudio's "find in files" function test for presense/absens (T/F) for each function.
+```{r}
+pkg.fun.pa <- c(rep(FALSE,4) #17#01-04
+              , rep(FALSE,4) #17 #05
+              , rep(FALSE,4) #17 #09
+              , rep(FALSE,4)  #13
+              , rep(FALSE,4) #17
+              , rep(FALSE,4) #21
+              , rep(FALSE,4) #25
+              , rep(FALSE,4) #29
+              , rep(FALSE,4) #33
+              , rep(FALSE,4) #37
+              , rep(FALSE,4) #41
+              , rep(FALSE,4) #45
+              , rep(FALSE,4) #49
+              , rep(FALSE,4) #53
+              , rep(FALSE,4) #57
+              , rep(FALSE,4) #61
+              , rep(FALSE,4) #65
+              , FALSE, FALSE, FALSE #69
+              )
+#
+# functions that are present
+print(pkg.fun.pa.names <- pkg.fun[pkg.fun.pa])
+
+```
+
+
+None of the functions from `swmrQW` show up in `baytrends` when searching manually.
+
+
+```{r}
+library(pkg.fun.bt)
+pkg.fun.bt <- ls("package:baytrends")
+pkg.fun.bt[pkg.fun.bt %in% pkg.fun]
+
+```
+
+# Run Examples
+Run examples for all functions in package.
+
+Only #2 fails without any swmr packages installed.
+
+After v0.3.3.9006 added 2 functions (and 2 classes).
+
+analysisOrganizeData and selectData no longer work without smwrQW along with gamDiff and gamTest.
+
+```{r}
+library(baytrends)
+pkg.fun <- as.vector(ls("package:baytrends"))
+print(pkg.fun)
+print(paste0("Total number of functions = ",length(pkg.fun)))
+#
+## Examples by amount of output
+
+# long, includes plots
+example("gamDiff", package="baytrends") #05 (lots of stuff)
+example("gamTest", package="baytrends") #07 (lots of stuff)
+
+# long, no plots
+example("analysisOrganizeData", package="baytrends") #01
+example("selectData", package="baytrends") #13
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# above needs smwrQW, below ok
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# short (fixed so works now)
+example("closeOut", package="baytrends") #02
+
+# short, str
+example("parameterList", package="baytrends") #11
+example("stationMasterList", package="baytrends") #14
+example("usgsGages", package="baytrends") #15
+
+# short, save file
+example("saveDF", package="baytrends") #12
+
+# short, load data
+example("dataCensored", package="baytrends") #03
+example("layerLukup", package="baytrends") #08 (data only)
+
+# help file but no examples
+example("flwAveragePred", package="baytrends") #04 (no example)
+example("gamPlotDisp", package="baytrends") #06 (no example)
+example("loadData", package="baytrends") #09 (no example)
+example("loadExcel", package="baytrends") #10 (no example)
+
+# New from smwrBase
+example("baseDay", package="baytrends") #02/17
+example("baseDay2decimal", package="baytrends") #03/17
+
+```
+
+So 15 functions.  Run "Examples".
+
+#### Run down stray links
+
+* Fix functions and examples that are looking for smwrQW.
+    + analysisOrganizeData
+    + selectData
+    + gamDiff
+    + gamTest
+
+
+selectData uses analysisOrganizeData.
+
+analysisOrganizeData uses dataCensored  (relies on smwrQW)
+
+https://stackoverflow.com/questions/10526392/collate-field-in-package-description
+
+Collate: in DESCRIPTION.  force the class objects to load first.  These were listed first in the DESCRIPTION file for smwrQW.
+
+*HOWEVER* have to list *ALL* R code files.  Rename files so appear first.
+
+Load smwrQW then open dataCensored.  Works and defaults to first namespace (baytrends).  Then resave.
+
+# dataCensored
+Recreate dataCensored.  Save to pieces then recreate without smwrQW installed.
+
+```{r}
+library(baytrends)
+library(smwrQW)
+#
+str(dataCensored)
+# #
+df.QW.no <- dataCensored[,1:3]
+str(df.QW.no)
+write.csv(df.QW.no,"dataCensored00Header.csv")
+# #
+# # have issues
+# df.QW.yes <- as.data.frame(dataCensored[,4:16])
+# 
+write.csv(dataCensored, "dataCensored.csv")
+# seems to have worked
+
+x <- read.csv("dataCensored.csv")
+str(x)
+
+myVar <- names(dataCensored[-(1:3)])
+mySlotNames <- slotNames("qw")
+
+# To get slot data
+showClass("qw")
+slotNames("qw")
+
+slot(dataCensored$secchi, "value.codes")
+
+```
+
+
+Extract dataCensored slot values
+
+```{r}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Loop through and save all data
+library(baytrends) #needs smwrQW library to be present
+myData <- dataCensored
+myVar <- names(myData[-(1:3)])
+mySlotNames <- slotNames("qw")
+#
+#
+str(dataCensored)
+# #
+df.QW.no <- myData[,1:3]
+str(df.QW.no)
+write.csv(df.QW.no,"dataCensored00Header.csv")
+
+
+#
+for (i in myVar) {##FOR.i.START
+  #
+  i.num <- match(i, myVar)
+  i.len <- length(myVar)
+  #
+  for (j in mySlotNames) {##FOR.j.START
+    #
+    j.num <- match(j, mySlotNames)
+    j.len <- length(mySlotNames)
+    #
+    df.SlotValues <- slot(myData[,i],j)
+    #
+    myFile <- paste("dataCensored",i,j,".csv",sep="_")
+    write.csv(df.SlotValues, myFile)
+    #
+    # Report Progress to User
+    print(paste0("Saving; item i, ", i," (",i.num," of ",i.len,"), item j, ",j," (",j.num," of ",j.len,")."))
+    flush.console()
+    #
+    }#FOR.j.END
+  #
+}##FOR.i.END
+
+```
+
+```{r}
+# Reconstruct dataCensored from parts
+library(baytrends)
+#
+# Names
+myNames <- c("secchi"
+             , "chla"
+             , "do"
+             , "tn"
+             , "tp"
+             , "po4f"
+             , "pp"
+             , "tdp"
+             , "no23f"
+             , "nh4f"
+             , "tdn"
+             , "pn"
+             , "tss")
+# Create DF
+#DF <- data.frame(matrix("NA", nrow=7719, ncol=16))
+#names(DF) <- myNames
+DF <- read.table("dataCensored_00.csv", sep=","
+                        , header=TRUE, row.names=1
+                        , colClasses = "character"
+                      )
+str(DF)
+head(DF)
+#
+# convert date to POSIXct class (add EST)
+DF[,"date"] <- as.POSIXct(DF[,"date"],tz="EST")
+str(DF)
+head(DF)
+#
+# Convert to qw format
+
+
+```
+
+
+
+Run all examples using devtools.
+
+```{r, eval=FALSE}
+library(devtools)
+setwd("..") 
+run_examples(pkg="baytrends")
+```
+
+
+Go straight to index.
+```{r}
+help(package="baytrends")
+```
+
+Open Vignette
+```{r}
+browseVignettes("baytrends")
+```
+
+## Find Functions
+https://rdrr.io/cran/NCmisc/man/list.functions.in.file.html
+
+Found a package that list all functions in a file.  Necessary for "imports".
+
+Applied to "gamTest.R" in baytrends.  Then the class objects for "qw" and "mcens".
+```{r}
+library(NCmisc)
+rfile <- file.choose()
+list.functions.in.file(rfile)
+```
+
+# Copy all smwrQW R to baytrends
+copy over all R scripts
+```{r}
+xdir <- "C:\\Users\\Erik.Leppo\\OneDrive - Tetra Tech, Inc\\MyDocs_OneDrive\\ChesBay_R\\smwr Libraries\\smwrQW-master\\R"
+#
+wd <- file.path(getwd(),"R")
+#
+fn.orig <- list.files(xdir)
+fn.prefix <- paste0("x_",fn.orig)
+#
+file.copy(file.path(xdir,fn.orig),file.path(wd,fn.prefix))
+
+# remove files
+fn.delete <- c("x_qw-class.R", "x_lcens-class.R", "x_mcens-class.R", "x_is.na.R", "x_smwrQW-package.R"
+               , "x_as.lcens.R", "x_as.mcens.R", "x_as.qw.R"
+               , "x_atrazine.df.R", "x_atrazine.dl.R", "x_atrazine.spk.R"
+               , "x_censPPCC.test.R", "x_censReg.fit.R", "x_censReg.pred.R"
+               , "x_timePlot-censored.R"
+               , "x_plot.censReg.R", "x_plot.htest.R", "x_plot.qw.R"
+               , "x_plot.summary.censReg.R", "x_xyPlot-censored.R"
+               , "x_boxPlot.lcens.R", "x_boxPlotCensStats.R"
+               , "x_ecdfPlot.R", "x_probPlot.R", "x_qqPlot.R"
+               , "x_qwRPD.R", "x_percentile.lcens.R", "x_rmse.censReg.R", "x_vif.censReg.R"
+               , "x_kendallATS.test.R")
+wd <- "C:/Users/Erik.Leppo/OneDrive - Tetra Tech, Inc/MyDocs_OneDrive/GitHub/baytrends/R"
+file.remove(file.path(wd, fn.delete))
+
+```
+
