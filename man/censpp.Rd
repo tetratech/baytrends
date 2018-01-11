@@ -61,4 +61,5 @@ Research v. 24, n. 12, pp.1997-2004
 \seealso{
 \code{\link{ppoints}}
 }
+\keyword{internal}
 \keyword{manip}

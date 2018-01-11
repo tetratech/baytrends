@@ -22,3 +22,4 @@ remark columns.  Removed ATimport swmrGraphs (between ATreturn and ATexamples).
 splitQual(c("<1", "1", "<1", "1", "2"), name="Dummy")
 
 }
+\keyword{internal}

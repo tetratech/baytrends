@@ -6,7 +6,7 @@
 #' @param x an object of "mcens" to compute 
 #' @param group the group variable
 #' @return An object of class "survfit."
-#' @keywords misc
+#' @keywords internal misc
 #' @export
 mcenKM <- function(x, group) {
   ## Coding history:

@@ -17,6 +17,7 @@
 #' @param gt0 logical, if \code{TRUE}, then force values to be strictly non-negative on 
 #'subtraction, otherwise negative values are permitted.
 #' @return An object of class "qw" that is the result of the requested operations.
+#' @keywords internal 
 #' @export add
 add <- function(..., analyte, pcode="", gt0=TRUE) {
   ## Coding history:

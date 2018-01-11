@@ -51,3 +51,4 @@ and R: New York, Wiley, 324 p.\cr
 \code{\link{survdiff}}, \code{\link{survfit}},
 \code{\link{lcens-class}}
 }
+\keyword{internal}

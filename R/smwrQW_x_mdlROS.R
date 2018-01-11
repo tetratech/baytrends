@@ -19,7 +19,7 @@
 #'
 #' Helsel, D.R. 2012, Statistics for censored environmental data 
 #'using Minitab and R: New York, Wiley, 324 p.
-#' @keywords misc
+#' @keywords internal misc
 #' @export
 mdlROS <- function(x, method="ROS", alpha=0.4) {
   ## Coding history:

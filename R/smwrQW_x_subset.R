@@ -18,7 +18,7 @@
 #'with a value. But any value can be set to \code{NA} by treating the value as
 #'a matrix and setting the equivalent of the row to \code{NA}. See the example below.
 #' @seealso \code{\link{[.qw}}
-#' @keywords manip
+#' @keywords internal manip
 #' @examples
 #'Xcens <- as.lcens(c(1, 2, 3, 4), 2)
 #'# Extract the 3rd value

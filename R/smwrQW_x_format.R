@@ -20,7 +20,7 @@
 #' @note For \code{style} set to "asis," it is often useful to set \code{round} to a
 #'single value so that the interval data are not rounded to the same value.
 #' @return A character representations of the elements of \code{x}.
-#' @keywords manip
+#' @keywords internal manip
 #' @examples
 #'
 #'format(as.lcens(1:3, 1))

@@ -32,4 +32,5 @@ for "censReg" object.
 \seealso{
 \code{\link{censReg}}
 }
+\keyword{internal}
 \keyword{regression}

@@ -52,4 +52,5 @@ format(as.lcens(1:3, 1))
 format(as.mcens(1:3, 1:3))
 
 }
+\keyword{internal}
 \keyword{manip}

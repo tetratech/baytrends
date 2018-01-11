@@ -59,4 +59,5 @@ using Minitab and R: New York, Wiley, 324 p.
 \seealso{
 \code{\link{censQuantile}}
 }
+\keyword{internal}
 \keyword{univar}

@@ -38,7 +38,7 @@
 #'O'Brien, P.C. and Fleming, T.R., 1987, A paired Prentice-Wilcoxon test for censored 
 #'paried data: Biometrics, v. 43, p. 451--455.
 #'
-#' @keywords censored htest
+#' @keywords internal censored htest
 #' @examples
 #'
 #'# Compare uncensored results

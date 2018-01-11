@@ -27,4 +27,5 @@ The object \code{x} is returned invisibly.
 \description{
 Print representations of censored or water-quality data values.
 }
+\keyword{internal}
 \keyword{print}

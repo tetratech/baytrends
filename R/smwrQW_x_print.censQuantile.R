@@ -8,7 +8,7 @@
 #' @return The object \code{x} is returned invisibly.
 #' @note The printed output appears as 2 columns, the first column is the
 #'percentile and the second column is the value.
-#' @keywords utilities
+#' @keywords internal utilities
 #'
 #' @export
 #' @method print censQuantile

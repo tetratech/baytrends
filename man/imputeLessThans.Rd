@@ -33,6 +33,7 @@ a group for imputation. See \bold{Details}}
 }
 \value{
 A data frame containing the original data with imputed censored values.
+ @keywords internal
 }
 \description{
 Imputes substitute values for left-censored values using the expectation maximization method.

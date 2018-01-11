@@ -81,3 +81,4 @@ time-to-event data: Boca Raton, Fla., Chapman and Hall, 280 p.\cr
 }
 \keyword{censored}
 \keyword{htest}
+\keyword{internal}

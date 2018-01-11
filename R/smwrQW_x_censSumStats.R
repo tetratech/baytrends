@@ -18,7 +18,7 @@
 #'is only applicaple to un- or left-censored data.
 #' @return A data.frame with the selected statistcs for each variable
 #'in \code{\dots} grouped by each unique value in \code{group}.
-#' @keywords univar
+#' @keywords internal univar
 #' @export
 censSumStats <- function(..., group=NULL, Nums=TRUE, Stats=TRUE,
 												 Probs=(0:4)/4, na.rm=TRUE, method="log MLE") {

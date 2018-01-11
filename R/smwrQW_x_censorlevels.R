@@ -14,7 +14,7 @@
 #' @note Interval censoring is not characterized by a single value, so it is not
 #'an option for \code{type}.
 #' @seealso \code{\link{censoring}}
-#' @keywords censored attribute
+#' @keywords internal censored attribute
 #' @examples
 #'
 #'censorLevels(2.3) # a simple number

@@ -43,7 +43,7 @@
 #'
 #'Tableman, M., and Kim, J.S., 2004, Survival analysis using S---analysis of
 #'time-to-event data: Boca Raton, Fla., Chapman and Hall, 280 p.\cr
-#' @keywords censored htest
+#' @keywords internal censored htest
 #' @examples
 #'
 #'# Compare uncensored results

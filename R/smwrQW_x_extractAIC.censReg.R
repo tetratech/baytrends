@@ -15,7 +15,7 @@
 #' @seealso \code{\link{censReg}}, \code{\link{extractAIC}}
 #' @references Akaike, H., 1974, A new look at the statistical model identification:
 #'IEE transactions on Automatic Control, v. 19, no. 6, p. 716--723.
-#' @keywords regression
+#' @keywords internal regression
 #' @export
 #' @method extractAIC censReg
 extractAIC.censReg <- function(fit, scale=0, k=2, correct=FALSE,...) {

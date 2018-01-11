@@ -26,7 +26,7 @@
 #'The function \code{eventSeq} returns an integer vector the same length as
 #'\code{eventno} indicating the sequence number of each element in the
 #'event.
-#' @keywords manip
+#' @keywords internal manip
 #' @export
 #' @examples
 #'

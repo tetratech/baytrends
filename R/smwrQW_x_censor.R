@@ -19,7 +19,7 @@
 #' @references Lorenz, D.L., in preparation
 #' @seealso \code{\link{as.lcens}}, \code{\link{as.mcens}}
 #' @export
-#' @keywords methods manip
+#' @keywords internal methods manip
 #' @examples
 #'## Create a random vector
 #'set.seed(651)

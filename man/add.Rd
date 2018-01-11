@@ -31,3 +31,4 @@ The \dots arguments must not be named in the call. Only objects of class
 with the unary - sign in the call. The first argument must be a positive valued 
 object of class "qw."
 }
+\keyword{internal}

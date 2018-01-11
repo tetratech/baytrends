@@ -12,7 +12,7 @@
 #' @seealso \code{\link{censQuantile}}
 #' @references Helsel, D.R. 2012, Statistics for censored environmental data 
 #'using Minitab and R: New York, Wiley, 324 p.\cr
-#' @keywords censored univariate
+#' @keywords internal censored univariate
 #' @examples
 #'median(as.lcens(1:4, 2))
 #'

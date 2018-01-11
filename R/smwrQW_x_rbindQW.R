@@ -7,7 +7,7 @@
 #' @param \dots any number of data frames with identical columns. The missing value \code{NA}
 #'is permitted as a special case to allow the addition of missing values.
 #' @return A data frame with all columns combined in the order specified in \dots.
-#' @keywords data
+#' @keywords internal data
 #' @seealso \code{\link{rbind}}
 #'
 #' @export

@@ -7,6 +7,7 @@
 #'@param \dots further arguments passed to or from other methods.
 #'@return An object of class "logLik" containing the log-likelihood and
 #'the attributes "df" (degrees of freedom) and "nobs" (number of observations).
+#'@keywords internal
 #'@seealso \code{\link{censReg}},
 #' @export
 #'@method logLik censReg

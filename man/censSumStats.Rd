@@ -36,4 +36,5 @@ in \code{\dots} grouped by each unique value in \code{group}.
 \description{
 Computes selected summary statistics for censored data.
 }
+\keyword{internal}
 \keyword{univar}

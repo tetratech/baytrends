@@ -10,7 +10,7 @@
 #'\method{length}{qw}(x)
 #' @param x a censored-data or water-quality object.
 #' @return An integer of length 1 indicating the number of elements in \code{x}.
-#' @keywords attribute
+#' @keywords internal attribute
 #' @examples
 #'
 #'length(as.lcens(c(1,3, NA), 2))

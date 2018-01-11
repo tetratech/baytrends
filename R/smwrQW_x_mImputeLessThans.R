@@ -25,6 +25,7 @@
 #'\code{group} is used, then the returned object is a tagged list with names corresponding
 #'to the values in the grouping column. Each group contains the \code{m} repititions
 #'of imputed values.
+#' @keywords internal
 #' @export
 mImputeLessThans <- function(..., m=10, 
 														initial=c("lrEM", "complete.obs", "multRepl")) {

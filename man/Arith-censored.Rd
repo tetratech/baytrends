@@ -52,5 +52,6 @@ as.lcens(c(1, 3), 2) * 2
 \seealso{
 \code{\link{add}}, \code{\link{ratio}}
 }
+\keyword{internal}
 \keyword{manip}
 \keyword{methods}

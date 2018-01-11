@@ -6,6 +6,7 @@
 #' @param x a character vector, missing values are permitted and result in missing values in the output
 #' @param name a character string giving the names of the output columns.
 #' @return A data frame with 2 columns, containing the numeric values and the qualification codes.
+#' @keywords internal
 #' @examples
 #'splitQual(c("<1", "1", "<1", "1", "2"), name="Dummy")
 #'

@@ -18,7 +18,7 @@
 #' @return An integer value representing the base day number if \code{numeric}
 #'is \code{TRUE}. Otherwise a factor with levels for every day of the year.
 #' @import digest lubridate memoise
-#' @keywords manip
+#' @keywords internal manip
 #' @export
 #' @examples
 #'

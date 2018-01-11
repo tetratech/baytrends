@@ -4,11 +4,26 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2017-12-20 16:05:28
+    #> Last Update: 2018-01-11 10:41:29
 
-# v0.3.3.9011
+# baytrends 0.3.3.9013
 
-  - 2017-12-20
+  - Released - 2018-01-11
+  - Modified dataCensored to include timezone. Should fluctuate between
+    EST and EDT.
+      - Exported original data file with TZ included with smwrQW
+        present. Then rebuilt dataCensored with smwrQW removed.
+
+# baytrends 0.3.3.9012
+
+  - Released - 2018-01-05
+  - Fix files names. OneDrive on development computer introduced
+    duplicate files. Some of older versions.
+  - Hid all smwr\*.R files from help file index with keywords internal.
+
+# baytrends 0.3.3.9011
+
+  - Released - 2017-12-20
   - dataCensored
       - Clean up “data-raw” folder and GenerateData script.
       - Overwrite smwrQW dependant dataCensored.rda file with baytrends
@@ -19,9 +34,9 @@ NEWS
       - Known files that are needed already have smwrQW prefix. Keep new
         ones different.
 
-# v0.3.3.9010
+# baytrends 0.3.3.9010
 
-  - 2017-12-19
+  - Released - 2017-12-19
   - Rebuild with minor edits for smwrQW references in files (Find in
     Files).
   - Added smwrQW\_is.na.R.
@@ -29,9 +44,9 @@ NEWS
       - qw object creates but still fails when adding to data.frame.
   - Copy in all smwrQW function not already added. Test if builds.
 
-# v0.3.3.9009
+# baytrends 0.3.3.9009
 
-  - 2017-12-06
+  - Released - 2017-12-06
   - Added function as.qw from smwrQW.
       - Modified include from qw-class.R to a1\_smwrQW\_qw-class.R.
       - Did not add as.lcens or as.mcens as they require other functions
@@ -46,18 +61,18 @@ NEWS
       - Comment out “See Also” (refers to function not ported from
         smwrQW).
 
-# v0.3.3.9008
+# baytrends 0.3.3.9008
 
-  - 2017-12-05
+  - Released - 2017-12-05
   - Resave dataCensored.rda. Installed smwrQW so could open and resets
     “qw” class to first reference in namespace (baytrends). Then saved
     and removed smwr packages.
   - Add lscens class as well; a2\_smwrQW\_lcens-class.R.
   - Rename mscens from a2 to a3 to preserve collate order of smwrQW.
 
-# v0.3.3.9007
+# baytrends 0.3.3.9007
 
-  - 2017-12-05
+  - Released - 2017-12-05
   - Rename new class objects to appear in R folder first. And will load
     first.
       - ‘smwrQW\_qw-class.R’ (prefix “a1\_”).
@@ -68,9 +83,9 @@ NEWS
       - gamDiff
       - gamTest
 
-# v0.3.3.9006
+# baytrends 0.3.3.9006
 
-  - 2017-12-05
+  - Released - 2017-12-05
   - Removed swmr packages from R install.
   - Rebuild baytrends with smwrBase functions included.
       - baseDay
@@ -79,31 +94,31 @@ NEWS
   - Added class objects qw and mcens from smwrQW.
   - Renamed all added R files with smwrBase\_ or smwrQW\_.
 
-# v0.3.3.9005
+# baytrends 0.3.3.9005
 
-  - 2017-12-05
+  - Released - 2017-12-05
   - Remove all smwrX packages (Base, Graphs, QW, and Stats). Not just
     the oprhaned QW and Stats. Base and Graphs DEPEND on QW as well.
 
-# v0.3.3.9004
+# baytrends 0.3.3.9004
 
-  - 2017-12-04
+  - Released - 2017-12-04
   - Modified NEWS to NEWS.rmd.
 
-# v0.3.3.9003
+# baytrends 0.3.3.9003
 
-  - 2017-12-04
+  - Released - 2017-12-04
   - Remove “smwrQW” from Depends in DESCRIPTION.
   - Remove “smwrStats” from Suggests in DESCRIPTION.
 
-# v0.3.3.9002
+# baytrends 0.3.3.9002
 
-  - 2017-12-04
+  - Released - 2017-12-04
   - Add Notebooks for Library Creation and Testing to .
 
-# v0.3.3.9001
+# baytrends 0.3.3.9001
 
-  - 2017-12-04
+  - Released - 2017-12-04
   - Renamed to baytrends033
   - Test version to GitHub
 

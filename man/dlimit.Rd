@@ -77,4 +77,5 @@ Available online as \url{https://pubs.er.usgs.gov/publication/tm4A5}.
 \seealso{
 \code{\link{readNWQLdl}}
 }
+\keyword{internal}
 \keyword{manip}

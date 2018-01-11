@@ -40,4 +40,5 @@ Sociology, v. 4, no. 1, p. 103--120.
 \seealso{
 \code{\link{censReg}}
 }
+\keyword{internal}
 \keyword{regression}

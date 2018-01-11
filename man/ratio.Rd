@@ -26,3 +26,4 @@ Objects of class "qw" are converted to class "mcens" using the \code{qw2mcens}
 function, which preserves the minimum value of 0 for "less than" data rather 
 than \code{as.mcens}, which converts the to left-censored values.
 }
+\keyword{internal}

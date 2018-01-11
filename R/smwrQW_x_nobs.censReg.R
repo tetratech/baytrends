@@ -7,7 +7,7 @@
 #' @param \dots further arguments passed to or from other methods.
 #' @return The number of observations used to construct the model.
 #' @seealso \code{\link{censReg}}
-#' @keywords regression
+#' @keywords internal regression
 #' @importFrom stats nobs
 #' @export
 #' @method nobs censReg

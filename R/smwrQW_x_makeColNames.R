@@ -13,7 +13,7 @@
 #'@note This function is a support function designed to be called within other
 #'functions.
 #'@seealso \code{\link{pcodeNWISqw}}, \code{\link{pcodeColData}}
-#'@keywords utilities
+#'@keywords internal utilities
 #'@export
 makeColNames <- function(params, name, short) {
   ## Coding history:

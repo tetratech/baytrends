@@ -31,4 +31,5 @@ functions.
 \seealso{
 \code{\link{pcodeNWISqw}}, \code{\link{pcodeColData}}
 }
+\keyword{internal}
 \keyword{utilities}

@@ -6,7 +6,7 @@
 #'@param x out from mdlKM or mcenKM
 #'@param probs numeric vector of desrired probabilities
 #'@return A list containing summary statistics.
-#'@keywords misc
+#'@keywords internal misc
 #'@export
 mdlKMstats <- function(x, probs=c(.25, .5, .75)) {
   ## Coding history:

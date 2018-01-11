@@ -33,3 +33,4 @@ Lorenz, D.L., 2016, smwrQW---An R Package for Managing and Analyzing
 Water-Quality Data, Version 0.7.3
 }
 \keyword{datasets}
+\keyword{internal}

@@ -14,7 +14,7 @@
 #' @references Cohn, T.A., 1988, Adjusted maximum likelihood estimation of the moments
 #'of lognormal populations from type 1 censored samples: U.S. Geological Survey 
 #'Open-File Report 88-350, 34 p.
-#' @keywords misc
+#' @keywords internal misc
 #' @export
 mdlAMLE <- function(x, method="AMLE", alpha=0.4) {
   ## Coding history:

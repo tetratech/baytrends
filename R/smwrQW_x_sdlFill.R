@@ -14,7 +14,7 @@
 #'mean and standard deviation stabilize.
 #'@references Gleit, A., 1985, Estimation for small normal data sets with detection limits:
 #'Environmental Science and Technology, v. 19, no. 12, p. 1201--1206.
-#'@keywords misc
+#'@keywords internal misc
 #'@export
 sdlFill <- function(x, method="fill", alpha=0.4) {
   ## Coding history:

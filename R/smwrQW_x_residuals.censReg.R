@@ -27,7 +27,7 @@
 #' @param \dots further arguments passed to or from other methods.
 #' @return The residuals from the regression as specified by \code{type}.
 #' @seealso \code{\link{censReg}}
-#' @keywords regression
+#' @keywords internal regression
 #' @export
 #' @method residuals censReg
 residuals.censReg <- function(object , type="working",

@@ -11,7 +11,7 @@
 #' @return An object of the appropriate class for the data.
 #' @import methods
 #' @seealso \code{\link{add}}, \code{\link{ratio}}
-#' @keywords methods manip
+#' @keywords internal methods manip
 #' @exportMethod Arith
 #' @examples
 #'as.lcens(c(1, 3), 2) + 1

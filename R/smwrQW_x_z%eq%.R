@@ -15,7 +15,7 @@
 #'\code{e2}, set to \code{TRUE} is there is overlap in the values, and \code{FALSE}
 #'otherwise.
 #' @seealso \code{\link{Compare,qw,numeric-method}}
-#' @keywords manip
+#' @keywords internal manip
 #' @examples
 #' as.mcens(1, 2) %~=% 0.5
 #' as.mcens(1, 2) %~=% 1.5

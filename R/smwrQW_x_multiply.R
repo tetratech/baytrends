@@ -18,6 +18,7 @@
 #'by default "ALGOR."
 #' @param pcode the parameter code of the result, if not supplied, retained from \code{x}.
 #' @return An object of class "qw" that is the result of the requested operation.
+#' @keywords internal
 #' @export multiply
 multiply <- function(x, factor, units, analyte, analyte.method="ALGOR", pcode="") {
   ##

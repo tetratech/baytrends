@@ -103,3 +103,4 @@ censored data rank tests: Biometrika, v. 35, p. 861-867.\cr
 }
 \keyword{censored}
 \keyword{htest}
+\keyword{internal}

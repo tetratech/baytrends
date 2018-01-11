@@ -50,3 +50,4 @@ for any group is 3.
 \seealso{
 \code{\link[zCompositions]{lrDA}}, \code{\link{imputeLessThans}}
 }
+\keyword{internal}

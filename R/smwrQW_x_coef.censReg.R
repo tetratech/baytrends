@@ -12,6 +12,7 @@
 #'@note The attained p-values are computed from the log-likelihood test for
 #'AMLE regression and from a Wald chi-square test for MLE regression.
 #'@seealso \code{\link{censReg}},
+#' @keywords internal
 #' @export
 #'@method coef censReg
 coef.censReg <- function(object, summary=FALSE, ...) {

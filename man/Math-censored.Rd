@@ -25,5 +25,6 @@ censored or water-quality data.
 log(as.lcens(c(1, 3), 2))
 
 }
+\keyword{internal}
 \keyword{manip}
 \keyword{methods}

@@ -44,4 +44,5 @@ are defined in the table above, in keeping with older versions of
 \seealso{
 \code{\link{censReg}}
 }
+\keyword{internal}
 \keyword{regression}

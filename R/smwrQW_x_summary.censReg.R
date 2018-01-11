@@ -21,7 +21,7 @@
 #'the analysis of ordinal dependent variables: The Journal of Mathematical
 #'Sociology, v. 4, no. 1, p. 103--120.
 #' @seealso \code{\link{censReg}}
-#' @keywords regression
+#' @keywords internal regression
 #' @export
 #' @method summary censReg
 summary.censReg <- function(object, correlation=FALSE, ...) {

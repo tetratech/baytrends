@@ -44,7 +44,7 @@
 #'\code{\link{makeColNames}}
 #' @references Lorenz, D.L., 2014, USGSqw OFR.\cr See information about discrete
 #'samples at \url{https://nwis.waterdata.usgs.gov/usa/nwis/qw}.
-#' @keywords datasets IO
+#' @keywords internal datasets IO
 #' @examples
 #'\dontrun{
 #'# Convert the stacked qw data supplied in smwrData

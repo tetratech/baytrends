@@ -27,4 +27,5 @@ null model with the attained p-value, and the computational method.
 \seealso{
 \code{\link{censReg}}, \code{\link{coef.censReg}}
 }
+\keyword{internal}
 \keyword{utilities}

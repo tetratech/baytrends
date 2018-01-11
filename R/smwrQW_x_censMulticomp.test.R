@@ -16,7 +16,7 @@
 #'@seealso \code{\link{censKSample.test}}
 #'@references Helsel, D.R. 2012, Statistics for censored environmental data 
 #'using Minitab and R: New York, Wiley, 324 p.
-#'@keywords censored nonparametric htest
+#'@keywords internal censored nonparametric htest
 #'@examples
 #'
 #'set.seed(69)

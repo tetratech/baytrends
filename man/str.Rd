@@ -35,3 +35,4 @@ str(as.lcens(c(1,3), 2))
 \seealso{
 \code{\link[utils]{str}}
 }
+\keyword{internal}

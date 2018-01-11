@@ -18,4 +18,5 @@ A list containing summary statistics.
 Support function for computing statistics for left- and multiply censored 
 data.
 }
+\keyword{internal}
 \keyword{misc}

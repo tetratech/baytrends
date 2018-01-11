@@ -40,4 +40,5 @@ related columns that represent different methods. For example, a single
 column of alkalinity may be desired when there are multiple columns of
 alkalinity determined by various methods.
 }
+\keyword{internal}
 \keyword{manip}

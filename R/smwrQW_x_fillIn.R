@@ -26,7 +26,7 @@
 #'using Minitab and R: New York, Wiley, 324 p.\cr
 #'Quinn, G.P. and Keogh, M.J., 2003, Experimental design and data analysis for 
 #'biologists, Cambridge University Press, Cambridge, UK, 539 p.
-#' @keywords manip
+#' @keywords internal manip
 #' @examples
 #'set.seed(5420)
 #'XR <- sort(rnorm(10))

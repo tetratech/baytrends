@@ -58,7 +58,7 @@
 #'Cohn, T.A., 1988, Adjusted maximum likelihood estimation of moments
 #'of lognormal populations from type I censored samples: 
 #'U.S. Geological Survey Open-File Report 88-350, 34 p.\cr
-#' @keywords regression censored
+#' @keywords internal regression censored
 #' @examples
 #'
 #'set.seed(345)

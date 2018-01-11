@@ -48,5 +48,6 @@ as.lcens(c(1, 3), 2) > 1
 as.lcens(c(1, 3), 2) < 4
 
 }
+\keyword{internal}
 \keyword{manip}
 \keyword{methods}

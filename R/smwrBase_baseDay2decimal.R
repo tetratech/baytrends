@@ -9,7 +9,7 @@
 #'values are permitted and result in missing values in the output. Unmatched 
 #'values also result in missing values in the output.
 #' @return A numeric value representing the base day.
-#' @keywords manip
+#' @keywords internal manip
 #' @seealso \code{\link{baseDay}}
 #' @examples
 #'# The baseDay ordered by calendar year

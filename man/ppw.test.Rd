@@ -72,3 +72,4 @@ paried data: Biometrics, v. 43, p. 451--455.
 }
 \keyword{censored}
 \keyword{htest}
+\keyword{internal}

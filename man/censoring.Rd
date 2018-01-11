@@ -47,3 +47,4 @@ censoring(as.lcens(1, 2)) # left-censored
 }
 \keyword{attribute}
 \keyword{censored}
+\keyword{internal}

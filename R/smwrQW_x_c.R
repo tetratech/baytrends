@@ -9,6 +9,7 @@
 #' @param \dots any objects that can be coerced to the class of the first one.
 #' @param recursive not used.
 #' @return A vector of an appropriate class.
+#' @keywords internal
 #' @examples
 #'
 #'c(as.lcens(c(1,3), 2), 2)

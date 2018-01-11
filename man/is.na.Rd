@@ -29,4 +29,5 @@ Indicates which elements are missing: methods for "lcens," "mcens," and "qw" dat
 is.na(as.lcens(c(1,3, NA), 2))
 
 }
+\keyword{internal}
 \keyword{manip}

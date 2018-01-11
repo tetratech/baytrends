@@ -57,7 +57,7 @@
 #' @seealso \code{\link{readNWISqw}}
 #' @references Lorenz, D.L., 2014, smwrQW OFR.\cr See information about discrete
 #'samples at \url{https://nwis.waterdata.usgs.gov/usa/nwis/qw}.
-#' @keywords datasets IO
+#' @keywords internal datasets IO
 #' @examples
 #'
 #'\dontrun{

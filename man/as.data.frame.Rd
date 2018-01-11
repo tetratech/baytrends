@@ -42,4 +42,5 @@ methods for "lcens," "mcens," and "qw" data.
 \seealso{
 \code{\link{data.frame}}
 }
+\keyword{internal}
 \keyword{manip}

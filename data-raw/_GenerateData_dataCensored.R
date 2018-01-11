@@ -3,6 +3,13 @@
 # Erik.Leppo@tetratech.com
 # 20171206
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ensure smwrQW package is not installed
+# remove.packages("smwrData")
+# remove.packages("smwrQW")
+# remove.packages("smwrStats")
+# remove.packages("smwrGraphs")
+# remove.packages("smwrBase")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 {# 0. Prep####
 # assume wd is package directory
@@ -38,7 +45,8 @@ str(DF)
 head(DF)
 #
 # convert date to POSIXct class (add EST)
-DF[,"date"] <- as.POSIXct(DF[,"date"],tz="EST")
+#DF[,"date"] <- as.POSIXct(DF[,"date"],tz="EST")
+DF[,"date"] <- as.POSIXct(DF[,"date"])
 str(DF)
 head(DF)
 #

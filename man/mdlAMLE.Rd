@@ -29,4 +29,5 @@ Cohn, T.A., 1988, Adjusted maximum likelihood estimation of the moments
 of lognormal populations from type 1 censored samples: U.S. Geological Survey 
 Open-File Report 88-350, 34 p.
 }
+\keyword{internal}
 \keyword{misc}

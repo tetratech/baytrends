@@ -15,7 +15,7 @@
 #' @param \dots further arguments passed to or from other methods.
 #' @return The fitted values from the regression.
 #' @seealso \code{\link{censReg}}
-#' @keywords regression
+#' @keywords internal regression
 #' @export
 #' @method fitted censReg
 fitted.censReg <- function(object, suppress.na.action=FALSE, 

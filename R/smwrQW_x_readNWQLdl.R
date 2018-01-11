@@ -12,7 +12,7 @@
 #' @note This function works only within the internal USGS network.
 #' @seealso \code{\link{qw-class}}
 #' @references Lorenz, D.L., 2014, USGSqw OFR.
-#' @keywords IO
+#' @keywords internal IO
 #' @examples
 #'
 #'\dontrun{

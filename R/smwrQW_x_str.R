@@ -8,6 +8,7 @@
 #' @param \dots any additional valid arguments ot the default method for \code{str} and
 #'give.censoring, a logical value that includes the type of censoring in the output if TRUE.
 #' @return Nothing is returned, the side effect is to print a short summary of the object.
+#' @keywords internal
 #' @seealso \code{\link[utils]{str}}
 #' @examples
 #'

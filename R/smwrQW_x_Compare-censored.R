@@ -16,7 +16,7 @@
 #'either argument and result in a missing value in the output.
 #' @return A logical vector the represents the result of the comparison between each
 #'element in \code{e1} and \code{e2}.
-#' @keywords methods manip
+#' @keywords internal methods manip
 #' @exportMethod Compare
 #' @examples
 #'as.lcens(c(1, 3), 2) > 1

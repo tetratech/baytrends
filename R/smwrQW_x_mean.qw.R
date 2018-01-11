@@ -16,7 +16,7 @@
 #' @note The mean and standard deviation of censored water-quality data should be computed
 #'using \code{censStats}.
 #'@seealso \code{\link{censStats}}
-#'@keywords censored univariate
+#'@keywords internal censored univariate
 #' @export
 #'@method mean qw
 mean.qw <- function(x, lt.tol=.5, ...) {

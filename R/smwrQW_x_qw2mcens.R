@@ -7,6 +7,7 @@
 #' @return A vector of the data converted to class "mcens" retaining interval 
 #'censoring for "less-than" data.
 #' @seealso \code{\link{as.mcens}}
+#' @keywords internal
 #' @export
 qw2mcens <- function(x) {
 	## Check, then proceed

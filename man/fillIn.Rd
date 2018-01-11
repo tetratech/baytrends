@@ -61,4 +61,5 @@ biologists, Cambridge University Press, Cambridge, UK, 539 p.
 \seealso{
 \code{\link{as.double.qw}}
 }
+\keyword{internal}
 \keyword{manip}

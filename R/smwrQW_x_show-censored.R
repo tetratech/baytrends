@@ -6,7 +6,7 @@
 #' @name show-censored
 #' @param object the object to show.
 #' @return The object is retruned invisibly.
-#' @keywords methods manip
+#' @keywords internal methods manip
 #' @exportMethod show
 
 #' @rdname show-censored

@@ -7,7 +7,7 @@
 #' @name Math-censored
 #' @include a3_smwrQW_mcens-class.R a2_smwrQW_lcens-class.R a1_smwrQW_qw-class.R
 #' @param x the object to transform
-#' @keywords methods manip
+#' @keywords internal methods manip
 #' @exportMethod  Math
 #' @examples
 #'log(as.lcens(c(1, 3), 2))

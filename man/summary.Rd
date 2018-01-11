@@ -42,4 +42,5 @@ summary(importNWISqw("05330000", "00608"))
 }
 
 }
+\keyword{internal}
 \keyword{misc}

@@ -20,7 +20,7 @@
 #Flip for production/manual
 #'\code{\link[base]{is.na}}, \code{\link[base]{sub}}
 #\code{is.na}, \code{sub} (both in base package)
-#' @keywords manip
+#' @keywords internal manip
 #' @export
 #' @examples
 #'

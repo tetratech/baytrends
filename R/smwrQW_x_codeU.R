@@ -10,6 +10,7 @@
 #' @return A data frame containing the u-coded values. The column names are taken 
 #'from \code{\dots}; the rownames are derived from the sequential numbers of the 
 #'original data.
+#' @keywords internal
 #' @export
 codeU <- function(...) {
   ## Coding history:

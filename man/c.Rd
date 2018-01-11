@@ -32,3 +32,4 @@ a common type which is the type of the first argument, except for the qw method,
 c(as.lcens(c(1,3), 2), 2)
 
 }
+\keyword{internal}

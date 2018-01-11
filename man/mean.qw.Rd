@@ -35,4 +35,5 @@ using \code{censStats}.
 \code{\link{censStats}}
 }
 \keyword{censored}
+\keyword{internal}
 \keyword{univariate}

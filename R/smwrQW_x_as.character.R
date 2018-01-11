@@ -9,7 +9,7 @@
 #'@param x any R object to coerce to character
 #'@param \dots further arguments passed to or from other methods.
 #'@return Creates a character representation of \code{x}.
-#'@keywords manip
+#'@keywords internal manip
 #'@export
 #'@method as.character lcens
 as.character.lcens <- function(x, ...) {

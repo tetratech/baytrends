@@ -42,7 +42,7 @@
 #'using Minitab and R: New York, Wiley, 324 p.
 #'
 #' @importFrom boot boot boot.ci
-#' @keywords univar
+#' @keywords internal univar
 #' @examples
 #' 
 #' ## Generate a random lognormal sample

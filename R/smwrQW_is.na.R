@@ -7,7 +7,7 @@
 #' @param x the object to be tested.
 #' @return A logical vector of the same length as its argument \code{x},
 #'containing TRUE for those elements marked NA and FALSE otherwise.
-#' @keywords manip
+#' @keywords internal manip
 #' @examples
 #'
 #'is.na(as.lcens(c(1,3, NA), 2))

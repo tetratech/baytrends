@@ -19,4 +19,5 @@ An object of class "survfit."
 \description{
 Support function for computing statistics for left-censored data.
 }
+\keyword{internal}
 \keyword{misc}

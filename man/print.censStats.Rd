@@ -24,4 +24,5 @@ The printed includes the mean and standard deviation of the data and
 if a log-transform was used in the computation, then the mean and standard
 deviation of the log-transformed values.
 }
+\keyword{internal}
 \keyword{utilities}

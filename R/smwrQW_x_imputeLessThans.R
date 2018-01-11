@@ -21,6 +21,7 @@
 #' @seealso \code{\link[zCompositions]{lrEM}}, \code{\link{mImputeLessThans}}
 #' @importFrom zCompositions lrEM
 #' @return A data frame containing the original data with imputed censored values.
+#'  @keywords internal
 #' @export
 imputeLessThans <- function(..., type=c("MLE", "robust"), 
                             initial=c("complete.obs", "multRepl")) {

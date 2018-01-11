@@ -77,3 +77,4 @@ p. 655--667.
 }
 \keyword{censored}
 \keyword{htest}
+\keyword{internal}

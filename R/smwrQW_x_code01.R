@@ -19,6 +19,7 @@
 #'called "critical.value" that reports the critical value used to recode the values in 
 #'that column. The column names are taken from \code{\dots}; the rownames are derived 
 #'from the sequential numbers of the original data.
+#' @keywords internal
 #' @export
 code01 <- function(..., criteria) {
   ## Coding history:

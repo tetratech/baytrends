@@ -55,4 +55,5 @@ Xcens
 \seealso{
 \code{\link{[.qw}}
 }
+\keyword{internal}
 \keyword{manip}

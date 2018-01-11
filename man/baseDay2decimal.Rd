@@ -32,4 +32,5 @@ baseDay2decimal(bd.tmp)
 \seealso{
 \code{\link{baseDay}}
 }
+\keyword{internal}
 \keyword{manip}

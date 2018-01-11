@@ -34,4 +34,5 @@ for multiply censored water quality data: Water Resources Research v. 24, n.
 Helsel, D.R. 2012, Statistics for censored environmental data 
 using Minitab and R: New York, Wiley, 324 p.
 }
+\keyword{internal}
 \keyword{misc}

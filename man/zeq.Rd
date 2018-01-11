@@ -33,4 +33,5 @@ as.mcens(1, 2) \%~=\% 2.5
 \seealso{
 \code{\link{Compare,qw,numeric-method}}
 }
+\keyword{internal}
 \keyword{manip}

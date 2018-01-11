@@ -15,7 +15,7 @@
 #'@return An object like \code{x}, but with the data sorted. Left-censored
 #'values are placed between smaller numeric values and the corresponding
 #'uncensored values.
-#'@keywords manip
+#'@keywords internal manip
 #'@examples
 #'set.seed(5422)
 #'XR <- rnorm(10)

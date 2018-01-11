@@ -27,4 +27,5 @@ Creates character representations of censored and water-quality data:
 methods for "lcens," "mcens," and "qw" data.  
 Removed ATimport smwrBase (after keywords and before export)
 }
+\keyword{internal}
 \keyword{manip}

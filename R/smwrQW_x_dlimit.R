@@ -50,7 +50,7 @@
 #'estimator (LOADEST) a FORTRAN program for estiamting constituent laods in
 #'streams and rivers: U.S. Gelogical Survey Techniques and Methods 4-A5, 69.
 #'Available online as \url{https://pubs.er.usgs.gov/publication/tm4A5}.
-#'@keywords manip
+#'@keywords internal manip
 #'@examples
 #'
 #'## The actual detection limits are 2,2,2,1,1,1.

@@ -11,7 +11,7 @@
 #' @note This function is mostly used within other functions to determine the
 #''best' technique to use for analysis.
 #' @seealso \code{\link{censorLevels}}
-#' @keywords censored attribute
+#' @keywords internal censored attribute
 #' @examples
 #'
 #'censoring(2.3) # a simple number

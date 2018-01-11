@@ -12,6 +12,7 @@
 #'lower and upper values are raised to the power of \code{lambda} and the result divided by \code{lambda}
 #'to approximately maintain scale. But the reciprocal value of \code{lambda} cannot be used to restore the 
 #'original values.
+#' @keywords internal
 #' @examples
 #' pow(as.mcens(c(0,2), c(1,2)), 2)
 #' pow(as.mcens(c(0,2), c(1,2)), .5)

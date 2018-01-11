@@ -7,6 +7,7 @@
 #' @param title the title for the viewer window. Defaults to the name of \code{x}.
 #' @return Invisibly returns \code{NULL}. The functions opens a widnow showing the
 #' formatted contents of \code{x} and returns immediately.
+#' @keywords internal
 #' @export
 View <- function(x, title) {
 	if(missing(title)) {

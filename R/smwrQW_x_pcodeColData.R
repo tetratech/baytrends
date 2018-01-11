@@ -18,7 +18,7 @@
 #' @references
 #'Lorenz, D.L., 2016, smwrQW---An R Package for Managing and Analyzing 
 #'Water-Quality Data, Version 0.7.3
-#' @keywords datasets
+#' @keywords internal datasets
 #' @examples
 #' data(pcodeColData)
 #' # just print some rows

@@ -35,7 +35,7 @@
 #'\item{llcor}{ the log likelihood for cor=cor}
 #' @references Lyles, R.H., Williams, J.K., and Chuachoowong R., 2001, Correlating two viral 
 #'load assays with known detection limits: Biometrics,  v. 57 no. 4, p. 1238--1244.
-#' @keywords summary censored
+#' @keywords internal summary censored
 #' @examples
 #'# Simple no censoring
 #'set.seed(450)

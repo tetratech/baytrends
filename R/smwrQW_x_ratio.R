@@ -13,6 +13,7 @@
 #' @param denominator any valid vector that can be converted to class "mcens." Missing values
 #'are permitted but result in missing values in the output.
 #' @return An object of class "mcens" that is the result of the requested division.
+#' @keywords internal
 #' @export ratio
 ratio <- function(numerator, denominator) {
 	# Force to mcens

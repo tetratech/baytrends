@@ -27,6 +27,7 @@
 #' @return A vector of predictions or a matrix of predictions and the other
 #'selected statistics. In contrast with other regression predict functions,
 #'a list of fitted values and standard errors is never returned.
+#' @keywords internal
 #' @note The predicted value for \code{type} = "mean" uses the adjusted maximum
 #'likelihood method for bias correction described by Cohn (1988) and Cohn and 
 #'others (1992). that method will give sligthly different predicted values than

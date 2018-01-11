@@ -74,4 +74,5 @@ multiply censored water quality data: Water Resources Research v. 24, n.
 \seealso{
 \code{\link{quantile}}, \code{\link{censQuantile}}
 }
+\keyword{internal}
 \keyword{univar}

@@ -90,4 +90,5 @@ U.S. Geological Survey Open-File Report 88-350, 34 p.\cr
 \code{\link{lm}}, \code{\link{survreg}}
 }
 \keyword{censored}
+\keyword{internal}
 \keyword{regression}

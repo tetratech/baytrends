@@ -29,7 +29,7 @@
 #' @seealso \code{\link{censQuantile}}
 #' @references Helsel, D.R. 2012, Statistics for censored environmental data 
 #'using Minitab and R: New York, Wiley, 324 p.
-#' @keywords univar
+#' @keywords internal univar
 #' @examples
 #' 
 #' ## Generate a random sample

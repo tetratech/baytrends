@@ -23,5 +23,6 @@ The object is retruned invisibly.
 \description{
 Prints the object.
 }
+\keyword{internal}
 \keyword{manip}
 \keyword{methods}

@@ -43,4 +43,5 @@ using Minitab and R: New York, Wiley, 324 p.\cr
 \code{\link{censQuantile}}
 }
 \keyword{censored}
+\keyword{internal}
 \keyword{univariate}

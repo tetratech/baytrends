@@ -35,3 +35,4 @@ Lorenz, D.L., 2014, USGSqw OFR.
 \code{\link{qw-class}}
 }
 \keyword{IO}
+\keyword{internal}

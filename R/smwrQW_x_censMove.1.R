@@ -39,7 +39,7 @@
 #'any condition of the other.
 #' @seealso \code{\link{move.1}}
 #' @references will need some.
-#' @keywords regression censored
+#' @keywords internal regression censored
 #' @examples
 #'\dontrun{
 #'library(smwrData)

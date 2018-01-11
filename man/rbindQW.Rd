@@ -22,3 +22,4 @@ of class "qw."
 \code{\link{rbind}}
 }
 \keyword{data}
+\keyword{internal}

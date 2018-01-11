@@ -30,3 +30,4 @@ pow(as.mcens(c(0,2), c(1,2)), .5)
 # Numeric values
 pow(c(1,3), 2)
 }
+\keyword{internal}

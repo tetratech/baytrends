@@ -9,7 +9,7 @@
 #'estimates for each main parameter of the model. The matrix has row and 
 #'column names corresponding to the parameter names.
 #' @seealso \code{\link{censReg}}
-#' @keywords regression
+#' @keywords internal regression
 #' @importFrom stats vcov
 #' @export
 #' @method vcov censReg

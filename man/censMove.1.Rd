@@ -76,4 +76,5 @@ will need some.
 \code{\link{move.1}}
 }
 \keyword{censored}
+\keyword{internal}
 \keyword{regression}

@@ -14,7 +14,7 @@
 #'@note This function is used when \code{summary} is called on a data frame.
 #'Setting \code{details} to \code{TRUE} can be useful for individual columns in
 #'a data frame.
-#'@keywords misc
+#'@keywords internal misc
 #'@examples
 #'
 #'\dontrun{

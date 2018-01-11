@@ -7,7 +7,7 @@
 #' @param digits the number of significant digits for numbers.
 #' @param \dots further arguments passed to or from other methods.
 #' @return The object \code{x} is returned invisibly.
-#' @keywords print
+#' @keywords internal print
 #' @rdname printData
 #' @export
 #' @method print lcens

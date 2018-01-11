@@ -21,6 +21,7 @@
 #'equivalent of the "h" score in described by Helsel, but the 
 #'signs are reversed so that larger values in \code{x} have
 #'larger values in the output.
+#' @keywords internal
 #' @note If the output is the u-score, \code{y} is missing, then the
 #'values can be converted to ranks by dividing by 2 and adding the mean
 #'rank, (length(\code{x}) + 1)/2.

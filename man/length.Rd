@@ -33,3 +33,4 @@ length(as.lcens(c(1,3, NA), 2))
 
 }
 \keyword{attribute}
+\keyword{internal}

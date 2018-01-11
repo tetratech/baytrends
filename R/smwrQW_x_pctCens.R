@@ -14,7 +14,7 @@
 #' @note This function will work for any type of data that has a method for 
 #'\code{censoring} and \code{as.mcens}.
 #' @seealso \code{\link{censoring}}
-#' @keywords censored attribute
+#' @keywords internal censored attribute
 #' @examples
 #'
 #'pctCens(as.lcens(c(1:5, NA), 2)) # left-censored 

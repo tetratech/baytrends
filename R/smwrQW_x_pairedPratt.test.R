@@ -43,7 +43,7 @@
 #'procedures: Journal of the American Statistical Association, v. 54, no. 287
 #'p. 655--667.
 #'
-#' @keywords censored htest
+#' @keywords internal censored htest
 #' @examples
 #'
 #'# Compare uncensored results

@@ -14,7 +14,7 @@
 #'instead of creating a data frame containting the object.
 #' @return A data frame constructred from \code{x}.
 #' @seealso \code{\link{data.frame}}
-#' @keywords manip
+#' @keywords internal manip
 #' @rdname as.data.frame
 #' @export
 #' @method as.data.frame lcens

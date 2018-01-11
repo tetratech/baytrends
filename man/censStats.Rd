@@ -76,4 +76,5 @@ multiply censored water quality data: Water Resources Research v. 24, n.
 \code{\link{mdlAMLE}}, \code{\link{mdlKM}}, \code{\link{mdlKMstats}}, 
 \code{\link{mdlMLE}}, \code{\link{mdlROS}}
 }
+\keyword{internal}
 \keyword{univariate}

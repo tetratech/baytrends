@@ -16,7 +16,7 @@
 #'\code{censMulticomp.test}.
 #' @seealso \code{\link{censKSample.test}}, \code{\link{censMulticomp.test}},
 #'\code{\link{genWilcox.test}}
-#' @keywords utilities
+#' @keywords internal utilities
 #'
 #' @export
 #' @method print censMCT

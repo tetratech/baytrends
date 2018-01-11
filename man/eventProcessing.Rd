@@ -62,4 +62,5 @@ eventLen(eventNum(c(TRUE,TRUE,FALSE,FALSE,TRUE,FALSE), reset=TRUE))
 ## This is an example of the summary option
 eventLen(eventNum(c(TRUE,TRUE,FALSE,FALSE,TRUE,FALSE), reset=TRUE), summary=TRUE)
 }
+\keyword{internal}
 \keyword{manip}
