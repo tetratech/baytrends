@@ -4,7 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-01-11 10:41:29
+    #> Last Update: 2018-01-12 11:32:29
+
+# baytrends 0.3.3.9014
+
+  - Released - 2018-01-12
+  - Add more functions, as.x, to keywords internal to remove from help
+    file list.
+  - Add Erik W Leppo as author in DESCRIPTION.
 
 # baytrends 0.3.3.9013
 

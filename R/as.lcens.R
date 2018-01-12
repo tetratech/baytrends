@@ -26,7 +26,7 @@
 #' @references Lorenz, D.L., in preparation
 #' @seealso \code{\link{as.mcens}}
 #' @exportMethod as.lcens
-#' @keywords methods manip
+#' @keywords internal methods manip
 #' @examples
 #'
 #'## The first value is censored at 2

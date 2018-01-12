@@ -17,7 +17,7 @@
 #'
 #'The function \code{as.double} is executed for \code{as.numeric}.
 #' @seealso \code{\link{fillIn}}
-#' @keywords manip
+#' @keywords internal manip
 #' @examples
 #'
 #'## Create a simple qw object 

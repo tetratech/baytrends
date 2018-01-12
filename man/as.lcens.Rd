@@ -83,5 +83,6 @@ Lorenz, D.L., in preparation
 \seealso{
 \code{\link{as.mcens}}
 }
+\keyword{internal}
 \keyword{manip}
 \keyword{methods}

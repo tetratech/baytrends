@@ -78,5 +78,6 @@ Lorenz, D.L., in preparation
 \seealso{
 \code{\link[survival]{Surv}}
 }
+\keyword{internal}
 \keyword{manip}
 \keyword{methods}

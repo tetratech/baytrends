@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 0.3.3.9014
+===========
+* Released - 2018-01-12
+* Add more functions, as.x, to keywords internal to remove from help file list.
+* Add Erik W Leppo as author in DESCRIPTION.
+
 baytrends 0.3.3.9013
 ===========
 * Released - 2018-01-11

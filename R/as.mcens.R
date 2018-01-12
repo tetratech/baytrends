@@ -27,7 +27,7 @@
 #' @references Lorenz, D.L., in preparation
 #' @seealso \code{\link[survival]{Surv}}
 #' @exportMethod as.mcens
-#' @keywords methods manip
+#' @keywords internal methods manip
 #' @examples
 #'## Create one of each type of censoring, including uncensored
 #'# the last value is missing
