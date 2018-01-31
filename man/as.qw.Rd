@@ -92,6 +92,5 @@ is c(2L,3L). It can be changed by specifically modifying the slot value.
 \references{
 Lorenz, D.L., in preparation
 }
-\keyword{internal}
 \keyword{manip}
 \keyword{methods}

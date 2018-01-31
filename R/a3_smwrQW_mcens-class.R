@@ -19,7 +19,7 @@
 #' @section Objects from the Class: Objects can be created by calls to
 #'\code{as.mcens}.
 #' @references Lorenz, D.L., in preparation
-#' @keywords classes
+#' @keywords internal classes
 #' @exportClass mcens
 #' @examples
 #'

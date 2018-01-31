@@ -14,7 +14,7 @@
 #' @section Objects from the Class: Objects can be created by calls to
 #'\code{as.lcens}.
 #' @references Lorenz, D.L., in preparation
-#' @keywords classes
+#' @keywords internal classes
 #' @exportClass lcens
 #' @examples
 #'

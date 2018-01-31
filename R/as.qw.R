@@ -59,7 +59,7 @@
 # @seealso \code{\link{importNWISqw}}
 #' @references Lorenz, D.L., in preparation
 #' @exportMethod as.qw
-#' @keywords internal methods manip
+#' @keywords methods manip
 setGeneric("as.qw", function(values, remark.codes, value.codes, reporting.level,
                              reporting.method, reporting.units, analyte.method,
                              analyte.name, unique.code, value2)

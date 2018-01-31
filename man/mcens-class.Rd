@@ -43,3 +43,4 @@ showClass("mcens")
 Lorenz, D.L., in preparation
 }
 \keyword{classes}
+\keyword{internal}

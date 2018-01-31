@@ -4,7 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-01-12 11:32:29
+    #> Last Update: 2018-01-31 12:07:25
+
+# baytrends 0.3.3.9015
+
+  - Released - 2018-01-31
+  - Created vignettes:
+      - QW object conversion
+      - Detrended flow data
+      - Detrended salinity data
+  - Add and remove funtions from index with keyword internal.
 
 # baytrends 0.3.3.9014
 

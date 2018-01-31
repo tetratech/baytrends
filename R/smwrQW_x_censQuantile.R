@@ -34,7 +34,7 @@
 #'Helsel, D.R. and Cohn, T.A., 1988, Estimation of descriptive statistics for
 #'multiply censored water quality data: Water Resources Research v. 24, n.
 #'12, pp. 1997-2004
-#'@keywords univar
+#'@keywords internal univar
 #'@examples
 #'
 #'set.seed(28)
@@ -58,6 +58,7 @@ censQuantile <- function(x, probs=seq(0, 1, 0.25), na.rm=FALSE, method="ROS",
 #' @export
 #'@method censQuantile default
 #'@rdname censQuantile
+#'@keywords internal
 censQuantile.default <- function(x, probs=seq(0, 1, 0.25), na.rm=FALSE,
                                  method="", type=2, alpha=0.4) {
   ## Treat x as numeric
@@ -78,6 +79,7 @@ censQuantile.default <- function(x, probs=seq(0, 1, 0.25), na.rm=FALSE,
 #' @export
 #'@method censQuantile lcens
 #'@rdname censQuantile
+#' @keywords internal
 censQuantile.lcens <- function(x, probs=seq(0, 1, 0.25), na.rm=FALSE,
                                method="ROS", type=2, alpha=0.4) {
   tags <- paste(format(100 * probs, trim = TRUE, digits = 3), "%", sep="")
@@ -103,6 +105,7 @@ censQuantile.lcens <- function(x, probs=seq(0, 1, 0.25), na.rm=FALSE,
 #' @export
 #'@method censQuantile mcens
 #'@rdname censQuantile
+#' @keywords internal
 censQuantile.mcens <- function(x, probs=seq(0, 1, 0.25), na.rm=FALSE,
                                method="flipped K-M", type=2, alpha=0.4) {
   tags <- paste(format(100 * probs, trim = TRUE, digits = 3), "%", sep="")
@@ -133,6 +136,7 @@ censQuantile.mcens <- function(x, probs=seq(0, 1, 0.25), na.rm=FALSE,
 #' @export
 #'@method censQuantile qw
 #'@rdname censQuantile
+#' @keywords internal
 censQuantile.qw <- function(x, probs=seq(0, 1, 0.25), na.rm=FALSE,
                                method="log MLE", type=2, alpha=0.4) {
   ## Convert to appropriate type and use that method
