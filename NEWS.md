@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-01-31 12:27:06
+    #> Last Update: 2018-01-31 12:33:38
+
+# baytrends 0.3.3.9017
+
+  - Released - 2018-01-31
+  - Fix errors in Namespace noted in Check.
 
 # baytrends 0.3.3.9016
 
