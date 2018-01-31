@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 0.3.3.9016
+===========
+* Released - 2018-01-31
+* Remove unneeded functions from smwrQW package.
+
 baytrends 0.3.3.9015
 ===========
 * Released - 2018-01-31

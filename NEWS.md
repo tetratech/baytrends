@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-01-31 12:07:25
+    #> Last Update: 2018-01-31 12:27:06
+
+# baytrends 0.3.3.9016
+
+  - Released - 2018-01-31
+  - Remove unneeded functions from smwrQW package.
 
 # baytrends 0.3.3.9015
 
