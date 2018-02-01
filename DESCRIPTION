@@ -4,7 +4,7 @@ Title: Long Term Water Quality Trend Analysis
 Description: Enables users to develop and apply general additive model (GAM) 
   to long-term water quality monitoring data sets.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 0.3.3.9018
+Version: 0.3.3.9019
 Maintainer: Jon Harcum <jon.harcum@tetratech.com>
 Date: 2018-02-01
 Depends:

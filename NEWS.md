@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-02-01 10:24:37
+    #> Last Update: 2018-02-01 14:04:05
+
+# baytrends 0.3.3.9019
+
+  - Released - 2018-02-01
+  - Update vignettes. Remove setwd().
 
 # baytrends 0.3.3.9018
 

@@ -36,9 +36,9 @@ The first part of the code loads a file with salinity data from 1984 to 2016.  T
 # Initialize settings and load input salinity data ----
 {
 #  setwd("E:/Dropbox/CBP/CBP_test - salinity cdfs")
-  getwd()
+  #getwd()
   myDir <- file.path(getwd(), "data")
-  setwd(myDir)
+ # setwd(myDir)
   
   # * set up flow retrieval and seasonal adjustment parameters ----
   salinity.detrended <- list(analysisDate  = Sys.time(),
@@ -49,13 +49,14 @@ The first part of the code loads a file with salinity data from 1984 to 2016.  T
                              lowess.f      = 0.2)
 
   # * load salinity data ----
-  load('salinity_1984to2016.rdata')
+  load(file.path(myDir, 'salinity_1984to2016.rdata'))
 }
 
 # Create SAP and BBP average salinity ----
 {  
   # * down select input data set to those stations in baytrends list ----
-  df <- sal[sal$Station %in% salinity.detrended[["stations"]], c("Station", "Sample_Date", "Layer", "MeasureValue")]
+  df <- sal[sal$Station %in% salinity.detrended[["stations"]]
+            , c("Station", "Sample_Date", "Layer", "MeasureValue")]
   
   # ** clean up data structure ----
   trim <- function (x) gsub("^\\s+|\\s+$", "", x)
@@ -83,7 +84,7 @@ The first part of the code loads a file with salinity data from 1984 to 2016.  T
   
   # ** rename and save salinity data set ----
   names(salinity) <- c("station", "date", "salinity", "layer")
-  save('salinity', file='salinity.rda')
+  save('salinity', file=file.path(myDir, 'salinity.rda'))
 } 
 
 # Station by station processing ----
@@ -256,7 +257,8 @@ save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda'
   }
 }
 
-save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda')
+save(salinity.detrended
+     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
 
 # adjust for funny xfb1986 ----
 i.station <- c("XFB1986")  
@@ -267,7 +269,8 @@ var.sum   <- paste0(i.station, ".sum")
 salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][260:305] <- 
   salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][259]
 
-save(salinity.detrended,file='1984-2016 seasonally detrended salinity data.rda')
+save(salinity.detrended
+     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
 ```
 
 ## Plot
@@ -282,10 +285,10 @@ The plots for each station include mean, standard deviation, and number of obser
 #dev.off()
 
 myDir <- file.path(getwd(), "data")
-setwd(myDir)
+#setwd(myDir)
 
 # Create directory "plots"
-myDir.create <- file.path(getwd(), "plots")
+myDir.create <- file.path(myDir, "plots")
   ifelse(dir.exists(myDir.create)==FALSE
                           , dir.create(myDir.create)
                           , "Directory already exists")
@@ -293,7 +296,7 @@ myDir.create <- file.path(getwd(), "plots")
   # print(getwd())
   # flush.console()
 
-load('1984-2016 seasonally detrended salinity data.rda')
+load(file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
 names(salinity.detrended)
 
 for (station in baytrends::stationMasterList$station) {
@@ -309,7 +312,7 @@ for (station in baytrends::stationMasterList$station) {
   if(is.null(station.mean)) next
   
   graph01 <- paste0(station,'_summary.jpg')
-  jpeg(filename=file.path(getwd(), 'plots', graph01), height=8,width=6.5, units="in", res=300)
+  jpeg(filename=file.path(myDir, 'plots', graph01), height=8,width=6.5, units="in", res=300)
     par(mfrow = c(3, 1))
     
     plot(station.doy, station.mean , ylim=c(-3.,3.)); title(station)
@@ -349,9 +352,9 @@ Run both code chunks all at once and show the output below.
 # Initialize settings and load input salinity data ----
 {
 #  setwd("E:/Dropbox/CBP/CBP_test - salinity cdfs")
-  getwd()
+  #getwd()
   myDir <- file.path(getwd(), "data")
-  setwd(myDir)
+  #setwd(myDir)
   
   # * set up flow retrieval and seasonal adjustment parameters ----
   salinity.detrended <- list(analysisDate  = Sys.time(),
@@ -362,7 +365,7 @@ Run both code chunks all at once and show the output below.
                              lowess.f      = 0.2)
 
   # * load salinity data ----
-  load('salinity_1984to2016.rdata')
+  load(file.path(myDir, 'salinity_1984to2016.rdata'))
 }
 
 # Create SAP and BBP average salinity ----
@@ -397,7 +400,7 @@ Run both code chunks all at once and show the output below.
   
   # ** rename and save salinity data set ----
   names(salinity) <- c("station", "date", "salinity", "layer")
-  save('salinity', file='salinity.rda')
+  save('salinity', file=file.path(myDir, 'salinity.rda'))
 } 
 
 # Station by station processing ----
@@ -525,7 +528,8 @@ names(salinity.detrended)[names(salinity.detrended) %in% salinity.detrended[["st
 salinity.detrended$stations
 
 # Store results ----
-save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda')
+save(salinity.detrended
+     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
 
 # Site specifice mess handling ----
 {
@@ -570,7 +574,8 @@ save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda'
   }
 }
 
-save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda')
+save(salinity.detrended
+     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
 
 # adjust for funny xfb1986 ----
 i.station <- c("XFB1986")  
@@ -581,7 +586,8 @@ var.sum   <- paste0(i.station, ".sum")
 salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][260:305] <- 
   salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][259]
 
-save(salinity.detrended,file='1984-2016 seasonally detrended salinity data.rda')
+save(salinity.detrended
+     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #17Jul2017:  plot mean, sd (and lowess.sd), and nobs per doy 
@@ -599,7 +605,7 @@ myDir.create <- file.path(getwd(), "plots")
 #   print(getwd())
 #   flush.console()
 
-load('1984-2016 seasonally detrended salinity data.rda')
+load(file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
 names(salinity.detrended)
 
 for (station in baytrends::stationMasterList$station) {
@@ -615,7 +621,7 @@ for (station in baytrends::stationMasterList$station) {
   if(is.null(station.mean)) next
   
   graph01 <- paste0(station,'_summary.jpg')
-  jpeg(filename=file.path(getwd(), 'plots', graph01), height=8,width=6.5, units="in", res=300)
+  jpeg(filename=file.path(myDir, 'plots', graph01), height=8,width=6.5, units="in", res=300)
     par(mfrow = c(3, 1))
     
     plot(station.doy, station.mean , ylim=c(-3.,3.)); title(station)

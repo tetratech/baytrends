@@ -26,7 +26,7 @@ Set the working directory and load any needed scripts and libraries.
 
 ```{r projRoot, eval=FALSE}
 ProjRoot <- getwd()
-setwd(ProjRoot)
+#setwd(ProjRoot)
 
 library(baytrends)
 

@@ -79,7 +79,7 @@ devtools::build() more useful and build_vignettes()
 ## Create Package
 Use the code below to create the package.  Assumes you are in the development package directory
 
-Delete Namespace, Collate section of DESCRIPTION, and \man\*
+Delete Namespace, Collate section of DESCRIPTION, and \\man\\*
 
 Need to remove end of line after Collate.
 Need first entry on the same line as "Collate:".
