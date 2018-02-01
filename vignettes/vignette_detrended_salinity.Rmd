@@ -1,5 +1,5 @@
 ---
-title: "Vignetee, Detrended Salinity"
+title: "Vignette, Detrended Salinity"
 author: "Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -8,7 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+<!-- Data is in vignettes\data folder  -->
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -16,69 +16,29 @@ knitr::opts_chunk$set(
 )
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+# Purpose
+Creation of a seasonally-detrended salinity data set with visualizations (plots).
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+# Example Code
+Will show the code in tow chunks below with comments.  The two parts are data creation and plotting.
 
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
-
-~~~~~~~~~~~~~~~~~
-
-
-```{r, eval=FALSE}
+# Create Detrended Data
+The first part of the code loads a file with salinity data from 1984 to 2016.  Then the codes creates the detrended data set and saves it.  From this new dataset plots are generated.
+```{r CreateData, eval=FALSE}
 
 # 7/18/2017: compute average salinity to SAP and BBP for all sites/dates in baytrends::tidalStations
 #           based on data provide through Rebecca Murphy via email: 6/28/2017
 
-rm(list=ls())
-cat("\014")
-dev.off()
+#rm(list=ls())
+#cat("\014")
+#dev.off()
 
 # Initialize settings and load input salinity data ----
 {
 #  setwd("E:/Dropbox/CBP/CBP_test - salinity cdfs")
+  getwd()
+  myDir <- file.path(getwd(), "data")
+  setwd(myDir)
   
   # * set up flow retrieval and seasonal adjustment parameters ----
   salinity.detrended <- list(analysisDate  = Sys.time(),
@@ -123,7 +83,7 @@ dev.off()
   
   # ** rename and save salinity data set ----
   names(salinity) <- c("station", "date", "salinity", "layer")
-  save('salinity',file='salinity.rda')
+  save('salinity', file='salinity.rda')
 } 
 
 # Station by station processing ----
@@ -251,7 +211,7 @@ names(salinity.detrended)[names(salinity.detrended) %in% salinity.detrended[["st
 salinity.detrended$stations
 
 # Store results ----
-save(salinity.detrended,file='1984-2016 seasonally detrended salinity data.rda')
+save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda')
 
 # Site specifice mess handling ----
 {
@@ -296,7 +256,7 @@ save(salinity.detrended,file='1984-2016 seasonally detrended salinity data.rda')
   }
 }
 
-save(salinity.detrended,file='1984-2016 seasonally detrended salinity data.rda')
+save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda')
 
 # adjust for funny xfb1986 ----
 i.station <- c("XFB1986")  
@@ -308,5 +268,375 @@ salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][260:305] <-
   salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][259]
 
 save(salinity.detrended,file='1984-2016 seasonally detrended salinity data.rda')
+```
+
+## Plot
+The plots for each station include mean, standard deviation, and number of observations.  The plots are saved as JPG files in the vignettes folder as well as output to the vignette (this file). 
+
+```{r Plot, eval=FALSE}
+#17Jul2017:  plot mean, sd (and lowess.sd), and nobs per doy 
+ 
+
+#rm(list=ls())
+#cat("\014")
+#dev.off()
+
+myDir <- file.path(getwd(), "data")
+setwd(myDir)
+
+# Create directory "plots"
+myDir.create <- file.path(getwd(), "plots")
+  ifelse(dir.exists(myDir.create)==FALSE
+                          , dir.create(myDir.create)
+                          , "Directory already exists")
+
+  # print(getwd())
+  # flush.console()
+
+load('1984-2016 seasonally detrended salinity data.rda')
+names(salinity.detrended)
+
+for (station in baytrends::stationMasterList$station) {
+
+  station.sum <- paste0 (station ,".sum" )
+
+  station.mean      <- salinity.detrended[[station.sum]][["mean"]][["SAP"]]
+  station.sd        <- salinity.detrended[[station.sum]][["sd"]][["SAP"]]
+  station.doy       <- salinity.detrended[[station.sum]][["sd"]][["doy"]]
+  station.lowess.sd <- salinity.detrended[[station.sum]][["lowess.sd"]][["SAP"]]
+  station.nobs      <- salinity.detrended[[station.sum]][["nobs"]][["SAP"]]
+  
+  if(is.null(station.mean)) next
+  
+  graph01 <- paste0(station,'_summary.jpg')
+  jpeg(filename=file.path(getwd(), 'plots', graph01), height=8,width=6.5, units="in", res=300)
+    par(mfrow = c(3, 1))
+    
+    plot(station.doy, station.mean , ylim=c(-3.,3.)); title(station)
+  
+    plot(station.doy, station.sd , ylim=c(0,6), col='grey'); title(station)
+    lines(station.doy, station.lowess.sd, col='red',lwd=2)
+    
+    plot(station.doy, station.nobs , ylim=c(0,80)); title(station)
+  dev.off()
+  #
+  # Rerun plots and print to screen
+  plot(station.doy, station.mean , ylim=c(-3.,3.)); title(station)
+
+  plot(station.doy, station.sd , ylim=c(0,6), col='grey'); title(station)
+  lines(station.doy, station.lowess.sd, col='red',lwd=2)
+  
+  plot(station.doy, station.nobs , ylim=c(0,80)); title(station)
+  #
+  fig.num <- match(station, baytrends::stationMasterList$station)
+  cat(paste("\n\n","Figure.",fig.num,". ", station,"\n\n"))
+  flush.console()
+}
+```
+
+# Results
+Run both code chunks all at once and show the output below.
+
+```{r runALL, results='asis', fig.height=8, fig.width=6.5, echo=TRUE}
+
+# 7/18/2017: compute average salinity to SAP and BBP for all sites/dates in baytrends::tidalStations
+#           based on data provide through Rebecca Murphy via email: 6/28/2017
+
+#rm(list=ls())
+#cat("\014")
+#dev.off()
+
+# Initialize settings and load input salinity data ----
+{
+#  setwd("E:/Dropbox/CBP/CBP_test - salinity cdfs")
+  getwd()
+  myDir <- file.path(getwd(), "data")
+  setwd(myDir)
+  
+  # * set up flow retrieval and seasonal adjustment parameters ----
+  salinity.detrended <- list(analysisDate  = Sys.time(),
+                             stations      = baytrends::stationMasterList$station,
+                             yearStart     = 1984, 
+                             yearEnd       = 2016,
+                             dvAvgWinSel   = c(30),
+                             lowess.f      = 0.2)
+
+  # * load salinity data ----
+  load('salinity_1984to2016.rdata')
+}
+
+# Create SAP and BBP average salinity ----
+{  
+  # * down select input data set to those stations in baytrends list ----
+  df <- sal[sal$Station %in% salinity.detrended[["stations"]]
+            , c("Station", "Sample_Date", "Layer", "MeasureValue")]
+  
+  # ** clean up data structure ----
+  trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+  df$Station     <- trim(as.character(df$Station))
+  df$Layer       <- trim(as.character(df$Layer))
+  df$Sample_Date <- trim(as.character(df$Sample_Date))
+  df$Sample_Date <- as.POSIXct(strptime(df$Sample_Date, "%m/%d/%Y"))
+
+  # ** create SAP and BBP df's ----  
+  df.SAP <- df[df$Layer %in% c("S","AP"),]
+  df.BBP <- df[df$Layer %in% c("B","BP"),]
+  
+  # ** average salinity ----
+  df.SAP <- aggregate(MeasureValue ~ Station + Sample_Date,
+                      data=df.SAP, FUN=mean, na.action=na.pass, na.rm=TRUE)
+  df.BBP <- aggregate(MeasureValue ~ Station + Sample_Date,
+                      data=df.BBP, FUN=mean, na.action=na.pass, na.rm=TRUE)
+  
+  df.SAP$Layer <- 'SAP'
+  df.BBP$Layer <- 'BBP'
+
+  # ** combine averaged data ----  
+  salinity<-rbind(df.SAP,df.BBP)
+  rm(df.BBP,df.SAP,sal)
+  
+  # ** rename and save salinity data set ----
+  names(salinity) <- c("station", "date", "salinity", "layer")
+  save('salinity', file='salinity.rda')
+} 
+
+# Station by station processing ----
+for (i.station in salinity.detrended[["stations"]]        ) {
+#  i.station <-  salinity.detrended[["stations"]][46]
+  
+  # * Average salinity data ----
+  # ** set up variable names for raw and summary data ----
+  var       <- i.station
+  var.sum   <- paste0(i.station, ".sum") 
+  
+  # ** create df of SAP and BBP salinity for ith station ----
+  df <- salinity[salinity$station == i.station,]
+  df <- reshape (df, v.names=c("salinity"), idvar=c("station", "date"),
+                 timevar=c("layer"), drop=c(""), direction = "wide")
+  attr(df,'reshapeWide') <-NULL
+  
+  # ** test for presense of at least 40 obs ---- 
+  hasSAP <- if("salinity.SAP" %in% names(df)) TRUE else FALSE
+  if(hasSAP) {
+    hasSAP <- if(sum(!is.na(df[,'salinity.SAP'])) >= 40) TRUE else FALSE  
+  }
+  hasBBP <- if("salinity.BBP" %in% names(df)) TRUE else FALSE
+  if(hasBBP) {
+    hasBBP <- if(sum(!is.na(df[,'salinity.BBP'])) >= 40) TRUE else FALSE
+  }
+  print(paste0(var,' (Surface: ',hasSAP,' / Bottom: ',hasBBP,")"))
+  
+  # ** break out if nobs <40 ----
+  if(!hasBBP & !hasSAP) {
+    tmp.list        <- list( data.frame(NA))
+    names(tmp.list) <- var
+    salinity.detrended  <- modifyList(salinity.detrended, tmp.list)
+    names(tmp.list) <- var.sum
+    salinity.detrended  <- modifyList(salinity.detrended, tmp.list)
+    next
+  }
+  
+  # * Perform gam modeling ----
+  # ** add doy; sort column order ----
+  df$doy   <- as.numeric(baytrends::baseDay(df$date))
+  df<-df[,c('station', 'date', 'doy', setdiff(names(df), c('station', 'date','doy')))]
+  
+  # ** SAP gam model ----
+  if(hasSAP) {
+    # compute salinity gam models 
+    gamSAP   <- mgcv::gam(df[,"salinity.SAP"] ~  s(df[,"doy"],bs='cc'))
+    # compute/store predicted and residual salinities 
+    df[!is.na(df$salinity.SAP),"salinity.SAP.gam"] <- predict(gamSAP)
+    df[!is.na(df$salinity.SAP),"SAP"]              <- residuals(gamSAP)
+  } else {
+    df[,"salinity.SAP.gam"] <- NA_real_
+    df[,"SAP"]              <- NA_real_
+  }
+  
+  # ** BBP gam model ----
+  if(hasBBP) {
+    # compute salinity gam models 
+    gamBBP   <- mgcv::gam(df[,"salinity.BBP"] ~  s(df[,"doy"],bs='cc'))
+    # compute/store predicted and residual salinities 
+    df[!is.na(df$salinity.BBP),"salinity.BBP.gam"] <- predict(gamBBP)
+    df[!is.na(df$salinity.BBP),"BBP"] <- residuals(gamBBP)
+  } else {
+    df[,"salinity.BBP.gam"] <- NA_real_
+    df[,"BBP"]              <- NA_real_
+  }
+  
+  # ** put seasonal averages into a list ----
+  # set embedded df to correspond to station id
+  # append list to overall list 
+  tmp.list        <- list(df[, !names(df) %in% c("station")]) 
+  names(tmp.list) <- var
+  salinity.detrended  <- modifyList(salinity.detrended, tmp.list)
+  
+  # * Compute doy based means and stdv ----
+  # ** create artificial data set ----
+  # append a +/- 1-year offset to allow for wrap around on data average window
+  df.pos <- df.neg <- df
+  df.neg$doy <- df.neg$doy - 366
+  df.pos$doy <- df.pos$doy + 366
+  df <- rbind( df.neg, df, df.pos); remove(df.neg, df.pos)
+  
+  # ** initialize data frames for mean, sd, and nobs ----
+  df.mean <- data.frame(doy = as.numeric(c(1:366)), SAP=NA_real_, BBP=NA_real_)
+  df.sd   <- data.frame(doy = as.numeric(c(1:366)), SAP=NA_real_, BBP=NA_real_)
+  df.nobs <- data.frame(doy = as.numeric(c(1:366)), SAP=NA_real_, BBP=NA_real_)
+
+  # ** compute mean, sd, and obs for doy from 1:366 ----
+  window <- salinity.detrended[["dvAvgWinSel"]]/2
+  for (j in 1:366) { 
+    tmp         <- (df[df$doy >= j-window & df$doy <= j+window, ])
+    df.mean[j,"SAP"] <- mean  (tmp$SAP, na.rm=TRUE) 
+    df.sd  [j,"SAP"] <- sd    (tmp$SAP, na.rm=TRUE)
+    df.nobs[j,"SAP"] <- sum(!is.na(tmp$SAP))
+    df.mean[j,"BBP"] <- mean  (tmp$BBP, na.rm=TRUE)
+    df.sd  [j,"BBP"] <- sd    (tmp$BBP, na.rm=TRUE)
+    df.nobs[j,"BBP"] <- sum(!is.na(tmp$BBP))
+  }
+  
+  # ** compute lowess smooth ----
+  df.lowess.sd <- as.data.frame(lowess(x=df.sd[,"doy"], 
+                                       y=df.sd[,"SAP"] , 
+                                       f= salinity.detrended$lowess.f))
+  names(df.lowess.sd) <- c("doy","SAP")
+  tmp          <- as.data.frame(lowess(x=df.sd[,"doy"], 
+                                       y=df.sd[,"BBP"] , 
+                                       f= salinity.detrended$lowess.f))
+  names(tmp) <- c("doy","BBP")
+  df.lowess.sd <- merge(df.lowess.sd, tmp, by='doy')
+
+  # ** put mean, sd, nobs, & lowess by doy into a list ----
+  # set embedded df to correspond to station.sum
+  # append list to overall list
+  tmp.list        <- list(list(mean = df.mean, sd = df.sd, nobs = df.nobs, lowess.sd = df.lowess.sd))
+  names(tmp.list) <- var.sum
+  salinity.detrended  <- modifyList(salinity.detrended, tmp.list)
+  
+}
+  
+
+# Post processing check ----
+# are the list of stations in salinity.detrended the same as what i stored in 
+# salinity.detrended$stations
+names(salinity.detrended)[names(salinity.detrended) %in% salinity.detrended[["stations"]] ] ==
+salinity.detrended$stations
+
+# Store results ----
+save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda')
+
+# Site specifice mess handling ----
+{
+  # This is set up to handle the hot mess related to low sampling in winter months
+  # at a handful of stations --- we'll need to come up with a better strategy
+  
+  siteList <- c("CB3.3E", "CB3.3W", "CB4.1E", "CB4.1W", "CB4.2E", "CB4.2W", "CB4.3E", "CB4.3W")  
+  
+  for (i.station in siteList) {
+    
+    # set up variable names for raw and summary data
+    # i.station <- siteList[1]
+    var       <- i.station
+    var.sum   <- paste0(i.station, ".sum") 
+    
+    delta <- (1/146) * (salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][80] -
+                          salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][300] )
+    
+    for (i.doy in c(1:79,301:366)) {
+      if(i.doy > 300) {
+        salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][i.doy] <- (i.doy-300)*delta +
+          salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][300]
+      } else {
+        salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][i.doy] <- (i.doy+66)*delta +
+          salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][300]
+      }
+    }
+    
+    delta <- (1/146) * (salinity.detrended[[var.sum]][["lowess.sd"]][["BBP"]][80] -
+                          salinity.detrended[[var.sum]][["lowess.sd"]][["BBP"]][300] )
+    
+    for (i.doy in c(1:79,301:366)) {
+      if(i.doy > 300) {
+        salinity.detrended[[var.sum]][["lowess.sd"]][["BBP"]][i.doy] <- (i.doy-300)*delta +
+          salinity.detrended[[var.sum]][["lowess.sd"]][["BBP"]][300]
+      } else {
+        salinity.detrended[[var.sum]][["lowess.sd"]][["BBP"]][i.doy] <- (i.doy+66)*delta +
+          salinity.detrended[[var.sum]][["lowess.sd"]][["BBP"]][300]
+      }
+    }
+    
+  }
+}
+
+save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda')
+
+# adjust for funny xfb1986 ----
+i.station <- c("XFB1986")  
+
+var       <- i.station
+var.sum   <- paste0(i.station, ".sum") 
+
+salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][260:305] <- 
+  salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][259]
+
+save(salinity.detrended,file='1984-2016 seasonally detrended salinity data.rda')
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#17Jul2017:  plot mean, sd (and lowess.sd), and nobs per doy 
+ 
+
+# myDir <- file.path(getwd(), "data")
+# setwd(myDir)
+
+# Create directory "plots"
+myDir.create <- file.path(getwd(), "plots")
+  ifelse(dir.exists(myDir.create)==FALSE
+                          , dir.create(myDir.create)
+                          , "Directory already exists")
+# 
+#   print(getwd())
+#   flush.console()
+
+load('1984-2016 seasonally detrended salinity data.rda')
+names(salinity.detrended)
+
+for (station in baytrends::stationMasterList$station) {
+
+  station.sum <- paste0 (station ,".sum" )
+
+  station.mean      <- salinity.detrended[[station.sum]][["mean"]][["SAP"]]
+  station.sd        <- salinity.detrended[[station.sum]][["sd"]][["SAP"]]
+  station.doy       <- salinity.detrended[[station.sum]][["sd"]][["doy"]]
+  station.lowess.sd <- salinity.detrended[[station.sum]][["lowess.sd"]][["SAP"]]
+  station.nobs      <- salinity.detrended[[station.sum]][["nobs"]][["SAP"]]
+  
+  if(is.null(station.mean)) next
+  
+  graph01 <- paste0(station,'_summary.jpg')
+  jpeg(filename=file.path(getwd(), 'plots', graph01), height=8,width=6.5, units="in", res=300)
+    par(mfrow = c(3, 1))
+    
+    plot(station.doy, station.mean , ylim=c(-3.,3.)); title(station)
+  
+    plot(station.doy, station.sd , ylim=c(0,6), col='grey'); title(station)
+    lines(station.doy, station.lowess.sd, col='red',lwd=2)
+    
+    plot(station.doy, station.nobs , ylim=c(0,80)); title(station)
+  dev.off()
+  #
+  # Rerun plots and print to screen
+  plot(station.doy, station.mean , ylim=c(-3.,3.)); title(station)
+
+  plot(station.doy, station.sd , ylim=c(0,6), col='grey'); title(station)
+  lines(station.doy, station.lowess.sd, col='red',lwd=2)
+  
+  plot(station.doy, station.nobs , ylim=c(0,80)); title(station)
+  #
+  fig.num <- match(station, baytrends::stationMasterList$station)
+  cat(paste("\n\n","Figure.",fig.num,". ", station,"\n\n"))
+  flush.console()
+}
 ```
 

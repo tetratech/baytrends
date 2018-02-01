@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 0.3.3.9018
+===========
+* Released - 2018-02-01
+* Updated Vignettes to run with data in vignettes folder.
+* Added function fillMissing from smwrBase for detrended flow vignette.
+
 baytrends 0.3.3.9017
 ===========
 * Released - 2018-01-31

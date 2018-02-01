@@ -4,7 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-01-31 12:33:38
+    #> Last Update: 2018-02-01 10:24:37
+
+# baytrends 0.3.3.9018
+
+  - Released - 2018-02-01
+  - Updated Vignettes to run with data in vignettes folder.
+  - Added function fillMissing from smwrBase for detrended flow
+    vignette.
 
 # baytrends 0.3.3.9017
 

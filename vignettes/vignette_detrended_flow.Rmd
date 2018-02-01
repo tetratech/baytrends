@@ -1,5 +1,5 @@
 ---
-title: "Vignetee, Detrended Flow"
+title: "Vignette, Detrended Flow"
 author: "Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -8,87 +8,45 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+<!-- Data is in vignettes\data folder  -->
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
+# Purpose
+Creation of a seasonally-detrended flow data set with visualizations (plots).
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+# Example Code
+Will show the code in chunks below with comments.
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
-
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
-
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Creation of Seasonally-detrended Flow Data Set
-
-**Date: `r format(Sys.time(), "%B %d, %Y %X") # Month DD, YYYY H:MM:SS PM`
-`r begin <- Sys.time()`**
-
-# Initialization
-
-### Project Folder and Load Functions
+## Project Folder and Load Functions
+Set the working directory and load any needed scripts and libraries.
 
 ```{r projRoot, eval=FALSE}
-ProjRoot <- 'E:/Dropbox/CBP/CBP_test - flow cdfs'
+ProjRoot <- getwd()
 setwd(ProjRoot)
 
-source("R/getUSGSflow.R")
-source("R/seasAdjflow2.R")
-source("R/smwrBaseFunctions.R")
-source("R/supportFunctions.R")
+library(baytrends)
+
+require(gdata)
+
+source(file.path(ProjRoot, "data", "getUSGSflow.R"))
+source(file.path(ProjRoot, "data", "seasAdjflow2.R"))
+source(file.path(ProjRoot, "data", "supportFunctions.R"))
+
+# source("R/getUSGSflow.R")
+# source("R/seasAdjflow2.R")
+# source("R/smwrBaseFunctions.R")
+# source("R/supportFunctions.R")
 chkPackages()
 
 knitr::opts_chunk$set(dpi=150)
 ```
 
-### Load Station, Parameters and Layer Lookup Lists
+## Load Station, Parameters, and Layer Lookup Lists
+Set station list and other parameters.
 
 ```{r gageList, results='asis', eval=FALSE}
 
@@ -98,7 +56,7 @@ gageList <- data.frame(usgsGageID=c("01491000", "01578310"),
                                   "Susquehanna River at Conowingo, MD"),
                        stringsAsFactors = FALSE)
 
-# set up flow retrieval and seasonal adjustment parameters ####
+# set up flow retrieval and seasonal adjustment parameters
 flow.detrended <- list(retreiveDate  = Sys.time(),
                        gages         = gageList,
                        yearStart     = 1983,
@@ -109,21 +67,24 @@ flow.detrended <- list(retreiveDate  = Sys.time(),
                        dvAvgSidesSel = 1,
                        lowess.f      = 0.2)
 
-outputFileName <- paste0(flow.detrended$yearStart, "-", 
-                         flow.detrended$yearEnd,
-                         " seasonally detrended flow data.rda")
+outputFileName <- file.path(ProjRoot, "data"
+                            , paste0(flow.detrended$yearStart, "-"
+                                     , flow.detrended$yearEnd
+                                     , " seasonally detrended flow data.rda"))
 selectPlots <- flow.detrended$dvAvgWinSel[c(1,2,length(flow.detrended$dvAvgWinSel))]
 
 
 ```
 
-# Retrieve Flow and Detrend
+## Retrieve Flow and Detrend
+Get the data and detrend it.
 
-```{r retFlow, results='asis', echo=FALSE, warnings=FALSE, eval=FALSE}
+An RDA file will be created in the vignette data folder.  The file name will have the start and end dates as a prefix to "seasonally detrended flow data.rda".
+```{r retFlow, results='asis', echo=TRUE, warnings=FALSE, eval=FALSE}
 
 figNum <<- 0 
 
-# perform analysis for each gage ####
+# perform analysis for each gage
 for (i.gage in 1:length(flow.detrended$gages$usgsGageID)) {
 
   .H2(paste0(flow.detrended$gages$usgsGageID[i.gage],"-",
@@ -197,9 +158,9 @@ save(flow.detrended, file=outputFileName)
 
 ```
 
-# Flow Statistics
-
-```{r flowStat, results='asis', echo=FALSE, warnings=FALSE, fig.height=7, fig.width=6.5, eval=FALSE}
+## Flow Statistics
+Flow statistics and output will be created from the new data file.
+```{r flowStat, results='asis', echo=TRUE, warnings=FALSE, fig.height=7, fig.width=6.5, eval=FALSE}
 
 for (i.gage in 1:length(flow.detrended$gages$usgsGageID)) {
   
@@ -231,4 +192,160 @@ for (i.gage in 1:length(flow.detrended$gages$usgsGageID)) {
   }
 }
 
+```
+
+# Results
+Run the above code chunks all at once and show the output below.
+
+```{r ALL, results='asis', echo=FALSE, warnings=FALSE, fig.height=7, fig.width=6.5, message=FALSE}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ProjRoot <- getwd()
+setwd(ProjRoot)
+
+library(baytrends)
+
+require(gdata)
+
+source(file.path(ProjRoot, "data", "getUSGSflow.R"))
+source(file.path(ProjRoot, "data", "seasAdjflow2.R"))
+source(file.path(ProjRoot, "data", "supportFunctions.R"))
+
+# source("R/getUSGSflow.R")
+# source("R/seasAdjflow2.R")
+# source("R/smwrBaseFunctions.R")
+# source("R/supportFunctions.R")
+chkPackages()
+
+knitr::opts_chunk$set(dpi=150)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#gageList <- baytrends::usgsGages
+gageList <- data.frame(usgsGageID=c("01491000", "01578310"),
+                       siteName=c("Choptank River near Greensboro, MD",
+                                  "Susquehanna River at Conowingo, MD"),
+                       stringsAsFactors = FALSE)
+
+# set up flow retrieval and seasonal adjustment parameters
+flow.detrended <- list(retreiveDate  = Sys.time(),
+                       gages         = gageList,
+                       yearStart     = 1983,
+                       yearEnd       = 2016,
+                       dvAvgWinSel   = c(1, 5, 10, 15, 20, 30, 40, 50, 
+                                         60, 90, 120, 150, 180, 210),
+                       dvAvgWgtSel   = "uniform",
+                       dvAvgSidesSel = 1,
+                       lowess.f      = 0.2)
+
+outputFileName <- file.path(ProjRoot, "data"
+                            , paste0(flow.detrended$yearStart, "-"
+                                     , flow.detrended$yearEnd
+                                     , " seasonally detrended flow data.rda"))
+selectPlots <- flow.detrended$dvAvgWinSel[c(1,2,length(flow.detrended$dvAvgWinSel))]
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# retFlow
+figNum <<- 0 
+
+# perform analysis for each gage
+for (i.gage in 1:length(flow.detrended$gages$usgsGageID)) {
+
+  .H2(paste0(flow.detrended$gages$usgsGageID[i.gage],"-",
+             flow.detrended$gages$siteName[i.gage]))
+  # set up variable names for raw and summary data
+  var       <- paste0("q",flow.detrended$gages$usgsGageID[i.gage])
+  var.sum   <- paste0("q",flow.detrended$gages$usgsGageID[i.gage],".sum") 
+  
+  # download flow data (relies on get the dataRetrieval::readNWISdv) 
+  # siteNumber = flow.detrended$gages$usgsGageID[i.gage];  yearStart  = flow.detrended$yearStart
+  # yearEnd    = flow.detrended$yearEnd; span       = 10; max.fill   = 10; fill       = TRUE
+  df.flow <- getUSGSflow(siteNumber = flow.detrended$gages$usgsGageID[i.gage], 
+                         yearStart  = flow.detrended$yearStart, 
+                         yearEnd    = flow.detrended$yearEnd, 
+                         span       = 10, 
+                         max.fill   = 10,
+                         fill       = TRUE)
+  
+  # compute seasonally adjusted (i.e., detrended) flows and compute seasonal averages
+  df.flow <- seasAdjflow(dvFlow     = df.flow,
+                         siteNumber = flow.detrended$gages$usgsGageID[i.gage],
+                         dvAvgWin   = flow.detrended$dvAvgWinSel,
+                         dvAvgWgt   = flow.detrended$dvAvgWgtSel, 
+                         dvAvgSides = flow.detrended$dvAvgSidesSel,
+                         plotResid  = selectPlots)
+  
+  # put seasonal averages into a list
+  # set embedded df to correspond to GageID
+  # append list to overall list 
+  tmp.list        <- list(df.flow[,c(1,5,9:length(df.flow))]) 
+  names(tmp.list) <- var
+  flow.detrended  <- modifyList(flow.detrended, tmp.list)
+  
+  # calculate mean, sd, & nobs by doy
+  df      <- flow.detrended[[var]];   
+  df      <- df[,!(names(df) %in% c("date", "q", "LogQ", paste0(var,".gam") ))]
+  df.mean <- aggregate(. ~ doy, FUN = mean,        data = df, na.action=na.pass, na.rm=TRUE) 
+  df.sd   <- aggregate(. ~ doy, FUN = sd,          data = df, na.action=na.pass, na.rm=TRUE) 
+  df.nobs <- aggregate(. ~ doy, FUN = gdata::nobs, data = df, na.action=na.pass, na.rm=TRUE) 
+  
+  # compute lowess smooth standard deviation (sd)
+  if(exists("df.lowess")) rm("df.lowess")
+  df.sd.filled <- df.sd
+  for (i.day in flow.detrended$dvAvgWinSel) {
+    var2  <- paste0("d",i.day)
+    # fill in missing sd
+    df.sd.filled[, var2] <- fillMissing(df.sd.filled[, var2] )
+    # smooth sd
+    df2 <- as.data.frame(lowess(x=df.sd.filled[,"doy"], 
+                                y=df.sd.filled[, var2] , 
+                                f= flow.detrended$lowess.f))
+    names(df2) <- c("doy",var2)
+    # append i.day'th result
+    if(!exists("df.lowess")) {
+      df.lowess <- df2 
+    } else {
+      df.lowess <- merge(df.lowess,df2, by='doy')
+    }
+  }        
+  
+  # put mean, sd, nobs, & lowess by doy into a list; 
+  # set embedded df to correspond to GageID.sum
+  # append list to overall list
+  tmp.list        <- list(list(mean = df.mean, sd = df.sd, nobs = df.nobs, lowess.sd = df.lowess))
+  names(tmp.list) <- var.sum
+  flow.detrended  <- modifyList(flow.detrended, tmp.list)
+  
+}  
+
+save(flow.detrended, file=outputFileName)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# flowStat
+for (i.gage in 1:length(flow.detrended$gages$usgsGageID)) {
+  
+  # set up variable names for raw and summary data
+  gage       <- paste0("q",flow.detrended$gages$usgsGageID[i.gage])
+  gage.sum   <- paste0("q",flow.detrended$gages$usgsGageID[i.gage],".sum") 
+  
+  for (dvAvgWinSel in paste0("d",selectPlots) ) {
+    .H2(paste0(flow.detrended$gages$usgsGageID[i.gage],"-",
+               flow.detrended$gages$siteName[i.gage],
+               "  (Avg. Per.: ",dvAvgWinSel,")"))    
+    gage.mean      <- flow.detrended[[gage.sum]][["mean"]][[dvAvgWinSel]]
+    gage.sd        <- flow.detrended[[gage.sum]][["sd"]][[dvAvgWinSel]]
+    gage.doy       <- flow.detrended[[gage.sum]][["sd"]][["doy"]]
+    gage.lowess.sd <- flow.detrended[[gage.sum]][["lowess.sd"]][[dvAvgWinSel]]
+    gage.nobs      <- flow.detrended[[gage.sum]][["nobs"]][[dvAvgWinSel]]
+
+    par(mfrow = c(3, 1))
+    {
+      plot(gage.doy, gage.mean , ylim=c(-0.4,0.4)); title(gage)
+      plot(gage.doy, gage.sd , ylim=c(0,2), col='grey'); title(gage)
+      lines(gage.doy, gage.lowess.sd, col='red',lwd=2)
+      plot(gage.doy, gage.nobs , ylim=c(0,60)); title(gage)
+            figNum <<- figNum + 1
+      title <- paste0( dvAvgWinSel, ": Mean, standard deviation, and number of observations ",
+                       " as a Function of Day of Year.")
+      .F(title, figNum)
+    }
+  }
+}
 ```
