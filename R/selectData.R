@@ -154,6 +154,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                        remMiss=TRUE, analySpec) {
 
 # -----< Change history >--------------------------------------------
+# 04Feb2018: JBH: count number of observations for each intervention
 # 05Aug2017: JBH: corrected over-ride evaluation for setting iSpec$hydroTerm based on 
 #                 inspecification of iSpec$flwParms and iSpec$salParms; cleaned
 #                 change history dates
@@ -375,6 +376,11 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   tmp[sapply(tmp, is.null)] <- NA
   df$intervention <- sapply(1:nrow(df), function(x) unname(unlist(tmp[x])[1]))
 
+  # calculate number of observations for each method and merge to intervention table  04Feb2018
+  tmp <- as.data.frame(table(df$intervention))
+  intervenList = merge(intervenList,tmp, by.x="intervention", by.y="Var1", all.x=TRUE)
+  intervenList$Freq[is.na(intervenList$Freq)] <- 0
+  
   # set intervention variables to factors and store to iSpec
   df$intervention           <- factor(df$intervention, levels = intervenList$intervention)
   intervenList$intervention <- factor(intervenList$intervention, levels = intervenList$intervention)

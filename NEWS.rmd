@@ -19,6 +19,13 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.0.9001
+===========
+* Released - 2018-02-05
+* Improve error trapp for when to allow baytrends to run an intervention model.
+    + selectData.R
+    + gamTest.R
+
 baytrends 1.0.0
 ===========
 * Released - 2018-02-01

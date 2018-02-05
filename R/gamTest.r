@@ -40,6 +40,7 @@
 gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10, gamDiffModel=NA) {
 
 # ----- Change history -------------------------------------------- ####
+# 04Feb2018: JBH: count number of observations for each intervention
 # 05Aug2017: JBH: add hydroTerms used for flow/salinity modeling; removed mn.doy;
 #                 added error trap if flow.detrended or salinity.detrended are not loaded
 # 04Aug2017: JBH: added flow terms to csv output tables
@@ -189,9 +190,9 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         return(NA)
       }
 
-      # Error trap for intervention term in model if there aren't at least two levels
-      # of intervention in the data (21Oct2016)
-      if (intervention & iSpec$intervenNum<2) next
+      # Error trap for intervention term in models: ensure there are at least two levels
+      # of intervention in the data with at least 10 obs (21Oct2016, updated 04Feb2018)
+      if (intervention & sum(iSpec$intervenList$Freq > 10) <2) next
     }
 
     # integrate flow and/or salinity data into data set (ct1)      ####
