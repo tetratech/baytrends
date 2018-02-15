@@ -1,5 +1,5 @@
 ---
-title: "Vignette, QW"
+title: "Vignette, QW Conversion"
 author: "Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -25,9 +25,9 @@ https://owi.usgs.gov/R/packages.html#orphan
 You will need an internet connection to follow the directions below.
 
 # Process Overview
-You will need to install the `smwrQW` package (and other smwr packages), load the packages, then load the object and export the parts.  After loading the object and exporting the parts the packages need to be removed.  Only then can `baytrends` be loaded and a new qw object created from the previously exported parts.
+You will need to install the `smwrQW` package (and other smwr packages), load the packages, then load the object and export the parts.  After loading the object and exporting the parts the packages need to be removed.  Only then can `baytrends` be loaded and a new qw object created from the previously exported parts.  This is because the qw object retains information about the package used to create it and will only open properly with that particular package.
 
-An example using the dataCensored object (as an `smwrQW` qw) is included below.  All the code is meant to be run from start to finish but comments have been added between the steps.  Many parts are automate but running in the steps outlined below will help spot any errors.
+An example using the dataCensored object (as an `smwrQW` qw object) is included below.  All the code is meant to be run from start to finish but comments have been added between the steps.  Many parts are automatde but running in the steps outlined below will help spot any errors.
 
 ~~~~~~~~~~~~~~~~~
 * Install and load `smwrQW` packages.
@@ -60,11 +60,10 @@ Some variables may be repeated between chunks while others may not.
 
 ~~~~~~~~~~~~~~~~~~~~
 
-Original on 2017-12-20 did not export time zone.  Thus when Jon checked the file 2018-01-05 it was missing time zone information (mix of EDT and EST).  Need to export here with the time zone.
+Original on 2017-12-20 did not export time zone.  Thus when it was QCed and checked on 2018-01-05 the file it was missing time zone information (mix of EDT and EST).  Needed to export here with the time zone.
 
 format(x, useTZ=TRUE)
 
-switch to v3.4.1 of R to create parts.  OR install smwr* packages to extract the data then remove when build final data file.
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ## 1. Install Packages
@@ -72,10 +71,12 @@ Will need the smwr suite of packages installed before reading dataCensored.  All
 
 Also ensure that have the lastest version of the `baytrends` package.
 
-```{r Example01_Install_Pkgs, eval=FALSE}
+
+
+```{r Example01a_Install_Pkgs_GitHub, eval=FALSE}
 require(devtools)
 #
-# Install swmr packages (see above)
+# Install smwr packages (see above)
 # Detect if package installed then install
 myPkg <- c("smwrData", "smwrBase", "smwrGraphs", "smwrStats", "smwrQW")
 for (p in myPkg) {##FOR.p.START
@@ -89,6 +90,18 @@ for (p in myPkg) {##FOR.p.START
 if(!require("baytrends")) {devtools::install_github("leppott/baytrends")}
 ```
 
+Occassionally the install from github fails.  The packages can be downloaded from GitHub and then installed from zip file.
+
+```{r Example01a_Install_Pkgs_Zip, eval=FALSE}
+myDir <- "C:/Users/Erik.Leppo/OneDrive - Tetra Tech, Inc/MyDocs_OneDrive/ChesBay_R/_old/smwr Libraries"
+myPkg <- c("smwrData", "smwrBase", "smwrGraphs", "smwrStats", "smwrQW")
+myPkg.zip <- paste0(myPkg, "-master.zip")
+#
+lapply(myPkg.zip, function(x) install.packages(file.path(myDir, x), repos=NULL, type="win.binary"))
+```
+
+Even with both of the above methods the packages don't get installed.  And have to go back and re-run one or the other.
+
 ## 2. Choose the file to convert.
 Load the `smwrQW` package after `baytrends`.
 
@@ -101,8 +114,9 @@ library(smwrQW)
 #
 # File chooser to get file
 # file.choose() is windows only.  Use tk_choose.files() for other systems.
-#fn <- file.choose()
-fn <- file.path(path.package("baytrends"), "extdata", "dataCensored__qw.rda")
+fn <- file.choose()
+#fn <- file.path(path.package("baytrends"), "extdata", "dataCensored__qw.rda")
+# baytrends package must be loaded for path.package to work
 #
 # load qw object
 load(fn)
@@ -115,38 +129,81 @@ df.qw <- get(name.qw)
 Visually check the object's structure.  There should be no errors. 
 ```{r, eval=FALSE}
 # Visually check object
+name.qw
 str(df.qw)
 ```
 
-## 4. Save Header
+## 4.1. Fix Date_Time
+The date and/or time need to have time zone included.
 
-~~~~~~~~~~~~~~~~~
- Need to replace dataCensored with get(name.qw)
- Not sure how works with $
-~~~~~~~~~~~~~~~~~
-```{r Example04_data0SaveHeader, eval=FALSE}
+May have to manually adjust.
+
+```{r DateTime, eval=FALSE}
 # Ensure date explicitly includes time zone
 df.qw$date <- format(df.qw$date, format="%F %T", usetz=TRUE)
+#df.qw$date <- format(df.qw$date, format="%F")
+#df.qw$time <- format(df.qw$time, format="%T", usetz=TRUE)
+str(df.qw)
+```
 
-# Need export directory - choose.dir is Windows only
-myDir <- choose.dir(default=file.path(getwd()), caption="Select folder for qw slot export")
-# For non-Windows use tcltk
-# library(tcltk)
-# tk_choose.dir(getwd(), "Choose a suitable folder")
 
-myDir <- "C:\\Users\\Erik.Leppo\\OneDrive - Tetra Tech, Inc\\MyDocs_OneDrive\\ChesBay_R\\dataCensored_data-raw"
+## 4. Save Header
+The header are the first few variables of the data frame that are *not* of the 
+qw class when examined by `str`.
+
+
+Some datasets could have a field (e.g., "date") with 2 classes so have a work around of last columns as qw.
+```{r Example04_data0SaveHeaderAndAll, eval=FALSE}
+# Find non-qw classed columns
+# (assume all qw classed columns are at the end)
+class.df.ls <- lapply(df.qw, class)
+class.df <- unlist(class.df.ls, use.names=FALSE)
+class.df
+#
+# VA
+# date has a 2nd class, remove
+#class.df.single <- class.df[-4]
+class.df.single <- class.df
+class.df.single
+#
+# get non-qw cols
+  # method 1, fails when date has 2 classes
+# boo.class.qw <- class.df %in% "qw"
+# col.df.QW.no <- names(df.qw)[!boo.class.qw]
+  # method 2, assume qw columns at end
+num.col.qw <- sum(class.df %in% "qw")
+col.df.QW.no <- names(df.qw)[1:(ncol(df.qw)-num.col.qw)]
+col.df.QW.yes <- names(df.qw)[!(names(df.qw) %in% col.df.QW.no)]
+num.col.qw
+col.df.QW.no
+col.df.QW.yes
+#
+# header classes
+class.df.single.header <- class.df.single[1:(ncol(df.qw)-num.col.qw)]
+class.df.single.header
+
+# Need export directory - 
+myDir.Export.Default <- getwd()
+# choose.dir is Windows only
+#myDir <- choose.dir(default=myDir.Export.Default, caption="Select folder for qw slot export")
+# For non-Windows use tcltk (window pops up behind RStudio)
+library(tcltk)
+myDir <- tk_choose.dir(myDir.Export.Default, "Choose csv output folder")
+
+# myDir <- "C:\\Users\\Erik.Leppo\\OneDrive - Tetra Tech, Inc\\MyDocs_OneDrive\\ChesBay_R\\dataCensored_data-raw"
 
 # Output 
 # #
-df.QW.no <- df.qw[,1:3]
+df.QW.no <- df.qw[,col.df.QW.no]
+#df.QW.no <- df.qw[,1:8]
 str(df.QW.no)
-fn.header <- paste0(name.qw,"00Header.csv")
+fn.header <- paste0(name.qw,"_00Header.csv")
 write.csv(df.QW.no, file.path(myDir, fn.header))
 # #
 # # have issues
 # df.QW.yes <- as.data.frame(dataCensored[,4:16])
 # 
-fn.all <- paste0(name.qw,".csv")
+fn.all <- paste0(name.qw,"_00All.csv")
 write.csv(df.qw, file.path(myDir, fn.all))
 # seems to have worked
 
@@ -154,39 +211,40 @@ write.csv(df.qw, file.path(myDir, fn.all))
 # x <- read.csv("dataCensored.csv")
 # str(x)
 
-myVar <- names(df.qw[-(1:3)])
-mySlotNames <- slotNames("qw")
-
-# # To get slot data
-# showClass("qw")
-# slotNames("qw")
-# 
-# slot(dataCensored$secchi, "value.codes")
 
 ```
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Much of above is repeated below
+
+Need to clean up
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## 5. Extract dataCensored slot values
 Save each slot in the qw object to its own CSV file.
+
+Added error checking for each slot as not all columns have all slots.
+
+Visually check to ensure have all header (non-qw) and data (qw) fields properly sorted.
 
 ```{r Example05_data1SaveSlots, eval=FALSE}
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Loop through and save all data
 #library(baytrends) #needs smwrQW library to be present
-library(swmwrQW)
+library(smwrQW)
 df.qw <- df.qw
-myVar <- names(df.qw[-(1:3)])
+#myVar <- names(df.qw[-(1:3)])
+myVar <- col.df.QW.yes
 mySlotNames <- slotNames("qw")
 #
 #
 str(df.qw)
 # #
-df.QW.no <- df.qw[,1:3]
+#df.QW.no <- df.qw[,1:3]
+df.QW.no <- df.qw[,col.df.QW.no]
 str(df.QW.no)
-fn.header <- paste0(name.qw, "_00Header.csv")
-write.csv(df.QW.no, file.path(myDir, fn.header))
-
+#
 
 #
 for (i in myVar) {##FOR.i.START
@@ -199,156 +257,128 @@ for (i in myVar) {##FOR.i.START
     j.num <- match(j, mySlotNames)
     j.len <- length(mySlotNames)
     #
-    df.SlotValues <- slot(df.qw[,i], j)
-    #
-    myFile <- paste(name.qw, i, j, ".csv", sep="_")
-    write.csv(df.SlotValues, file.path(myDir, myFile))
-    #
-    # Report Progress to User
-    print(paste0("Saving; item i, ", i," (",i.num," of ",i.len,"), item j, ",j," (",j.num," of ",j.len,")."))
+    # QC for slot
+    boo.slot <- .hasSlot(df.qw[,i], j)
+    if (boo.slot==TRUE) {
+      df.SlotValues <- slot(df.qw[,i], j)
+      #
+      myFile <- paste(name.qw, i, j, ".csv", sep="_")
+      write.csv(df.SlotValues, file.path(myDir, myFile))
+      #
+      # Report Progress to User
+      print(paste0("Saving; item i (",i.num,"/",i.len,") ", i,", item j (", j.num,"/",j.len,") ",j,"."))
+    } else {
+      print(paste0("No slot; item i (",i.num,"/",i.len,") ", i,", item j (", j.num,"/",j.len,") ",j,"."))
+    }
     flush.console()
+    
     #
     }#FOR.j.END
   #
 }##FOR.i.END
 
+
+# Unload the package
+#lapply(myPkg, function(x) detach(paste0("package:", x), unload=TRUE))
+detach(package:smwrData, unload=TRUE)
+detach(package:smwrQW, unload=TRUE)
+detach(package:smwrStats, unload=TRUE)
+detach(package:smwrGraphs, unload=TRUE)
+detach(package:smwrBase, unload=TRUE)
+
 # Remove smwr* packages 
 # myPkg <- c("smwrData", "smwrBase", "smwrGraphs", "smwrStats", "smwrQW")
 lapply(myPkg, function(x) remove.packages(x))
 
-
 ```
 
 ## 6. Reconstruct the qw data object
+Have a separate R script in the "data-raw" folder for generating the "dataCensored" object for the baytrends package from the raw CSV files.
 
-
+convert date to POSIXct class (add EST)
+DF[,"date"] <- as.POSIXct(DF[,"date"],tz="EST")
 
 ```{r Example06_data2Reconstruct, eval=FALSE}
 # Reconstruct dataCensored from parts
 library(baytrends)
 #
-# Names
-# **** Need to get programaticaly *****
-# Should be the same as myVar
-# myNames <- c("secchi"
-#              , "chla"
-#              , "do"
-#              , "tn"
-#              , "tp"
-#              , "po4f"
-#              , "pp"
-#              , "tdp"
-#              , "no23f"
-#              , "nh4f"
-#              , "tdn"
-#              , "pn"
-#              , "tss")
-
-myNames <- myVar
-
-
-# Create DF
-#DF <- data.frame(matrix("NA", nrow=7719, ncol=16))
-#names(DF) <- myNames
-#fn.00 <- paste0(name.qw, "_00.csv")
-fn.00 <- paste0(name.qw, "_00Header.csv")
-
-DF <- read.table(file.path(myDir, fn.00), sep=","
-                        , header=TRUE, row.names=1
-                        , colClasses = "character"
-                      )
-str(DF)
-head(DF)
-#
-# convert date to POSIXct class (add EST)
-#DF[,"date"] <- as.POSIXct(DF[,"date"],tz="EST")
-str(DF)
-head(DF)
-#
-# Convert to qw format
-
-
-```
 
 # Data File Creation Script
-Have a separate R script in the "data-raw" folder for generating the "dataCensored" object for the baytrends package from the raw CSV files.
 
-```{r Example99_dataraw_Generate, eval=FALSE}
 # Generate data
 #
-# Erik.Leppo@tetratech.com
-# 20171206
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# ensure smwrQW package is not installed
-remove.packages("smwrData")
-remove.packages("smwrQW")
-remove.packages("smwrStats")
-remove.packages("smwrGraphs")
-remove.packages("smwrBase")
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 {# 0. Prep####
 # assume wd is package directory
 #wd <- file.path(getwd(),"data-raw")
   
-wd <- myDir  
-  
-  
+myDir  
   
 
 # 1. Generate Data####
-# Reconstruct dataCensored from parts
-library(baytrends)
-#library(baytrends)  # need for as.qw to create class
+# Reconstruct qw data set from parts
 #
 # Names
-  # **** Need to get programaticaly *****
-myVar <- c("secchi"
-             , "chla"
-             , "do"
-             , "tn"
-             , "tp"
-             , "po4f"
-             , "pp"
-             , "tdp"
-             , "no23f"
-             , "nh4f"
-             , "tdn"
-             , "pn"
-             , "tss")
+# myVar defined above
+
 # Create DF
 #DF <- data.frame(matrix("NA", nrow=7719, ncol=16))
 #
-DF <- read.table(file.path(wd,"dataCensored_00.csv"), sep=","
+# reapply classes from before saved as parts
+  # class.df.single.header defined above
+col.class.import <- gsub("qw", "character", class.df.single)
+DF <- read.table(file.path(myDir,paste0(name.qw,"_00All.csv")), sep=","
                  , header=TRUE, row.names=1
                  , colClasses = "character"
                   )
 str(DF)
-head(DF)
+#head(DF)
 #
-# convert date to POSIXct class (add EST)
-#DF[,"date"] <- as.POSIXct(DF[,"date"],tz="EST")
+#
+# non-character fields
+## convert date to POSIXct class
+### no TZ at this point
+col.class.import %in% "POSIXct"
+col.num.posixlt <- match("POSIXct", col.class.import)
+DF[,col.num.posixlt] <- as.POSIXct(DF[,col.num.posixlt])
+str(DF)
+#
+
+#~~~~~~~~~~~~~
+# manual adjust
 DF[,"date"] <- as.POSIXct(DF[,"date"])
 str(DF)
-head(DF)
+
+
+
+#
+# numeric
+col.class.import.num <- col.class.import %in% "numeric"
+col.numeric <- names(DF)[col.class.import.num]
+for (i in col.numeric){
+  DF[,i] <- as.numeric(DF[,i])
+}
+str(DF)
+
+
+
 #
 # Convert to qw format
 ## loop through each variable and add info
 slotNames("qw")
-mySlotNames <- c(".Data"
-                 , "remark.codes"
-                 , "value.codes"
-                 , "reporting.level"
-                 , "reporting.method"
-                 , "reporting.units"
-                 , "analyte.method"
-                 , "analyte.name"
-                 , "rounding"
-                 , "unique.code" 
-                 , "names") 
+# mySlotNames <- c(".Data"
+#                  , "remark.codes"
+#                  , "value.codes"
+#                  , "reporting.level"
+#                  , "reporting.method"
+#                  , "reporting.units"
+#                  , "analyte.method"
+#                  , "analyte.name"
+#                  , "rounding"
+#                  , "unique.code" 
+#                  , "names") 
 
 #
-i <- myVar[1]
+#i <- myVar[1]
 }
 #
 for (i in myVar) {##FOR.i.START
@@ -358,77 +388,78 @@ for (i in myVar) {##FOR.i.START
   i.len <- length(myVar)
   #
   # Report Progress to User
-  print(paste0("Processing; item i, ", i," (",i.num," of ",i.len,")."))
+  cat("\n\n")
+  print(paste0("Processing; item i, ", i," (",i.num,"/",i.len,")."))
   flush.console()
   #
   # Load all slotname files
   #myName <- c("values","value2)")
-  myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[1],".csv",sep="_"))
+  myFile <- file.path(myDir,paste(name.qw,i,mySlotNames[1],".csv",sep="_"))
     df.var.slot01 <- read.table(myFile, header=TRUE, row.names=1, sep=",")
-    
-  myName <- mySlotNames[2] 
+
+  myName <- mySlotNames[2]
   myColClass <- "character"
-  myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[2],".csv",sep="_"))
+  myFile <- file.path(myDir,paste(name.qw,i,mySlotNames[2],".csv",sep="_"))
     df.var.slot02 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass, na.strings="NA")
     names(df.var.slot02) <- myName
-  
-  # myName <- mySlotNames[3]  
-  # myColClass <- "character" 
+
+  # myName <- mySlotNames[3]
+  # myColClass <- "character"
   # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[3],".csv",sep="_"))
   #   df.var.slot03 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   #   names(df.var.slot03) <- myName
-  #   
-  # myName <- mySlotNames[4]  
+  #
+  # myName <- mySlotNames[4]
   # myColClass <- "character"
   # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[4],".csv",sep="_"))
   #   df.var.slot04 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   #   names(df.var.slot04) <- myName
-  #   
-  # myName <- mySlotNames[5]   
-  # myColClass <- "character" 
+  #
+  # myName <- mySlotNames[5]
+  # myColClass <- "character"
   # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[5],".csv",sep="_"))
   #   df.var.slot05 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   #   names(df.var.slot05) <- myName
-  # 
-  # myName <- mySlotNames[6]  
+  #
+  # myName <- mySlotNames[6]
   # myColClass <- "character"
   # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[6],".csv",sep="_"))
   #   df.var.slot06 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   #   names(df.var.slot06) <- myName
-  # 
-  # myName <- mySlotNames[7]  
+  #
+  # myName <- mySlotNames[7]
   # myColClass <- "character"
   # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[7],".csv",sep="_"))
   #   df.var.slot07 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   #   names(df.var.slot07) <- myName
-  # 
-  # myName <- mySlotNames[8]  
+  #
+  # myName <- mySlotNames[8]
   # myColClass <- "character"
   # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[8],".csv",sep="_"))
   #   df.var.slot08 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   #   names(df.var.slot08) <- myName
-  #   
+  #
   # # Rounding is not included in as.qw (#09)
-  # myName <- mySlotNames[9]  
+  # myName <- mySlotNames[9]
   # myColClass <- "numeric"
   # # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[9],".csv",sep="_"))
   # #   df.var.slot09 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   # #   names(df.var.slot09) <- myName
-  # 
-  # myName <- mySlotNames[10]  
+  #
+  # myName <- mySlotNames[10]
   # myColClass <- "character"
   # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[10],".csv",sep="_"))
   #   df.var.slot10 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   #   names(df.var.slot10) <- myName
-  #   
+  #
   # # names is not included in as.qw (#11)
-  # myName <- mySlotNames[11] 
+  # myName <- mySlotNames[11]
   # myColClass <- "character"
   # # myFile <- file.path(wd,paste("dataCensored",i,mySlotNames[11],".csv",sep="_"))
   # #   df.var.slot11 <- read.table(myFile, header=TRUE, row.names=1, sep=",", colClasses=myColClass)
   # #   names(df.var.slot11) <- myName
   # #
-    
+
   # combine
   df.var.slotData <- cbind(df.var.slot01, df.var.slot02 ) #, df.var.slot03
                            # , df.var.slot04, df.var.slot05, df.var.slot06
@@ -446,7 +477,7 @@ for (i in myVar) {##FOR.i.START
                   , value2           = df.var.slotData[,"value2"]
                   , remark.codes     = df.var.slotData[,"remark.codes"]
                   , value.codes      = ""
-                  , reporting.level  = NA_real_
+                  , reporting.level  = ""
                   , reporting.method = ""
                   , reporting.units  = ""
                   , analyte.method   = ""
@@ -473,11 +504,24 @@ for (i in myVar) {##FOR.i.START
 #setwd("..")
 #devtools::use_data(dataCensored, overwrite = TRUE)
 
-myFile.Out <- paste0(name.qw, ".rda")
 
-saveRDS(DF, "xyz.rda")
+str(DF)
+
+
+#myFile.Out <- paste0(name.qw, ".rda")
+myFile.Out <- gsub("_smwr", "_baytrends", fn)
+
+#myFile.Out <- fn
+
+#saveRDS(DF, myFile.Out)
 # reuse file name from beginning.
+save(DF, file=myFile.Out)
+
+# make sure the thing is named by its own name rather then DF.
 
 
 ```
+
+Read the file back in with only `baytrends`.
+
 

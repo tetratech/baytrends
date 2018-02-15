@@ -1,0 +1,30 @@
+---
+title: "Vignette, QW Create"
+author: "Erik.Leppo@tetratech.com"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette, QW}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+<!-- Data is in vignettes\data folder  -->
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# Purpose
+The ability to create a QW object for the `baytrends` package is described below.
+
+# Process Overview
+You will need the `baytrends` package and a dataset.
+
+* Import dataset.
+* Convert.
+* Save.
+
+Be sure to include timezones on your date time field.  Otherwise when convert between standard and daylight saving time things will be amiss.
+
+# xxxx
