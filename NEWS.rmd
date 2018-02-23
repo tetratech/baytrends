@@ -19,6 +19,19 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.1.9001
+===========
+* Released - 2018-02-23
+* Clean up after running Check.
+    + Move /data-raw to /inst/data-raw
+    + Document /data in /R/data.R
+    + DESCRIPTION, remove dataRetrieval from Suggests (already under Imports).
+    
+baytrends 1.0.1
+===========
+* Released - 2018-02-16
+* Clean up and send out to project users.
+
 baytrends 1.0.0.9002
 ===========
 * Released - 2018-02-15

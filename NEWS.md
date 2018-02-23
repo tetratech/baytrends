@@ -4,7 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-02-15 10:14:37
+    #> Last Update: 2018-02-23 15:07:04
+
+# baytrends 1.0.1.9001
+
+  - Released - 2018-02-23
+  - Clean up after running Check.
+      - Move /data-raw to /inst/data-raw
+      - Document /data in /R/data.R
+      - DESCRIPTION, remove dataRetrieval from Suggests (already under
+        Imports).
+
+# baytrends 1.0.1
+
+  - Released - 2018-02-16
+  - Clean up and send out to project users.
 
 # baytrends 1.0.0.9002
 
@@ -211,9 +225,10 @@ NEWS
 
   - Released - 7/20/2017
   - Enhanced baytrends to output p-values and estimates of change
-    related to laboratory method changes (“interventions”) in a style
-    that compares method “A” to “B”, “B” to “C”, “C” to “D”, etc. rather
-    than “A” to “B”, “A” to “C”, “A” to “D”, etc.
+    related to laboratory method changes (â€œinterventionsâ€) in a
+    style that compares method â€œAâ€ to â€œBâ€, â€œBâ€ to â€œCâ€,
+    â€œCâ€ to â€œDâ€, etc. rather than â€œAâ€ to â€œBâ€, â€œAâ€
+    to â€œCâ€, â€œAâ€ to â€œDâ€, etc.
 
 # baytrends 0.2.6
 

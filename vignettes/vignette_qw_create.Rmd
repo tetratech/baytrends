@@ -28,3 +28,14 @@ You will need the `baytrends` package and a dataset.
 Be sure to include timezones on your date time field.  Otherwise when convert between standard and daylight saving time things will be amiss.
 
 # xxxx
+
+Use the function as.qw.  Use the command below to show the help file.
+
+```{r ShowHelp, eval=FALSE}
+library(baytrends)
+?as.qw
+```
+
+
+
+

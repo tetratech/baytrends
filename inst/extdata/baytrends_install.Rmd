@@ -1,0 +1,80 @@
+---
+title: "baytrends, Install from Zip File"
+author: "Erik W. Leppo"
+date: "`r Sys.time()`"
+output: 
+  html_notebook:
+    toc: yes
+    depth: 3
+    toc_float: yes
+---
+
+# 1. Purpose
+Inform current users of `baytrends` R package on update procedure.
+
+# 2. Procedure
+1. Download
+2. Install
+3. Verify
+
+## 2.1. Download
+Download the zip file from Google Drive link below.
+
+https://drive.google.com/drive/folders/1q7OdXpM-aJ-OUDPmHUqsUklgc42-aHfd
+
+## 2.2. Install the Package
+Depending on the users program environment there are differing methods to install the revised package.  Only one of the following methods needs to be employed.
+
+### 2.2.1. RStudio
+Using RStudio the install is done via the toolbar:
+
+1. Tools
+2. Install Packages
+3. Change "Install from:" to "Package Archive File (.zip;.tar.gz)"
+4. Select "Browse" and choose baytrends zip
+5. Click "Install" 
+
+### 2.2.2. R GUI
+Using the base R GUI the install is done via the toolbar:
+
+1. Packages
+2. Install Packages from local file(s)
+3. Browse to baytrends zip
+4. Select Open
+
+When done R should print to the console:
+
+package 'baytrends' successfully unpacked and MD5 sums checked
+
+### 2.2.3. GitHub
+Commands can be typed in to the R console to update from the internet by retrieving the package from its host location on GitHub (a file sharing platform).  This method requires the package `devtools` and should only be used by experienced users.
+
+```{r Install_GitHub, eval=FALSE}
+library(devtools)
+install_github("leppott/baytrends")
+```
+
+## 2.3. Verify Install
+To verify the install of `baytrends` type in the commands below into the R console.
+
+This will display all of the help files and version number for the `baytrends` package.
+
+```{r Verify, eval=FALSE}
+library(baytrends)
+help(package="baytrends")
+```
+
+If get any error messages about needing packages (e.g., with a fresh version of R) will need to install those packages as well.  
+
+For example, with a fresh install of R v3.4.3 the following code was necessary to install all of the dependent packages for `baytrends` to function properly.  New package can be included in the myPkgs vector inside the pararentheses.  New packages should be enclosed in quotes and should be preceeded with a comma.
+
+```{r InstallDependancies, eval=FALSE}
+myPkgs <- c("lubridate"
+            , "dataRetrieval"
+            , "digest"
+            , "memoise"
+            , "XML"
+            , "zCompositions"
+            , "pander")
+lapply(myPkgs, function(x) install.packages(x))
+```
