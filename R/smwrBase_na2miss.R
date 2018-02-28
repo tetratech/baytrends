@@ -16,9 +16,9 @@
 #'\code{miss2na} converts the value \code{from} to \code{NA} and can be used to
 #'recode data imported from external software that uses a special value to
 #'indicate missing values.\cr
-#' @seealso 
+# @seealso 
 #Flip for production/manual
-#'\code{\link[base]{is.na}}, \code{\link[base]{sub}}
+#\code{\link[base]{is.na}}, \code{\link[base]{sub}}
 #\code{is.na}, \code{sub} (both in base package)
 #' @keywords internal manip
 #' @export

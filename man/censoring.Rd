@@ -45,9 +45,6 @@ censoring(2.3) # a simple number
 censoring(as.lcens(1, 2)) # left-censored 
 
 }
-\seealso{
-\code{\link{censorLevels}}
-}
 \keyword{attribute}
 \keyword{censored}
 \keyword{internal}

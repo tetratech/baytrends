@@ -12,7 +12,7 @@
 #'\code{col_name}.
 #'@note This function is a support function designed to be called within other
 #'functions.
-#'@seealso \code{\link{pcodeNWISqw}}, \code{\link{pcodeColData}}
+#@seealso \code{\link{pcodeNWISqw}}, \code{\link{pcodeColData}}
 #'@keywords internal utilities
 #'@export
 makeColNames <- function(params, name, short) {

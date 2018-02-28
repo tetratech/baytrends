@@ -29,9 +29,5 @@ table includes the names of the groups comapred, the z-score from the
 adjusted p-value is less than the \code{alpha} level set in
 \code{censMulticomp.test}.
 }
-\seealso{
-\code{\link{censKSample.test}}, \code{\link{censMulticomp.test}},
-\code{\link{genWilcox.test}}
-}
 \keyword{internal}
 \keyword{utilities}

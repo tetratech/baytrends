@@ -10,7 +10,7 @@
 #' @return An error message.
 #' @note The mean and standard deviation of censored data should be computed
 #'using \code{censStats}.
-#' @seealso \code{\link{censStats}}
+# @seealso \code{\link{censStats}}
 #' @keywords internal censored univariate
 #' @rdname meanStats
 #' @export

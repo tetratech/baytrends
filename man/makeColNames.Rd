@@ -28,8 +28,5 @@ retreived by those arguments in the function \code{pcodeNWISqw}.
 This function is a support function designed to be called within other
 functions.
 }
-\seealso{
-\code{\link{pcodeNWISqw}}, \code{\link{pcodeColData}}
-}
 \keyword{internal}
 \keyword{utilities}

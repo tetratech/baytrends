@@ -39,8 +39,5 @@ as.double(Test.qw)
 as.numeric(Test.qw)
 
 }
-\seealso{
-\code{\link{fillIn}}
-}
 \keyword{internal}
 \keyword{manip}

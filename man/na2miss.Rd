@@ -38,8 +38,5 @@ indicate missing values.\cr
 ## Construct simple substitutions
 na2miss(c(1, 2, 3, NA, 5, 6))
 }
-\seealso{
-\code{\link[base]{is.na}}, \code{\link[base]{sub}}
-}
 \keyword{internal}
 \keyword{manip}

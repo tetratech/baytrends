@@ -9,7 +9,7 @@
 #' @return A vector of length one representing the sample median.
 #' @note The median is computed using the flipped Kaplan-Meier method described
 #'in Helsel (2012).
-#' @seealso \code{\link{censQuantile}}
+# @seealso \code{\link{censQuantile}}
 #' @references Helsel, D.R. 2012, Statistics for censored environmental data 
 #'using Minitab and R: New York, Wiley, 324 p.\cr
 #' @keywords internal censored univariate

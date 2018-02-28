@@ -39,9 +39,6 @@ median(as.lcens(1:4, 2))
 Helsel, D.R. 2012, Statistics for censored environmental data 
 using Minitab and R: New York, Wiley, 324 p.\cr
 }
-\seealso{
-\code{\link{censQuantile}}
-}
 \keyword{censored}
 \keyword{internal}
 \keyword{univariate}

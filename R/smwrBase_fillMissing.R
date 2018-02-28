@@ -47,7 +47,8 @@
 #'sequence of dates.
 #' @seealso
 #Flip for production/manual
-#'\code{\link[stats]{tsSmooth}}, \code{\link[stats]{StructTS}}, \code{\link{insertMissing}}
+#'\code{\link[stats]{tsSmooth}}, \code{\link[stats]{StructTS}}
+#, \code{\link{insertMissing}}
 #\code{tsSmooth} (in stats package), \code{StructTS} (in stats package), \code{\link{insertMissing}}
 #' @references Beauchamp, J.J., 1989, Comparison of regression and time-series
 #'methods for synthesizing missing streamflow records: Water Resources
@@ -60,7 +61,7 @@
 #' @keywords internal manip
 #' @examples
 #'\dontrun{
-#'library(smwrData)
+#'#library(smwrData)
 #'data(Q05078470)
 #'# Create missing values in flow, the first sequence is a peak and the second is a recession
 #'Q05078470$FlowMiss <- Q05078470$FLOW

@@ -16,7 +16,7 @@
 #'and result in an error.\cr
 #'
 #'The function \code{as.double} is executed for \code{as.numeric}.
-#' @seealso \code{\link{fillIn}}
+# @seealso \code{\link{fillIn}}
 #' @keywords internal manip
 #' @examples
 #'

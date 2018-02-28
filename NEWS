@@ -4,7 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-02-23 15:07:04
+    #> Last Update: 2018-02-28 12:50:49
+
+# baytrends 1.0.1.9002
+
+  - Released - 2018-02-28
+  - More clean up of linked ‘see also’ references in smwr functions.
+  - Add help file for package name, baytrends.R.
+  - Moved detrended salinity and flow vignettes to extdata.
+  - Rename seasonally detrended data sets (salinity and flow) without
+    special characters.
 
 # baytrends 1.0.1.9001
 

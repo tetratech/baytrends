@@ -31,9 +31,6 @@ the intended purpose.
 The mean and standard deviation of censored water-quality data should be computed
 using \code{censStats}.
 }
-\seealso{
-\code{\link{censStats}}
-}
 \keyword{censored}
 \keyword{internal}
 \keyword{univariate}

@@ -27,9 +27,6 @@ on censored data.
 The mean and standard deviation of censored data should be computed
 using \code{censStats}.
 }
-\seealso{
-\code{\link{censStats}}
-}
 \keyword{censored}
 \keyword{internal}
 \keyword{univariate}

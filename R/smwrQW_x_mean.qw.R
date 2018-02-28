@@ -15,7 +15,7 @@
 #' @return The mean of thw water-quality data as class "qw."
 #' @note The mean and standard deviation of censored water-quality data should be computed
 #'using \code{censStats}.
-#'@seealso \code{\link{censStats}}
+#@seealso \code{\link{censStats}}
 #'@keywords internal censored univariate
 #' @export
 #'@method mean qw

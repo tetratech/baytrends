@@ -26,7 +26,7 @@
 #'values corresponding to the fitted data.
 #' @param \dots further arguments passed to or from other methods.
 #' @return The residuals from the regression as specified by \code{type}.
-#' @seealso \code{\link{censReg}}
+# @seealso \code{\link{censReg}}
 #' @keywords internal regression
 #' @export
 #' @method residuals censReg

@@ -41,8 +41,5 @@ can be used to obtain those residuals. Note that "working" and "response"
 are defined in the table above, in keeping with older versions of
 \code{censReg}.
 }
-\seealso{
-\code{\link{censReg}}
-}
 \keyword{internal}
 \keyword{regression}

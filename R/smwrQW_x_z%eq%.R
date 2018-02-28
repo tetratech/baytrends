@@ -14,7 +14,7 @@
 #' @return A logical vector that matches the length of the longer of \code{e1} or 
 #'\code{e2}, set to \code{TRUE} is there is overlap in the values, and \code{FALSE}
 #'otherwise.
-#' @seealso \code{\link{Compare,qw,numeric-method}}
+# @seealso \code{\link{Compare,qw,numeric-method}}
 #' @keywords internal manip
 #' @examples
 #' as.mcens(1, 2) %~=% 0.5

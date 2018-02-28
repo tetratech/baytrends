@@ -28,7 +28,8 @@
 #' @param \dots not used, required for other methods.
 #' @return An optionally named vector of the requested probabilities. The names
 #'of values that would be left-censored are marked with "*."
-#' @seealso \code{\link{quantile}}, \code{\link{censQuantile}}
+#' @seealso \code{\link{quantile}}
+# , \code{\link{censQuantile}}
 #' @references Helsel, D.R. 2012, Statistics for censored environmental data 
 #'using Minitab and R: New York, Wiley, 324 p.\cr
 #'Helsel, D.R. and Cohn, T.A., 1988, Estimation of descriptive statistics for

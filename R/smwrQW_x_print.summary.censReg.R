@@ -9,7 +9,7 @@
 #' @note The printed output includes the call, the coefficent table, the
 #'estimated residual standard error, the log-likelihood of the model and
 #'null model with the attained p-value, and the computational method.
-#' @seealso \code{\link{censReg}}, \code{\link{coef.censReg}}
+# @seealso \code{\link{censReg}}, \code{\link{coef.censReg}}
 #' @keywords internal utilities
 #'
 #' @export

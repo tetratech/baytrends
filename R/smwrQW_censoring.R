@@ -11,7 +11,7 @@
 #'of censoring present in the object.
 #' @note This function is mostly used within other functions to determine the
 #''best' technique to use for analysis.
-#' @seealso \code{\link{censorLevels}}
+# @seealso \code{\link{censorLevels}}
 #' @keywords internal censored attribute
 #' @examples
 #'

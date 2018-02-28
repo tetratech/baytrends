@@ -18,7 +18,8 @@
 #'"complete.obs" that uses only the rows with no censored data to construct the matrix, or
 #'"multRepl" that uses simple substitution of censored values to compute the matrix.
 #'See \code{\link[zCompositions]{lrEM}} for details.
-#' @seealso \code{\link[zCompositions]{lrEM}}, \code{\link{mImputeLessThans}}
+#' @seealso \code{\link[zCompositions]{lrEM}}
+#, \code{\link{mImputeLessThans}}
 #' @importFrom zCompositions lrEM
 #' @return A data frame containing the original data with imputed censored values.
 #' @keywords internal

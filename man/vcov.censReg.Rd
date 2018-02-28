@@ -20,8 +20,5 @@ column names corresponding to the parameter names.
 Extracts the variance-covariance matrix of the main parameters from a 
 censored regression object: method for "censReg" object.
 }
-\seealso{
-\code{\link{censReg}}
-}
 \keyword{internal}
 \keyword{regression}

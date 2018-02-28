@@ -64,7 +64,7 @@ sequence of dates.
 }
 \examples{
 \dontrun{
-library(smwrData)
+#library(smwrData)
 data(Q05078470)
 # Create missing values in flow, the first sequence is a peak and the second is a recession
 Q05078470$FlowMiss <- Q05078470$FLOW
@@ -89,7 +89,7 @@ of missing hydrological data, I. Approach and general methodology:
 Hydrological Sciences Journal, v. 45, no. 6, p. 849--866.
 }
 \seealso{
-\code{\link[stats]{tsSmooth}}, \code{\link[stats]{StructTS}}, \code{\link{insertMissing}}
+\code{\link[stats]{tsSmooth}}, \code{\link[stats]{StructTS}}
 }
 \keyword{internal}
 \keyword{manip}

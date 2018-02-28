@@ -44,6 +44,6 @@ populations, then they should be identified by the \code{group} argument. The mi
 for any group is 3.
 }
 \seealso{
-\code{\link[zCompositions]{lrEM}}, \code{\link{mImputeLessThans}}
+\code{\link[zCompositions]{lrEM}}
 }
 \keyword{internal}

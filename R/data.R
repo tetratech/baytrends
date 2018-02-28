@@ -25,17 +25,17 @@
 #' @source Chesapeake Bay data
 "dataCensored"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' Layer Lookup
-#' 
-#' Long Description
-#' 
-#' @format A data frame with 10 rows and 3 variables:
-#' \describe{
-#'    \item{layers}{}
-#'    \item{order}{}
-#'    \item{names}{}
-#' }
-"layerLukUp"
+# #' Layer Lookup
+# #' 
+# #' Long Description
+# #' 
+# #' @format A data frame with 10 rows and 3 variables:
+# #' \describe{
+# #'    \item{layers}{layer abbreviation}
+# #'    \item{order}{sort order of layers}
+# #'    \item{names}{layer name}
+# #' }
+# "layerLukUp"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' Parameter List
 #' 

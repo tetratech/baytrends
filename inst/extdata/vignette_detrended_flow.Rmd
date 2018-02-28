@@ -28,9 +28,8 @@ Set the working directory and load any needed scripts and libraries.
 ProjRoot <- getwd()
 #setwd(ProjRoot)
 
-library(baytrends)
-
-require(gdata)
+#library(baytrends)
+#require(gdata)
 
 source(file.path(ProjRoot, "data", "getUSGSflow.R"))
 source(file.path(ProjRoot, "data", "seasAdjflow2.R"))
@@ -202,9 +201,8 @@ Run the above code chunks all at once and show the output below.
 ProjRoot <- getwd()
 setwd(ProjRoot)
 
-library(baytrends)
-
-require(gdata)
+# library(baytrends)
+# require(gdata)
 
 source(file.path(ProjRoot, "data", "getUSGSflow.R"))
 source(file.path(ProjRoot, "data", "seasAdjflow2.R"))

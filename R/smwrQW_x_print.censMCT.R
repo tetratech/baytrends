@@ -14,8 +14,8 @@
 #'\code{genWilcox.test}, the adjusted p-value, and a column to indicate if the
 #'adjusted p-value is less than the \code{alpha} level set in
 #'\code{censMulticomp.test}.
-#' @seealso \code{\link{censKSample.test}}, \code{\link{censMulticomp.test}},
-#'\code{\link{genWilcox.test}}
+# @seealso \code{\link{censKSample.test}}, \code{\link{censMulticomp.test}},
+#\code{\link{genWilcox.test}}
 #' @keywords internal utilities
 #'
 #' @export

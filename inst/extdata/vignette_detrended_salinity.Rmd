@@ -212,7 +212,7 @@ names(salinity.detrended)[names(salinity.detrended) %in% salinity.detrended[["st
 salinity.detrended$stations
 
 # Store results ----
-save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda')
+save(salinity.detrended, file='1984_2016_seasonally_detrended_salinity_data.rda')
 
 # Site specifice mess handling ----
 {
@@ -258,7 +258,7 @@ save(salinity.detrended, file='1984-2016 seasonally detrended salinity data.rda'
 }
 
 save(salinity.detrended
-     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
+     , file=file.path(myDir, '1984_2016_seasonally_detrended_salinity_data.rda'))
 
 # adjust for funny xfb1986 ----
 i.station <- c("XFB1986")  
@@ -270,7 +270,7 @@ salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][260:305] <-
   salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][259]
 
 save(salinity.detrended
-     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
+     , file=file.path(myDir, '1984_2016_seasonally_detrended_salinity_data.rda'))
 ```
 
 ## Plot
@@ -296,7 +296,7 @@ myDir.create <- file.path(myDir, "plots")
   # print(getwd())
   # flush.console()
 
-load(file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
+load(file.path(myDir, '1984_2016_seasonally_detrended_salinity_data.rda'))
 names(salinity.detrended)
 
 for (station in baytrends::stationMasterList$station) {
@@ -529,7 +529,7 @@ salinity.detrended$stations
 
 # Store results ----
 save(salinity.detrended
-     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
+     , file=file.path(myDir, '1984_2016_seasonally_detrended_salinity_data.rda'))
 
 # Site specifice mess handling ----
 {
@@ -575,7 +575,7 @@ save(salinity.detrended
 }
 
 save(salinity.detrended
-     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
+     , file=file.path(myDir, '1984_2016_seasonally_detrended_salinity_data.rda'))
 
 # adjust for funny xfb1986 ----
 i.station <- c("XFB1986")  
@@ -587,7 +587,7 @@ salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][260:305] <-
   salinity.detrended[[var.sum]][["lowess.sd"]][["SAP"]][259]
 
 save(salinity.detrended
-     , file=file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
+     , file=file.path(myDir, '1984_2016_seasonally_detrended_salinity_data.rda'))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #17Jul2017:  plot mean, sd (and lowess.sd), and nobs per doy 
@@ -605,7 +605,7 @@ myDir.create <- file.path(getwd(), "plots")
 #   print(getwd())
 #   flush.console()
 
-load(file.path(myDir, '1984-2016 seasonally detrended salinity data.rda'))
+load(file.path(myDir, '1984_2016_seasonally_detrended_salinity_data.rda'))
 names(salinity.detrended)
 
 for (station in baytrends::stationMasterList$station) {

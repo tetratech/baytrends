@@ -317,15 +317,16 @@ myDir <- tk_choose.dir(default=dir.default, caption="Select QW all data file dir
 fn <- tk_choose.files(default="dir.qw.orig", caption="Select smwr QW file to convert")
 #
 # Manual Stuff
-# 01, VA, Mike Lane
-class.df.single <- c("character", "character", "POSIXct", rep("character", 2), rep("numeric", 3)
-                     , rep("qw", 16))
-name.qw <- "df"
-#
+#~~~~~~~~~~~~~~~~~~
+# # 01, VA, Mike Lane
+# class.df.single <- c("character", "character", "POSIXct", rep("character", 2), rep("numeric", 3)
+#                      , rep("qw", 16))
+# name.qw <- "df"
+#~~~~~~~~~~~~~~~~~~
 # 03, MD Core Trends, Elgin Perry
-# class.df.single <- c("character", "POSIXct", "integer", "character", "numeric"
-#                      , rep("character", 3), "integer", "character", rep("qw", 26))
-# name.qw <- "ctall.fin"
+class.df.single <- c("character", "POSIXct", "integer", "character", "numeric"
+                     , rep("character", 3), "integer", "character", rep("qw", 26))
+name.qw <- "ctall.fin"
 
 
 ```
@@ -443,6 +444,11 @@ slotNames("qw")
 #
 #i <- myVar[2]
 #}
+#
+# QC
+myVar <- myVar[-2]
+
+
 #
 for (i in myVar) {##FOR.i.START
   #

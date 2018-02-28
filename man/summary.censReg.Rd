@@ -37,8 +37,5 @@ McKelvey, R.D., and Zavoina, W., 1975, A statistical model for
 the analysis of ordinal dependent variables: The Journal of Mathematical
 Sociology, v. 4, no. 1, p. 103--120.
 }
-\seealso{
-\code{\link{censReg}}
-}
 \keyword{internal}
 \keyword{regression}
