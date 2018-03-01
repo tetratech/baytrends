@@ -90,7 +90,7 @@ Need first entry on the same line as "Collate:".
 rmarkdown::render("NEWS.rmd", "all")
 file.copy("NEWS.md", "NEWS", overwrite = TRUE)
 file.remove("NEWS.html")
-#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Library Name
 myLibrary <- "baytrends"
 # Load Library

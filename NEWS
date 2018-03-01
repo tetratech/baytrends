@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-02-28 12:50:49
+    #> Last Update: 2018-03-01 12:13:46
+
+# baytrends 1.0.1.9003
+
+  - Released - 2018-03-01
+  - QW object export internal function, qw.export.
 
 # baytrends 1.0.1.9002
 

@@ -446,7 +446,7 @@ slotNames("qw")
 #}
 #
 # QC
-myVar <- myVar[-2]
+#myVar <- myVar[-2]
 
 
 #
@@ -570,24 +570,63 @@ for (i in myVar) {##FOR.i.START
   #                 )
   # #
     df.var.slotData[,"reporting.level"] <- NA_real_
-    slots.NoData <- c("remark.codes", "value.codes", "reporting.method", "reporting.units"
+    slots.NoData <- c("value.codes", "reporting.method", "reporting.units"
                       , "analyte.method", "analyte.name", "unique.code")
     df.var.slotData[, slots.NoData] <- ""
+    #
   
-  
-    DF[,i] <- as.qw(values       =  df.var.slotData[,"values"]
-                  , value2           = df.var.slotData[,"value2"]
-                  , remark.codes     = df.var.slotData[,"remark.codes"] 
-                  , value.codes      = df.var.slotData[,"value.codes"]
-                  , reporting.level  = df.var.slotData[,"reporting.level"]
-                  , reporting.method = df.var.slotData[,"reporting.method"]
-                  , reporting.units  = df.var.slotData[,"reporting.units"]
-                  , analyte.method   = df.var.slotData[,"analyte.method"]
-                  , analyte.name     = df.var.slotData[,"analyte.name"]
-                  , unique.code      = df.var.slotData[,"unique.code"]
-                  )
-  
-  
+    # the ctall.fin has NA mixed with the values (1 and 2) n=93 of 19971
+    # create special statement.
+    if (name.qw == "ctall.fin" & i=="cond") {##IF.name.qw.START
+      # some have remark codes
+      df.var.slotData[,"remark.codes"] <- 
+      
+      
+      DF[,i] <- as.qw(values       =  as.numeric(df.var.slotData[,"values"])
+                    , value2           = as.numeric(df.var.slotData[,"value2"])
+                    , remark.codes     = df.var.slotData[,"remark.codes"] 
+                    , value.codes      = df.var.slotData[,"value.codes"]
+                    , reporting.level  = df.var.slotData[,"reporting.level"]
+                    , reporting.method = df.var.slotData[,"reporting.method"]
+                    , reporting.units  = df.var.slotData[,"reporting.units"]
+                    , analyte.method   = df.var.slotData[,"analyte.method"]
+                    , analyte.name     = df.var.slotData[,"analyte.name"]
+                    , unique.code      = df.var.slotData[,"unique.code"]
+                    )
+    } else {
+      DF[,i] <- as.qw(values       =  df.var.slotData[,"values"]
+                    , value2           = df.var.slotData[,"value2"]
+                    , remark.codes     = df.var.slotData[,"remark.codes"] 
+                    , value.codes      = df.var.slotData[,"value.codes"]
+                    , reporting.level  = df.var.slotData[,"reporting.level"]
+                    , reporting.method = df.var.slotData[,"reporting.method"]
+                    , reporting.units  = df.var.slotData[,"reporting.units"]
+                    , analyte.method   = df.var.slotData[,"analyte.method"]
+                    , analyte.name     = df.var.slotData[,"analyte.name"]
+                    , unique.code      = df.var.slotData[,"unique.code"]
+                    )
+    }##IF.name.qw.END
+    
+    
+    
+    # myLen <- length(df.var.slotData[,"values"]) #ct.all is 19971
+    # myRows <- 1:myLen
+    # 
+    #      DF[,i] <- as.qw(values       =  rep(999, myLen)
+    #               , value2           =  rep(999, myLen)
+    #               , remark.codes     = df.var.slotData[myRows,"remark.codes"] 
+    #               , value.codes      = df.var.slotData[myRows,"value.codes"]
+    #               , reporting.level  = df.var.slotData[myRows,"reporting.level"]
+    #               , reporting.method = df.var.slotData[myRows,"reporting.method"]
+    #               , reporting.units  = df.var.slotData[myRows,"reporting.units"]
+    #               , analyte.method   = df.var.slotData[myRows,"analyte.method"]
+    #               , analyte.name     = df.var.slotData[myRows,"analyte.name"]
+    #               , unique.code      = df.var.slotData[myRows,"unique.code"]
+    #               )
+    # works so is an issue with the data not the code.
+
+         
+         
   #
   DF[,i]@rounding <- c(3,4)  # default is 2,3
   #
@@ -630,14 +669,14 @@ myFile.Out <- gsub("_smwr", "_baytrends", fn)
 
 name.qw
 
-# 01, VA, Mike Lane
-myFile.Out <- gsub("_smwr", "_baytrends", fn)
-df <- DF
-save(df, file=myFile.Out)
+# # 01, VA, Mike Lane
+# myFile.Out <- gsub("_smwr", "_baytrends", fn)
+# df <- DF
+# save(df, file=myFile.Out)
 
 # 03, MD Core Trends, Elgin Perry
-# ctall.fin <- DF
-# save(ctall.fin, file=myFile.Out)
+ctall.fin <- DF
+save(ctall.fin, file=myFile.Out)
 
 #save(deparse(substitute(name.qw)), file=myFile.Out)
 # save(DF, file=myFile.Out)
