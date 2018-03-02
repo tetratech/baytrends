@@ -4,7 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-01 12:13:46
+    #> Last Update: 2018-03-02 15:25:19
+
+# baytrends 1.0.1.9004
+
+  - Released - 2018-03-02
+  - Tweak qw.export Rounding export.
+  - QW object import internal function, qw.import.
+  - QW object vignette.
 
 # baytrends 1.0.1.9003
 

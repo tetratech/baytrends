@@ -107,7 +107,7 @@ qw.export <- function(df.qw, dir.output=getwd(), output.fn.prefix="qw"){##FUNCTI
           fn.output.rounding <- file.path(dir.output, paste0(output.fn.prefix, "."
                                                              , i, ".rounding", ".tsv"))
           write.table(slot(df.qw[,i], j), fn.output.rounding, quote=TRUE
-                      , sep="\t", row.names=FALSE, col.names=FALSE)
+                      , sep="\t", row.names=FALSE, col.names=TRUE)
         } else {
           # normal save
           name.col <- paste(i,j, sep=".")

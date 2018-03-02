@@ -19,6 +19,13 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.1.9004
+===========
+* Released - 2018-03-02
+* Tweak qw.export Rounding export.
+* QW object import internal function, qw.import.
+* QW object vignette.
+
 baytrends 1.0.1.9003
 ===========
 * Released - 2018-03-01
