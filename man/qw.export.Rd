@@ -4,7 +4,7 @@
 \alias{qw.export}
 \title{qw.export}
 \usage{
-qw.export(df.qw, dir.output = getwd(), output.fn.prefix = "qw")
+qw.export(df.qw, dir.output = getwd(), fn.output = NULL)
 }
 \arguments{
 \item{df.qw}{Data frame with qw fields to be exported.}
@@ -12,23 +12,24 @@ qw.export(df.qw, dir.output = getwd(), output.fn.prefix = "qw")
 \item{dir.output}{Directory where output files will be saved. 
 Default is working directory.}
 
-\item{output.fn.prefix}{Prefix for output files.
-Files will be named with prefix and QW column name.  Default is "qw".}
+\item{fn.output}{Name of output file.}
 }
 \value{
-Returns a series of tab delimited files to the user defined directory 
-matching the number of qw fields in the input data frame.
+Returns a user named tab delimited files to the user defined directory with all of the qw slot data.
 }
 \description{
-Export the contents of a QW object to tab delimited text files.
+Export the contents of a QW object to comma delimited file (csv).
 }
 \details{
 This internal function will export each qw field of a given data frame 
-to a separate tab separated file (tsv).  The left header information wil be attached to each file.
-The following columns will be named with the qw column named and the qw slot names (e.g., cond.remark.codes). 
-The exported files will be in a directory specified by the user (defaults to working directory)
-and the files will be named with the name of the qw columns with a user 
-defined prefix (defaults to qw.)
+to separate columns in a single comma separated file (csv).  The left header information 
+will be used "as is" but the data fields will be named with the qw column name 
+and the qw slot names .Data.values, .Data.value2, and remark.codes (e.g., secchi..Data.values).  
+These slots names will be renamed _lo, _hi, _symbol (e.g., secchi_lo). 
+The remaning qw slot values will not be exported. 
+
+The exported file will be in a directory specified by the user (defaults to working directory).
+The file will be named as specified by the user.
 }
 \examples{
 # define data frame with qw column classes
@@ -38,9 +39,9 @@ myDF <- dataCensored
 dir.save <- getwd()
 
 # prefix for file names ()
-fn.prefix <- "dataCensored" 
+fn.out <- "dataCensored_TEST.csv" 
 
 # run function
-qw.export(myDF, dir.save, fn.prefix)
+qw.export(myDF, dir.save, fn.out)
 }
 \keyword{internal}

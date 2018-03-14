@@ -4,21 +4,14 @@
 \alias{qw.import}
 \title{qw.import}
 \usage{
-qw.import(var.qw, var.info, fn.qw, dir.data = getwd(), rounding.source = NA,
-  rounding.data = c(2, 3))
+qw.import(fn.import, qw.names, rounding = c(3, 4))
 }
 \arguments{
-\item{var.qw}{Censored data column names to be converted to QW.}
+\item{fn.import}{Filename (with path) containing data.  Comma separated (CSV) format only.}
 
-\item{var.info}{Data columns to be attached to the final data frame that are not QW fields, e.g., StationID.}
+\item{qw.names}{Names of parameters for QW columns.}
 
-\item{fn.qw}{Vector of file names that match 1 for 1 with var.qw.}
-
-\item{dir.data}{Data directory for files to import.  Default = getwd().}
-
-\item{rounding.source}{Source of the rounding data (file or value).  Default is NA and uses c(2,3).}
-
-\item{rounding.data}{Rounding information.}
+\item{rounding}{OPTIONAL.  Rounding values for QW columns.  Default is c(3,4) but can be changed.}
 }
 \value{
 Returns a QW enabled data frame.
@@ -27,54 +20,50 @@ Returns a QW enabled data frame.
 Import the contents of tab delimited text files to a QW object.
 }
 \details{
-This internal function will import data from tab delimited text files 
+This internal function will import data from a comma delimited (CSV) file 
 to create a data frame with columns of the qw class.  
 
-Each slot name of the qw object (is required and) will be a column in the imported files 
-(e.g., cond.remark.codes).  The qw slot value 'reporting' is handled by a file with just that information.
-
-To get all qw slot names use the command slotNames("qw").  
+Only three slots are recognized by this function; ".Data" and "remark.codes" 
 The slot name ".Data" includes ".Data.values" and ".Data.value2".
 
-Rounding is handled slightly differently and can be in a one column by two row file ("file")
-or as a direct input ("value").
-
+These three slots are marked as "_lo", "_hi", and "_symbol" in the import file 
+the prefix of the parameter name to be used in the qw object; e.g., secchi_lo,
+secchi_hi, and secchi_symbol.
+ 
+To view all qw slot names use the command slotNames("qw").  
+ 
 The function returns a data frame with QW enabled columns.  The user must save the file.  
 Any modification of column classes needs to be handled by the user (e.g., character to date or POSIXct).
 }
 \examples{
+# Use internal function to export dataCensored as example for import
+qw.export(dataCensored, getwd(), "dataCensored_TEST.csv")
+
+
+# Import Test file as a qw object
+
+# Define function parameters
+fn.import <- file.path(".", "dataCensored_TEST.csv")
+qw.names <- c("secchi", "chla", "do", "tn", "tp", "po4f", "pp", "tdp"
+              , "no23f", "nh4f", "tdn", "pn", "tss")
+rounding <- c(3, 4)
+
+# Import
+dataCensored.test<- qw.import(fn.import, qw.names, rounding)
+
+# Check for qw class
+str(dataCensored.test)
+
+# Save
+save(dataCensored.test, file="dataCensored.test.rda")
+
+
 # Show slot names for a qw object.
 slotNames("qw")
 
-# Export example data (dataCensored) to used for import
-myDF <- dataCensored
-dir.save <- getwd()
-fn.prefix <- "dataCensored" 
-qw.export(myDF, dir.save, fn.prefix)
-
-# Reimport dataCensored as a new dataframe
-
-var.qw <- c("secchi", "chla", "do", "tn", "tp", "po4f", "pp", "tdp"
-              , "no23f", "nh4f", "tdn", "pn", "tss")
-var.info <- c("station", "date", "layer")
-fn.qw <- paste0("dataCensored.", var.qw, ".tsv")
-rounding.source <- "file" # file or value or NA (default)
-rounding.file <- paste0("dataCensored.", var.qw, ".rounding.tsv")
-rounding.value <- c(3, 4) #default is c(2, 3)
-rounding.data <- rounding.file
-
-dataCensored.test<- qw.import(var.qw, var.info, fn.qw, dir.data=getwd()
-                              , rounding.source=rounding.source
-                              , rounding.data=rounding.value)
-str(dataCensored.test)
-
+####
 # convert date field to POSIXct
-dataCensored.test[,"date"] <- as.POSIXct(dataCensored.test[,"date"])
-str(dataCensored.test)
-
+#dataCensored.test[,"date"] <- as.POSIXct(dataCensored.test[,"date"])
+# str(dataCensored.test)
 # as.numeric() and as.integer() can be used to convert columns of those types.
-
-save(dataCensored.test, file="dataCensored.test.rda")
-
 }
-\keyword{internal}
