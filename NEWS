@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-14 14:14:02
+    #> Last Update: 2018-03-14 15:45:18
+
+# baytrends 1.0.1.9006
+
+  - Released - 2018-03-14
+  - Update qw vignette.
 
 # baytrends 1.0.1.9005
 
