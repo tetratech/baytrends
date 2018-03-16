@@ -13,6 +13,7 @@
    \item{latitude}{}
    \item{longitude}{}
    \item{cbSeg92}{}
+   \item{usgsGageName}{}
    \item{usgsGageID}{}
    \item{usgsGageMatch}{}
    \item{stationRO1}{}
@@ -29,6 +30,6 @@
 stationMasterList
 }
 \description{
-Long Description
+Master Stations List
 }
 \keyword{datasets}

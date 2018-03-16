@@ -1,7 +1,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' Censored Data Example
+#' @title Censored Data Example
 #' 
-#' A dataset with example censored data.
+#' @description A dataset with example censored data.
 #' 
 #' @format A data frame with 7719 rows and 16 variables:
 #' \describe{
@@ -25,45 +25,43 @@
 #' @source Chesapeake Bay data
 "dataCensored"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# #' Layer Lookup
-# #' 
-# #' Long Description
-# #' 
-# #' @format A data frame with 10 rows and 3 variables:
-# #' \describe{
-# #'    \item{layers}{layer abbreviation}
-# #'    \item{order}{sort order of layers}
-# #'    \item{names}{layer name}
-# #' }
-# "layerLukUp"
+#' @title Layer Lookup
+#' 
+#' @description Layer Lookup
+#' 
+#' @format A data frame with 10 rows and 3 variables:
+#' \describe{
+#'    \item{layers}{layer abbreviation}
+#'    \item{order}{sort order of layers}
+#'    \item{name}{layer name}
+#' }
+"layerLukup"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' Parameter List
 #' 
-#' Long Description
+#' @description  Parameter List
 #' 
 #' @format A data frame with 81 rows and 13 variables:
 #' \describe{
-#'    \item{parm}{}
-#'    \item{parmSource}{}
-#'    \item{parmCat}{}
-#'    \item{parmName}{}
-#'    \item{parmCalc}{}
+#'    \item{parm}{Parameter}
+#'    \item{parmSource}{Original Parameter}
+#'    \item{parmCat}{Category}
+#'    \item{parmName}{Name}
+#'    \item{parmCalc}{Calculated?}
 #'    \item{parmNamelc}{}
-#'    \item{parmUnits}{}
-#'    \item{parmSource}{}
+#'    \item{parmUnits}{Units}
 #'    \item{parmRecensor}{}
 #'    \item{parmRO1}{}
 #'    \item{parmRO2}{}
 #'    \item{parmTrend}{}
 #'    \item{logTrans}{}
-#'    \item{order}{}
 #'    \item{trendIncrease}{}
 #' }
 "parameterList"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' Master Stations List
+#' @title Master Stations List
 #' 
-#' Long Description
+#' @description Master Stations List
 #' 
 #' @format A data frame with 145 rows and 19 variables:
 #' \describe{
@@ -74,6 +72,7 @@
 #'    \item{latitude}{}
 #'    \item{longitude}{}
 #'    \item{cbSeg92}{}
+#'    \item{usgsGageName}{}
 #'    \item{usgsGageID}{}
 #'    \item{usgsGageMatch}{}
 #'    \item{stationRO1}{}
@@ -88,9 +87,9 @@
 #' }
 "stationMasterList"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' USGS Gages
+#' @title USGS Gages
 #' 
-#' Long Description
+#' @description USGS Gages
 #' 
 #' @format A data frame with 9 rows and 2 variables:
 #' \describe{
@@ -98,4 +97,21 @@
 #'    \item{siteName}{USGS Site Name}
 #' }
 "usgsGages"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Detrended Flow Data
+#' 
+#' @description Detrended Flow Data
+#' 
+#' @format A list of 8:
+#' \describe{
+#'    \item{retreiveDate}{Data retrieval date}
+#'    \item{gages}{data frame with 2 rows and 2 variables: usgsGageID and siteName}
+#'    \item{yearStart}{Start year}
+#'    \item{yearEnd}{End year}
+#'    \item{dvAvgWinSel}{}
+#'    \item{dvAvgWgtSel}{}
+#'    \item{dvAvgSidesSel}{}
+#'    \item{lowess.f}{}
+#' }
+"flow.detrended"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

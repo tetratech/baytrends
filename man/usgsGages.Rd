@@ -13,6 +13,6 @@
 usgsGages
 }
 \description{
-Long Description
+USGS Gages
 }
 \keyword{datasets}

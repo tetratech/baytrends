@@ -4,7 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-14 15:45:18
+    #> Last Update: 2018-03-16 12:18:47
+
+# baytrends 1.0.1.9006
+
+  - Released - 2018-03-16
+  - Fixes from “check”
+      - data.R
+      - file size
+      - dlimit and censorLevels from smwrQW
+      - strip.blanks from smwrGraphs
 
 # baytrends 1.0.1.9006
 

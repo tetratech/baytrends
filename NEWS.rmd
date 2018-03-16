@@ -21,6 +21,15 @@ cat(paste0("Last Update: ",Sys.time()))
 ```
 baytrends 1.0.1.9006
 ===========
+* Released - 2018-03-16
+* Fixes from "check"
+    + data.R
+    + file size
+    + dlimit and censorLevels from smwrQW
+    + strip.blanks from smwrGraphs
+    
+baytrends 1.0.1.9006
+===========
 * Released - 2018-03-14
 * Update qw vignette.
 

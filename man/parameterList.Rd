@@ -6,26 +6,24 @@
 \title{Parameter List}
 \format{A data frame with 81 rows and 13 variables:
 \describe{
-   \item{parm}{}
-   \item{parmSource}{}
-   \item{parmCat}{}
-   \item{parmName}{}
-   \item{parmCalc}{}
+   \item{parm}{Parameter}
+   \item{parmSource}{Original Parameter}
+   \item{parmCat}{Category}
+   \item{parmName}{Name}
+   \item{parmCalc}{Calculated?}
    \item{parmNamelc}{}
-   \item{parmUnits}{}
-   \item{parmSource}{}
+   \item{parmUnits}{Units}
    \item{parmRecensor}{}
    \item{parmRO1}{}
    \item{parmRO2}{}
    \item{parmTrend}{}
    \item{logTrans}{}
-   \item{order}{}
    \item{trendIncrease}{}
 }}
 \usage{
 parameterList
 }
 \description{
-Long Description
+Parameter List
 }
 \keyword{datasets}
