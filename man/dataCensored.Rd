@@ -3,33 +3,32 @@
 \docType{data}
 \name{dataCensored}
 \alias{dataCensored}
-\title{Censored Data Example}
+\title{Chesapeake Bay Program Monitoring Data, 1985-2015}
 \format{A data frame with 7719 rows and 16 variables:
 \describe{
-   \item{station}{Station code}
-   \item{date}{}
-   \item{layer}{}
-   \item{secchi}{}
-   \item{chla}{}
-   \item{do}{}
-   \item{tn}{}
-   \item{tp}{}
-   \item{po4f}{}
-   \item{pp}{}
-   \item{tdp}{}
-   \item{no23f}{}
-   \item{nh4f}{}
-   \item{tdn}{}
-   \item{pn}{}
-   \item{tss}{}
+  \item{station}{station identifier}
+  \item{date}{sample date}
+  \item{layer}{sample layer}
+  \item{secchi}{Secchi depth [m]}
+  \item{chla}{Corrected Chlorophyll-a [ug/L]}
+  \item{do}{Dissolved Oxygen [mg/L]}
+  \item{tn}{Total Nitrogen [mg/L]}
+  \item{tp}{Total Phosphorus [mg/L]}
+  \item{po4f}{Orthophosphorus [mg/L]}
+  \item{pp}{Particulate Phosphorus [mg/L]}
+  \item{tdp}{Total Dissolved Phosphorus [mg/L]}
+  \item{no23f}{Nitrite + Nitrate (Filtered) [mg/L]}
+  \item{nh4f}{Ammonium (Filtered) [mg/L]}
+  \item{tdn}{Total Dissolved Nitrogen [mg/L]}
+  \item{pn}{Particulate Organic Nitrogen and Particulate Nitrogen [mg/L]}
+  \item{tss}{Total Suspended Solids [mg/L]}
 }}
-\source{
-Chesapeake Bay data
-}
 \usage{
 dataCensored
 }
 \description{
-A dataset with example censored data.
+Selected 1985-2015 data for eight (8) stations from the
+  Chesapeake Bay Monitoring Program. Water quality variables are stored as
+  class qw that allows for left- and interval-censored data.
 }
 \keyword{datasets}

@@ -154,6 +154,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                        remMiss=TRUE, analySpec) {
 
 # -----< Change history >--------------------------------------------
+# 12Mar2018: JBH: only recensor data that will be logtransformed  
 # 04Feb2018: JBH: count number of observations for each intervention
 # 05Aug2017: JBH: corrected over-ride evaluation for setting iSpec$hydroTerm based on 
 #                 inspecification of iSpec$flwParms and iSpec$salParms; cleaned
@@ -275,30 +276,32 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
 
 # Re-censor negative and non-less-than zero values to small positive value ####
 
-    # put data into temporary data frame
-    conc          <- as.data.frame(df[,dep], expand = TRUE)[c(1,2,3,5,8,9)]
-    conc          <- cbind(df[,"date"], conc)
-    names(conc)   <- c("date", "lower", "upper", "qualifier", "repLevel", "method", "lab")
-
-    # compute 1/2 the minimum lower or upper bound greater than zero;
-    recensor <- 0.5 * min(min(conc[!is.na(conc$lower) & conc$lower>0,'lower'], na.rm=TRUE),
-                          min(conc[!is.na(conc$upper) & conc$upper>0,'upper'], na.rm=TRUE))
-
-    # 03Nov compare recensor to parameter lookup table value & take minimum
-    iSpec$recensor <- recensor <- min( parameterList[parameterList$parm==dep, "parmRecensor"],
-                                       recensor,  na.rm=TRUE)
-
+  # put data into temporary data frame
+  conc          <- as.data.frame(df[,dep], expand = TRUE)[c(1,2,3,5,8,9)]
+  conc          <- cbind(df[,"date"], conc)
+  names(conc)   <- c("date", "lower", "upper", "qualifier", "repLevel", "method", "lab")
+  
+  # compute 1/2 the minimum lower or upper bound greater than zero;
+  recensor <- 0.5 * min(min(conc[!is.na(conc$lower) & conc$lower>0,'lower'], na.rm=TRUE),
+                        min(conc[!is.na(conc$upper) & conc$upper>0,'upper'], na.rm=TRUE))
+  
+  # 03Nov compare recensor to parameter lookup table value & take minimum
+  iSpec$recensor <- recensor <- min( parameterList[parameterList$parm==dep, "parmRecensor"],
+                                     recensor,  na.rm=TRUE)
+  
+  if(transform) {  #12Mar2018 only recensor variable that will be log transformed
+    
     # apply recensor to negative and non-LT zero values
     conc$treat <- FALSE
     conc[!is.na(conc$lower) & (conc$lower < 0 | conc$upper <= 0), "treat" ] <- TRUE
     conc[conc$treat, "lower"]     <- 0
     conc[conc$treat, "upper"]     <- recensor
     conc[conc$treat, "qualifier"] <- "<"
-
+    
     # rename dep variable to dep.orig
     names(df)[names(df) == dep] <- paste0(dep,".orig")
     df[,'recensor']   <- conc$treat
-
+    
     # store re-censored qw variable
     df[,dep] <- suppressWarnings (as.qw(values           = conc$lower,
                                         value2           = conc$upper,
@@ -310,7 +313,19 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                                         analyte.method   = "",
                                         analyte.name     = "",
                                         unique.code      = "")  )
-    df[,dep]@rounding <- c(3,4)
+    df[,dep]@rounding <- c(3,4) 
+    
+  } else {     #12Mar2018 pass through non-log transformed data 
+    conc$treat <- FALSE
+    
+    # rename dep variable to dep.orig
+    names(df)[names(df) == dep] <- paste0(dep,".orig")
+    df[,'recensor']   <- conc$treat
+    
+    # copy dep.orig to data dep 
+    df[,dep] <- df[,paste0(dep,".orig")]
+    
+  } 
 
 # Add log-transformed data if requested. ####
   if(transform) {

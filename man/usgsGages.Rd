@@ -13,6 +13,6 @@
 usgsGages
 }
 \description{
-USGS Gages
+List of core USGS gages for CBP trend analyses
 }
 \keyword{datasets}

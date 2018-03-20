@@ -3,17 +3,18 @@
 \docType{data}
 \name{layerLukup}
 \alias{layerLukup}
-\title{Layer Lookup}
+\title{Layer List}
 \format{A data frame with 10 rows and 3 variables:
 \describe{
-   \item{layers}{layer abbreviation}
-   \item{order}{sort order of layers}
-   \item{name}{layer name}
+   \item{layers}{Layer codes}
+   \item{order}{Analysis order}
+   \item{name}{Layer name}
 }}
 \usage{
 layerLukup
 }
 \description{
-Layer Lookup
+A lookup table of layer abbreviations and the corresponding
+  names.
 }
 \keyword{datasets}

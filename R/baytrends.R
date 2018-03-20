@@ -1,7 +1,10 @@
 #' baytrends: Long Term Water Quality Trend Analysis
 #'
-#' Enables users to develop and apply general additive model (GAM) 
-#' to long-term water quality monitoring data sets.
+#' The baytrends package was developed to enable users to evaluate long-term
+#' trends in the Chesapeake Bay using a Generalized Additive Modeling (GAM)
+#' approach. This package includes features that allow for explicit modeling
+#' of left- and interval-censored data as well as monitoring data that 
+#' includes laboratory method changes.
 #' 
 #' @section baytrends functions:
 #' analysisOrganizeData

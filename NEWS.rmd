@@ -19,7 +19,16 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-baytrends 1.0.1.9006
+baytrends 1.0.1.9008
+===========
+* Released - 2018-03-19
+* Update documentation.
+    + Vignette
+    + data.R
+    + baytrends.R
+* Code edit in SelectData.R.
+
+baytrends 1.0.1.9007
 ===========
 * Released - 2018-03-16
 * Fixes from "check"

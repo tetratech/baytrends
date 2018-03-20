@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-16 12:18:47
+    #> Last Update: 2018-03-19 21:57:09
 
-# baytrends 1.0.1.9006
+# baytrends 1.0.1.9008
+
+  - Released - 2018-03-19
+  - Update documentation.
+      - Vignette
+      - data.R
+      - baytrends.R
+  - Code edit in SelectData.R.
+
+# baytrends 1.0.1.9007
 
   - Released - 2018-03-16
   - Fixes from “check”

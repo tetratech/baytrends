@@ -6,24 +6,28 @@
 \title{Parameter List}
 \format{A data frame with 81 rows and 13 variables:
 \describe{
-   \item{parm}{Parameter}
-   \item{parmSource}{Original Parameter}
-   \item{parmCat}{Category}
-   \item{parmName}{Name}
-   \item{parmCalc}{Calculated?}
-   \item{parmNamelc}{}
-   \item{parmUnits}{Units}
-   \item{parmRecensor}{}
-   \item{parmRO1}{}
-   \item{parmRO2}{}
-   \item{parmTrend}{}
-   \item{logTrans}{}
-   \item{trendIncrease}{}
+   \item{parm}{"preferred" parameter ID}
+   \item{parmSource}{parmamter field as may be found in sample data sets}
+   \item{parmCat}{Parameter Group Header}
+   \item{parmName}{Full parameter name}
+   \item{parmCalc}{indicator if parameter is calculated}
+   \item{parmNamelc}{parameter name in lower case}
+   \item{parmUnits}{units}
+   \item{parmRecensor}{numerical value used in log plots if data are reported
+   as <= 0}
+   \item{parmRO1}{Parameter sort order level 1}
+   \item{parmRO2}{Parameter sort order level 2}
+   \item{parmTrend}{TRUE/FALSE for whether parameter should be analyzed for
+   trend}
+   \item{logTrans}{TRUE/FALSE for whether parameter should be analyzed in log
+   transposed}
+   \item{trendIncrease}{Should an increase in conccentration be interpreted
+   as 'improving', 'degrading', 'increasing', or 'decreasing'}
 }}
 \usage{
 parameterList
 }
 \description{
-Parameter List
+A lookup table of water quality parameters
 }
 \keyword{datasets}

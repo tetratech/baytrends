@@ -3,33 +3,46 @@
 \docType{data}
 \name{stationMasterList}
 \alias{stationMasterList}
-\title{Master Stations List}
+\title{Chesapeake Bay Program long-term tidal monitoring stations}
 \format{A data frame with 145 rows and 19 variables:
 \describe{
-   \item{station}{}
-   \item{state}{}
-   \item{locationType}{}
-   \item{waterbody}{}
-   \item{latitude}{}
-   \item{longitude}{}
-   \item{cbSeg92}{}
-   \item{usgsGageName}{}
-   \item{usgsGageID}{}
-   \item{usgsGageMatch}{}
-   \item{stationRO1}{}
-   \item{stationRO2}{}
-   \item{stationGrpName}{}
-   \item{stationMethodGroup}{}
-   \item{hydroTerm}{}
-   \item{flwAvgWin}{}
-   \item{flwParms}{}
-   \item{salParms}{}
-   \item{notes}{}
+   \item{station}{Water quality station code}
+   \item{state}{State location}
+   \item{locationType}{As identified in the state trend reports, whether this
+   station is in the mainstem or tributary monitoring}
+   \item{waterbody}{Location as identified in the CBP CIMS database}
+   \item{latitude}{From the CBP CIMS database, and verified in a GIS map}
+   \item{longitude}{From the CBP CIMS database, and verified in a GIS map}
+   \item{cbSeg92}{Match to CB 92 Segmentation scheme (for 303d list)}
+   \item{usgsGageName}{Manual match to a USGS fall-line monitoring station
+   (See usgsGages$siteName)}
+   \item{usgsGageID}{USGS station code (See usgsGages$siteNumber)}
+   \item{usgsGageMatch}{Identifies how the USGS-to-TribStation match was
+   made. Direct: If the station falls within a tributary with a USGS station,
+   or in the mainstem. Indirect: If the station is in a small sub-tributary
+   of one of the major tributaries. The USGS station may not be that
+   representative, but it is better than matching to the Susquehanna.
+   SusDefault: If there was no clear match, the tidal station was matched to
+   the Susquehanna River.}
+   \item{stationRO1}{Station sort order level 1}
+   \item{stationRO2}{Station sort order level 2}
+   \item{stationGrpName}{Station group header}
+   \item{stationMethodGroup}{Foreign key to methodsList table}
+   \item{hydroTerm}{"flow" or "salinity" to indicate whether to model flow or
+   salinity effects (if missing, "flow" assumed)}
+   \item{flwAvgWin}{list of averaging windows if flow is selected in
+   hydroTerm (options are: 1, 5, 10, 15, 20, 30, 40, 50, 60, 90, 120, 150,
+   180, 210)}
+   \item{flwParms}{list of parameters to model with flow (regardless of hydroTerm
+   value), each parameter separated by a space}
+   \item{salParms}{list of parameters to model with salinity (regardless of
+   hydroTerm value), each parameter separated by a space}
+   \item{notes}{Optional note to track updates}
 }}
 \usage{
 stationMasterList
 }
 \description{
-Master Stations List
+Chesapeake Bay Program long-term tidal monitoring stations
 }
 \keyword{datasets}
