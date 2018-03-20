@@ -20,4 +20,5 @@ An object of class "survfit."
 Support function for computing statistics for left-censored data.  From smwrQW package.
 }
 \keyword{import}
+\keyword{internal}
 \keyword{misc}

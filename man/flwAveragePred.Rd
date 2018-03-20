@@ -19,3 +19,4 @@ data frame of flow[salinity] averaged predictions and standard errors
 \description{
 Compute flow[salinity] weighted predictions
 }
+\keyword{internal}

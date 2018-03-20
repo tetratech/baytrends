@@ -19,6 +19,16 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.1.9009
+===========
+* Released - 2018-03-20
+* Update internal functions.
+    + mdlKM  -- hide
+    + flwAveragePred  -- hide
+    + qw.export  -- make visible
+    + as.qw-method   -- hide
+    + qw-class   -- hide
+
 baytrends 1.0.1.9008
 ===========
 * Released - 2018-03-19

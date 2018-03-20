@@ -12,7 +12,6 @@
 #' The exported file will be in a directory specified by the user (defaults to working directory).
 #' The file will be named as specified by the user.
 #' 
-#' @keywords internal
 #' 
 #' @param df.qw Data frame with qw fields to be exported.
 #' @param dir.output Directory where output files will be saved. 

@@ -6,6 +6,7 @@
 #' @param pgam gam model
 #' @param normPct vector of percentiles to use in weighting
 #' @return data frame of flow[salinity] averaged predictions and standard errors
+#' @keywords internal 
 #' @export
 #'
 flwAveragePred <- function(pdat, pgam, normPct) {

@@ -7,7 +7,7 @@
 #' @param group the group variable.
 #' @param conf.int the confidence interval .
 #' @return An object of class "survfit."
-#' @keywords import misc
+#' @keywords internal import misc
 #' @export
 mdlKM <- function(x, group, conf.int=.95) {
   ##

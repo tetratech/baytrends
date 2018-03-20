@@ -44,4 +44,3 @@ fn.out <- "dataCensored_TEST.csv"
 # run function
 qw.export(myDF, dir.save, fn.out)
 }
-\keyword{internal}

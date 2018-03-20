@@ -4,7 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-19 21:57:09
+    #> Last Update: 2018-03-20 15:04:34
+
+# baytrends 1.0.1.9009
+
+  - Released - 2018-03-20
+  - Update internal functions.
+      - mdlKM – hide
+      - flwAveragePred – hide
+      - qw.export – make visible
+      - as.qw-method – hide
+      - qw-class – hide
 
 # baytrends 1.0.1.9008
 

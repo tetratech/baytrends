@@ -61,3 +61,4 @@ showClass("qw")
 Lorenz, D.L., in preparation
 }
 \keyword{classes}
+\keyword{internal}
