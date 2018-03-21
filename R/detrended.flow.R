@@ -31,7 +31,7 @@
 #' dvAvgWgtSel   <- "uniform"
 #' dvAvgSidesSel <- 1
 #' lowess.f      <- 0.2
-#' dir.out       <- file.path(getwd(), "data2")
+#' dir.out       <- file.path(getwd(), "data")
 #' fn.out        <- paste(yearStart, yearEnd
 #'                        ,"seasonally_detrended_flow_data.rda", sep="_")
 #'                  

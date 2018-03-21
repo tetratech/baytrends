@@ -4,13 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-21 06:21:59
+    #> Last Update: 2018-03-21 12:03:36
+
+# baytrends 1.0.1.9011
+
+  - Released - 2018-03-21
+  - Add detrended.salinity function.
+      - Includes revised (smaller) data set (sal) for use with function.
+      - Updated data.R for “sal” data.
 
 # baytrends 1.0.1.9010
 
-  - Released - 2018-03-20
-  - Add detrended flow function.
+  - Released - 2018-03-21
+  - Add detrended.flow function.
       - Add helper functions as internal functions.
+      - Remove detrended flow and salinity data files and vignettes from
+        package.
 
 # baytrends 1.0.1.9009
 

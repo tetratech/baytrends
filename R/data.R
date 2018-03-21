@@ -116,3 +116,16 @@
 #'    \item{siteName}{USGS Site Name}
 #' }
 "usgsGages"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Salinity data
+#' 
+#' @description Salinity data, 1984 to 2016, for 8 stations.
+#' 
+#' @format A data frame with 51,092 rows and 4 variables:
+#' \describe{
+#'    \item{Station}{CBP Station ID}
+#'    \item{Sample_Date}{date, YYYY-MM-DD}
+#'    \item{Layer}{sample layer}
+#'    \item{salinity}{Measured salinity}
+#' }
+"sal"

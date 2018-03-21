@@ -12,17 +12,17 @@ detrended.flow(usgsGageID, siteName, yearStart, yearEnd, dvAvgWinSel,
 
 \item{siteName}{USGS SiteName (not used for matching only for plot titles)}
 
-\item{yearStart}{USGS S}
+\item{yearStart}{start year}
 
-\item{yearEnd}{USGS S}
+\item{yearEnd}{end year}
 
-\item{dvAvgWinSel}{USGS S}
+\item{dvAvgWinSel}{average window selection}
 
-\item{dvAvgWgtSel}{USGS S}
+\item{dvAvgWgtSel}{average weight selection}
 
-\item{dvAvgSidesSel}{USGS S}
+\item{dvAvgSidesSel}{average sides selection}
 
-\item{lowess.f}{USGS S}
+\item{lowess.f}{lowess}
 
 \item{dir.out}{Output directory for data file, plots, and such}
 
@@ -33,10 +33,11 @@ Creates an RDA file in the user specified directory
                   and creates plots (but does not save them).
 }
 \description{
-Create data set, detrend it, create stats, and plot it.  For flow and salinity.
+Create flow data set from USGS gageIDs, detrend it, create stats, and plot it.
 }
 \details{
-Input is a list of USGS gages and other
+Input is a list of USGS gages and other parameters to define the dataset.
+This function can be used in conjunction with an RMD file to knit (create) a report (DOCX or HTML).
 }
 \examples{
 
@@ -50,7 +51,7 @@ dvAvgWinSel   <- c(1, 5, 10, 15, 20, 30, 40, 50, 60, 90, 120, 150, 180, 210)
 dvAvgWgtSel   <- "uniform"
 dvAvgSidesSel <- 1
 lowess.f      <- 0.2
-dir.out       <- file.path(getwd(), "data2")
+dir.out       <- file.path(getwd(), "data")
 fn.out        <- paste(yearStart, yearEnd
                        ,"seasonally_detrended_flow_data.rda", sep="_")
                  
