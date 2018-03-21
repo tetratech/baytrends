@@ -4,7 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-20 15:04:34
+    #> Last Update: 2018-03-21 06:21:59
+
+# baytrends 1.0.1.9010
+
+  - Released - 2018-03-20
+  - Add detrended flow function.
+      - Add helper functions as internal functions.
 
 # baytrends 1.0.1.9009
 

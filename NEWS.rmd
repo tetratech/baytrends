@@ -19,6 +19,13 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.1.9010
+===========
+* Released - 2018-03-20
+* Add detrended.flow function.
+    + Add helper functions as internal functions.
+    + Remove detrended flow and salinity data files and vignettes from package.
+
 baytrends 1.0.1.9009
 ===========
 * Released - 2018-03-20
