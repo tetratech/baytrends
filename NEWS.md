@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-21 12:03:36
+    #> Last Update: 2018-03-21 12:11:01
+
+# baytrends 1.0.1.9012
+
+  - Released - 2018-03-21
+  - Add baytrends\_overview.pdf to “doc” as vignette.
 
 # baytrends 1.0.1.9011
 
