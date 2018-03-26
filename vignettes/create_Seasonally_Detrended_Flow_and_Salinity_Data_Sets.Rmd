@@ -87,14 +87,11 @@ dvAvgWinSel   <- c(1, 10)
 dvAvgWgtSel   <- "uniform"
 dvAvgSidesSel <- 1
 lowess.f      <- 0.2
-dir.out       <- file.path(getwd(), "data")
-fn.out        <- paste(yearStart, yearEnd
-                       ,"seasonally_detrended_flow_data.rda", sep="_")
 
 # Run detrended.flow function
 detrended.flow(usgsGageID, siteName, yearStart, yearEnd
               , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
-              , lowess.f, dir.out, fn.out)
+              , lowess.f)
 ```
 
 ## Seasonally Detrended Salinity
@@ -145,21 +142,14 @@ The reader is referred to the help file for detrend.salinity to learn more about
 
 ```{r salinity3, eval=TRUE, echo=FALSE, results='asis', fig.height=4.5, fig.width=6.5}
 # Define Function Inputs
-df.sal      <- sal
-stations    <- "CB5.4"
-yearStart   <- 1984
-yearEnd     <- 2016
+df.sal      <- sal[sal$station=="CB5.4", ]
 dvAvgWinSel <- 30
 lowess.f    <- 0.2
 minObs      <- 40
-sdOverRide  <- 10
-dir.out     <- file.path(getwd(), "data")
+minObs.sd   <- 10
                  
 # Run Function
-detrended.salinity(df.sal, stations, yearStart, yearEnd
-                  , dvAvgWinSel, lowess.f, minObs, sdOverRide
-                  , dir.out
-                  ) 
+detrended.salinity(df.sal, dvAvgWinSel, lowess.f, minObs, minObs.sd) 
 ```
 
 ## Example GAM Analysis 

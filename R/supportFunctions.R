@@ -19,10 +19,10 @@
 #' be used as a vector of weights in stats::filter
 #'
 #' @param n number of values
-#' @param type  Averaging method ("even", "weighted" [default], or "centered") for creating weights.
+#' @param type  Averaging method ("uniform" [even], "weighted" [default], or "centered") for creating weights.
 #' @examples
-#' wgts<- filterWgts(0,"even")
-#' wgts<- filterWgts(7,"even")
+#' wgts<- filterWgts(0,"uniform")
+#' wgts<- filterWgts(7,"uniform")
 #' wgts<- filterWgts(7,"centered")
 #' wgts<- filterWgts(7,"weighted")
 #' x <- 1:100

@@ -1,26 +1,94 @@
-#' @title Detrended Salinty Data
+#' @title Create Seasonally Detrended Salinty Data Set
 #'
-#' @description Create salintiy data set from user data, detrend it, and plot it.
+#' @description This function creates a seasonally detrended salinity data set for selected
+#'   stations. The created data set is used to support application of GAMs
+#'   that include a hydrologic term as one of the independent variables. The output
+#'   from this function should be stored as an .rda file for repeated use with 
+#'   baytrends.
+#'   
+#' @param df.sal data frame with salinty data (required variables in data frame
+#'   are: station, date, layer, and salinity)
+#' @param dvAvgWinSel Averaging window (days) selection for pooling data to 
+#'   compute summary statistics
+#' @param lowess.f lowess smoother span applied to computed standard deviation
+#'   (see Details). This gives the proportion of points which influence the
+#'   smooth at each value. Larger values give more smoothness.
+#' @param minObs Minimum number of observations for performing analysis (default
+#'   is 40)
+#' @param minObs.sd Minimum number of observations in averaging window for
+#'   calculation of the standard deviation (default is 10)
 #' 
-#' @details Input is a a user file with 4 columns (Station, Sample_Date, Layer, and salinity).
-#' See structure of sal data in example below.
-#
-# 7/18/2017: compute average salinity to SAP and BBP for all sites/dates in baytrends::tidalStations
-#           based on data provide through Rebecca Murphy via email: 6/28/2017
-# 2018-03-21: Updated to generalize special conditions.
-#'
-#' @param df.sal data frame with salinty data.
-#' @param stations Stations
-#' @param yearStart start year
-#' @param yearEnd end year
-#' @param dvAvgWinSel average window selection
-#' @param lowess.f lowess
-#' @param minObs Minimum number of observations (default is 40).
-#' @param sdOverRide standard deviation override (default is 10)
-#' @param dir.out Output directory for data file and plots.  Defaults to working directory.
+#' @return Returns a list of seasonally detrended salinity data. You should save
+#'   the resulting list as salinity.detrended for use with baytrends.  This
+#'   function also creates diagnostic plots that can be saved to a report when
+#'   this function is called from an .Rmd script.
 #' 
-#' @return Creates a data file (salinity.RDA) and plots in the user specified directory.
-#' Plots are also output to the screen.
+#' @details This function returns a list of seasonally detrended salinity and companion 
+#'   statistics; and relies on a user supplied data frame that contains the
+#'   following variables: station, date, layer, and salinity. See
+#'   structure of sal data in example below.  
+#'   
+#'   It is the user responsibility to save the resulting list as
+#'   \bold{salinity.detrended} for integration with baytrends.
+#'   
+#'   For the purposes of baytrends, it is expected that the user would identify
+#'   a data set with all salinity data that are expected to be evaluated so that
+#'   a single data file is created. The following computation steps are performed: 
+#'   
+#'   1) Extract the list of stations, minimum year, and maximum year in data set.
+#'   Initialize the \bold{salinity.detrended} list with this information along with
+#'   meta data documenting the retrieval parameters. 
+#'   
+#'   2) Downselect the input data frame to only include data where the 
+#'   layer is equal to 'S', 'AP', 'BP' or 'B'.
+#'   
+#'   3) Average the 'S' and 'AP' salinity data; and the 'B' and 'BP salinity
+#'   data together to create average salinity values for SAP (surface and above pycnocline)
+#'   and BBP (bottom and below pycnocline), respectively. These values are stored
+#'   as the variables, \bold{salinity.SAP} and \bold{salinity.BBP} together with the 
+#'   \bold{date} and day of year (\bold{doy}) in a data frame corresponding to the
+#'   station ID.
+#'   
+#'   4) For each station/layer combination with atleast \bold{minObs} observations,
+#'   a seasonal GAM, i.e., gamoutput <- gam(salinity ~  s(doy, bs='cc')) is
+#'   evaluated and the predicted values stored in the above data frame 
+#'   as \bold{salinity.SAP.gam} and \bold{salinity.BBP.gam}.  
+#'   
+#'   5) The GAM residuals, i.e., "residuals(gamoutput)" are extracted and stored
+#'   as the variable, \bold{SAP} or \bold{BBP} in the above data frame. (These are the 
+#'   values that are used for GAMs that include salinity.) 
+#'   
+#'   6) After the above data frame is created and appended to the 
+#'   list \bold{salinity.detrended}, the following four (4) additional
+#'   data frames are created for each station.  
+#'   
+#'   \bold{mean} -- For each doy (i.e., 366 days of year), the mean across all 
+#'   years for each value of d. Since samples are not collected on a daily basis
+#'   it is necessary to aggregate data from within a +/- one-half of
+#'   \bold{dvAvgWinSel}-day window around d. (This includes wrapping around the
+#'   calendar year. That is, the values near the beginning of the year, say
+#'   January 2, would include values from the last part of December and the
+#'   first part of January. The variables in the mean data frame are doy, SAP, and BBP.   
+#'   
+#'   \bold{sd} -- For each doy (i.e., 366 days of year), the standard deviation 
+#'   across all years for each value of d. (See mean calculations for additional details.)    
+#'   
+#'   \bold{nobs} -- For each doy (i.e., 366 days of year), the number of observations 
+#'   across all years for each value of d. (See mean calculations for additional details.)     
+#'   
+#'   \bold{lowess.sd} -- Lowess smoothed standard deviations. It is noted that
+#'   some stations do not include regular sampling in all months of the year or
+#'   for other reasons have few observations from which to compute standard
+#'   deviations. Through visual inspection of plots, we found that the standard
+#'   deviation could become unstable when the number  of observations is small.
+#'   For this reason, when the number of observations is less than
+#'   \bold{minObs.sd}, the corresponding value of lowess.sd is removed and
+#'   interpolated from the remaining observations.
+#'    
+#'   The above four data frames (mean, sd, nobs, and lowess.sd) are created, they
+#'   are added to a list using a \bold{station.sum} naming convention and appended to the 
+#'   list \bold{salinity.detrended}.
+#'   
 #' 
 #' @examples
 #' # Show Example Dataset (sal)
@@ -28,67 +96,33 @@
 #'
 #' # Define Function Inputs
 #' df.sal        <- sal
-#' stations      <- c("CB3.3C", "CB5.1", "CB5.4", "LE1.2", "LE3.1"
-#'                          , "LE3.6", "TF2.2", "WT2.1") 
-#' yearStart     <- 1984
-#' yearEnd       <- 2016
-#' dvAvgWinSel   <- c(30)
+#' dvAvgWinSel   <- 30
 #' lowess.f      <- 0.2
 #' minObs        <- 40
-#' sdOverRide    <- 10
-#' dir.out       <- file.path(getwd(), "data2")
+#' minObs.sd    <- 10
 #'                  
 #' # Run Function
-#' detrended.salinity(df.sal, stations, yearStart, yearEnd
-#'                   , dvAvgWinSel, lowess.f, minObs, sdOverRide
-#'                   , dir.out
-#'                   )               
+#' salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel, 
+#'                                  lowess.f, minObs, minObs.sd)               
 #' @export
-detrended.salinity <- function(df.sal, stations
-                               , yearStart, yearEnd
-                               , dvAvgWinSel=30, lowess.f=0.2
-                               , minObs=40, sdOverRide=10
-                               , dir.out=getwd()){##FUNCTION.START
-  
-  # Rename inputs ####
-  # name inputs to variables used in function
-  myDir <- dir.out
+detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2, 
+                               minObs=40, minObs.sd=10) { ##FUNCTION.START
   
   # Initialize settings and load input salinity data ----
   {
-    #  setwd("E:/Dropbox/CBP/CBP_test - salinity cdfs")
-    #getwd()
-    #myDir <- file.path(dir.out)
-    # setwd(myDir)
-    
     # * set up flow retrieval and seasonal adjustment parameters ----
     salinity.detrended <- list(analysisDate  = Sys.time(),
-                               stations      = stations,
-                               yearStart     = yearStart, 
-                               yearEnd       = yearEnd,
+                               stations      = unique(df.sal$station),
+                               yearStart     = year(min(df.sal$date)),
+                               yearEnd       = year(max(df.sal$date)),
                                dvAvgWinSel   = dvAvgWinSel,
                                lowess.f      = lowess.f,
                                minObs        = 40,
-                               sdOverRide    = 10
-    )
-    
-    # * load salinity data ----
-   # load(file.path(myDir, 'salinity_1984to2016.rdata'))
+                               minObs.sd     = 10 )
   }
   
   # Create SAP and BBP average salinity ----
   {  
-    # # * down select input data set to those stations in baytrends list ----
-    # df <- df.sal[df.sal$Station %in% salinity.detrended[["stations"]]
-    #           , c("Station", "Sample_Date", "Layer", "salinity")]
-    # 
-    # # ** clean up data structure ----
-    # trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-    # df$Station     <- trim(as.character(df$Station))
-    # df$Layer       <- trim(as.character(df$Layer))
-    # df$Sample_Date <- trim(as.character(df$Sample_Date))
-    # df$Sample_Date <- as.POSIXct(strptime(df$Sample_Date, "%m/%d/%Y"))
-    
     df <- df.sal
     
     # ** create SAP and BBP df's ----  
@@ -107,16 +141,11 @@ detrended.salinity <- function(df.sal, stations
     # ** combine averaged data ----  
     salinity<-rbind(df.SAP,df.BBP)
     rm(df.BBP,df.SAP, df.sal)
-    
-    # ** rename and save salinity data set ----
-    names(salinity) <- c("station", "date", "salinity", "layer")
-    save('salinity', file=file.path(dir.out, 'salinity.rda'))
   } 
   
-  # Station by station processing ----
+  # station by station processing ----
   for (i.station in salinity.detrended[["stations"]]        ) {
-    #  i.station <-  salinity.detrended[["stations"]][46]
-    
+
     # * Average salinity data ----
     # ** set up variable names for raw and summary data ----
     var       <- i.station
@@ -136,7 +165,6 @@ detrended.salinity <- function(df.sal, stations
     hasBBP <- if("salinity.BBP" %in% names(df)) TRUE else FALSE
     if(hasBBP) {
       hasBBP <- if(sum(!is.na(df[,'salinity.BBP'])) >= salinity.detrended$minObs) TRUE else FALSE
-      
     }
     print(paste0(var,' (Surface: ',hasSAP,' / Bottom: ',hasBBP,")"))
     
@@ -224,11 +252,12 @@ detrended.salinity <- function(df.sal, stations
     df.lowess.sd <- merge(df.lowess.sd, tmp, by='doy')
     
     
-    # ** set lowess.sd to NA where nobs <= salinity.detrended$sdOverRide, then use smwrBase::fillMissing to interpolate
-    df.lowess.sd[df.nobs$SAP<=salinity.detrended$sdOverRide,"SAP"] <- NA
+    # ** set lowess.sd to NA where nobs <= salinity.detrended$minObs.sd, then
+    # use fillMissing to interpolate
+    df.lowess.sd[df.nobs$SAP<=salinity.detrended$minObs.sd,"SAP"] <- NA
     df.lowess.sd$SAP <- fillMissing(df.lowess.sd$SAP, max.fill=9e9, span=1)
     
-    df.lowess.sd[df.nobs$SAP<=salinity.detrended$sdOverRide,"BBP"] <- NA
+    df.lowess.sd[df.nobs$SAP<=salinity.detrended$minObs.sd,"BBP"] <- NA
     df.lowess.sd$BBP <- fillMissing(df.lowess.sd$BBP, max.fill=9e9, span=1)
     
     # now trim down to doy from 1:366 
@@ -247,43 +276,18 @@ detrended.salinity <- function(df.sal, stations
     
   }
   
-  
   # Post processing check ----
   # are the list of stations in salinity.detrended the same as what i stored in 
   # salinity.detrended$stations
   names(salinity.detrended)[names(salinity.detrended) %in% salinity.detrended[["stations"]] ] ==
     salinity.detrended$stations
   
-  # Store results ----
-  #save(salinity.detrended, file='1984_2016_seasonally_detrended_salinity_data.rda')
-  save(salinity.detrended, file=file.path(myDir, paste(yearStart, yearEnd
-                                  , "seasonally_detrended_salinity_data.rda", sep="_")))
+  # Plot results ----
+  # plot mean, sd (and lowess.sd), and nobs per doy 
   
+  figNum <<- 0
   
-  #
-  #17Jul2017:  plot mean, sd (and lowess.sd), and nobs per doy 
-  
-  
-  #rm(list=ls())
-  #cat("\014")
-  #dev.off()
-  
-  #myDir <- file.path(getwd(), "data")
-  #setwd(myDir)
-  
-  # Create directory "plots"
-  # myDir.create <- file.path(myDir, "plots")
-  # ifelse(dir.exists(myDir.create)==FALSE
-  #        , dir.create(myDir.create)
-  #        , "Directory already exists")
-  
-  # print(getwd())
-  # flush.console()
-  
-  #load(file.path(myDir, '1984_2016_seasonally_detrended_salinity_data.rda'))
-  names(salinity.detrended)
-  
-  for (station in stations) {
+  for (station in salinity.detrended[["stations"]]) {
     
     station.sum <- paste0 (station ,".sum" )
     
@@ -295,29 +299,61 @@ detrended.salinity <- function(df.sal, stations
     
     if(is.null(station.mean)) next
     
-    graph01 <- paste0(station,'_summary.jpg')
-    jpeg(filename=file.path(dir.out, graph01), height=8,width=6.5, units="in", res=300)
-        par(mfrow = c(3, 1))
-        
-        plot(station.doy, station.mean , ylim=c(-3.,3.)); title(station)
-        
-        plot(station.doy, station.sd , ylim=c(0,6), col='grey'); title(station)
-        lines(station.doy, station.lowess.sd, col='red',lwd=2)
-        
-        plot(station.doy, station.nobs , ylim=c(0,80)); title(station)
-    dev.off()
-    #
-    # Rerun plots and print to screen
-    plot(station.doy, station.mean , ylim=c(-3.,3.)); title(station)
+    # plots to screen
     
-    plot(station.doy, station.sd , ylim=c(0,6), col='grey'); title(station)
+    par(mfrow = c(3, 1))
+    
+    plot(station.doy, station.mean , ylim=c(-3.,3.),
+         xlab=NA, ylab="mean"); title(paste0(station,"--SAP"));
+    
+    plot(station.doy, station.sd , ylim=c(0,6), col='grey',
+         xlab=NA, ylab="sd"); #title(station); 
+    
     lines(station.doy, station.lowess.sd, col='red',lwd=2)
-    
-    plot(station.doy, station.nobs , ylim=c(0,80)); title(station)
+    plot(station.doy, station.nobs , ylim=c(0,80) ,
+         xlab='Day of Year', ylab="Nobs."); #title(station);
     #
-    fig.num <- match(station, stations)
-    cat(paste("\n\n","Figure.",fig.num,". ", station,"\n\n"))
-    flush.console()
+    
+    figNum <<- figNum + 1
+    title <- paste0( "SAP mean, standard deviation, and number of observations ",
+                     " as a Function of Day of Year.")
+    .F(title, figNum)
   }
   
-}##FUNCTIOIN.END
+  for (station in salinity.detrended[["stations"]]) {
+    
+    station.sum <- paste0 (station ,".sum" )
+    
+    station.mean      <- salinity.detrended[[station.sum]][["mean"]][["BBP"]]
+    station.sd        <- salinity.detrended[[station.sum]][["sd"]][["BBP"]]
+    station.doy       <- salinity.detrended[[station.sum]][["sd"]][["doy"]]
+    station.lowess.sd <- salinity.detrended[[station.sum]][["lowess.sd"]][["BBP"]]
+    station.nobs      <- salinity.detrended[[station.sum]][["nobs"]][["BBP"]]
+    
+    if(is.null(station.mean)) next
+    
+    # plots to screen
+    
+    par(mfrow = c(3, 1))
+    
+    plot(station.doy, station.mean , ylim=c(-3.,3.),
+         xlab=NA, ylab="mean"); title(paste0(station,"--BBP"));
+    
+    plot(station.doy, station.sd , ylim=c(0,6), col='grey',
+         xlab=NA, ylab="sd"); #title(station); 
+    
+    lines(station.doy, station.lowess.sd, col='red',lwd=2)
+    plot(station.doy, station.nobs , ylim=c(0,80) ,
+         xlab='Day of Year', ylab="Nobs."); #title(station);
+    #
+    
+    figNum <<- figNum + 1
+    title <- paste0( "BBP mean, standard deviation, and number of observations ",
+                     "as a Function of Day of Year.")
+    .F(title, figNum)
+  }
+
+  
+  return(salinity.detrended )
+  
+} ##FUNCTIOIN.END

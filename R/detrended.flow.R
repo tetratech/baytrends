@@ -1,26 +1,98 @@
-#' @title Detrended Flow Data
-#'
-#' @description Create flow data set from USGS gageIDs, detrend it, create stats, and plot it.
-#' 
-#' @details Input is a list of USGS gages and other parameters to define the dataset.
-#' This function can be used in conjunction with an RMD file to knit (create) a report (DOCX or HTML).
-#'
-#' @param usgsGageID USGS GageIDs (e.g., 01491000)
-#' @param siteName USGS SiteName (not used for matching only for plot titles)
-#' @param yearStart start year
+#' @title Create Seasonally Detrended Flow Data Set
+#'   
+#' @description This function creates a seasonally detrended flow data set for selected
+#'   USGS gages. The created data set is used to support application of GAMs
+#'   that include a hydrologic term as one of the independent variables. The output
+#'   from this function should be stored as an .rda file for repeated use with 
+#'   baytrends.
+#'   
+#' @param usgsGageID USGS GageIDs (e.g., "01491000")
+#' @param siteName USGS SiteName (only used for plots)
+#' @param yearStart start year (recommended as at least one year before corresponding
+#'   water quality data set)
 #' @param yearEnd end year
-#' @param dvAvgWinSel average window selection
-#' @param dvAvgWgtSel average weight selection
-#' @param dvAvgSidesSel average sides selection
-#' @param lowess.f lowess
-#' @param dir.out Output directory for data file, plots, and such
-#' @param fn.out data file output name (will save as RDA). 
-#' 
-#' @return Creates an RDA file in the user specified directory 
-#'                   and creates plots (but does not save them).
-#' 
+#' @param dvAvgWinSel Averaging window (days) for smoothing the residuals of the 
+#'   seasonally adjusted daily flow values, e.g.,  c(1, 5, 10, 15, 20, 30, 40,
+#'   50, 60, 90, 120, 150, 180, 210)  
+#' @param dvAvgWgtSel Averaging method ("uniform", "weighted", or
+#'   "centered") for creating weights. If using "weighted" then use
+#'   dvAvgSidesSel=1.  If using "centered" then use dvAvgSidesSel=2.
+#' @param dvAvgSidesSel If dvAvgSidesSel=1 only past values are used, if dvAvgSidesSel=2
+#'   then values are centered around lag 0.
+#' @param lowess.f lowess smoother span applied to computed standard deviation (see Details).
+#'   This gives the proportion of points which influence the smooth
+#'   at each value. Larger values give more smoothness.  
+#'   
+#' @return Returns a list of seasonally detrended flow data. You should save the
+#'   resulting list as flow.detrended for use with baytrends.  This function
+#'   also creates diagnostic plots that can be saved to a report when this
+#'   function is called from an .Rmd script.
+#'   
+#' @details This function returns a list of seasonally detrended flow and companion
+#'   statistics; and relies on USGS' dataRetrieval package to retrieve daily
+#'   flow data.   
+#'   
+#'   It is the user responsibility to save the resulting list as \bold{flow.detrended} 
+#'   for integration with baytrends.  
+#'   
+#'   For the purposes of baytrends, it is expected that the user 
+#'   would identify all USGS gages that are expected to be evaluated so that a 
+#'   single data file is created. To best match up with water quality data, we 
+#'   recommend retrieving flow data for one year prior to the first year of 
+#'   water quality data. This allows for creating a time-averaged flow data set 
+#'   and not loose the first few months of water quality data due to lack of 
+#'   matching flow data. Data retrievals should also be made in light of the 
+#'   time needed by the USGS to review and approve their flow records.
+#'   
+#'   After retrieval, the following computation steps are performed to create a
+#'   data frame for each USGS gage (the data frame naming convention is
+#'   \bold{qNNNNNNNN} where NNNNNNNN is the USGS gage ID):   
+#'   
+#'   1) The daily flow data are converted to cubic meters per second [cms] and
+#'   stored as the variable \bold{q}.  
+#'   
+#'   2) The day of year (\bold{doy}) is added to the data set. We use a 366 day
+#'   calendar regardless of leap year.      
+#'   
+#'   3) The Log (ln) flow is computed and stored as \bold{LogQ}.    
+#'   
+#'   4) A seasonal GAM, i.e., gamoutput <- gam(LogQ ~  s(doy, bs='cc')) is
+#'   evaluated and the predicted values stored as \bold{qNNNNNNNN.gam}.  
+#'   
+#'   5) The GAM residuals, i.e., "residuals(gamoutput)" are extracted and stored
+#'   as the variable, \bold{d1}.  
+#'   
+#'   6) Based on the specifications for dvAvgWinSel, dvAvgWgtSel, and dvAvgSidesSel, the
+#'   values of \bold{d1} are time averaged and additional variables \bold{dxxx}
+#'   are added to the data frame where xxx corresponds to list of averaging
+#'   windows specified in dvAvgWinSel. These values of \bold{dxxx} are used in GAMs that include
+#'   a hydrologic independent variable.     
+#'   
+#'   After the above data frame is created, the following four (4) additional
+#'   data frames are created for each USGS gage and combined into a list named
+#'   \bold{qNNNNNNNN.sum}:   
+#'   
+#'   \bold{mean} -- For each doy (i.e., 366 days of year), the mean across all
+#'   years for each value of d in the above data frame, qNNNNNNNN.   
+#'   
+#'   \bold{sd} -- For each doy (i.e., 366 days of year), the standard deviation 
+#'   across all years for each value of d in the above data frame, qNNNNNNNN.  
+#'   
+#'   \bold{nobs} -- For each doy (i.e., 366 days of year), the number of observations 
+#'   across all years for each value of d in the above data frame, qNNNNNNNN.  
+#'   
+#'   \bold{lowess.sd} -- Lowess smoothed standard deviations. (These values are
+#'   used for computing confidence intervals in the flow averaged GAM.)  
+#'   
+#'   The process of creating the above data frame, \bold{qNNNNNNNN}, and list, \bold{qNNNNNNNN.sum},
+#'   is repeated for each USGS gage and combined together in a single list. The beginning 
+#'   of the list includes meta data documenting the retrieval parameters. 
+#'   
+#'   This function can be used in conjunction with an RMD file to knit (create)
+#'   a report (DOCX or HTML).    
+#'   
 #' @examples
-#'
+#' 
 #' # Define Function Inputs
 #' usgsGageID    <- c("01491000", "01578310")
 #' siteName      <- c("Choptank River near Greensboro, MD",
@@ -31,22 +103,17 @@
 #' dvAvgWgtSel   <- "uniform"
 #' dvAvgSidesSel <- 1
 #' lowess.f      <- 0.2
-#' dir.out       <- file.path(getwd(), "data")
-#' fn.out        <- paste(yearStart, yearEnd
-#'                        ,"seasonally_detrended_flow_data.rda", sep="_")
 #'                  
 #' # Run Function
-#' detrended.flow(usgsGageID, siteName, yearStart, yearEnd
-#'               , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
-#'               , lowess.f, dir.out, fn.out)
+#' flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
+#'                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
+#'                                 , lowess.f)
 #'               
 #' @export
 detrended.flow <- function(usgsGageID, siteName
                            , yearStart, yearEnd
                            , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
-                           , lowess.f
-                           , dir.out
-                           , fn.out){##FUNCTION.START
+                           , lowess.f) {##FUNCTION.START
   #
   #knitr::opts_chunk$set(dpi=150)
   #
@@ -71,8 +138,8 @@ detrended.flow <- function(usgsGageID, siteName
   #                             , paste0(flow.detrended$yearStart, "-"
   #                                      , flow.detrended$yearEnd
   #                                      , " seasonally detrended flow data.rda"))
-  outputFileName <- file.path(dir.out, fn.out)
-    selectPlots <- flow.detrended$dvAvgWinSel[c(1,2,length(flow.detrended$dvAvgWinSel))]
+#  outputFileName <- file.path(dir.out, fn.out)
+    selectPlots <- unique(flow.detrended$dvAvgWinSel[c(1,2,length(flow.detrended$dvAvgWinSel))])
   #
   
   
@@ -153,7 +220,7 @@ detrended.flow <- function(usgsGageID, siteName
     
   }  
   
-  save(flow.detrended, file=outputFileName)
+#  save(flow.detrended, file=outputFileName)
   
   ## Flow Statistics ####
   # Flow statistics and output will be created from the new data file.
@@ -175,10 +242,14 @@ detrended.flow <- function(usgsGageID, siteName
       
       par(mfrow = c(3, 1))
       {
-        plot(gage.doy, gage.mean , ylim=c(-0.4,0.4)); title(gage)
-        plot(gage.doy, gage.sd , ylim=c(0,2), col='grey'); title(gage)
+        plot(gage.doy, gage.mean , ylim=c(-0.4,0.4),
+             xlab=NA, ylab="mean"); title(gage)
+        
+        plot(gage.doy, gage.sd , ylim=c(0,2), col='grey',
+        xlab=NA, ylab="sd") #title(gage)
         lines(gage.doy, gage.lowess.sd, col='red',lwd=2)
-        plot(gage.doy, gage.nobs , ylim=c(0,60)); title(gage)
+        plot(gage.doy, gage.nobs , ylim=c(0,60),
+        xlab='Day of Year', ylab="Nobs.") #title(gage)
         figNum <<- figNum + 1
         title <- paste0( dvAvgWinSel, ": Mean, standard deviation, and number of observations ",
                          " as a Function of Day of Year.")
@@ -186,7 +257,8 @@ detrended.flow <- function(usgsGageID, siteName
       }
     }
   }
-  
+
+    return(flow.detrended)  
 
   #
 }##FUNCTIOIN.END
