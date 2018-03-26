@@ -123,9 +123,9 @@
 #' 
 #' @format A data frame with 51,092 rows and 4 variables:
 #' \describe{
-#'    \item{Station}{CBP Station ID}
-#'    \item{Sample_Date}{date, YYYY-MM-DD}
-#'    \item{Layer}{sample layer}
+#'    \item{station}{CBP Station ID}
+#'    \item{date}{date, YYYY-MM-DD}
+#'    \item{layer}{sample layer}
 #'    \item{salinity}{Measured salinity}
 #' }
 "sal"

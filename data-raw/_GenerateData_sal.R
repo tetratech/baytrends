@@ -8,12 +8,13 @@
 
 
 # 0. Prep####
+library(baytrends)
 # assume wd is package directory
 wd <- file.path(getwd(),"data-raw")
 
 # 1. Generate Data####
 # Load data (sal)
-load("salinity_1984to2016.rdata")
+load(file.path(wd, "salinity_1984to2016.rdata"))
 
 # Subset DF
 # * down select input data set to those stations in baytrends list ----
@@ -28,7 +29,8 @@ df$Sample_Date <- trim(as.character(df$Sample_Date))
 df$Sample_Date <- as.POSIXct(strptime(df$Sample_Date, "%m/%d/%Y"))
 
 # rename columns
-names(df) <- c(names(df)[1:3], "salinity")
+# modify names to match other files in package
+names(df) <- c("station", "date", "layer", "salinity")
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

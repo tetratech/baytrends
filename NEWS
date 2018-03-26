@@ -4,7 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-21 12:11:01
+    #> Last Update: 2018-03-26 10:42:55
+
+# baytrends 1.0.1.9013
+
+  - Released - 2018-03-26
+  - salinity data.
+      - \_GenerateData\_sal.R
+      - sal.rda
+      - data.R
 
 # baytrends 1.0.1.9012
 

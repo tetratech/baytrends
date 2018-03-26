@@ -19,6 +19,14 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.1.9013
+===========
+* Released - 2018-03-26
+* salinity data.
+    + _GenerateData_sal.R
+    + sal.rda
+    + data.R
+
 baytrends 1.0.1.9012
 ===========
 * Released - 2018-03-21
