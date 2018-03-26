@@ -92,17 +92,17 @@ detrended.salinity <- function(df.sal, stations
     df <- df.sal
     
     # ** create SAP and BBP df's ----  
-    df.SAP <- df[df$Layer %in% c("S","AP"),]
-    df.BBP <- df[df$Layer %in% c("B","BP"),]
+    df.SAP <- df[df$layer %in% c("S","AP"),]
+    df.BBP <- df[df$layer %in% c("B","BP"),]
     
     # ** average salinity ----
-    df.SAP <- aggregate(salinity ~ Station + Sample_Date,
+    df.SAP <- aggregate(salinity ~ station + date,
                         data=df.SAP, FUN=mean, na.action=na.pass, na.rm=TRUE)
-    df.BBP <- aggregate(salinity ~ Station + Sample_Date,
+    df.BBP <- aggregate(salinity ~ station + date,
                         data=df.BBP, FUN=mean, na.action=na.pass, na.rm=TRUE)
     
-    df.SAP$Layer <- 'SAP'
-    df.BBP$Layer <- 'BBP'
+    df.SAP$layer <- 'SAP'
+    df.BBP$layer <- 'BBP'
     
     # ** combine averaged data ----  
     salinity<-rbind(df.SAP,df.BBP)

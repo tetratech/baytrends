@@ -19,6 +19,16 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.1.9014
+===========
+* Released - 2018-03-26
+* Update vignettes
+    + /docs/baytrends_overview.pdf
+    + /vignettes/vignette_qw.Rmd
+* New vignette
+    + /vignettes/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.Rmd
+* Update detrended_salinity.R for changes in names in "sal" data.
+
 baytrends 1.0.1.9013
 ===========
 * Released - 2018-03-26

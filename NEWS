@@ -4,7 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-26 10:42:55
+    #> Last Update: 2018-03-26 13:11:44
+
+# baytrends 1.0.1.9014
+
+  - Released - 2018-03-26
+  - Update vignettes
+      - /docs/baytrends\_overview.pdf
+      - /vignettes/vignette\_qw.Rmd
+  - New
+        vignette
+      - /vignettes/create\_Seasonally\_Detrended\_Flow\_and\_Salinity\_Data\_Sets.Rmd
+  - Update detrended\_salinity.R for changes in names in “sal” data.
 
 # baytrends 1.0.1.9013
 

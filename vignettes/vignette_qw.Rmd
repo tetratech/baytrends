@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 # Purpose
-The purpose of this vignette is to cover the basics of exporting and importing censored water quality data as a qw object. The process of combining two (or more) data frames with qw objects is also described.
+The purpose of this vignette is to cover the basics of exporting and importing water quality data for use in baytrends. In order to have the functionality to deal with censored data, when it exists, the qw object is used in baytrends to store all water quality data. The process of combining two (or more) data frames with qw objects is also described.
 
 The qw object was originally developed by the U.S. Geological Survey (USGS) for use in their `smwrQW` package. For future portability to the CRAN, numerous 'smwrQW' functions along with several supporting functions from USGS' family of smwr packages were incorporated into this package. 
 
