@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.2.0000
+===========
+* Released - 2018-03-26
+* Release version
+
 baytrends 1.0.1.9015
 ===========
 * Released - 2018-03-26
