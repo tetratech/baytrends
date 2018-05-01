@@ -44,6 +44,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
 #                 added to stat.gam.result & chng.gam.result: 
 #                     + usgs gage id, usgs gage name 
 #                     + standard error  
+#                 update gamCoeff call to include iSpec
 # 04Feb2018: JBH: count number of observations for each intervention
 # 05Aug2017: JBH: add hydroTerms used for flow/salinity modeling; removed mn.doy;
 #                 added error trap if flow.detrended or salinity.detrended are not loaded
@@ -404,7 +405,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
 # GAM loop: Table output #####
 
     gamANOVAtbl <- .gamANOVA(gamRslt)
-    gamCoefftbl <- .gamCoeff(gamRslt)
+    gamCoefftbl <- .gamCoeff(gamRslt,iSpec) # 01May2018
     aic1 <- AIC(gamRslt)
     gamDiagnosticstbl <- data.frame(AIC = round(aic1,2),
                                     RMSE = round(sqrt(gamRsltSum$scale),4),
@@ -450,11 +451,11 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       print(knitr::kable(gamCoefftbl,
                          col.names = c('Parameter','Estimate','Std. Err.','t value','p-value'),
                          align=c("l","r","r","r","r")  ))
-      } else if (length(gamCoefftbl) ==9) {
-        print(knitr::kable(gamCoefftbl[,1:7],
+      } else if (length(gamCoefftbl) ==10) {
+        print(knitr::kable(gamCoefftbl[,c(1:7,10)],
                            col.names = c('Parameter','Estimate','Std. Err.','t value','p-value',
-                                         'Int Chg p-val','Int Chg est'),
-                           align=c("l","r","r","r","r","r","r")  ))
+                                         'Int Chg p-val','Int Chg est','Int Lab'),
+                           align=c("l","r","r","r","r","r","r","l")  ))
 
       } else {
         print(' ... print fail ...')
