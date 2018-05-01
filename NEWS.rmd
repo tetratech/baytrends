@@ -19,6 +19,15 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.2.9001
+===========
+* 2018-05-01
+* Updates: 
+    + add standard error to stat.gam.result and chng.gam.result output
+    + add USGS gage ID and name to stat.gam.result and chng.gam.result output
+    + expose impute function for simple substitution
+
+
 baytrends 1.0.2.0000
 ===========
 * Released - 2018-03-26
