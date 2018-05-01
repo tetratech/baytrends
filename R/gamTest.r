@@ -40,6 +40,7 @@
 gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10, gamDiffModel=NA) {
 
 # ----- Change history -------------------------------------------- ####
+# 01May2018: JBH: changed .impute to impute  
 # 04Feb2018: JBH: count number of observations for each intervention
 # 05Aug2017: JBH: add hydroTerms used for flow/salinity modeling; removed mn.doy;
 #                 added error trap if flow.detrended or salinity.detrended are not loaded
@@ -268,7 +269,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
 
     # impute plausible first guess. (impute in normal space, then convert)
     ct2 <- ct1
-    ct2[,iSpec$depOrig] <- .impute(ct1[,iSpec$depOrig] )
+    ct2[,iSpec$depOrig] <- impute(ct1[,iSpec$depOrig] )
     if(transform) ct2[,iSpec$dep] <- suppressWarnings(log(ct2[,iSpec$depOrig]))
 
     # run GAM on impute plausible first guess.
