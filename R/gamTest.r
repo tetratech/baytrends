@@ -261,8 +261,8 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         gamK2       = gamK2, stringsAsFactors = FALSE,             #04Feb2017 #22Jul2017
         hydroTermSel     = ifelse(has.flw_sal, iSpec$hydroTermSel, NA),           #01May2018 
         hydroTermSel.var = ifelse(has.flw_sal, iSpec$hydroTermSel.var, NA),       #01May2018       
-        usgsGageID       = ifelse(has.flw_sal, gamResult$iSpec$usgsGageID, NA),   #01May2018       
-        usgsGageName     = ifelse(has.flw_sal, gamResult$iSpec$usgsGageName, NA)) #01May2018
+        usgsGageID       = ifelse(has.flw_sal, iSpec$usgsGageID, NA),   #01May2018       
+        usgsGageName     = ifelse(has.flw_sal, iSpec$usgsGageName, NA)) #01May2018
     }
 
 # GAM loop: Run GAM w/ Expectation Maximization for Censored Data #####
