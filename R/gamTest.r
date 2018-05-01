@@ -40,7 +40,10 @@
 gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10, gamDiffModel=NA) {
 
 # ----- Change history -------------------------------------------- ####
-# 01May2018: JBH: changed .impute to impute  
+# 01May2018: JBH: changed .impute to impute; 
+#                 added to stat.gam.result & chng.gam.result: 
+#                     + usgs gage id, usgs gage name 
+#                     + standard error  
 # 04Feb2018: JBH: count number of observations for each intervention
 # 05Aug2017: JBH: add hydroTerms used for flow/salinity modeling; removed mn.doy;
 #                 added error trap if flow.detrended or salinity.detrended are not loaded
@@ -256,8 +259,10 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         gamSelect  = selectSetting,   #04Feb2017
         gamK1       = gamK1,
         gamK2       = gamK2, stringsAsFactors = FALSE,             #04Feb2017 #22Jul2017
-        hydroTermSel     = iSpec$hydroTermSel,                     #05Aug2017
-        hydroTermSel.var = iSpec$hydroTermSel.var)                 #05Aug2017
+        hydroTermSel     = ifelse(has.flw_sal, iSpec$hydroTermSel, NA),           #01May2018 
+        hydroTermSel.var = ifelse(has.flw_sal, iSpec$hydroTermSel.var, NA),       #01May2018       
+        usgsGageID       = ifelse(has.flw_sal, gamResult$iSpec$usgsGageID, NA),   #01May2018       
+        usgsGageName     = ifelse(has.flw_sal, gamResult$iSpec$usgsGageName, NA)) #01May2018
     }
 
 # GAM loop: Run GAM w/ Expectation Maximization for Censored Data #####
@@ -565,6 +570,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     stat.gam.res1$por.abs.chg     <- por.diff.tmp$diff.est
     stat.gam.res1$por.abs.chg.obs <- por.diff.tmp$diff.est.obs
     stat.gam.res1$por.pct.chg     <- por.diff.tmp$pct.chg
+    stat.gam.res1$por.diff.se     <- por.diff.tmp$diff.se   #01May2018
     stat.gam.res1$por.chg.pv      <- por.diff.tmp$diff.pval
 
     # 03Nov left over from before
@@ -647,6 +653,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
             gamDiff.abs.chg     = sub.gamDiff.tmp$diff.est   ,
             gamDiff.abs.chg.obs = sub.gamDiff.tmp$diff.est.obs   ,
             gamDiff.pct.chg     = sub.gamDiff.tmp$pct.chg ,
+            gamDiff.diff.se     = sub.gamDiff.tmp$diff.se ,  #01May2018
             gamDiff.chg.pval    = sub.gamDiff.tmp$diff.pval )
 
           if(i1==1 & i2==1) sub.gamDiff.df <- sub.gamDiff.df1 else
