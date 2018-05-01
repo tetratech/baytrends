@@ -81,8 +81,6 @@
 #'
 #'   layerFilt        - Layer filter
 #'
-#'   avgTechnique     - Averaging technique used to average layers (mean or median)
-#'
 #'   layerAggOption   - Layer averaging option (see Details for more information)
 #'
 #'   obsMin           - Minimum number of observations required to allow GAM analysis to proceed
@@ -121,6 +119,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
 
 # df<-dataCensored; reports=NA
 # ----- Change history --------------------------------------------
+# 01May2018: JBH: removed median as option for layer aggregation  
 # 06Aug2017: JBH: added gamFlw_Sal.Wgt.Perc
 # 05Aug2017: JBH: cleaned up change history date formats
 # 21Jul2017: JBH: moved gamK_CritSel to gamModels; added gam4
@@ -171,7 +170,9 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
   if (!"setTZ"           %in% names(analySpec)) analySpec$setTZ            <- "America/New_York"  #01Nov2016
 
   if (!"layerFilt"       %in% names(analySpec)) analySpec$layerFilt        <- layerLukup$layers
-  if (!"avgTechnique"    %in% names(analySpec)) analySpec$avgTechnique     <- "mean"   #(median or mean)
+#  if (!"avgTechnique"    %in% names(analySpec)) analySpec$avgTechnique     <- "mean"   #(median or mean)
+  avgTechnique     <- "mean"   #(median or mean)
+  
   if (!"layerAggOption"  %in% names(analySpec)) analySpec$layerAggOption   <- 0        # 0: no aggregation
   if (!"obsMin"          %in% names(analySpec)) analySpec$obsMin           <- 60
 
@@ -263,9 +264,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
 
 # 3) Aggregate data layers. #####
 
-  # avgTechnique=analySpec$avgTechnique; layerAggOption=analySpec$layerAggOption
   if ("layer" %in% names(df)) {
-    df<-.layerAggregation(df, avgTechnique=analySpec$avgTechnique, layerAggOption=analySpec$layerAggOption)
+    df<-.layerAggregation(df, avgTechnique=avgTechnique, layerAggOption=analySpec$layerAggOption)
 
     # create a "layer lookup table" that includes a proper layer name and has a built in preferred
     # order for which order to analyze the layers (mostly to get surface before bottom)
