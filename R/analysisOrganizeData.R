@@ -115,7 +115,7 @@
 #'
 #' @export
 # ####
-analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
+analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) { 
 
 # df<-dataCensored; reports=NA
 # ----- Change history --------------------------------------------

@@ -9,7 +9,7 @@
 #' @export
 #' @importFrom stats cor
 #'
-.mergeFlow <- function(ct1=ct1, iSpec=iSpec, gageID=gageID, hydro.var=hydro.var) {
+.mergeFlow <- function(ct1=ct1, iSpec=iSpec, gageID=gageID, hydro.var=hydro.var) { 
 # -----< Change history >--------------------------------------------
 # 01May2018: JBH: changed .impute to impute  
 # 29Jul2017: JBH: first release

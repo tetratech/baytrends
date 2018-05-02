@@ -34,7 +34,7 @@
 #' @param lmo output from gam model
 #' @export
 #'
-.gamCoeff <- function(lmo, iSpec) {
+.gamCoeff <- function(lmo, iSpec) { 
 #  lmo <- gamRslt
 
 # -----< Change history >--------------------------------------------

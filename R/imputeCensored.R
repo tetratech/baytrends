@@ -20,7 +20,7 @@
 #' @return vector where x is transformed into a simple numeric variable
 #' @export
 #
-impute <-function(x, imputeOption="mid") {
+impute <-function(x, imputeOption="mid") { 
   
 # ----- Change history --------------------------------------------
 # 01May2018: JBH: changed function name from .impute to impute; focus
