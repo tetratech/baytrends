@@ -19,14 +19,16 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-baytrends 1.0.2.9001
+baytrends 1.0.3.0000
 ===========
-* 2018-05-01
+* 2018-05-02
 * Updates: 
     + add standard error to stat.gam.result and chng.gam.result output
     + add USGS gage ID and name to stat.gam.result and chng.gam.result output
-    + expose impute function for simple substitution
-
+    + add mgcvOK to stat.gam.result and chng.gam.result output to indicate if mgcv::gam ran ok
+    + removed median as option for summarizing data across layers
+    + expose impute function for simple substitution (0, 1/2dl, dl) conversion of qw data to vector
+    + added error handling to trap mgcv::gam non-convergence errors
 
 baytrends 1.0.2.0000
 ===========
