@@ -11,6 +11,9 @@
 #'
 .chkParameter <- function(df,parameterFilt=parameterFilt) {
 
+  # QC check fix, 20180503
+  parameterList <- baytrends::parameterList
+  
   # Level 1 error trapping
 
   # error trap ... stop if no station found

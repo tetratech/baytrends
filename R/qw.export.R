@@ -20,6 +20,8 @@
 #' 
 #' @return Returns a user named tab delimited files to the user defined directory with all of the qw slot data.
 #' 
+#' @importFrom utils flush.console
+#' @importFrom utils write.table
 #' 
 #' @examples
 #' # define data frame with qw column classes

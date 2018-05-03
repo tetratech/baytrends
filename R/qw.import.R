@@ -25,6 +25,10 @@
 #' 
 #' @return Returns a QW enabled data frame.
 #' 
+#' @importFrom utils flush.console
+#' @importFrom utils write.table
+#' @importFrom utils read.table
+#' 
 #' @examples
 #' # Use internal function to export dataCensored as example for import
 #' qw.export(dataCensored, getwd(), "dataCensored_TEST.csv")

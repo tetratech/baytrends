@@ -90,7 +90,11 @@
 #'   
 #'   This function can be used in conjunction with an RMD file to knit (create)
 #'   a report (DOCX or HTML).    
-#'   
+#' @importFrom utils modifyList 
+#' @importFrom stats aggregate
+#' @importFrom stats na.pass
+#' @importFrom stats sd
+#' @importFrom stats lowess
 #' @examples
 #' 
 #' # Define Function Inputs
@@ -108,7 +112,6 @@
 #' flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
 #'                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
 #'                                 , lowess.f)
-#'               
 #' @export
 detrended.flow <- function(usgsGageID, siteName
                            , yearStart, yearEnd
@@ -148,6 +151,13 @@ detrended.flow <- function(usgsGageID, siteName
   #An RDA file will be created in the user specifid folder.  
   #The file name will have the start and end dates as a prefix to "seasonally 
   #detrended flow data.rda".
+    
+  # QC, 20180502
+  # figNum not defined before used.
+  if(!exists("figNum")){
+    figNum<-0
+  }
+    
   figNum <<- 0 
   
   # perform analysis for each gage

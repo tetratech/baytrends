@@ -181,6 +181,11 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     stop("Could not find dependent variable in data frame.")
   }
 
+  # QC check fix, 20180503
+  parameterList <- baytrends::parameterList
+  stationMasterList <- baytrends::stationMasterList
+  layerLukup <- baytrends::layerLukup
+  
   # make sure layerLukup exists
   if(!exists("layerLukup")) stop("Layer look-up list not found. Operation stopped!")
 

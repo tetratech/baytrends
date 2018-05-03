@@ -88,8 +88,13 @@
 #'   The above four data frames (mean, sd, nobs, and lowess.sd) are created, they
 #'   are added to a list using a \bold{station.sum} naming convention and appended to the 
 #'   list \bold{salinity.detrended}.
-#'   
-#' 
+#'  
+#' @importFrom utils modifyList  
+#' @importFrom stats aggregate
+#' @importFrom stats na.pass
+#' @importFrom stats residuals
+#' @importFrom stats sd
+#' @importFrom stats lowess
 #' @examples
 #' # Show Example Dataset (sal)
 #' str(sal)
@@ -284,6 +289,12 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
   
   # Plot results ----
   # plot mean, sd (and lowess.sd), and nobs per doy 
+  
+  # QC, 20180502
+  # figNum not defined before used.
+  if(!exists("figNum")){
+    figNum<-0
+  }
   
   figNum <<- 0
   

@@ -26,6 +26,7 @@
 #'statistics for multiply censored water quality data: Water Resources
 #'Research v. 24, n. 12, pp.1997-2004
 #' @keywords internal manip
+#' @importFrom stats ppoints
 #' @examples
 #'# This example demonstrates the probability adjustments made for censoring
 #'# The raw, uncensored data:
@@ -58,6 +59,7 @@ censpp <- function(x, a=.44) {
 #' @rdname censpp
 #' @export
 #' @method censpp default
+#' @importFrom stats ppoints
 censpp.default <- function(x, a=0.44) {
   if(length(x) == 1)
     return(NULL) # does not work like ppoints
@@ -157,6 +159,7 @@ censpp.lcens <- function(x, a=0.44) {
 #' @rdname censpp
 #' @export
 #' @method censpp mcens
+#' @importFrom stats ppoints
 censpp.mcens <- function(x, a=0.44) {
   ## Censored plotting positions by K-M method, a is ignored
   ## CF is a censor flag-- 1 is left, 2 is interval/uncensored

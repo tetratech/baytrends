@@ -11,6 +11,7 @@
 #'null model with the attained p-value, and the computational method.
 # @seealso \code{\link{censReg}}, \code{\link{coef.censReg}}
 #' @keywords internal utilities
+#' @importFrom stats BIC
 #'
 #' @export
 #' @method print summary.censReg

@@ -76,6 +76,8 @@ filterWgts <-function(n=NULL , type="weighted") {
   
 }
 
+#' @title Append Date Features
+#' @description Appends date features to data frame
 # Function: Appends date features to data frame ####
 # 
 # Source: Derived from CBPstats::appendDateFeatures

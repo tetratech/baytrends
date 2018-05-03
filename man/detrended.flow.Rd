@@ -126,5 +126,4 @@ lowess.f      <- 0.2
 flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
                                 , lowess.f)
-              
 }

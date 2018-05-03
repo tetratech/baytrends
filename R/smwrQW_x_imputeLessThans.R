@@ -23,6 +23,7 @@
 #' @importFrom zCompositions lrEM
 #' @return A data frame containing the original data with imputed censored values.
 #' @keywords internal
+#' @importFrom stats na.omit
 #' @export
 imputeLessThans <- function(..., type=c("MLE", "robust"), 
                             initial=c("complete.obs", "multRepl")) {

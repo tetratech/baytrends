@@ -1,4 +1,5 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# dataCensored ####
 #' @title Chesapeake Bay Program Monitoring Data, 1985-2015
 #' 
 #' @description Selected 1985-2015 data for eight (8) stations from the
@@ -26,6 +27,7 @@
 #' }
 "dataCensored"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# layerLukup ####
 #' @title Layer List
 #' 
 #' @description A lookup table of layer abbreviations and the corresponding
@@ -39,6 +41,7 @@
 #' }
 "layerLukup"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# parameterList ####
 #' @title Parameter List
 #' 
 #' @description A lookup table of water quality parameters 
@@ -65,6 +68,7 @@
 #' }
 "parameterList"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# stationMasterList ####
 #' @title Chesapeake Bay Program long-term tidal monitoring stations
 #' 
 #' @description Chesapeake Bay Program long-term tidal monitoring stations
@@ -106,6 +110,7 @@
 #' }
 "stationMasterList"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# usgsGages ####
 #' @title USGS Gages
 #' 
 #' @description List of core USGS gages for CBP trend analyses
@@ -117,6 +122,7 @@
 #' }
 "usgsGages"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# sal ####
 #' @title Salinity data
 #' 
 #' @description Salinity data, 1984 to 2016, for 8 stations.
@@ -129,3 +135,23 @@
 #'    \item{salinity}{Measured salinity}
 #' }
 "sal"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# flow.detrended ####
+#' @title Detrended flow data
+#' 
+#' @description Flow data, 1983 to 2016, seasonally detrended, for 2 stations.
+#' 
+#' @format A list of 8:
+#' \describe{
+#'    \item{retreiveDate}{Date data was generated}
+#'    \item{gages}{data.frame: 2 obs of 2 variables}
+#'    \item{usgsGageID}{USGS Gage ID}
+#'    \item{siteName}{USGS Site Name}
+#'    \item{yearStart}{start year, YYYY-MM-DD}
+#'    \item{yearEnd}{end year, YYYY-MM-DD}
+#'    \item{dvAvgWinSel}{daily value, average win sel}
+#'    \item{dvAvgWgtSel}{daily value, average weighted sel}
+#'    \item{dvAvgSidesSel}{daily value, average sides sel} 
+#'    \item{lowess.f}{lowess.f}  
+#' }
+"flow.detrended"

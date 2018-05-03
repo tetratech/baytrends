@@ -12,6 +12,10 @@
 #@seealso \code{\link{censReg}}, \code{\link{coef.censReg}}
 #'@keywords internal utilities
 #'
+#' @importFrom stats update
+#' @importFrom stats logLik
+#' @importFrom stats pchisq
+#'
 #' @export
 #'@method print censReg
 print.censReg <- function(x, digits=4, ...) {

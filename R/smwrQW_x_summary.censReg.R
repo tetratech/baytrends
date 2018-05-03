@@ -22,6 +22,11 @@
 #'Sociology, v. 4, no. 1, p. 103--120.
 # @seealso \code{\link{censReg}}
 #' @keywords internal regression
+#' @importFrom stats var
+#' @importFrom stats fitted
+#' @importFrom stats residuals
+#' @importFrom stats qf
+#' @importFrom stats cov2cor
 #' @export
 #' @method summary censReg
 summary.censReg <- function(object, correlation=FALSE, ...) {

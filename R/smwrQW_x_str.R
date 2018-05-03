@@ -30,6 +30,8 @@ str.mcens <- function (object, ...) {
 }
 
 #' @rdname str
+#' @importFrom utils getS3method
+#' @importFrom utils strOptions
 #' @export
 #' @method str qw
 str.qw <- function (object, ...) {

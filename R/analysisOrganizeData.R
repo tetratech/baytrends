@@ -156,6 +156,11 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
 
   # Store number of rows of data
   beginRecords <- nrow(df)
+  
+  # QC check fix, 20180503
+  parameterList <- baytrends::parameterList
+  stationMasterList <- baytrends::stationMasterList
+  layerLukup <- baytrends::layerLukup
 
 # 1) Review user supplied specifications.  ####
 

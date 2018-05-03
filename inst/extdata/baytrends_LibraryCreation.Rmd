@@ -90,6 +90,7 @@ Need first entry on the same line as "Collate:".
 rmarkdown::render("NEWS.rmd", "all")
 file.copy("NEWS.md", "NEWS", overwrite = TRUE)
 file.remove("NEWS.html")
+file.remove("NEWS.md")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Library Name
 myLibrary <- "baytrends"
@@ -122,6 +123,19 @@ After creating the package reload it after restarting R within RStudio (Ctrl + S
 library("baytrends")
 help(package="baytrends")
 ```
+
+Check failures
+(single vector so not very useful)
+```{r CheckFailures, eval=FALSE}
+library(devtools)
+dir.check <- "C:\\Users\\Erik.Leppo\\OneDrive - Tetra Tech, Inc\\MyDocs_OneDrive\\GitHub\\baytrends.Rcheck"
+#
+check_failures(dir.check)
+
+
+```
+
+
 
 ## Check functions and such
 ### Index
