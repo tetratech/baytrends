@@ -4,7 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-05-03 15:08:00
+    #> Last Update: 2018-05-03 15:56:26
+
+# baytrends 1.0.2.9013
+
+  - Release - 2018-05-03
+  - Fix lubridate and plyr conflict.
+      - gamTest change import lubridate mgcv plyr to importFrom for
+        lubridate mdy and plyr rbind.fill.
 
 # baytrends 1.0.2.9012
 

@@ -28,7 +28,9 @@
 #'
 #' @return Returns a list with results
 #' @export
-#' @import lubridate mgcv plyr
+#' @import mgcv
+#' @importFrom lubridate mdy
+#' @importFrom plyr rbind.fill
 #' @importFrom graphics grid lines plot points abline axis.POSIXct
 #' @importFrom graphics legend mtext par polygon title
 #' @importFrom stats AIC anova as.formula coef coefficients
