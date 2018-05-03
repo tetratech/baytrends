@@ -4,7 +4,86 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-03-26 13:51:53
+    #> Last Update: 2018-05-03 15:08:00
+
+# baytrends 1.0.2.9012
+
+  - Release - 2018-05-03
+  - Update versioning in NEWS and DESCRIPTION
+
+# baytrends 1.0.2.9011
+
+  - Released - 2018-05-02
+  - v1.0.2.9002 in DESCRIPTION
+  - v1.0.3.0000 in NEWS
+  - Updates:
+      - add standard error to stat.gam.result and chng.gam.result output
+      - add USGS gage ID and name to stat.gam.result and chng.gam.result
+        output
+      - add mgcvOK to stat.gam.result and chng.gam.result output to
+        indicate if mgcv::gam ran ok
+      - removed median as option for summarizing data across layers
+      - expose impute function for simple substitution (0, 1/2dl, dl)
+        conversion of qw data to vector
+      - added error handling to trap mgcv::gam non-convergence errors
+
+# baytrends 1.0.2.9010
+
+  - Released - 2018-05-02
+  - v1.0.2.9002
+  - Updates:
+      - add intervention label to GAM Parameter Coefficient table.
+
+# baytrends 1.0.2.9009
+
+  - Released - 2018-05-02
+  - v1.0.2.9002
+  - Updates:
+      - Added error trapping to address non-convergence of mgcv::gam
+
+# baytrends 1.0.2.9007
+
+  - Released - 2018-05-01
+  - Merge branch â€˜masterâ€™ of
+    <https://github.com/tetratech/baytrends>
+
+# baytrends 1.0.2.9006
+
+  - Released - 2018-05-01
+  - Updates:
+      - corrected storage of usgs codes
+
+# baytrends 1.0.2.9005
+
+  - Released - 2018-05-01
+  - Updates:
+      - documentation updates
+
+# baytrends 1.0.2.9004
+
+  - Released - 2018-05-01
+  - Updates:
+      - documentation updates
+
+# baytrends 1.0.2.9003
+
+  - Released - 2018-05-01
+  - Updates:
+      - only allow â€˜meanâ€™ for computing layer aggregation.
+
+# baytrends 1.0.2.9002
+
+  - Released - 2018-05-01
+  - Updates:
+      - added usgs gage id, usgs gage name, and gam diff standard error
+        to stat.gam.result and chng.gam.result output data sets
+
+# baytrends 1.0.2.9001
+
+  - Released - 2018-05-01
+  - Updates:
+      - exposed impute function; updated impute function to focus on
+        simple substitution
 
 # baytrends 1.0.2.0000
 

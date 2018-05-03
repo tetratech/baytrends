@@ -31,8 +31,6 @@ Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
 
   layerFilt        - Layer filter
 
-  avgTechnique     - Averaging technique used to average layers (mean or median)
-
   layerAggOption   - Layer averaging option (see Details for more information)
 
   obsMin           - Minimum number of observations required to allow GAM analysis to proceed
