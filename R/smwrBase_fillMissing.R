@@ -59,6 +59,10 @@
 #'Hydrological Sciences Journal, v. 45, no. 6, p. 849--866.
 #' @export
 #' @keywords internal manip
+#' @importFrom stats approx
+#' @importFrom stats StructTS
+#' @importFrom stats tsSmooth
+#' 
 #' @examples
 #'\dontrun{
 #'#library(smwrData)

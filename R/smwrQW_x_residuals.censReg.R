@@ -28,6 +28,12 @@
 #' @return The residuals from the regression as specified by \code{type}.
 # @seealso \code{\link{censReg}}
 #' @keywords internal regression
+#' @importFrom stats residuals
+#' @importFrom stats naresid
+#' @importFrom stats fitted
+#' @importFrom stats integrate
+#' @importFrom stats dnorm
+#' @importFrom stats hat
 #' @export
 #' @method residuals censReg
 residuals.censReg <- function(object , type="working",

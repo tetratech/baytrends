@@ -37,12 +37,20 @@
 #'
 #' @return return data frame of flow data with additional seasonally adjusted values
 #' @keywords internal
+#' @importFrom stats residuals
+#' @importFrom stats filter
 #' @export
 #'
 seasAdjflow <- function(dvFlow=dvFlow, siteNumber=NULL, dvAvgWin=c(7,31),
                       dvAvgWgt="weighted", dvAvgSides=1, plotResid=c(1)) {
   
 # -----< Change history >--------------------------------------------
+  
+  # QC, 20180424
+  # figNum not defined before used.
+  if(!exists("figNum")){
+    figNum<-0
+  }
   
   options(scipen=5)
   plotResid <- paste0("d",plotResid)

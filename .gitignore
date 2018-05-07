@@ -5,6 +5,6 @@
 inst/doc
 baytrends.Rproj
 NEWS.rmd
-
 NEWS.html
 data-raw/salinity_1984to2016.rdata
+NEWS.md
