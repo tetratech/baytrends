@@ -13,13 +13,14 @@
 .mergeFlow <- function(ct1=ct1, iSpec=iSpec, gageID=gageID, hydro.var=hydro.var
                        , flow.detrended=flow.detrended) {
 # -----< Change history >--------------------------------------------
+# 01May2018: JBH: changed .impute to impute  
 # 29Jul2017: JBH: first release
 
   # merge detrended flow with dependent variable
   tmp <- flow.detrended[[gageID]]
   tmp <- merge(ct1[, c("date",iSpec$dep)],
                tmp[ ,c("date",hydro.var)], by="date", all.x=TRUE)
-  tmp[,iSpec$dep] <- .impute(tmp[,iSpec$dep] )
+  tmp[,iSpec$dep] <- impute(tmp[,iSpec$dep] )
   # set up data frame to store correlation results
   hydro.var.corr <- data.frame(hydro.var=hydro.var, spearman= NA_real_ ,
                                chosen="-", stringsAsFactors = FALSE)

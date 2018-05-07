@@ -20,6 +20,18 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+baytrends 1.0.3.9001
+===========
+* Release 2018-05-07
+* Merge Development Branch (v.0.2.9012 DEV) with master branch.
+* Resolve conflicts:
+    + DESCRIPTION
+    + NAMESPACE
+    + NEWS (left alone as will rebuild)
+    + NEWS.rmd
+    + mergeFlow.R
+    + baytrends_LibraryCration.nb.html (left alone as will rebuild)
+
 baytrends 1.0.2.9012, development branch
 ===========
 * Released - 2018-05-03
@@ -95,12 +107,43 @@ baytrends 1.0.2.9011
 * expose impute function for simple substitution (0, 1/2dl, dl) conversion of qw data to vector
 * added error handling to trap mgcv::gam non-convergence errors
     
+=======
+baytrends 1.0.3
+===========
+* Release - 2018-05-03
+* Release version
+
+baytrends 1.0.2.9013
+===========
+* Release - 2018-05-03
+* Fix lubridate and plyr conflict.  Issue #6.
+    + gamTest change import lubridate mgcv plyr to 
+    importFrom for lubridate mdy and plyr  rbind.fill.
+
+baytrends 1.0.2.9012
+===========
+* Release - 2018-05-03
+* Update versioning in NEWS and DESCRIPTION
+
+baytrends 1.0.2.9011
+===========
+* Released - 2018-05-02
+* v1.0.2.9002 in DESCRIPTION
+* v1.0.3.0000 in NEWS
+* Updates: 
+    + add standard error to stat.gam.result and chng.gam.result output
+    + add USGS gage ID and name to stat.gam.result and chng.gam.result output
+    + add mgcvOK to stat.gam.result and chng.gam.result output to indicate if mgcv::gam ran ok
+    + removed median as option for summarizing data across layers
+    + expose impute function for simple substitution (0, 1/2dl, dl) conversion of qw data to vector
+    + added error handling to trap mgcv::gam non-convergence errors
+
 baytrends 1.0.2.9010
 ===========
 * Released - 2018-05-02
 * v1.0.2.9002
 * add intervention label to GAM Parameter Coefficient table.
-    
+
 baytrends 1.0.2.9009
 ===========
 * Released - 2018-05-02
@@ -122,6 +165,11 @@ baytrends 1.0.2.9005
 * Released - 2018-05-01
 * documentation updates
     
+baytrends 1.0.2.9004
+===========
+* Released - 2018-05-01
+* documentation updates
+
 baytrends 1.0.2.9004
 ===========
 * Released - 2018-05-01

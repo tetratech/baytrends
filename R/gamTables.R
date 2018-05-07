@@ -34,10 +34,11 @@
 #' @param lmo output from gam model
 #' @export
 #'
-.gamCoeff <- function(lmo) {
+.gamCoeff <- function(lmo, iSpec) { 
 #  lmo <- gamRslt
 
 # -----< Change history >--------------------------------------------
+# 01May2018: JBH: added iSpec to list of arguments, merge intervention label
 # 19Jul2017: JBH: Expanded table to include comparison of interventions
 #                 on an "A->B", "B->C", ... basis; changed lm.coeff
 #                 to not use factors
@@ -105,6 +106,12 @@
         lm.coeff[which(lm.coeff$source==interven2[i]),"intChg.p.value.actual"] <-  pval
       }
     }
+    # 01May2018: add label 
+    intervenList <- iSpec$intervenList
+    intervenList$interventionLabel <- paste0('intervention',intervenList$intervention)
+    lm.coeff <- merge(lm.coeff, intervenList[ ,c("interventionLabel","label")], 
+                      by.x="source",by.y="interventionLabel", all.x=TRUE)
+    
   }
   return(lm.coeff)
 }

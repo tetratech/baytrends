@@ -3,34 +3,36 @@
 #'
 #' Impute value for multiply censored data.
 #'
-#' @param x vector of type baytrends::qw or baytrends::mcens 
-#' @param imputeOption imputation method [default= "mid"], valid impute
-#'   options are "lower", "upper", "mid", "uniform", "norm", "lnorm"
-#' @param test logical field [default=FALSE]. If TRUE, then 
-#'   procedures that involve random number generation (such as
-#'   imputeOption="uniform") then the same result is outputted.
+#' @param x vector of type baytrends::qw  
+#' @param imputeOption imputation method [default= "mid"], valid impute options
+#'   are "lower", "upper", "mid"
 #' @details
-#' #TBD
+#' The imputeOption values of lower, upper and mid impute the lower limit, upper limit,
+#' and midpoint between the lower and upper limit. In the context of typical water quality
+#' data, these options would be eqivalent to zero, detection limit and 1/2 detection limit
+#' substitution. 
+#' 
 #' @examples
-#' #TBD
+#' x  <- dataCensored[20:36,5]
+#' x.lower <- impute(x,'lower')
+#' x.mid   <- impute(x,'mid')
+#' x.upper <- impute(x,'upper')
 #' @return vector where x is transformed into a simple numeric variable
 #' @export
 #
-.impute <-function(x, imputeOption="mid", test=FALSE) {
+impute <-function(x, imputeOption="mid") { 
   
 # ----- Change history --------------------------------------------
+# 01May2018: JBH: changed function name from .impute to impute; focus
+#                 lower, mid and upper options; accomodate NAs
 # 11Oct2016: JBH: corrected documentation, switched to explicit '::'
 #              for external function calls 
 
 # Initialization ####
   
-  # Set random number seed for testing
-  if (test) {
-    set.seed(12271963)
-  }
-  
   # Set valid imputeOption
-  validImpute <- c("lower", "upper", "mid", "uniform", "norm", "lnorm")
+  validImpute <- c("lower", "upper", "mid")
+  # validImpute <- c("lower", "upper", "mid", "uniform", "norm", "lnorm")
 
 # Error traps ####
   
@@ -71,19 +73,25 @@
 
 # Impute censored values ####
   
+  # 01May2018: update to accomodate vector with NA's
+  # create vector of NAs equal to the length of the input vector
+  x2 <- rep(NA,length(x))
+  
   if (imputeOption == "lower") {
-    x <- x@.Data[,1]
+    x2 <- x@.Data[,1]
   } else if (imputeOption == "upper") {
-    x <- x@.Data[,2]
+    x2 <- x@.Data[,2]
   } else if (imputeOption == "mid") {
-    x <- 0.5 * (x@.Data[,1] + x@.Data[,2])
+    x2 <- 0.5 * (x@.Data[,1] + x@.Data[,2])
   } else if (imputeOption == "uniform") {
-    x <- stats::runif(length(x), x@.Data[,1], x@.Data[,2])
+    x2[!is.na(x)] <- stats::runif(sum(!is.na(x)), x@.Data[!is.na(x),1], x@.Data[!is.na(x),2])
   } else if (imputeOption == "norm") {
-    x <- .simCensored(x,distr="norm")
+    x2[!is.na(x)] <- .simCensored(x[!is.na(x)],distr="norm")
   } else if (imputeOption == "lnorm") {
-    x <- .simCensored(x,distr="lnorm")
+    x2[!is.na(x)] <- .simCensored(x[!is.na(x)],distr="lnorm")
   } 
+  
+  x <- x2
 
 # Return ####   
   return(x)
