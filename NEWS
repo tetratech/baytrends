@@ -4,7 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-05-07 15:02:30
+    #> Last Update: 2018-05-07 15:44:27
+
+# baytrends 1.0.3.9003
+
+  - Release 2018-05-07
+  - Added salinity.detrended as a variable to three functions to pass
+    Check (no visible binding for global variable):
+      - .gamPlotCalc
+      - .mergeSalinity
+      - gamDiff
 
 # baytrends 1.0.3.9002
 
