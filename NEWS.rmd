@@ -19,6 +19,17 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.3.9002
+===========
+* Release 2018-05-07
+* Repackage with revised NEWS, NAMESPACE, and DESCRIPTION.
+* Ensure all Development branch modifications were merged.
+* Re-run Check.
+    + Move package `plyr` from Suggests to Imports in DESCRIPTION
+* Remaining Check issue with no visible binding for global variable; salinity.detrended
+    + .gamPlotCalc
+    + .mergeSalinity
+    + gamDiff
 
 baytrends 1.0.3.9001
 ===========
