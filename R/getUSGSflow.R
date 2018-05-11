@@ -37,8 +37,11 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
                           span=10, max.fill=10) {
 
 # -----< Change history >--------------------------------------------
+# 10May2018: JBH: fill in beginning/ending NAs (currently written to
+#                 fill in *all* begin/end NAs. need to migrate to max.fill)
 # 24Nov2017: JBH: transitioned to internalized smwrBase functions
 
+# fill=TRUE; span=10; max.fill=10; siteNumber=usgsGageID[1]
 # Error traps and Initialization ####
   # Set yearEnd if not supplied
   if (is.null(yearEnd)) {
@@ -86,13 +89,21 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
       vColq<-NaN; vColcd<-NaN
       vColq  <- which(names(df0) %in% paste0('q',siteNumber[i]))
       vColcd <- which(names(df0) %in% paste0('q',siteNumber[i], 'cd'))
-      # if there is missing flow data, then assign the qualifier cd to NaN
-      df0[, vColcd] <- ifelse(is.nan(df0[, vColq]), "NaN", df0[, vColcd])
-      # fill in missing flow values
+      # if there is missing flow data, then assign the qualifier cd to NA
+      df0[, vColcd] <- ifelse(is.na(df0[, vColq]), "NA", df0[, vColcd])
+      # fill in missing flow values within the time series
       df0[, vColq]  <- fillMissing(df0[, vColq], span=span, max.fill=max.fill)
+      # fill ending NAs  #10May2018
+      last.val.loc <- max(which(!is.na(df0[, vColq])))
+      last.val     <- df0[last.val.loc,vColq]
+      df0[is.na(df0[, vColq]) & as.numeric(rownames(df0)) > last.val.loc , vColq] <- last.val
+      # fill beginning NAs  #10May2018
+      first.val.loc <- min(which(!is.na(df0[, vColq])))
+      first.val     <- df0[first.val.loc,vColq]
+      df0[is.na(df0[, vColq]) & as.numeric(rownames(df0)) < first.val.loc , vColq] <- first.val
     }
   }
-
+  
 # Drop all in last 10 days ####
   df0<-df0[ df0$date<as.POSIXct(trunc(Sys.time(),units='days') - 10*24*3600), ]
 
