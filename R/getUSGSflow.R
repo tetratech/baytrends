@@ -38,7 +38,7 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
 
 # -----< Change history >--------------------------------------------
 # 10May2018: JBH: fill in beginning/ending NAs (currently written to
-#                 fill in *all* begin/end NAs. need to migrate to max.fill)
+#                 fill in *all* begin/end NAs. need to migrate to max.fill) 
 # 24Nov2017: JBH: transitioned to internalized smwrBase functions
 
 # fill=TRUE; span=10; max.fill=10; siteNumber=usgsGageID[1]
