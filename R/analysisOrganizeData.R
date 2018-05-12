@@ -262,7 +262,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   # to get USGS gage look up field and other meta data in built-in station list
   attr(df,"initialNumberRecords") <- beginRecords
   df <- .checkRange(df, var= "station",   varScrn = analySpec$stationFilt,   numNA = FALSE, deleteOption = "pass")
-  stationList <- data.frame(stations = unique(df$station))
+  stationList <- data.frame(stations = unique(df$station), stringsAsFactors = FALSE)
   stationList <- merge(stationList, stationMasterList, by.x="stations", by.y="station", all.x=TRUE)
   stationList <- stationList[ order(stationList$stationRO1, stationList$stationRO2) ,
                               !(names(stationList) %in% c(               "usgsGageMatch",
@@ -281,7 +281,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 
     # create a "layer lookup table" that includes a proper layer name and has a built in preferred
     # order for which order to analyze the layers (mostly to get surface before bottom)
-    layerList <- data.frame(layers = unique(df$layer))
+    layerList <- data.frame(layers = unique(df$layer), stringsAsFactors = FALSE)
     layerList <- merge(layerList,layerLukup,by="layers", all.x=TRUE)     #14Mar2017
     layerList <- layerList[ order(layerList$order) , names(layerList) %in% c("layers", "name")  ]
 
