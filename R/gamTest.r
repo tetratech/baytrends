@@ -382,9 +382,10 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     if (stat.gam.res1$mgcvOK) {
       # compute por difference (use full period of record and all seasons) #11Aug2017
       # base.yr.set=NA; test.yr.set=NA; doy.set=NA; alpha=alpha
-      por.diff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=NA, test.yr.set=NA, 
-                          doy.set=NA, alpha=alpha,
-                          flow.detrended=flow.detrended, salinity.detrended=salinity.detrended)
+      por.diff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=NA, test.yr.set=NA, doy.set=NA
+                          , alpha=alpha
+                          , flow.detrended=flow.detrended
+                          , salinity.detrended=salinity.detrended)
       
       # Turn t.deriv to TRUE/FALSE based on which model is being evaluated
       t.deriv <- gamModel.deriv
@@ -678,9 +679,11 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
           doy.set <- baseDay(as.POSIXct(paste(2000,months,15,sep='-')))
           
           # Calculate gamDiff  30Sep2017: added analySpec to function call
-          sub.gamDiff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=base.yr.set,
-                                 test.yr.set=test.yr.set, doy.set=doy.set,
-                                 alpha=alpha)
+          sub.gamDiff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=base.yr.set
+                                 , test.yr.set=test.yr.set, doy.set=doy.set
+                                 , alpha=alpha
+                                 , flow.detrended=flow.detrended
+                                 , salinity.detrended=salinity.detrended)
           
           #which sub.gamDiff to output
           sub.gamDiff.tmp                  <- if(intervention) {sub.gamDiff[[2]]} else {sub.gamDiff[[1]]}

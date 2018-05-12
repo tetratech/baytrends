@@ -78,7 +78,7 @@
 #'
 # ####
 gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy.set=NA,alpha=0.05
-                    , flow.detrended=flow.detrended, salinity.detrended=salinity.detrended) {
+                    , flow.detrended=NA, salinity.detrended=NA) {
 # -----< Change history >--------------------------------------------
 # 30Sep2017: JBH: added salinity interpolation to merge up with pdat
 # 11Aug2017: JBH: added analySpec to function input parameters; renamed pct.chg.dta to pdat
