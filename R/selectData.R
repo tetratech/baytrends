@@ -235,7 +235,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   
 # Set up flow/salinity modeling parameters #21Jul2017 ####
   # split strings into vectors
-  iSpec$flwAvgWin <- as.numeric(unlist(strsplit(iSpec$flwAvgWin, " ")))
+  iSpec$flwAvgWin <- suppressWarnings(as.numeric(unlist(strsplit(iSpec$flwAvgWin, " "))))
   iSpec$flwParms  <- unlist(strsplit(iSpec$flwParms, " "))
   iSpec$salParms  <- unlist(strsplit(iSpec$salParms, " "))
 
@@ -260,7 +260,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   if(!is.na(layer) & ("layer" %in% names(df))) {
     df <- df[ df$station==stat & df$layer==layer, ]
     iSpec$statLayer <- paste0 (stat," (",layer,")")
-    iSpec$layerName<- layerLukup[layerLukup$layers==layer, "name"]
+    iSpec$layerName<- layerList[layerList$layers==layer, "name"]
   } else if (is.na(layer) & !("layer" %in% names(df))) {
     df <- df[ df$station==stat , ]
     iSpec$statLayer <- paste0 (stat)

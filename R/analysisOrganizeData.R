@@ -164,9 +164,9 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   beginRecords <- nrow(df)
   
   # Use built-in data frames if not supplied by use, 20180503
-  if (is.na(parameterList))     parameterList     <- baytrends::parameterList
-  if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList
-  if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup
+  suppressWarnings(if (is.na(parameterList))     parameterList     <- baytrends::parameterList)
+  suppressWarnings(if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList)
+  suppressWarnings(if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup)
 
 # 1) Review user supplied specifications.  ####
 
