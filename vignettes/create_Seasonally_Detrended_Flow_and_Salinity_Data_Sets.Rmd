@@ -89,9 +89,9 @@ dvAvgSidesSel <- 1
 lowess.f      <- 0.2
 
 # Run detrended.flow function
-detrended.flow(usgsGageID, siteName, yearStart, yearEnd
-              , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
-              , lowess.f)
+flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
+                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
+                                 , lowess.f)
 ```
 
 ## Seasonally Detrended Salinity
@@ -131,7 +131,7 @@ salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel,
                                  lowess.f, minObs, minObs.sd)   
 
 # Save list to data file separate use
-save(flow.salinity, file='mySeasonallyDetrendedSalinity.rda')
+save(salinity.detrended, file='mySeasonallyDetrendedSalinity.rda')
 ```
 
 ### Example
@@ -149,7 +149,7 @@ minObs      <- 40
 minObs.sd   <- 10
                  
 # Run Function
-detrended.salinity(df.sal, dvAvgWinSel, lowess.f, minObs, minObs.sd) 
+salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel, lowess.f, minObs, minObs.sd) 
 ```
 
 ## Example GAM Analysis 
@@ -165,5 +165,7 @@ analySpec <- dfr[["analySpec"]]
 analySpec$gamModels <- analySpec$gamModels[5]
 
 stat = 'CB5.4'; dep = 'tn'; layer = 'S';
-gamResult <- gamTest(df, dep, stat, layer, analySpec)
+gamResult <- gamTest(df, dep, stat, layer, analySpec
+                     , salinity.detrended=salinity.detrended)
+
 ```

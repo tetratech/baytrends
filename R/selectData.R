@@ -182,9 +182,9 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   }
 
   # QC check fix, 20180503
-  parameterList <- baytrends::parameterList
-  stationMasterList <- baytrends::stationMasterList
-  layerLukup <- baytrends::layerLukup
+  stationList <- analySpec$stationList
+  depVarList     <- analySpec$depVarList
+  layerLukup        <- analySpec$layerLukup
   
   # make sure layerLukup exists
   if(!exists("layerLukup")) stop("Layer look-up list not found. Operation stopped!")
@@ -198,11 +198,11 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$dep          <- dep     # changed to "ln + dep" if transform == TRUE
   iSpec$depOrig      <- dep
   iSpec$stat         <- stat
-  iSpec$stationMethodGroup <- stationMasterList[stationMasterList$station==stat,"stationMethodGroup"]
-  iSpec$hydroTerm <- tolower(stationMasterList[stationMasterList$station==stat,"hydroTerm"]) #21Jul2017
-  iSpec$flwAvgWin <- tolower(stationMasterList[stationMasterList$station==stat,"flwAvgWin"]) #21Jul2017
-  iSpec$flwParms  <- tolower(stationMasterList[stationMasterList$station==stat,"flwParms"])  #21Jul2017
-  iSpec$salParms  <- tolower(stationMasterList[stationMasterList$station==stat,"salParms"])  #21Jul2017
+  iSpec$stationMethodGroup <- stationList[stationList$stations==stat,"stationMethodGroup"]
+  iSpec$hydroTerm <- tolower(stationList[stationList$stations==stat,"hydroTerm"]) #21Jul2017
+  iSpec$flwAvgWin <- tolower(stationList[stationList$stations==stat,"flwAvgWin"]) #21Jul2017
+  iSpec$flwParms  <- tolower(stationList[stationList$stations==stat,"flwParms"])  #21Jul2017
+  iSpec$salParms  <- tolower(stationList[stationList$stations==stat,"salParms"])  #21Jul2017
   iSpec$hydroTermSel <- NA_character_                                                        #21Jul2017
   iSpec$hydroTermSel.var <- NA_character_                                                    #29Jul2017 
   iSpec$hydro.var.corr <- data.frame(NULL)                                                   #29Jul2017
@@ -211,19 +211,19 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$layer        <- layer
   iSpec$layerName    <- NA
   iSpec$transform    <- transform
-  iSpec$trendIncrease<- parameterList[parameterList$parm==dep, "trendIncrease"]
+  iSpec$trendIncrease<- depVarList[depVarList$deps==dep, "trendIncrease"]
   iSpec$logConst     <- 0             # migrated to default value of 0 for censored data
   iSpec$recensor     <- NA_real_      # always computed
   iSpec$censorFrac   <- data.frame(NULL)
   iSpec$yearRangeDropped   <- NA_real_      # always computed
   iSpec$censorFracSum<- data.frame(NULL)
   iSpec$centerYear   <- NA_real_      # computed if center == TRUE
-  iSpec$parmName     <- parameterList[parameterList$parm==dep, "parmName"]
-  iSpec$parmNamelc   <- parameterList[parameterList$parm==dep, "parmNamelc"]
-  iSpec$parmUnits    <- parameterList[parameterList$parm==dep, "parmUnits"]
+  iSpec$parmName     <- depVarList[depVarList$deps==dep, "parmName"]
+  iSpec$parmNamelc   <- depVarList[depVarList$deps==dep, "parmNamelc"]
+  iSpec$parmUnits    <- depVarList[depVarList$deps==dep, "parmUnits"]
   iSpec$statLayer    <- NA            # always computed
-  iSpec$usgsGageID   <- stationMasterList[stationMasterList$station==stat,"usgsGageID"]
-  iSpec$usgsGageName <- stationMasterList[stationMasterList$station==stat,"usgsGageName"]
+  iSpec$usgsGageID   <- stationList[stationList$stations==stat,"usgsGageID"]
+  iSpec$usgsGageName <- stationList[stationList$stations==stat,"usgsGageName"]
   iSpec$numObservations <- NA_real_
   iSpec$dyearBegin   <- NA_real_      # always computed
   iSpec$dyearEnd     <- NA_real_      # always computed
@@ -291,7 +291,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                         min(conc[!is.na(conc$upper) & conc$upper>0,'upper'], na.rm=TRUE))
   
   # 03Nov compare recensor to parameter lookup table value & take minimum
-  iSpec$recensor <- recensor <- min( parameterList[parameterList$parm==dep, "parmRecensor"],
+  iSpec$recensor <- recensor <- min( depVarList[depVarList$deps==dep, "parmRecensor"],
                                      recensor,  na.rm=TRUE)
   
   if(transform) {  #12Mar2018 only recensor variable that will be log transformed

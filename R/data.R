@@ -135,23 +135,3 @@
 #'    \item{salinity}{Measured salinity}
 #' }
 "sal"
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# flow.detrended ####
-#' @title Detrended flow data
-#' 
-#' @description Flow data, 1983 to 2016, seasonally detrended, for 2 stations.
-#' 
-#' @format A list of 8:
-#' \describe{
-#'    \item{retreiveDate}{Date data was generated}
-#'    \item{gages}{data.frame: 2 obs of 2 variables}
-#'    \item{usgsGageID}{USGS Gage ID}
-#'    \item{siteName}{USGS Site Name}
-#'    \item{yearStart}{start year, YYYY-MM-DD}
-#'    \item{yearEnd}{end year, YYYY-MM-DD}
-#'    \item{dvAvgWinSel}{daily value, average win sel}
-#'    \item{dvAvgWgtSel}{daily value, average weighted sel}
-#'    \item{dvAvgSidesSel}{daily value, average sides sel} 
-#'    \item{lowess.f}{lowess.f}  
-#' }
-"flow.detrended"

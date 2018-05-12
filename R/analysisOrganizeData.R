@@ -9,6 +9,9 @@
 #' @param analySpec Specifications for analysis
 #' @param reports Optional reports about parameters, layers and stations
 #'   [default = c(0,1,2,3)]
+#' @param parameterList User-supplied parameter list [default = NA]
+#' @param stationMasterList User-supplied station list [default = NA]
+#' @param layerLukup User-supplied layer lookup list [default = NA]
 #'
 #' @details
 #'  The following steps are performed:
@@ -115,9 +118,12 @@
 #'
 #' @export
 # ####
-analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) { 
+analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
+                                 , parameterList     = NA
+                                 , stationMasterList = NA
+                                 , layerLukup        = NA) { 
 
-# df<-dataCensored; reports=NA
+# df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
 # 01May2018: JBH: removed median as option for layer aggregation  
 # 06Aug2017: JBH: added gamFlw_Sal.Wgt.Perc
@@ -152,14 +158,15 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
 #            (Previously it would only keep those that are in stationMasterList.
 
 # 0) Perform some useful housekeeping ####
-
+# df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
+  
   # Store number of rows of data
   beginRecords <- nrow(df)
   
-  # QC check fix, 20180503
-  parameterList <- baytrends::parameterList
-  stationMasterList <- baytrends::stationMasterList
-  layerLukup <- baytrends::layerLukup
+  # Use built-in data frames if not supplied by use, 20180503
+  if (is.na(parameterList))     parameterList     <- baytrends::parameterList
+  if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList
+  if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup
 
 # 1) Review user supplied specifications.  ####
 
@@ -247,7 +254,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
   depVarList <- merge(depVarList, parameterList, by.x="deps", by.y="parm", all.x=TRUE)
   depVarList <- depVarList[ order(depVarList$parmRO1, depVarList$parmRO2) ,
                             names(depVarList) %in% c("deps", "parmName", "parmNamelc",
-                                                     "parmUnits", "logTrans", "trendIncrease")]
+                                                     "parmUnits", "logTrans", "trendIncrease", "parmRecensor")]
   depVarList$depsGAM  <- as.character(depVarList$deps)
   depVarList[ depVarList$logTrans, "depsGAM"] <- paste0('ln',depVarList[ depVarList$logTrans, "deps"])
 
@@ -258,7 +265,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
   stationList <- data.frame(stations = unique(df$station))
   stationList <- merge(stationList, stationMasterList, by.x="stations", by.y="station", all.x=TRUE)
   stationList <- stationList[ order(stationList$stationRO1, stationList$stationRO2) ,
-                              !(names(stationList) %in% c("usgsGageName","usgsGageMatch",
+                              !(names(stationList) %in% c(               "usgsGageMatch",
                                                           "stationRO1", "stationRO2"))  ]
   # drop data based on date
   df$date <- as.POSIXct(df$date)
@@ -300,7 +307,11 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
 
   # add gamPlot legend  #01Nov2016
   analySpec$gamLegend <- gamLegend
-
+  
+  # # add parameter, stationMaster, and layer lists to analySpec
+  # analySpec$parameterList     <- parameterList
+  # analySpec$stationMasterList <- stationMasterList
+  # analySpec$layerLukup        <- layerLukup
 
   # add newly created variables back to analySpec
   analySpec$idVar         <- idVar
@@ -330,10 +341,10 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)) {
       .H3("Parameters")
       .T("List of Parameters.")
       print(knitr::kable(depVarList[ , c("deps", "parmName", "parmUnits",
-                                         "logTrans", "trendIncrease", "depsGAM")],
+                                         "logTrans", "depsGAM")],
                   format = "pandoc", padding = 0 ,  row.names=FALSE,
                   col.names= c("Dep. Var.", "Parameter Name", "Units",
-                               "Log Tran.","Inc. Conc.","GAM Dep. Var.")))
+                               "Log Tran.","GAM Dep. Var.")))
     }
 
     # Layer report
