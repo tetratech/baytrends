@@ -184,10 +184,10 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   # QC check fix, 20180503
   stationList <- analySpec$stationList
   depVarList     <- analySpec$depVarList
-  layerLukup        <- analySpec$layerLukup
+  layerList        <- analySpec$layerList
   
-  # make sure layerLukup exists
-  if(!exists("layerLukup")) stop("Layer look-up list not found. Operation stopped!")
+  # make sure layerList exists
+  if(!exists("layerList")) stop("Layer look-up list not found. Operation stopped!")
 
   setTZ <- analySpec$setTZ
 
