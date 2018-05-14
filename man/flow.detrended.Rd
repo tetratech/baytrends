@@ -8,14 +8,20 @@
 \describe{
    \item{retreiveDate}{Date data was generated}
    \item{gages}{data.frame: 2 obs of 2 variables}
-   \item{usgsGageID}{USGS Gage ID}
-   \item{siteName}{USGS Site Name}
+   \item{usgsGageID}{USGS GageIDs}
+   \item{siteName}{USGS SiteName}
    \item{yearStart}{start year, YYYY-MM-DD}
    \item{yearEnd}{end year, YYYY-MM-DD}
-   \item{dvAvgWinSel}{daily value, average win sel}
-   \item{dvAvgWgtSel}{daily value, average weighted sel}
-   \item{dvAvgSidesSel}{daily value, average sides sel} 
-   \item{lowess.f}{lowess.f}  
+   \item{dvAvgWinSel}{daily value; Averaging window (days) for smoothing the residuals of the 
+  seasonally adjusted daily flow values, e.g.,  c(1, 5, 10, 15, 20, 30, 40,
+  50, 60, 90, 120, 150, 180, 210) }
+   \item{dvAvgWgtSel}{daily value; Averaging method ("uniform", "weighted", or
+  "centered") for creating weights.}
+   \item{dvAvgSidesSel}{daily value; If dvAvgSidesSel=1 only past values are used, if dvAvgSidesSel=2
+  then values are centered around lag 0.} 
+   \item{lowess.f}{lowess smoother span applied to computed standard deviation.
+  This gives the proportion of points which influence the smooth
+  at each value. Larger values give more smoothness.}  
 }}
 \usage{
 flow.detrended
