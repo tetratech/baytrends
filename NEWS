@@ -4,33 +4,155 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-05-07 15:44:27
+    #> Last Update: 2018-05-14 10:45:39
 
-# baytrends 1.0.3.9003
+# baytrends 1.0.3.9021
 
-  - Release 2018-05-07
-  - Added salinity.detrended as a variable to three functions to pass
-    Check (no visible binding for global variable):
-      - .gamPlotCalc
-      - .mergeSalinity
-      - gamDiff
+  - Released 2018-05-14
+  - Updated NEWS and DESCRIPTION.
+  - Check results: no errors, warnings, or notes.
 
-# baytrends 1.0.3.9002
+# baytrends 1.0.3.9020
 
-  - Release 2018-05-07
-  - Repackage with revised NEWS, NAMESPACE, and DESCRIPTION.
-  - Ensure all Development branch modifications were merged.
-  - Re-run Check.
-      - Move package `plyr` from Suggests to Imports in DESCRIPTION
+  - Released 2018-05-13
+  - GitHub commit; Merge pull request \#16 from tetratech/12Mar2018
+
+# baytrends 1.0.3.9019
+
+  - Released 2018-05-13
+  - GitHub commit; v1.0.3.9011
+  - missed layerLukup -\> layerList naming convention
+
+# baytrends 1.0.3.9019
+
+  - Released 2018-05-12
+  - GitHub commit; Merge pull request \#15 from tetratech/12Mar2018
+
+# baytrends 1.0.3.9018
+
+  - Released 2018-05-12
+  - GitHub commit; v1.0.4
+
+# baytrends 1.0.3.9017
+
+  - Released 2018-05-12
+  - GitHub commit; v1.0.4
+
+# baytrends 1.0.3.9016
+
+  - Released 2018-05-12
+  - GitHub commit; v1.0.4
+  - Added passing of salinity.detrended and flow.detrended to gamTest
+  - Added passing stationMasterList, parameterList, and layerLukup to
+    analyzeOrganizeData
+  - Corrected getUSGSflow function to accomodate missing values at
+    beginning/ending of record
+  - Moved package `plyr` from Suggests to Imports in DESCRIPTION
   - Remaining Check issue with no visible binding for global variable;
     salinity.detrended
       - .gamPlotCalc
       - .mergeSalinity
       - gamDiff
 
+# baytrends 1.0.3.9015
+
+  - Released 2018-05-12
+  - GitHub commit; Merge pull request \#14 from
+    tetratech/detrended\_files
+  - Detrended files
+
+# baytrends 1.0.3.9014
+
+  - Released 2018-05-12
+  - GitHub commit; v1.0.3.9009
+  - Set data frames for station and layer list to not use factors
+
+# baytrends 1.0.3.9013
+
+  - Released 2018-05-12
+  - GitHub commit; v1.0.3.9009
+  - Further clean up for handling detrended files.
+
+# baytrends 1.0.3.9012
+
+  - Released 2018-05-12
+  - GitHub commit; v1.0.3.9009
+  - Migrate gamDiff for detrended flow and salinity.
+
+# baytrends 1.0.3.9011
+
+  - Released 2018-05-12
+  - GitHub commit; v1.0.3.9008
+  - analysisOrganizeData: add parameterList, stationMasterList, and
+    layerLukup to argument list. If not passed then default baytrend
+    data frames are used. added parmRecensor to depVarList, added
+    usgsGageName to stationList
+  - selectData: migrated from using stationMasterList, parameterList to
+    stationList and depVarList.
+  - gamTest: added salinity.detrended to argument list, updated
+    conditionals used to skip flw\_sal models, embedded explicit passing
+    of flow.detrended and salinity.detrended to mergeFlow and
+    mergeSalinity.
+
+# baytrends 1.0.3.9010
+
+  - Released 2018-05-12
+  - GitHub commit; documentation typographical error correction
+
+# baytrends 1.0.3.9009
+
+  - Released 2018-05-11
+  - GitHub commit; Merge pull request \#11 from
+    tetratech/fix\_flow\_retrieval
+
+# baytrends 1.0.3.9008
+
+  - Released 2018-05-11
+  - GitHub commit; v1.0.3.9005
+  - updated getUSGSflow function to fill in missing flow values at the
+    beginning and ending of time series.
+
+# baytrends 1.0.3.9007
+
+  - Released 2018-05-11
+  - GitHub commit; Merge pull request \#10 from
+    tetratech/fix\_flow\_retrieval
+
+# baytrends 1.0.3.9006
+
+  - Released 2018-05-011
+  - GitHub commit; v1.0.3.9005
+  - updated getUSGSflow function to fill in missing flow values at the
+    beginning and ending of time series.
+
+# baytrends 1.0.3.9005
+
+  - Released 2018-05-09
+  - GitHub commit; Merge pull request \#8 from
+    tetratech/harcum\_development
+
+# baytrends 1.0.3.9004
+
+  - Released 2018-05-09
+  - GitHub commit; v1.0.3.9004
+
+# baytrends 1.0.3.9003
+
+  - Released 2018-05-07
+  - GitHub commit; v1.0.3.9003
+  - Last fix for Check. Ready for sumittal to CRAN. Issue \#1
+
+# baytrends 1.0.3.9002
+
+  - Released 2018-05-07
+  - GitHub commit; v1.0.3.9002
+  - Verified merge of DEV branch into Master.  
+  - Fixed an issue with plyr and
+  - Re-ran Check to get ready for CRAN submittal (Issue \#1 ).
+
 # baytrends 1.0.3.9001
 
-  - Release 2018-05-07
+  - Released 2018-05-07
   - Merge Development Branch (v.0.2.9012 DEV) with master branch.
   - Resolve conflicts:
       - DESCRIPTION
@@ -130,19 +252,19 @@ NEWS
     conversion of qw data to vector
   - added error handling to trap mgcv::gam non-convergence errors
 
-\======= baytrends 1.0.3 =========== \* Release - 2018-05-03 \* Release
+\======= baytrends 1.0.3 =========== \* Released - 2018-05-03 \* Release
 version
 
 # baytrends 1.0.2.9013
 
-  - Release - 2018-05-03
+  - Released - 2018-05-03
   - Fix lubridate and plyr conflict. Issue \#6.
       - gamTest change import lubridate mgcv plyr to importFrom for
         lubridate mdy and plyr rbind.fill.
 
 # baytrends 1.0.2.9012
 
-  - Release - 2018-05-03
+  - Released - 2018-05-03
   - Update versioning in NEWS and DESCRIPTION
 
 # baytrends 1.0.2.9011
