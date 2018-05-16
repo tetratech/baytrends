@@ -4,7 +4,8 @@
 \alias{analysisOrganizeData}
 \title{Analysis Organization & Data Preparation}
 \usage{
-analysisOrganizeData(df, analySpec = list(), reports = c(0, 1, 2, 3))
+analysisOrganizeData(df, analySpec = list(), reports = c(0, 1, 2, 3),
+  parameterList = NA, stationMasterList = NA, layerLukup = NA)
 }
 \arguments{
 \item{df}{Data frame}
@@ -13,6 +14,12 @@ analysisOrganizeData(df, analySpec = list(), reports = c(0, 1, 2, 3))
 
 \item{reports}{Optional reports about parameters, layers and stations
 [default = c(0,1,2,3)]}
+
+\item{parameterList}{User-supplied parameter list [default = NA]}
+
+\item{stationMasterList}{User-supplied station list [default = NA]}
+
+\item{layerLukup}{User-supplied layer lookup list [default = NA]}
 }
 \value{
 Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
