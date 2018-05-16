@@ -45,17 +45,22 @@ seasAdjflow <- function(dvFlow=dvFlow, siteNumber=NULL, dvAvgWin=c(7,31),
                       dvAvgWgt="weighted", dvAvgSides=1, plotResid=c(1)) {
   
 # -----< Change history >--------------------------------------------
+# 16May2018: JBH: clean up documentation; handle case if flow has missing value
+    
+# 1) Initialize and perform error trapping ####
   
-  # QC, 20180424
+  # turn off scientific notation
+  options(scipen=5) 
+  
+  # create "d" + window variable
+  plotResid <- paste0("d",plotResid)
+  
   # figNum not defined before used.
   if(!exists("figNum")){
     figNum<-0
   }
   
-  options(scipen=5)
-  plotResid <- paste0("d",plotResid)
-  
-  # 0) Override user selection if there is a mismatch of dvAvgWgt, dvAvgSides,
+  # Override user selection if there is a mismatch of dvAvgWgt, dvAvgSides,
   # or dvAvgWin
   if (dvAvgWgt=="weighted" & !(dvAvgSides==1)) {
     dvAvgSides <- 1
@@ -67,15 +72,14 @@ seasAdjflow <- function(dvFlow=dvFlow, siteNumber=NULL, dvAvgWin=c(7,31),
     warning("dvAvgSides set to 2 because of dvAvgWgt selection.")
   }
   
-  # 1) Check to make sure that the raw flow data are in the data set
-  #    and that seasonally adjusted values have not already been computed.
-  #
+  # Make sure that the raw flow data are in the data set and that seasonally
+  # adjusted values have not already been computed.
+  
   # determine variable names
   varQ       <- paste0('q',siteNumber)
   varQ2      <- paste0('q')
   varLogQ    <- paste0('LogQ')
   varGAMQ    <- paste0(varQ,'.gam')
-  # varLogQ    <- paste0('LogQ',siteNumber)
   
   # error trap for raw flow data
   if (!(varQ %in% names(dvFlow))) {
@@ -89,33 +93,37 @@ seasAdjflow <- function(dvFlow=dvFlow, siteNumber=NULL, dvAvgWin=c(7,31),
   
   # find what column the flow data are in
   iCol   <- grep( paste0("^",varQ,"$") , colnames(dvFlow))
+
+# 2) Begin Calculations ####  
   
-  
-# Begin Calculations ####  
-  # 2) Add date features if not already in the data set.
-  #
-  # add date features if not already in dvFlow
+  # Add date features if not already in the data set.
   if ( !("year"  %in% names(dvFlow) |
          "doy"   %in% names(dvFlow) |
          "month" %in% names(dvFlow) )) {
     dvFlow<-appendDateFeatures(dvFlow)
   }
   
-  # 3) Take and store Log flow as 'LogQ...'
-  #
-  dvFlow[,varQ2]  <- dvFlow[,iCol]
-  dvFlow[,varLogQ]  <- log(dvFlow[,iCol])
+  # Store flow data as var 'q' 
+  dvFlow[,varQ2]    <- dvFlow[,iCol]      
   
-  # 4) Compute GAM model and store seasonally adjusted
-  #    Log flowresiduals as 'sa1LogQ...'
-  #
+  # Store Log flow as 'LogQ'
+  dvFlow[,varLogQ]  <- log(dvFlow[,iCol]) 
+  
+# 3) Compute GAM model #### 
   LogQgam   <- mgcv::gam(dvFlow[,varLogQ] ~  s(dvFlow[,"doy"],bs='cc'))
-  predLogQ  <- predict(LogQgam)
-  dvFlow[,varGAMQ] <- exp(predLogQ)
-  varsa1LogQ <- paste0('d1')
-  dvFlow[,varsa1LogQ]  <- residuals(LogQgam)
   
-  # plot daily flow 
+  # extract gam predictions in log space
+  predLogQ  <- predict(LogQgam)
+  
+  # save "observed" (i.e., exp(*)) gam predictions in data frame as "q___.gam"
+  dvFlow[!is.na(dvFlow[,varLogQ]),varGAMQ] <- exp(predLogQ)
+  
+  # store seasonally adjusted Log flowresiduals as 'd1'
+  # (using d1 is correct since we've not done any averaging ... so, like a 1-day average)
+  varsa1LogQ <- paste0('d1')
+  dvFlow[!is.na(dvFlow[,varLogQ]),varsa1LogQ]  <- residuals(LogQgam)
+  
+# 4) plot daily flow ####
   plot(dvFlow[,"doy"],dvFlow[,iCol]  , log="y", main=siteNumber,
        xlab="Day of Year", ylab="Daily Flow [cms]", las=1)
   lines(c(1:366),exp(predLogQ[1:366]),col='red',lwd=3)
@@ -129,17 +137,17 @@ seasAdjflow <- function(dvFlow=dvFlow, siteNumber=NULL, dvAvgWin=c(7,31),
   yrange= max(abs(dvFlow[,varsa1LogQ]), na.rm=TRUE )
   yrange= c(-1.0*yrange,yrange)
   
-  # 5) Compute average seasonally adjusted Log flow residuals
+# 5) Compute average seasonally adjusted Log flow residuals ####
   #    by smoothing windows and store as "saxLogQ..."
   
-  # Create averagedf "saxLogQ..."
+  # Create and store iRow-day averaged log residuals, e.g., d5, d10, ... 
   for (iRow in dvAvgWin[!(dvAvgWin %in% 1)]) {
     varsaxLogQ <- paste0('d',iRow)
     wgts <- filterWgts( iRow  ,   dvAvgWgt)
     dvFlow[,varsaxLogQ]  <- filter(dvFlow[,varsa1LogQ], wgts, sides=dvAvgSides)
   }
   
-  # Plot 
+# 6) Plot selected averaged log residuals ####
   for(iRow in dvAvgWin) {
     varsaxLogQ <- paste0('d',iRow)
     if (varsaxLogQ %in% plotResid) { 

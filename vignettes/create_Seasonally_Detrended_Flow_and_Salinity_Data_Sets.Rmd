@@ -46,7 +46,7 @@ The below code chunk is an example of retrieving and seasonally detrending daily
 
 To best match up with water quality data, we recommend retrieving flow data for one year prior to the first year of water quality data. This allows for creating a time-averaged flow data set and not loose the first few months of water quality data due to lack of matching flow data. Data retrievals should also be made in light of the time needed by the USGS to review and approve their flow records.  
 
-Information about the settings for dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel, and lowess.f are described in the help file for this function.  
+Information about the settings for dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel, lowess.f, span, and max.fill are described in the help file for this function.    
 
 ```{r flow, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5}
 # Define Function Inputs
@@ -89,9 +89,9 @@ dvAvgSidesSel <- 1
 lowess.f      <- 0.2
 
 # Run detrended.flow function
-detrended.flow(usgsGageID, siteName, yearStart, yearEnd
-              , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
-              , lowess.f)
+flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
+                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
+                                 , lowess.f)
 ```
 
 ## Seasonally Detrended Salinity
@@ -131,7 +131,7 @@ salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel,
                                  lowess.f, minObs, minObs.sd)   
 
 # Save list to data file separate use
-save(flow.salinity, file='mySeasonallyDetrendedSalinity.rda')
+save(salinity.detrended, file='mySeasonallyDetrendedSalinity.rda')
 ```
 
 ### Example
@@ -149,7 +149,7 @@ minObs      <- 40
 minObs.sd   <- 10
                  
 # Run Function
-detrended.salinity(df.sal, dvAvgWinSel, lowess.f, minObs, minObs.sd) 
+salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel, lowess.f, minObs, minObs.sd) 
 ```
 
 ## Example GAM Analysis 
@@ -165,5 +165,7 @@ analySpec <- dfr[["analySpec"]]
 analySpec$gamModels <- analySpec$gamModels[5]
 
 stat = 'CB5.4'; dep = 'tn'; layer = 'S';
-gamResult <- gamTest(df, dep, stat, layer, analySpec)
+gamResult <- gamTest(df, dep, stat, layer, analySpec
+                     , salinity.detrended=salinity.detrended)
+
 ```

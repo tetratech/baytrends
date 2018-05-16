@@ -1,5 +1,5 @@
 ###############################################################################
-#' Impute Censored Values
+#' Impute Censored Values   
 #'
 #' Impute value for multiply censored data.
 #'
