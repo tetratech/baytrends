@@ -362,8 +362,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 
 # 7) Reports on the number of records, parameters, layers and stations #####
 
-  if(exists("reports") ) {
-
+  {
     # Record count report
     if(0 %in% reports) {
       .H3("Record Count")

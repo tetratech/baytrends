@@ -25,6 +25,7 @@
 .layerAggregation <- function(df, avgTechnique="median", layerAggOption=0) {
 
 # -----< Change history >--------------------------------------------
+# 17May2018: JBH: removed "exist" stmt 
 # 29Oct2016: JBH: migrated to helper function
 # 10Oct2016: JBH: updated to allow for aggregation of censored data  
 # 16Jun2016: JBH: added layerAggOption = 5; revised help file
@@ -155,7 +156,7 @@
     names(conc) <- c("lower", "upper", "qualifier", "repLevel", "method", "lab")
     conc$parameter <- tmpVar
     conc <- cbind (df[, attr(df,"idVar")] , conc)
-    if(!(exists("df1"))) {
+    if(tmpVar == tmpVarList[1]) {    # 17May2018 swap out  !(exists("df1"))
       df1 <- conc
     } else {
       df1 <- rbind (df1 , conc)
