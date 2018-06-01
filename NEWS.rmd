@@ -19,9 +19,12 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-baytrends 1.0.4.90001
+baytrends 1.0.4.9003
 ===========
-* Released 2018-05-xx
+* Updated impute function to include maximum likelihood estimation assuming normal and lognormal distribution
+
+baytrends 1.0.4.9001 & 1.0.4.9002
+===========
 * Updated NEWS and DESCRIPTION.
 * Updated online documentation for analysisOrganizeData function
 * pass parameterList from gamTest to .chkParameter

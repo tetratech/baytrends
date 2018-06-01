@@ -12,6 +12,12 @@
 #  email:         eperry@chesapeake.net
 #=====================================================================
 
+# 
+# 01Jun2018: JBH: added "df$" to mu to create df$mu in lognormal functions
+# 23May2018: JBH: added "row.names = NULL"  to df <- data.frame(l=l, u=u, mu=mu)
+#                 to avoid warning message of row names were found from a short 
+#                 variable and have been discarded
+
 #====================LogNormal Case Functions==============================
 
 #' Expectation maximization function: Log-normal case
@@ -32,7 +38,7 @@
 
 .ExpLNlCens <- function(l,u,mu,sigma,lCens=NA) {
   # computes expected value for left censored interval for log-normal
-  df <- data.frame(l=l, u=u, mu=mu)
+  df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
 
   if(is.na(lCens[1])) {
     df$lcens <- ((df$l==0) & is.finite(df$u))
@@ -41,7 +47,7 @@
   }
 
   if (any(df$lcens)) {
-    df$zu[df$lcens] <- (log(df$u[df$lcens]) - mu[df$lcens])/sigma
+    df$zu[df$lcens] <- (log(df$u[df$lcens]) - df$mu[df$lcens])/sigma # 01Jun2018
     df$ec[df$lcens] <- exp(df$mu[df$lcens] + sigma**2/2)* stats::pnorm(df$zu[df$lcens]-sigma) / stats::pnorm(df$zu[df$lcens])
     df$l[df$lcens] <- df$ec[df$lcens]
     df$u[df$lcens] <- df$ec[df$lcens]
@@ -51,7 +57,7 @@
 
 .ExpLNrCens <- function(l,u,mu,sigma,rCens=NA) {
   # computes expected value for right censored for log-normal
-  df <- data.frame(l=l, u=u, mu=mu)
+  df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
 
   if(is.na(rCens[1])) {
     df$rcens <- (is.finite(df$l) & is.infinite(df$u))
@@ -60,7 +66,7 @@
   }
 
   if (any(df$rcens))  {
-    df$zl[df$rcens] <- (log(df$l[df$rcens]) - mu[df$rcens])/sigma
+    df$zl[df$rcens] <- (log(df$l[df$rcens]) - df$mu[df$rcens])/sigma # 01Jun2018
     df$ec[df$rcens] <- exp(df$mu[df$rcens] + sigma**2/2)* (1-stats::pnorm(df$zl[df$rcens]-sigma)) / (1-stats::pnorm(df$zl[df$rcens]))
     df$l[df$rcens] <- df$ec[df$rcens]
     df$u[df$rcens] <- df$ec[df$rcens]
@@ -70,7 +76,7 @@
 
 .ExpLNiCens <- function(l,u,mu,sigma,iCens=NA) {
   # computes expected value for interval censored for log-normal
-  df <- data.frame(l=l, u=u, mu=mu)
+  df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
 
   if(is.na(iCens[1])) {
     df$icens <- (is.finite(df$l) & is.finite(df$u) & !(df$l==df$u))
@@ -79,8 +85,8 @@
   }
 
   if (any(df$icens)) {
-    df$zl[df$icens] <- (log(df$l[df$icens]) - mu[df$icens])/sigma
-    df$zu[df$icens] <- (log(df$u[df$icens]) - mu[df$icens])/sigma
+    df$zl[df$icens] <- (log(df$l[df$icens]) - df$mu[df$icens])/sigma # 01Jun2018
+    df$zu[df$icens] <- (log(df$u[df$icens]) - df$mu[df$icens])/sigma # 01Jun2018
     df$ec[df$icens] <- exp(df$mu[df$icens] + sigma**2/2)*
       (stats::pnorm(df$zu[df$icens]-sigma)-stats::pnorm(df$zl[df$icens]-sigma)) /
       (stats::pnorm(df$zu[df$icens])-stats::pnorm(df$zl[df$icens]))
@@ -112,7 +118,7 @@
 
 .ExpNlCens <- function(l,u,mu,sigma,lCens=NA) {
   # computes expected value for left censored interval for normal
-  df <- data.frame(l=l, u=u, mu=mu)
+  df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
 
   if(is.na(lCens[1])) {
     df$lcens <- ((df$l==-Inf) & is.finite(df$u))
@@ -131,7 +137,7 @@
 
 .ExpNrCens <- function(l,u,mu,sigma,rCens=NA) {
   # computes expected value for right censored for normal
-  df <- data.frame(l=l, u=u, mu=mu)
+  df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
 
   if(is.na(rCens[1])) {
     df$rcens <- (is.finite(df$l) & is.infinite(df$u))
@@ -150,7 +156,7 @@
 
 .ExpNiCens <- function(l,u,mu,sigma,iCens=NA) {
   # computes expected value for interval censored for log-normal
-  df <- data.frame(l=l, u=u, mu=mu)
+  df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
   if(is.na(iCens[1])) {
     df$icens <- (is.finite(df$l) & is.finite(df$u) & !(df$l==df$u))
   } else {
