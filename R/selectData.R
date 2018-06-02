@@ -154,6 +154,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                        remMiss=TRUE, analySpec) {
 
 # -----< Change history >--------------------------------------------
+# 02Jun2018: JBH: added iSpec$seasModels  to iSpec 
 # 12Mar2018: JBH: only recensor data that will be logtransformed  
 # 04Feb2018: JBH: count number of observations for each intervention
 # 05Aug2017: JBH: corrected over-ride evaluation for setting iSpec$hydroTerm based on 
@@ -232,6 +233,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$yearEnd      <- NA_real_      # always computed
   iSpec$dateBegin    <- NA            # always computed
   iSpec$dateEnd      <- NA            # always computed
+  iSpec$seasModels   <- analySpec$gamLegend[analySpec$gamLegend$season,c("descrip","legend")]
   
 # Set up flow/salinity modeling parameters #21Jul2017 ####
   # split strings into vectors
