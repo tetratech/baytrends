@@ -234,6 +234,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$dateBegin    <- NA            # always computed
   iSpec$dateEnd      <- NA            # always computed
   iSpec$seasModels   <- analySpec$gamLegend[analySpec$gamLegend$season,c("descrip","legend")]
+  iSpec$baytrends.ver <- getNamespaceVersion("baytrends")
   
 # Set up flow/salinity modeling parameters #21Jul2017 ####
   # split strings into vectors
