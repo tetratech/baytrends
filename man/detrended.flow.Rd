@@ -4,33 +4,40 @@
 \alias{detrended.flow}
 \title{Create Seasonally Detrended Flow Data Set}
 \usage{
-detrended.flow(usgsGageID, siteName, yearStart, yearEnd, dvAvgWinSel,
-  dvAvgWgtSel, dvAvgSidesSel, lowess.f)
+detrended.flow(usgsGageID, siteName, yearStart, yearEnd, dvAvgWinSel = c(1, 5,
+  10, 15, 20, 30, 40, 50, 60, 90, 120, 150, 180, 210),
+  dvAvgWgtSel = "uniform", dvAvgSidesSel = 1, lowess.f = 0.2, span = 10,
+  max.fill = 10)
 }
 \arguments{
 \item{usgsGageID}{USGS GageIDs (e.g., "01491000")}
 
 \item{siteName}{USGS SiteName (only used for plots)}
 
-\item{yearStart}{start year (recommended as at least one year before corresponding
-water quality data set)}
+\item{yearStart}{start year (recommended as at least one year before
+corresponding water quality data set)}
 
 \item{yearEnd}{end year}
 
-\item{dvAvgWinSel}{Averaging window (days) for smoothing the residuals of the 
-seasonally adjusted daily flow values, e.g.,  c(1, 5, 10, 15, 20, 30, 40,
-50, 60, 90, 120, 150, 180, 210)}
+\item{dvAvgWinSel}{Averaging window (days) for smoothing the residuals of the
+seasonally adjusted daily flow values 
+[default = c(1, 5, 10, 15, 20, 30, 40, 50, 60, 90, 120, 150, 180, 210)]}
 
-\item{dvAvgWgtSel}{Averaging method ("uniform", "weighted", or
-"centered") for creating weights. If using "weighted" then use
-dvAvgSidesSel=1.  If using "centered" then use dvAvgSidesSel=2.}
+\item{dvAvgWgtSel}{Averaging method ("uniform", "weighted", or "centered")
+for creating weights. If using "weighted" then use dvAvgSidesSel=1.  If
+using "centered" then use dvAvgSidesSel=2. [default = "uniform"]}
 
-\item{dvAvgSidesSel}{If dvAvgSidesSel=1 only past values are used, if dvAvgSidesSel=2
-then values are centered around lag 0.}
+\item{dvAvgSidesSel}{If dvAvgSidesSel=1 only past values are used, if
+dvAvgSidesSel=2 then values are centered around lag 0. [default = 1]}
 
-\item{lowess.f}{lowess smoother span applied to computed standard deviation (see Details).
-This gives the proportion of points which influence the smooth
-at each value. Larger values give more smoothness.}
+\item{lowess.f}{lowess smoother span applied to computed standard deviation
+(see Details). This gives the proportion of points which influence the
+smooth at each value. Larger values give more smoothness. [default = 0.2]}
+
+\item{span}{maximum number of observations on each side of range of missing
+values to use in filling in data [default = 10]}
+
+\item{max.fill}{maximum gap to fill in [default = 10]}
 }
 \value{
 Returns a list of seasonally detrended flow data. You should save the
@@ -39,11 +46,11 @@ Returns a list of seasonally detrended flow data. You should save the
   function is called from an .Rmd script.
 }
 \description{
-This function creates a seasonally detrended flow data set for selected
-  USGS gages. The created data set is used to support application of GAMs
-  that include a hydrologic term as one of the independent variables. The output
-  from this function should be stored as an .rda file for repeated use with 
-  baytrends.
+This function creates a seasonally detrended flow data set for
+  selected USGS gages. The created data set is used to support application of
+  GAMs that include a hydrologic term as one of the independent variables.
+  The output from this function should be stored as an .rda file for repeated
+  use with baytrends.
 }
 \details{
 This function returns a list of seasonally detrended flow and companion
@@ -80,11 +87,12 @@ This function returns a list of seasonally detrended flow and companion
   5) The GAM residuals, i.e., "residuals(gamoutput)" are extracted and stored
   as the variable, \bold{d1}.  
   
-  6) Based on the specifications for dvAvgWinSel, dvAvgWgtSel, and dvAvgSidesSel, the
-  values of \bold{d1} are time averaged and additional variables \bold{dxxx}
-  are added to the data frame where xxx corresponds to list of averaging
-  windows specified in dvAvgWinSel. These values of \bold{dxxx} are used in GAMs that include
-  a hydrologic independent variable.     
+  6) Based on the specifications for dvAvgWinSel, dvAvgWgtSel, and
+  dvAvgSidesSel, the values of \bold{d1} are time averaged and additional
+  variables \bold{dxxx} are added to the data frame where xxx corresponds to
+  list of averaging windows specified in dvAvgWinSel. These values of
+  \bold{dxxx} are used in GAMs that include a hydrologic independent
+  variable.
   
   After the above data frame is created, the following four (4) additional
   data frames are created for each USGS gage and combined into a list named
@@ -102,9 +110,10 @@ This function returns a list of seasonally detrended flow and companion
   \bold{lowess.sd} -- Lowess smoothed standard deviations. (These values are
   used for computing confidence intervals in the flow averaged GAM.)  
   
-  The process of creating the above data frame, \bold{qNNNNNNNN}, and list, \bold{qNNNNNNNN.sum},
-  is repeated for each USGS gage and combined together in a single list. The beginning 
-  of the list includes meta data documenting the retrieval parameters. 
+  The process of creating the above data frame, \bold{qNNNNNNNN}, and list,
+  \bold{qNNNNNNNN.sum}, is repeated for each USGS gage and combined together
+  in a single list. The beginning of the list includes meta data documenting
+  the retrieval parameters.
   
   This function can be used in conjunction with an RMD file to knit (create)
   a report (DOCX or HTML).

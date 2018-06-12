@@ -8,7 +8,7 @@ analysisOrganizeData(df, analySpec = list(), reports = c(0, 1, 2, 3),
   parameterList = NA, stationMasterList = NA, layerLukup = NA)
 }
 \arguments{
-\item{df}{Data frame}
+\item{df}{Data frame of water quality data}
 
 \item{analySpec}{Specifications for analysis}
 
@@ -24,41 +24,58 @@ analysisOrganizeData(df, analySpec = list(), reports = c(0, 1, 2, 3),
 \value{
 Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
   updated data frame and updated (or created) analySpec. analySpec is a list
-  that includes the following objects:
+  that includes the following components:
 
   analyTitle       - Analysis trend title
 
-  parameterFilt    - Parameter filter used for down selection
+  parameterFilt    - Parameter filter used for data down selection
 
-  stationFilt      - Station filter used for down selection
+  stationFilt      - Station filter used for data down selection
 
-  dateFilt         - Date filter for down selection
+  dateFilt         - Date filter for data down selection
 
-  setTZ            - time zone
+  setTZ            - time zone (default = "America/New_York")
 
   layerFilt        - Layer filter
 
-  layerAggOption   - Layer averaging option (see Details for more information)
+  layerAggOption   - Layer averaging option (default = 0)
 
-  obsMin           - Minimum number of observations required to allow GAM analysis to proceed
+  obsMin           - Minimum number of observations required to allow GAM
+  analysis to proceed for a specific station, parameter, and layer
+  combination (default = 60).
 
-  gamAlpha         - Alpha level used GAM analyses (where needed)
+  gamAlpha         - Alpha level used GAM analyses (default = 0.05).
 
-  censorTrim       - Values to apply for trimming data due to too much censoring
+  censorTrim       - Values to apply for trimming data due to too much
+  censoring (default = c(0.5, 0.4)).
 
   gamModels        - model formulations
 
-  gamDiffPeriods   - time periods (years) used for computing changes (differences)
+  gamDiffPeriods   - list of time periods (years) used for computing changes
+  (differences). The default options are: full record, 1999/00-present, and
+  2005/06-present.  
 
-  gamDiffSeasons   - seasons used for sub-annual analyses
+  gamDiffSeasons   - list of seasons used for sub-annual analyses. The default
+  options include the following: All (months 1:12), Spring1 (3:5), Spring2
+  (months: 4:6)), Summer1 (months: 6:9)), Summer2 (months: 7:9)), SAV1
+  (months: 4:10)), SAV2 (months: 3:5,9:11)), Winter (months: 1:2)), and Fall
+  (months: 10:12))).
 
-  gamPenalty       - allow the user to set the mgcv::gam select argument to TRUE, FALSE, or baytrend algorithm default
+  gamPenalty       - allow the user to set the mgcv::gam select argument to
+  TRUE, FALSE, or baytrend algorithm default (default = NA). When the default
+  option is specified, then the mgcv::gam select argument is set to FALSE
+  when none of the data are censored; otherwise (when some censoring exists
+  in the data set) the select argument is set to TRUE
 
   gamPenaltyCrit   - edf and F-stat values used to flag ANOVA table results
+  (default = c(1, 9e9))
 
   gamCoeffDeltaMaxCrit - convergence criteria for expectation maximization
+  (default = 1e-6)
 
-  gamFlw_Sal.Wgt.Perc - percentiles of flow [or salinity] to use for computing flow[salinity] averaged result
+  gamFlw_Sal.Wgt.Perc - percentiles of flow [or salinity] to use for
+  computing flow [salinity] averaged result (default = c(0.05, 0.25, 0.50,
+  0.75, 0.95))
 
   gamLegend        - default settings for gam figure legend
 
@@ -76,42 +93,68 @@ analysis. In those cases where the user doesn't supply a needed
 specification, a basic option is supplied by this function.
 }
 \details{
-The following steps are performed:
+The supplied data frame, df, is a data frame with the variables station,
+ date, and layer included along with multiple additional columns for a
+ variety of water quality variables structured as "qw" objects. An example
+ data frame, dataCensored, is included with baytrends as an example.
+ 
+ The argument, analySpec, is a list that includes basic specfications for
+ performing GAM analyses. The components in analySpec are identified below.
+ The user may create analySpec (which can include all or some of the below
+ components; and pass the user-supplied analySpec to this function. Or, the
+ user may accept the default argument and allow analysisOrganizeData to
+ create and return analySpec. If the user passes a user-supplied analySpec,
+ then analysisOrganizeData will "fill in" required arguments not provided by
+ the user. The user can also adjust analySpec after it is returned from
+ analysisOrganizeData although requirements for down selecting the data frame,
+ df, or aggregating data by layer would need to be passed to analysisOrganizeData.    
+ 
+ The default setting for the argument report is to provide tabular summary
+ reports about the parameters, stations, and layers to be analyzed. Setting
+ report=NA will suppress the tabular summary reports.
+ 
+ The user can supply their own parameterList, stationMasterList, or
+ layerLukup data sets; or the user can use the example data frames included
+ with baytrends.
 
- 1) Review user supplied specifications. Fill in with default values. For
- example, if the user doesn't specify a list of stations, then all stations
- identified in the data set stationMasterList are used. Some other default values
- include the following: date range (1/1/1984-present), parameter list (all
- parameters in data set parameterList), layers (all layers in data set
- layerLukup), layer averaging technique ('mean'), layer aggregation option
- (0, no aggregation), minimum number of observations (60), GAM formulas
- (Linear Trend with Seasonality, Non-linear Trend with
- Seasonality, and Non-linear trend with Seasonality (plus Interactions)), GAM
- alpha level for plots and output (0.05), periods for multi-time period
- analyses using GAM (Full Record, 1999/00-Present, and 2005/06-Present), and
- seasons for sub-annual analyses using GAM (All, Spring1, Spring2, Summer1,
- Summer2, SAV1, SAV2, Winter, and Fall.)
+ The following steps are performed by analysisOrganizeData:
 
- 2) Down select primary data set based on parameters, stations, dates, and layers
- from updated specifications. A dependent variable list (depVarList) is
- created that includes variable descriptions, units, and log transformation
- selections. A station list (stationList) is created that includes the
- station ID, a selected USGS gage for correlating flow, and
- latitude/longitude.
+ 1) Review user supplied specifications through the analySpec argument. Fill
+ in with default values. For example, if the user doesn't specify a list of
+ stations, then all stations identified in the data set stationMasterList are
+ used. Some other default values include the following: date range
+ (1/1/1984-present), parameter list (all parameters in data set
+ parameterList), layers (all layers in data set layerLukup), layer
+ aggregation option (0, no aggregation), minimum number of observations to
+ perform a GAM analysis (60), GAM formulas (Linear Trend with Seasonality,
+ Non-linear Trend with Seasonality, and Non-linear trend with Seasonality
+ (plus Interactions)), GAM alpha level for plots and output (0.05), periods
+ for multi-time period analyses using GAM (Full Record, 1999/00-Present, and
+ 2005/06-Present), and seasons for sub-annual analyses using GAM (All,
+ Spring1, Spring2, Summer1, Summer2, SAV1, SAV2, Winter, and Fall.)
 
- 3) Aggregate data layers. analySpec$layerAggOption <- 0 results in no
- aggregation. The option analySpec$layerAggOption <- 1 would result in
- combining surface and above pycnocline data. In this example, records with
- layer = "S" and layer = "AP" are relabeled as "SAP". These records are then
- averaged to the date level. The averaging method (mean or median) is
- specified in by analySpec$avgTechnique. Other layerAggOption values are 2,
- 3, 4, and 5 which average "B"&"BP"; "S"&"AP" and "B"&"BP"; all layers; and
- "S"&"B", respectively. A layer list (layerList) is created and returned.
+ 2) Based on the settings in analySpec, the data frame df, is down selected
+ based on parameters, stations, dates, and layers. A dependent variable list
+ (depVarList) is created that includes variable descriptions, units, and log
+ transformation selections. A station list (stationList) is created that
+ includes the station ID, a selected USGS gage for correlating flow, and
+ latitude/longitude.  
 
- 4) Date features are added. Columns for year, day of year (doy), decimal
- year (dyear), and month are added based on date.
+ 3) Aggregate data layers. If analySpec$layerAggOption is equal to 0, then
+ there is no aggregation. The analySpec$layerAggOption of 1 would result in
+ averaging (mean) surface and above pycnocline data. In this example, records
+ with layer = "S" and layer = "AP" are relabeled as "SAP". Other
+ layerAggOption values are 2) "B"&"BP"; 3) "S"&"AP" and "B"&"BP"; 4) all
+ layers; and 5) "S"&"B", respectively. A layer list (layerList) is created
+ and returned.
+ 
+ 4) Data are then averaged (mean) by date.  
 
- 5) Reports on the number of records (0), parameters (1), layers (2) and
+ 5) Date features are added. Columns for year, day of year (doy), decimal
+ year (dyear), and month are added based on date. Note that the doy is based on 
+ a 366 day calendar regardless of leap year.
+
+ 6) Reports on the number of records (0), parameters (1), layers (2) and
  stations (3) can be controlled with the reports option.
 }
 \examples{
