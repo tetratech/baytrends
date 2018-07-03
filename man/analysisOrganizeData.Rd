@@ -168,7 +168,7 @@ analySpec <- dfr[["analySpec"]]
 analySpec <-list()
 analySpec$parameterFilt <- c('do')
 analySpec$layerFilt     <- c('B')
-analySpec$stationFilt   <- c('CB3.3C', 'CB5.1')
+analySpec$stationFilt   <- c('CB3.3C', 'CB5.4')
 dfr <- analysisOrganizeData(dataCensored, analySpec)
 df        <- dfr[["df"]]
 analySpec <- dfr[["analySpec"]]
