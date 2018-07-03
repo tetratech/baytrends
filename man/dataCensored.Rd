@@ -3,31 +3,32 @@
 \docType{data}
 \name{dataCensored}
 \alias{dataCensored}
-\title{Chesapeake Bay Program Monitoring Data, 1985-2015}
-\format{A data frame with 7719 rows and 16 variables:
+\title{Chesapeake Bay Program Monitoring Data, 1985-2016}
+\format{A data frame with 13,062 rows and 17 variables:
 \describe{
   \item{station}{station identifier}
   \item{date}{sample date}
   \item{layer}{sample layer}
   \item{secchi}{Secchi depth [m]}
-  \item{chla}{Corrected Chlorophyll-a [ug/L]}
+  \item{salinity}{Salinity [ppt]}
   \item{do}{Dissolved Oxygen [mg/L]}
+  \item{wtemp}{Water Temperature [deg C]}
+  \item{chla}{Corrected Chlorophyll-a [ug/L]}
   \item{tn}{Total Nitrogen [mg/L]}
   \item{tp}{Total Phosphorus [mg/L]}
-  \item{po4f}{Orthophosphorus [mg/L]}
-  \item{pp}{Particulate Phosphorus [mg/L]}
-  \item{tdp}{Total Dissolved Phosphorus [mg/L]}
-  \item{no23f}{Nitrite + Nitrate (Filtered) [mg/L]}
-  \item{nh4f}{Ammonium (Filtered) [mg/L]}
-  \item{tdn}{Total Dissolved Nitrogen [mg/L]}
-  \item{pn}{Particulate Organic Nitrogen and Particulate Nitrogen [mg/L]}
   \item{tss}{Total Suspended Solids [mg/L]}
+  \item{din}{Dissolved Inorganic Nitrogen [mg/L]}
+  \item{po4f}{Orthophosphorus [mg/L]}
+  \item{tdn}{Total Dissolved Nitrogen [mg/L]}
+  \item{tdp}{Total Dissolved Phosphorus [mg/L]}
+  \item{nh4}{Ammonium [mg/L]}
+  \item{no23}{Nitrite + Nitrate [mg/L]}
 }}
 \usage{
 dataCensored
 }
 \description{
-Selected 1985-2015 data for eight (8) stations from the
+Selected 1985-2016 data for eight (8) stations from the
   Chesapeake Bay Monitoring Program. Water quality variables are stored as
   class qw that allows for left- and interval-censored data.
 }
