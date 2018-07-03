@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-baytrends 1.0.4.9008
+baytrends 1.0.4.9008&9
 ===========
 * dataCensored: aligned data set with companion journal article
 
