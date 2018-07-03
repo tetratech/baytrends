@@ -19,6 +19,13 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+
+baytrends 1.0.4.9001
+===========
+* Released 2018-07-03
+* Prepare for submittal to CRAN (run Check)
+    + Add .github to .Rbuildignore to avoid check NOTE.
+
 baytrends 1.0.4
 ===========
 * Released 2018-05-14

@@ -4,7 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-05-14 10:49:47
+    #> Last Update: 2018-07-03 10:24:09
+
+# baytrends 1.0.4.9001
+
+  - Released 2018-07-03
+  - Prepare for submittal to CRAN (run Check)
+      - Add .github to .Rbuildignore to avoid check NOTE.
 
 # baytrends 1.0.4
 
