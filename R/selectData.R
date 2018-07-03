@@ -154,6 +154,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                        remMiss=TRUE, analySpec) {
 
 # -----< Change history >--------------------------------------------
+# 02Jul2018: JBH: return NA if no data in lowCensor years  
 # 02Jun2018: JBH: added iSpec$seasModels  to iSpec 
 # 12Mar2018: JBH: only recensor data that will be logtransformed  
 # 04Feb2018: JBH: count number of observations for each intervention
@@ -489,6 +490,9 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     df<- df[ !is.na(df[,dep]), ]
   }
 
+# Return NA if no data in low censor year    #02Jul2018
+    if (nrow(df[df$lowCensor,"date"]) == 0) return(NA)
+    
 # Re-set POR based on data set without NA in dependent variable
   dtmp <- range(df[df$lowCensor,"date"], na.rm=FALSE)
   por  <- range(df[df$lowCensor,"date"], na.rm=FALSE)
