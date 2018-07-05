@@ -20,7 +20,7 @@
 #'   \item{tp}{Total Phosphorus [mg/L]}
 #'   \item{tss}{Total Suspended Solids [mg/L]}
 #'   \item{din}{Dissolved Inorganic Nitrogen [mg/L]}
-#'   \item{po4f}{Orthophosphorus [mg/L]}
+#'   \item{po4}{Orthophosphorus [mg/L]}
 #'   \item{tdn}{Total Dissolved Nitrogen [mg/L]}
 #'   \item{tdp}{Total Dissolved Phosphorus [mg/L]}
 #'   \item{nh4}{Ammonium [mg/L]}

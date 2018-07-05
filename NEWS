@@ -4,7 +4,64 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-05-14 10:49:47
+    #> Last Update: 2018-07-05 15:20:56
+
+# baytrends 1.0.4.9010
+
+  - Released 2018-07-05
+  - Add .github to .Rbuildignore to avoid CHECK note.
+  - Added dates to NEWS releases.
+  - Update data.R for dataCensored.
+
+# baytrends 1.0.4.9009
+
+  - Released 2018-07-03
+  - dataCensored: aligned data set with companion journal article
+
+# baytrends 1.0.4.9008
+
+  - Released 2018-07-03
+  - dataCensored: aligned data set with companion journal article
+
+# baytrends 1.0.4.9007
+
+  - Released 2018-07-02
+  - selectData: improved error trap for lack of data
+
+# baytrends 1.0.4.9006
+
+  - Released 2018-6-12
+  - updated documentation
+
+# baytrends 1.0.4.9005
+
+  - Released 2018-6-12
+  - Added baytrends version to to iSpec and improved readme file
+
+# baytrends 1.0.4.9004
+
+  - Released 2018-6-12
+  - Added list of seasonal models to iSpec
+
+# baytrends 1.0.4.9003
+
+  - Released 2018-6-12
+  - Updated impute function to include maximum likelihood estimation
+    assuming normal and lognormal distribution
+
+# baytrends 1.0.4.9002
+
+  - Released 2018-6-12
+  - Updated NEWS and DESCRIPTION.
+  - Updated online documentation for analysisOrganizeData function
+  - pass parameterList from gamTest to .chkParameter
+
+# baytrends 1.0.4.9001
+
+  - Released 2018-6-12
+  - Updated NEWS and DESCRIPTION.
+  - Updated online documentation for analysisOrganizeData function
+  - pass parameterList from gamTest to .chkParameter
 
 # baytrends 1.0.4
 
