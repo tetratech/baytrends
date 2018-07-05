@@ -133,18 +133,17 @@
 #'
 #' @examples
 #'
-#' # retrieve Secchi depth for Station LE3.1, missing Secchi depth values are
-#' # maintained (see value for secchi on 2/12/2008), no transformations are applied
+#' # retrieve Secchi depth for Station CB5.4, no transformations are applied
 #' dfr <- analysisOrganizeData(dataCensored)
 #' df        <- dfr[["df"]]
 #' analySpec <- dfr[["analySpec"]]
-#' dfr   <- selectData(dataCensored, 'secchi', 'LE3.1', 'S', transform=FALSE,
+#' dfr   <- selectData(dataCensored, 'secchi', 'CB5.4', 'S', transform=FALSE,
 #'                     remMiss=FALSE, analySpec=analySpec)
 #' dfr1  <- dfr[[1]]
 #' iSpec <- dfr[[2]]
-#' # retrieve surface corrected chlorophyll-a concentrations for Station LE3.1,
+#' # retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
 #' # missing values are removed and transformation applied
-#' dfr   <- selectData(dataCensored, 'chla', 'LE3.1', 'S', analySpec=analySpec)
+#' dfr   <- selectData(dataCensored, 'chla', 'CB5.4', 'S', analySpec=analySpec)
 #' dfr2  <- dfr[[1]]
 #' iSpec <- dfr[[2]]
 #'
@@ -154,6 +153,8 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                        remMiss=TRUE, analySpec) {
 
 # -----< Change history >--------------------------------------------
+# 02Jul2018: JBH: return NA if no data in lowCensor years  
+# 02Jun2018: JBH: added iSpec$seasModels  to iSpec 
 # 12Mar2018: JBH: only recensor data that will be logtransformed  
 # 04Feb2018: JBH: count number of observations for each intervention
 # 05Aug2017: JBH: corrected over-ride evaluation for setting iSpec$hydroTerm based on 
@@ -232,6 +233,8 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$yearEnd      <- NA_real_      # always computed
   iSpec$dateBegin    <- NA            # always computed
   iSpec$dateEnd      <- NA            # always computed
+  iSpec$seasModels   <- analySpec$gamLegend[analySpec$gamLegend$season,c("descrip","legend")]
+  iSpec$baytrends.ver <- getNamespaceVersion("baytrends")
   
 # Set up flow/salinity modeling parameters #21Jul2017 ####
   # split strings into vectors
@@ -486,6 +489,9 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     df<- df[ !is.na(df[,dep]), ]
   }
 
+# Return NA if no data in low censor year    #02Jul2018
+    if (nrow(df[df$lowCensor, ]) == 0) return(NA)
+    
 # Re-set POR based on data set without NA in dependent variable
   dtmp <- range(df[df$lowCensor,"date"], na.rm=FALSE)
   por  <- range(df[df$lowCensor,"date"], na.rm=FALSE)

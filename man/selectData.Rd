@@ -145,18 +145,17 @@ from the smwrBase package.
 }
 \examples{
 
-# retrieve Secchi depth for Station LE3.1, missing Secchi depth values are
-# maintained (see value for secchi on 2/12/2008), no transformations are applied
+# retrieve Secchi depth for Station CB5.4, no transformations are applied
 dfr <- analysisOrganizeData(dataCensored)
 df        <- dfr[["df"]]
 analySpec <- dfr[["analySpec"]]
-dfr   <- selectData(dataCensored, 'secchi', 'LE3.1', 'S', transform=FALSE,
+dfr   <- selectData(dataCensored, 'secchi', 'CB5.4', 'S', transform=FALSE,
                     remMiss=FALSE, analySpec=analySpec)
 dfr1  <- dfr[[1]]
 iSpec <- dfr[[2]]
-# retrieve surface corrected chlorophyll-a concentrations for Station LE3.1,
+# retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
 # missing values are removed and transformation applied
-dfr   <- selectData(dataCensored, 'chla', 'LE3.1', 'S', analySpec=analySpec)
+dfr   <- selectData(dataCensored, 'chla', 'CB5.4', 'S', analySpec=analySpec)
 dfr2  <- dfr[[1]]
 iSpec <- dfr[[2]]
 

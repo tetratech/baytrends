@@ -10,7 +10,7 @@ impute(x, imputeOption = "mid")
 \item{x}{vector of type baytrends::qw}
 
 \item{imputeOption}{imputation method [default= "mid"], valid impute options
-are "lower", "upper", "mid"}
+are "lower", "upper", "mid", "norm", "lnorm"}
 }
 \value{
 vector where x is transformed into a simple numeric variable
@@ -22,11 +22,14 @@ Impute value for multiply censored data.
 The imputeOption values of lower, upper and mid impute the lower limit, upper limit,
 and midpoint between the lower and upper limit. In the context of typical water quality
 data, these options would be eqivalent to zero, detection limit and 1/2 detection limit
-substitution.
+substitution. Options for substituting the normal ["norm"] or lognormal ["lnorm"] expectation
+can also be used.
 }
 \examples{
-x  <- dataCensored[20:36,5]
+x  <- dataCensored[1:20,"tdp"]
 x.lower <- impute(x,'lower')
 x.mid   <- impute(x,'mid')
 x.upper <- impute(x,'upper')
+x.norm  <- impute(x,'norm')
+x.lnorm <- impute(x,'lnorm')
 }

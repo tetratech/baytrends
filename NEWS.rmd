@@ -19,6 +19,36 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.4.9008&9
+===========
+* dataCensored: aligned data set with companion journal article
+
+baytrends 1.0.4.9007
+===========
+* selectData: improved error trap for lack of data
+
+baytrends 1.0.4.9006
+===========
+* updated documentation 
+
+baytrends 1.0.4.9005
+===========
+* Added baytrends version to to iSpec and improved readme file
+
+baytrends 1.0.4.9004
+===========
+* Added list of seasonal models to iSpec  
+
+baytrends 1.0.4.9003
+===========
+* Updated impute function to include maximum likelihood estimation assuming normal and lognormal distribution
+
+baytrends 1.0.4.9001 & 1.0.4.9002
+===========
+* Updated NEWS and DESCRIPTION.
+* Updated online documentation for analysisOrganizeData function
+* pass parameterList from gamTest to .chkParameter
+
 baytrends 1.0.4
 ===========
 * Released 2018-05-14

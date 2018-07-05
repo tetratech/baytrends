@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Purpose
-The purpose of this vignette is to cover the basics for creating seasonally detrended flow and seasonally detrended salinity data sets. These data sets are used in support of applying **gam4**. In gam4, the dependent variable is modeled with a non-linear term as a function of year; a seasonality term includes an interaction term which allows seasonality to vary over the period of record; and includes a hydrologic term that allows for factoring wet/dry conditions in the model.
+The purpose of this vignette is to cover the basics for creating seasonally detrended flow and seasonally detrended salinity data sets. These data sets are used in support of applying **gam4**. In gam4, the dependent variable is modeled with a non-linear term as a function of year; a seasonality term includes an interaction term which allows seasonality to vary over the period of record; and  includes a hydrologic term that allows for factoring wet/dry conditions in the model.
 
 The seasonally detrended flow and salinity data sets are created using the detrended.flow and detrended.salinity functions included in baytrends. Refer to the help for each of these functions (e.g., ??detrended.flow or ??detrended.salinity) for the specific computational steps involved with each function.
 
@@ -46,7 +46,7 @@ The below code chunk is an example of retrieving and seasonally detrending daily
 
 To best match up with water quality data, we recommend retrieving flow data for one year prior to the first year of water quality data. This allows for creating a time-averaged flow data set and not loose the first few months of water quality data due to lack of matching flow data. Data retrievals should also be made in light of the time needed by the USGS to review and approve their flow records.  
 
-Information about the settings for dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel, and lowess.f are described in the help file for this function.  
+Information about the settings for dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel, lowess.f, span, and max.fill are described in the help file for this function.    
 
 ```{r flow, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5}
 # Define Function Inputs

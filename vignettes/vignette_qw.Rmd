@@ -84,8 +84,9 @@ library(baytrends)
 
 # Define function arguments
 fn.import <- "dataCensored_TEST.csv"
-qw.names <- c("secchi", "chla", "do", "tn", "tp", "po4f", "pp", "tdp"
-              , "no23f", "nh4f", "tdn", "pn", "tss")
+qw.names <- c("secchi" ,  "salinity", "do"  ,     "wtemp"  ,  "chla"
+              ,"tn"     ,  "tp"    ,   "tss" ,     "din"  ,    "po4"      
+              ,"tdn"     , "tdp"  ,    "nh4"  ,    "no23")
 
 # fun function 
 dataCensored.test<- qw.import(fn.import, qw.names)

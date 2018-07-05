@@ -3,16 +3,17 @@
 #' Reduce dataframe and parameter list based on user selected parameterFilt
 #'
 #' @param df data frame
-#' @param parameterFilt parameter list
+#' @param parameterFilt parameter filter
+#' @param parameterList parameter list
 #' @examples
 #' #df <- chkParameter(df,parameterFilt=c("tn", "tp"))
 #' @return n/a
 #' @export
 #'
-.chkParameter <- function(df,parameterFilt=parameterFilt) {
+.chkParameter <- function(df,parameterFilt=parameterFilt, parameterList) {
 
-  # QC check fix, 20180503
-  parameterList <- baytrends::parameterList
+  # # QC check fix, 20180503
+  # parameterList <- baytrends::parameterList
   
   # Level 1 error trapping
 
