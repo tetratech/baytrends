@@ -4,9 +4,9 @@ Title: Long Term Water Quality Trend Analysis
 Description: Enables users to develop and apply general additive model (GAM) 
   to long-term water quality monitoring data sets.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.0.4.9010
-Maintainer: Jon Harcum <jon.harcum@tetratech.com>
-Date: 2018-07-05
+Version: 1.0.4.9011
+Date: 2018-07-06
+Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
 Depends:
     R (>= 3.2.0),
     lubridate,
@@ -34,7 +34,7 @@ Imports:
     plyr,
     survival,
     zCompositions
-Additional_repositories: http://owi.usgs.gov/R
+Additional_repositories: https://github.com/tetratech/baytrends
 VignetteBuilder: knitr
 Collate: 
     'a1_smwrQW_qw-class.R'

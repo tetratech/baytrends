@@ -3,3 +3,4 @@
 ^data-raw$
 ^NEWS\.rmd$
 ^\.github$
+cran-comments\.md$

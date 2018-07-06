@@ -44,8 +44,8 @@ qw.export(dataCensored, getwd(), "dataCensored_TEST.csv")
 
 # Define function parameters
 fn.import <- file.path(".", "dataCensored_TEST.csv")
-qw.names <- c("secchi", "chla", "do", "tn", "tp", "po4f", "pp", "tdp"
-              , "no23f", "nh4f", "tdn", "pn", "tss")
+qw.names <- c("secchi", "chla", "do", "tn", "tp", "po4", "tdp"
+              , "no23", "nh4", "tdn", "tss")
 rounding <- c(3, 4)
 
 # Import

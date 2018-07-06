@@ -19,6 +19,25 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.4.9011
+===========
+* Released 2018-07-06
+* DESCRIPTION
+    + Change "maintainer" from Jon Harcum to Erik Leppo so Erik can submit to CRAN.
+    + Change "additional repositories" to GitHub.  Was http://owi.usgs.gov/R.
+* .Rbuildignore
+    + Add cran-comments.md
+* qw.import; example qw.names
+    + Rename variables without "f"; po4, no23, and nh4
+    + Remove variables pp and pn.
+* detrended.flow
+    + Fix CHECK NOTE for figNum.
+    + Added "figNum" to globalVariables in zzz.R
+    + Assigned figNum as NULL before assign as zero.
+* dataCensored
+    + Fix CHECK WARNING
+    + Example not working.  Mark as "donotrun" while troubleshoot.
+
 baytrends 1.0.4.9010
 ===========
 * Released 2018-07-05

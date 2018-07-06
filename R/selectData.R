@@ -1,4 +1,4 @@
-# ###################################################################
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' Select data for analysis from a larger data frame
 #'
 #' Select data for analysis from a larger data frame based on dependent
@@ -132,7 +132,7 @@
 #'   processing and components of each element.
 #'
 #' @examples
-#'
+#' \dontrun{
 #' # retrieve Secchi depth for Station CB5.4, no transformations are applied
 #' dfr <- analysisOrganizeData(dataCensored)
 #' df        <- dfr[["df"]]
@@ -146,9 +146,9 @@
 #' dfr   <- selectData(dataCensored, 'chla', 'CB5.4', 'S', analySpec=analySpec)
 #' dfr2  <- dfr[[1]]
 #' iSpec <- dfr[[2]]
-#'
+#' }
 #' @export
-# ####
+# ~~~~~~~~~~~~~~~
 selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                        remMiss=TRUE, analySpec) {
 

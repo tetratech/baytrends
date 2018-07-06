@@ -100,6 +100,7 @@
 #' @importFrom stats na.pass
 #' @importFrom stats sd
 #' @importFrom stats lowess
+# @importFrom utils globalVariables
 #' @examples
 #' 
 #' # Define Function Inputs
@@ -152,6 +153,9 @@ detrended.flow <- function(usgsGageID, siteName
     selectPlots <- unique(flow.detrended$dvAvgWinSel[c(1,2,length(flow.detrended$dvAvgWinSel))])
 
   # set figure number
+    #utils::globalVariables("figNum")
+   # figNum <- NULL  # CHECK fix
+    assign("figNum", NULL)
     figNum <<- 0 
   
   # Retrieve data and do analysis for each gage ####
