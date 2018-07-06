@@ -131,22 +131,22 @@
 #'   data extraction. See examples for usage and details for further discussion of the data
 #'   processing and components of each element.
 #'
-#' @examples
-#' \dontrun{
-#' # retrieve Secchi depth for Station CB5.4, no transformations are applied
-#' dfr <- analysisOrganizeData(dataCensored)
-#' df        <- dfr[["df"]]
-#' analySpec <- dfr[["analySpec"]]
-#' dfr   <- selectData(dataCensored, 'secchi', 'CB5.4', 'S', transform=FALSE,
-#'                     remMiss=FALSE, analySpec=analySpec)
-#' dfr1  <- dfr[[1]]
-#' iSpec <- dfr[[2]]
-#' # retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
-#' # missing values are removed and transformation applied
-#' dfr   <- selectData(dataCensored, 'chla', 'CB5.4', 'S', analySpec=analySpec)
-#' dfr2  <- dfr[[1]]
-#' iSpec <- dfr[[2]]
-#' }
+# @examples
+# \dontrun{
+# # retrieve Secchi depth for Station CB5.4, no transformations are applied
+# dfr <- analysisOrganizeData(dataCensored)
+# df        <- dfr[["df"]]
+# analySpec <- dfr[["analySpec"]]
+# dfr   <- selectData(dataCensored, 'secchi', 'CB5.4', 'S', transform=FALSE,
+#                     remMiss=FALSE, analySpec=analySpec)
+# dfr1  <- dfr[[1]]
+# iSpec <- dfr[[2]]
+# # retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
+# # missing values are removed and transformation applied
+# dfr   <- selectData(dataCensored, 'chla', 'CB5.4', 'S', analySpec=analySpec)
+# dfr2  <- dfr[[1]]
+# iSpec <- dfr[[2]]
+# }
 #' @export
 # ~~~~~~~~~~~~~~~
 selectData <- function(df, dep, stat, layer=NA, transform=TRUE,

@@ -19,6 +19,14 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.4.9012
+===========
+* Released 2018-07-06
+* selectData
+    + Remove example.
+* CHECK
+    + 0 errors | 0 warnings | 0 notes
+
 baytrends 1.0.4.9011
 ===========
 * Released 2018-07-06
@@ -36,6 +44,7 @@ baytrends 1.0.4.9011
     + Assigned figNum as NULL before assign as zero.
 * dataCensored
     + Fix CHECK WARNING
+* selectData
     + Example not working.  Mark as "donotrun" while troubleshoot.
 
 baytrends 1.0.4.9010

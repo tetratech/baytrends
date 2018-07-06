@@ -4,7 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-07-06 14:40:30
+    #> Last Update: 2018-07-06 14:54:49
+
+# baytrends 1.0.4.9012
+
+  - Released 2018-07-06
+  - selectData
+      - Remove example.
+  - CHECK
+      - 0 errors | 0 warnings | 0 notes
 
 # baytrends 1.0.4.9011
 
@@ -25,6 +33,7 @@ NEWS
       - Assigned figNum as NULL before assign as zero.
   - dataCensored
       - Fix CHECK WARNING
+  - selectData
       - Example not working. Mark as “donotrun” while troubleshoot.
 
 # baytrends 1.0.4.9010
