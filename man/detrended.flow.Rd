@@ -119,7 +119,7 @@ This function returns a list of seasonally detrended flow and companion
   a report (DOCX or HTML).
 }
 \examples{
-
+\dontrun{
 # Define Function Inputs
 usgsGageID    <- c("01491000", "01578310")
 siteName      <- c("Choptank River near Greensboro, MD",
@@ -134,5 +134,6 @@ lowess.f      <- 0.2
 # Run Function
 flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
-                                , lowess.f)
+                               , lowess.f)
+}
 }

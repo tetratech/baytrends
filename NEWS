@@ -4,7 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-07-06 15:02:23
+    #> Last Update: 2018-07-09 09:05:09
+
+# baytrends 1.0.5.9001
+
+  - Release 2018-07-09
+  - Fix CRAN submission NOTES
+      - Restructure my names with middle initial as maintainer.
+      - donotrun on examples for detrended.flow and detrended.salinity
 
 # baytrends 1.0.5
 

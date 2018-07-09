@@ -105,6 +105,7 @@ This function returns a list of seasonally detrended salinity and companion
   list \bold{salinity.detrended}.
 }
 \examples{
+\dontrun{
 # Show Example Dataset (sal)
 str(sal)
 
@@ -117,5 +118,6 @@ minObs.sd    <- 10
                  
 # Run Function
 salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel, 
-                                 lowess.f, minObs, minObs.sd)               
+                                 lowess.f, minObs, minObs.sd) 
+}              
 }

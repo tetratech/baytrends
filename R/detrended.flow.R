@@ -102,7 +102,7 @@
 #' @importFrom stats lowess
 # @importFrom utils globalVariables
 #' @examples
-#' 
+#' \dontrun{
 #' # Define Function Inputs
 #' usgsGageID    <- c("01491000", "01578310")
 #' siteName      <- c("Choptank River near Greensboro, MD",
@@ -117,7 +117,8 @@
 #' # Run Function
 #' flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
 #'                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
-#'                                 , lowess.f)
+#'                                , lowess.f)
+#' }
 #' @export
 detrended.flow <- function(usgsGageID, siteName
                            , yearStart, yearEnd

@@ -96,6 +96,7 @@
 #' @importFrom stats sd
 #' @importFrom stats lowess
 #' @examples
+#' \dontrun{
 #' # Show Example Dataset (sal)
 #' str(sal)
 #'
@@ -108,7 +109,8 @@
 #'                  
 #' # Run Function
 #' salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel, 
-#'                                  lowess.f, minObs, minObs.sd)               
+#'                                  lowess.f, minObs, minObs.sd) 
+#' }              
 #' @export
 detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2, 
                                minObs=40, minObs.sd=10) { ##FUNCTION.START

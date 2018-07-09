@@ -19,6 +19,13 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.5.9001
+===========
+* Release 2018-07-09
+* Fix CRAN submission NOTES
+    + Restructure my names with middle initial as maintainer.
+    + donotrun on examples for detrended.flow and detrended.salinity
+
 baytrends 1.0.5
 ===========
 * Released 2018-07-06
