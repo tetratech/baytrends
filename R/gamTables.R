@@ -5,11 +5,18 @@
 #'
 .gamANOVA <- function(gamo) {
 # -----< Change history >--------------------------------------------
+# 11Jul2018: JBH: updated to allow for situations where gam formula
+#                 does not have a parametric term
 # 16Jun2016: JBH: added some notes to code
 
   # gamo <- gamRslt
   anov.gamo     <- anova(gamo)
-  agamp         <- data.frame(anov.gamo$pTerms.table)
+  if (length(anov.gamo$pTerms.table)>0) {
+    agamp <- data.frame(anov.gamo$pTerms.table)
+  } else {
+    agamp <- data.frame(df=NA_real_,F=NA_real_,p.value=NA_real_)
+    rownames(agamp) <- "NA"
+  }
   agamp$type    <- '   "      " '
   agamp$type[1] <- 'parametric terms'
   agams         <- data.frame(anov.gamo$s.table)
