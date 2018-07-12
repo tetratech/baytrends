@@ -4,7 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-07-09 09:59:16
+    #> Last Update: 2018-07-12 12:03:04
+
+# baytrends 1.0.6.9001
+
+  - Release 2018-07-12
+  - DESCRIPTION
+      - Additional\_repositories to URL
+      - Update and lengthen Description.
 
 # baytrends 1.0.6
 

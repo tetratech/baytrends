@@ -1,12 +1,15 @@
 Erik.Leppo@tetratech.com
-2018-07-06
+2018-07-12
 
 # Test environments
 * local Win 7, R 3.4.4
-* win-builder (devel and release)
+* win-builder (release)
 
 # R CMD check results
-0 error  | 0 warnings | 0 note 
+
+0 errors | 0 warnings | 1 note 
+
+Don't need to fix.  qpdf not installing properly.
 
 ## Error
 zero
@@ -15,9 +18,20 @@ zero
 zero
 
 ## NOTE
-zero
+One via RStudio Check
 
-Removed example from selectData.
+> check_failures(dir.check)
+[1] "checking sizes of PDF files under 'inst/doc' ... 
+NOTE\n Unable to find GhostScript executable to run checks on size reduction"
+
+ignore.
+
+One via win-builder
+
+Possibly mis-spelled words in DESCRIPTION:
+  hydrologic (7:22)
+  
+  ignore.
 
 # Downstream dependencies
 Run R CMD check on downstream dependencies of httr 
