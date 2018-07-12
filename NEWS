@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-07-12 12:03:04
+    #> Last Update: 2018-07-12 12:06:35
+
+# baytrends 1.0.7
+
+  - Release 2018-07-12
+  - Resubmit to CRAN
 
 # baytrends 1.0.6.9001
 

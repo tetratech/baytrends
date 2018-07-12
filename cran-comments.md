@@ -9,7 +9,7 @@ Erik.Leppo@tetratech.com
 
 0 errors | 0 warnings | 1 note 
 
-Don't need to fix.  qpdf not installing properly.
+Don't need to fix.
 
 ## Error
 zero
@@ -24,14 +24,14 @@ One via RStudio Check
 [1] "checking sizes of PDF files under 'inst/doc' ... 
 NOTE\n Unable to find GhostScript executable to run checks on size reduction"
 
-ignore.
+ignore.  qpdf not installing properly but not a real issue.
 
 One via win-builder
 
 Possibly mis-spelled words in DESCRIPTION:
   hydrologic (7:22)
   
-  ignore.
+  ignore.  spelled and used properly.
 
 # Downstream dependencies
 Run R CMD check on downstream dependencies of httr 
