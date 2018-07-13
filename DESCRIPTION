@@ -58,6 +58,7 @@ Collate:
     'chkParameter.R'
     'closeOut.R'
     'data.R'
+    'deSeasonalize.R'
     'detrended.flow.R'
     'detrended.salinity.R'
     'expectMaxFunctions.r'

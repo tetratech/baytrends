@@ -22,7 +22,6 @@ deSeasonalize <- function(df, var
                           , analySpec = analySpec
                           , gamTable = FALSE
                           , gamPlot = FALSE
-                          , gamDiffModel = NA
                           , flow.detrended = NA
                           , salinity.detrended = NA) {
   
