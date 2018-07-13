@@ -19,6 +19,24 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+
+baytrends 1.0.7
+===========
+* Release 2018-07-12
+* Resubmit to CRAN
+
+baytrends 1.0.6.9001
+===========
+* Release 2018-07-12
+* DESCRIPTION
+    + Additional_repositories to URL
+    + Update and lengthen Description.
+
+baytrends 1.0.6
+===========
+* Release 2018-07-09
+* Resubmit to CRAN
+=======
 baytrends 1.0.5.9002
 ===========
 * Release 2018-07-11

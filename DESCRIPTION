@@ -1,11 +1,19 @@
 Package: baytrends
 Type: Package
 Title: Long Term Water Quality Trend Analysis
-Description: Enables users to develop and apply general additive model (GAM) 
-  to long-term water quality monitoring data sets.
+Description: Enable users to evaluate long-term trends using a Generalized 
+    Additive Modeling (GAM) approach. The model development includes selecting a 
+    GAM structure to describe nonlinear seasonally-varying changes over time, 
+    incorporation of hydrologic variability via either a river flow or salinity, 
+    the use of an intervention to deal with method or laboratory changes 
+    suspected to impact data values, and representation of left- and 
+    interval-censored data. The approach has been applied to water quality data 
+    in the Chesapeake Bay, a major estuary on the east coast of the United 
+    States to provide insights to a range of management- and research-focused 
+    questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.0.5.9002
-Date: 2018-07-11
+Version: 1.0.7
+Date: 2018-07-12
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:
     R (>= 3.2.0),
@@ -34,7 +42,7 @@ Imports:
     plyr,
     survival,
     zCompositions
-Additional_repositories: https://github.com/tetratech/baytrends
+URL: https://github.com/tetratech/baytrends
 VignetteBuilder: knitr
 Collate: 
     'a1_smwrQW_qw-class.R'

@@ -124,8 +124,19 @@ library("baytrends")
 help(package="baytrends")
 ```
 
+## Check
+
+```{r, eval=FALSE}
+# Check for errors (or press Cmd + Shift + E in RStudio)
+#http://r-pkgs.had.co.nz/check.html
+devtools::check()
+```
+
+If use RStudio, Build - Check Package, the output is easier to read. 
+
 Check failures
 (single vector so not very useful)
+but puts it all in one place.  Have to run *after* using Check.
 ```{r CheckFailures, eval=FALSE}
 library(devtools)
 dir.check <- "C:\\Users\\Erik.Leppo\\OneDrive - Tetra Tech, Inc\\MyDocs_OneDrive\\GitHub\\baytrends.Rcheck"
@@ -165,15 +176,7 @@ example(analysisOrganizeData)
 ## Including Data
 All data should have already been created.
 
-## Check
 
-```{r, eval=FALSE}
-# Check for errors (or press Cmd + Shift + E in RStudio)
-#http://r-pkgs.had.co.nz/check.html
-devtools::check()
-```
-
-If use RStudio, Build - Check Package, the output is easier to read. 
 
 ## Test
 Need to use testthat but not to that stage yet.
