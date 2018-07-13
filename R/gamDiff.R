@@ -80,6 +80,8 @@
 gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy.set=NA,alpha=0.05
                     , flow.detrended=NA, salinity.detrended=NA) {
 # -----< Change history >--------------------------------------------
+# 11Jul2018: JBH: add additional independent variables to pdat excluding dependent
+#                 variable and "gamK*"
 # 30Sep2017: JBH: added salinity interpolation to merge up with pdat
 # 11Aug2017: JBH: added analySpec to function input parameters; renamed pct.chg.dta to pdat
 #                 updated setting for flw_sal to be observed flow
@@ -211,6 +213,12 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
       pdat$rowID <- seq.int(nrow( pdat))
       tmp <- c("rowID","date","year","cyear","doy")
       pdat<-pdat[c(tmp, setdiff(names(pdat), tmp))]
+      
+      # identify additional independent variables #11Jul2018
+      # excluding dependent variable and "gamK*" 
+      indVar <- setdiff (all.vars(gamRslt$formula), c(iSpec$dep, names(pdat)))
+      indVar <- indVar[-grep("^gamK", indVar)]
+      pdat[,indVar] <- 0
 
 # matrix: "adjust" prediction table pdat to use last intervention value for all calculations ####
       #(04Nov2016)
@@ -222,9 +230,9 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
       # with pdatWgt; in the merge of pdatWgt and pdatLong (each row of pdat is repeated
       # for each record in pdatWgt, then goes to next row of pdat); flw_sal based on
       # z stat and sd
-      pdatLong <- pdat[,c("rowID", "cyear", "doy", "bl", "intervention", "flw_sal", "flw_sal.sd"  )]
+      pdatLong <- pdat[,c("rowID", "cyear", "doy", "bl", "intervention", "flw_sal", "flw_sal.sd", indVar)]
       pdatLong <- merge( pdatWgt[,c("Z","flw.wgt")], pdat[,c("rowID", "cyear", "doy", "bl", "intervention",
-                                                             "flw_sal", "flw_sal.sd"  )])
+                                                             "flw_sal", "flw_sal.sd", indVar  )])
       pdatLong$flw_sal <- pdatLong$Z * pdatLong$flw_sal.sd
 
       # JBH(24Nov2017): original construction of xa and avg.per.mat

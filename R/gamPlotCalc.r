@@ -21,6 +21,7 @@
                      , flow.detrended=flow.detrended, salinity.detrended=salinity.detrended) {
 #  pgam <- gamRslt;  tsdat<-ct1;  dayStep=figRes
 # ----- Change history --------------------------------------------
+# 12Jul2018: JBH: accomodate additional ind. variables  
 # 30Sep2017: JBH: add creation of pdatWgt;
 # 01Aug2017: JBH: add a row id number and sort columns in the prediction data set (pdat)
 # 29Jul2017: JBH: added flw_sal and flw_sal.sd to prediction data set
@@ -65,7 +66,7 @@
     transform    <- iSpec$transform
     stat         <- iSpec$stat
     layer        <- iSpec$layer
-
+    
     # does model include intervention term 04Nov2016
     intervention <- ifelse (length(grep('intervention',pgam$formula  )) == 0, FALSE, TRUE)
 
@@ -161,6 +162,12 @@
     pdat$rowID <- seq.int(nrow(pdat))
     tmp <- c("rowID","date","year","cyear","doy","doy.actual")
     pdat<-pdat[c(tmp, setdiff(names(pdat), tmp))]
+    
+    # identify additional independent variables #11Jul2018
+    # excluding dependent variable and "gamK*"
+    indVar <- setdiff (all.vars(pgam$formula), c(iSpec$dep, names(pdat)))
+    indVar <- indVar[-grep("^gamK", indVar)]
+    pdat[,indVar] <- 0
 
   } # end prediction data set build
 
@@ -211,9 +218,9 @@
     # with pdatWgt; in the merge of pdatWgt and pdatLong (each row of pdat is repeated
     # for each record in pdatWgt, then goes to next row of pdat); flw_sal based on
     # z stat and sd
-    pdatLong <- pdat[,c("rowID", "cyear", "doy", "doy.actual", "intervention", "intervention.actual", "flw_sal", "flw_sal.sd"  )]
+    pdatLong <- pdat[,c("rowID", "cyear", "doy", "doy.actual", "intervention", "intervention.actual", "flw_sal", "flw_sal.sd" , indVar )]
     pdatLong <- merge( pdatWgt[,c("Z","flw.wgt")], pdat[,c("rowID", "cyear", "doy", "doy.actual", "intervention",
-                                                           "intervention.actual", "flw_sal", "flw_sal.sd"  )])
+                                                           "intervention.actual", "flw_sal", "flw_sal.sd", indVar  )])
     pdatLong$flw_sal <- pdatLong$Z * pdatLong$flw_sal.sd
 
     # compute seasonal- and flow/salinity-weighted average #30Sep2017: flw/sal weighting added
@@ -276,9 +283,9 @@
         # with pdatWgt; in the merge of pdatWgt and pdatLong (each row of pdat is repeated
         # for each record in pdatWgt, then goes to next row of pdat); flw_sal based on
         # z stat and sd
-        pdatLong <- pdat[,c("rowID", "cyear", "doy", "doy.actual", "intervention", "intervention.actual", "flw_sal", "flw_sal.sd"  )]
+        pdatLong <- pdat[,c("rowID", "cyear", "doy", "doy.actual", "intervention", "intervention.actual", "flw_sal", "flw_sal.sd", indVar)]
         pdatLong <- merge( pdatWgt[,c("Z","flw.wgt")], pdat[,c("rowID", "cyear", "doy", "doy.actual", "intervention",
-                                                               "intervention.actual", "flw_sal", "flw_sal.sd"  )])
+                                                               "intervention.actual", "flw_sal", "flw_sal.sd", indVar)])
         pdatLong$flw_sal <- pdatLong$Z * pdatLong$flw_sal.sd
 
         # compute seasonally averaged model & significant trends
