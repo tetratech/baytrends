@@ -28,6 +28,7 @@ gamPlotDisp <- function(gamResult=gamResult, analySpec=analySpec,
                          adjustedPlot=FALSE) {
 
 # ----- Change history --------------------------------------------
+# 12Jul2018: JBH: add magenta line when additional independent variables are in model
 # 05Aug2017: JBH: added some place holder code for flw_sal bar & fitted model
 # 14Mar2017: JBH: updated off scale y settings
 # 05Jan2017: JBH: modified ConfInt shading to allow for missing values in pdat
@@ -141,6 +142,16 @@ gamPlotDisp <- function(gamResult=gamResult, analySpec=analySpec,
   # fittedValues <- TRUE
   fit.GAM <- ifelse (length(grep('flw_sal',
                                  gamResult[[paste0("gamOutput",fullModel)]]$gamRslt$formula)) == 0, FALSE, TRUE)
+  
+  if (!fit.GAM) {
+    # identify additional independent variables #12Jul2018
+    # excluding dependent variable and "gamK*" 
+    indVar <- setdiff (all.vars(gamResult[[paste0("gamOutput",fullModel)]]$gamRslt$formula)
+                       , c(iSpec$dep, "cyear", "doy", "intervention", "flw_sal"))
+    indVar <- indVar[-grep("^gamK", indVar)]
+    fit.GAM <- length(indVar) > 0
+  }
+  
   if(fit.GAM) {
     pdat <- data.frame(date = gamResult$data$date,
                        pred1 = gamResult[[paste0("gamOutput",fullModel)]]$gamRslt$fitted.values)
