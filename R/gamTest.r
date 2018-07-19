@@ -46,6 +46,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
                    , salinity.detrended=NA) {
 
 # ----- Change history -------------------------------------------- ####
+# 18Jul2018: JBH: added na.rm=TRUE to min/max functions  
 # 01May2018: JBH: changed .impute to impute; 
 #                 added to stat.gam.result & chng.gam.result: 
 #                     + usgs gage id, usgs gage name 
@@ -461,20 +462,27 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       # evaluate F-stat in ANOVA table     #04Feb2017
       FstatFlag <- ""
       if(selectSetting==FALSE &&
-         (min(gamANOVAtbl$df) < gamPenaltyCrit[1] ||
-          max(gamANOVAtbl$F) > gamPenaltyCrit[2])) {
+         (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] ||  #18Jul2018
+          max(gamANOVAtbl$F, na.rm=TRUE) > gamPenaltyCrit[2])) {  #18Jul2018
         gamANOVAtbl$Note <- '-'
-        gamANOVAtbl[gamANOVAtbl$df < gamPenaltyCrit[1] ||
-                      gamANOVAtbl$F > gamPenaltyCrit[2],"Note"] <- "F-stat maybe unreliable"
-        FstatFlag <- "***"
+        if (length(gamANOVAtbl$df < gamPenaltyCrit[1] ||      #18Jul2018
+                   gamANOVAtbl$F > gamPenaltyCrit[2]) == 1 &  #18Jul2018
+            is.na(gamANOVAtbl$df < gamPenaltyCrit[1] ||       #18Jul2018
+                  gamANOVAtbl$F > gamPenaltyCrit[2])[1]) {    #18Jul2018
+          FstatFlag <- ""                                     #18Jul2018
+        } else {
+          gamANOVAtbl[gamANOVAtbl$df < gamPenaltyCrit[1] ||
+                        gamANOVAtbl$F > gamPenaltyCrit[2],"Note"] <- "F-stat maybe unreliable"
+          FstatFlag <- "***"
+        }
       }
       
       # Output GAM ANOVA table          #04Feb2017
       if(gamTable) {
         
         if(selectSetting==FALSE &&
-           (min(gamANOVAtbl$df) < gamPenaltyCrit[1] ||
-            max(gamANOVAtbl$F) > gamPenaltyCrit[2])) {
+           (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] ||  #18Jul2018
+            max(gamANOVAtbl$F, na.rm=TRUE) > gamPenaltyCrit[2])) {  #18Jul2018
           .T("GAM Analysis of Variance.")
           print(knitr::kable(gamANOVAtbl[,],
                              col.names = c("Type","Source","edf","F-stat","p-value","Note"),

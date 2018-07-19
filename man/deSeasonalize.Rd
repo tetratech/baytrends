@@ -4,16 +4,16 @@
 \alias{deSeasonalize}
 \title{De-seasonalize variable}
 \usage{
-deSeasonalize(df, var, deSeasonalizeModel = "gam2", analySpec = analySpec,
+deSeasonalize(df, dep, deSeasonalizeModel = "doy", analySpec = analySpec,
   gamTable = FALSE, gamPlot = FALSE, flow.detrended = NA,
   salinity.detrended = NA)
 }
 \arguments{
 \item{df}{data frame}
 
-\item{var}{variable}
+\item{dep}{variable}
 
-\item{deSeasonalizeModel}{which gam formula is used. Default: 'gam2'.}
+\item{deSeasonalizeModel}{which gam formula is used. Default: 'doy'.}
 
 \item{analySpec}{analytical specifications}
 

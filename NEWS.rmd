@@ -1,6 +1,6 @@
 ---
 title: "NEWS"
-author: Erik.Leppo@tetratech.com
+author: Erik.Leppo@tetratech.com and jon.harcum@tetratech.com
 output: github_document
   #md_document:
    # variant: markdown_github
@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.7.9002
+===========
+* Release 2018-07-18
+* update function deSeasonalize to allow for s(doy) and perform basic testing
+
 baytrends 1.0.7.9001
 ===========
 * Release 2018-07-13

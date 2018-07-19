@@ -4,8 +4,8 @@
 #' Use GAM analysis to de-seasonalize variable. Relies on mgcv::gam to perform general additive model.
 #' 
 #' @param df data frame
-#' @param var  variable
-#' @param deSeasonalizeModel which gam formula is used. Default: 'gam2'.
+#' @param dep  variable
+#' @param deSeasonalizeModel which gam formula is used. Default: 'doy'.
 #' @param analySpec analytical specifications
 #' @param gamTable gam table setting (set to FALSE to turn off table output)
 #' @param gamPlot gam plot setting (set to FALSE to turn off plotting)
@@ -17,8 +17,8 @@
 #'
 # ####
 
-deSeasonalize <- function(df, var
-                          , deSeasonalizeModel = 'gam2'
+deSeasonalize <- function(df, dep
+                          , deSeasonalizeModel = 'doy'
                           , analySpec = analySpec
                           , gamTable = FALSE
                           , gamPlot = FALSE
@@ -27,7 +27,7 @@ deSeasonalize <- function(df, var
   
   # error trap: all variables present?
   {
-    vars <- c(var, "year", "doy", "dyear", "month", "nummon") 
+    vars <- c(dep, "year", "doy", "dyear", "month", "nummon") 
     if (sum(vars %in% names(df)) <6) {
       warning(paste(" Variables not found: ", paste(vars[!vars %in% names(df)], collapse = ', ')))
       return(NA)
@@ -35,8 +35,8 @@ deSeasonalize <- function(df, var
   }
   
   # error trap: is  variable of qw type
-  if (!class(df[,var])=='qw') {
-    warning(paste0("Variable not of qw class: ",var))
+  if (!class(df[,dep])=='qw') {
+    warning(paste0("Variable not of qw class: ",dep))
     return(NA)
   }
   
@@ -48,8 +48,13 @@ deSeasonalize <- function(df, var
   
   # set up deseasonalizing model
   if (class(deSeasonalizeModel)=="character") {
-    if (deSeasonalizeModel %in% c('gam2', 'gam4')) {
-      if (deSeasonalizeModel == 'gam2') {
+    if (deSeasonalizeModel %in% c('doy', 'gam2', 'gam4')) {
+      if (deSeasonalizeModel == 'doy') {
+        analySpec$gamModels   <- list(
+          list(option=0, name= "Seasonal trend only",
+               model= " ~ s(doy,bs='cc')", 
+               deriv=FALSE, gamK1=c(NA,NA), gamK2=c(NA,NA)))
+    } else if (deSeasonalizeModel == 'gam2') {
         analySpec$gamModels   <- list(
           list(option=2, name= "Non-linear trend with Seas+Int",
                model= paste0(" ~ cyear + s(cyear, k=gamK1) + s(doy,bs='cc')",
@@ -88,11 +93,11 @@ deSeasonalize <- function(df, var
   
   for (layer in layers) { 
     for (stat in stations) { 
-      # layer="S"; stat="CB5.4"
-      if(gamTable | !gamPlot==FALSE) {  # only show header if tables or figures are outputted
+      # layer=layers[1]; stat=stations[1]
+     # if(gamTable | !gamPlot==FALSE) {  # only show header if tables or figures are outputted
         .H4(paste("Processing: ",stat,"/",layer))
-      }
-      gamResult <- gamTest(df, var, stat, layer, analySpec
+     #  }
+      gamResult <- gamTest(df, dep, stat, layer, analySpec
                            , gamTable = gamTable
                            , gamPlot = gamPlot
                            , gamDiffModel = NA
@@ -102,22 +107,22 @@ deSeasonalize <- function(df, var
         residuals <- eval(parse(text = paste0("gamResult$gamOutput"
                                               , analySpec$gamModels[[1]]$option
                                               ,"$gamRslt$residuals")))
-        var.res0 <- cbind(gamResult$data[,c("station","date","layer")],residuals)
-        if (!exists("var.res1")) {
-          var.res1 <- var.res0
+        dep.res0 <- cbind(gamResult$data[,c("station","date","layer")],residuals)
+        if (!exists("dep.res1")) {
+          dep.res1 <- dep.res0
         } else { 
-          var.res1 <- rbind(var.res1, var.res0)
+          dep.res1 <- rbind(dep.res1, dep.res0)
         }
-        # df[df$station==stat & df$layer==layer & !is.na(df[,var]), "residuals"] <- var.res
+        # df[df$station==stat & df$layer==layer & !is.na(df[,dep]), "residuals"] <- dep.res
       }  
     }
   }
   
-  df <- merge(df,var.res1, by=c("station","date","layer"), all.x=TRUE)
+  df <- merge(df,dep.res1, by=c("station","date","layer"), all.x=TRUE)
   
   return(df[,"residuals"])
 }
 
-# plot(var.res1$residuals ~ var.res1$date)
-# boxplot(var.res1$residuals ~ var.res1$station)
+# plot(dep.res1$residuals ~ dep.res1$date)
+# boxplot(dep.res1$residuals ~ dep.res1$station)
 
