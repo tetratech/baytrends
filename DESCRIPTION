@@ -12,7 +12,7 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.0.7.9002
+Version: 1.0.7.9003
 Date: 2018-07-19
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:
@@ -57,8 +57,8 @@ Collate:
     'checkRange.R'
     'chkParameter.R'
     'closeOut.R'
+    'createResiduals.R'
     'data.R'
-    'deSeasonalize.R'
     'detrended.flow.R'
     'detrended.salinity.R'
     'expectMaxFunctions.r'

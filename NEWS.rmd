@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+
+baytrends 1.0.7.9003
+===========
+* Release 2018-07-30
+* function deSeasonalize renamed to createResiduals; extended to allow for any gam0-gam5 model
+
 baytrends 1.0.7.9002
 ===========
 * Release 2018-07-18
