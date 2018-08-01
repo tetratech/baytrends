@@ -19,6 +19,10 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.7.9004
+===========
+* Release 2018-08-01 
+* added loadModels function to facilitate gam formula specification; updated createResidual to include a "fall back" option to use gam2 or gam4 if user had selected gam3 or gam5 and the model did not run (expected due to intervention)
 
 baytrends 1.0.7.9003
 ===========

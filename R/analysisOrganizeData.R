@@ -229,31 +229,9 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   if (!"gamAlpha"        %in% names(analySpec)) analySpec$gamAlpha         <- c(0.05)
   if (!"censorTrim"      %in% names(analySpec)) analySpec$censorTrim       <- c(0.5,0.40)  #01Nov2016
 
-  if (!"gamModels"      %in% names(analySpec)) analySpec$gamModels       <- list(  #21Jul2017
-    list(option=0, name= "Linear Trend with Seasonality",
-         model= "~ cyear + s(doy,bs='cc')", 
-         deriv=TRUE, gamK1=c(NA,NA), gamK2=c(NA,NA)),
-    list(option=1, name= "Non-linear Trend with Seasonality",
-         model= "~ cyear + s(cyear, k=gamK1) + s(doy,bs='cc')", 
-         deriv=TRUE, gamK1=c(10,2/3), gamK2=c(NA,NA)),
-    list(option=2, name= "Non-linear trend with Seas+Int",
-         model= "~ cyear + s(cyear, k=gamK1) + s(doy,bs='cc')+ ti(cyear,doy,bs=c('tp','cc'))", 
-         deriv=TRUE, gamK1=c(10,2/3), gamK2=c(NA,NA)),
-    list(option=3, name= "Non-linear trend with Seas+Int. & Intervention",
-         model= "~ intervention + cyear + s(cyear, k=gamK1) + s(doy,bs='cc') + ti(cyear,doy,bs=c('tp','cc'))", 
-         deriv=TRUE, gamK1=c(10,2/3), gamK2=c(NA,NA)),  
-    list(option=4, name= "Non-linear trend with Seas+Int. & Hydro Adj",
-         model= paste0("~ cyear + s(cyear, k=gamK1) + s(doy,bs='cc') + ti(cyear,doy,bs=c('tp','cc')) + ",
-                       "s(flw_sal,k=gamK2) + ti(flw_sal,doy,bs=c('tp','cc')) + ti(flw_sal, cyear,bs=c('tp' ,'tp')) + ",
-                       "ti(flw_sal,doy,cyear, bs=c('tp','cc','tp'))"),
-         deriv=TRUE, gamK1=c(10,1/3), gamK2=c(10,2/3)))
-
-  # gam model with intervention and hydrologic adjustment -- could append to above list if desired in future version
-  # list(option=5, name= "Non-linear trend with Seas+Int. & Inter/Hydro Adj",
-  #      model= paste0("~ intervention + cyear + s(cyear, k=gamK1) + s(doy,bs='cc') + ti(cyear,doy,bs=c('tp','cc')) + ",
-  #                    "s(flw_sal,k=gamK2) + ti(flw_sal,doy,bs=c('tp','cc')) + ti(flw_sal, cyear,bs=c('tp' ,'tp')) + ",
-  #                    "ti(flw_sal,doy,cyear, bs=c('tp','cc','tp'))"),
-  #      deriv=TRUE, gamK1=c(10,1/3), gamK2=c(10,2/3))
+  # load gam0-gam4 if not specified #31Jul2018
+  if (!"gamModels"      %in% names(analySpec)) analySpec$gamModels       <- loadModels(c('gam0', 'gam1', 'gam2', 'gam3', 'gam4' ))
+  
 
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(
     list( periodName = "Full Record",     periodStart = c(NA),        periodEnd = c(NA)),

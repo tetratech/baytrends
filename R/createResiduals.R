@@ -26,6 +26,9 @@ createResiduals <- function(df, dep
                             , salinity.detrended = NA) {
   
 # ----- Change history -------------------------------------------- ####
+# 01Aug2018: JBH: migrated model loading to new function, loadModels. Added in
+#                 a "fall back" option to use gam2 or gam4 if user had selected
+#                 gam3 or gam5 and the model did not run (expected due to intervention)
 # 30Jul2018: JBH: function renamed to createResiduals; extended to allow for
 #                 any gam0-gam5 model
   
@@ -54,68 +57,7 @@ createResiduals <- function(df, dep
   # set up computing residuals model ####
   if (class(residualModel)=="character") {
     if (residualModel %in% c('doy', 'gam0', 'gam1', 'gam2', 'gam3','gam4', 'gam5')) {
-      if (residualModel == 'doy') {
-        analySpec$gamModels   <- list(
-          list(option=0, name= "Seasonality",
-               model= paste0("~ s(doy,bs='cc')"), 
-               deriv=TRUE, gamK1=c(NA,NA), gamK2=c(NA,NA)))
-      } else if (residualModel == 'gam0') {
-        analySpec$gamModels   <- list(
-          list(option=0, name= "Linear Trend with Seasonality",
-               model= paste0("~ cyear", 
-                             "+ s(doy,bs='cc')"), 
-               deriv=TRUE, gamK1=c(NA,NA), gamK2=c(NA,NA)))
-      } else if (residualModel == 'gam1') {
-        analySpec$gamModels   <- list(
-          list(option=1, name= "Non-linear Trend with Seasonality",
-               model= paste0("~ cyear", 
-                             " + s(cyear, k=gamK1)",  
-                             " + s(doy,bs='cc')"), 
-               deriv=TRUE, gamK1=c(10,2/3), gamK2=c(NA,NA)))
-      }else if (residualModel == 'gam2') {
-        analySpec$gamModels   <- list(
-          list(option=2, name= "Non-linear trend with Seas+Int",
-               model= paste0("~ cyear",  
-                             " + s(cyear, k=gamK1)",  
-                             " + s(doy,bs='cc')", 
-                             " + ti(cyear,doy,bs=c('tp','cc'))"),
-               deriv=TRUE, gamK1=c(10,2/3), gamK2=c(NA,NA)))
-      } else if (residualModel == 'gam3') {
-        analySpec$gamModels   <- list(
-          list(option=3, name= "Non-linear trend with Seas+Int. & Intervention",
-               model= paste0("~ intervention",  
-                             " + cyear",  
-                             " + s(cyear, k=gamK1)",  
-                             " + s(doy,bs='cc')",  
-                             " + ti(cyear,doy,bs=c('tp','cc'))"),
-               deriv=TRUE, gamK1=c(10,2/3), gamK2=c(NA,NA)))
-      } else if (residualModel == 'gam4') {
-        analySpec$gamModels   <- list(
-          list(option=4, name= "Non-linear trend with Seas+Int. & Hydro Adj",
-               model= paste0("~ cyear", 
-                             " + s(cyear, k=gamK1)",
-                             " + s(doy,bs='cc')",  
-                             " + ti(cyear,doy,bs=c('tp','cc'))",  
-                             " + s(flw_sal,k=gamK2)",  
-                             " + ti(flw_sal,doy,bs=c('tp','cc'))",  
-                             " + ti(flw_sal, cyear,bs=c('tp' ,'tp'))",  
-                             " + ti(flw_sal,doy,cyear, bs=c('tp','cc','tp'))"),
-               deriv=TRUE, gamK1=c(10,1/3), gamK2=c(10,2/3)) )
-      } else if (residualModel == 'gam5') {
-        analySpec$gamModels   <- list(
-          list(option=5, name= "Non-linear trend with Seas+Int. & Inter/Hydro Adj",
-               model= paste0("~ intervention", 
-                             " + cyear", 
-                             " + s(cyear, k=gamK1)", 
-                             " + s(doy,bs='cc')", 
-                             " + ti(cyear,doy,bs=c('tp','cc'))", 
-                             " + s(flw_sal,k=gamK2)", 
-                             " + ti(flw_sal,doy,bs=c('tp','cc'))", 
-                             " + ti(flw_sal, cyear,bs=c('tp' ,'tp'))", 
-                             " + ti(flw_sal,doy,cyear, bs=c('tp','cc','tp'))"),
-               deriv=TRUE, gamK1=c(10,1/3), gamK2=c(10,2/3)))
-      } 
-      
+      analySpec$gamModels   <- loadModels(residualModel)
     }
   } else {
     warning(paste0("Valid model for computing residuals is not selected: ",residualModel))
@@ -139,13 +81,31 @@ createResiduals <- function(df, dep
   
   for (layer in layers) { 
     for (stat in stations) { 
+      # layer=layers[1]; stat=stations[1]
+      # apply specified model
       .H4(paste("Processing: ",stat,"/",layer))
+      gamModel.reset <- gamModel.orig  <- analySpec$gamModels[[1]]$option
       gamResult <- gamTest(df, dep, stat, layer, analySpec
                            , gamTable = gamTable
                            , gamPlot = gamPlot
                            , gamDiffModel = NA
                            , flow.detrended = flow.detrended
                            , salinity.detrended = salinity.detrended)
+      
+      # if model didn't run and model was gam3 or gam5, then drop back to gam 2 or gam4 and retry
+      if (is.null(gamResult$stat.gam.result) & analySpec$gamModels[[1]]$option %in% c(3,5)) {
+        .H4(paste("Processing: ",stat,"/",layer, ' -- dropping intervention term'))
+        gamModel.reset <- gamModel.reset - 1
+        analySpec$gamModels   <- loadModels(paste0('gam',gamModel.reset))
+        gamResult <- gamTest(df, dep, stat, layer, analySpec
+                             , gamTable = gamTable
+                             , gamPlot = gamPlot
+                             , gamDiffModel = NA
+                             , flow.detrended = flow.detrended
+                             , salinity.detrended = salinity.detrended) 
+      }
+
+      # collect computed residuals
       if (!is.na(gamResult[1])) { 
         residuals <- eval(parse(text = paste0("gamResult$gamOutput"
                                               , analySpec$gamModels[[1]]$option
@@ -156,12 +116,21 @@ createResiduals <- function(df, dep
         } else { 
           dep.res1 <- rbind(dep.res1, dep.res0)
         }
-      }  
-    }
-  }
+      }   
+      
+      # reset gamModel if necessary
+      if (gamModel.orig != gamModel.reset) {
+        analySpec$gamModels   <- loadModels(paste0('gam',gamModel.orig))
+      }
+      
+    } # end stat loop
+  } # end layer loop
 
   # merge residuals back to overall data frame ####  
   df <- merge(df,dep.res1, by=c("station","date","layer"), all.x=TRUE)
   
   return(df[,"residuals"])
 }
+
+
+
