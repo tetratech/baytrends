@@ -52,18 +52,17 @@ createResiduals <- function(df, dep
   if (class(residualModel)=="list" ) {
     print(paste0("User specified model for computing residuals"))
     analySpec$gamModels <- residualModel
-  }
-  
-  # set up computing residuals model ####
-  if (class(residualModel)=="character") {
-    if (residualModel %in% c('doy', 'gam0', 'gam1', 'gam2', 'gam3','gam4', 'gam5')) {
-      analySpec$gamModels   <- loadModels(residualModel)
-    }
+    
+    # set up computing residuals model ####
+  } else if (class(residualModel)=="character" &&
+             (residualModel %in% c('doy', 'gam0', 'gam1', 'gam2', 'gam3','gam4', 'gam5'))) {
+    analySpec$gamModels   <- loadModels(residualModel)
   } else {
+    # not a good model specified
     warning(paste0("Valid model for computing residuals is not selected: ",residualModel))
     return(NA)
   }
-  
+
   # print selected gam model ####
   if(gamTable | !gamPlot==FALSE) {  # only show header if tables or figures are outputted
     .H4(paste("Model: ",analySpec$gamModels[[1]]$model))
