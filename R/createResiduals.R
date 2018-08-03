@@ -26,6 +26,8 @@ createResiduals <- function(df, dep
                             , salinity.detrended = NA) {
   
 # ----- Change history -------------------------------------------- ####
+# 03Aug2018: JBH: updated to skip over cases (i.e., specific stations) where
+#                 there were insufficient data to run specified gam formula
 # 01Aug2018: JBH: migrated model loading to new function, loadModels. Added in
 #                 a "fall back" option to use gam2 or gam4 if user had selected
 #                 gam3 or gam5 and the model did not run (expected due to intervention)
@@ -92,16 +94,18 @@ createResiduals <- function(df, dep
                            , salinity.detrended = salinity.detrended)
       
       # if model didn't run and model was gam3 or gam5, then drop back to gam 2 or gam4 and retry
-      if (is.null(gamResult$stat.gam.result) & analySpec$gamModels[[1]]$option %in% c(3,5)) {
-        .H4(paste("Processing: ",stat,"/",layer, ' -- dropping intervention term'))
-        gamModel.reset <- gamModel.reset - 1
-        analySpec$gamModels   <- loadModels(paste0('gam',gamModel.reset))
-        gamResult <- gamTest(df, dep, stat, layer, analySpec
-                             , gamTable = gamTable
-                             , gamPlot = gamPlot
-                             , gamDiffModel = NA
-                             , flow.detrended = flow.detrended
-                             , salinity.detrended = salinity.detrended) 
+      if (!is.na(gamResult[1])) { 
+        if (is.null(gamResult$stat.gam.result) & analySpec$gamModels[[1]]$option %in% c(3,5)) {
+          .H4(paste("Processing: ",stat,"/",layer, ' -- dropping intervention term'))
+          gamModel.reset <- gamModel.reset - 1
+          analySpec$gamModels   <- loadModels(paste0('gam',gamModel.reset))
+          gamResult <- gamTest(df, dep, stat, layer, analySpec
+                               , gamTable = gamTable
+                               , gamPlot = gamPlot
+                               , gamDiffModel = NA
+                               , flow.detrended = flow.detrended
+                               , salinity.detrended = salinity.detrended) 
+        }
       }
 
       # collect computed residuals

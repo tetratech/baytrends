@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.7.9005
+===========
+* Release 2018-08-03 
+* updated createResidual to skip over cases (i.e., specific stations) where there were insufficient data to run specified gam formula
+
 baytrends 1.0.7.9004 
 ===========
 * Release 2018-08-01 
