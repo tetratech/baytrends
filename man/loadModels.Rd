@@ -7,7 +7,8 @@
 loadModels(gamSelect = "gam4")
 }
 \arguments{
-\item{gamSelect}{character vector of models (Current options include gam0, gam1, gam2, gam3, gam4, gam5)}
+\item{gamSelect}{character vector of models (Current options include gam0,
+gam1, gam2, gam3, gam4, gam5)}
 }
 \value{
 Returns a list with GAM formulas

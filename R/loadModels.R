@@ -3,7 +3,8 @@
 #'
 #' Returns built-in GAM formulas
 #' 
-#' @param gamSelect character vector of models (Current options include gam0, gam1, gam2, gam3, gam4, gam5)
+#' @param gamSelect character vector of models (Current options include gam0,
+#'   gam1, gam2, gam3, gam4, gam5)
 #'
 #' @return Returns a list with GAM formulas 
 #' @export
@@ -13,12 +14,7 @@ loadModels <- function(gamSelect='gam4') {
   gamModels <- list()
   
   for (gams in gamSelect) {
-    if (gams == 'doy') {
-      gamModels0   <- list(
-        list(option=0, name= "Seasonality",
-             model= paste0("~ s(doy,bs='cc')"), 
-             deriv=TRUE, gamK1=c(NA,NA), gamK2=c(NA,NA))) 
-    } else if (gams == 'gam0') {
+    if (gams == 'gam0') {
       gamModels0   <- list(
         list(option=0, name= "Linear Trend with Seasonality",
              model= paste0("~ cyear", 

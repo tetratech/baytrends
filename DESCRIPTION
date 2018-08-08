@@ -12,8 +12,8 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.0.7.9005
-Date: 2018-08-03
+Version: 1.0.7.9006
+Date: 2018-08-08
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:
     R (>= 3.2.0),
@@ -78,6 +78,7 @@ Collate:
     'loadData.R'
     'loadExcel.R'
     'loadModels.R'
+    'loadModelsResid.R'
     'mergeFlow.R'
     'mergeSalinity.R'
     'qw.export.R'

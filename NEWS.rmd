@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.7.9006
+===========
+* Release 2018-08-08 
+* created loadModelsResid function to include models for calculating residuals (i.e., primarily gam4 and gam5 without cyear)
+* updated createResidual to save plots to file
+
 baytrends 1.0.7.9005
 ===========
 * Release 2018-08-03 
