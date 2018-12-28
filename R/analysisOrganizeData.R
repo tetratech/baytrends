@@ -168,6 +168,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 28Dec2018: JBH: add default seasonal mean of July 1-Sept 30 to gamLegend
 # 01May2018: JBH: removed median as option for layer aggregation  
 # 06Aug2017: JBH: added gamFlw_Sal.Wgt.Perc
 # 05Aug2017: JBH: cleaned up change history date formats
@@ -328,6 +329,19 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 
   # add gamPlot legend  #01Nov2016
   analySpec$gamLegend <- gamLegend
+
+  # add default seasonal mean of July 1-Sept 30 #28Dec2018
+  analySpec$gamLegend <- rbind(analySpec$gamLegend, 
+                               data.frame(legend = '7/1-7/31'
+                                          , colSel        = 'red'     
+                                          , colLegend     = 'red'
+                                          , lwdLegend     = 1
+                                          , ltyLegend     = 1
+                                          , pchLegend     = NA
+                                          , fillLegend    = NA
+                                          , borderLegend  = NA
+                                          , season        = FALSE
+                                          , descrip       = 'seasMean'))
   
   # add newly created variables back to analySpec
   analySpec$idVar         <- idVar
