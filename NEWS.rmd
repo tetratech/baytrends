@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.7.9007
+===========
+* Release 2018-12-28 
+* Based on date range entered into analySpec_gamLegend_legend for analySpec_gamLegend_descrip equal to 'seasMean', compute predicted values based on doy's spread across above date range. seasMeandoy.xyz maintained in prediction data set along with seasMeanMin, seasMeanMean, and seasMeanMax.
+
 baytrends 1.0.7.9006
 ===========
 * Release 2018-08-08 
