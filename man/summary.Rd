@@ -4,8 +4,6 @@
 \alias{summary.lcens}
 \alias{summary.mcens}
 \alias{summary.qw}
-\alias{summary.mcens}
-\alias{summary.qw}
 \title{Summarize Data}
 \usage{
 \method{summary}{lcens}(object, ...)

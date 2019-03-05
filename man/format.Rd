@@ -4,15 +4,14 @@
 \alias{format.lcens}
 \alias{format.mcens}
 \alias{format.qw}
-\alias{format.mcens}
-\alias{format.qw}
 \title{Encode in a Common Format}
 \usage{
 \method{format}{lcens}(x, digits = NULL, ...)
 
 \method{format}{mcens}(x, digits = NULL, ...)
 
-\method{format}{qw}(x, round = TRUE, units = FALSE, style = "asis", ...)
+\method{format}{qw}(x, round = TRUE, units = FALSE, style = "asis",
+  ...)
 }
 \arguments{
 \item{x}{the censored data object to format.}

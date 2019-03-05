@@ -5,9 +5,6 @@
 \alias{isDateLike}
 \alias{isGroupLike}
 \alias{isNumberLike}
-\alias{isDateLike}
-\alias{isGroupLike}
-\alias{isNumberLike}
 \title{Test whether an object can be treated in a particular way}
 \usage{
 isCharLike(x)

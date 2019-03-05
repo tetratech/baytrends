@@ -5,12 +5,6 @@
 \alias{rmse.default}
 \alias{rmse.lm}
 \alias{rpd}
-\alias{rmse}
-\alias{rmse.default}
-\alias{rmse}
-\alias{rmse.lm}
-\alias{rmse}
-\alias{rpd}
 \title{Root-Mean-Squared and Relative Differences}
 \usage{
 rmse(x, ...)
