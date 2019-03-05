@@ -200,7 +200,7 @@
     pdat$seasMeanMax  <- apply(pdat[ ,grep("seasMeandoy.", names(pdat))],1,max)  
     pdat$seasMeanMean <- apply(pdat[ ,grep("seasMeandoy.", names(pdat))],1,mean)  
     # uncomment next line to drop seasMeandoy vars
-    # pdat <- pdat[,!(names(pdat) %in% names(pdat)[grep("seasMeandoy.", names(pdat))])]
+    pdat <- pdat[,!(names(pdat) %in% names(pdat)[grep("seasMeandoy.", names(pdat))])]
         
   } # end full/seasonal model predictions
 
