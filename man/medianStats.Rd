@@ -4,6 +4,8 @@
 \alias{median.lcens}
 \alias{median.mcens}
 \alias{median.qw}
+\alias{median.mcens}
+\alias{median.qw}
 \title{Median Value}
 \usage{
 \method{median}{lcens}(x, na.rm = FALSE, ...)

@@ -6,6 +6,10 @@
 \alias{censorLevels.lcens}
 \alias{censorLevels.mcens}
 \alias{censorLevels.qw}
+\alias{censorLevels.default}
+\alias{censorLevels.lcens}
+\alias{censorLevels.mcens}
+\alias{censorLevels.qw}
 \title{Describe Censoring}
 \usage{
 censorLevels(x, type = "left")

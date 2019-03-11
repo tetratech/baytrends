@@ -19,6 +19,15 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+
+baytrends 1.0.7.9009
+===========
+* Release 2019-03-11
+* Update from devtools::session_info to sessioninfo::session_info.
+    + closeOut function.
+* Rebuild vignettes.
+    + Names not showing in help file.
+
 baytrends 1.0.7.9008
 ===========
 * Release 2019-03-05 

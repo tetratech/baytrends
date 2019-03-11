@@ -4,7 +4,7 @@ author: "Jon.Harcum@tetratech.com and Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette, Create Seasonally Detrended Flow and Salinity Data Sets}
+  %\VignetteIndexEntry{Data Sets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

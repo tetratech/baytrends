@@ -3,6 +3,7 @@
 \name{sort.lcens}
 \alias{sort.lcens}
 \alias{sort.mcens}
+\alias{sort.mcens}
 \title{Sorting Vectors}
 \usage{
 \method{sort}{lcens}(x, decreasing = FALSE, na.last = NA, ...)

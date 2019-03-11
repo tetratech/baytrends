@@ -25,20 +25,17 @@ as.lcens(values, detlim, censor.codes)
 
 \S4method{as.lcens}{numeric,numeric,logical}(values, detlim, censor.codes)
 
-\S4method{as.lcens}{numeric,numeric,character}(values, detlim,
-  censor.codes)
+\S4method{as.lcens}{numeric,numeric,character}(values, detlim, censor.codes)
 
 \S4method{as.lcens}{numeric,missing,logical}(values, detlim, censor.codes)
 
-\S4method{as.lcens}{numeric,missing,character}(values, detlim,
-  censor.codes)
+\S4method{as.lcens}{numeric,missing,character}(values, detlim, censor.codes)
 
 \S4method{as.lcens}{qw,missing,missing}(values, detlim, censor.codes)
 
 \S4method{as.lcens}{qw,numeric,missing}(values, detlim, censor.codes)
 
-\S4method{as.lcens}{character,missing,missing}(values, detlim,
-  censor.codes)
+\S4method{as.lcens}{character,missing,missing}(values, detlim, censor.codes)
 }
 \arguments{
 \item{values}{numeric values representing "raw" values. Missing values

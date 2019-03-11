@@ -77,7 +77,7 @@ closeOut <-function(timeProcess=TRUE, contInfo=TRUE, sessInfo=TRUE) {
     if(sessInfo) {
       .H2(" ")
       .H3("Session Information")
-      tmp <- (devtools::session_info())
+      tmp <- (sessioninfo::session_info())
       .H4("Platform")
       print((tmp[[1]]))
       .H4("Packages")

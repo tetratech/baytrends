@@ -5,6 +5,7 @@
 \alias{setPage}
 \alias{setPDF}
 \alias{setSweave}
+\alias{setGD}
 \alias{setKnitr}
 \alias{setPNG}
 \alias{setRStudio}

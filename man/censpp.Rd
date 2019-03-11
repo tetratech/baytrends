@@ -5,6 +5,9 @@
 \alias{censpp.default}
 \alias{censpp.lcens}
 \alias{censpp.mcens}
+\alias{censpp.default}
+\alias{censpp.lcens}
+\alias{censpp.mcens}
 \title{Probability Plotting Positions}
 \usage{
 censpp(x, a = 0.44)

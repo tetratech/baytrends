@@ -4,8 +4,8 @@
 \alias{pcodeNWISqw}
 \title{Parameter Code Information}
 \usage{
-pcodeNWISqw(params = "all", group = TRUE, name = TRUE,
-  CASRN = FALSE, short = TRUE, units = TRUE, col.name = FALSE)
+pcodeNWISqw(params = "all", group = TRUE, name = TRUE, CASRN = FALSE,
+  short = TRUE, units = TRUE, col.name = FALSE)
 }
 \arguments{
 \item{params}{A character string contains the name of a group of parameter

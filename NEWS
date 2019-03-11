@@ -1,10 +1,70 @@
 NEWS
 ================
-<Erik.Leppo@tetratech.com>
+<Erik.Leppo@tetratech.com> and <jon.harcum@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-07-12 12:06:35
+    #> Last Update: 2019-03-11 11:45:26
+
+# baytrends 1.0.7.9009
+
+  - Release 2019-03-11
+  - Update from devtools::session\_info to sessioninfo::session\_info.
+      - closeOut function.
+  - Rebuild vignettes.
+      - Names not showing in help file.
+
+# baytrends 1.0.7.9008
+
+  - Release 2019-03-05
+  - seasMeandoy.xyz removed from prediction data set
+
+# baytrends 1.0.7.9007
+
+  - Release 2018-12-28
+  - Based on date range entered into analySpec\_gamLegend\_legend for
+    analySpec\_gamLegend\_descrip equal to ‘seasMean’, compute predicted
+    values based on doy’s spread across above date range.
+    seasMeandoy.xyz maintained in prediction data set along with
+    seasMeanMin, seasMeanMean, and seasMeanMax.
+
+# baytrends 1.0.7.9006
+
+  - Release 2018-08-08
+  - created loadModelsResid function to include models for calculating
+    residuals (i.e., primarily gam4 and gam5 without cyear)
+  - updated createResidual to save plots to file
+
+# baytrends 1.0.7.9005
+
+  - Release 2018-08-03
+  - updated createResidual to skip over cases (i.e., specific stations)
+    where there were insufficient data to run specified gam formula
+
+# baytrends 1.0.7.9004
+
+  - Release 2018-08-01
+  - added loadModels function to facilitate gam formula specification;
+    updated createResidual to include a “fall back” option to use gam2
+    or gam4 if user had selected gam3 or gam5 and the model did not run
+    (expected due to intervention)
+
+# baytrends 1.0.7.9003
+
+  - Release 2018-07-30
+  - function deSeasonalize renamed to createResiduals; extended to allow
+    for any gam0-gam5 model
+
+# baytrends 1.0.7.9002
+
+  - Release 2018-07-18
+  - update function deSeasonalize to allow for s(doy) and perform basic
+    testing
+
+# baytrends 1.0.7.9001
+
+  - Release 2018-07-13
+  - added function deSeasonalize
 
 # baytrends 1.0.7
 
@@ -21,7 +81,14 @@ NEWS
 # baytrends 1.0.6
 
   - Release 2018-07-09
-  - Resubmit to CRAN
+
+  - # Resubmit to CRAN
+    
+    # baytrends 1.0.5.9002
+
+  - Release 2018-07-11
+
+  - Update ANOVA table to allow for no parametric terms in gam formula
 
 # baytrends 1.0.5.9001
 

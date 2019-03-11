@@ -3,6 +3,7 @@
 \name{na2miss}
 \alias{na2miss}
 \alias{miss2na}
+\alias{miss2na}
 \title{Recode Data}
 \usage{
 na2miss(x, to = -99999)

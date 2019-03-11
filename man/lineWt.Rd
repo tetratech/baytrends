@@ -4,6 +4,8 @@
 \alias{lineWt}
 \alias{stdWt}
 \alias{frameWt}
+\alias{frameWt}
+\alias{stdWt}
 \title{Line Weights}
 \usage{
 lineWt(x)

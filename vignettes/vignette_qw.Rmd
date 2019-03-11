@@ -4,7 +4,7 @@ author: "Erik.Leppo@tetratech.com and Jon.Harcum@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette, QW}
+  %\VignetteIndexEntry{QW}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

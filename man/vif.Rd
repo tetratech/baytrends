@@ -3,6 +3,7 @@
 \name{vif}
 \alias{vif}
 \alias{vif.lm}
+\alias{vif.lm}
 \title{Variance Inflation Factors}
 \usage{
 vif(model, ...)

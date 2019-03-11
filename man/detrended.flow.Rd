@@ -4,10 +4,10 @@
 \alias{detrended.flow}
 \title{Create Seasonally Detrended Flow Data Set}
 \usage{
-detrended.flow(usgsGageID, siteName, yearStart, yearEnd,
-  dvAvgWinSel = c(1, 5, 10, 15, 20, 30, 40, 50, 60, 90, 120, 150, 180,
-  210), dvAvgWgtSel = "uniform", dvAvgSidesSel = 1, lowess.f = 0.2,
-  span = 10, max.fill = 10)
+detrended.flow(usgsGageID, siteName, yearStart, yearEnd, dvAvgWinSel = c(1, 5,
+  10, 15, 20, 30, 40, 50, 60, 90, 120, 150, 180, 210),
+  dvAvgWgtSel = "uniform", dvAvgSidesSel = 1, lowess.f = 0.2, span = 10,
+  max.fill = 10)
 }
 \arguments{
 \item{usgsGageID}{USGS GageIDs (e.g., "01491000")}
