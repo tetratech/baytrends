@@ -4,8 +4,6 @@
 \alias{print.lcens}
 \alias{print.mcens}
 \alias{print.qw}
-\alias{print.mcens}
-\alias{print.qw}
 \title{Print Values}
 \usage{
 \method{print}{lcens}(x, digits = 4, ...)

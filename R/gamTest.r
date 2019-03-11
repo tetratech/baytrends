@@ -46,6 +46,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
                    , salinity.detrended=NA) {
 
 # ----- Change history -------------------------------------------- ####
+# 28Dec2018: JBH: set up doy (q2.doy) for computing seasonal mean  
 # 18Jul2018: JBH: added na.rm=TRUE to min/max functions  
 # 01May2018: JBH: changed .impute to impute; 
 #                 added to stat.gam.result & chng.gam.result: 
@@ -138,6 +139,16 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     dep   <- iSpec$dep
     yearBegin <- iSpec$yearBegin
     yearEnd   <- iSpec$yearEnd
+
+    # create doy for computing seasonal mean  #28Dec2018
+    seasMean <- unlist(strsplit(analySpec$gamLegend[analySpec$gamLegend$descrip=="seasMean", "legend"], "-"))
+    seasMean.myStep   <- 7
+    q2.doy    <- as.numeric(baytrends::baseDay(lubridate::mdy (paste0(seasMean ,"/2000"))))
+    q2.doy.a1 <- seq(q2.doy[1],q2.doy[2], seasMean.myStep)
+    q2.doy.a2 <- seq(q2.doy[2],q2.doy[1],-seasMean.myStep)
+    q2.doy    <- c(q2.doy.a1[1:sum(q2.doy.a1<q2.doy.a2)], rev(q2.doy.a2[1:sum(q2.doy.a1>q2.doy.a2)]))
+    iSpec$seasMean <- analySpec$seasMean <- seasMean
+    iSpec$q2.doy   <- analySpec$q2.doy   <- q2.doy    
 
     # error trap for minimum observations
     if ( !(dep %in% names(ct1)) )  {

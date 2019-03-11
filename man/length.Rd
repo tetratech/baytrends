@@ -4,8 +4,6 @@
 \alias{length.lcens}
 \alias{length.mcens}
 \alias{length.qw}
-\alias{length.mcens}
-\alias{length.qw}
 \title{Length of an Object}
 \usage{
 \method{length}{lcens}(x)

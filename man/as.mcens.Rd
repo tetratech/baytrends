@@ -16,17 +16,23 @@
 \usage{
 as.mcens(lower.val, upper.val, censor.codes)
 
-\S4method{as.mcens}{mcens,missing,missing}(lower.val, upper.val, censor.codes)
+\S4method{as.mcens}{mcens,missing,missing}(lower.val, upper.val,
+  censor.codes)
 
-\S4method{as.mcens}{lcens,missing,missing}(lower.val, upper.val, censor.codes)
+\S4method{as.mcens}{lcens,missing,missing}(lower.val, upper.val,
+  censor.codes)
 
-\S4method{as.mcens}{numeric,missing,missing}(lower.val, upper.val, censor.codes)
+\S4method{as.mcens}{numeric,missing,missing}(lower.val, upper.val,
+  censor.codes)
 
-\S4method{as.mcens}{numeric,numeric,missing}(lower.val, upper.val, censor.codes)
+\S4method{as.mcens}{numeric,numeric,missing}(lower.val, upper.val,
+  censor.codes)
 
-\S4method{as.mcens}{numeric,missing,numeric}(lower.val, upper.val, censor.codes)
+\S4method{as.mcens}{numeric,missing,numeric}(lower.val, upper.val,
+  censor.codes)
 
-\S4method{as.mcens}{numeric,missing,integer}(lower.val, upper.val, censor.codes)
+\S4method{as.mcens}{numeric,missing,integer}(lower.val, upper.val,
+  censor.codes)
 
 \S4method{as.mcens}{numeric,missing,character}(lower.val, upper.val,
   censor.codes)

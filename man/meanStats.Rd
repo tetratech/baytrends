@@ -3,7 +3,6 @@
 \name{mean.lcens}
 \alias{mean.lcens}
 \alias{mean.mcens}
-\alias{mean.mcens}
 \title{Arithmetic Mean}
 \usage{
 \method{mean}{lcens}(x, ...)

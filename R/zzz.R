@@ -1,3 +1,6 @@
+
+#' @importFrom utils packageVersion
+
 .onLoad <- function(libname = find.package("baytrends"), pkgname = "baytrends"){
 
   repos = getOption("repos")

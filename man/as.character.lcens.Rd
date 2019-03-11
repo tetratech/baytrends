@@ -4,8 +4,6 @@
 \alias{as.character.lcens}
 \alias{as.character.mcens}
 \alias{as.character.qw}
-\alias{as.character.mcens}
-\alias{as.character.qw}
 \title{Character Representations}
 \usage{
 \method{as.character}{lcens}(x, ...)

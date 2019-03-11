@@ -4,8 +4,6 @@
 \alias{c.lcens}
 \alias{c.mcens}
 \alias{c.qw}
-\alias{c.mcens}
-\alias{c.qw}
 \title{Combine Values into a Vector}
 \usage{
 \method{c}{lcens}(..., recursive = FALSE)

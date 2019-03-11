@@ -21,6 +21,7 @@
                      , flow.detrended=flow.detrended, salinity.detrended=salinity.detrended) {
 #  pgam <- gamRslt;  tsdat<-ct1;  dayStep=figRes
 # ----- Change history --------------------------------------------
+# 28Dec2018: JBH: compute seasMean from q2.doy
 # 12Jul2018: JBH: accomodate additional ind. variables  
 # 30Sep2017: JBH: add creation of pdatWgt;
 # 01Aug2017: JBH: add a row id number and sort columns in the prediction data set (pdat)
@@ -66,6 +67,8 @@
     transform    <- iSpec$transform
     stat         <- iSpec$stat
     layer        <- iSpec$layer
+    
+    q2.doy <- iSpec$q2.doy  #28Dec2018 - for computing seasonal mean
     
     # does model include intervention term 04Nov2016
     intervention <- ifelse (length(grep('intervention',pgam$formula  )) == 0, FALSE, TRUE)
@@ -187,6 +190,18 @@
       pdat$doy   <- q.doy[i]
       pdat[, paste0("seas.",i)] <- predict(pgam,newdata=pdat)
     }
+    
+    # seasonal Mean model  28Dec2018
+    for (i in 1:length(q2.doy)) {
+      pdat$doy  <- q2.doy[i]
+      pdat[, paste0("seasMeandoy.",q2.doy[i])] <- predict(pgam,newdata=pdat)
+    }
+    pdat$seasMeanMin  <- apply(pdat[ ,grep("seasMeandoy.", names(pdat))],1,min)  
+    pdat$seasMeanMax  <- apply(pdat[ ,grep("seasMeandoy.", names(pdat))],1,max)  
+    pdat$seasMeanMean <- apply(pdat[ ,grep("seasMeandoy.", names(pdat))],1,mean)  
+    # uncomment next line to drop seasMeandoy vars
+    pdat <- pdat[,!(names(pdat) %in% names(pdat)[grep("seasMeandoy.", names(pdat))])]
+        
   } # end full/seasonal model predictions
 
   # With Interventions: Compute *adjusted* predicted values for full model ####
@@ -205,6 +220,18 @@
         pdat$doy   <- q.doy[i]
         pdat[, paste0("seas.",i,".adjusted")] <- predict(pgam,newdata=pdat)
       }
+
+      # seasonal Mean model  28Dec2018
+      for (i in 1:length(q2.doy)) {
+        pdat$doy  <- q2.doy[i]
+        pdat[, paste0("seasMeandoyAdj.",q2.doy[i])] <- predict(pgam,newdata=pdat)
+      }
+      pdat$seasMeanMin.adjusted  <- apply(pdat[ ,grep("seasMeandoyAdj.", names(pdat))],1,min)  
+      pdat$seasMeanMax.adjusted  <- apply(pdat[ ,grep("seasMeandoyAdj.", names(pdat))],1,max)  
+      pdat$seasMeanMean.adjusted <- apply(pdat[ ,grep("seasMeandoyAdj.", names(pdat))],1,mean)  
+      # uncomment next line to drop seasMeandoyAdj vars
+      # pdat <- pdat[,!(names(pdat) %in% names(pdat)[grep("seasMeandoyAdj.", names(pdat))])]
+      
     } # end *adjusted* full/seasonal model predictions
   }
 

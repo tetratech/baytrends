@@ -5,9 +5,6 @@
 \alias{[.mcens}
 \alias{[.qw}
 \alias{subset.qw}
-\alias{[.mcens}
-\alias{[.qw}
-\alias{subset.qw}
 \title{Subset an Object}
 \usage{
 \method{[}{lcens}(x, i, ...)
