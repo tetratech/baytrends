@@ -118,8 +118,14 @@ impute <-function(x, imputeOption="mid") {
 #' phi.left and phi.right are distribution function, e.g., pnorm(q=10,mean=10,sd=1) =0.5
 #' phi.sim is a uniform random number between phi.left and phi.right
 #' sim is imputed value
+#' 
+#' @param x data
+#' @param distr Distribution type; norm (default) or lnorm
+#' @return qnorm (or qlnorm) values for input data
+#' @keywords internal
+#' @export
 .simCensored <- function(x,distr="norm") {
-  
+  # 12Mar2019: EWL: Added roxygen documentation  
   tmp <- data.frame(left = x@.Data[,1], 
                     right = x@.Data[,2])
   fn1 <- fitdistrplus::fitdistcens(tmp, distr=distr)

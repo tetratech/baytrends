@@ -1,6 +1,7 @@
 #' ####
 #' Initialize stat.gam.result and chng.gam.result
 #'
+#' @keywords internal
 #' @export
 #
 .initializeResults <-function() {

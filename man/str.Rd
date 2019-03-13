@@ -4,8 +4,6 @@
 \alias{str.lcens}
 \alias{str.mcens}
 \alias{str.qw}
-\alias{str.mcens}
-\alias{str.qw}
 \title{Display Structure}
 \usage{
 \method{str}{lcens}(object, ...)

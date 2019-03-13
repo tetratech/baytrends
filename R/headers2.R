@@ -1,6 +1,7 @@
 # -----< Change history >--------------------------------------------
 # 11Oct2016: JBH: Change to leading '.' function calls
 # 27Apr2016: JBH: Explicit use of "::"  for non-base functions added.
+# 12Mar2019: EWL: Document undocumented parameters, F to .F in example
 
 # -----< Figure Title   >--------------------------------------------
 #' Print out figure title  (customization of pandoc.emphasis and pandoc.strong )
@@ -10,11 +11,12 @@
 #' @param t emphasis or stong
 #' @examples
 #' text<-"Hello World!"
-#' F(text)
-#' F(text, 4)
-#' F(text, 4,'e')
-#' F(text, 4,'s')
+#' .F(text)
+#' .F(text, 4)
+#' .F(text, 4,'e')
+#' .F(text, 4,'s')
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -40,9 +42,11 @@
 #' Print out header (shortened pandoc.header)
 #'
 #' @param text text of header
+#' @param n header level number
 #' @examples
 #' .H("1st level header",1)
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -59,6 +63,7 @@
 #' .H1("1st level header")
 #' .H3("3rd level header")
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -75,6 +80,7 @@
 #' .H2("2nd level header")
 #' .H3("3rd level header")
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -91,6 +97,7 @@
 #' .H2("2nd level header")
 #' .H3("3rd level header")
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -107,6 +114,7 @@
 #' .H2("2nd level header")
 #' .H4("4th level header")
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -123,6 +131,7 @@
 #' .H2("2nd level header")
 #' .H5("5th level header")
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -138,6 +147,7 @@
 #' @examples
 #' .P()
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -163,6 +173,7 @@
 #' .T(text, 4,'e')
 #' .T(text, 4,'s')
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -195,6 +206,7 @@
 #' .V("Hello World!",'s')
 #' .V("Hello World!")
 #' @return n/a
+#' @keywords internal
 #' @seealso .F .H .H2 .H3 .H4 .P .T .V
 #' @export
 #'
@@ -214,6 +226,7 @@
 #'
 #' @param x character vector
 #' @param width wrap width [default=65]
+#' @keywords internal
 #' @export
 #'
 .vTable <- function(x=c(' '), width=65) {

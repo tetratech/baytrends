@@ -12,13 +12,13 @@ as.qw(values, remark.codes, value.codes, reporting.level, reporting.method,
 
 
   \S4method{as.qw}{numeric,character,character,numeric,character,character,character,character,character,missing}(values,
-  remark.codes, value.codes, reporting.level, reporting.method, reporting.units,
-  analyte.method, analyte.name, unique.code, value2)
+  remark.codes, value.codes, reporting.level, reporting.method,
+  reporting.units, analyte.method, analyte.name, unique.code, value2)
 
 
   \S4method{as.qw}{numeric,character,character,numeric,character,character,character,character,character,numeric}(values,
-  remark.codes, value.codes, reporting.level, reporting.method, reporting.units,
-  analyte.method, analyte.name, unique.code, value2)
+  remark.codes, value.codes, reporting.level, reporting.method,
+  reporting.units, analyte.method, analyte.name, unique.code, value2)
 }
 \arguments{
 \item{values}{the uncensored values and optionally the censored values.}

@@ -8,6 +8,7 @@
 #' @examples
 #' #df <- chkParameter(df,parameterFilt=c("tn", "tp"))
 #' @return n/a
+#' @keywords internal
 #' @export
 #'
 .chkParameter <- function(df,parameterFilt=parameterFilt, parameterList) {

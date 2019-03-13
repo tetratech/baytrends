@@ -21,7 +21,8 @@
 #' #df2 <- layerAggregation(df1[[1]], avgTechnique="median", layerAggOption=4)
 #' #str(df2)
 #' @return data frame with aggregated data
-#'   
+#' @keywords internal
+#' @export  
 .layerAggregation <- function(df, avgTechnique="median", layerAggOption=0) {
 
 # -----< Change history >--------------------------------------------

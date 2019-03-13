@@ -2,6 +2,7 @@
 #' Format pvalues
 #'
 #' @param pval pvalue to format
+#' @keywords internal
 #' @export
 #'
 .fmtPval <- function(pval) {

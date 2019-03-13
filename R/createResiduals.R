@@ -14,12 +14,10 @@
 #' @param width  width of png figure (inches). Default = 10
 #' @param height height of png figure (inches). Default = 3.5
 #' @param folder_r folder to store residual plots 
+#' @param ProjRoot Root folder for project.
 #'
 #' @return Returns a vector with results
 #' @export
-#'
-# ####
-
 createResiduals <- function(df, dep
                             , residualModel = 'doy_flw_sal'
                             , analySpec = analySpec
@@ -29,7 +27,8 @@ createResiduals <- function(df, dep
                             , salinity.detrended = NA
                             , width  = 10
                             , height = 3.5
-                            , folder_r = 'pltResiduals') {
+                            , folder_r = 'pltResiduals'
+                            , ProjRoot) {
   
 # ----- Change history -------------------------------------------- ####
 # 08Aug2018: JBH: updated to accomodate gam formula without cyear and by
@@ -41,6 +40,7 @@ createResiduals <- function(df, dep
 #                 gam3 or gam5 and the model did not run (expected due to intervention)
 # 30Jul2018: JBH: function renamed to createResiduals; extended to allow for
 #                 any gam0-gam5 model
+# 12Mar2019: EWL: Add library references to functions.  Add ProjRoot as input parameter.
   
   # create graph folder if not existing
   if (gamPlot) dir.create(file.path(ProjRoot, folder_r), showWarnings = FALSE)
@@ -135,12 +135,12 @@ createResiduals <- function(df, dep
       }
 
       if(gamPlot & !is.na(gamResult[1])) {
-        dev.copy(device = png
+        grDevices::dev.copy(device = grDevices::png
                  , filename = file.path(folder_r, paste0(stat,"~",dep,"~",layer,"~",residualModel,'.png'))
                  , width = width
                  , height = height
                  , units = 'in', res=600) 
-        dev.off()
+        grDevices::dev.off()
       }
       
       # collect computed residuals

@@ -12,22 +12,22 @@
 #'
 #' @param df data frame
 #' @param var variable with stored date
-#' @examples
-#'
-#' # retrieve Secchi depth for Station LE3.1, missing Secchi depth values are
-#' # maintained (see value for secchi on 2/12/2008), no transformations are applied
-#' dfr   <- selectData(dataCensored, 'secchi', 'LE3.1', 'S', transform=FALSE, missing=FALSE)
-#' dfr1  <- dfr[[1]]
-#' iSpec <- dfr[[2]]
-#' # retrieve surface corrected chlorophyll-a concentrations for Station LE3.1,
-#' # missing values are removed and transformation applied
-#' dfr   <- selectData(dataCensored, 'chla', 'LE3.1', 'S')
-#' dfr2  <- dfr[[1]]
-#' iSpec <- dfr[[2]]
-#'
+# @examples
+#
+# # retrieve Secchi depth for Station LE3.1, missing Secchi depth values are
+# # maintained (see value for secchi on 2/12/2008), no transformations are applied
+# dfr   <- selectData(dataCensored, 'secchi', 'LE3.1', 'S', transform=FALSE, missing=FALSE)
+# dfr1  <- dfr[[1]]
+# iSpec <- dfr[[2]]
+# # retrieve surface corrected chlorophyll-a concentrations for Station LE3.1,
+# # missing values are removed and transformation applied
+# dfr   <- selectData(dataCensored, 'chla', 'LE3.1', 'S')
+# dfr2  <- dfr[[1]]
+# iSpec <- dfr[[2]]
+#
 #' @return Returns data frame with appended date features including year, doy,
 #'   decimal year, and month
-#'
+#' @keywords internal
 #' 
 .appendDateFeatures <-function(df, var="date") {
 

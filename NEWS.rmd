@@ -19,11 +19,20 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.7.9010
+===========
+* Release 2019-03-13
+* Updates based on "check" to prepare for submittal to CRAN.
+    + Added some oxygen tags
+    + Added .install_extras to vignettes folder for additional PDF docs
+    + "dot" prefix functions with keyword internal
+    + Removed example for hidden function .createResiduals
+    + .findFile examples marked as do not run.
 
 baytrends 1.0.7.9009
 ===========
 * Release 2019-03-11
-* Update from devtools::session_info to sessioninfo::session_info.
+* Update from devtools::session_info to sessioninfo::session_info.  Issue #31.
     + closeOut function.
 * Rebuild vignettes.
     + Names not showing in help file.

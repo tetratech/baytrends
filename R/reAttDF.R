@@ -19,6 +19,7 @@
 #' df1 <- aggregate(x2 ~ sta, data=df0, mean, na.action=na.pass, na.rm=TRUE)
 #' df2 <- .reAttDF(df1, df0)
 #' @return n/a
+#' @keywords internal
 #' @export
 .reAttDF <- function(df1, df0) {
   for (i in 1: length(names(attributes(df0)))) {

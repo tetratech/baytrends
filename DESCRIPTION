@@ -12,8 +12,8 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.0.7.9009
-Date: 2019-03-11
+Version: 1.0.7.9010
+Date: 2019-03-12
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:
     R (>= 3.2.0),
@@ -21,7 +21,8 @@ Depends:
     mgcv
 License: GPL-3
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
+Encoding: UTF-8
 Suggests:
     devtools,
     fitdistrplus,

@@ -4,8 +4,8 @@
 \alias{detrended.salinity}
 \title{Create Seasonally Detrended Salinty Data Set}
 \usage{
-detrended.salinity(df.sal, dvAvgWinSel = 30, lowess.f = 0.2, minObs = 40,
-  minObs.sd = 10)
+detrended.salinity(df.sal, dvAvgWinSel = 30, lowess.f = 0.2,
+  minObs = 40, minObs.sd = 10)
 }
 \arguments{
 \item{df.sal}{data frame with salinty data (required variables in data frame

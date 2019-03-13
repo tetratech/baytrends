@@ -1,4 +1,4 @@
-#=====================================================================
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  function:      Expectation substitution functions
 #
 #  programmer:    Elgin S. Perry, Ph. D.
@@ -10,7 +10,7 @@
 #
 #  voice phone:   (410)610-1473
 #  email:         eperry@chesapeake.net
-#=====================================================================
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 
 # 01Jun2018: JBH: added "df$" to mu to create df$mu in lognormal functions
@@ -18,14 +18,16 @@
 #                 to avoid warning message of row names were found from a short 
 #                 variable and have been discarded
 
-#====================LogNormal Case Functions==============================
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LogNormal Case Functions ####
 
-#' Expectation maximization function: Log-normal case
+#' @title Expectation maximization function: Log-normal case, Cens
 #'
 #' @param df data frame
 #' @param dep dependent variable
 #' @param mu predicted values from mgcv::gam
 #' @param sigma model standard deviation
+#' @keywords internal
 #' @export
 .ExpLNmCens <- function(df,dep,mu,sigma)   {
   # computes expected value within a censoring window, for log-normal distribution
@@ -35,7 +37,13 @@
   ec <- .ExpLNiCens(ec$l,ec$u,mu,sigma)
   ExpLNmCens.return <- ec
 }
-
+#' @title Expectation maximization function: Log-normal case, left censured
+#' @param l l
+#' @param u u
+#' @param mu predicted values from mgcv::gam
+#' @param sigma model standard deviation
+#' @param lCens default=NA
+#' @keywords internal
 .ExpLNlCens <- function(l,u,mu,sigma,lCens=NA) {
   # computes expected value for left censored interval for log-normal
   df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
@@ -54,7 +62,13 @@
   }
   ExpLNlCens.return <- df[,c('l','u')]
 }
-
+#' @title Expectation maximization function: Log-normal case, right censured
+#' @param l l
+#' @param u u
+#' @param mu predicted values from mgcv::gam
+#' @param sigma model standard deviation
+#' @param rCens default=NA
+#' @keywords internal
 .ExpLNrCens <- function(l,u,mu,sigma,rCens=NA) {
   # computes expected value for right censored for log-normal
   df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
@@ -73,7 +87,13 @@
   }
   ExpLNrcens.return <- df[,c('l','u')]
 }
-
+#' @title Expectation maximization function: Log-normal case, i censured
+#' @param l l
+#' @param u u
+#' @param mu predicted values from mgcv::gam
+#' @param sigma model standard deviation
+#' @param iCens default=NA
+#' @keywords internal
 .ExpLNiCens <- function(l,u,mu,sigma,iCens=NA) {
   # computes expected value for interval censored for log-normal
   df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
@@ -96,16 +116,16 @@
   ExpLNicens.return <- df[,c('l','u')]
 }
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Normal Case Functions ####
 
-#====================Normal Case Functions==============================
-
-#' Expectation maximization function: Normal case
+#' @title Expectation maximization function: Normal case
 #'
 #' @param df data frame
 #' @param dep dependent variable
 #' @param mu predicted values from mgcv::gam
 #' @param sigma model standard deviation
-#' @export
+#' @keywords internal
 .ExpNmCens <- function(df,dep,mu,sigma)   {
   # computes expected value within a censoring window, for normal distribution
   # using an mCens object.
@@ -115,7 +135,13 @@
   ec <- .ExpNiCens(ec$l,ec$u,mu,sigma)
   ExpNmCens.return <- ec
 }
-
+#' @title Expectation maximization function: Normal case, left censured
+#' @param l l
+#' @param u u
+#' @param mu predicted values from mgcv::gam
+#' @param sigma model standard deviation
+#' @param lCens default=NA
+#' @keywords internal
 .ExpNlCens <- function(l,u,mu,sigma,lCens=NA) {
   # computes expected value for left censored interval for normal
   df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
@@ -134,7 +160,13 @@
   }
   ExpNlCens.return <- df[,c('l','u')]
 }
-
+#' @title Expectation maximization function: Normal case, right censured
+#' @param l l
+#' @param u u
+#' @param mu predicted values from mgcv::gam
+#' @param sigma model standard deviation
+#' @param rCens default=NA
+#' @keywords internal
 .ExpNrCens <- function(l,u,mu,sigma,rCens=NA) {
   # computes expected value for right censored for normal
   df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)
@@ -153,7 +185,13 @@
   }
   ExpNrcens.return <- df[,c('l','u')]
 }
-
+#' @title Expectation maximization function: Normal case, i censured
+#' @param l l
+#' @param u u
+#' @param mu predicted values from mgcv::gam
+#' @param sigma model standard deviation
+#' @param iCens default=NA
+#' @keywords internal
 .ExpNiCens <- function(l,u,mu,sigma,iCens=NA) {
   # computes expected value for interval censored for log-normal
   df <- data.frame(l=l, u=u, mu=mu, row.names = NULL)

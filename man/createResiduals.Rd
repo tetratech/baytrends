@@ -7,7 +7,7 @@
 createResiduals(df, dep, residualModel = "doy_flw_sal",
   analySpec = analySpec, gamTable = FALSE, gamPlot = FALSE,
   flow.detrended = NA, salinity.detrended = NA, width = 10,
-  height = 3.5, folder_r = "pltResiduals")
+  height = 3.5, folder_r = "pltResiduals", ProjRoot)
 }
 \arguments{
 \item{df}{data frame}
@@ -31,6 +31,8 @@ createResiduals(df, dep, residualModel = "doy_flw_sal",
 \item{height}{height of png figure (inches). Default = 3.5}
 
 \item{folder_r}{folder to store residual plots}
+
+\item{ProjRoot}{Root folder for project.}
 }
 \value{
 Returns a vector with results

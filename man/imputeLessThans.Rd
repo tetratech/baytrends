@@ -6,8 +6,8 @@
 \alias{imputeLessThans.data.frame}
 \title{Impute Censored Values}
 \usage{
-imputeLessThans(..., type = c("MLE", "robust"), initial = c("complete.obs",
-  "multRepl"))
+imputeLessThans(..., type = c("MLE", "robust"),
+  initial = c("complete.obs", "multRepl"))
 
 \method{imputeLessThans}{default}(..., type = c("MLE", "robust"),
   initial = c("complete.obs", "multRepl"))

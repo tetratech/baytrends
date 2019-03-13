@@ -4,8 +4,6 @@
 \alias{eventNum}
 \alias{eventLen}
 \alias{eventSeq}
-\alias{eventSeq}
-\alias{eventLen}
 \title{Event Processing}
 \usage{
 eventNum(event, reset = FALSE, na.fix = FALSE)

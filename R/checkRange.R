@@ -13,6 +13,7 @@
 #'   TRUE/FALSE for pass/fail)
 #' @return data frame modified based on user selected options. see attributes
 #'   for screening results
+#' @keywords internal
 #' @examples
 #' # create an example data frame
 #' df <- data.frame(

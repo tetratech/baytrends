@@ -76,6 +76,15 @@ devtools::build_vignettes()
 ```
 devtools::build() more useful and build_vignettes()
 
+### Create Package PDF reference manual
+http://www.dominikschauer.com/how-to-create-an-r-package-including-documentation-vignettes-and-a-manual/
+
+```{r}
+myLibrary <- "baytrends"
+setwd(paste0("./", myLibrary))
+system("R CMD Rd2pdf . --title=Package baytrends --output=./manual.pdf --force --no-clean --internals")
+```
+
 ## Create Package
 Use the code below to create the package.  Assumes you are in the development package directory
 
@@ -85,17 +94,23 @@ Need to remove end of line after Collate.
 Need first entry on the same line as "Collate:".
 
 ```{r PKG_BUILD, eval=FALSE}
+# Library Name
+myLibrary <- "baytrends"
+# Load Library
+#library(devtools)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # NEWS
+setwd(paste0("./", myLibrary))
 # Render then Copy NEWS so picked up in help
 rmarkdown::render("NEWS.rmd", "all")
 file.copy("NEWS.md", "NEWS", overwrite = TRUE)
 file.remove("NEWS.html")
 file.remove("NEWS.md")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Library Name
-myLibrary <- "baytrends"
-# Load Library
-library(devtools)
+# # Library Name
+# myLibrary <- "baytrends"
+# # Load Library
+# library(devtools)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Create Package
 # create(myLibrary)
@@ -104,13 +119,13 @@ library(devtools)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Document, Install, and Reload Library
 ## Generate Documentation
-setwd(paste0("./", myLibrary))
+#setwd(paste0("./", myLibrary))
 devtools::document()
 ## Install New Package (locally)
 setwd("..") # return to root directory first
-devtools::install(myLibrary)
-## Reload library
-library(myLibrary, character.only = TRUE)
+devtools::install(myLibrary, quick=FALSE, reload=TRUE, build_vignettes = TRUE)
+# ## Reload library
+# library(myLibrary, character.only = TRUE)
 # change wd back to package
 setwd(paste0("./", myLibrary))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

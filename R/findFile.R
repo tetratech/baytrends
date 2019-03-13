@@ -25,20 +25,24 @@
 #'   The results are in descending order of modified date/time.
 #' @examples
 #' # name of most recently modified file
-#' findFile()         # current directory
-#' findFile("..")     # one directory up
-#' findFile("c:/")    # c root directory
+#' \dontrun{
+#' .findFile()         # current directory
+#' .findFile("..")     # one directory up
+#' .findFile("c:/")    # c root directory
 #' #
 #' # list of files and common attributes one directory up
 #' findFile(folder="..", file="*.*", n=2, fileNameOnly=FALSE)      #two most recent files
 #' findFile(folder="..", file="*.*", n="all", fileNameOnly=FALSE)  #all files
+#' }
 #' @return returns file name as a character string
+#' @keywords internal
 #' @export
 .findFile <- function(folder='.', file='*.*', n=1, fileNameOnly=TRUE) {
 
 # ----- Change history --------------------------------------------
 # 12Jul2016: JBH: added comments
 # 26Jun2016: JBH: code updated to remove dplyr dependency
+# 12Mar2019: EWL: Add "dot" to examples.
 
 # Access list of files #####
   fileName <- data.frame(fileName=list.files(path = folder, utils::glob2rx(file), ignore.case=TRUE))

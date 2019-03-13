@@ -4,11 +4,12 @@
 \alias{gamPlotDisp}
 \title{Plot censored gam fits vs. time}
 \usage{
-gamPlotDisp(gamResult = gamResult, analySpec = analySpec, fullModel = 2,
-  seasAvgModel = 2, seasonalModel = 2, diffType = "regular",
-  obserPlot = TRUE, interventionPlot = TRUE, seasAvgPlot = TRUE,
-  seasAvgConfIntPlot = TRUE, seasAvgSigPlot = TRUE, fullModelPlot = TRUE,
-  seasModelPlot = TRUE, BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE)
+gamPlotDisp(gamResult = gamResult, analySpec = analySpec,
+  fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+  diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+  seasAvgPlot = TRUE, seasAvgConfIntPlot = TRUE,
+  seasAvgSigPlot = TRUE, fullModelPlot = TRUE, seasModelPlot = TRUE,
+  BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE)
 }
 \arguments{
 \item{gamResult}{output from procedure gamTest}
