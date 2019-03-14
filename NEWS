@@ -4,12 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-03-14 13:07:24
+    #> Last Update: 2019-03-14 13:46:17
+
+# baytrends 1.1.0
+
+  - Release 2019-03-14
+  - Release update for CRAN
+      - As minor upgrade.
 
 # baytrends 1.0.8
 
   - Release 2019-03-14
-  - Release update to CRAN
+  - Release update for CRAN
+      - As bug fix.
 
 # baytrends 1.0.7.9011
 
