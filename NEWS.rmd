@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.0.7.9011
+===========
+* Release 2019-03-14
+* Fix date in DESCRIPTION.
+* Add library creation notebook to .Rbuildignore
+
 baytrends 1.0.7.9010
 ===========
 * Release 2019-03-13

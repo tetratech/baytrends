@@ -4,7 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-03-13 11:59:36
+    #> Last Update: 2019-03-14 12:45:27
+
+# baytrends 1.0.7.9011
+
+  - Release 2019-03-14
+  - Fix date in DESCRIPTION.
+  - Add library creation notebook to .Rbuildignore
 
 # baytrends 1.0.7.9010
 

@@ -6,3 +6,4 @@
 ^NEWS\.rmd$
 ^\.github$
 cran-comments\.md$
+^.*baytrends_LibraryCreation
