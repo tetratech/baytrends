@@ -1,5 +1,5 @@
 Erik.Leppo@tetratech.com
-2019-03-13
+2019-03-14
 
 # Test environments
 * local Win 7, R 3.5.3
@@ -7,7 +7,7 @@ Erik.Leppo@tetratech.com
 
 # R CMD check results
 
-0 error x | 0 warnings v | 1 note x
+0 error v | 0 warnings v | 1 note x
 
 ## Error
 Error: R CMD check found ERRORs

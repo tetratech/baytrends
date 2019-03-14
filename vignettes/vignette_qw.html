@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Erik.Leppo@tetratech.com and Jon.Harcum@tetratech.com" />
+
+<meta name="date" content="2019-03-14" />
+
+<title>Vignette, QW</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Vignette, QW</h1>
+<h4 class="author"><em><a href="mailto:Erik.Leppo@tetratech.com">Erik.Leppo@tetratech.com</a> and <a href="mailto:Jon.Harcum@tetratech.com">Jon.Harcum@tetratech.com</a></em></h4>
+<h4 class="date"><em>2019-03-14</em></h4>
+
+
+
+<!-- Data is in vignettes\data folder  -->
+<div id="purpose" class="section level1">
+<h1>Purpose</h1>
+<p>The purpose of this vignette is to cover the basics of exporting and importing water quality data for use in baytrends. In order to have the functionality to deal with censored data, when it exists, the qw object is used in baytrends to store all water quality data. The process of combining two (or more) data frames with qw objects is also described.</p>
+<p>The qw object was originally developed by the U.S. Geological Survey (USGS) for use in their <code>smwrQW</code> package. For future portability to the CRAN, numerous ‘smwrQW’ functions along with several supporting functions from USGS’ family of smwr packages were incorporated into this package.</p>
+</div>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>Monitoring programs may report laboratory results where the concentration is below the detection limit of the analysis. Bacteriological tests may report very high results as “too numerous to count” (TNTC). Such data typically reported as “&lt;” or “&gt;” some value, x, are referred to as censored data. Censored values are usually associated with limitations of measurement or sample analysis, and are commonly reported as results below or above measurement capacity of the available analytical equipment. Results that are indistinguishable from a blank sample are normally reported as less than the detection limit (DL). The true values of these left-censored observations are considered to lie between zero and the DL. Depending on the laboratory, some results greater than the DL may be identified as less than the quantitation limit (QL) or reported as a single value and given a data qualifier to indicate the value is less than the QL. Typically, results reported as less than the QL indicate that the analyte was detected (i.e., greater than the detection limit), but at a low enough concentration where the precision was deemed too low to reliably report a single value. These interval-censored observations are considered to lie between the DL and QL. Interval-censored observations can also occur when calculating a chemical concentration based on adding or differencing multiple measured concentrations.</p>
+<p>Data censoring leads to a loss of information and makes statistical analyses more challenging. Thus beginning in 1999, the Chesapeake Bay Program began to store the uncensored results of chemical measurements. Nevertheless, the Chesapeake Bay Program is interested in performing trend analyses with data back to 1985. Therefore, baytrends was developed explicitly developed to allow for multiple types of censored data.</p>
+</div>
+<div id="export" class="section level1">
+<h1>Export</h1>
+<p><strong>Use the function <em>qw.export</em> to export “qw” formatted data.</strong> The sample data set, <code>dataCensored</code>, included with <code>baytrends</code>, is used for demonstration.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(baytrends)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># load the included data frame, dataCensored, into the global environment</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># dataCensored is a sample data set that includes qw formatted data and</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># is included with baytrends.</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">myDF &lt;-<span class="st"> </span>dataCensored</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># identify the current working directory as the location to save </span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co"># the outputted data set</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">dir.save &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co"># identify the name of the comma delimited (csv) file for the </span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co"># outputted data set </span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">fn.output &lt;-<span class="st"> &quot;dataCensored_TEST.csv&quot;</span> </a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co"># run function</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">qw.export</span>(myDF, dir.save, fn.output)</a></code></pre></div>
+<p>The above code chunk will output the raw data to a comma delimited (csv) file named <code>dataCensored_TEST.csv</code>. For non-qw variables (such as station, date, and layer in this example), the column names in the csv file are the same as the data frame. For qw-formatted variables, the columns of the data file are in the format of X_Y.</p>
+<ul>
+<li>X = column name<br />
+</li>
+<li>Y = qw argument of “lo”, “hi”, and “symbol”</li>
+</ul>
+<p>In the context of water quality data, left-censored observations such as “&lt;0.1” would have a lo value of 0 and a hi value of 0.1. Interval-censored observations would have a non-zero lo value. The value of symbol would be “&lt;” and “i”, respectively for left- and interval-censored observations. Uncensored observations would have lo and hi values equal to each other.</p>
+<p>Selected columns from the first few records of the above example are shown below.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;dataCensored_TEST.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">head</span>(df[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">16</span><span class="op">:</span><span class="dv">24</span>)])</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">station</th>
+<th align="left">date</th>
+<th align="left">layer</th>
+<th align="right">tp_lo</th>
+<th align="right">tp_hi</th>
+<th align="left">tp_symbol</th>
+<th align="right">po4f_lo</th>
+<th align="right">po4f_hi</th>
+<th align="left">po4f_symbol</th>
+<th align="right">pp_lo</th>
+<th align="right">pp_hi</th>
+<th align="left">pp_symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CB3.3C</td>
+<td align="left">1985-01-23</td>
+<td align="left">B</td>
+<td align="right">0.028</td>
+<td align="right">0.028</td>
+<td align="left"></td>
+<td align="right">0.0000</td>
+<td align="right">0.0070</td>
+<td align="left">&lt;</td>
+<td align="right">0.016</td>
+<td align="right">0.028</td>
+<td align="left">i</td>
+</tr>
+<tr class="even">
+<td align="left">CB3.3C</td>
+<td align="left">1985-01-23</td>
+<td align="left">S</td>
+<td align="right">0.030</td>
+<td align="right">0.030</td>
+<td align="left"></td>
+<td align="right">0.0000</td>
+<td align="right">0.0070</td>
+<td align="left">&lt;</td>
+<td align="right">0.018</td>
+<td align="right">0.030</td>
+<td align="left">i</td>
+</tr>
+<tr class="odd">
+<td align="left">CB3.3C</td>
+<td align="left">1985-02-13</td>
+<td align="left">B</td>
+<td align="right">0.043</td>
+<td align="right">0.043</td>
+<td align="left"></td>
+<td align="right">0.0000</td>
+<td align="right">0.0070</td>
+<td align="left">&lt;</td>
+<td align="right">0.033</td>
+<td align="right">0.043</td>
+<td align="left">i</td>
+</tr>
+<tr class="even">
+<td align="left">CB3.3C</td>
+<td align="left">1985-02-13</td>
+<td align="left">S</td>
+<td align="right">0.021</td>
+<td align="right">0.021</td>
+<td align="left"></td>
+<td align="right">0.0000</td>
+<td align="right">0.0070</td>
+<td align="left">&lt;</td>
+<td align="right">0.011</td>
+<td align="right">0.021</td>
+<td align="left">i</td>
+</tr>
+<tr class="odd">
+<td align="left">CB3.3C</td>
+<td align="left">1985-03-05</td>
+<td align="left">B</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="right">0.0108</td>
+<td align="right">0.0108</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">CB3.3C</td>
+<td align="left">1985-03-05</td>
+<td align="left">S</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="right">0.0040</td>
+<td align="right">0.0040</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="import" class="section level1">
+<h1>Import</h1>
+<p><strong>Use the function <em>qw.import</em> to import “qw” formatted data.</strong> The above exported file, <code>dataCensored_TEST.csv</code>, is used for demonstration.</p>
+<p>To create a data frame that includes qw objects, the data needs to be in the format that was generated by qw.export. That is, one file with each qw parameter having three columns (x_lo, x_hi, and x_symbol where x is the name of the parameter). The list of parameter codes that will be as column names of the qw-formatted variables are specifed in the argument <code>qw.names</code>.</p>
+<p>The output of the <code>qw.import</code> function must be directed to a variable. Any modification of column classes (e.g., POSIXct, numeric, or integer) will need to be performed by the user. The function str() is useful for examing the structure of the data frame.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(baytrends)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># Define function arguments</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">fn.import &lt;-<span class="st"> &quot;dataCensored_TEST.csv&quot;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">qw.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;secchi&quot;</span> ,  <span class="st">&quot;salinity&quot;</span>, <span class="st">&quot;do&quot;</span>  ,     <span class="st">&quot;wtemp&quot;</span>  ,  <span class="st">&quot;chla&quot;</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">              ,<span class="st">&quot;tn&quot;</span>     ,  <span class="st">&quot;tp&quot;</span>    ,   <span class="st">&quot;tss&quot;</span> ,     <span class="st">&quot;din&quot;</span>  ,    <span class="st">&quot;po4&quot;</span>      </a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">              ,<span class="st">&quot;tdn&quot;</span>     , <span class="st">&quot;tdp&quot;</span>  ,    <span class="st">&quot;nh4&quot;</span>  ,    <span class="st">&quot;no23&quot;</span>)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co"># fun function </span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">dataCensored.test&lt;-<span class="st"> </span><span class="kw">qw.import</span>(fn.import, qw.names)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co"># Check for qw class</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="kw">str</span>(dataCensored.test)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co"># convert date field to POSIXct  </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">dataCensored.test[,<span class="st">&quot;date&quot;</span>] &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(dataCensored.test[,<span class="st">&quot;date&quot;</span>])</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co"># recheck structure (other columns can be converted using</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co"># as.numeric() and as.integer() if desired)</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="kw">str</span>(dataCensored.test) </a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co"># save the data frame for future use</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="kw">save</span>(dataCensored.test, <span class="dt">file=</span><span class="st">&quot;dataCensored.test.rda&quot;</span>)</a></code></pre></div>
+</div>
+<div id="combining-qw-data-frames" class="section level1">
+<h1>Combining QW Data Frames</h1>
+<p><strong>Use the function <em>rbindQW</em> to combine two data frames with “qw” formatted data.</strong> The below code chunk demonstrates combining the data from two data frames.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(baytrends)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">newDF &lt;-<span class="st"> </span><span class="kw">rbindQW</span>(dataCensored[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,], dataCensored[<span class="dv">101</span><span class="op">:</span><span class="dv">120</span>,])</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">head</span>(newDF)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># Note, that it would have been equivalent and more efficient to</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co"># use the below line of code to extract rows 1-20 and 101-120</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">newDF &lt;-<span class="st"> </span>dataCensored[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,<span class="dv">101</span><span class="op">:</span><span class="dv">120</span>),]</a></code></pre></div>
+<div id="additional-notes" class="section level3">
+<h3>Additional Notes</h3>
+<p><code>qw.import</code> includes an optional third argument, <code>rounding</code>, that controls how the data are rounded when printed. This argument is an integer vector of length 2. The first element is the maximum number of significant figures and the second element is the maximum number of decimal places to show. The default value used is c(3, 4), but can be changed by modifying this option.</p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
