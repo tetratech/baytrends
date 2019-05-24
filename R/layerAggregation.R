@@ -5,6 +5,8 @@
 #' selected. 2) Perform second level error checking to make sure the aggregation option
 #' selection makes sense (e.g. cannot aggregate "S" and "AP" if no "AP" data are in the
 #' data set). 3) Average the data by taking the median or mean based on user input.
+#' 
+#' NOTE (17May2019): Option to average by median is not currently working. Must use 'mean' option.
 #'
 #' @param df data frame
 #' @param avgTechnique method for aggregating data ("median"[default]/mean)

@@ -1,17 +1,20 @@
 # ####
 #' Analysis Organization & Data Preparation
 #'
-#' This function assesses the user supplied specifications and prepares data for
-#' analysis. In those cases where the user doesn't supply a needed
-#' specification, a basic option is supplied by this function.
+#' This function assesses the user supplied specifications in the argument,
+#' analySpec, and prepares the data (argument df) for analysis. In those cases
+#' where the user doesn't supply a needed specification, a basic option is
+#' supplied by this function.
 #'
 #' @param df Data frame of water quality data
 #' @param analySpec Specifications for analysis
 #' @param reports Optional reports about parameters, layers and stations
 #'   [default = c(0,1,2,3)]
-#' @param parameterList User-supplied parameter list [default = NA]
-#' @param stationMasterList User-supplied station list [default = NA]
-#' @param layerLukup User-supplied layer lookup list [default = NA]
+#' @param parameterList User-supplied dataframe with list of parameters [default
+#'   = NA]
+#' @param stationMasterList User-supplied dataframe with list of stations
+#'   [default = NA]
+#' @param layerLukup User-supplied dataframe with list of layers [default = NA]
 #'
 #' @details
 #'  The supplied data frame, df, is a data frame with the variables station,
@@ -41,11 +44,12 @@
 #'  The following steps are performed by analysisOrganizeData:
 #'
 #'  1) Review user supplied specifications through the analySpec argument. Fill
-#'  in with default values. For example, if the user doesn't specify a list of
-#'  stations, then all stations identified in the data set stationMasterList are
-#'  used. Some other default values include the following: date range
-#'  (1/1/1984-present), parameter list (all parameters in data set
-#'  parameterList), layers (all layers in data set layerLukup), layer
+#'  in with default values. For example, if the user doesn't specify a dataframe
+#'  with a list of stations, parameters, or layers, then the built-in data
+#'  frames, baytrends::stationMasterList, baytrends::parameterList, and
+#'  baytrends::layerLukup are used. Some other default values include the
+#'  following: date range (1/1/1984-present), parameter list (all parameters in
+#'  data set parameterList), layers (all layers in data set layerLukup), layer
 #'  aggregation option (0, no aggregation), minimum number of observations to
 #'  perform a GAM analysis (60), GAM formulas (Linear Trend with Seasonality,
 #'  Non-linear Trend with Seasonality, and Non-linear trend with Seasonality
@@ -110,7 +114,9 @@
 #'
 #'   layerFilt        - Layer filter
 #'
-#'   layerAggOption   - Layer averaging option (default = 0)
+#'   layerAggOption   - Layer averaging option (default = 0). Other options are:
+#'   1: combine "S" & "AP" ("SAP"); 2: combine "B" & "BP" ("BBP"); 3: opt 1 & 2
+#'   ("SAP", "BBP"); 4: combine all ("ALL")); 5: combine "S" and "B" ("SB")
 #'
 #'   obsMin           - Minimum number of observations required to allow GAM
 #'   analysis to proceed for a specific station, parameter, and layer
@@ -119,7 +125,17 @@
 #'   gamAlpha         - Alpha level used GAM analyses (default = 0.05).
 #'
 #'   censorTrim       - Values to apply for trimming data due to too much
-#'   censoring (default = c(0.5, 0.4)).
+#'   censoring (default = c(0.5, 0.4)). First argument indicates fraction of
+#'   observations in a year that are allowed to be censored. Second argument is
+#'   the fraction of years, starting from the beginning of the record, that are
+#'   allowed to be "flagged" for too much censoring. A minimum of two years must
+#'   have too much censoring before data are removed. The default settings can
+#'   be read as no more than 40% of the beginning years of data are allowed to
+#'   have more than 50% censoring before the beginning portion of the record is
+#'   trimmed. For example, years 1 and 3 of data have more than 50% censoring
+#'   then the first three years of data are trimmed. Similarly, for years 1 and
+#'   4, then the first four years are removed. If years 1 and 5 have more than
+#'   50% censoring the data are kept since 2/5 is not greater than 0.4. 
 #'
 #'   gamModels        - model formulations
 #'
@@ -168,6 +184,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 17May2019: JBH: minor documentation clarifications
 # 28Dec2018: JBH: add default seasonal mean of July 1-Sept 30 to gamLegend
 # 01May2018: JBH: removed median as option for layer aggregation  
 # 06Aug2017: JBH: added gamFlw_Sal.Wgt.Perc
@@ -207,7 +224,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   # Store number of rows of data
   beginRecords <- nrow(df)
   
-  # Use built-in data frames if not supplied by use, 20180503
+  # Use built-in data frames if not supplied by user 
   suppressWarnings(if (is.na(parameterList))     parameterList     <- baytrends::parameterList)
   suppressWarnings(if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList)
   suppressWarnings(if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup)
@@ -218,17 +235,17 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 # 1) Review user supplied specifications.  ####
 
   # expand analySpec with some useful default values in cases where user doesn't specify something
-  if (!"analyTitle"      %in% names(analySpec)) analySpec$analyTitle       <- paste0("CBP Trend Analysis: ", Sys.time())
+  if (!"analyTitle"      %in% names(analySpec)) analySpec$analyTitle       <- paste0("GAM Trend Analysis: ", Sys.time())
   if (!"parameterFilt"   %in% names(analySpec)) analySpec$parameterFilt    <- parameterList$parm
   if (!"stationFilt"     %in% names(analySpec)) analySpec$stationFilt      <- stationMasterList$station
   if (!"dateFilt"        %in% names(analySpec)) analySpec$dateFilt         <- c( as.POSIXct('1984-01-01'),
                                                                                  as.POSIXct(Sys.time()))
-  if (!"setTZ"           %in% names(analySpec)) analySpec$setTZ            <- "America/New_York"  #01Nov2016
+  if (!"setTZ"           %in% names(analySpec)) analySpec$setTZ            <- "America/New_York"
   if (!"layerFilt"       %in% names(analySpec)) analySpec$layerFilt        <- layerLukup$layers
   if (!"layerAggOption"  %in% names(analySpec)) analySpec$layerAggOption   <- 0        # 0: no aggregation
   if (!"obsMin"          %in% names(analySpec)) analySpec$obsMin           <- 60       # need 60 obs
   if (!"gamAlpha"        %in% names(analySpec)) analySpec$gamAlpha         <- c(0.05)
-  if (!"censorTrim"      %in% names(analySpec)) analySpec$censorTrim       <- c(0.5,0.40)  #01Nov2016
+  if (!"censorTrim"      %in% names(analySpec)) analySpec$censorTrim       <- c(0.5,0.40) 
 
   # load gam0-gam4 if not specified #31Jul2018
   if (!"gamModels"      %in% names(analySpec)) analySpec$gamModels       <- loadModels(c('gam0', 'gam1', 'gam2', 'gam3', 'gam4' ))
