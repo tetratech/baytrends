@@ -1,7 +1,7 @@
 # ####
-#' Perform GAM analysis
+#' Perform GAM analysis for Specified Season
 #'
-#' Perform GAM analysis. Relies on mgcv::gam to perform general additive model.
+#' Perform GAM analysis for Specified Season. Relies on mgcv::gam to perform general additive model.
 #' 
 #' The baseDay function has been added to this package from the smwrBase package.
 #'
@@ -13,6 +13,7 @@
 #' @param gamTable gam table setting (set to FALSE to turn off table output)
 #' @param gamPlot gam plot setting (set to FALSE to turn off plotting)
 #' @param gamDiffModel GAM model(s) used for computing differences on sub-annual/multi-period basis
+#' @param gamSeasonPlot	Character vector for evaluating and displaying seasonal model (see details for further information).
 #'
 #' @examples
 #' # specify parameter and station to analyze
@@ -41,11 +42,13 @@
 #'
 # ####
 
-gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10, gamDiffModel=NA
-                   , flow.detrended=NA
-                   , salinity.detrended=NA) {
-
+gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10, gamDiffModel=c(2)
+                         , flow.detrended=NA
+                         , salinity.detrended=NA
+                         , gamSeasonPlot = c('7/1-9/30', 'purple', 'range')) {
+  
 # ----- Change history -------------------------------------------- ####
+# 24May2019: JBH: copy gamTest -> gamTestSeason and begin modifications
 # 28Dec2018: JBH: set up doy (q2.doy) for computing seasonal mean  
 # 18Jul2018: JBH: added na.rm=TRUE to min/max functions  
 # 01May2018: JBH: changed .impute to impute; 
@@ -92,7 +95,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
   {
     # dont use scientific notation in figures
     options(scipen=5)
-
+    
     #set up plot resolution
     if(gamPlot==TRUE) {
       figRes=1
@@ -105,9 +108,32 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     } else {
       gamPlot<-FALSE
     }
-
+    
     step.pt='none'
+    
+    # 24May2019 - modify gamLegend to address season plot
+    {
+      # unpack gamLegend from analySpec
+      gamLegend <- analySpec$gamLegend
+      
+      # find and modify "seasMean" legend entry
+      rowT = which(gamLegend$descrip == "seasMean")
+      gamLegend[rowT,c("legend","colSel","colLegend")] <-
+        c(gamSeasonPlot[1], gamSeasonPlot[2], gamSeasonPlot[2])
+      gamLegend[rowT,c("lwdLegend")] <- 2
+      
+      # add legend row for min/max
+      gamLegend[nrow(gamLegend)+1,] <- gamLegend[rowT,]
+      gamLegend[nrow(gamLegend),c("legend","colSel","colLegend","descrip")] <-
+        c(paste(gamSeasonPlot[1],'range'), gamSeasonPlot[2], gamSeasonPlot[2], "seasMean min/max")
+      gamLegend[nrow(gamLegend),c("lwdLegend","ltyLegend")] <- c(1, 2)
 
+      # pack gamLegend pack into analySpec
+      analySpec$gamLegend     <- gamLegend 
+      analySpec$gamSeasonPlot <- gamSeasonPlot
+      
+    }  # 24May2019 - modify gamLegend to address season plot -- end
+    
     #unpack
     depVarList  <- analySpec$depVarList
     stationList <- analySpec$stationList
@@ -121,17 +147,17 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     gamPenaltyCrit        <- analySpec$gamPenaltyCrit           #04Feb2017
     gamCoeffDeltaMaxCrit  <- analySpec$gamCoeffDeltaMaxCrit     #04Feb2017
     # gamK_CritSel          <- analySpec$gamK_CritSel             #04Feb2017 #21Jul2017
-
+    
     #set transform to TRUE/FALSE based on what the dependent variable is
     transform <- depVarList[depVarList$deps==dep,"logTrans"]
-
+    
     #get the data
     #  remMiss=TRUE
     dfr <-  selectData(df, dep, stat, layer, transform=transform, analySpec = analySpec)
-
+    
     # return if no data (19,24Oct2016)
     if (is.na(dfr[1]))   return(NA)
-
+    
     # unpack the returned data; update dep to "ln"+dep if log trans is desired.
     ct0 <- dfr[[1]]
     ct1 <- ct0[ct0$lowCensor,]
@@ -139,17 +165,20 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     dep   <- iSpec$dep
     yearBegin <- iSpec$yearBegin
     yearEnd   <- iSpec$yearEnd
-
-    # create doy for computing seasonal mean  #28Dec2018
+    
+    # create doy for computing seasonal mean  #28Dec2018; #24May2019
     seasMean <- unlist(strsplit(analySpec$gamLegend[analySpec$gamLegend$descrip=="seasMean", "legend"], "-"))
-    seasMean.myStep   <- 7
-    q2.doy    <- as.numeric(baytrends::baseDay(lubridate::mdy (paste0(seasMean ,"/2000"))))
-    q2.doy.a1 <- seq(q2.doy[1],q2.doy[2], seasMean.myStep)
-    q2.doy.a2 <- seq(q2.doy[2],q2.doy[1],-seasMean.myStep)
-    q2.doy    <- c(q2.doy.a1[1:sum(q2.doy.a1<q2.doy.a2)], rev(q2.doy.a2[1:sum(q2.doy.a1>q2.doy.a2)]))
+    q2.doy   <- as.numeric(baytrends::baseDay(lubridate::mdy (paste0(seasMean ,"/2000"))))
+    
+    if (length(seasMean) > 1) {
+      seasMean.myStep   <- 7
+      q2.doy.a1 <- seq(q2.doy[1],q2.doy[2], seasMean.myStep)
+      q2.doy.a2 <- seq(q2.doy[2],q2.doy[1],-seasMean.myStep)
+      q2.doy    <- c(q2.doy.a1[1:sum(q2.doy.a1<q2.doy.a2)], rev(q2.doy.a2[1:sum(q2.doy.a1>q2.doy.a2)]))
+    }
     iSpec$seasMean <- analySpec$seasMean <- seasMean
     iSpec$q2.doy   <- analySpec$q2.doy   <- q2.doy    
-
+    
     # error trap for minimum observations
     if ( !(dep %in% names(ct1)) )  {
       warning(paste0("Minimum obs. req. not met: ",dep, ", Station: ", stat, ", Layer: ", layer, " not evaluated."))
@@ -160,7 +189,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       .P(" ")
       return(NA)
     }
-
+    
     # set mgcv:gam select option based on gamPenalty setting and          #04Feb2017
     # level of censoring (iSpec$censorFracSum$fracUnc)
     if(!is.na(gamPenalty) && gamPenalty %in% c(TRUE,FALSE)) {
@@ -172,11 +201,11 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         selectSetting <- TRUE
       }
     }
-
+    
     # # set mgcv:gam s(cyear) knots terms based on gamK_CritSel and         #04Feb2017  #22Jul2017
     # # length of record stored in iSpec
     # gamK = max(gamK_CritSel[1], ceiling(gamK_CritSel[2] * (iSpec$yearEnd - iSpec$yearBegin + 1)))
-
+    
     # count number of models to evaluate.
     numModels <- nrow(t(sapply(analySpec[['gamModels']],c)))
     
@@ -184,14 +213,14 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     statLists <- .initializeResults()
     stat.gam.result <- statLists[["stat.gam.result"]]
     chng.gam.result <- chng.gam.resultNA <- statLists[["chng.gam.result"]]
-
+    
     iRow <- 1 # does 1st model    
   }
-
-# GAM loop: BEGIN #####
+  
+  # GAM loop: BEGIN #####
   for (iRow in 1:numModels) {
     # iRow<-1
-
+    
     # GAM loop: model initialization ####
     {
       gamModel.option = analySpec[["gamModels"]][[iRow]]$option
@@ -200,32 +229,32 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       gamModel.deriv  = analySpec[["gamModels"]][[iRow]]$deriv
       gamModel.gamK1  = analySpec[["gamModels"]][[iRow]]$gamK1 #22Jul2017
       gamModel.gamK2  = analySpec[["gamModels"]][[iRow]]$gamK2 #22Jul2017
-
+      
       # set whether model includes intervention, flw_sal, gamK1 and/or gamK2 term  #22Jul2017
       intervention <- ifelse (length(grep('intervention',gamModel.model)) == 0, FALSE, TRUE)
       has.gamK1    <- ifelse (length(grep('gamK1',gamModel.model)) == 0, FALSE, TRUE)   #22Jul2017
       has.gamK2    <- ifelse (length(grep('gamK2',gamModel.model)) == 0, FALSE, TRUE)   #22Jul2017
       has.flw_sal  <- ifelse (length(grep('flw_sal',gamModel.model)) == 0, FALSE, TRUE) #22Jul2017
-
+      
       # compute gamK1 if 'has.gamK1' is TRUE
       gamK1 = ifelse (has.gamK1, max(gamModel.gamK1[1],
                                      ceiling(gamModel.gamK1[2] * (iSpec$yearEnd - iSpec$yearBegin + 1))) , NA)
-
+      
       # compute gamK2 if 'has.gamK2' is TRUE
       gamK2 = ifelse (has.gamK2, max(gamModel.gamK2[1],
                                      ceiling(gamModel.gamK2[2] * (iSpec$yearEnd - iSpec$yearBegin + 1))) , NA)
-
+      
       # error trap for gamModel.option
       if (!gamModel.option %in% c(0:6) )  {
         stop("GAM model option not valid value from 0-6.")
         return(NA)
       }
-
+      
       # Error trap for intervention term in models: ensure there are at least two levels
       # of intervention in the data with at least 10 obs (21Oct2016, updated 04Feb2018)
       if (intervention && sum(iSpec$intervenList$Freq > 10) <2) next
     }
-
+    
     # integrate flow and/or salinity data into data set (ct1)      ####
     # added 29Jul2017
     {
@@ -256,8 +285,8 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         ct1 <- ct1[ !is.na(ct1$flw_sal) , ]
       }
     }
-
-# GAM loop: initialize storage for gam results in 1 model ####
+    
+    # GAM loop: initialize storage for gam results in 1 model ####
     {
       stat.gam.res1 <-  data.frame(
         station = stat,
@@ -294,32 +323,32 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         usgsGageName     = ifelse(has.flw_sal, iSpec$usgsGageName, NA), #01May2018
         mgcvOK        = TRUE, stringsAsFactors = FALSE) #01May2018
     }
-
-# GAM loop: Run GAM w/ Expectation Maximization for Censored Data #####
-
+    
+    # GAM loop: Run GAM w/ Expectation Maximization for Censored Data #####
+    
     # create gam formula
     gamForm  <- as.formula(paste(iSpec$dep, gamModel.model))
     iSpec$gamForm <- paste(iSpec$dep, gamModel.model)
     if(gamTable | !gamPlot==FALSE) {  # only show header if tables or figures are outputted
       .H4(paste(depVarList[depVarList$depsGAM==dep, "parmName"], "-", gamModel.name))
     }
-
+    
     # impute plausible first guess. (impute in normal space, then convert)
     ct2 <- ct1
     ct2[,iSpec$depOrig] <- baytrends::impute(ct1[,iSpec$depOrig] )
     if(transform) ct2[,iSpec$dep] <- suppressWarnings(log(ct2[,iSpec$depOrig]))
-
+    
     # run GAM on impute plausible first guess.  #01May2018 added try error trap
     gamRslt <- try(
       mgcv::gam(gamForm, knots=list(doy=c(1,366)),data=ct2, select=selectSetting),
       silent=TRUE)
-      
+    
     if(inherits(gamRslt, "try-error")) {
       .P('Warning: mgcv convergence failed')
       stat.gam.res1$mgcvOK = FALSE
       # next
     }
-
+    
     # extract statistics from first guess
     if (stat.gam.res1$mgcvOK) {
       gamRsltSum  <- summary(gamRslt)
@@ -328,15 +357,15 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       sigma       <- sqrt(gam1$sig2)
       gamCoeff1   <- coefficients(gam1)
     }
-
+    
     # expectation maximization only if censored data exists and 1st plausible guess
     # with mgcv (see above) works without error 
     {
       if (stat.gam.res1$mgcvOK && !iSpec$censorFracSum$fracUnc==1) {
-
+        
         # # set convergence criteria     #04Feb2017
         # gamCoeffDeltaMaxCrit <- 1e-6   #04Feb2017
-
+        
         for (expConvIter in 1:50) {
           # get conditional expectation. Both .ExpLNmCens and .ExpNmCens use the 1st
           # and 2nd argument to point to the censored data in normal space so that's why
@@ -351,7 +380,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
             ect <- .ExpNmCens (ct1, iSpec$depOrig, mu, sigma)
             ct2[, iSpec$dep] <- ect$l
           }
-
+          
           # Run gam on refitted values
           #gamRslt0     <- mgcv::gam(gamForm, knots=list(doy=c(1,366)),data=ct2, select=TRUE)          #04Feb2017
           gamRslt0 <- try(
@@ -362,7 +391,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
             stat.gam.res1$mgcvOK = FALSE
             break
           }
-
+          
           # error trap. make sure gamRslt0$sp has results to use
           if ((Inf %in% gamRslt0$sp) || (NaN %in% gamRslt0$sp)) {
             warning(paste0(stat,"/",dep,"/",layer, ': expectation max conv warning'))
@@ -370,38 +399,57 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
           } else {
             gamRslt <- gamRslt0
           }
-
+          
           # extract statistics
           gamRsltSum  <- summary(gamRslt)
           gam1        <- gamRslt
           mu          <- predict(gam1)
           sigma       <- sqrt(gam1$sig2)
           gamCoeff2   <- coefficients(gam1)
-
+          
           # compute root-mean-squared-difference in coefficients between iteration,
           # but include an error trap to skip comparison on the iteration
           # if the number of coefficients changes in the evaluation
           if(length(gamCoeff1)==length(gamCoeff2)) gamCoeffDeltaRMSE <- sqrt(mean((gamCoeff1-gamCoeff2)^2))
-
+          
           # store updated coefficients
           gamCoeff1        <- gamCoeff2
-
+          
           # break out of loop if convergence criteria is met
           if(gamCoeffDeltaRMSE < gamCoeffDeltaMaxCrit) break
-
+          
         } # end expConvIter loop 
       } # end if statement to skip expectation maximization
     }
-
-
-# GAM loop: Compute POR difference and Create Plot #####
+    
+    
+    # GAM loop: Compute POR difference and Create Plot #####
     if (stat.gam.res1$mgcvOK) {
       # compute por difference (use full period of record and all seasons) #11Aug2017
       # base.yr.set=NA; test.yr.set=NA; doy.set=NA; alpha=alpha
-      por.diff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=NA, test.yr.set=NA, doy.set=NA
-                          , alpha=alpha
-                          , flow.detrended=flow.detrended
-                          , salinity.detrended=salinity.detrended)
+      
+      # 24May2019 - modify gamDiff call to address season plot
+      {
+        
+        # determine doy.set for gamDiff (use q2.doy if range else doy)
+        if (grepl('-',gamSeasonPlot[1])) {
+          my.doy.set <- iSpec$q2.doy
+        } else {
+          my.doy.set <- as.numeric(baseDay(lubridate::mdy (paste0(gamSeasonPlot[1] ,"/2000"))))
+        }        
+        
+        # gamDiff call with my.doy.set
+        por.diff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=NA, test.yr.set=NA, doy.set=my.doy.set
+                            , alpha=alpha
+                            , flow.detrended=flow.detrended
+                            , salinity.detrended=salinity.detrended)        
+        
+        # por.diff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=NA, test.yr.set=NA, doy.set=NA
+        #                     , alpha=alpha
+        #                     , flow.detrended=flow.detrended
+        #                     , salinity.detrended=salinity.detrended)
+        
+      } # 24May2019 - modify gamDiff call to address season plot -- end
       
       # Turn t.deriv to TRUE/FALSE based on which model is being evaluated
       t.deriv <- gamModel.deriv
@@ -435,17 +483,23 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         seasModelPlotSel  <- ifelse (regexpr('ti',iSpec$gamForm) > 0, TRUE, FALSE)
         diffTypeSel       <- ifelse (intervention, 'both', 'regular')
         
-        # output gam figure
-        # gamResult=stat.gam.tmp; analySpec=analySpec; fullModel=0; seasAvgModel=0; seasonalModel=0;
-        # obserPlot=TRUE; interventionPlot=TRUE; seasAvgPlot=TRUE; seasAvgConfIntPlot=TRUE;diffType = 'both'
-        # seasAvgSigPlot=seasAvgSigPlotSel; fullModelPlot=TRUE;
-        # seasModelPlot=seasModelPlotSel; BaseCurrentMeanPlot=TRUE; adjustedPlot=TRUE
-        gamPlotDisp(gamResult=stat.gam.tmp, analySpec=analySpec,
-                    fullModel=0, seasAvgModel=0, seasonalModel=0, diffType = diffTypeSel,
-                    obserPlot=TRUE, interventionPlot=TRUE,
-                    seasAvgPlot=TRUE, seasAvgConfIntPlot=TRUE, seasAvgSigPlot=seasAvgSigPlotSel,
-                    fullModelPlot=TRUE, seasModelPlot=seasModelPlotSel, BaseCurrentMeanPlot=TRUE,
-                    adjustedPlot=FALSE)
+        
+        # 24May2019 - modify gamPlotDisp call to address season plot
+        {
+          # output gam figure
+          # gamResult=stat.gam.tmp; analySpec=analySpec; fullModel=0; seasAvgModel=0
+           seasonalModel=0; diffType = diffTypeSel; obserPlot=TRUE; interventionPlot=TRUE
+           seasAvgPlot=FALSE; seasAvgConfIntPlot=FALSE; seasAvgSigPlot=FALSE
+           fullModelPlot=FALSE; seasModelPlot=FALSE; BaseCurrentMeanPlot=TRUE
+           adjustedPlot=FALSE; gamSeasonFocus=TRUE
+          
+          gamPlotDispSeason(gamResult=stat.gam.tmp, analySpec=analySpec,
+                            fullModel=0, seasAvgModel=0, seasonalModel=0, diffType = diffTypeSel,
+                            obserPlot=TRUE, interventionPlot=TRUE,
+                            seasAvgPlot=FALSE, seasAvgConfIntPlot=FALSE, seasAvgSigPlot=FALSE,
+                            fullModelPlot=FALSE, seasModelPlot=FALSE, BaseCurrentMeanPlot=TRUE,
+                            adjustedPlot=FALSE, gamSeasonFocus=TRUE)
+        }
         
       } else {
         pdat       <- NA
@@ -455,7 +509,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       }
     }
     
-# GAM loop: Table output #####
+    # GAM loop: Table output #####
     if (stat.gam.res1$mgcvOK) {
       gamANOVAtbl <- .gamANOVA(gamRslt)
       gamCoefftbl <- .gamCoeff(gamRslt,iSpec) # 01May2018
@@ -538,8 +592,8 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         
       }
     }
-
-# GAM loop: stat.gam.res1 gathering #####
+    
+    # GAM loop: stat.gam.res1 gathering #####
     if (stat.gam.res1$mgcvOK) {
       # extract parameter coefficients and corresponding p-values (03Nov)
       stat.gam.res1$cyear.coeff        <- if(length(gamRsltSum$p.coeff[names(gamRsltSum$p.coeff)=="cyear"])==0) NA else
@@ -640,12 +694,12 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       stat.gam.res1$rmse       <- gamDiagnosticstbl$RMSE
       stat.gam.res1$adjR2      <- gamDiagnosticstbl$AdjRsquare
     }
-      
-      # gather results for ith gam model with other results
-      #if(!exists("stat.gam.result")) stat.gam.result <- stat.gam.res1 else
+    
+    # gather results for ith gam model with other results
+    #if(!exists("stat.gam.result")) stat.gam.result <- stat.gam.res1 else
     stat.gam.result <- plyr::rbind.fill(stat.gam.result,stat.gam.res1)
     
-# GAM loop: gam model gathering #####
+    # GAM loop: gam model gathering #####
     {
       if (stat.gam.res1$mgcvOK) {
         gamOutput.tmp <- list(gamOption  = gamModel.option,
@@ -674,66 +728,66 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         gamOutput6 <- gamOutput.tmp
       }
     }
-
-# GAM loop: Sub-annual/multi-period change #####
+    
+    # GAM loop: Sub-annual/multi-period change #####
     if(!is.na(gamDiffModel[1]) && (gamModel.option %in% gamDiffModel) ) {
       
       if(stat.gam.res1$mgcvOK) {
-      # loop through all period and season combinations
-      for (i1 in 1: nrow(t(sapply(analySpec[['gamDiffPeriods']],c)))) {
-        for (i2 in 1: nrow(t(sapply(analySpec[['gamDiffSeasons']],c)))) {
-          
-          # i1=1
-          # i2=1
-          # extract base year(s), test years(s), and month(s) from the list
-          base.yr.set <- analySpec[["gamDiffPeriods"]][[i1]]$periodStart
-          test.yr.set <- analySpec[["gamDiffPeriods"]][[i1]]$periodEnd
-          months  <- analySpec[["gamDiffSeasons"]][[i2]]$seasonMonths
-          
-          # set base and/or test years to NA if request is outside range of data (if NA is used
-          # then gamDiff will default to using 1st 2 years and/or last 2 years of data)
-          if(!is.na(base.yr.set[1])) base.yr.set <- base.yr.set[base.yr.set %in% c(yearBegin:yearEnd)]
-          if(!is.na(test.yr.set[1])) test.yr.set <- test.yr.set[test.yr.set %in% c(yearBegin:yearEnd)]
-          
-          # do range check on months, if no months provided, assume Jan-Dec;
-          # then compute doys for passing off to gamDiff
-          if(!is.na(months[1]))      months <- months[months %in% c(1:12)]
-          if(is.na(months[1]))       months <-  c(1:12)
-          doy.set <- baseDay(as.POSIXct(paste(2000,months,15,sep='-')))
-          
-          # Calculate gamDiff  30Sep2017: added analySpec to function call
-          sub.gamDiff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=base.yr.set
-                                 , test.yr.set=test.yr.set, doy.set=doy.set
-                                 , alpha=alpha
-                                 , flow.detrended=flow.detrended
-                                 , salinity.detrended=salinity.detrended)
-          
-          #which sub.gamDiff to output
-          sub.gamDiff.tmp                  <- if(intervention) {sub.gamDiff[[2]]} else {sub.gamDiff[[1]]}
-          
-          # package up results into df
-          sub.gamDiff.df1 <- data.frame(
-            periodName          = analySpec[["gamDiffPeriods"]][[i1]]$periodName,
-            seasonName          = analySpec[["gamDiffSeasons"]][[i2]]$seasonName,
-            periodStart         = paste(sub.gamDiff.tmp$base.yr,collapse=" "),
-            periodEnd           = paste(sub.gamDiff.tmp$test.yr,collapse=" "),
-            seasonMonths        = paste(months,collapse=" "),
-            gamDiff.diffType    = ifelse(intervention,"adjusted",'regular'),
-            gamDiff.bl.mn       = sub.gamDiff.tmp$per.mn[1] ,
-            gamDiff.cr.mn       = sub.gamDiff.tmp$per.mn[2] ,
-            gamDiff.bl.mn.obs   = sub.gamDiff.tmp$per.mn.obs[1] ,
-            gamDiff.cr.mn.obs   = sub.gamDiff.tmp$per.mn.obs[2] ,
-            gamDiff.abs.chg     = sub.gamDiff.tmp$diff.est   ,
-            gamDiff.abs.chg.obs = sub.gamDiff.tmp$diff.est.obs   ,
-            gamDiff.pct.chg     = sub.gamDiff.tmp$pct.chg ,
-            gamDiff.diff.se     = sub.gamDiff.tmp$diff.se ,  #01May2018
-            gamDiff.chg.pval    = sub.gamDiff.tmp$diff.pval )
-          
-          if(i1==1 && i2==1) sub.gamDiff.df <- sub.gamDiff.df1 else
-            sub.gamDiff.df <- rbind(sub.gamDiff.df, sub.gamDiff.df1)
-          
-        }  # end gamDiffSeasons loop
-      } # end gamDiffPeriods loop
+        # loop through all period and season combinations
+        for (i1 in 1: nrow(t(sapply(analySpec[['gamDiffPeriods']],c)))) {
+          for (i2 in 1: nrow(t(sapply(analySpec[['gamDiffSeasons']],c)))) {
+            
+            # i1=1
+            # i2=1
+            # extract base year(s), test years(s), and month(s) from the list
+            base.yr.set <- analySpec[["gamDiffPeriods"]][[i1]]$periodStart
+            test.yr.set <- analySpec[["gamDiffPeriods"]][[i1]]$periodEnd
+            months  <- analySpec[["gamDiffSeasons"]][[i2]]$seasonMonths
+            
+            # set base and/or test years to NA if request is outside range of data (if NA is used
+            # then gamDiff will default to using 1st 2 years and/or last 2 years of data)
+            if(!is.na(base.yr.set[1])) base.yr.set <- base.yr.set[base.yr.set %in% c(yearBegin:yearEnd)]
+            if(!is.na(test.yr.set[1])) test.yr.set <- test.yr.set[test.yr.set %in% c(yearBegin:yearEnd)]
+            
+            # do range check on months, if no months provided, assume Jan-Dec;
+            # then compute doys for passing off to gamDiff
+            if(!is.na(months[1]))      months <- months[months %in% c(1:12)]
+            if(is.na(months[1]))       months <-  c(1:12)
+            doy.set <- baseDay(as.POSIXct(paste(2000,months,15,sep='-')))
+            
+            # Calculate gamDiff  30Sep2017: added analySpec to function call
+            sub.gamDiff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=base.yr.set
+                                   , test.yr.set=test.yr.set, doy.set=doy.set
+                                   , alpha=alpha
+                                   , flow.detrended=flow.detrended
+                                   , salinity.detrended=salinity.detrended)
+            
+            #which sub.gamDiff to output
+            sub.gamDiff.tmp                  <- if(intervention) {sub.gamDiff[[2]]} else {sub.gamDiff[[1]]}
+            
+            # package up results into df
+            sub.gamDiff.df1 <- data.frame(
+              periodName          = analySpec[["gamDiffPeriods"]][[i1]]$periodName,
+              seasonName          = analySpec[["gamDiffSeasons"]][[i2]]$seasonName,
+              periodStart         = paste(sub.gamDiff.tmp$base.yr,collapse=" "),
+              periodEnd           = paste(sub.gamDiff.tmp$test.yr,collapse=" "),
+              seasonMonths        = paste(months,collapse=" "),
+              gamDiff.diffType    = ifelse(intervention,"adjusted",'regular'),
+              gamDiff.bl.mn       = sub.gamDiff.tmp$per.mn[1] ,
+              gamDiff.cr.mn       = sub.gamDiff.tmp$per.mn[2] ,
+              gamDiff.bl.mn.obs   = sub.gamDiff.tmp$per.mn.obs[1] ,
+              gamDiff.cr.mn.obs   = sub.gamDiff.tmp$per.mn.obs[2] ,
+              gamDiff.abs.chg     = sub.gamDiff.tmp$diff.est   ,
+              gamDiff.abs.chg.obs = sub.gamDiff.tmp$diff.est.obs   ,
+              gamDiff.pct.chg     = sub.gamDiff.tmp$pct.chg ,
+              gamDiff.diff.se     = sub.gamDiff.tmp$diff.se ,  #01May2018
+              gamDiff.chg.pval    = sub.gamDiff.tmp$diff.pval )
+            
+            if(i1==1 && i2==1) sub.gamDiff.df <- sub.gamDiff.df1 else
+              sub.gamDiff.df <- rbind(sub.gamDiff.df, sub.gamDiff.df1)
+            
+          }  # end gamDiffSeasons loop
+        } # end gamDiffPeriods loop
       }
       
       # GAM loop: Sub-annual/multi-period change: gather results
@@ -752,11 +806,11 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         chng.gam.result <- rbind(chng.gam.result,chng.gam.result1)
       
     } # end sub-annual and multi-period trend analysis
-
-# GAM loop: end #####
+    
+    # GAM loop: end #####
   } # end LOOP through each gam model
-
-# Pack up list #####
+  
+  # Pack up list #####
   if(!exists("chng.gam.result")) chng.gam.result<-data.frame(NA)
   if(!exists("gamOutput0"))      gamOutput0<-data.frame(NA)
   if(!exists("gamOutput1"))      gamOutput1<-data.frame(NA)
@@ -765,21 +819,21 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
   if(!exists("gamOutput4"))      gamOutput4<-data.frame(NA)
   if(!exists("gamOutput5"))      gamOutput5<-data.frame(NA)
   if(!exists("gamOutput6"))      gamOutput6<-data.frame(NA)
-
+  
   # 21Oct2016 - added check for existence of stat.gam.result
   if(exists("stat.gam.result")) {
-   stat.gam.result <- list(stat.gam.result = stat.gam.result,
-                          chng.gam.result = chng.gam.result,
-                          data            = ct1,
-                          data.all        = ct0,
-                          iSpec           = iSpec,
-                          gamOutput0      = gamOutput0 ,
-                          gamOutput1      = gamOutput1 ,
-                          gamOutput2      = gamOutput2 ,
-                          gamOutput3      = gamOutput3 ,
-                          gamOutput4      = gamOutput4 ,
-                          gamOutput5      = gamOutput5 ,
-                          gamOutput6      = gamOutput6 )
+    stat.gam.result <- list(stat.gam.result = stat.gam.result,
+                            chng.gam.result = chng.gam.result,
+                            data            = ct1,
+                            data.all        = ct0,
+                            iSpec           = iSpec,
+                            gamOutput0      = gamOutput0 ,
+                            gamOutput1      = gamOutput1 ,
+                            gamOutput2      = gamOutput2 ,
+                            gamOutput3      = gamOutput3 ,
+                            gamOutput4      = gamOutput4 ,
+                            gamOutput5      = gamOutput5 ,
+                            gamOutput6      = gamOutput6 )
   } else {
     stat.gam.result <- list(stat.gam.result = NA,
                             chng.gam.result = NA,
@@ -794,10 +848,10 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
                             gamOutput5      = NA,
                             gamOutput6      = NA )
   }
-
-
-
-# Return #####
+  
+  
+  
+  # Return #####
   return(stat.gam.result)
-
+  
 }
