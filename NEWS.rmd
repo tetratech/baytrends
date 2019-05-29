@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-baytrends 1.1.1.9001
+baytrends 1.1.0.9001
 ===========
 * Release 2019-05-28
 * Added functions gamTestSeasonal and gamPlotDispSeasonal to compute and only display a seasonal mean for a single date or for a date range.
