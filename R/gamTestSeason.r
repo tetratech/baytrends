@@ -377,7 +377,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
             ect <- .ExpLNmCens(ct1, iSpec$depOrig, mu, sigma)
             ct2[, iSpec$dep] <- log(ect$l)
           } else {
-            ect <- .ExpNmCens (ct1, iSpec$depOrig, mu, sigma)
+            ect <- baytrends:::.ExpNmCens (ct1, iSpec$depOrig, mu, sigma)
             ct2[, iSpec$dep] <- ect$l
           }
           
@@ -787,6 +787,40 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
               sub.gamDiff.df <- rbind(sub.gamDiff.df, sub.gamDiff.df1)
             
           }  # end gamDiffSeasons loop
+          
+          # gamDiff for seasMean 24May2019 ####
+          {
+            # gamDiff call with my.doy.set
+            sub.gamDiff <- gamDiff(gamRslt, iSpec, analySpec, base.yr.set=base.yr.set
+                                   , test.yr.set=test.yr.set, doy.set=my.doy.set
+                                   , alpha=alpha
+                                   , flow.detrended=flow.detrended
+                                   , salinity.detrended=salinity.detrended)  
+            #which sub.gamDiff to output
+            sub.gamDiff.tmp                  <- if(intervention) {sub.gamDiff[[2]]} else {sub.gamDiff[[1]]}
+            
+            # package up results into df
+            sub.gamDiff.df1 <- data.frame(
+              periodName          = analySpec[["gamDiffPeriods"]][[i1]]$periodName,
+              seasonName          = paste("seasMean:",gamSeasonPlot[1]),   # 24May2019
+              periodStart         = paste(sub.gamDiff.tmp$base.yr,collapse=" "),
+              periodEnd           = paste(sub.gamDiff.tmp$test.yr,collapse=" "),
+              seasonMonths        = paste("doy:",paste(my.doy.set,collapse=" ")),  #24May2019
+              gamDiff.diffType    = ifelse(intervention,"adjusted",'regular'),
+              gamDiff.bl.mn       = sub.gamDiff.tmp$per.mn[1] ,
+              gamDiff.cr.mn       = sub.gamDiff.tmp$per.mn[2] ,
+              gamDiff.bl.mn.obs   = sub.gamDiff.tmp$per.mn.obs[1] ,
+              gamDiff.cr.mn.obs   = sub.gamDiff.tmp$per.mn.obs[2] ,
+              gamDiff.abs.chg     = sub.gamDiff.tmp$diff.est   ,
+              gamDiff.abs.chg.obs = sub.gamDiff.tmp$diff.est.obs   ,
+              gamDiff.pct.chg     = sub.gamDiff.tmp$pct.chg ,
+              gamDiff.diff.se     = sub.gamDiff.tmp$diff.se ,  #01May2018
+              gamDiff.chg.pval    = sub.gamDiff.tmp$diff.pval )
+            
+            if (!exists("sub.gamDiff.df")) sub.gamDiff.df <- sub.gamDiff.df1 else
+              sub.gamDiff.df <- rbind(sub.gamDiff.df, sub.gamDiff.df1)
+          } # gamDiff for seasMean 24May2019 
+          
         } # end gamDiffPeriods loop
       }
       
