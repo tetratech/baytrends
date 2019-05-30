@@ -49,17 +49,34 @@ gamPlotDispSeason(gamResult = gamResult, analySpec = analySpec,
 Plot censored gam fits vs. time
 }
 \examples{
-# specify parameter and station to analyze
+# Specify parameter and station to analyze
 dep        <- 'do'
 stat       <- 'CB5.4'
 layer      <- 'B'
 
-#Using gamTest
+# Prepare data and set up specifications for analysis
 dfr <- analysisOrganizeData (dataCensored)
 df        <- dfr[[1]]
 analySpec <- dfr[[2]]
-gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
-gamResult <- gamTestSeason(df, dep, stat, layer, analySpec=analySpec, 
-      gamSeasonPlot = c("7/15-8/15", "purple", "range"))
 
+Apply gamTest 
+gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
+
+gamPlotDisp(gamResult = gamResult, analySpec = analySpec,
+            fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+            diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+            seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+            seasAvgSigPlot = FALSE, fullModelPlot = TRUE, seasModelPlot = TRUE,
+            BaseCurrentMeanPlot = FALSE, adjustedPlot = FALSE)
+
+# Apply gamTestSeason
+gamResult2 <- gamTestSeason(df, dep, stat, layer, analySpec=analySpec,
+                            gamSeasonPlot = c("7/15-8/15", "purple", "range"))
+gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
+                  fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+                  diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+                  seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+                  seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
+                  BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
+      
 }

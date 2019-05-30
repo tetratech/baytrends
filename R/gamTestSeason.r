@@ -3,7 +3,22 @@
 #'
 #' Perform GAM analysis for Specified Season. Relies on mgcv::gam to perform general additive model.
 #' 
-#' The baseDay function has been added to this package from the smwrBase package.
+#' gamSeasonPlot is an additional argument (relative to the arguments used in
+#' the gamTest function) that is used to target a specific season for the focus
+#' of output and can be a 2- or 3-element vector. While the GAM is fit to all
+#' data as in the function gamTest, the output figure will only show the model
+#' corresponding to the gamSeasonPlot specifications. The first element of
+#' gamSeasonPlot can be a single date (e.g., ‘8/28’) or a date range (e.g.,
+#' ‘7/1-9/30’). The second element specifies the color of the line to be
+#' plotted. If a date range is specified as the first element and an optional
+#' third element is provided as ‘range’, then the plot will show the season
+#' minimum and maximum as well as the mean; otherwise, only the mean is plotted.
+#' If the first element of gamSeasonPlot is a single date then observations
+#' within a +/- 15-day window of the date are plotted; otherwise, only
+#' observations within the date range are plotted. Estimates of difference are
+#' computed with baytrends::gamDiff by setting the argument doy.set to either
+#' the single date provided from gamSeasonPlot or the same doys used to compute
+#' the season mean.
 #'
 #' @param df data frame
 #' @param dep dependent variable
@@ -16,17 +31,36 @@
 #' @param gamSeasonPlot	Character vector for evaluating and displaying seasonal model (see details for further information).
 #'
 #' @examples
-#' # specify parameter and station to analyze
-#' dep        <- 'secchi'
+#' # Specify parameter and station to analyze
+#' dep        <- 'do'
 #' stat       <- 'CB5.4'
-#' layer      <- 'S'
+#' layer      <- 'B'
 #'
-#' #Using gamTest
+#' # Prepare data and set up specifications for analysis
 #' dfr <- analysisOrganizeData (dataCensored)
 #' df        <- dfr[[1]]
 #' analySpec <- dfr[[2]]
+#' 
+#' # Apply gamTest 
 #' gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
-#'
+#' 
+#' gamPlotDisp(gamResult = gamResult, analySpec = analySpec,
+#'             fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+#'             diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+#'             seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+#'             seasAvgSigPlot = FALSE, fullModelPlot = TRUE, seasModelPlot = TRUE,
+#'             BaseCurrentMeanPlot = FALSE, adjustedPlot = FALSE)
+#' 
+#' # Apply gamTestSeason
+#' gamResult2 <- gamTestSeason(df, dep, stat, layer, analySpec=analySpec,
+#'                             gamSeasonPlot = c("7/15-8/15", "purple", "range"))
+#' gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
+#'                   fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+#'                   diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+#'                   seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+#'                   seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
+#'                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
+#'       
 #' @return Returns a list with results
 #' @export
 #' @import mgcv
@@ -48,7 +82,8 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
                          , gamSeasonPlot = c('7/1-9/30', 'purple', 'range')) {
   
 # ----- Change history -------------------------------------------- ####
-# 24May2019: JBH: copy gamTest -> gamTestSeason and begin modifications
+# 24May2018: JBH: copy gamPlotDisp -> gamPlotDispSeason and implement modifications for 
+#                 seasonal analysis
 # 28Dec2018: JBH: set up doy (q2.doy) for computing seasonal mean  
 # 18Jul2018: JBH: added na.rm=TRUE to min/max functions  
 # 01May2018: JBH: changed .impute to impute; 
@@ -90,7 +125,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
 # 18May2016: JBH: Added iSpec and data in list that is returned.
 # 27Apr2016: JBH: Explicit use of "::" for non-base functions added.
 
-#  gamTable=TRUE; gamPlot=10; gamDiffModel=NA; flow.detrended=NA; salinity.detrended=NA
+#  gamTable=TRUE; gamPlot=10; gamDiffModel=NA; flow.detrended=NA; salinity.detrended=NA; gamSeasonPlot = c('7/1-9/30', 'purple', 'range')
 # Initialization #####
   {
     # dont use scientific notation in figures
@@ -178,6 +213,9 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     }
     iSpec$seasMean <- analySpec$seasMean <- seasMean
     iSpec$q2.doy   <- analySpec$q2.doy   <- q2.doy    
+    
+    #
+    iSpec$gamSeasonPlot <- gamSeasonPlot
     
     # error trap for minimum observations
     if ( !(dep %in% names(ct1)) )  {
