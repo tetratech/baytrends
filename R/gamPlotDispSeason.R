@@ -31,7 +31,6 @@
 #' 
 #' # Apply gamTest 
 #' gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
-#' 
 #' gamPlotDisp(gamResult = gamResult, analySpec = analySpec,
 #'             fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
 #'             diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,

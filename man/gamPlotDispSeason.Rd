@@ -59,9 +59,8 @@ dfr <- analysisOrganizeData (dataCensored)
 df        <- dfr[[1]]
 analySpec <- dfr[[2]]
 
-Apply gamTest 
+# Apply gamTest 
 gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
-
 gamPlotDisp(gamResult = gamResult, analySpec = analySpec,
             fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
             diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
