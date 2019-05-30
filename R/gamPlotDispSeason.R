@@ -17,7 +17,35 @@
 #' @param BaseCurrentMeanPlot logical field indicating whether to plot baseline and current mean
 #' @param adjustedPlot logical field indicating whether to plot adjusted model
 #' @param gamSeasonFocus logical field indicating whether to plot focus on season mean 
+#'
+#' @examples
+#' # Specify parameter and station to analyze
+#' dep        <- 'do'
+#' stat       <- 'CB5.4'
+#' layer      <- 'B'
+#'
+#' # Prepare data and set up specifications for analysis
+#' dfr <- analysisOrganizeData (dataCensored)
+#' df        <- dfr[[1]]
+#' analySpec <- dfr[[2]]
+#' 
+#' # Apply gamTest
+#' gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
+#' gamResult <- gamTestSeason(df, dep, stat, layer, analySpec=analySpec, 
+#'       gamSeasonPlot = c("7/15-8/15", "purple", "range"))
+#'       
+#' # Apply gamTestSeason
+#' gamResult <- gamTestSeason(df, dep, stat, layer, analySpec=analySpec,
+#'                  gamSeasonPlot = c("7/15-8/15", "purple", "range"))
+#' gamPlotDispSeason(gamResult = gamResult, analySpec = analySpec,
+#'                  fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+#'                  diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+#'                  seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+#'                  seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
+#'                  BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
+#'       
 #' @export
+#' 
 #' @importFrom stats quantile
 #'
 # ####
@@ -29,7 +57,8 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
                               adjustedPlot=FALSE, gamSeasonFocus=TRUE) {
   
 # ----- Change history -------------------------------------------- ####
-# 24May2018: JBH: copy gamPlotDisp -> gamPlotDispSeason and begin modifications
+# 24May2018: JBH: copy gamPlotDisp -> gamPlotDispSeason and implement modifications for 
+#                 seasonal analysis
 # 12Jul2018: JBH: add magenta line when additional independent variables are in model
 # 05Aug2017: JBH: added some place holder code for flw_sal bar & fitted model
 # 14Mar2017: JBH: updated off scale y settings
@@ -50,6 +79,12 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
 # 27Apr2016: JBH: Explicit use of "::" for non-base functions added.
 # 04Feb2016: JBH: added horizontal grid lines to plots
 
+# fullModel=2; seasAvgModel=2; seasonalModel=2; diffType='regular'
+# obserPlot=TRUE; interventionPlot=TRUE; seasAvgPlot=TRUE
+# seasAvgConfIntPlot=TRUE; seasAvgSigPlot=TRUE; fullModelPlot=TRUE
+# seasModelPlot=TRUE; BaseCurrentMeanPlot=TRUE; adjustedPlot=FALSE
+# gamSeasonFocus=TRUE
+  
 # Unpack & initialization #####
   tsdat     <- gamResult$data
   tsdat.all <- gamResult$data.all
@@ -62,12 +97,39 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
   layer      <- iSpec$layer
   dep        <- iSpec$dep
   stat.layer <- paste(stat,layer,sep="-")
-  analySpec$gamLegend$On <-FALSE
-  gamSeasonPlot <- analySpec$gamSeasonPlot #24May2019
-  
   gridCol <- 'gray80'; gridlty =6
   censorlty <- 3; censorlwd <- 1
-  seasAvgSiglwd <- 4
+  seasAvgSiglwd <- 4  
+  
+  # 24May2019 - modify gamLegend to address season plot
+  #   ** this workaround is to allow gamPlotDispSeason to be called independently **
+  {
+    if (!"seasMean min/max" %in% analySpec$gamLegend$descrip) {
+      
+      gamSeasonPlot <- iSpec$gamSeasonPlot
+      
+      # unpack gamLegend from analySpec
+      gamLegend <- analySpec$gamLegend
+      
+      # find and modify "seasMean" legend entry
+      rowT = which(gamLegend$descrip == "seasMean")
+      gamLegend[rowT,c("legend","colSel","colLegend")] <-
+        c(gamSeasonPlot[1], gamSeasonPlot[2], gamSeasonPlot[2])
+      gamLegend[rowT,c("lwdLegend")] <- 2
+      
+      # add legend row for min/max
+      gamLegend[nrow(gamLegend)+1,] <- gamLegend[rowT,]
+      gamLegend[nrow(gamLegend),c("legend","colSel","colLegend","descrip")] <-
+        c(paste(gamSeasonPlot[1],'range'), gamSeasonPlot[2], gamSeasonPlot[2], "seasMean min/max")
+      gamLegend[nrow(gamLegend),c("lwdLegend","ltyLegend")] <- c(1, 2)
+      
+      # pack gamLegend pack into analySpec
+      analySpec$gamLegend     <- gamLegend 
+      analySpec$gamSeasonPlot <- gamSeasonPlot
+    }
+  } # 24May2019 - modify gamLegend to address season plot -- end
+  
+  analySpec$gamLegend$On <-FALSE
   
 # Review data points and set up x- and y-axis ranges ####
   conc          <- data.frame(tsdat.all$date,
@@ -98,9 +160,9 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
   
   # downselect observations to specific season if gamSeasonFocus 24May2019
   if (gamSeasonFocus) {
-    seasMean <- unlist(strsplit(analySpec$gamLegend[analySpec$gamLegend$descrip=="seasMean", "legend"], "-"))
+    seasMean <- unlist(strsplit(analySpec$gamSeasonPlot[1], "-"))
     q2.range <- as.numeric(baytrends::baseDay(lubridate::mdy (paste0(seasMean ,"/2000"))))
-    if (!grepl('-',gamSeasonPlot[1])) {
+    if (!grepl('-',analySpec$gamSeasonPlot[1])) {
       q2.range[1] <- q2.range[1] - 15
       q2.range[2] <- q2.range[1] + 30 
     }   
@@ -400,7 +462,7 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
     # add min/max
     # check to make sure it makes sense to add range (gamSeasonPlot[1] is in "range" format,
     # gamSeasonPlot[3] exists and it has value of 'range')
-    if (grepl('-',gamSeasonPlot[1]) && exists(gamSeasonPlot[3]) && gamSeasonPlot[3]=='range') {
+    if (grepl('-',analySpec$gamSeasonPlot[1]) && exists(analySpec$gamSeasonPlot[3]) && analySpec$gamSeasonPlot[3]=='range') {
 
       myDescription <- "seasMean min/max"
       
