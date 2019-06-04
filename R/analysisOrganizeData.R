@@ -177,13 +177,15 @@
 #'
 #' @export
 # ####
-analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
+analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
                                  , parameterList     = NA
                                  , stationMasterList = NA
                                  , layerLukup        = NA) { 
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 03Jun2019: JBH: add report of which models are loaded; mod's to reduce required data elements
+#                 in look up tables
 # 17May2019: JBH: minor documentation clarifications
 # 28Dec2018: JBH: add default seasonal mean of July 1-Sept 30 to gamLegend
 # 01May2018: JBH: removed median as option for layer aggregation  
@@ -228,6 +230,56 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   suppressWarnings(if (is.na(parameterList))     parameterList     <- baytrends::parameterList)
   suppressWarnings(if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList)
   suppressWarnings(if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup)
+  
+  # QA/QC field settings ####
+  warnPrint <- TRUE #FALSE
+  okPrint   <- TRUE #FALSE
+  
+  # parameterList: QA/QC fields ####
+  {
+    checkFieldNames(parameterList
+                    , c("parm","parmName","parmUnits","parmRecensor","logTrans")
+                    , "Error", warnPrint=warnPrint, okPrint=FALSE)
+    checkFieldNames(parameterList
+                    , c("parmNamelc","parmRO1","parmRO2")
+                    , "Warning", warnPrint=warnPrint, okPrint=okPrint)
+    # fill in missing fields 
+    varList <- c("parmRO1", "parmRO2","trendIncrease","parmSource"
+                 , "parmCat", "parmCalc", "parmNamelc" , "parmTrend")
+    varListType <- c('n', 'n', 'c', 'c', 'c', 'c', 'c', 'c');
+    for (i in 1:length(varList)) {
+      if (!varList[i] %in% names(parameterList)) {
+        parameterList[,varList[i]] <- ifelse (varListType[i] == 'c', NA_character_, NA_real_ )
+      }
+    }
+  }
+  
+  # stationMasterList: QA/QC fields ####
+  {
+    checkFieldNames(stationMasterList
+                    , c("station")
+                    , "Error", warnPrint, okPrint=FALSE)
+    checkFieldNames(stationMasterList
+                    , c("stationRO1","stationRO2","latitude","longitude"
+                        , "cbSeg92", "state", "stationGrpName")
+                    , "Warning", warnPrint, okPrint)
+    checkFieldNames(stationMasterList
+                    , c("hydroTerm", "flwAvgWin", "flwParms", "salParms", "usgsGageID"
+                        , "stationMethodGroup")
+                    , "Warning", warnPrint, okPrint)
+    # fill in missing fields
+    varList <- c( c("stationRO1","stationRO2","latitude","longitude"
+                    ,"cbSeg92", "state", "stationGrpName"
+                    , "usgsGageID"),
+                  c("hydroTerm", "flwAvgWin", "flwParms", "salParms", "usgsGageID"
+                    , "stationMethodGroup"))
+    varListType <- c('n', 'n', 'n', 'n', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c');
+    for (i in 1:length(varList)) {
+      if (!varList[i] %in% names(stationMasterList)) {
+        stationMasterList[,varList[i]] <- ifelse (varListType[i] == 'c', NA_character_, NA_real_ )
+      }
+    }
+  }
 
   # specify the average technique to be mean (median option was removed 01May2018)
   avgTechnique     <- "mean"
@@ -249,8 +301,19 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 
   # load gam0-gam4 if not specified #31Jul2018
   if (!"gamModels"      %in% names(analySpec)) analySpec$gamModels       <- loadModels(c('gam0', 'gam1', 'gam2', 'gam3', 'gam4' ))
+  for (i in 1:length(analySpec$gamModels)) {    #03Jun2019
+    if (i==1) {
+      gamModelList <- as.data.frame(analySpec$gamModels[[i]][c("option","name","model")],
+                                    stringsAsFactors = FALSE)
+    } else {
+      gamModelList <- rbind(gamModelList,
+                            as.data.frame(analySpec$gamModels[[i]][c("option","name","model")],
+                                          stringsAsFactors = FALSE))
+    }
+  }
+  analySpec$gamModelList <- gamModelList
   
-
+  # load periods of record to evaluate 
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(
     list( periodName = "Full Record",     periodStart = c(NA),        periodEnd = c(NA)),
     list( periodName = "1999/00-Present", periodStart = c(1999:2000), periodEnd = c(NA)),
@@ -374,6 +437,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   {
     # Record count report
     if(0 %in% reports) {
+      .P()
       .H3("Record Count")
       .P()
       .V(paste("Beginning Number of Records: ",  beginRecords ))
@@ -403,6 +467,17 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
                   col.names=c("Layer ID","Layer Name")))
     }
 
+    # Model report
+    if(4 %in% reports) {
+      .H3("Models")
+      .T("List of Models.")
+      {
+        print(knitr::kable(analySpec$gamModelList[,1:2],
+                           format = "pandoc", padding = 0 ,  row.names=FALSE,
+                           col.names=c("Option","Model")))
+      }
+    }
+    
     # Station report
     if(3 %in% reports) {
       .H2("")
@@ -414,6 +489,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
                   col.names=c("Station ID", "Latitude","Longitude",
                               "CB 92 Seg.", "Flow Adj. Gage", "Mth. Group")))
     }
+    
   }
 
   return(df)
