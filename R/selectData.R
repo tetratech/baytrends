@@ -1,4 +1,4 @@
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Documentation ####
 #' Select data for analysis from a larger data frame
 #'
 #' Select data for analysis from a larger data frame based on dependent
@@ -148,11 +148,13 @@
 # iSpec <- dfr[[2]]
 # }
 #' @export
-# ~~~~~~~~~~~~~~~
+# Header ####
 selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                        remMiss=TRUE, analySpec) {
 
-# -----< Change history >--------------------------------------------
+# -----< Change history >-------------------------------------------- ####
+# 03Jun2016: JBH: set flwAvgWin, flwParms, and salParms to NA if listed in 
+#                 user provided station file as ""
 # 02Jul2018: JBH: return NA if no data in lowCensor years  
 # 02Jun2018: JBH: added iSpec$seasModels  to iSpec 
 # 12Mar2018: JBH: only recensor data that will be logtransformed  
@@ -241,6 +243,10 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$flwAvgWin <- suppressWarnings(as.numeric(unlist(strsplit(iSpec$flwAvgWin, " "))))
   iSpec$flwParms  <- unlist(strsplit(iSpec$flwParms, " "))
   iSpec$salParms  <- unlist(strsplit(iSpec$salParms, " "))
+  
+  if (length(iSpec$flwAvgWin) == 0) iSpec$flwAvgWin = NA_real_  # 03June2016
+  if (length(iSpec$flwParms) == 0) iSpec$flwParms = NA_character_
+  if (length(iSpec$salParms) == 0) iSpec$salParms = NA_character_
 
   # fill in iSpec$hydroTerm w/ 'flow' if not specified; then initialize iSpec$hydroTermSel
   iSpec$hydroTerm    <- if(is.na(iSpec$hydroTerm)) 'flow' else iSpec$hydroTerm
