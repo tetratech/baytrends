@@ -230,10 +230,35 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   suppressWarnings(if (is.na(parameterList))     parameterList     <- baytrends::parameterList)
   suppressWarnings(if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList)
   suppressWarnings(if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup)
+
+  # checkFieldNames function ####
+  checkFieldNames <- function(df
+                              , requiredFields
+                              , errorStatus = "Error"
+                              , warnPrint = TRUE
+                              , okPrint   = TRUE) {
+    if (sum(!requiredFields %in% names(df)) > 0) {
+      if (errorStatus=="Error") {
+        stop(paste(substitute(df)
+                   , "- **Required** fields missing:"
+                   , paste(requiredFields[!requiredFields %in% names(df)], collapse = " ")),
+             call. = FALSE)
+      } 
+      else if (warnPrint) {
+        warning(paste(substitute(df)
+                      , "- Optional fields not present:"
+                      , paste(requiredFields[!requiredFields %in% names(df)], collapse = " ")),
+                call. = FALSE)
+      }
+    } else if (okPrint) {
+      message(paste(substitute(df)
+                    , "- appears OK"))
+    }
+  }
   
   # QA/QC field settings ####
   warnPrint <- TRUE #FALSE
-  okPrint   <- TRUE #FALSE
+  okPrint   <- FALSE #FALSE
   
   # parameterList: QA/QC fields ####
   {
@@ -269,11 +294,14 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
                     , "Warning", warnPrint, okPrint)
     # fill in missing fields
     varList <- c( c("stationRO1","stationRO2","latitude","longitude"
-                    ,"cbSeg92", "state", "stationGrpName"
-                    , "usgsGageID"),
+                    ,"cbSeg92", "state", "stationGrpName", "usgsGageID"),
                   c("hydroTerm", "flwAvgWin", "flwParms", "salParms", "usgsGageID"
-                    , "stationMethodGroup"))
-    varListType <- c('n', 'n', 'n', 'n', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c');
+                    , "stationMethodGroup"),
+                  c("usgsGageName", "usgsGageMatch", "notes", 
+                    "locationType", "waterbody"))
+    varListType <- c('n', 'n', 'n', 'n', 'c', 'c', 'c', 'c'
+                     , 'c', 'c', 'c', 'c', 'c', 'c'
+                     , 'c', 'c', 'c', 'c', 'c');
     for (i in 1:length(varList)) {
       if (!varList[i] %in% names(stationMasterList)) {
         stationMasterList[,varList[i]] <- ifelse (varListType[i] == 'c', NA_character_, NA_real_ )
