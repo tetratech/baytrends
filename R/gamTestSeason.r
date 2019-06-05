@@ -23,7 +23,7 @@
 #' @param df data frame
 #' @param dep dependent variable
 #' @param stat station
-#' @param layer layer (optional)
+#' @param layer layer 
 #' @param analySpec analytical specifications
 #' @param gamTable gam table setting (set to FALSE to turn off table output)
 #' @param gamPlot gam plot setting (set to FALSE to turn off plotting)
