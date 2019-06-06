@@ -15,7 +15,7 @@ gamTest(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
 
 \item{stat}{station}
 
-\item{layer}{layer (optional)}
+\item{layer}{layer}
 
 \item{analySpec}{analytical specifications}
 
@@ -39,15 +39,33 @@ Perform GAM analysis. Relies on mgcv::gam to perform general additive model.
 The baseDay function has been added to this package from the smwrBase package.
 }
 \examples{
-# specify parameter and station to analyze
-dep        <- 'secchi'
+# Specify parameter and station to analyze
+dep        <- 'do'
 stat       <- 'CB5.4'
-layer      <- 'S'
+layer      <- 'B'
 
-#Using gamTest
+# Prepare data and set up specifications for analysis
 dfr <- analysisOrganizeData (dataCensored)
 df        <- dfr[[1]]
 analySpec <- dfr[[2]]
+
+# Apply gamTest 
 gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
+gamPlotDisp(gamResult = gamResult, analySpec = analySpec,
+            fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+            diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+            seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+            seasAvgSigPlot = FALSE, fullModelPlot = TRUE, seasModelPlot = TRUE,
+            BaseCurrentMeanPlot = FALSE, adjustedPlot = FALSE)
+
+# Apply gamTestSeason
+gamResult2 <- gamTestSeason(df, dep, stat, layer, analySpec=analySpec,
+                            gamSeasonPlot = c("7/15-8/15", "purple", "range"))
+gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
+                  fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+                  diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+                  seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+                  seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
+                  BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
 
 }

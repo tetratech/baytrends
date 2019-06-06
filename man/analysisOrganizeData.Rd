@@ -4,8 +4,8 @@
 \alias{analysisOrganizeData}
 \title{Analysis Organization & Data Preparation}
 \usage{
-analysisOrganizeData(df, analySpec = list(), reports = c(0, 1, 2, 3),
-  parameterList = NA, stationMasterList = NA, layerLukup = NA)
+analysisOrganizeData(df, analySpec = list(), reports = c(0, 1, 2, 3,
+  4), parameterList = NA, stationMasterList = NA, layerLukup = NA)
 }
 \arguments{
 \item{df}{Data frame of water quality data}

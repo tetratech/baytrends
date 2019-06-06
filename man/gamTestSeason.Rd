@@ -16,7 +16,7 @@ gamTestSeason(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
 
 \item{stat}{station}
 
-\item{layer}{layer (optional)}
+\item{layer}{layer}
 
 \item{analySpec}{analytical specifications}
 
