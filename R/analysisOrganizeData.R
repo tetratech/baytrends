@@ -185,7 +185,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
 # 03Jun2019: JBH: add report of which models are loaded; mod's to reduce required data elements
-#                 in look up tables
+#                 in look up tables: min number of obs for an intervention
 # 17May2019: JBH: minor documentation clarifications
 # 28Dec2018: JBH: add default seasonal mean of July 1-Sept 30 to gamLegend
 # 01May2018: JBH: removed median as option for layer aggregation  
@@ -324,6 +324,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   if (!"layerFilt"       %in% names(analySpec)) analySpec$layerFilt        <- layerLukup$layers
   if (!"layerAggOption"  %in% names(analySpec)) analySpec$layerAggOption   <- 0        # 0: no aggregation
   if (!"obsMin"          %in% names(analySpec)) analySpec$obsMin           <- 60       # need 60 obs
+  if (!"obsMinInter"     %in% names(analySpec)) analySpec$obsMinInter      <- 10       # need 10 obs #03Jun2019
+  
   if (!"gamAlpha"        %in% names(analySpec)) analySpec$gamAlpha         <- c(0.05)
   if (!"censorTrim"      %in% names(analySpec)) analySpec$censorTrim       <- c(0.5,0.40) 
 

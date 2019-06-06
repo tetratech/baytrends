@@ -173,6 +173,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     stationList <- analySpec$stationList
     layerList   <- analySpec$layerList
     obsMin      <- analySpec$obsMin
+    obsMinInter <- analySpec$obsMinInter  # 03Jun2019
     alpha       <- analySpec$gamAlpha
     seasons     <- analySpec$gamLegend[analySpec$gamLegend$season, "legend"]
     seasons     <- lubridate::mdy (paste0(seasons ,"/2000"))
@@ -280,8 +281,9 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       }
 
       # Error trap for intervention term in models: ensure there are at least two levels
-      # of intervention in the data with at least 10 obs (21Oct2016, updated 04Feb2018)
-      if (intervention && sum(iSpec$intervenList$Freq > 10) <2) next
+      # of intervention in the data with at least analySpec$obsMinInter obs 
+      # (21Oct2016, updated 04Feb2018 updated 03Jun2018)
+      if (intervention && sum(iSpec$intervenList$Freq > analySpec$obsMinInter) <2) next
     }
 
     # integrate flow and/or salinity data into data set (ct1)      ####

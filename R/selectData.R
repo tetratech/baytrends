@@ -410,6 +410,24 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   intervenList = merge(intervenList,tmp, by.x="intervention", by.y="Var1", all.x=TRUE)
   intervenList$Freq[is.na(intervenList$Freq)] <- 0
   
+  # if there is an intervention period with insufficient data then, 
+  # down select and remove that data from the analysis #03June2019
+  if (sum(intervenList$Freq < analySpec$obsMinInter) > 0) {
+    
+    # remove data for intervention periods with less than a minimum number of observations 
+    df <- df[!(df$intervention %in% intervenList[intervenList$Freq < analySpec$obsMinInter, "intervention"]) , ]
+    # ... shorten interventionList in a corresponding manner
+    intervenList <- intervenList[!(intervenList$intervention %in% intervenList[intervenList$Freq < analySpec$obsMinInter, "intervention"]) , ]
+    # ... update intervention end dates 
+    intervenList$endDate <- c(intervenList[-1,"beginDate"] - (24*3600), max(df$date,na.rm=TRUE))
+    # ... update beginning date to beginning of year/ ending date to end of year
+    intervenList$beginDate[1] <-
+      lubridate::ymd(paste0(lubridate::year(intervenList$beginDate[1]),"-01-01"),  tz=setTZ)
+    intervenList$endDate[nrow(intervenList)] <-
+      lubridate::ymd(paste0(lubridate::year(intervenList$endDate[nrow(intervenList)]),"-12-31"),  tz=setTZ)
+    rownames(intervenList)      <- NULL
+  }
+  
   # set intervention variables to factors and store to iSpec
   df$intervention           <- factor(df$intervention, levels = intervenList$intervention)
   intervenList$intervention <- factor(intervenList$intervention, levels = intervenList$intervention)
