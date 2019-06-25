@@ -61,8 +61,7 @@ gamPlotDisp <- function(gamResult=gamResult, analySpec=analySpec,
   dep        <- iSpec$dep
   stat.layer <- paste(stat,layer,sep="-")
   analySpec$gamLegend$On <-FALSE
-
-
+  showGamNumOnPlot <- analySpec$showGamNumOnPlot
 
   gridCol <- 'gray80'; gridlty =6
   censorlty <- 3; censorlwd <- 1
@@ -136,6 +135,7 @@ gamPlotDisp <- function(gamResult=gamResult, analySpec=analySpec,
   abline(v=axis.POSIXct(1, x=pretty(tsdat$date), labels = FALSE),lty = gridlty, col = gridCol)
   mtext(side=2,text=paste0(iSpec$parmName," [",iSpec$parmUnits,"]"),line=2.2,cex=.9)
   title(paste0(iSpec$parmName,"-",iSpec$layerName," at ", iSpec$stat),cex.main=.9)
+  if (showGamNumOnPlot) mtext(side=3,text=fullModel,line=0.5,cex=.8,adj=1, col='black')   #2019Jun24
 
 # fit.GAM #05Aug2017 ; 01Oct2017 ; 24Nov2017####
   # gamOutput4 <-gamResult$gamOutput4$gamRslt$fitted.values

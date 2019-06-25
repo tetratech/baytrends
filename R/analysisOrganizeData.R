@@ -121,6 +121,9 @@
 #'   obsMin           - Minimum number of observations required to allow GAM
 #'   analysis to proceed for a specific station, parameter, and layer
 #'   combination (default = 60).
+#'   
+#'   obsMinInter      - Minimum number of observations required to allow GAM
+#'   analysis to proceed for a specific intervention (default = 10).
 #'
 #'   gamAlpha         - Alpha level used GAM analyses (default = 0.05).
 #'
@@ -130,14 +133,17 @@
 #'   the fraction of years, starting from the beginning of the record, that are
 #'   allowed to be "flagged" for too much censoring. A minimum of two years must
 #'   have too much censoring before data are removed. The default settings can
-#'   be read as no more than 40% of the beginning years of data are allowed to
-#'   have more than 50% censoring before the beginning portion of the record is
-#'   trimmed. For example, years 1 and 3 of data have more than 50% censoring
-#'   then the first three years of data are trimmed. Similarly, for years 1 and
-#'   4, then the first four years are removed. If years 1 and 5 have more than
-#'   50% censoring the data are kept since 2/5 is not greater than 0.4. 
+#'   be read as no more than 40 percent of the beginning years of data are
+#'   allowed to have more than 50 percent censoring before the beginning portion
+#'   of the record is trimmed. For example, years 1 and 3 of data have more than
+#'   50 percent censoring then the first three years of data are trimmed.
+#'   Similarly, for years 1 and 4, then the first four years are removed. If
+#'   years 1 and 5 have more than 50 percent censoring the data are kept since
+#'   2/5 is not greater than 0.4.
 #'
 #'   gamModels        - model formulations
+#'   
+#'   showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)
 #'
 #'   gamDiffPeriods   - list of time periods (years) used for computing changes
 #'   (differences). The default options are: full record, 1999/00-present, and
@@ -330,7 +336,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   if (!"censorTrim"      %in% names(analySpec)) analySpec$censorTrim       <- c(0.5,0.40) 
 
   # load gam0-gam4 if not specified #31Jul2018
-  if (!"gamModels"      %in% names(analySpec)) analySpec$gamModels       <- loadModels(c('gam0', 'gam1', 'gam2', 'gam3', 'gam4' ))
+  if (!"gamModels"      %in% names(analySpec)) analySpec$gamModels       <- loadModels(c('gam0', 'gam1', 'gam2', 'gam3', 'gam4'))
   for (i in 1:length(analySpec$gamModels)) {    #03Jun2019
     if (i==1) {
       gamModelList <- as.data.frame(analySpec$gamModels[[i]][c("option","name","model")],
@@ -342,6 +348,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
     }
   }
   analySpec$gamModelList <- gamModelList
+  
+  if (!"showGamNumOnPlot"      %in% names(analySpec)) analySpec$showGamNumOnPlot       <- FALSE 
   
   # load periods of record to evaluate 
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(

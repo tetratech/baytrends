@@ -21,13 +21,13 @@ cat(paste0("Last Update: ",Sys.time()))
 ```
 baytrends 1.1.0.9004
 ===========
-* Release 2019-xx-xx
-* <TBD> 
+* Release 2019-06-25
+* Minor punch list issues from v*.9003 and .9002. Add option analySpec$showGamNumOnPlot to add gam # onto plot
 
 baytrends 1.1.0.9003
 ===========
 * Release 2019-06-06
-* Improved error trapping based on contributions from Elgin Perry
+* Improved error trapping related to required station and parameter list fields. Added detrended salinity, detrended flow and method list warnings.
 
 baytrends 1.1.0.9002
 ===========

@@ -127,7 +127,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
                     ,"in gamTest, but models included in analySpec include"
                     ,"those with 'flw_sal' term. Consider passing detrended flow"
                     ,"data or reducing models specified in analySpec."),
-              immediate. = TRUE, call. = FALSE)
+              immediate. = FALSE, call. = FALSE)
     }
 
     if (has.flw_sal & is.na(salinity.detrended[1])) {
@@ -135,7 +135,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
                     ,"in gamTest, but models included in analySpec include"
                     ,"those with 'flw_sal' term. Consider passing detrended salinity"
                     ,"data or reducing models specified in analySpec."),
-              immediate. = TRUE, call. = FALSE)
+              immediate. = FALSE, call. = FALSE)
     }
 
     if (has.intervention & !exists("methodsList", envir = .GlobalEnv)) {
@@ -143,7 +143,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
                     ,"environment; however, models included in analySpec include"
                     ,"an intervention term. Consider creating a methods list"
                     ,"or reducing models specified in analySpec."),
-              immediate. = TRUE, call. = FALSE)
+              immediate. = FALSE, call. = FALSE)
     }
 
   }  
@@ -234,11 +234,6 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       }
     }
 
-    # # set mgcv:gam s(cyear) knots terms based on gamK_CritSel and         #04Feb2017  #22Jul2017
-    # # length of record stored in iSpec
-    # gamK = max(gamK_CritSel[1], ceiling(gamK_CritSel[2] * (iSpec$yearEnd - iSpec$yearBegin + 1)))
-
-    
     # Initialize stat.gam.result and chng.gam.result
     statLists <- .initializeResults()
     stat.gam.result <- statLists[["stat.gam.result"]]
@@ -484,11 +479,12 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
                               porDiff.regular=por.diff[[1]], porDiff.adjusted=por.diff[[2]],
                               predictions = pdat )
         
-        # compile temporary "gamResult" list placing above temp. list into the model 0 slot
+        # compile temporary "gamResult" list  #24Jun2019 - put output in correct slot
         stat.gam.tmp <- list(stat.gam.result = NA,  chng.gam.result = NA, data= ct1, data.all=ct0,
-                             iSpec = iSpec, gamOutput0 = gamOutput.tmp ,
+                             iSpec = iSpec, gamOutput0 = NA ,
                              gamOutput1 = NA , gamOutput2 = NA , gamOutput3 = NA ,
                              gamOutput4 = NA , gamOutput5 = NA , gamOutput6 = NA )
+        stat.gam.tmp[[(paste0("gamOutput",gamModel.option))]] <- gamOutput.tmp
         
         # set flags for plots significant trends and seasonal components to TRUE/FALSE
         seasAvgSigPlotSel <- ifelse (t.deriv,  TRUE, FALSE)
@@ -496,12 +492,15 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
         diffTypeSel       <- ifelse (intervention, 'both', 'regular')
         
         # output gam figure
-        # gamResult=stat.gam.tmp; analySpec=analySpec; fullModel=0; seasAvgModel=0; seasonalModel=0;
+        # gamResult=stat.gam.tmp; analySpec=analySpec; fullModel<-seasAvgModel<-seasonalModel<-gamModel.option;
         # obserPlot=TRUE; interventionPlot=TRUE; seasAvgPlot=TRUE; seasAvgConfIntPlot=TRUE;diffType = 'both'
         # seasAvgSigPlot=seasAvgSigPlotSel; fullModelPlot=TRUE;
         # seasModelPlot=seasModelPlotSel; BaseCurrentMeanPlot=TRUE; adjustedPlot=TRUE
-        gamPlotDisp(gamResult=stat.gam.tmp, analySpec=analySpec,
-                    fullModel=0, seasAvgModel=0, seasonalModel=0, diffType = diffTypeSel,
+        gamPlotDisp(gamResult=stat.gam.tmp, analySpec=analySpec
+                    , fullModel=gamModel.option
+                    , seasAvgModel=gamModel.option
+                    , seasonalModel=gamModel.option
+                    , diffType = diffTypeSel,
                     obserPlot=TRUE, interventionPlot=TRUE,
                     seasAvgPlot=TRUE, seasAvgConfIntPlot=TRUE, seasAvgSigPlot=seasAvgSigPlotSel,
                     fullModelPlot=TRUE, seasModelPlot=seasModelPlotSel, BaseCurrentMeanPlot=TRUE,

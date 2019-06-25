@@ -64,6 +64,8 @@ Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
   50% censoring the data are kept since 2/5 is not greater than 0.4. 
 
   gamModels        - model formulations
+  
+  showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)
 
   gamDiffPeriods   - list of time periods (years) used for computing changes
   (differences). The default options are: full record, 1999/00-present, and
