@@ -81,7 +81,9 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
                          , gamSeasonPlot = c('7/1-9/30', 'purple', 'range')) {
   
 # ----- Change history -------------------------------------------- ####
-# 24May2018: JBH: copy gamPlotDisp -> gamPlotDispSeason and implement modifications for 
+# 24Jun2019: JBH: add check to make sure if gamSeasonPlot[1] is a range that first date < last date
+# 24Jun2019: JBH: migrate from gamTest: check for data supporting flw_sal and intervention models
+# 24May2019: JBH: copy gamTest -> gamTestSeason and implement modifications for 
 #                 seasonal analysis
 # 28Dec2018: JBH: set up doy (q2.doy) for computing seasonal mean  
 # 18Jul2018: JBH: added na.rm=TRUE to min/max functions  
@@ -125,6 +127,47 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
 # 27Apr2016: JBH: Explicit use of "::" for non-base functions added.
 
 #  gamTable=TRUE; gamPlot=10; gamDiffModel=NA; flow.detrended=NA; salinity.detrended=NA; gamSeasonPlot = c('7/1-9/30', 'purple', 'range')
+
+# QA/QC entries #### 
+  
+  # check for data supporting flw_sal and intervention models #03Jun2019 #24Jun2019
+  {
+    # count number of models to evaluate.
+    numModels <- nrow(t(sapply(analySpec[['gamModels']],c)))
+    
+    has.flw_sal <- has.intervention <- FALSE
+    for (iRow in 1:numModels) {
+      gamModel.model  = analySpec[["gamModels"]][[iRow]]$model
+      has.intervention <- ifelse(grepl('intervention',gamModel.model),TRUE,has.intervention)
+      has.flw_sal      <- ifelse(grepl('flw_sal',gamModel.model),TRUE,has.flw_sal)
+    }
+    
+    if (has.flw_sal & is.na(flow.detrended[1])) {
+      warning(paste("Detrended flow data (flow.detrended) not passed as argument"
+                    ,"in gamTest, but models included in analySpec include"
+                    ,"those with 'flw_sal' term. Consider passing detrended flow"
+                    ,"data or reducing models specified in analySpec."),
+              immediate. = FALSE, call. = FALSE)
+    }
+    
+    if (has.flw_sal & is.na(salinity.detrended[1])) {
+      warning(paste("Detrended salinity data (salinity.detrended) not passed as argument"
+                    ,"in gamTest, but models included in analySpec include"
+                    ,"those with 'flw_sal' term. Consider passing detrended salinity"
+                    ,"data or reducing models specified in analySpec."),
+              immediate. = FALSE, call. = FALSE)
+    }
+    
+    if (has.intervention & !exists("methodsList", envir = .GlobalEnv)) {
+      warning(paste("A methods list (methodsList) does not exist in Global"
+                    ,"environment; however, models included in analySpec include"
+                    ,"an intervention term. Consider creating a methods list"
+                    ,"or reducing models specified in analySpec."),
+              immediate. = FALSE, call. = FALSE)
+    }
+    
+  }  
+  
 # Initialization #####
   {
     # dont use scientific notation in figures
@@ -173,6 +216,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     stationList <- analySpec$stationList
     layerList   <- analySpec$layerList
     obsMin      <- analySpec$obsMin
+    obsMinInter <- analySpec$obsMinInter  # 03Jun2019 #24Jun2019
     alpha       <- analySpec$gamAlpha
     seasons     <- analySpec$gamLegend[analySpec$gamLegend$season, "legend"]
     seasons     <- lubridate::mdy (paste0(seasons ,"/2000"))
@@ -203,6 +247,8 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     # create doy for computing seasonal mean  #28Dec2018; #24May2019
     seasMean <- unlist(strsplit(analySpec$gamLegend[analySpec$gamLegend$descrip=="seasMean", "legend"], "-"))
     q2.doy   <- as.numeric(baytrends::baseDay(lubridate::mdy (paste0(seasMean ,"/2000"))))
+    
+    if (length(seasMean) > 1 && q2.doy[1] > q2.doy[2]) stop("gamSeasonPlot date range is not valid")
     
     if (length(seasMean) > 1) {
       seasMean.myStep   <- 7
@@ -238,13 +284,6 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
         selectSetting <- TRUE
       }
     }
-    
-    # # set mgcv:gam s(cyear) knots terms based on gamK_CritSel and         #04Feb2017  #22Jul2017
-    # # length of record stored in iSpec
-    # gamK = max(gamK_CritSel[1], ceiling(gamK_CritSel[2] * (iSpec$yearEnd - iSpec$yearBegin + 1)))
-    
-    # count number of models to evaluate.
-    numModels <- nrow(t(sapply(analySpec[['gamModels']],c)))
     
     # Initialize stat.gam.result and chng.gam.result
     statLists <- .initializeResults()
@@ -509,11 +548,12 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
                               porDiff.regular=por.diff[[1]], porDiff.adjusted=por.diff[[2]],
                               predictions = pdat )
         
-        # compile temporary "gamResult" list placing above temp. list into the model 0 slot
+        # compile temporary "gamResult" list  #24Jun2019 - put output in correct slot
         stat.gam.tmp <- list(stat.gam.result = NA,  chng.gam.result = NA, data= ct1, data.all=ct0,
-                             iSpec = iSpec, gamOutput0 = gamOutput.tmp ,
+                             iSpec = iSpec, gamOutput0 = NA ,
                              gamOutput1 = NA , gamOutput2 = NA , gamOutput3 = NA ,
                              gamOutput4 = NA , gamOutput5 = NA , gamOutput6 = NA )
+        stat.gam.tmp[[(paste0("gamOutput",gamModel.option))]] <- gamOutput.tmp
         
         # set flags for plots significant trends and seasonal components to TRUE/FALSE
         seasAvgSigPlotSel <- ifelse (t.deriv,  TRUE, FALSE)
@@ -524,14 +564,16 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
         # 24May2019 - modify gamPlotDisp call to address season plot
         {
           # output gam figure
-          # gamResult=stat.gam.tmp; analySpec=analySpec; fullModel=0; seasAvgModel=0
-           seasonalModel=0; diffType = diffTypeSel; obserPlot=TRUE; interventionPlot=TRUE
-           seasAvgPlot=FALSE; seasAvgConfIntPlot=FALSE; seasAvgSigPlot=FALSE
-           fullModelPlot=FALSE; seasModelPlot=FALSE; BaseCurrentMeanPlot=TRUE
-           adjustedPlot=FALSE; gamSeasonFocus=TRUE
-          
-          gamPlotDispSeason(gamResult=stat.gam.tmp, analySpec=analySpec,
-                            fullModel=0, seasAvgModel=0, seasonalModel=0, diffType = diffTypeSel,
+           # gamResult=stat.gam.tmp; analySpec=analySpec; fullModel<-seasAvgModel<-seasonalModel<-gamModel.option;
+           # obserPlot=TRUE; interventionPlot=TRUE;
+           # seasAvgPlot=FALSE; seasAvgConfIntPlot=FALSE; seasAvgSigPlot=FALSE;
+           # fullModelPlot=FALSE; seasModelPlot=FALSE; BaseCurrentMeanPlot=TRUE;
+           # adjustedPlot=FALSE; gamSeasonFocus=TRUE
+          gamPlotDispSeason(gamResult=stat.gam.tmp, analySpec=analySpec
+                            , fullModel=gamModel.option
+                            , seasAvgModel=gamModel.option
+                            , seasonalModel=gamModel.option
+                            , diffType = diffTypeSel,
                             obserPlot=TRUE, interventionPlot=TRUE,
                             seasAvgPlot=FALSE, seasAvgConfIntPlot=FALSE, seasAvgSigPlot=FALSE,
                             fullModelPlot=FALSE, seasModelPlot=FALSE, BaseCurrentMeanPlot=TRUE,
@@ -617,8 +659,11 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
         print(knitr::kable(gamDiagnosticstbl,
                            col.names =c("AIC","RMSE","Adj. R-squared")))
         
-        # print period of record percent change table
-        .T(paste0("Estimates of Change from ", iSpec$yearBegin, "-",iSpec$yearEnd,"."))
+        # print period of record percent change table  #24June2019
+        # analySpec$gamLegend[analySpec$gamLegend$descrip=="seasMean", "legend"]
+        .T(paste0("Estimates of Change (season: "
+                  ,analySpec$gamLegend[analySpec$gamLegend$descrip=="seasMean", "legend"]
+                  ,") from ", iSpec$yearBegin, "-",iSpec$yearEnd,"."))
         if(intervention) {
           print(knitr::kable(perChangetbl[1:7,], align=c("l","c","c"),
                              col.names =c("Calculation","Estimate","Adj. Estimate")))

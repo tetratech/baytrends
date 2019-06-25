@@ -13,10 +13,10 @@ Description: Enable users to evaluate long-term trends using a Generalized
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
 Version: 1.1.0.9004
-Date: 2019-xx-xx
+Date: 2019-06-25
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:
-    R (>= 3.2.0),
+    R (>= 3.5.0),
     lubridate,
     mgcv
 License: GPL-3
