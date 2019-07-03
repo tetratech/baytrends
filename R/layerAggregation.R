@@ -193,7 +193,9 @@
                          ((!df12$lower==0 & df12$lower <df12$upper)))) {
       #warning("Good news: df12 logic accounted for")
     } else {
-      warning("Potential layer aggregation issues with these records.")
+      warning("Potential layer aggregation issues with these records."
+              , immediate. = TRUE)
+      .T('Check these records in source data. ')
       print(knitr::kable(df12[!((df12$lower==0 & df12$upper>=0) |
                                   (!df12$lower==0 & df12$lower==df12$upper) |
                                   (!df12$lower==0 & df12$lower <df12$upper) ),

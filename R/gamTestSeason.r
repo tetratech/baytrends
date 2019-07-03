@@ -18,7 +18,8 @@
 #' observations within the date range are plotted. Estimates of difference are
 #' computed with baytrends::gamDiff by setting the argument doy.set to either
 #' the single date provided from gamSeasonPlot or the same doys used to compute
-#' the season mean.
+#' the season mean. The option to specify seasons that "wrap" around end of 
+#' year, i.e., 12/1-1/30, has not been implemented.
 #'
 #' @param df data frame
 #' @param dep dependent variable

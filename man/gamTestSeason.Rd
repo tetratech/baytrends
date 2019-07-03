@@ -54,7 +54,8 @@ within a +/- 15-day window of the date are plotted; otherwise, only
 observations within the date range are plotted. Estimates of difference are
 computed with baytrends::gamDiff by setting the argument doy.set to either
 the single date provided from gamSeasonPlot or the same doys used to compute
-the season mean.
+the season mean. The option to specify seasons that "wrap" around end of 
+year, i.e., 12/1-1/30, has not been implemented.
 }
 \examples{
 # Specify parameter and station to analyze
