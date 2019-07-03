@@ -193,9 +193,15 @@
                          ((!df12$lower==0 & df12$lower <df12$upper)))) {
       #warning("Good news: df12 logic accounted for")
     } else {
-      warning("df12 logic is incomplete--check for non '<' & '>' qualifier codes")
-      table(df12$qualifier, useNA='always')
-      table(df12$method,    useNA='always')
+      warning("Potential layer aggregation issues with these records.")
+      print(knitr::kable(df12[!((df12$lower==0 & df12$upper>=0) |
+                                  (!df12$lower==0 & df12$lower==df12$upper) |
+                                  (!df12$lower==0 & df12$lower <df12$upper) ),
+                              c('station','date','layer','lower','upper',
+                                'parameter','count')]))
+      # warning("df12 logic is incomplete--check for non '<' & '>' qualifier codes")
+      # table(df12$qualifier, useNA='always')
+      # table(df12$method,    useNA='always')
     }
 
     # 'less-thans'
