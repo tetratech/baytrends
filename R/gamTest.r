@@ -152,18 +152,21 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
   {
     # dont use scientific notation in figures
     options(scipen=5)
-
+    
     #set up plot resolution
     if(gamPlot==TRUE) {
-      figRes=1
+      figRes  <- 10
     } else if(gamPlot %in% c(1:30)) {
-      figRes=gamPlot
-      gamPlot=TRUE
+      figRes  <- gamPlot
+      gamPlot <- TRUE
     } else if(gamPlot >30) {  #30Nov2016: set figRes to 30
-      figRes=30
-      gamPlot=TRUE
+      figRes  <- 30
+      gamPlot <- TRUE
+    } else if(gamPlot <0) {   
+      figRes  <- abs(gamPlot)
+      gamPlot <- TRUE
     } else {
-      gamPlot<-FALSE
+      gamPlot <- FALSE
     }
 
     step.pt='none'

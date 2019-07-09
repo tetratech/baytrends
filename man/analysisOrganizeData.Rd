@@ -67,7 +67,8 @@ Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
   years 1 and 5 have more than 50 percent censoring the data are kept since
   2/5 is not greater than 0.4.
 
-  gamModels        - model formulations
+  gamModels        - model formulations. See baytrends::loadModels() for 
+  simplified approach for selecting which built-in models to include
   
   showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)
 
@@ -75,11 +76,11 @@ Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
   (differences). The default options are: full record, 1999/00-present, and
   2005/06-present.  
 
-  gamDiffSeasons   - list of seasons used for sub-annual analyses. The default
-  options include the following: All (months 1:12), Spring1 (3:5), Spring2
-  (months: 4:6)), Summer1 (months: 6:9)), Summer2 (months: 7:9)), SAV1
-  (months: 4:10)), SAV2 (months: 3:5,9:11)), Winter (months: 1:2)), and Fall
-  (months: 10:12))).
+  gamDiffSeasons   - list List of seasons used for sub-annual analyses of
+  computing differences. The default options include the following: All
+  (months 1:12), Spring1 (3:5), Spring2 (months: 4:6)), Summer1 (months:
+  6:9)), Summer2 (months: 7:9)), SAV1 (months: 4:10)), SAV2 (months:
+  3:5,9:11)), Winter (months: 1:2)), and Fall (months: 10:12))).
 
   gamPenalty       - allow the user to set the mgcv::gam select argument to
   TRUE, FALSE, or baytrend algorithm default (default = NA). When the default
