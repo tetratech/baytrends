@@ -374,6 +374,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   if (!"gamCoeffDeltaMaxCrit" %in% names(analySpec)) analySpec$gamCoeffDeltaMaxCrit <- 1e-6      #02Feb2017
   if (!"gamFlw_Sal.Wgt.Perc"  %in% names(analySpec)) analySpec$gamFlw_Sal.Wgt.Perc  <- 
       c(0.05,0.25,0.5,0.75,0.95)      #06Aug2017
+  if (!"gamLegend"           %in% names(analySpec)) analySpec$gamLegend           <- gamLegend 
+  
 
 # 2) Down select primary data based on parameters, stations, dates, and layers ####
 #    from updated specifications
@@ -446,21 +448,21 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 
 # 6) Final housekeeping ####
 
-  # add gamPlot legend  #01Nov2016
-  analySpec$gamLegend <- gamLegend
-
-  # add default seasonal mean of July 1-Sept 30 #28Dec2018
-  analySpec$gamLegend <- rbind(analySpec$gamLegend, 
-                               data.frame(legend = '7/1-7/31'
-                                          , colSel        = 'red'     
-                                          , colLegend     = 'red'
-                                          , lwdLegend     = 1
-                                          , ltyLegend     = 1
-                                          , pchLegend     = NA
-                                          , fillLegend    = NA
-                                          , borderLegend  = NA
-                                          , season        = FALSE
-                                          , descrip       = 'seasMean'))
+  # # add gamPlot legend  #01Nov2016
+  # analySpec$gamLegend <- gamLegend
+  # 
+  # # add default seasonal mean of July 1-Sept 30 #28Dec2018
+  # analySpec$gamLegend <- rbind(analySpec$gamLegend, 
+  #                              data.frame(legend = '7/1-7/31'
+  #                                         , colSel        = 'red'     
+  #                                         , colLegend     = 'red'
+  #                                         , lwdLegend     = 1
+  #                                         , ltyLegend     = 1
+  #                                         , pchLegend     = NA
+  #                                         , fillLegend    = NA
+  #                                         , borderLegend  = NA
+  #                                         , season        = FALSE
+  #                                         , descrip       = 'seasMean'))
   
   # add newly created variables back to analySpec
   analySpec$idVar         <- idVar
