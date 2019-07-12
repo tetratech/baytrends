@@ -79,3 +79,6 @@ gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
       
 }
+\seealso{
+\code{\link{gamPlotDisp}}
+}
