@@ -5,7 +5,7 @@
 \title{Save R object to disk}
 \usage{
 saveDF(rObj, note = NULL, rData = FALSE, csv = TRUE, attr = FALSE,
-  timeStamp = TRUE, folder = "_saveDF")
+  timeStamp = TRUE, folder = "_save_df")
 }
 \arguments{
 \item{rObj}{Name of R object to save.}
@@ -20,7 +20,7 @@ saveDF(rObj, note = NULL, rData = FALSE, csv = TRUE, attr = FALSE,
 
 \item{timeStamp}{Logical field to include date/time stamp in file name (TRUE [default]).}
 
-\item{folder}{Subdirectory for saving file ('_saveDF' is default)}
+\item{folder}{Subdirectory for saving file ('_save_df' is default)}
 }
 \value{
 n/a
@@ -30,7 +30,7 @@ Saves R object to disk using csv and/or Rdata format.
 }
 \details{
 Output files are saved with an "rObj_note_YYYY_MM_DD_HHMMSS" naming
-  convetion. By default, files are saved as csv files to a '_saveDF'
+  convetion. By default, files are saved as csv files to a '_save_df'
   subdirectory relative to the working directory and include a time stamp in
   the file name using utils::write.csv. The default folder can be changed
   with the folder argument. Inclusion of a time stamp in the file name

@@ -30,6 +30,8 @@
 #' @param gamPlot gam plot setting (set to FALSE to turn off plotting)
 #' @param gamDiffModel GAM model(s) used for computing differences on sub-annual/multi-period basis
 #' @param gamSeasonPlot	Character vector for evaluating and displaying seasonal model (see details for further information).
+#' 
+#' @seealso \code{\link{gamTest}}
 #'
 #' @examples
 #' # Specify parameter and station to analyze

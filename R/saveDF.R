@@ -8,9 +8,9 @@
 #' @param csv Logical field to save rObj as an a csv file (TRUE [default]).
 #' @param attr Logical field to save data frame attributes as a text file (FALSE [default]).
 #' @param timeStamp Logical field to include date/time stamp in file name (TRUE [default]).
-#' @param folder Subdirectory for saving file ('_saveDF' is default)
+#' @param folder Subdirectory for saving file ('_save_df' is default)
 #' @details Output files are saved with an "rObj_note_YYYY_MM_DD_HHMMSS" naming
-#'   convetion. By default, files are saved as csv files to a '_saveDF'
+#'   convetion. By default, files are saved as csv files to a '_save_df'
 #'   subdirectory relative to the working directory and include a time stamp in
 #'   the file name using utils::write.csv. The default folder can be changed
 #'   with the folder argument. Inclusion of a time stamp in the file name
@@ -22,7 +22,7 @@
 #' saveDF(df,'test_note')
 #' @return n/a
 #' @export
-saveDF <- function(rObj, note=NULL, rData=FALSE, csv=TRUE, attr=FALSE, timeStamp=TRUE, folder="_saveDF") {
+saveDF <- function(rObj, note=NULL, rData=FALSE, csv=TRUE, attr=FALSE, timeStamp=TRUE, folder="_save_df") {
 
 # ----- Change history --------------------------------------------
 # 12Jul2016: JBH: added comments; cleaned up documentation

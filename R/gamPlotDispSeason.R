@@ -17,6 +17,8 @@
 #' @param BaseCurrentMeanPlot logical field indicating whether to plot baseline and current mean
 #' @param adjustedPlot logical field indicating whether to plot adjusted model
 #' @param gamSeasonFocus logical field indicating whether to plot focus on season mean 
+#' 
+#' @seealso \code{\link{gamPlotDisp}}
 #'
 #' @examples
 #' # Specify parameter and station to analyze
