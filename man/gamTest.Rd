@@ -68,7 +68,11 @@ in a tabular format suitable for output to a csv file.
 }
 }
 \description{
+<<<<<<< HEAD
 Perform GAM analysis. Relies on \code{\link[mgcv:::gam()]{mgcv::gam}} to perform general additive model.
+=======
+Perform GAM analysis. Relies on \code{\link[mgcv::gam]{mgcv::gam}} to perform general additive model.
+>>>>>>> 912ed7d23563077204e25a18484fef04bedba864
 }
 \details{
 Set \code{gamPlot=FALSE} to turn off plotting. Computing the information
@@ -148,9 +152,17 @@ gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
 \seealso{
 \code{\link{gamTestSeason}}
 
+<<<<<<< HEAD
 \code{\link{analysisOrganizeData}}
 
 \code{\link{gamTestSeason}}
 
 \code{\link{analysisOrganizeData}}
+=======
+\code{\link[mgcv::gam]{gam}}
+
+\code{\link{analysisOrganizeData}}
+
+\code{\link{detrended.flow}}
+>>>>>>> 912ed7d23563077204e25a18484fef04bedba864
 }

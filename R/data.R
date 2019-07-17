@@ -136,3 +136,18 @@
 #'    \item{salinity}{Measured salinity}
 #' }
 "sal"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# stat.gam.result ####
+#' @title stat.gam.result
+#' 
+#' @description Data frame returned from \code{\link{gamTest}} with summary results in a
+#'   tabular format suitable for output to a csv file
+#' 
+#' @format A data frame with the following variables:
+#' \describe{
+#'    \item{station}{Station identifier}
+#'    \item{dep}{Parameter identifier}
+#'    \item{layer}{Sample layer}
+#'    \item{latitude}{Station latitude}
+#' }
+"stat.gam.result"
