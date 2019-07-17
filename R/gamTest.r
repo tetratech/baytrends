@@ -241,9 +241,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     options(scipen=5)
     
     #set up plot resolution
-    if(gamPlot==TRUE) {
-      figRes  <- 10
-    } else if(gamPlot %in% c(1:30)) {
+    if(gamPlot %in% c(1:30)) {
       figRes  <- gamPlot
       gamPlot <- TRUE
     } else if(gamPlot >30) {  #30Nov2016: set figRes to 30
