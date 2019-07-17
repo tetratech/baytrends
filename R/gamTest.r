@@ -1,7 +1,7 @@
 # Documentation ####
 #' Perform GAM analysis
 #'
-#' Perform GAM analysis. Relies on \code{\link[mgcv:::gam()]{mgcv::gam}} to perform general additive model.
+#' Perform GAM analysis. Relies on \code{\link[mgcv::gam]{mgcv::gam}} to perform general additive model.
 #' 
 #' @param df data frame
 #' @param dep dependent variable
@@ -27,7 +27,9 @@
 #' ("predictions") to create plots is one of the more time consumings aspects of
 #' the \code{gamTest} function. Setting \code{gamPlot=FALSE} turns off these
 #' computations and speeds up \code{gamTest}. The disadvantage is that no
-#' predictions are returned.
+#' predictions are returned; however, the tabularized results stored in
+#' \code{stat.gam.result} and, if requested, \code{chng.gam.result} are still
+#' returned.
 #' 
 #' Setting \code{gamPlot} to a value between 1-30 changes the resolution of the
 #' resulting figure by setting the interval on which the prediction data set is
@@ -38,13 +40,13 @@
 #' computation time. Although there is no change in the fitted model, values
 #' closer to 30 may have slight degraded figure quality if there is subtantial
 #' seasonality in the fitted model since the seasonal minimum and maximum might
-#' be missed in the full model. Values greater than 30 are treated as 30.
-#' Setting \code{gamPlot=30} might be advantangeous when the analysis only
-#' requires cursory figure examination.
+#' not be included in the prediction data set and therefore not plotted. Values
+#' greater than 30 are treated as 30. Setting \code{gamPlot=30} might be
+#' advantangeous when the analysis only requires cursory figure examination.
 #' 
 #' Setting \code{gamTable=FALSE} will turn off table output to the console. This
 #' may be advantageous to reduce the amount of output. Since these computations
-#' do not significantly affect \code{gamTest} run time, the Analysis of
+#' do not significantly affect \code{gamTest} run time, the standard Analysis of
 #' Variance, GAM Parameter Coefficients, Diagnostics, and Estimates of Change
 #' tables are returned from \code{gamTest} regardless of the \code{gamTable}
 #' setting. Many of the values from these tables are also returned as part of 
@@ -115,7 +117,8 @@
 #' \item \strong{gamOutput6 --}	Results including model predictions for gam formula 6 (i.e., gam6)
 #' }
 #' 
-#' \strong{gamOutput* --} For each evaluated model, \code{gamOutput*} from the above is a list with the following elements:
+#' \strong{gamOutput* --} For each evaluated model, \code{gamOutput*} (see above
+#' element list) is a list with the following elements:
 #' 
 #' \itemize{
 #' \item \strong{gamOption --} gam formula ID, i.e., 0, 1, 2, 3, 4 , 5, 6 corresponding to gam0, gam1, gam2, etc.
