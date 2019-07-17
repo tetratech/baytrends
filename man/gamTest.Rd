@@ -150,10 +150,7 @@ gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
 }
 \seealso{
 \code{\link{gamTestSeason}}
-
 \code{\link{analysisOrganizeData}}
-
 \code{\link{gamTestSeason}}
-
 \code{\link{analysisOrganizeData}}
 }
