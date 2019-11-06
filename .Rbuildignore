@@ -7,3 +7,6 @@
 ^\.github$
 cran-comments\.md$
 ^.*baytrends_LibraryCreation
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

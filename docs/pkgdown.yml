@@ -1,0 +1,7 @@
+pandoc: 2.7.3
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets: create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html
+  vignette_qw: vignette_qw.html
+

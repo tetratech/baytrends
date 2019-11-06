@@ -21,6 +21,12 @@ cat(paste0("Last Update: ",Sys.time()))
 ```
 baytrends 1.1.0
 ===========
+* Release 2019-11-06
+* Added pkgdown website.
+
+
+baytrends 1.1.0
+===========
 * Release 2019-03-14
 * Release update for CRAN
     + As minor upgrade.
