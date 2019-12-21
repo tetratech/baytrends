@@ -35,7 +35,7 @@ createResiduals(df, dep, residualModel = "doy_flw_sal",
 \item{ProjRoot}{Root folder for project.}
 }
 \value{
-Returns a vector with results
+Returns df with appended column of data
 }
 \description{
 Use GAM analysis to compute residuals. Relies on mgcv::gam to perform general additive model.

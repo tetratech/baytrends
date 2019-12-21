@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.1.0.9011
+===========
+* Release 2019-12-21
+* Function createResiduals modified to return data frame, df, rather than just a vector
+
 baytrends 1.1.0.9004
 ===========
 * Release 2019-06-25
