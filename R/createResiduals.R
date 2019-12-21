@@ -16,7 +16,8 @@
 #' @param folder_r folder to store residual plots 
 #' @param ProjRoot Root folder for project.
 #'
-#' @return Returns a vector with results
+#' @return Returns df with appended column of data 
+#' 
 #' @export
 createResiduals <- function(df, dep
                             , residualModel = 'doy_flw_sal'
@@ -163,9 +164,9 @@ createResiduals <- function(df, dep
   } # end layer loop
 
   # merge residuals back to overall data frame ####  
-  df <- merge(df,dep.res1, by=c("station","date","layer"), all.x=TRUE)
+  df <- merge(df,dep.res1, by=c("station","layer","date"), all.x=TRUE)
   
-  return(df[,"residuals"])
+  return(df)
 }
 
 
