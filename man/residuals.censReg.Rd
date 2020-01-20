@@ -4,8 +4,7 @@
 \alias{residuals.censReg}
 \title{Extract Model Residuals}
 \usage{
-\method{residuals}{censReg}(object, type = "working",
-  suppress.na.action = FALSE, ...)
+\method{residuals}{censReg}(object, type = "working", suppress.na.action = FALSE, ...)
 }
 \arguments{
 \item{object}{an object of class "censReg"---output from \code{censReg}}

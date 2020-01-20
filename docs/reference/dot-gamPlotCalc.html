@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9002</span>
       </span>
     </div>
 
@@ -129,10 +129,20 @@
     <p>plots data and gam fit vs. time</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.gamPlotCalc</span>(<span class='no'>dep</span>, <span class='no'>tsdat</span>, <span class='no'>pgam</span>, <span class='no'>iSpec</span>, <span class='no'>analySpec</span>, <span class='kw'>t.deriv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dayStep</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>step.pt</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='no'>q.doy</span>,
+    <pre class="usage"><span class='fu'>.gamPlotCalc</span>(
+  <span class='no'>dep</span>,
+  <span class='no'>tsdat</span>,
+  <span class='no'>pgam</span>,
+  <span class='no'>iSpec</span>,
+  <span class='no'>analySpec</span>,
+  <span class='kw'>t.deriv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>dayStep</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>step.pt</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='no'>q.doy</span>,
   <span class='kw'>flow.detrended</span> <span class='kw'>=</span> <span class='no'>flow.detrended</span>,
-  <span class='kw'>salinity.detrended</span> <span class='kw'>=</span> <span class='no'>salinity.detrended</span>)</pre>
+  <span class='kw'>salinity.detrended</span> <span class='kw'>=</span> <span class='no'>salinity.detrended</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

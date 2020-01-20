@@ -4,9 +4,18 @@
 \alias{loadData}
 \title{Load/Clean CSV and TXT Data File}
 \usage{
-loadData(file = NA, folder = NA, pk = NA, remDup = TRUE,
-  remNAcol = TRUE, remNArow = TRUE, convDates = TRUE,
-  tzSel = "America/New_York", commChar = "#", naChar = NA)
+loadData(
+  file = NA,
+  folder = NA,
+  pk = NA,
+  remDup = TRUE,
+  remNAcol = TRUE,
+  remNArow = TRUE,
+  convDates = TRUE,
+  tzSel = "America/New_York",
+  commChar = "#",
+  naChar = NA
+)
 }
 \arguments{
 \item{file}{file (can use wildcards, e.g., "*.csv")}

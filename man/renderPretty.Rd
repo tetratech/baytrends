@@ -9,15 +9,22 @@
 \usage{
 ticks.render(arg1, side, lwd)
 
-renderY(pretty, left = list(ticks = TRUE, labels = TRUE, grid = FALSE,
-  finegrid = FALSE), right = list(ticks = TRUE, labels = FALSE, grid =
-  FALSE, finegrid = FALSE), lefttitle = "Y-AXIS TITLE",
-  righttitle = "")
+renderY(
+  pretty,
+  left = list(ticks = TRUE, labels = TRUE, grid = FALSE, finegrid = FALSE),
+  right = list(ticks = TRUE, labels = FALSE, grid = FALSE, finegrid = FALSE),
+  lefttitle = "Y-AXIS TITLE",
+  righttitle = ""
+)
 
-renderX(pretty, bottom = list(ticks = TRUE, labels = TRUE, grid = FALSE,
-  finegrid = FALSE, angle = 0), top = list(ticks = TRUE, labels = FALSE,
-  grid = FALSE, finegrid = FALSE, angle = 0), bottitle = "X-AXIS TITLE",
-  toptitle = "", caption = "")
+renderX(
+  pretty,
+  bottom = list(ticks = TRUE, labels = TRUE, grid = FALSE, finegrid = FALSE, angle = 0),
+  top = list(ticks = TRUE, labels = FALSE, grid = FALSE, finegrid = FALSE, angle = 0),
+  bottitle = "X-AXIS TITLE",
+  toptitle = "",
+  caption = ""
+)
 }
 \arguments{
 \item{arg1}{control parameters for the tick locations.}

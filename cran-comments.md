@@ -1,8 +1,8 @@
 Erik.Leppo@tetratech.com
-2019-03-14
+2020-01-20
 
 # Test environments
-* local Win 7, R 3.5.3
+* local Win 10, R 3.6.2
 * win-builder (release)
 
 # R CMD check results
@@ -10,7 +10,7 @@ Erik.Leppo@tetratech.com
 0 error v | 0 warnings v | 1 note x
 
 ## Error
-Error: R CMD check found ERRORs
+zero
 
 ## Warnings
 zero
@@ -20,7 +20,7 @@ zero
   Unable to find GhostScript executable to run checks on size reduction
 
 # Downstream dependencies
-Run R CMD check on downstream dependencies of httr 
-(https://github.com/wch/checkresults/blob/master/httr/r-release). 
+devtools::revdep("baytrends")
 
 There are currently no downstream dependencies for this package.
+

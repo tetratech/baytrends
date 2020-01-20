@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9002</span>
       </span>
     </div>
 
@@ -131,15 +131,22 @@
 
     <pre class="usage"><span class='fu'>ticks.render</span>(<span class='no'>arg1</span>, <span class='no'>side</span>, <span class='no'>lwd</span>)
 
-<span class='fu'>renderY</span>(<span class='no'>pretty</span>, <span class='kw'>left</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>finegrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>), <span class='kw'>right</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>grid</span> <span class='kw'>=</span>
-  <span class='fl'>FALSE</span>, <span class='kw'>finegrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>), <span class='kw'>lefttitle</span> <span class='kw'>=</span> <span class='st'>"Y-AXIS TITLE"</span>,
-  <span class='kw'>righttitle</span> <span class='kw'>=</span> <span class='st'>""</span>)
+<span class='fu'>renderY</span>(
+  <span class='no'>pretty</span>,
+  <span class='kw'>left</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>finegrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
+  <span class='kw'>right</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>finegrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
+  <span class='kw'>lefttitle</span> <span class='kw'>=</span> <span class='st'>"Y-AXIS TITLE"</span>,
+  <span class='kw'>righttitle</span> <span class='kw'>=</span> <span class='st'>""</span>
+)
 
-<span class='fu'>renderX</span>(<span class='no'>pretty</span>, <span class='kw'>bottom</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>finegrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>0</span>), <span class='kw'>top</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>finegrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>0</span>), <span class='kw'>bottitle</span> <span class='kw'>=</span> <span class='st'>"X-AXIS TITLE"</span>,
-  <span class='kw'>toptitle</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+<span class='fu'>renderX</span>(
+  <span class='no'>pretty</span>,
+  <span class='kw'>bottom</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>finegrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>top</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>finegrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>bottitle</span> <span class='kw'>=</span> <span class='st'>"X-AXIS TITLE"</span>,
+  <span class='kw'>toptitle</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

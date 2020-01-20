@@ -12,8 +12,13 @@
 \usage{
 setGD(name = "USGS")
 
-setPage(layout = "portrait", font = "preview", name = "USGS",
-  multiple = FALSE, device = "default")
+setPage(
+  layout = "portrait",
+  font = "preview",
+  name = "USGS",
+  multiple = FALSE,
+  device = "default"
+)
 }
 \arguments{
 \item{name}{the name of the graphics page or the filename for

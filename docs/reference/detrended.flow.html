@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9002</span>
       </span>
     </div>
 
@@ -137,10 +137,18 @@
   use with baytrends.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>detrended.flow</span>(<span class='no'>usgsGageID</span>, <span class='no'>siteName</span>, <span class='no'>yearStart</span>, <span class='no'>yearEnd</span>,
-  <span class='kw'>dvAvgWinSel</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>15</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>50</span>, <span class='fl'>60</span>, <span class='fl'>90</span>, <span class='fl'>120</span>, <span class='fl'>150</span>, <span class='fl'>180</span>,
-  <span class='fl'>210</span>), <span class='kw'>dvAvgWgtSel</span> <span class='kw'>=</span> <span class='st'>"uniform"</span>, <span class='kw'>dvAvgSidesSel</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lowess.f</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>span</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>max.fill</span> <span class='kw'>=</span> <span class='fl'>10</span>)</pre>
+    <pre class="usage"><span class='fu'>detrended.flow</span>(
+  <span class='no'>usgsGageID</span>,
+  <span class='no'>siteName</span>,
+  <span class='no'>yearStart</span>,
+  <span class='no'>yearEnd</span>,
+  <span class='kw'>dvAvgWinSel</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>15</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>50</span>, <span class='fl'>60</span>, <span class='fl'>90</span>, <span class='fl'>120</span>, <span class='fl'>150</span>, <span class='fl'>180</span>, <span class='fl'>210</span>),
+  <span class='kw'>dvAvgWgtSel</span> <span class='kw'>=</span> <span class='st'>"uniform"</span>,
+  <span class='kw'>dvAvgSidesSel</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>lowess.f</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
+  <span class='kw'>span</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>max.fill</span> <span class='kw'>=</span> <span class='fl'>10</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9002</span>
       </span>
     </div>
 
@@ -84,10 +84,10 @@
     <div class="page-header toc-ignore">
       <h1>Vignette, QW</h1>
                         <h4 class="author">
-<a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a> and <a href="mailto:Jon.Harcum@tetratech.com" class="email">Jon.Harcum@tetratech.com</a>
+<a href="mailto:Erik.Leppo@tetratech.com">Erik.Leppo@tetratech.com</a> and <a href="mailto:Jon.Harcum@tetratech.com">Jon.Harcum@tetratech.com</a>
 </h4>
             
-            <h4 class="date">2019-11-06</h4>
+            <h4 class="date">2020-01-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tetratech/baytrends/blob/master/vignettes/vignette_qw.Rmd"><code>vignettes/vignette_qw.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_qw.Rmd</code></div>
@@ -113,24 +113,24 @@
 <h1 class="hasAnchor">
 <a href="#export" class="anchor"></a>Export</h1>
 <p><strong>Use the function <em>qw.export</em> to export “qw” formatted data.</strong> The sample data set, <code>dataCensored</code>, included with <code>baytrends</code>, is used for demonstration.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># load the included data frame, dataCensored, into the global environment</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># dataCensored is a sample data set that includes qw formatted data and</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># is included with baytrends.</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>myDF &lt;-<span class="st"> </span>dataCensored</span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># identify the current working directory as the location to save </span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># the outputted data set</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>dir.save &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>()</span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># identify the name of the comma delimited (csv) file for the </span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># outputted data set </span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>fn.output &lt;-<span class="st"> "dataCensored_TEST.csv"</span> </span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># run function</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="kw"><a href="../reference/qw.export.html">qw.export</a></span>(myDF, dir.save, fn.output)</span></code></pre></div>
-<p>The above code chunk will output the raw data to a comma delimited (csv) file named <code>dataCensored_TEST.csv</code>. For non-qw variables (such as station, date, and layer in this example), the column names in the csv file are the same as the data frame. For qw-formatted variables, the columns of the data file are in the format of X_Y.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)
+
+<span class="co"># load the included data frame, dataCensored, into the global environment</span>
+<span class="co"># dataCensored is a sample data set that includes qw formatted data and</span>
+<span class="co"># is included with baytrends.</span>
+myDF &lt;-<span class="st"> </span>dataCensored
+
+<span class="co"># identify the current working directory as the location to save </span>
+<span class="co"># the outputted data set</span>
+dir.save &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>()
+
+<span class="co"># identify the name of the comma delimited (csv) file for the </span>
+<span class="co"># outputted data set </span>
+fn.output &lt;-<span class="st"> "data_censored_test.csv"</span> 
+
+<span class="co"># run function</span>
+<span class="kw"><a href="../reference/qw.export.html">qw.export</a></span>(myDF, dir.save, fn.output)</code></pre></div>
+<p>The above code chunk will output the raw data to a comma delimited (csv) file named <code>data_censored_test.csv</code>. For non-qw variables (such as station, date, and layer in this example), the column names in the csv file are the same as the data frame. For qw-formatted variables, the columns of the data file are in the format of X_Y.</p>
 <ul>
 <li>X = column name<br>
 </li>
@@ -138,8 +138,8 @@
 </ul>
 <p>In the context of water quality data, left-censored observations such as “&lt;0.1” would have a lo value of 0 and a hi value of 0.1. Interval-censored observations would have a non-zero lo value. The value of symbol would be “&lt;” and “i”, respectively for left- and interval-censored observations. Uncensored observations would have lo and hi values equal to each other.</p>
 <p>Selected columns from the first few records of the above example are shown below.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(<span class="st">"dataCensored_TEST.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(df[,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">16</span><span class="op">:</span><span class="dv">24</span>)])</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(<span class="st">"data_censored_test.csv"</span>)
+<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(df[,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">16</span><span class="op">:</span><span class="dv">24</span>)])</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">station</th>
@@ -246,45 +246,45 @@
 <div id="import" class="section level1">
 <h1 class="hasAnchor">
 <a href="#import" class="anchor"></a>Import</h1>
-<p><strong>Use the function <em>qw.import</em> to import “qw” formatted data.</strong> The above exported file, <code>dataCensored_TEST.csv</code>, is used for demonstration.</p>
+<p><strong>Use the function <em>qw.import</em> to import “qw” formatted data.</strong> The above exported file, <code>data_censored_test.csv</code>, is used for demonstration.</p>
 <p>To create a data frame that includes qw objects, the data needs to be in the format that was generated by qw.export. That is, one file with each qw parameter having three columns (x_lo, x_hi, and x_symbol where x is the name of the parameter). The list of parameter codes that will be as column names of the qw-formatted variables are specifed in the argument <code>qw.names</code>.</p>
 <p>The output of the <code>qw.import</code> function must be directed to a variable. Any modification of column classes (e.g., POSIXct, numeric, or integer) will need to be performed by the user. The function str() is useful for examing the structure of the data frame.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># Define function arguments</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>fn.import &lt;-<span class="st"> "dataCensored_TEST.csv"</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>qw.names &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"secchi"</span> ,  <span class="st">"salinity"</span>, <span class="st">"do"</span>  ,     <span class="st">"wtemp"</span>  ,  <span class="st">"chla"</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>              ,<span class="st">"tn"</span>     ,  <span class="st">"tp"</span>    ,   <span class="st">"tss"</span> ,     <span class="st">"din"</span>  ,    <span class="st">"po4"</span>      </span>
-<span id="cb3-7"><a href="#cb3-7"></a>              ,<span class="st">"tdn"</span>     , <span class="st">"tdp"</span>  ,    <span class="st">"nh4"</span>  ,    <span class="st">"no23"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># fun function </span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>dataCensored.test&lt;-<span class="st"> </span><span class="kw"><a href="../reference/qw.import.html">qw.import</a></span>(fn.import, qw.names)</span>
-<span id="cb3-11"><a href="#cb3-11"></a></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co"># Check for qw class</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dataCensored.test)</span>
-<span id="cb3-14"><a href="#cb3-14"></a></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co"># convert date field to POSIXct  </span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>dataCensored.test[,<span class="st">"date"</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(dataCensored.test[,<span class="st">"date"</span>])</span>
-<span id="cb3-17"><a href="#cb3-17"></a></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co"># recheck structure (other columns can be converted using</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co"># as.numeric() and as.integer() if desired)</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dataCensored.test) </span>
-<span id="cb3-21"><a href="#cb3-21"></a></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co"># save the data frame for future use</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="kw"><a href="https://rdrr.io/r/base/save.html">save</a></span>(dataCensored.test, <span class="dt">file=</span><span class="st">"dataCensored.test.rda"</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)
+
+<span class="co"># Define function arguments</span>
+fn.import &lt;-<span class="st"> "data_censored_test.csv"</span>
+qw.names &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"secchi"</span> ,  <span class="st">"salinity"</span>, <span class="st">"do"</span>  ,     <span class="st">"wtemp"</span>  ,  <span class="st">"chla"</span>
+              ,<span class="st">"tn"</span>     ,  <span class="st">"tp"</span>    ,   <span class="st">"tss"</span> ,     <span class="st">"din"</span>  ,    <span class="st">"po4"</span>      
+              ,<span class="st">"tdn"</span>     , <span class="st">"tdp"</span>  ,    <span class="st">"nh4"</span>  ,    <span class="st">"no23"</span>)
+
+<span class="co"># fun function </span>
+dataCensored.test&lt;-<span class="st"> </span><span class="kw"><a href="../reference/qw.import.html">qw.import</a></span>(fn.import, qw.names)
+
+<span class="co"># Check for qw class</span>
+<span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dataCensored.test)
+
+<span class="co"># convert date field to POSIXct  </span>
+dataCensored.test[,<span class="st">"date"</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(dataCensored.test[,<span class="st">"date"</span>])
+
+<span class="co"># recheck structure (other columns can be converted using</span>
+<span class="co"># as.numeric() and as.integer() if desired)</span>
+<span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dataCensored.test) 
+
+<span class="co"># save the data frame for future use</span>
+<span class="kw"><a href="https://rdrr.io/r/base/save.html">save</a></span>(dataCensored.test, <span class="dt">file=</span><span class="st">"data_censored_test.rda"</span>)</code></pre></div>
 </div>
 <div id="combining-qw-data-frames" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-qw-data-frames" class="anchor"></a>Combining QW Data Frames</h1>
 <p><strong>Use the function <em>rbindQW</em> to combine two data frames with “qw” formatted data.</strong> The below code chunk demonstrates combining the data from two data frames.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>newDF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rbindQW.html">rbindQW</a></span>(dataCensored[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,], dataCensored[<span class="dv">101</span><span class="op">:</span><span class="dv">120</span>,])</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(newDF)</span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co"># Note, that it would have been equivalent and more efficient to</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># use the below line of code to extract rows 1-20 and 101-120</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>newDF &lt;-<span class="st"> </span>dataCensored[<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,<span class="dv">101</span><span class="op">:</span><span class="dv">120</span>),]</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)
+
+newDF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rbindQW.html">rbindQW</a></span>(dataCensored[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,], dataCensored[<span class="dv">101</span><span class="op">:</span><span class="dv">120</span>,])
+<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(newDF)
+
+<span class="co"># Note, that it would have been equivalent and more efficient to</span>
+<span class="co"># use the below line of code to extract rows 1-20 and 101-120</span>
+newDF &lt;-<span class="st"> </span>dataCensored[<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,<span class="dv">101</span><span class="op">:</span><span class="dv">120</span>),]</code></pre></div>
 <div id="additional-notes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#additional-notes" class="anchor"></a>Additional Notes</h3>

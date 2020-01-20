@@ -6,14 +6,30 @@
 \alias{as.data.frame.qw}
 \title{Coerce to a Data Frame}
 \usage{
-\method{as.data.frame}{lcens}(x, row.names = NULL, optional = FALSE,
-  ..., nm = deparse(substitute(x)))
+\method{as.data.frame}{lcens}(
+  x,
+  row.names = NULL,
+  optional = FALSE,
+  ...,
+  nm = deparse(substitute(x))
+)
 
-\method{as.data.frame}{mcens}(x, row.names = NULL, optional = FALSE,
-  ..., nm = deparse(substitute(x)))
+\method{as.data.frame}{mcens}(
+  x,
+  row.names = NULL,
+  optional = FALSE,
+  ...,
+  nm = deparse(substitute(x))
+)
 
-\method{as.data.frame}{qw}(x, row.names = NULL, optional = FALSE, ...,
-  nm = deparse(substitute(x)), expand = FALSE)
+\method{as.data.frame}{qw}(
+  x,
+  row.names = NULL,
+  optional = FALSE,
+  ...,
+  nm = deparse(substitute(x)),
+  expand = FALSE
+)
 }
 \arguments{
 \item{x}{any R object to put into a data frame.}

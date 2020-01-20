@@ -4,10 +4,20 @@
 \alias{createResiduals}
 \title{Calculate GAM residuals}
 \usage{
-createResiduals(df, dep, residualModel = "doy_flw_sal",
-  analySpec = analySpec, gamTable = FALSE, gamPlot = FALSE,
-  flow.detrended = NA, salinity.detrended = NA, width = 10,
-  height = 3.5, folder_r = "pltResiduals", ProjRoot)
+createResiduals(
+  df,
+  dep,
+  residualModel = "doy_flw_sal",
+  analySpec = analySpec,
+  gamTable = FALSE,
+  gamPlot = FALSE,
+  flow.detrended = NA,
+  salinity.detrended = NA,
+  width = 10,
+  height = 3.5,
+  folder_r = "pltResiduals",
+  ProjRoot
+)
 }
 \arguments{
 \item{df}{data frame}

@@ -10,8 +10,7 @@
 
 \method{format}{mcens}(x, digits = NULL, ...)
 
-\method{format}{qw}(x, round = TRUE, units = FALSE, style = "asis",
-  ...)
+\method{format}{qw}(x, round = TRUE, units = FALSE, style = "asis", ...)
 }
 \arguments{
 \item{x}{the censored data object to format.}

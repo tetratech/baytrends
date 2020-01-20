@@ -4,8 +4,13 @@
 \alias{.mergeFlow}
 \title{merge flow variable into analysis data frame and update iSpec with variable name}
 \usage{
-.mergeFlow(ct1 = ct1, iSpec = iSpec, gageID = gageID,
-  hydro.var = hydro.var, flow.detrended = flow.detrended)
+.mergeFlow(
+  ct1 = ct1,
+  iSpec = iSpec,
+  gageID = gageID,
+  hydro.var = hydro.var,
+  flow.detrended = flow.detrended
+)
 }
 \arguments{
 \item{ct1}{analysis data frame}

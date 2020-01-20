@@ -4,8 +4,7 @@
 \alias{importRDB}
 \title{Import Files}
 \usage{
-importRDB(file.name = "", date.format = NULL, tz = "",
-  convert.type = TRUE)
+importRDB(file.name = "", date.format = NULL, tz = "", convert.type = TRUE)
 }
 \arguments{
 \item{file.name}{a character string specifying the name of the relational database 

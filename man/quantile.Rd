@@ -6,14 +6,38 @@
 \alias{quantile.qw}
 \title{Sample Quantiles}
 \usage{
-\method{quantile}{lcens}(x, probs = seq(0, 1, 0.25), na.rm = FALSE,
-  names = TRUE, method = "flipped K-M", type = 2, alpha = 0.4, ...)
+\method{quantile}{lcens}(
+  x,
+  probs = seq(0, 1, 0.25),
+  na.rm = FALSE,
+  names = TRUE,
+  method = "flipped K-M",
+  type = 2,
+  alpha = 0.4,
+  ...
+)
 
-\method{quantile}{mcens}(x, probs = seq(0, 1, 0.25), na.rm = FALSE,
-  names = TRUE, method = "flipped K-M", type = 2, alpha = 0.4, ...)
+\method{quantile}{mcens}(
+  x,
+  probs = seq(0, 1, 0.25),
+  na.rm = FALSE,
+  names = TRUE,
+  method = "flipped K-M",
+  type = 2,
+  alpha = 0.4,
+  ...
+)
 
-\method{quantile}{qw}(x, probs = seq(0, 1, 0.25), na.rm = FALSE,
-  names = TRUE, method = "flipped K-M", type = 2, alpha = 0.4, ...)
+\method{quantile}{qw}(
+  x,
+  probs = seq(0, 1, 0.25),
+  na.rm = FALSE,
+  names = TRUE,
+  method = "flipped K-M",
+  type = 2,
+  alpha = 0.4,
+  ...
+)
 }
 \arguments{
 \item{x}{an object of a censored-data class whose sample quantiles are

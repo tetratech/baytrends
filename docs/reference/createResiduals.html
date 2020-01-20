@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9002</span>
       </span>
     </div>
 
@@ -129,10 +129,20 @@
     <p>Use GAM analysis to compute residuals. Relies on mgcv::gam to perform general additive model.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>createResiduals</span>(<span class='no'>df</span>, <span class='no'>dep</span>, <span class='kw'>residualModel</span> <span class='kw'>=</span> <span class='st'>"doy_flw_sal"</span>,
-  <span class='kw'>analySpec</span> <span class='kw'>=</span> <span class='no'>analySpec</span>, <span class='kw'>gamTable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>gamPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>flow.detrended</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>salinity.detrended</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>folder_r</span> <span class='kw'>=</span> <span class='st'>"pltResiduals"</span>, <span class='no'>ProjRoot</span>)</pre>
+    <pre class="usage"><span class='fu'>createResiduals</span>(
+  <span class='no'>df</span>,
+  <span class='no'>dep</span>,
+  <span class='kw'>residualModel</span> <span class='kw'>=</span> <span class='st'>"doy_flw_sal"</span>,
+  <span class='kw'>analySpec</span> <span class='kw'>=</span> <span class='no'>analySpec</span>,
+  <span class='kw'>gamTable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>gamPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>flow.detrended</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>salinity.detrended</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>3.5</span>,
+  <span class='kw'>folder_r</span> <span class='kw'>=</span> <span class='st'>"pltResiduals"</span>,
+  <span class='no'>ProjRoot</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

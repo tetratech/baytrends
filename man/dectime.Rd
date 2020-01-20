@@ -4,8 +4,14 @@
 \alias{dectime}
 \title{Decimal Time}
 \usage{
-dectime(dates, times, time.format, date.format, Date.noon = TRUE,
-  year.type = c("calendar", "water", "climate"))
+dectime(
+  dates,
+  times,
+  time.format,
+  date.format,
+  Date.noon = TRUE,
+  year.type = c("calendar", "water", "climate")
+)
 }
 \arguments{
 \item{dates}{a vector of a valid date object, or character representation of

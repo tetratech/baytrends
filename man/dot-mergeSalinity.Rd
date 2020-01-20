@@ -4,8 +4,11 @@
 \alias{.mergeSalinity}
 \title{merge salinity into analysis data frame and update iSpec with variable name}
 \usage{
-.mergeSalinity(ct1 = ct1, iSpec = iSpec,
-  salinity.detrended = salinity.detrended)
+.mergeSalinity(
+  ct1 = ct1,
+  iSpec = iSpec,
+  salinity.detrended = salinity.detrended
+)
 }
 \arguments{
 \item{ct1}{analysis data frame}

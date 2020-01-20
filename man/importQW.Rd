@@ -4,11 +4,20 @@
 \alias{importQW}
 \title{Water-Quality Data}
 \usage{
-importQW(data, keep = c("STAID", "DATES", "TIMES", "MEDIM"),
-  values = "VALUE", remark.codes = "REMRK", value.codes = "NWIS",
-  reporting.level = "RPLEV", reporting.method = "RLTYP",
-  reporting.units = "UNITS", analyte.method = "METHD",
-  analyte.name = "PSNAM", unique.code = "PCODE", ColNames = "Auto")
+importQW(
+  data,
+  keep = c("STAID", "DATES", "TIMES", "MEDIM"),
+  values = "VALUE",
+  remark.codes = "REMRK",
+  value.codes = "NWIS",
+  reporting.level = "RPLEV",
+  reporting.method = "RLTYP",
+  reporting.units = "UNITS",
+  analyte.method = "METHD",
+  analyte.name = "PSNAM",
+  unique.code = "PCODE",
+  ColNames = "Auto"
+)
 }
 \arguments{
 \item{data}{the dataset.}

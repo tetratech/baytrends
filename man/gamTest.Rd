@@ -4,9 +4,18 @@
 \alias{gamTest}
 \title{Perform GAM analysis}
 \usage{
-gamTest(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
-  gamPlot = 10, gamDiffModel = NA, flow.detrended = NA,
-  salinity.detrended = NA)
+gamTest(
+  df,
+  dep,
+  stat,
+  layer = NA,
+  analySpec,
+  gamTable = TRUE,
+  gamPlot = 10,
+  gamDiffModel = NA,
+  flow.detrended = NA,
+  salinity.detrended = NA
+)
 }
 \arguments{
 \item{df}{data frame}

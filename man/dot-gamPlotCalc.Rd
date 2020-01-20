@@ -4,10 +4,20 @@
 \alias{.gamPlotCalc}
 \title{plots data and gam fit vs. time}
 \usage{
-.gamPlotCalc(dep, tsdat, pgam, iSpec, analySpec, t.deriv = FALSE,
-  alpha = 0.05, dayStep = 10, step.pt = "none", q.doy,
+.gamPlotCalc(
+  dep,
+  tsdat,
+  pgam,
+  iSpec,
+  analySpec,
+  t.deriv = FALSE,
+  alpha = 0.05,
+  dayStep = 10,
+  step.pt = "none",
+  q.doy,
   flow.detrended = flow.detrended,
-  salinity.detrended = salinity.detrended)
+  salinity.detrended = salinity.detrended
+)
 }
 \arguments{
 \item{dep}{variable dep}

@@ -70,7 +70,7 @@ unique color or where sections along a line have different colors." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9002</span>
       </span>
     </div>
 
@@ -131,37 +131,87 @@ unique color or where sections along a line have different colors." />
 unique color or where sections along a line have different colors.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>colorPlot</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>color</span>, <span class='kw'>Plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>yaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>yaxis.rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>yaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>xaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>xaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>ylabels</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>xlabels</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>xtitle</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>ytitle</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>colorPlot</span>(
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='no'>color</span>,
+  <span class='kw'>Plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>yaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>yaxis.rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>yaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>xaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>xaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>ylabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>xlabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>xtitle</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>ytitle</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='no'>...</span>
+)
 
 <span class='co'># S4 method for numeric,numeric</span>
-<span class='fu'>colorPlot</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>color</span>, <span class='kw'>Plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"Auto"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"points"</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"circle"</span>, <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.09</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>ramp</span> <span class='kw'>=</span> <span class='st'>"greenRed"</span>), <span class='kw'>yaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>yaxis.rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>yaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>xaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>xaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>ylabels</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>xlabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-  <span class='kw'>xtitle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>x</span>)), <span class='kw'>ytitle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>y</span>)),
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='no'>...</span>)
+<span class='fu'>colorPlot</span>(
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='no'>color</span>,
+  <span class='kw'>Plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"points"</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"circle"</span>, <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size</span> <span class='kw'>=</span>
+    <span class='fl'>0.09</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>ramp</span> <span class='kw'>=</span> <span class='st'>"greenRed"</span>),
+  <span class='kw'>yaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>yaxis.rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>yaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>xaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>xaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>ylabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>xlabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>xtitle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>x</span>)),
+  <span class='kw'>ytitle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>y</span>)),
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='no'>...</span>
+)
 
 <span class='co'># S4 method for Date,numeric</span>
-<span class='fu'>colorPlot</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>color</span>, <span class='kw'>Plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"Auto"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"lines"</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"circle"</span>, <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.09</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>ramp</span> <span class='kw'>=</span> <span class='st'>"greenRed"</span>), <span class='kw'>yaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>yaxis.rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>yaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>xaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>xaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>ylabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-  <span class='kw'>xlabels</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>xtitle</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>ytitle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>y</span>)),
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='no'>...</span>)
+<span class='fu'>colorPlot</span>(
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='no'>color</span>,
+  <span class='kw'>Plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"lines"</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"circle"</span>, <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size</span> <span class='kw'>=</span>
+    <span class='fl'>0.09</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>ramp</span> <span class='kw'>=</span> <span class='st'>"greenRed"</span>),
+  <span class='kw'>yaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>yaxis.rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>yaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>xaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>xaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>ylabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>xlabels</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>,
+  <span class='kw'>xtitle</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>ytitle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>y</span>)),
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='no'>...</span>
+)
 
 <span class='co'># S4 method for POSIXt,numeric</span>
-<span class='fu'>colorPlot</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>color</span>, <span class='kw'>Plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"Auto"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"lines"</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"circle"</span>, <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.09</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>ramp</span> <span class='kw'>=</span> <span class='st'>"greenRed"</span>), <span class='kw'>yaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>yaxis.rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>yaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>xaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>xaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>ylabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-  <span class='kw'>xlabels</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>xtitle</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>ytitle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>y</span>)),
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='no'>...</span>)</pre>
+<span class='fu'>colorPlot</span>(
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='no'>color</span>,
+  <span class='kw'>Plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"lines"</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"circle"</span>, <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>size</span> <span class='kw'>=</span>
+    <span class='fl'>0.09</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>ramp</span> <span class='kw'>=</span> <span class='st'>"greenRed"</span>),
+  <span class='kw'>yaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>yaxis.rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>yaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>xaxis.log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>xaxis.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>ylabels</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>xlabels</span> <span class='kw'>=</span> <span class='st'>"Auto"</span>,
+  <span class='kw'>xtitle</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>ytitle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>y</span>)),
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

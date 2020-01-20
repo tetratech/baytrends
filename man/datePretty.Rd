@@ -4,8 +4,14 @@
 \alias{datePretty}
 \title{Pretty Axis}
 \usage{
-datePretty(x, major = "Auto", minor = "Auto", tick.span = 1,
-  style = c("Auto", "at", "between"), label.abbr = 0)
+datePretty(
+  x,
+  major = "Auto",
+  minor = "Auto",
+  tick.span = 1,
+  style = c("Auto", "at", "between"),
+  label.abbr = 0
+)
 }
 \arguments{
 \item{x}{date and time data}

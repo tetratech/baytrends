@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9002</span>
       </span>
     </div>
 
@@ -166,13 +166,13 @@ Any modification of column classes needs to be handled by the user (e.g., charac
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Use internal function to export dataCensored as example for import</span>
-<span class='fu'><a href='qw.export.html'>qw.export</a></span>(<span class='no'>dataCensored</span>, <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(), <span class='st'>"dataCensored_TEST.csv"</span>)</div><div class='output co'>#&gt; [1] "QW object saved to user named file in user specified directory;"
+<span class='fu'><a href='qw.export.html'>qw.export</a></span>(<span class='no'>dataCensored</span>, <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(), <span class='st'>"data_censored_test.csv"</span>)</div><div class='output co'>#&gt; [1] "QW object saved to user named file in user specified directory;"
 #&gt; [1] "C:/Users/Erik.Leppo/OneDrive - Tetra Tech, Inc/MyDocs_OneDrive/GitHub/baytrends/docs/reference"</div><div class='input'>
 
 <span class='co'># Import Test file as a qw object</span>
 
 <span class='co'># Define function parameters</span>
-<span class='no'>fn.import</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"."</span>, <span class='st'>"dataCensored_TEST.csv"</span>)
+<span class='no'>fn.import</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"."</span>, <span class='st'>"data_censored_test.csv"</span>)
 <span class='no'>qw.names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"secchi"</span>, <span class='st'>"chla"</span>, <span class='st'>"do"</span>, <span class='st'>"tn"</span>, <span class='st'>"tp"</span>, <span class='st'>"po4"</span>, <span class='st'>"tdp"</span>
               , <span class='st'>"no23"</span>, <span class='st'>"nh4"</span>, <span class='st'>"tdn"</span>, <span class='st'>"tss"</span>)
 <span class='no'>rounding</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>4</span>)
@@ -215,7 +215,7 @@ Any modification of column classes needs to be handled by the user (e.g., charac
 #&gt;  $ tdn            : qw, no censoring: "  0.5200" "  0.6400" ...
 #&gt;  $ tss            : qw, left censoring: "   6.90" "   7.60" ...</div><div class='input'>
 <span class='co'># Save</span>
-<span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span>(<span class='no'>dataCensored.test</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"dataCensored.test.rda"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span>(<span class='no'>dataCensored.test</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"data_censored_test.rda"</span>)
 
 
 <span class='co'># Show slot names for a qw object.</span>

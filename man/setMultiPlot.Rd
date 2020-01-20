@@ -4,9 +4,19 @@
 \alias{setMultiPlot}
 \title{Plot Parameters}
 \usage{
-setMultiPlot(current, Nobs = 1, name = "", what = "points",
-  type = "solid", width = "standard", symbol = "circle",
-  filled = TRUE, size = 0.09, color = "black", order = "as is")
+setMultiPlot(
+  current,
+  Nobs = 1,
+  name = "",
+  what = "points",
+  type = "solid",
+  width = "standard",
+  symbol = "circle",
+  filled = TRUE,
+  size = 0.09,
+  color = "black",
+  order = "as is"
+)
 }
 \arguments{
 \item{current}{the plot parameters specified in the call to the high-level

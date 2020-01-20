@@ -4,8 +4,7 @@
 \alias{.checkRange}
 \title{Check Data Range -- function that checks for allowable values}
 \usage{
-.checkRange(df, var, varScrn = NULL, numNA = FALSE,
-  deleteOption = "pass")
+.checkRange(df, var, varScrn = NULL, numNA = FALSE, deleteOption = "pass")
 }
 \arguments{
 \item{df}{Data frame with data to check}

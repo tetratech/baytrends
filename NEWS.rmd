@@ -19,11 +19,30 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-baytrends 1.1.0
+baytrends 1.1.0.9002
+===========
+* Release 2020-01-20
+* Updates to pass testing with development version of R for Linux.
+    + _saveDF to _save_df
+        - saveDF.R
+    + dataCensored.test.rd to data_censored_test.rd
+        - vignette_qw.Rmd
+        - vignette_qw.r
+        - qw.import.Rd
+        - qw.imoprt.R
+    + dataCensored_TEST.csv to data_censored_test.csv
+        - vignette_qw.Rmd
+        - vignette_qw.r
+        - qw.export.R
+        - qw.import.R
+* pkgdown
+    + Update files.
+    + Add URL to GitHub repo header.
+
+baytrends 1.1.0.9001
 ===========
 * Release 2019-11-06
 * Added pkgdown website.
-
 
 baytrends 1.1.0
 ===========
