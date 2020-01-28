@@ -32,8 +32,8 @@
 #' # Add the 1:1 line
 #' refLine(coefficient=c(0,1))
 #' # For more details of refLine see
-#' vignette(topic="GraphAdditions", package="smwrGraphs")
-#' demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
+#' #vignette(topic="GraphAdditions", package="smwrGraphs")
+#' #demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
 #' }
 #' @export refLine
 refLine <- function(horizontal, vertical, coefficients, # data, at least one must be used

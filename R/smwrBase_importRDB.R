@@ -70,8 +70,8 @@
 #' @examples
 #'\dontrun{
 #'## This dataset is available in smwrData as a text file
-#'TestDir <- system.file("misc", package="smwrData")
-#'TestFull <- importRDB(file.path(TestDir, "TestFull.rdb"))
+#'#TestDir <- system.file("misc", package="smwrData")
+#'#TestFull <- importRDB(file.path(TestDir, "TestFull.rdb"))
 #'}
 importRDB <- function(file.name="", date.format=NULL, tz="", 
                       convert.type=TRUE) {

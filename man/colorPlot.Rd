@@ -172,7 +172,7 @@ setGD()
 # All defaults: color ramp from Z
 colorPlot(X, Y, Z)
 # See for examples of colorPlot:
-vignette(topic="LineScatter", package="smwrGraphs")
+#vignette(topic="LineScatter", package="smwrGraphs")
 }
 }
 \seealso{

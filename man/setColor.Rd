@@ -22,8 +22,8 @@ Added from smwrGraphs.
 \examples{
 \dontrun{
 # See for examples of setColor:
-vignette(topic="PiperPlot", package="smwrGraphs")
-demo(topic="PiperScript", package="smwrGraphs")
+#vignette(topic="PiperPlot", package="smwrGraphs")
+#demo(topic="PiperScript", package="smwrGraphs")
 }
 }
 \keyword{dplot}

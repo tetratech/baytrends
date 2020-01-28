@@ -48,7 +48,7 @@
 #' @examples
 #'\dontrun{
 #'# Convert the stacked qw data supplied in smwrData
-#'library(smwrData)
+#'#library(smwrData)
 #'data(QWstacked)
 #'QWstacked$result_va <- as.numeric(QWstacked$result_va) # raw data are character
 #'# The units are both mg/l, no analyte name, generate column names from parameter codes

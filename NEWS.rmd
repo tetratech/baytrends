@@ -19,6 +19,39 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.1.0.9003
+===========
+* Release 2020-01-28
+* Add missing functions from smwrGraphs so all examples will run without any errors.
+    + Keyword internal so won't show in help.
+        - smwrGraphs_colors.R
+        - smwrGraphs_logPretty.R
+        - smwrGraphs_setAxis.R
+* Remove references to smwrGraphs package vignette in help files.
+    + Several function had in the "dont run" section of their examples.
+        - smwrGraphs_addCaption.R
+        - smwrGraphs_colorPlot.R
+        - smwrGraphs_month.USGS.R
+        - smwrGraphs_refLine.R
+        - smwrGraphs_setColor.R
+        - smwrGraphs_setPage.R
+        - smwrGraphs_timePlot.R
+        - smwrGraphs_xyPlot.R
+* rdname block error.
+    + smwrBase_isLike.R
+* Update examples for errors
+    + findFile.R
+* Add data to data folder and data.R from smwr* packages.
+    + pcodeColData
+    + Q05078470
+    + QW05078470
+    + QWstacked
+* Comment out examples.
+    + smwrBase_importRDB.R
+    + swmrQW_x_readNWQLdl.R
+* DESCRIPTION
+    + R >= 3.5.0 based on Check warning.
+    
 baytrends 1.1.0.9002
 ===========
 * Release 2020-01-20

@@ -45,11 +45,10 @@ This function is used to search a selected directory for information
 \dontrun{
 .findFile()         # current directory
 .findFile("..")     # one directory up
-.findFile("c:/")    # c root directory
 #
 # list of files and common attributes one directory up
-findFile(folder="..", file="*.*", n=2, fileNameOnly=FALSE)      #two most recent files
-findFile(folder="..", file="*.*", n="all", fileNameOnly=FALSE)  #all files
+.findFile(folder="..", file="*.*", n=2, fileNameOnly=FALSE)      #two most recent files
+.findFile(folder="..", file="*.*", n="all", fileNameOnly=FALSE)  #all files
 }
 }
 \keyword{internal}

@@ -12,7 +12,7 @@
 #' print(month.USGS)
 #' \dontrun{
 #' # For examples of month.USGS in graphs see
-#' vignette(topic="LineScatter", package="smwrGraphs")
+#' #vignette(topic="LineScatter", package="smwrGraphs")
 #' }
 #' @export
 month.USGS <- c(January="Jan.", February="Feb.", March="Mar.", 

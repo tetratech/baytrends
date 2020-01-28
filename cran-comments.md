@@ -1,5 +1,5 @@
 Erik.Leppo@tetratech.com
-2020-01-20
+2020-01-28
 
 # Test environments
 * local Win 10, R 3.6.2
@@ -7,7 +7,7 @@ Erik.Leppo@tetratech.com
 
 # R CMD check results
 
-0 error v | 0 warnings v | 1 note x
+0 errors v | 0 warnings v | 1 note x
 
 ## Error
 zero
@@ -23,4 +23,3 @@ zero
 devtools::revdep("baytrends")
 
 There are currently no downstream dependencies for this package.
-

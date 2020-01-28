@@ -1,6 +1,6 @@
-#'Test whether an object can be treated in a particular way
+#' Test whether an object can be treated in a particular way
 #'
-#'Tests if an object can be treated as a character, to name something; as a
+#' Tests if an object can be treated as a character, to name something; as a
 #'date; as a grouping variable, has distinct values; or as a number.
 #'
 #'The function \code{isCharLike} tests whether \code{x} is of class "character"
@@ -13,7 +13,7 @@
 #' Added from smwrBase.
 #' 
 #' @rdname isLike
-#' @aliases isCharLike isDateLike isGroupLike isNumberLike
+# @aliases isCharLike isDateLike isGroupLike isNumberLike
 #' @param x any object.
 #' @return A logical value \code{TRUE} if \code{x} meets the criteria, or
 #'\code{FALSE} if it does not.
@@ -27,6 +27,8 @@
 #\code{\link[base]{is.integer}}, \code{\link[base]{is.logical}}
 #\code{class}, \code{is.numeric}, \code{is.factor}, \code{is.character},
 #\code{is.integer}, \code{is.logical} (all in base package)
+
+
 #' @rdname isLike
 #' @keywords internal
 #' @examples

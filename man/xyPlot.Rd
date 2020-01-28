@@ -166,12 +166,12 @@ Y <- X + rnorm(32)
 setGD()
 AA.pl <- xyPlot(X, Y, Plot=list(color="cyan4"))
 # For more details of xyPlot see
-vignette(topic="GraphAdditions", package="smwrGraphs")
-vignette(topic="GraphGallery", package="smwrGraphs")
-vignette(topic="GraphSetup", package="smwrGraphs")
-vignette(topic="LineScatter", package="smwrGraphs")
-demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
-demo(topic="TopAxisExample", package="smwrGraphs")
+#vignette(topic="GraphAdditions", package="smwrGraphs")
+#vignette(topic="GraphGallery", package="smwrGraphs")
+#vignette(topic="GraphSetup", package="smwrGraphs")
+#vignette(topic="LineScatter", package="smwrGraphs")
+#demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
+#demo(topic="TopAxisExample", package="smwrGraphs")
 }
 }
 \seealso{

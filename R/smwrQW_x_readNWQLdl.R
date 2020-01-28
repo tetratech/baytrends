@@ -16,7 +16,8 @@
 #' @examples
 #'
 #'\dontrun{
-#'readNWQLdl("00608")
+#'# This function works only within the internal USGS network.
+#'#readNWQLdl("00608")
 #'}
 #'
 #' @export
