@@ -11,10 +11,17 @@
 #'\code{x} is of type "numeric" or of class "Date."
 #'
 #' Added from smwrBase.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# document @rdname with multiple.  Didn't work the same as smwrBase.
+# added @name NULL and removed first @rdname
+# https://r-pkgs.org/man.html#multiple-man
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' 
-#' @rdname isLike
-# @aliases isCharLike isDateLike isGroupLike isNumberLike
+# @rdname isLike
+#' @aliases isCharLike isDateLike isGroupLike isNumberLike
 #' @param x any object.
+#' @name isLike
+NULL
 #' @return A logical value \code{TRUE} if \code{x} meets the criteria, or
 #'\code{FALSE} if it does not.
 #' @note This function is most useful within other functions to control how that
@@ -32,8 +39,7 @@
 #' @rdname isLike
 #' @keywords internal
 #' @examples
-#'
-#'## The first should be FALSE and the second TRUE
+#'# The first should be FALSE and the second TRUE
 #'isCharLike(as.Date("2004-12-31"))
 #'isCharLike("32")
 #' @export
@@ -43,33 +49,32 @@ isCharLike <- function(x)
 #' @rdname isLike
 #' @keywords internal manip
 #' @examples
-#'
-#'## The first should be FALSE and the second TRUE
+#'# The first should be FALSE and the second TRUE
 #'isDateLike(32)
 #'isDateLike(as.Date("2004-12-31"))
 #' @export
-isDateLike <- function(x)
+isDateLike <- function(x) {
   ## some objects may have multiple classes, so any is needed
   any(class(x) %in% c("Date", "POSIXt"))
+}
 
 #' @rdname isLike
 #' @keywords internal
 #' @examples
-#'
-#'## The first should be FALSE and the second TRUE
+#'# The first should be FALSE and the second TRUE
 #'isGroupLike(as.Date("2004-12-31"))
 #'isGroupLike(32)
 #' @export
-isGroupLike <- function(x)
+isGroupLike <- function(x) {
   is.factor(x) || is.character(x) || is.integer(x) ||  is.logical(x)
+}
 
 #' @rdname isLike
-#' @keywords internal
 #' @examples
-#'
-#'## The first should be FALSE and the second TRUE
+#'# The first should be FALSE and the second TRUE
 #'isNumberLike(as.Date("2004-12-31"))
 #'isNumberLike(32)
 #' @export
-isNumberLike <- function(x)
+isNumberLike <- function(x) {
   class(x)[1L] %in% c("integer", "numeric")
+}

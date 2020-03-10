@@ -58,8 +58,5 @@ blueRed.colors(2)
 # All have similar usage
 }
 }
-\seealso{
-\code{\link[grDevices]{rainbow}}, \code{\link[grDevices]{hcl}}
-}
 \keyword{color}
 \keyword{internal}

@@ -19,9 +19,9 @@
 #' through yellow. \code{redGreen.colors} generates a sequence from red to
 #' green through yellow. \code{pastel.colors} genereates a sequence of
 #' well-separated pastel colors useful for areas or bars.
-#' @seealso 
+# @seealso 
 #Flip for production/manual
-#'\code{\link[grDevices]{rainbow}}, \code{\link[grDevices]{hcl}}
+#\code{\link[grDevices]{rainbow}}, \code{\link[grDevices]{hcl}}  # comment out, produces warning about rainbow
 #\code{rainbow}, \code{hcl} (both in grDevices package)
 #' @keywords internal color
 #' @examples
@@ -34,7 +34,7 @@
 #' }
 #' @export greenRed.colors
 greenRed.colors <- function(n, alpha=1)
-  rev(rainbow(n, start=0, end=1/3, alpha=alpha))
+  rev(grDevices::rainbow(n, start=0, end=1/3, alpha=alpha))
 #
 # Coding history:
 #    2011Jun14 DLLorenz Original code.
@@ -44,17 +44,17 @@ greenRed.colors <- function(n, alpha=1)
 #' @rdname smwr.colors
 #' @export redGreen.colors
 redGreen.colors <- function(n, alpha=1)
-  rainbow(n, start=0, end=1/3, alpha=alpha)
+  grDevices:: rainbow(n, start=0, end=1/3, alpha=alpha)
 
 #' @rdname smwr.colors
 #' @export blueRed.colors
 blueRed.colors <- function(n, alpha=1)
-  rainbow(n, start=2/3, end=1, alpha=alpha)
+  grDevices:: rainbow(n, start=2/3, end=1, alpha=alpha)
 
 #' @rdname smwr.colors
 #' @export redBlue.colors
 redBlue.colors <- function(n, alpha=1)
-  rev(rainbow(n, start=2/3, end=1, alpha=alpha))
+  rev(grDevices:: rainbow(n, start=2/3, end=1, alpha=alpha))
 
 #' @rdname smwr.colors
 #' @export warmCool.colors
@@ -65,7 +65,7 @@ warmCool.colors <- function(n, alpha=1) {
   scl <- (12.5^scl - 1)/5.071068
   scl[scl > .5] <- 1 - rev(scl)[scl > .5] # Tricky way to symmetric scale
   scl <- 0.05 + 0.5*scl
-  return(sapply(scl, function(x) rainbow(1, start=x, end=.99)))
+  return(sapply(scl, function(x) grDevices::rainbow(1, start=x, end=.99)))
 }
 
 #' @rdname smwr.colors

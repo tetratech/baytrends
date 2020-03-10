@@ -141,6 +141,15 @@ library("baytrends")
 help(package="baytrends")
 ```
 
+Use `pkgdown` to build website.  Will need to rebuild the package to include the new material.
+
+```{r, eval = FALSE}
+library(pkgdown)
+pkgdown::build_site()
+```
+
+
+
 ## Check
 
 ```{r, eval=FALSE}
@@ -162,6 +171,27 @@ check_failures(dir.check)
 
 
 ```
+
+check on Linux
+
+https://r-hub.github.io/rhub/index.html
+https://r-hub.github.io/rhub/articles/rhub.html
+
+```{r linux_check, eval=FALSE}
+library(rhub)
+# validate email
+validate_email()
+# run check (interactive for platform)
+check()
+
+# recommended prior to CRAN submission
+check_for_cran()
+
+check_on_linux()
+
+```
+
+
 
 Run all Examples.
 ```{r}

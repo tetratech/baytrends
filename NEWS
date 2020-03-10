@@ -3,7 +3,21 @@ NEWS
 <Erik.Leppo@tetratech.com> and <jon.harcum@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2020-01-28 13:20:45
+    #> Last Update: 2020-03-09 14:14:40
+
+baytrends 1.1.0.9004
+====================
+
+-   Release 2020-03-09
+-   Check with R version 3.6.2 (released 2020-02-29).
+-   Add links to gamTest documentation. Issue \#40.
+-   Add ReadMe.RMD and update it.
+    -   Updated badges from overall CRAN to individual flavors.
+        -   Windows, OSX, and Linux.
+-   Update saveDF documentation.
+-   IsLike updates to structure. Issue \#39.
+-   Checked with rhub for Linux dev versions of R.
+-   Update pkgdown website.
 
 baytrends 1.1.0.9003
 ====================

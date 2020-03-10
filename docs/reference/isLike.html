@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test whether an object can be treated in a particular way — isCharLike • baytrends</title>
+<title>Test whether an object can be treated in a particular way — isLike • baytrends</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Test whether an object can be treated in a particular way — isCharLike" />
+<meta property="og:title" content="Test whether an object can be treated in a particular way — isLike" />
 <meta property="og:description" content="Tests if an object can be treated as a character, to name something; as a
 date; as a grouping variable, has distinct values; or as a number." />
 <meta name="twitter:card" content="summary" />
@@ -70,7 +70,7 @@ date; as a grouping variable, has distinct values; or as a number." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9004</span>
       </span>
     </div>
 
@@ -167,14 +167,10 @@ class "Date" or "POSIXt." The function <code>isGroupLike</code> tests whether
 function handles a particular argument.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>## The first should be FALSE and the second TRUE</span>
-<span class='fu'>isCharLike</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2004-12-31"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isCharLike</span>(<span class='st'>"32"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='co'>## The first should be FALSE and the second TRUE</span>
-<span class='fu'>isDateLike</span>(<span class='fl'>32</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isDateLike</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2004-12-31"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='co'>## The first should be FALSE and the second TRUE</span>
-<span class='fu'>isGroupLike</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2004-12-31"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isGroupLike</span>(<span class='fl'>32</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
-<span class='co'>## The first should be FALSE and the second TRUE</span>
+    <pre class="examples"><div class='input'><span class='co'># The first should be FALSE and the second TRUE</span>
+<span class='fu'>isCharLike</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2004-12-31"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isCharLike</span>(<span class='st'>"32"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># The first should be FALSE and the second TRUE</span>
+<span class='fu'>isDateLike</span>(<span class='fl'>32</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isDateLike</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2004-12-31"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># The first should be FALSE and the second TRUE</span>
+<span class='fu'>isGroupLike</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2004-12-31"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isGroupLike</span>(<span class='fl'>32</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='co'># The first should be FALSE and the second TRUE</span>
 <span class='fu'>isNumberLike</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2004-12-31"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isNumberLike</span>(<span class='fl'>32</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

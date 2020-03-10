@@ -10,3 +10,8 @@ cran-comments\.md$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^data_censored_test\.csv$
+^data_censored_test\.rmd$
+^README\.Rmd$
+^_save_df$
+^\./vignettes/data$

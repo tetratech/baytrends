@@ -1,14 +1,7 @@
-#' Save R object to disk
+#' @title Save R object to disk
 #'
-#' Saves R object to disk using csv and/or Rdata format.
+#' @description Saves R object to disk using csv and/or Rdata format.
 #'
-#' @param rObj Name of R object to save.
-#' @param note Suffix to include in file name.
-#' @param rData Logical field to save rObj as an rData file (FALSE [default]).
-#' @param csv Logical field to save rObj as an a csv file (TRUE [default]).
-#' @param attr Logical field to save data frame attributes as a text file (FALSE [default]).
-#' @param timeStamp Logical field to include date/time stamp in file name (TRUE [default]).
-#' @param folder Subdirectory for saving file ('_save_df is default)
 #' @details Output files are saved with an "rObj_note_YYYY_MM_DD_HHMMSS" naming
 #'   convetion. By default, files are saved as csv files to a '_save_df'
 #'   subdirectory relative to the working directory and include a time stamp in
@@ -17,10 +10,23 @@
 #'   enables saving the same object at multiple steps through an R script, but
 #'   can be turned off with the timeStamp argument. To also save object as rData
 #'   file, set rData=TRUE.
+#'   
+#' @param rObj Name of R object to save.
+#' @param note Suffix to include in file name.
+#' @param rData Logical field to save rObj as an rData file (FALSE [default]).
+#' @param csv Logical field to save rObj as an a csv file (TRUE [default]).
+#' @param attr Logical field to save data frame attributes as a text file (FALSE [default]).
+#' @param timeStamp Logical field to include date/time stamp in file name (TRUE [default]).
+#' @param folder Subdirectory for saving file ('_save_df is default)
+#'
 #' @examples
+#' \dontrun{
 #' df <- data.frame(x=c(1:100))
-#' saveDF(df,'test_note')
-#' @return n/a
+#' saveDF(df, 'test_note')
+#' }
+#' 
+#' @return Nothing returned. Saves R object to disk using csv and/or Rdata format.
+#' 
 #' @export
 saveDF <- function(rObj, note=NULL, rData=FALSE, csv=TRUE, attr=FALSE, timeStamp=TRUE, folder="_save_df") {
 

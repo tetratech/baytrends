@@ -43,8 +43,7 @@ Returns a list with results
 }
 \description{
 Perform GAM analysis. Relies on mgcv::gam to perform general additive model.
-}
-\details{
+\code{\link[mgcv]{gam}}
 The baseDay function has been added to this package from the smwrBase package.
 }
 \examples{
@@ -58,5 +57,4 @@ dfr <- analysisOrganizeData (dataCensored)
 df        <- dfr[[1]]
 analySpec <- dfr[[2]]
 gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
-
 }
