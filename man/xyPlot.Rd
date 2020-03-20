@@ -8,34 +8,82 @@
 \alias{xyPlot,character,numeric-method}
 \title{Plot Data}
 \usage{
-xyPlot(x, y, Plot = list(), yaxis.log = FALSE, yaxis.rev = FALSE,
-  yaxis.range = c(NA, NA), xaxis.log = FALSE, xaxis.range = c(NA,
-  NA), ylabels = 7, xlabels = 7, xtitle = "", ytitle = "",
-  caption = "", margin = c(NA, NA, NA, NA), ...)
+xyPlot(
+  x,
+  y,
+  Plot = list(),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.log = FALSE,
+  xaxis.range = c(NA, NA),
+  ylabels = 7,
+  xlabels = 7,
+  xtitle = "",
+  ytitle = "",
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  ...
+)
 
-\S4method{xyPlot}{numeric,numeric}(x, y, Plot = list(name = "", what =
-  "points", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), yaxis.log = FALSE,
-  yaxis.rev = FALSE, yaxis.range = c(NA, NA), xaxis.log = FALSE,
-  xaxis.range = c(NA, NA), ylabels = 7, xlabels = 7,
-  xtitle = deparse(substitute(x)), ytitle = deparse(substitute(y)),
-  caption = "", margin = c(NA, NA, NA, NA), ...)
+\S4method{xyPlot}{numeric,numeric}(
+  x,
+  y,
+  Plot = list(name = "", what = "points", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.log = FALSE,
+  xaxis.range = c(NA, NA),
+  ylabels = 7,
+  xlabels = 7,
+  xtitle = deparse(substitute(x)),
+  ytitle = deparse(substitute(y)),
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  ...
+)
 
-\S4method{xyPlot}{factor,numeric}(x, y, Plot = list(name = "", what =
-  "points", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), yaxis.log = FALSE,
-  yaxis.rev = FALSE, yaxis.range = c(NA, NA), xaxis.log = FALSE,
-  xaxis.range = c(NA, NA), ylabels = 7, xlabels = "Auto",
-  xtitle = "", ytitle = deparse(substitute(y)), caption = "",
-  margin = c(NA, NA, NA, NA), xlabels.rotate = FALSE, ...)
+\S4method{xyPlot}{factor,numeric}(
+  x,
+  y,
+  Plot = list(name = "", what = "points", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.log = FALSE,
+  xaxis.range = c(NA, NA),
+  ylabels = 7,
+  xlabels = "Auto",
+  xtitle = "",
+  ytitle = deparse(substitute(y)),
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  xlabels.rotate = FALSE,
+  ...
+)
 
-\S4method{xyPlot}{character,numeric}(x, y, Plot = list(name = "", what =
-  "points", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), yaxis.log = FALSE,
-  yaxis.rev = FALSE, yaxis.range = c(NA, NA), xaxis.log = FALSE,
-  xaxis.range = c(NA, NA), ylabels = 7, xlabels = "Auto",
-  xtitle = "", ytitle = deparse(substitute(y)), caption = "",
-  margin = c(NA, NA, NA, NA), xlabels.rotate = FALSE, ...)
+\S4method{xyPlot}{character,numeric}(
+  x,
+  y,
+  Plot = list(name = "", what = "points", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.log = FALSE,
+  xaxis.range = c(NA, NA),
+  ylabels = 7,
+  xlabels = "Auto",
+  xtitle = "",
+  ytitle = deparse(substitute(y)),
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  xlabels.rotate = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{the x-axis data to plot.}
@@ -118,12 +166,12 @@ Y <- X + rnorm(32)
 setGD()
 AA.pl <- xyPlot(X, Y, Plot=list(color="cyan4"))
 # For more details of xyPlot see
-vignette(topic="GraphAdditions", package="smwrGraphs")
-vignette(topic="GraphGallery", package="smwrGraphs")
-vignette(topic="GraphSetup", package="smwrGraphs")
-vignette(topic="LineScatter", package="smwrGraphs")
-demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
-demo(topic="TopAxisExample", package="smwrGraphs")
+#vignette(topic="GraphAdditions", package="smwrGraphs")
+#vignette(topic="GraphGallery", package="smwrGraphs")
+#vignette(topic="GraphSetup", package="smwrGraphs")
+#vignette(topic="LineScatter", package="smwrGraphs")
+#demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
+#demo(topic="TopAxisExample", package="smwrGraphs")
 }
 }
 \seealso{

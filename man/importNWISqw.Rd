@@ -4,8 +4,14 @@
 \alias{importNWISqw}
 \title{Water-Quality Data}
 \usage{
-importNWISqw(sites, params = "All", begin.date = "", end.date = "",
-  keep = NULL, use.pnames = FALSE)
+importNWISqw(
+  sites,
+  params = "All",
+  begin.date = "",
+  end.date = "",
+  keep = NULL,
+  use.pnames = FALSE
+)
 }
 \arguments{
 \item{sites}{a vector of the USGS station identifiers.}

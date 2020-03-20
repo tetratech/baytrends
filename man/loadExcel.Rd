@@ -4,9 +4,17 @@
 \alias{loadExcel}
 \title{Load/Clean Excel sheet}
 \usage{
-loadExcel(folder = NA, file = NA, sheet = 1, pk = NA,
-  remDup = TRUE, remNAcol = TRUE, remNArow = TRUE,
-  convDates = TRUE, tzSel = "America/New_York")
+loadExcel(
+  folder = NA,
+  file = NA,
+  sheet = 1,
+  pk = NA,
+  remDup = TRUE,
+  remNAcol = TRUE,
+  remNArow = TRUE,
+  convDates = TRUE,
+  tzSel = "America/New_York"
+)
 }
 \arguments{
 \item{folder}{folder (i.e., directory to look in, can use relative path )}

@@ -3,7 +3,6 @@
 \docType{package}
 \name{baytrends}
 \alias{baytrends}
-\alias{baytrends-package}
 \title{baytrends: Long Term Water Quality Trend Analysis}
 \description{
 The baytrends package was developed to enable users to evaluate long-term

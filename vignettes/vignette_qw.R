@@ -18,22 +18,22 @@ knitr::opts_chunk$set(
 #  
 #  # identify the name of the comma delimited (csv) file for the
 #  # outputted data set
-#  fn.output <- "dataCensored_TEST.csv"
+#  fn.output <- "data_censored_test.csv"
 #  
 #  # run function
 #  qw.export(myDF, dir.save, fn.output)
 
 ## ----RawDataFormat_SHOW, eval=FALSE--------------------------------------
-#  df <- read.csv("dataCensored_TEST.csv")
+#  df <- read.csv("data_censored_test.csv")
 #  head(df[,c(1:3,16:24)])
 
 ## ----RawDataFormat_RUN, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE----
 library(baytrends)
 library(knitr)
 # Use internal function to export dataCensored as example for import
-#qw.export(dataCensored, file.path(getwd(),"data"), "dataCensored_TEST.csv")
+#qw.export(dataCensored, file.path(getwd(),"data"), "data_censored_test.csv")
 
-df <- read.csv(file.path(getwd(),"data", "dataCensored_TEST.csv"))
+df <- read.csv(file.path(getwd(),"data", "data_censored_test.csv"))
 
 knitr::kable(head(df[,c(1:3,16:24)]))
 
@@ -41,7 +41,7 @@ knitr::kable(head(df[,c(1:3,16:24)]))
 #  library(baytrends)
 #  
 #  # Define function arguments
-#  fn.import <- "dataCensored_TEST.csv"
+#  fn.import <- "data_censored_test.csv"
 #  qw.names <- c("secchi" ,  "salinity", "do"  ,     "wtemp"  ,  "chla"
 #                ,"tn"     ,  "tp"    ,   "tss" ,     "din"  ,    "po4"
 #                ,"tdn"     , "tdp"  ,    "nh4"  ,    "no23")
@@ -60,7 +60,7 @@ knitr::kable(head(df[,c(1:3,16:24)]))
 #  str(dataCensored.test)
 #  
 #  # save the data frame for future use
-#  save(dataCensored.test, file="dataCensored.test.rda")
+#  save(dataCensored.test, file="data_censored_test.rda")
 
 ## ----rbindData, eval=FALSE-----------------------------------------------
 #  library(baytrends)

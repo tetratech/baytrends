@@ -18,7 +18,7 @@ Added from smwrGraphs.
 print(month.USGS)
 \dontrun{
 # For examples of month.USGS in graphs see
-vignette(topic="LineScatter", package="smwrGraphs")
+#vignette(topic="LineScatter", package="smwrGraphs")
 }
 }
 \references{

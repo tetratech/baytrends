@@ -10,50 +10,113 @@
 \alias{timePlot,difftime,numeric-method}
 \title{Time-series Plots}
 \usage{
-timePlot(x, y, Plot = list(), yaxis.log = FALSE, yaxis.rev = FALSE,
-  yaxis.range = c(NA, NA), xaxis.range = range(x, na.rm = TRUE),
-  ylabels = 7, xlabels = "Auto", xtitle = "", ytitle = "",
-  caption = "", margin = c(NA, NA, NA, NA), ...)
+timePlot(
+  x,
+  y,
+  Plot = list(),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.range = range(x, na.rm = TRUE),
+  ylabels = 7,
+  xlabels = "Auto",
+  xtitle = "",
+  ytitle = "",
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  ...
+)
 
-\S4method{timePlot}{Date,numeric}(x, y, Plot = list(name = "", what =
-  "lines", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), yaxis.log = FALSE,
-  yaxis.rev = FALSE, yaxis.range = c(NA, NA), xaxis.range = range(x,
-  na.rm = TRUE), ylabels = 7, xlabels = "Auto", xtitle = "",
-  ytitle = deparse(substitute(y)), caption = "", margin = c(NA, NA,
-  NA, NA), ...)
+\S4method{timePlot}{Date,numeric}(
+  x,
+  y,
+  Plot = list(name = "", what = "lines", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.range = range(x, na.rm = TRUE),
+  ylabels = 7,
+  xlabels = "Auto",
+  xtitle = "",
+  ytitle = deparse(substitute(y)),
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  ...
+)
 
-\S4method{timePlot}{POSIXt,numeric}(x, y, Plot = list(name = "", what =
-  "lines", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), yaxis.log = FALSE,
-  yaxis.rev = FALSE, yaxis.range = c(NA, NA), xaxis.range = range(x,
-  na.rm = TRUE), ylabels = 7, xlabels = "Auto", xtitle = "",
-  ytitle = deparse(substitute(y)), caption = "", margin = c(NA, NA,
-  NA, NA), ...)
+\S4method{timePlot}{POSIXt,numeric}(
+  x,
+  y,
+  Plot = list(name = "", what = "lines", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.range = range(x, na.rm = TRUE),
+  ylabels = 7,
+  xlabels = "Auto",
+  xtitle = "",
+  ytitle = deparse(substitute(y)),
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  ...
+)
 
-\S4method{timePlot}{numeric,numeric}(x, y, Plot = list(name = "", what =
-  "lines", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), yaxis.log = FALSE,
-  yaxis.rev = FALSE, yaxis.range = c(NA, NA), xaxis.range = range(x,
-  na.rm = TRUE), ylabels = 7, xlabels = "Auto", xtitle = "",
-  ytitle = deparse(substitute(y)), caption = "", margin = c(NA, NA,
-  NA, NA), ...)
+\S4method{timePlot}{numeric,numeric}(
+  x,
+  y,
+  Plot = list(name = "", what = "lines", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.range = range(x, na.rm = TRUE),
+  ylabels = 7,
+  xlabels = "Auto",
+  xtitle = "",
+  ytitle = deparse(substitute(y)),
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  ...
+)
 
-\S4method{timePlot}{integer,numeric}(x, y, Plot = list(name = "", what =
-  "points", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), yaxis.log = FALSE,
-  yaxis.rev = FALSE, yaxis.range = c(NA, NA), xaxis.range = range(x,
-  na.rm = TRUE) + c(-1, 1), ylabels = 7, xlabels = "Auto",
-  xtitle = "", ytitle = deparse(substitute(y)), caption = "",
-  margin = c(NA, NA, NA, NA), xlabels.rotate = FALSE, ...)
+\S4method{timePlot}{integer,numeric}(
+  x,
+  y,
+  Plot = list(name = "", what = "points", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.range = range(x, na.rm = TRUE) + c(-1, 1),
+  ylabels = 7,
+  xlabels = "Auto",
+  xtitle = "",
+  ytitle = deparse(substitute(y)),
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  xlabels.rotate = FALSE,
+  ...
+)
 
-\S4method{timePlot}{difftime,numeric}(x, y, Plot = list(name = "", what =
-  "lines", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), yaxis.log = FALSE,
-  yaxis.rev = FALSE, yaxis.range = c(NA, NA), xaxis.range = range(x,
-  na.rm = TRUE), ylabels = 7, xlabels = "Auto", xtitle = "Auto",
-  ytitle = deparse(substitute(y)), caption = "", margin = c(NA, NA,
-  NA, NA), ...)
+\S4method{timePlot}{difftime,numeric}(
+  x,
+  y,
+  Plot = list(name = "", what = "lines", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  yaxis.log = FALSE,
+  yaxis.rev = FALSE,
+  yaxis.range = c(NA, NA),
+  xaxis.range = range(x, na.rm = TRUE),
+  ylabels = 7,
+  xlabels = "Auto",
+  xtitle = "Auto",
+  ytitle = deparse(substitute(y)),
+  caption = "",
+  margin = c(NA, NA, NA, NA),
+  ...
+)
 }
 \arguments{
 \item{x}{the time/date data.}
@@ -153,12 +216,12 @@ Y <- runif(12)
 setGD()
 timePlot(X, Y)
 # For more details of timePlot see
-vignette(topic="DateAxisFormats", package="smwrGraphs")
-vignette(topic="LineScatter", package="smwrGraphs")
-demo(topic="AnnualFlowBarChart", package="smwrGraphs")
-demo(topic="DurationHydrograph", package="smwrGraphs")
-demo(topic="HydroPrecip", package="smwrGraphs")
-demo(topic="RightAxisExample", package="smwrGraphs")
+#vignette(topic="DateAxisFormats", package="smwrGraphs")
+#vignette(topic="LineScatter", package="smwrGraphs")
+#demo(topic="AnnualFlowBarChart", package="smwrGraphs")
+#demo(topic="DurationHydrograph", package="smwrGraphs")
+#demo(topic="HydroPrecip", package="smwrGraphs")
+#demo(topic="RightAxisExample", package="smwrGraphs")
 }
 }
 \keyword{hplot}

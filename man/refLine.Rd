@@ -4,11 +4,17 @@
 \alias{refLine}
 \title{Reference Line}
 \usage{
-refLine(horizontal, vertical, coefficients, Plot = list(name = "", what =
-  "lines", type = "solid", width = "standard", symbol = "circle", filled =
-  TRUE, size = 0.09, color = "black"), current = list(yaxis.log = FALSE,
-  yaxis.rev = FALSE, xaxis.log = FALSE), xrange = c(NA, NA),
-  yrange = c(NA, NA), log10 = FALSE)
+refLine(
+  horizontal,
+  vertical,
+  coefficients,
+  Plot = list(name = "", what = "lines", type = "solid", width = "standard", symbol =
+    "circle", filled = TRUE, size = 0.09, color = "black"),
+  current = list(yaxis.log = FALSE, yaxis.rev = FALSE, xaxis.log = FALSE),
+  xrange = c(NA, NA),
+  yrange = c(NA, NA),
+  log10 = FALSE
+)
 }
 \arguments{
 \item{horizontal}{draw horizontal lines at the specified values.}
@@ -51,8 +57,8 @@ xyPlot(X, Y)
 # Add the 1:1 line
 refLine(coefficient=c(0,1))
 # For more details of refLine see
-vignette(topic="GraphAdditions", package="smwrGraphs")
-demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
+#vignette(topic="GraphAdditions", package="smwrGraphs")
+#demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
 }
 }
 \keyword{aplot}

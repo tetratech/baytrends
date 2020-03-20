@@ -4,8 +4,14 @@
 \alias{linearPretty}
 \title{Pretty Axis}
 \usage{
-linearPretty(x, hard = FALSE, labels = "Auto", style = "Auto",
-  extend.pct = 0, extend.range = TRUE)
+linearPretty(
+  x,
+  hard = FALSE,
+  labels = "Auto",
+  style = "Auto",
+  extend.pct = 0,
+  extend.range = TRUE
+)
 }
 \arguments{
 \item{x}{data defining the range to be plotted on the axis. Missing values

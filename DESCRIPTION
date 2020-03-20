@@ -12,8 +12,10 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.1.0.9011
-Date: 2019-12-21
+
+Version: 1.1.0.9015
+Date: 2020-03-20
+
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:
     R (>= 3.5.0),
@@ -21,11 +23,13 @@ Depends:
     mgcv
 License: GPL-3
 LazyData: TRUE
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Encoding: UTF-8
 Suggests:
     devtools,
     fitdistrplus,
+    grDevices, 
+    imputeTS,
     knitr,
     nlme,
     pander,
@@ -103,14 +107,17 @@ Collate:
     'smwrBase_z%cn%.R'
     'smwrGraphs_addCaption.R'
     'smwrGraphs_colorPlot.R'
+    'smwrGraphs_colors.R'
     'smwrGraphs_datePretty.R'
     'smwrGraphs_lineWt.R'
     'smwrGraphs_linearPretty.R'
+    'smwrGraphs_logPretty.R'
     'smwrGraphs_month.USGS.R'
     'smwrGraphs_namePretty.R'
     'smwrGraphs_numericData.R'
     'smwrGraphs_refLine.R'
     'smwrGraphs_renderPretty.R'
+    'smwrGraphs_setAxis.R'
     'smwrGraphs_setColor.R'
     'smwrGraphs_setExplan.R'
     'smwrGraphs_setGD.R'

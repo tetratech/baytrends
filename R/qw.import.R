@@ -31,13 +31,13 @@
 #' 
 #' @examples
 #' # Use internal function to export dataCensored as example for import
-#' qw.export(dataCensored, getwd(), "dataCensored_TEST.csv")
+#' qw.export(dataCensored, getwd(), "data_censored_test.csv")
 #' 
 #' 
 #' # Import Test file as a qw object
 #' 
 #' # Define function parameters
-#' fn.import <- file.path(".", "dataCensored_TEST.csv")
+#' fn.import <- file.path(".", "data_censored_test.csv")
 #' qw.names <- c("secchi", "chla", "do", "tn", "tp", "po4", "tdp"
 #'               , "no23", "nh4", "tdn", "tss")
 #' rounding <- c(3, 4)
@@ -49,7 +49,7 @@
 #' str(dataCensored.test)
 #' 
 #' # Save
-#' save(dataCensored.test, file="dataCensored.test.rda")
+#' save(dataCensored.test, file="data_censored_test.rda")
 #' 
 #' 
 #' # Show slot names for a qw object.

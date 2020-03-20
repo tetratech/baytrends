@@ -4,8 +4,14 @@
 \alias{getUSGSflow}
 \title{Retrieve USGS daily flow data in a wide format}
 \usage{
-getUSGSflow(siteNumber, yearStart, yearEnd, fill = TRUE, span = 10,
-  max.fill = 10)
+getUSGSflow(
+  siteNumber,
+  yearStart,
+  yearEnd,
+  fill = TRUE,
+  span = 10,
+  max.fill = 10
+)
 }
 \arguments{
 \item{siteNumber}{List of site numbers}

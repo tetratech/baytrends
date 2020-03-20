@@ -19,6 +19,77 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.1.0.9015
+===========
+* Release 2020-03-09
+* Check with R version 3.6.2 (released 2020-02-29).
+* Add links to gamTest documentation.  Issue #40.
+* Add ReadMe.RMD and update it.
+    + Updated badges from overall CRAN to individual flavors.
+        - Windows, OSX, and Linux. 
+* Update saveDF documentation.
+* IsLike updates to structure.  Issue #39.
+* Checked with rhub for Linux dev versions of R.
+* Update pkgdown website.
+
+baytrends 1.1.0.9014
+===========
+* Release 2020-01-28
+* Add missing functions from smwrGraphs so all examples will run without any errors.
+    + Keyword internal so won't show in help.
+        - smwrGraphs_colors.R
+        - smwrGraphs_logPretty.R
+        - smwrGraphs_setAxis.R
+* Remove references to smwrGraphs package vignette in help files.
+    + Several function had in the "dont run" section of their examples.
+        - smwrGraphs_addCaption.R
+        - smwrGraphs_colorPlot.R
+        - smwrGraphs_month.USGS.R
+        - smwrGraphs_refLine.R
+        - smwrGraphs_setColor.R
+        - smwrGraphs_setPage.R
+        - smwrGraphs_timePlot.R
+        - smwrGraphs_xyPlot.R
+* rdname block error.
+    + smwrBase_isLike.R
+* Update examples for errors
+    + findFile.R
+* Add data to data folder and data.R from smwr* packages.
+    + pcodeColData
+    + Q05078470
+    + QW05078470
+    + QWstacked
+* Comment out examples.
+    + smwrBase_importRDB.R
+    + swmrQW_x_readNWQLdl.R
+* DESCRIPTION
+    + R >= 3.5.0 based on Check warning.
+    
+baytrends 1.1.0.9013
+===========
+* Release 2020-01-20
+* Updates to pass testing with development version of R for Linux.
+    + _saveDF to _save_df
+        - saveDF.R
+    + dataCensored.test.rd to data_censored_test.rd
+        - vignette_qw.Rmd
+        - vignette_qw.r
+        - qw.import.Rd
+        - qw.imoprt.R
+    + dataCensored_TEST.csv to data_censored_test.csv
+        - vignette_qw.Rmd
+        - vignette_qw.r
+        - qw.export.R
+        - qw.import.R
+* pkgdown
+    + Update files.
+    + Add URL to GitHub repo header.
+
+baytrends 1.1.0.9012
+===========
+* Release 2019-11-06
+* Added pkgdown website.
+
 baytrends 1.1.0.9011
 ===========
 * Release 2019-12-21

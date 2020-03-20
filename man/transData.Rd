@@ -4,8 +4,7 @@
 \alias{transData}
 \title{Transform Data}
 \usage{
-transData(data, logT = FALSE, revT = FALSE, trans = as.vector,
-  transarg = NULL)
+transData(data, logT = FALSE, revT = FALSE, trans = as.vector, transarg = NULL)
 }
 \arguments{
 \item{data}{data for axis}

@@ -31,7 +31,7 @@
 #' dir.save <- getwd()
 #' 
 #' # prefix for file names ()
-#' fn.out <- "dataCensored_TEST.csv" 
+#' fn.out <- "data_censored_test.csv" 
 #' 
 #' # run function
 #' qw.export(myDF, dir.save, fn.out)

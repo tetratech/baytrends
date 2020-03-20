@@ -9,7 +9,7 @@
 #'should be powers of 3 or 10; and for more than 3 log cycles, the range sould be 
 #'expressed only in powers of 10.
 #'
-#'Added from smwrGraphs.
+#' Added from smwrGraphs.
 #'
 #' @name colorPlot
 #' @rdname colorPlot
@@ -66,7 +66,7 @@
 #' # All defaults: color ramp from Z
 #' colorPlot(X, Y, Z)
 #' # See for examples of colorPlot:
-#' vignette(topic="LineScatter", package="smwrGraphs")
+#' #vignette(topic="LineScatter", package="smwrGraphs")
 #' }
 #' @exportMethod colorPlot
 setGeneric("colorPlot", function(x, y, color, Plot=list(),

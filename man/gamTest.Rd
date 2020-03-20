@@ -4,9 +4,18 @@
 \alias{gamTest}
 \title{Perform GAM analysis}
 \usage{
-gamTest(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
-  gamPlot = 10, gamDiffModel = NA, flow.detrended = NA,
-  salinity.detrended = NA)
+gamTest(
+  df,
+  dep,
+  stat,
+  layer = NA,
+  analySpec,
+  gamTable = TRUE,
+  gamPlot = 10,
+  gamDiffModel = NA,
+  flow.detrended = NA,
+  salinity.detrended = NA
+)
 }
 \arguments{
 \item{df}{data frame}
@@ -69,53 +78,11 @@ element list) is a list with the following elements:
 }
 }
 \description{
-Perform GAM analysis. Relies on \code{\link[mgcv::gam]{mgcv::gam}} to perform general additive model.
-}
-\details{
-Set \code{gamPlot=FALSE} to turn off plotting. Computing the information
-("predictions") to create plots is one of the more time consumings aspects of
-the \code{gamTest} function. Setting \code{gamPlot=FALSE} turns off these
-computations and speeds up \code{gamTest}. The disadvantage is that no
-predictions are returned; however, the tabularized results stored in
-\code{stat.gam.result} and, if requested, \code{chng.gam.result} are still
-returned.
 
-Setting \code{gamPlot} to a value between 1-30 changes the resolution of the
-resulting figure by setting the interval on which the prediction data set is
-made. By default \code{gamPlot} is set to 10. That is, a prediction is made
-every 10th day, or about 36 predictions per year. Values closer to 1 result
-in larger returned prediction data sets and take more computation time.
-Values closer to 30 result in smaller returned data sets and take less
-computation time. Although there is no change in the fitted model, values
-closer to 30 may have slight degraded figure quality if there is subtantial
-seasonality in the fitted model since the seasonal minimum and maximum might
-not be included in the prediction data set and therefore not plotted. Values
-greater than 30 are treated as 30. Setting \code{gamPlot=30} might be
-advantangeous when the analysis only requires cursory figure examination.
+Perform GAM analysis. Relies on mgcv::gam to perform general additive model.
+\code{\link[mgcv]{gam}}
+The baseDay function has been added to this package from the smwrBase package.
 
-Setting \code{gamTable=FALSE} will turn off table output to the console. This
-may be advantageous to reduce the amount of output. Since these computations
-do not significantly affect \code{gamTest} run time, the standard Analysis of
-Variance, GAM Parameter Coefficients, Diagnostics, and Estimates of Change
-tables are returned from \code{gamTest} regardless of the \code{gamTable}
-setting. Many of the values from these tables are also returned as part of 
-tabularized \code{stat.gam.result}.
-
-The default settings for \code{gamDiffModel} (i.e., \code{gamDiffModel=NA})
-will not result in sub-annual (i.e., seasonal) differences being computed. In
-this default setting, the returned \code{chng.gam.result} that is returned
-from \code{gamTest} will be empty. If \code{gamDiffModel} is a value (i.e.,
-not \code{NA}), then \code{chng.gam.result} will include one row for each
-combination of years specified in \code{analySpec$gamDiffPeriods}, seasons
-specified in \code{analySpec$gamDiffSeason}, and the number of models listed
-in \code{gamDiffModel}. For example \code{gamDiffModel=c(0,1,2)} would
-result in sub-annual being computed for gam0, gam1, and gam2.
-
-\strong{Flow and Salinity Adjustments (gam4).} It is necessary to create and
-pass properly formatted data via the \code{flow.detrended} and
-\code{salinity.detrended} arguments to evaluate gam4 models. See
-\code{\link{detrended.flow}} and \code{\link{detrended.salinity}} for more
-information on how to create properly formatted data.
 }
 \examples{
 # Specify parameter and station to analyze
@@ -130,30 +97,6 @@ analySpec <- dfr[[2]]
 
 # Apply gamTest 
 gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
-gamPlotDisp(gamResult = gamResult, analySpec = analySpec,
-            fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
-            diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
-            seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
-            seasAvgSigPlot = FALSE, fullModelPlot = TRUE, seasModelPlot = TRUE,
-            BaseCurrentMeanPlot = FALSE, adjustedPlot = FALSE)
 
-# Apply gamTestSeason
-gamResult2 <- gamTestSeason(df, dep, stat, layer, analySpec=analySpec,
-                            gamSeasonPlot = c("7/15-8/15", "purple", "range"))
-gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
-                  fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
-                  diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
-                  seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
-                  seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
-                  BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
 
-}
-\seealso{
-\code{\link{gamTestSeason}}
-
-\code{\link{analysisOrganizeData}}
-
-\code{\link{gamTestSeason}}
-
-\code{\link{analysisOrganizeData}}
 }

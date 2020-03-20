@@ -83,12 +83,12 @@
 #' setGD()
 #' timePlot(X, Y)
 #' # For more details of timePlot see
-#' vignette(topic="DateAxisFormats", package="smwrGraphs")
-#' vignette(topic="LineScatter", package="smwrGraphs")
-#' demo(topic="AnnualFlowBarChart", package="smwrGraphs")
-#' demo(topic="DurationHydrograph", package="smwrGraphs")
-#' demo(topic="HydroPrecip", package="smwrGraphs")
-#' demo(topic="RightAxisExample", package="smwrGraphs")
+#' #vignette(topic="DateAxisFormats", package="smwrGraphs")
+#' #vignette(topic="LineScatter", package="smwrGraphs")
+#' #demo(topic="AnnualFlowBarChart", package="smwrGraphs")
+#' #demo(topic="DurationHydrograph", package="smwrGraphs")
+#' #demo(topic="HydroPrecip", package="smwrGraphs")
+#' #demo(topic="RightAxisExample", package="smwrGraphs")
 #' }
 #' @exportMethod timePlot
 setGeneric("timePlot", function(x, y, Plot=list(),

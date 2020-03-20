@@ -4,8 +4,14 @@
 \alias{seasAdjflow}
 \title{Create Daily Seasonally-adjusted Log Flow Residuals}
 \usage{
-seasAdjflow(dvFlow = dvFlow, siteNumber = NULL, dvAvgWin = c(7, 31),
-  dvAvgWgt = "weighted", dvAvgSides = 1, plotResid = c(1))
+seasAdjflow(
+  dvFlow = dvFlow,
+  siteNumber = NULL,
+  dvAvgWin = c(7, 31),
+  dvAvgWgt = "weighted",
+  dvAvgSides = 1,
+  plotResid = c(1)
+)
 }
 \arguments{
 \item{dvFlow}{data frame with daily flow data. The flow and data qualifier

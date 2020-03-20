@@ -4,9 +4,17 @@
 \alias{gamDiff}
 \title{Compute an estimate of difference based on GAM results}
 \usage{
-gamDiff(gamRslt, iSpec, analySpec, base.yr.set = NA, test.yr.set = NA,
-  doy.set = NA, alpha = 0.05, flow.detrended = NA,
-  salinity.detrended = NA)
+gamDiff(
+  gamRslt,
+  iSpec,
+  analySpec,
+  base.yr.set = NA,
+  test.yr.set = NA,
+  doy.set = NA,
+  alpha = 0.05,
+  flow.detrended = NA,
+  salinity.detrended = NA
+)
 }
 \arguments{
 \item{gamRslt}{output from gam model}

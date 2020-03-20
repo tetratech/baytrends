@@ -17,8 +17,8 @@
 #' AA.pl <- xyPlot(X, Y)
 #' addCaption("Twenty five random points")
 #' # See for examples of addCaption:
-#' vignette(topic="GraphSetup", package="smwrGraphs")
-#' demo(topic="AnnualFlowBarChart", package="smwrGraphs")
+#' # vignette(topic="GraphSetup", package="smwrGraphs")
+#' # demo(topic="AnnualFlowBarChart", package="smwrGraphs")
 #' }
 #' @export addCaption
 addCaption <- function(caption='') {

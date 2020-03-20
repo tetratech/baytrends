@@ -4,8 +4,15 @@
 \alias{selectData}
 \title{Select data for analysis from a larger data frame}
 \usage{
-selectData(df, dep, stat, layer = NA, transform = TRUE,
-  remMiss = TRUE, analySpec)
+selectData(
+  df,
+  dep,
+  stat,
+  layer = NA,
+  transform = TRUE,
+  remMiss = TRUE,
+  analySpec
+)
 }
 \arguments{
 \item{df}{data frame}

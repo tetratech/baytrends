@@ -100,7 +100,7 @@ myLibrary <- "baytrends"
 #library(devtools)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # NEWS
-setwd(paste0("./", myLibrary))
+setwd(file.path(".", myLibrary))
 # Render then Copy NEWS so picked up in help
 rmarkdown::render("NEWS.rmd", "all")
 file.copy("NEWS.md", "NEWS", overwrite = TRUE)
@@ -124,10 +124,12 @@ devtools::document()
 ## Install New Package (locally)
 setwd("..") # return to root directory first
 devtools::install(myLibrary, quick=FALSE, reload=TRUE, build_vignettes = TRUE)
+
+# blank line above ensures no "updates" to packages.
 # ## Reload library
 # library(myLibrary, character.only = TRUE)
 # change wd back to package
-setwd(paste0("./", myLibrary))
+setwd(file.path(".", myLibrary))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
@@ -138,6 +140,15 @@ After creating the package reload it after restarting R within RStudio (Ctrl + S
 library("baytrends")
 help(package="baytrends")
 ```
+
+Use `pkgdown` to build website.  Will need to rebuild the package to include the new material.
+
+```{r, eval = FALSE}
+library(pkgdown)
+pkgdown::build_site()
+```
+
+
 
 ## Check
 
@@ -161,7 +172,34 @@ check_failures(dir.check)
 
 ```
 
+check on Linux
 
+https://r-hub.github.io/rhub/index.html
+https://r-hub.github.io/rhub/articles/rhub.html
+
+```{r linux_check, eval=FALSE}
+library(rhub)
+# validate email
+validate_email()
+# run check (interactive for platform)
+check()
+
+# recommended prior to CRAN submission
+check_for_cran()
+
+check_on_linux()
+
+```
+
+
+
+Run all Examples.
+```{r}
+# point to directory
+devtools::run_examples(pkg = ".")
+```
+
+Alternate is testthat::test_examples() but is redundant with R CMD check.
 
 ## Check functions and such
 ### Index

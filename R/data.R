@@ -162,7 +162,7 @@
 #' data(Q05078470)
 #' # Plot the data for station 05078470
 #' with(Q05078470, plot(DATES, FLOW, type='l'))
-Q05078470
+"Q05078470"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # QWstacked
 #' @title Stream Water Quality
@@ -216,7 +216,7 @@ Q05078470
 #' with(subset(QWstacked, parm_cd == "00665"), plot(sample_dt, result_va))
 #' # Overlay the data for dissolved phosphorus (should be smaller values)
 #' with(subset(QWstacked, parm_cd == "00666"), points(sample_dt, result_va, col='red'))
-QWstacked
+"QWstacked"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # pcodeColData
 #' @title Selected USGS parameter Codes
@@ -247,7 +247,7 @@ QWstacked
 #' # just print some rows
 #' head(pcodeColData)
 #' tail(pcodeColData)
-pcodeColData
+"pcodeColData"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # QW05078470
 #' @title Stream Water Quality
@@ -278,4 +278,4 @@ pcodeColData
 #' # Plot the data
 #' with(QW05078470, plot(DATES, P00665, log='y'))
 #' 
-QW05078470
+"QW05078470"

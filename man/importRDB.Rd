@@ -4,8 +4,7 @@
 \alias{importRDB}
 \title{Import Files}
 \usage{
-importRDB(file.name = "", date.format = NULL, tz = "",
-  convert.type = TRUE)
+importRDB(file.name = "", date.format = NULL, tz = "", convert.type = TRUE)
 }
 \arguments{
 \item{file.name}{a character string specifying the name of the relational database 
@@ -78,8 +77,8 @@ be identified using the \code{is.nan} function.
 \examples{
 \dontrun{
 ## This dataset is available in smwrData as a text file
-TestDir <- system.file("misc", package="smwrData")
-TestFull <- importRDB(file.path(TestDir, "TestFull.rdb"))
+#TestDir <- system.file("misc", package="smwrData")
+#TestFull <- importRDB(file.path(TestDir, "TestFull.rdb"))
 }
 }
 \seealso{
