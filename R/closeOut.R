@@ -66,12 +66,23 @@ closeOut <-function(timeProcess=TRUE, contInfo=TRUE, sessInfo=TRUE) {
         Category=c("Name", "Organization", "Address", "Voice phone", "email"),
         Description=c("Jon B. Harcum, Ph.D.",
                       "Tetra Tech, Inc.",
-                      "313 Kings Way, Clemson, SC 29631",
+                      " ",
                       "(864)650-5815",
                       "jon.harcum@tetratech.com"))
       print(knitr::kable(contactInformation))
       .P()
 
+      contactInformation <- data.frame(
+        Category=c("Name", "Organization", "Address", "Voice phone", "email"),
+        Description=c("Erik Leppo",
+                      "Tetra Tech, Inc.",
+                      "10711 Red Run Blvd., Suite 105, Owings Mills, MD 21117",
+                      "(410)902-3150",
+                      "erik.leppo@tetratech.com"))
+      print(knitr::kable(contactInformation))
+      .P()
+      
+      
     }
 
     if(sessInfo) {

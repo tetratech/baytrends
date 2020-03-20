@@ -12,6 +12,7 @@ analysisOrganizeData(
   stationMasterList = NA,
   layerLukup = NA
 )
+
 }
 \arguments{
 \item{df}{Data frame of water quality data}
@@ -21,11 +22,13 @@ analysisOrganizeData(
 \item{reports}{Optional reports about parameters, layers and stations
 [default = c(0,1,2,3)]}
 
-\item{parameterList}{User-supplied parameter list [default = NA]}
+\item{parameterList}{User-supplied dataframe with list of parameters [default
+= NA]}
 
-\item{stationMasterList}{User-supplied station list [default = NA]}
+\item{stationMasterList}{User-supplied dataframe with list of stations
+[default = NA]}
 
-\item{layerLukup}{User-supplied layer lookup list [default = NA]}
+\item{layerLukup}{User-supplied dataframe with list of layers [default = NA]}
 }
 \value{
 Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
@@ -44,28 +47,47 @@ Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
 
   layerFilt        - Layer filter
 
-  layerAggOption   - Layer averaging option (default = 0)
+  layerAggOption   - Layer averaging option (default = 0). Other options are:
+  1: combine "S" & "AP" ("SAP"); 2: combine "B" & "BP" ("BBP"); 3: opt 1 & 2
+  ("SAP", "BBP"); 4: combine all ("ALL")); 5: combine "S" and "B" ("SB")
 
   obsMin           - Minimum number of observations required to allow GAM
   analysis to proceed for a specific station, parameter, and layer
   combination (default = 60).
+  
+  obsMinInter      - Minimum number of observations required to allow GAM
+  analysis to proceed for a specific intervention (default = 10).
 
   gamAlpha         - Alpha level used GAM analyses (default = 0.05).
 
   censorTrim       - Values to apply for trimming data due to too much
-  censoring (default = c(0.5, 0.4)).
+  censoring (default = c(0.5, 0.4)). First argument indicates fraction of
+  observations in a year that are allowed to be censored. Second argument is
+  the fraction of years, starting from the beginning of the record, that are
+  allowed to be "flagged" for too much censoring. A minimum of two years must
+  have too much censoring before data are removed. The default settings can
+  be read as no more than 40 percent of the beginning years of data are
+  allowed to have more than 50 percent censoring before the beginning portion
+  of the record is trimmed. For example, years 1 and 3 of data have more than
+  50 percent censoring then the first three years of data are trimmed.
+  Similarly, for years 1 and 4, then the first four years are removed. If
+  years 1 and 5 have more than 50 percent censoring the data are kept since
+  2/5 is not greater than 0.4.
 
-  gamModels        - model formulations
+  gamModels        - model formulations. See baytrends::loadModels() for 
+  simplified approach for selecting which built-in models to include
+  
+  showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)
 
   gamDiffPeriods   - list of time periods (years) used for computing changes
   (differences). The default options are: full record, 1999/00-present, and
   2005/06-present.  
 
-  gamDiffSeasons   - list of seasons used for sub-annual analyses. The default
-  options include the following: All (months 1:12), Spring1 (3:5), Spring2
-  (months: 4:6)), Summer1 (months: 6:9)), Summer2 (months: 7:9)), SAV1
-  (months: 4:10)), SAV2 (months: 3:5,9:11)), Winter (months: 1:2)), and Fall
-  (months: 10:12))).
+  gamDiffSeasons   - list List of seasons used for sub-annual analyses of
+  computing differences. The default options include the following: All
+  (months 1:12), Spring1 (3:5), Spring2 (months: 4:6)), Summer1 (months:
+  6:9)), Summer2 (months: 7:9)), SAV1 (months: 4:10)), SAV2 (months:
+  3:5,9:11)), Winter (months: 1:2)), and Fall (months: 10:12))).
 
   gamPenalty       - allow the user to set the mgcv::gam select argument to
   TRUE, FALSE, or baytrend algorithm default (default = NA). When the default
@@ -94,9 +116,10 @@ Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
   layerList        - data frame of layers (useful for setting up gam analyses in for loops)
 }
 \description{
-This function assesses the user supplied specifications and prepares data for
-analysis. In those cases where the user doesn't supply a needed
-specification, a basic option is supplied by this function.
+This function assesses the user supplied specifications in the argument,
+analySpec, and prepares the data (argument df) for analysis. In those cases
+where the user doesn't supply a needed specification, a basic option is
+supplied by this function.
 }
 \details{
 The supplied data frame, df, is a data frame with the variables station,
@@ -126,11 +149,12 @@ The supplied data frame, df, is a data frame with the variables station,
  The following steps are performed by analysisOrganizeData:
 
  1) Review user supplied specifications through the analySpec argument. Fill
- in with default values. For example, if the user doesn't specify a list of
- stations, then all stations identified in the data set stationMasterList are
- used. Some other default values include the following: date range
- (1/1/1984-present), parameter list (all parameters in data set
- parameterList), layers (all layers in data set layerLukup), layer
+ in with default values. For example, if the user doesn't specify a dataframe
+ with a list of stations, parameters, or layers, then the built-in data
+ frames, baytrends::stationMasterList, baytrends::parameterList, and
+ baytrends::layerLukup are used. Some other default values include the
+ following: date range (1/1/1984-present), parameter list (all parameters in
+ data set parameterList), layers (all layers in data set layerLukup), layer
  aggregation option (0, no aggregation), minimum number of observations to
  perform a GAM analysis (60), GAM formulas (Linear Trend with Seasonality,
  Non-linear Trend with Seasonality, and Non-linear trend with Seasonality

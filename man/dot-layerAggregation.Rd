@@ -25,6 +25,9 @@ selected. 2) Perform second level error checking to make sure the aggregation op
 selection makes sense (e.g. cannot aggregate "S" and "AP" if no "AP" data are in the
 data set). 3) Average the data by taking the median or mean based on user input.
 }
+\details{
+NOTE (17May2019): Option to average by median is not currently working. Must use 'mean' option.
+}
 \examples{
 # retrieve all corrected chlorophyll-a concentrations for Station CB2.2.
 # A warning is displayed indicating that data set has layers but user did

@@ -19,8 +19,7 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-
-baytrends 1.1.0.9004
+baytrends 1.1.0.9015
 ===========
 * Release 2020-03-09
 * Check with R version 3.6.2 (released 2020-02-29).
@@ -33,7 +32,7 @@ baytrends 1.1.0.9004
 * Checked with rhub for Linux dev versions of R.
 * Update pkgdown website.
 
-baytrends 1.1.0.9003
+baytrends 1.1.0.9014
 ===========
 * Release 2020-01-28
 * Add missing functions from smwrGraphs so all examples will run without any errors.
@@ -66,7 +65,7 @@ baytrends 1.1.0.9003
 * DESCRIPTION
     + R >= 3.5.0 based on Check warning.
     
-baytrends 1.1.0.9002
+baytrends 1.1.0.9013
 ===========
 * Release 2020-01-20
 * Updates to pass testing with development version of R for Linux.
@@ -86,10 +85,30 @@ baytrends 1.1.0.9002
     + Update files.
     + Add URL to GitHub repo header.
 
-baytrends 1.1.0.9001
+baytrends 1.1.0.9012
 ===========
 * Release 2019-11-06
 * Added pkgdown website.
+
+baytrends 1.1.0.9011
+===========
+* Release 2019-12-21
+* Function createResiduals modified to return data frame, df, rather than just a vector
+
+baytrends 1.1.0.9004
+===========
+* Release 2019-06-25
+* Minor punch list issues from v*.9003 and .9002. Add option analySpec$showGamNumOnPlot to add gam # onto plot
+
+baytrends 1.1.0.9003
+===========
+* Release 2019-06-06
+* Improved error trapping related to required station and parameter list fields. Added detrended salinity, detrended flow and method list warnings.
+
+baytrends 1.1.0.9002
+===========
+* Release 2019-05-31
+* Added functions gamTestSeasonal and gamPlotDispSeasonal to compute and only display a seasonal mean for a single date or for a date range.
 
 baytrends 1.1.0
 ===========

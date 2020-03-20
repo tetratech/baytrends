@@ -1,17 +1,20 @@
 # ####
 #' Analysis Organization & Data Preparation
 #'
-#' This function assesses the user supplied specifications and prepares data for
-#' analysis. In those cases where the user doesn't supply a needed
-#' specification, a basic option is supplied by this function.
+#' This function assesses the user supplied specifications in the argument,
+#' analySpec, and prepares the data (argument df) for analysis. In those cases
+#' where the user doesn't supply a needed specification, a basic option is
+#' supplied by this function.
 #'
 #' @param df Data frame of water quality data
 #' @param analySpec Specifications for analysis
 #' @param reports Optional reports about parameters, layers and stations
 #'   [default = c(0,1,2,3)]
-#' @param parameterList User-supplied parameter list [default = NA]
-#' @param stationMasterList User-supplied station list [default = NA]
-#' @param layerLukup User-supplied layer lookup list [default = NA]
+#' @param parameterList User-supplied dataframe with list of parameters [default
+#'   = NA]
+#' @param stationMasterList User-supplied dataframe with list of stations
+#'   [default = NA]
+#' @param layerLukup User-supplied dataframe with list of layers [default = NA]
 #'
 #' @details
 #'  The supplied data frame, df, is a data frame with the variables station,
@@ -41,11 +44,12 @@
 #'  The following steps are performed by analysisOrganizeData:
 #'
 #'  1) Review user supplied specifications through the analySpec argument. Fill
-#'  in with default values. For example, if the user doesn't specify a list of
-#'  stations, then all stations identified in the data set stationMasterList are
-#'  used. Some other default values include the following: date range
-#'  (1/1/1984-present), parameter list (all parameters in data set
-#'  parameterList), layers (all layers in data set layerLukup), layer
+#'  in with default values. For example, if the user doesn't specify a dataframe
+#'  with a list of stations, parameters, or layers, then the built-in data
+#'  frames, baytrends::stationMasterList, baytrends::parameterList, and
+#'  baytrends::layerLukup are used. Some other default values include the
+#'  following: date range (1/1/1984-present), parameter list (all parameters in
+#'  data set parameterList), layers (all layers in data set layerLukup), layer
 #'  aggregation option (0, no aggregation), minimum number of observations to
 #'  perform a GAM analysis (60), GAM formulas (Linear Trend with Seasonality,
 #'  Non-linear Trend with Seasonality, and Non-linear trend with Seasonality
@@ -110,28 +114,47 @@
 #'
 #'   layerFilt        - Layer filter
 #'
-#'   layerAggOption   - Layer averaging option (default = 0)
+#'   layerAggOption   - Layer averaging option (default = 0). Other options are:
+#'   1: combine "S" & "AP" ("SAP"); 2: combine "B" & "BP" ("BBP"); 3: opt 1 & 2
+#'   ("SAP", "BBP"); 4: combine all ("ALL")); 5: combine "S" and "B" ("SB")
 #'
 #'   obsMin           - Minimum number of observations required to allow GAM
 #'   analysis to proceed for a specific station, parameter, and layer
 #'   combination (default = 60).
+#'   
+#'   obsMinInter      - Minimum number of observations required to allow GAM
+#'   analysis to proceed for a specific intervention (default = 10).
 #'
 #'   gamAlpha         - Alpha level used GAM analyses (default = 0.05).
 #'
 #'   censorTrim       - Values to apply for trimming data due to too much
-#'   censoring (default = c(0.5, 0.4)).
+#'   censoring (default = c(0.5, 0.4)). First argument indicates fraction of
+#'   observations in a year that are allowed to be censored. Second argument is
+#'   the fraction of years, starting from the beginning of the record, that are
+#'   allowed to be "flagged" for too much censoring. A minimum of two years must
+#'   have too much censoring before data are removed. The default settings can
+#'   be read as no more than 40 percent of the beginning years of data are
+#'   allowed to have more than 50 percent censoring before the beginning portion
+#'   of the record is trimmed. For example, years 1 and 3 of data have more than
+#'   50 percent censoring then the first three years of data are trimmed.
+#'   Similarly, for years 1 and 4, then the first four years are removed. If
+#'   years 1 and 5 have more than 50 percent censoring the data are kept since
+#'   2/5 is not greater than 0.4.
 #'
-#'   gamModels        - model formulations
+#'   gamModels        - model formulations. See baytrends::loadModels() for 
+#'   simplified approach for selecting which built-in models to include
+#'   
+#'   showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)
 #'
 #'   gamDiffPeriods   - list of time periods (years) used for computing changes
 #'   (differences). The default options are: full record, 1999/00-present, and
 #'   2005/06-present.  
 #'
-#'   gamDiffSeasons   - list of seasons used for sub-annual analyses. The default
-#'   options include the following: All (months 1:12), Spring1 (3:5), Spring2
-#'   (months: 4:6)), Summer1 (months: 6:9)), Summer2 (months: 7:9)), SAV1
-#'   (months: 4:10)), SAV2 (months: 3:5,9:11)), Winter (months: 1:2)), and Fall
-#'   (months: 10:12))).
+#'   gamDiffSeasons   - list List of seasons used for sub-annual analyses of
+#'   computing differences. The default options include the following: All
+#'   (months 1:12), Spring1 (3:5), Spring2 (months: 4:6)), Summer1 (months:
+#'   6:9)), Summer2 (months: 7:9)), SAV1 (months: 4:10)), SAV2 (months:
+#'   3:5,9:11)), Winter (months: 1:2)), and Fall (months: 10:12))).
 #'
 #'   gamPenalty       - allow the user to set the mgcv::gam select argument to
 #'   TRUE, FALSE, or baytrend algorithm default (default = NA). When the default
@@ -161,13 +184,16 @@
 #'
 #' @export
 # ####
-analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
+analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
                                  , parameterList     = NA
                                  , stationMasterList = NA
                                  , layerLukup        = NA) { 
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 03Jun2019: JBH: add report of which models are loaded; mod's to reduce required data elements
+#                 in look up tables: min number of obs for an intervention
+# 17May2019: JBH: minor documentation clarifications
 # 28Dec2018: JBH: add default seasonal mean of July 1-Sept 30 to gamLegend
 # 01May2018: JBH: removed median as option for layer aggregation  
 # 06Aug2017: JBH: added gamFlw_Sal.Wgt.Perc
@@ -207,10 +233,88 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   # Store number of rows of data
   beginRecords <- nrow(df)
   
-  # Use built-in data frames if not supplied by use, 20180503
+  # Use built-in data frames if not supplied by user 
   suppressWarnings(if (is.na(parameterList))     parameterList     <- baytrends::parameterList)
   suppressWarnings(if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList)
   suppressWarnings(if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup)
+
+  # checkFieldNames function ####
+  checkFieldNames <- function(df
+                              , requiredFields
+                              , errorStatus = "Error"
+                              , warnPrint = TRUE
+                              , okPrint   = TRUE) {
+    if (sum(!requiredFields %in% names(df)) > 0) {
+      if (errorStatus=="Error") {
+        stop(paste(substitute(df)
+                   , "- **Required** fields missing:"
+                   , paste(requiredFields[!requiredFields %in% names(df)], collapse = " ")),
+             call. = FALSE)
+      } 
+      else if (warnPrint) {
+        warning(paste(substitute(df)
+                      , "- Optional fields not present:"
+                      , paste(requiredFields[!requiredFields %in% names(df)], collapse = " ")),
+                call. = FALSE)
+      }
+    } else if (okPrint) {
+      message(paste(substitute(df)
+                    , "- appears OK"))
+    }
+  }
+  
+  # QA/QC field settings ####
+  warnPrint <- TRUE #FALSE
+  okPrint   <- FALSE #FALSE
+  
+  # parameterList: QA/QC fields ####
+  {
+    checkFieldNames(parameterList
+                    , c("parm","parmName","parmUnits","parmRecensor","logTrans")
+                    , "Error", warnPrint=warnPrint, okPrint=FALSE)
+    checkFieldNames(parameterList
+                    , c("parmNamelc","parmRO1","parmRO2")
+                    , "Warning", warnPrint=warnPrint, okPrint=okPrint)
+    # fill in missing fields 
+    varList <- c("parmRO1", "parmRO2","trendIncrease","parmSource"
+                 , "parmCat", "parmCalc", "parmNamelc" , "parmTrend")
+    varListType <- c('n', 'n', 'c', 'c', 'c', 'c', 'c', 'c');
+    for (i in 1:length(varList)) {
+      if (!varList[i] %in% names(parameterList)) {
+        parameterList[,varList[i]] <- ifelse (varListType[i] == 'c', NA_character_, NA_real_ )
+      }
+    }
+  }
+  
+  # stationMasterList: QA/QC fields ####
+  {
+    checkFieldNames(stationMasterList
+                    , c("station")
+                    , "Error", warnPrint, okPrint=FALSE)
+    checkFieldNames(stationMasterList
+                    , c("stationRO1","stationRO2","latitude","longitude"
+                        , "cbSeg92", "state", "stationGrpName")
+                    , "Warning", warnPrint, okPrint)
+    checkFieldNames(stationMasterList
+                    , c("hydroTerm", "flwAvgWin", "flwParms", "salParms", "usgsGageID"
+                        , "stationMethodGroup")
+                    , "Warning", warnPrint, okPrint)
+    # fill in missing fields
+    varList <- c( c("stationRO1","stationRO2","latitude","longitude"
+                    ,"cbSeg92", "state", "stationGrpName", "usgsGageID"),
+                  c("hydroTerm", "flwAvgWin", "flwParms", "salParms", "usgsGageID"
+                    , "stationMethodGroup"),
+                  c("usgsGageName", "usgsGageMatch", "notes", 
+                    "locationType", "waterbody"))
+    varListType <- c('n', 'n', 'n', 'n', 'c', 'c', 'c', 'c'
+                     , 'c', 'c', 'c', 'c', 'c', 'c'
+                     , 'c', 'c', 'c', 'c', 'c');
+    for (i in 1:length(varList)) {
+      if (!varList[i] %in% names(stationMasterList)) {
+        stationMasterList[,varList[i]] <- ifelse (varListType[i] == 'c', NA_character_, NA_real_ )
+      }
+    }
+  }
 
   # specify the average technique to be mean (median option was removed 01May2018)
   avgTechnique     <- "mean"
@@ -218,22 +322,37 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 # 1) Review user supplied specifications.  ####
 
   # expand analySpec with some useful default values in cases where user doesn't specify something
-  if (!"analyTitle"      %in% names(analySpec)) analySpec$analyTitle       <- paste0("CBP Trend Analysis: ", Sys.time())
+  if (!"analyTitle"      %in% names(analySpec)) analySpec$analyTitle       <- paste0("GAM Trend Analysis: ", Sys.time())
   if (!"parameterFilt"   %in% names(analySpec)) analySpec$parameterFilt    <- parameterList$parm
   if (!"stationFilt"     %in% names(analySpec)) analySpec$stationFilt      <- stationMasterList$station
   if (!"dateFilt"        %in% names(analySpec)) analySpec$dateFilt         <- c( as.POSIXct('1984-01-01'),
                                                                                  as.POSIXct(Sys.time()))
-  if (!"setTZ"           %in% names(analySpec)) analySpec$setTZ            <- "America/New_York"  #01Nov2016
+  if (!"setTZ"           %in% names(analySpec)) analySpec$setTZ            <- "America/New_York"
   if (!"layerFilt"       %in% names(analySpec)) analySpec$layerFilt        <- layerLukup$layers
   if (!"layerAggOption"  %in% names(analySpec)) analySpec$layerAggOption   <- 0        # 0: no aggregation
   if (!"obsMin"          %in% names(analySpec)) analySpec$obsMin           <- 60       # need 60 obs
+  if (!"obsMinInter"     %in% names(analySpec)) analySpec$obsMinInter      <- 10       # need 10 obs #03Jun2019
+  
   if (!"gamAlpha"        %in% names(analySpec)) analySpec$gamAlpha         <- c(0.05)
-  if (!"censorTrim"      %in% names(analySpec)) analySpec$censorTrim       <- c(0.5,0.40)  #01Nov2016
+  if (!"censorTrim"      %in% names(analySpec)) analySpec$censorTrim       <- c(0.5,0.40) 
 
   # load gam0-gam4 if not specified #31Jul2018
-  if (!"gamModels"      %in% names(analySpec)) analySpec$gamModels       <- loadModels(c('gam0', 'gam1', 'gam2', 'gam3', 'gam4' ))
+  if (!"gamModels"      %in% names(analySpec)) analySpec$gamModels       <- loadModels(c('gam0', 'gam1', 'gam2', 'gam3', 'gam4'))
+  for (i in 1:length(analySpec$gamModels)) {    #03Jun2019
+    if (i==1) {
+      gamModelList <- as.data.frame(analySpec$gamModels[[i]][c("option","name","model")],
+                                    stringsAsFactors = FALSE)
+    } else {
+      gamModelList <- rbind(gamModelList,
+                            as.data.frame(analySpec$gamModels[[i]][c("option","name","model")],
+                                          stringsAsFactors = FALSE))
+    }
+  }
+  analySpec$gamModelList <- gamModelList
   
-
+  if (!"showGamNumOnPlot"      %in% names(analySpec)) analySpec$showGamNumOnPlot       <- FALSE 
+  
+  # load periods of record to evaluate 
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(
     list( periodName = "Full Record",     periodStart = c(NA),        periodEnd = c(NA)),
     list( periodName = "1999/00-Present", periodStart = c(1999:2000), periodEnd = c(NA)),
@@ -255,6 +374,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   if (!"gamCoeffDeltaMaxCrit" %in% names(analySpec)) analySpec$gamCoeffDeltaMaxCrit <- 1e-6      #02Feb2017
   if (!"gamFlw_Sal.Wgt.Perc"  %in% names(analySpec)) analySpec$gamFlw_Sal.Wgt.Perc  <- 
       c(0.05,0.25,0.5,0.75,0.95)      #06Aug2017
+  if (!"gamLegend"           %in% names(analySpec)) analySpec$gamLegend           <- gamLegend 
+  
 
 # 2) Down select primary data based on parameters, stations, dates, and layers ####
 #    from updated specifications
@@ -327,21 +448,21 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
 
 # 6) Final housekeeping ####
 
-  # add gamPlot legend  #01Nov2016
-  analySpec$gamLegend <- gamLegend
-
-  # add default seasonal mean of July 1-Sept 30 #28Dec2018
-  analySpec$gamLegend <- rbind(analySpec$gamLegend, 
-                               data.frame(legend = '7/1-7/31'
-                                          , colSel        = 'red'     
-                                          , colLegend     = 'red'
-                                          , lwdLegend     = 1
-                                          , ltyLegend     = 1
-                                          , pchLegend     = NA
-                                          , fillLegend    = NA
-                                          , borderLegend  = NA
-                                          , season        = FALSE
-                                          , descrip       = 'seasMean'))
+  # # add gamPlot legend  #01Nov2016
+  # analySpec$gamLegend <- gamLegend
+  # 
+  # # add default seasonal mean of July 1-Sept 30 #28Dec2018
+  # analySpec$gamLegend <- rbind(analySpec$gamLegend, 
+  #                              data.frame(legend = '7/1-7/31'
+  #                                         , colSel        = 'red'     
+  #                                         , colLegend     = 'red'
+  #                                         , lwdLegend     = 1
+  #                                         , ltyLegend     = 1
+  #                                         , pchLegend     = NA
+  #                                         , fillLegend    = NA
+  #                                         , borderLegend  = NA
+  #                                         , season        = FALSE
+  #                                         , descrip       = 'seasMean'))
   
   # add newly created variables back to analySpec
   analySpec$idVar         <- idVar
@@ -357,6 +478,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
   {
     # Record count report
     if(0 %in% reports) {
+      .P()
       .H3("Record Count")
       .P()
       .V(paste("Beginning Number of Records: ",  beginRecords ))
@@ -386,6 +508,17 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
                   col.names=c("Layer ID","Layer Name")))
     }
 
+    # Model report
+    if(4 %in% reports) {
+      .H3("Models")
+      .T("List of Models.")
+      {
+        print(knitr::kable(analySpec$gamModelList[,1:2],
+                           format = "pandoc", padding = 0 ,  row.names=FALSE,
+                           col.names=c("Option","Model")))
+      }
+    }
+    
     # Station report
     if(3 %in% reports) {
       .H2("")
@@ -397,6 +530,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3)
                   col.names=c("Station ID", "Latitude","Longitude",
                               "CB 92 Seg.", "Flow Adj. Gage", "Mth. Group")))
     }
+    
   }
 
   return(df)

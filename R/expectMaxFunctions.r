@@ -126,6 +126,7 @@
 #' @param mu predicted values from mgcv::gam
 #' @param sigma model standard deviation
 #' @keywords internal
+#' @export
 .ExpNmCens <- function(df,dep,mu,sigma)   {
   # computes expected value within a censoring window, for normal distribution
   # using an mCens object.

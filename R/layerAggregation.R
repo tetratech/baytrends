@@ -5,6 +5,8 @@
 #' selected. 2) Perform second level error checking to make sure the aggregation option
 #' selection makes sense (e.g. cannot aggregate "S" and "AP" if no "AP" data are in the
 #' data set). 3) Average the data by taking the median or mean based on user input.
+#' 
+#' NOTE (17May2019): Option to average by median is not currently working. Must use 'mean' option.
 #'
 #' @param df data frame
 #' @param avgTechnique method for aggregating data ("median"[default]/mean)
@@ -191,9 +193,17 @@
                          ((!df12$lower==0 & df12$lower <df12$upper)))) {
       #warning("Good news: df12 logic accounted for")
     } else {
-      warning("df12 logic is incomplete--check for non '<' & '>' qualifier codes")
-      table(df12$qualifier, useNA='always')
-      table(df12$method,    useNA='always')
+      warning("Potential layer aggregation issues with these records."
+              , immediate. = TRUE)
+      .T('Check these records in source data. ')
+      print(knitr::kable(df12[!((df12$lower==0 & df12$upper>=0) |
+                                  (!df12$lower==0 & df12$lower==df12$upper) |
+                                  (!df12$lower==0 & df12$lower <df12$upper) ),
+                              c('station','date','layer','lower','upper',
+                                'parameter','count')]))
+      # warning("df12 logic is incomplete--check for non '<' & '>' qualifier codes")
+      # table(df12$qualifier, useNA='always')
+      # table(df12$method,    useNA='always')
     }
 
     # 'less-thans'

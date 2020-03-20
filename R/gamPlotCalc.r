@@ -93,7 +93,7 @@
     stat.layer <- paste(stat,layer,sep="-")
 
     # set dayStep to 10 if out of range
-    if(!dayStep %in% c(1:30))  dayStep<-10   #04Feb2017
+    # if(!dayStep %in% c(1:30))  dayStep<-10   #04Feb2017
   } # end unpack/initialization
 
   # Build prediction data set #05Feb2017 #####
