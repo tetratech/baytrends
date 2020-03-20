@@ -4,7 +4,8 @@
 \name{parameterList}
 \alias{parameterList}
 \title{Parameter List}
-\format{A data frame with 81 rows and 13 variables:
+\format{
+A data frame with 81 rows and 13 variables:
 \describe{
    \item{parm}{"preferred" parameter ID}
    \item{parmSource}{parmamter field as may be found in sample data sets}
@@ -23,7 +24,8 @@
    transposed}
    \item{trendIncrease}{Should an increase in conccentration be interpreted
    as 'improving', 'degrading', 'increasing', or 'decreasing'}
-}}
+}
+}
 \usage{
 parameterList
 }

@@ -13,7 +13,6 @@ saveDF(
   timeStamp = TRUE,
   folder = "_save_df"
 )
-
 }
 \arguments{
 \item{rObj}{Name of R object to save.}
@@ -28,8 +27,7 @@ saveDF(
 
 \item{timeStamp}{Logical field to include date/time stamp in file name (TRUE [default]).}
 
-\item{folder}{Subdirectory for saving file ('_save_df' is default)}
-
+\item{folder}{Subdirectory for saving file ('_save_df is default)}
 }
 \value{
 Nothing returned. Saves R object to disk using csv and/or Rdata format.

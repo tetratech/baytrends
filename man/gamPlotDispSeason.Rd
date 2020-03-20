@@ -4,13 +4,24 @@
 \alias{gamPlotDispSeason}
 \title{Plot censored gam fits vs. time}
 \usage{
-gamPlotDispSeason(gamResult = gamResult, analySpec = analySpec,
-  fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
-  diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
-  seasAvgPlot = TRUE, seasAvgConfIntPlot = TRUE,
-  seasAvgSigPlot = TRUE, fullModelPlot = TRUE, seasModelPlot = TRUE,
-  BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE,
-  gamSeasonFocus = TRUE)
+gamPlotDispSeason(
+  gamResult = gamResult,
+  analySpec = analySpec,
+  fullModel = 2,
+  seasAvgModel = 2,
+  seasonalModel = 2,
+  diffType = "regular",
+  obserPlot = TRUE,
+  interventionPlot = TRUE,
+  seasAvgPlot = TRUE,
+  seasAvgConfIntPlot = TRUE,
+  seasAvgSigPlot = TRUE,
+  fullModelPlot = TRUE,
+  seasModelPlot = TRUE,
+  BaseCurrentMeanPlot = TRUE,
+  adjustedPlot = FALSE,
+  gamSeasonFocus = TRUE
+)
 }
 \arguments{
 \item{gamResult}{output from procedure gamTest}

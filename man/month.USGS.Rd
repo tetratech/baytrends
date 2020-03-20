@@ -4,7 +4,9 @@
 \name{month.USGS}
 \alias{month.USGS}
 \title{Month Abbreviations}
-\format{A named character vector of the 12 preferred forms for month abbreviations.}
+\format{
+A named character vector of the 12 preferred forms for month abbreviations.
+}
 \usage{
 month.USGS
 }

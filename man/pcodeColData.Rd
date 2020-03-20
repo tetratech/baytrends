@@ -4,13 +4,15 @@
 \name{pcodeColData}
 \alias{pcodeColData}
 \title{Selected USGS parameter Codes}
-\format{Data frame with 1178 rows and 3 columns\cr
+\format{
+Data frame with 1178 rows and 3 columns\cr
 \tabular{lll}{
 Name \tab Type \tab Description\cr
 parm_cd \tab character \tab The 5-digit parameter code\cr
 col_name \tab character \tab The column name to use when importing data from NWISweb\cr
 data_type \tab character \tab The data type to convert the imported data\cr
-}}
+}
+}
 \usage{
 pcodeColData
 }

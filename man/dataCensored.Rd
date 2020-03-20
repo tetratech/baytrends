@@ -4,7 +4,8 @@
 \name{dataCensored}
 \alias{dataCensored}
 \title{Chesapeake Bay Program Monitoring Data, 1985-2016}
-\format{A data frame with 13,062 rows and 17 variables:
+\format{
+A data frame with 13,062 rows and 17 variables:
 \describe{
   \item{station}{station identifier}
   \item{date}{sample date}
@@ -23,7 +24,8 @@
   \item{tdp}{Total Dissolved Phosphorus [mg/L]}
   \item{nh4}{Ammonium [mg/L]}
   \item{no23}{Nitrite + Nitrate [mg/L]}
-}}
+}
+}
 \usage{
 dataCensored
 }

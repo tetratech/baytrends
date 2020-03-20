@@ -4,13 +4,15 @@
 \name{Q05078470}
 \alias{Q05078470}
 \title{Daily Streamflow}
-\format{Data frame with 365 rows and 2 columns\cr
+\format{
+Data frame with 365 rows and 2 columns\cr
 \tabular{lll}{ 
 Name \tab  Type \tab Description\cr\cr
 DATES \tab Date \tab Day\cr
 FLOW \tab numeric \tab Daily mean streamflow\cr
 } Note: the daily mean streamflow rates are in
-cubic feet per second.}
+cubic feet per second.
+}
 \source{
 Data retrieved from NWISWeb
 (\url{https://nwis.waterdata.usgs.gov/mn/nwis/sw}) on 2005-01-05.

@@ -4,13 +4,15 @@
 \name{sal}
 \alias{sal}
 \title{Salinity data}
-\format{A data frame with 51,092 rows and 4 variables:
+\format{
+A data frame with 51,092 rows and 4 variables:
 \describe{
    \item{station}{CBP Station ID}
    \item{date}{date, YYYY-MM-DD}
    \item{layer}{sample layer}
    \item{salinity}{Measured salinity}
-}}
+}
+}
 \usage{
 sal
 }

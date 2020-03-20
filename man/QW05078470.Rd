@@ -4,7 +4,8 @@
 \name{QW05078470}
 \alias{QW05078470}
 \title{Stream Water Quality}
-\format{Data frame with 11 rows and 4 columns\cr
+\format{
+Data frame with 11 rows and 4 columns\cr
 \tabular{lll}{ 
 Name \tab Type \tab Description\cr\cr
 DATES \tab Date \tab Sample date\cr
@@ -12,7 +13,8 @@ TIMES \tab character \tab Sample time\cr
 R00665 \tab character \tab Remark code for total phosphorus concentration\cr
 P00665 \tab numeric \tab Total phosphorus concentration\cr
 } Note: all concentrations are in milligrams per liter as
-phosphorus.\cr}
+phosphorus.\cr
+}
 \source{
 Data retrieved from NWISWeb
 (\url{https://nwis.waterdata.usgs.gov/mn/nwis/qw}) on 2005-01-05.

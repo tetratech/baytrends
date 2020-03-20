@@ -4,7 +4,8 @@
 \name{QWstacked}
 \alias{QWstacked}
 \title{Stream Water Quality}
-\format{Data frame with 46 rows and 22 columns\cr
+\format{
+Data frame with 46 rows and 22 columns\cr
 \tabular{lll}{ 
 Name \tab Type \tab Description\cr\cr
 agency_cd \tab character \tab Agency code\cr
@@ -30,7 +31,8 @@ rpt_lev_cd \tab character \tab Reporting level type\cr
 lab_std_va \tab character \tab Lab standard deviation\cr
 anl_ent_cd \tab character \tab Analyzing agency code\cr
 } Note: all concentrations in the
-column result_va are in milligrams per liter as phosphorus.\cr}
+column result_va are in milligrams per liter as phosphorus.\cr
+}
 \source{
 Data retrieved from NWISWeb
 (\url{https://nwis.waterdata.usgs.gov/mn/nwis/qwdata}) on 2012-04-06. The

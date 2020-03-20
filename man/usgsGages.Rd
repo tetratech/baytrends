@@ -4,11 +4,13 @@
 \name{usgsGages}
 \alias{usgsGages}
 \title{USGS Gages}
-\format{A data frame with 9 rows and 2 variables:
+\format{
+A data frame with 9 rows and 2 variables:
 \describe{
    \item{usgsGageID}{USGS Gage ID}
    \item{siteName}{USGS Site Name}
-}}
+}
+}
 \usage{
 usgsGages
 }

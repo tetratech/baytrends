@@ -4,10 +4,19 @@
 \alias{gamTestSeason}
 \title{Perform GAM analysis for Specified Season}
 \usage{
-gamTestSeason(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
-  gamPlot = 10, gamDiffModel = c(2), flow.detrended = NA,
-  salinity.detrended = NA, gamSeasonPlot = c("7/1-9/30", "purple",
-  "range"))
+gamTestSeason(
+  df,
+  dep,
+  stat,
+  layer = NA,
+  analySpec,
+  gamTable = TRUE,
+  gamPlot = 10,
+  gamDiffModel = c(2),
+  flow.detrended = NA,
+  salinity.detrended = NA,
+  gamSeasonPlot = c("7/1-9/30", "purple", "range")
+)
 }
 \arguments{
 \item{df}{data frame}

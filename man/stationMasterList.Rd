@@ -4,7 +4,8 @@
 \name{stationMasterList}
 \alias{stationMasterList}
 \title{Chesapeake Bay Program long-term tidal monitoring stations}
-\format{A data frame with 145 rows and 19 variables:
+\format{
+A data frame with 145 rows and 19 variables:
 \describe{
    \item{station}{Water quality station code}
    \item{state}{State location}
@@ -38,7 +39,8 @@
    \item{salParms}{list of parameters to model with salinity (regardless of
    hydroTerm value), each parameter separated by a space}
    \item{notes}{Optional note to track updates}
-}}
+}
+}
 \usage{
 stationMasterList
 }

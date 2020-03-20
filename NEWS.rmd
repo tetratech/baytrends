@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+
+baytrends 1.1.0.9016
+===========
+* Release 2020-03-20
+* Rebuild package after merging with dev02 branch to ensure all documentation is copacetic.
+
 baytrends 1.1.0.9015
 ===========
 * Release 2020-03-09

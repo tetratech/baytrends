@@ -4,12 +4,14 @@
 \name{layerLukup}
 \alias{layerLukup}
 \title{Layer List}
-\format{A data frame with 10 rows and 3 variables:
+\format{
+A data frame with 10 rows and 3 variables:
 \describe{
    \item{layers}{Layer codes}
    \item{order}{Analysis order}
    \item{name}{Layer name}
-}}
+}
+}
 \usage{
 layerLukup
 }
