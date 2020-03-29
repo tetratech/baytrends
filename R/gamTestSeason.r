@@ -456,7 +456,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
             ect <- .ExpLNmCens(ct1, iSpec$depOrig, mu, sigma)
             ct2[, iSpec$dep] <- log(ect$l)
           } else {
-            ect <- baytrends:::.ExpNmCens (ct1, iSpec$depOrig, mu, sigma)
+            ect <- .ExpNmCens (ct1, iSpec$depOrig, mu, sigma)
             ct2[, iSpec$dep] <- ect$l
           }
           
