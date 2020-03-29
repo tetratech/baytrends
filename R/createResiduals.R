@@ -164,7 +164,7 @@ createResiduals <- function(df, dep
   } # end layer loop
 
   # rename field residuals
-  names(dep.res1) <- c("station","date","layer", paste0(dep,"_res.",model))
+  names(dep.res1) <- c("station","date","layer", paste0(dep,"_res.",residualModel))
   
   # merge residuals back to overall data frame ####  
   df <- merge(df,dep.res1, by=c("station","layer","date"), all.x=TRUE)
