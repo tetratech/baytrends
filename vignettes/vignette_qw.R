@@ -1,10 +1,10 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----Export, eval=FALSE--------------------------------------------------
+## ----Export, eval=FALSE-------------------------------------------------------
 #  library(baytrends)
 #  
 #  # load the included data frame, dataCensored, into the global environment
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 #  # run function
 #  qw.export(myDF, dir.save, fn.output)
 
-## ----RawDataFormat_SHOW, eval=FALSE--------------------------------------
+## ----RawDataFormat_SHOW, eval=FALSE-------------------------------------------
 #  df <- read.csv("data_censored_test.csv")
 #  head(df[,c(1:3,16:24)])
 
@@ -37,7 +37,7 @@ df <- read.csv(file.path(getwd(),"data", "data_censored_test.csv"))
 
 knitr::kable(head(df[,c(1:3,16:24)]))
 
-## ----Import, eval=FALSE--------------------------------------------------
+## ----Import, eval=FALSE-------------------------------------------------------
 #  library(baytrends)
 #  
 #  # Define function arguments
@@ -62,7 +62,7 @@ knitr::kable(head(df[,c(1:3,16:24)]))
 #  # save the data frame for future use
 #  save(dataCensored.test, file="data_censored_test.rda")
 
-## ----rbindData, eval=FALSE-----------------------------------------------
+## ----rbindData, eval=FALSE----------------------------------------------------
 #  library(baytrends)
 #  
 #  newDF <- rbindQW(dataCensored[1:20,], dataCensored[101:120,])

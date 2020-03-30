@@ -13,7 +13,7 @@ Description: Enable users to evaluate long-term trends using a Generalized
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
 Version: 1.2
-Date: 2020-03-29
+Date: 2020-03-30
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:
     R (>= 3.5.0),
