@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-03-30 13:48:35
+    #> Last Update: 2020-03-30 14:35:05
+
+# baytrends 1.2
+
+  - Release 2020-03-30
+  - Final version for resubmittal to CRAN.
 
 # baytrends 1.1.0.9020
 
@@ -512,80 +517,56 @@ NEWS
       - mergeFlow.R
       - baytrends\_LibraryCration.nb.html (left alone as will rebuild)
 
-# baytrends 1.0.2.9012, development branch
+# baytrends 1.0.2.9012
 
-  - Released - 2018-05-03
-  - branch of master based on v1.0.2 (release)
-  - Clean up from check for CRAN
-  - Note; NEWS.rmd. Add to git.ignore and .Rbuildignore
-  - Error; sensAdjflow2.R ‘figNum’. Add QC check to ensure is defined.
-  - Warning; undocumented dataset; added param and default to mergeFlow,
-    gamTest, gamPlotCalc, and gamDiff. Also added to data.R (was
-    missing).
-  - Note; Namespace, importFrom.
-      - importFrom(‘stats’, ‘BIC’, ‘StructTS’, ‘aggregate’, ‘approx’,
-        ‘cov2cor’, ‘dnorm’, ‘filter’, ‘fitted’, ‘hat’, ‘integrate’,
-        ‘logLik’, ‘lowess’, ‘lsfit’, ‘na.omit’, ‘na.pass’, ‘naresid’,
-        ‘pchisq’, ‘ppoints’, ‘qf’, ‘residuals’, ‘sd’, ‘tsSmooth’,
-        ‘update’, ‘var’)
-      - importFrom(‘utils’, ‘flush.console’, ‘getS3method’,
-        ‘modifyList’, ‘read.table’, ‘strOptions’, ‘write.table’)
-  - Added QC to define figNum.
-      - Copied from seasAdjflow2.R to detrended.flow.R and
-        detrended.salinity.R
-  - Add functions from swmwr packages:
-      - smwrBase; %cn%, group2row, isDateLike
-      - smwrQW; mcenKM, mcenMLE, mcenROS, mdlMLE, mdlROS, pcodeNWISqw
-      - smwrStats; rmse, vif
-  - Adding the above led to others that needed to be added:
-      - smwrGraphs; refLine, xyPlot
-      - smwrBase; importRDB
-  - Addition of xyPlot required more functions:
-      - smwrGraphs; setPlot, linearPretty, setPage, timePlot, colorPlot
-  - Remove cross references in ‘seealso’ for some of the imported smwr
-    functions.
-      - importRDB, isLike, linearPretty, refLinem, setPage, setplot,
-        timePlot, cn
-  - importFrom needed for 3 more packages in the newest smwr functions
-    that were added.
-      - importFrom(‘grDevices’, ‘Type1Font’, ‘dev.cur’, ‘extendrange’,
-        ‘gray’, ‘pdfFonts’, ‘rainbow’)
-      - importFrom(‘graphics’, ‘box’, ‘segments’, ‘strwidth’)
-      - importFrom(‘stats’, ‘cov.wt’, ‘dist’, ‘model.matrix’)
-  - Add more smwr package functions:
-      - Base; dectime, dectime2Date
-      - Graphs; datePretty, namePretty, numericData, setColor, setGD,
-        setMargin , setMultiPlot, timePretty
-  - Fix links in most recently added functions; comment out seealso.
-      - datePretty, dectime, namePretty, setColor, setMargin,
-        setMultiPlot
-  - Add importFrom; grDevices colors
-  - Add function from smwr packages;
-      - smwrGraphs; month.USGS, renderPretty, setExplan, transData,
-        linewt (framewt)
-  - Add importFrom for the newly added functions.
-      - importFrom(‘grDevices’, ‘col2rgb’, ‘rgb’)
-      - importFrom(‘graphics’, ‘axis’)
-  - Add function from smwr packages;
-      - smwrGraphs; addCaption
-  - Fix ‘assign’ to global environment in smwrGraphs\_setPage.R
-      - Line 180, comment out. Is setting to NULL as a precaution but
-        function isn’t used by baytrends.
-  - Data with ‘no visible bindig for global variable’ error.
-      - Add a line at the beginning of each affected function to
-        reference the data; baytrends::xyz.
-      - Peter Dalgaard’s proposed solution, 2014-Aug
-      - <http://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html>
-      - .chkParameter; parameterList
-      - analysisOrganizeData; parameterList, stationMasterList,
-        layerLukup
-      - selectData; stationMasterList, parameterList, layerLukup
-  - gamDiff, bad usage of stat. Undefined. Line 193.
-      - Change to iSpec$stat
-  - Remaining issues:
-      - .gamPlotCalc; salinity.detrended
-      - .mergeSalinity; salinity.detrended
-      - gamDiff; salinity.detrended
+development branch \* Released - 2018-05-03 \* branch of master based on
+v1.0.2 (release) \* Clean up from check for CRAN \* Note; NEWS.rmd. Add
+to git.ignore and .Rbuildignore \* Error; sensAdjflow2.R ‘figNum’. Add
+QC check to ensure is defined. \* Warning; undocumented dataset; added
+param and default to mergeFlow, gamTest, gamPlotCalc, and gamDiff. Also
+added to data.R (was missing). \* Note; Namespace, importFrom. +
+importFrom(‘stats’, ‘BIC’, ‘StructTS’, ‘aggregate’, ‘approx’, ‘cov2cor’,
+‘dnorm’, ‘filter’, ‘fitted’, ‘hat’, ‘integrate’, ‘logLik’, ‘lowess’,
+‘lsfit’, ‘na.omit’, ‘na.pass’, ‘naresid’, ‘pchisq’, ‘ppoints’, ‘qf’,
+‘residuals’, ‘sd’, ‘tsSmooth’, ‘update’, ‘var’) + importFrom(‘utils’,
+‘flush.console’, ‘getS3method’, ‘modifyList’, ‘read.table’,
+‘strOptions’, ‘write.table’) \* Added QC to define figNum.  
+\+ Copied from seasAdjflow2.R to detrended.flow.R and
+detrended.salinity.R \* Add functions from swmwr packages: + smwrBase;
+%cn%, group2row, isDateLike + smwrQW; mcenKM, mcenMLE, mcenROS, mdlMLE,
+mdlROS, pcodeNWISqw + smwrStats; rmse, vif \* Adding the above led to
+others that needed to be added: + smwrGraphs; refLine, xyPlot +
+smwrBase; importRDB \* Addition of xyPlot required more functions: +
+smwrGraphs; setPlot, linearPretty, setPage, timePlot, colorPlot \*
+Remove cross references in ‘seealso’ for some of the imported smwr
+functions. + importRDB, isLike, linearPretty, refLinem, setPage,
+setplot, timePlot, cn \* importFrom needed for 3 more packages in the
+newest smwr functions that were added. + importFrom(‘grDevices’,
+‘Type1Font’, ‘dev.cur’, ‘extendrange’, ‘gray’, ‘pdfFonts’, ‘rainbow’)
++ importFrom(‘graphics’, ‘box’, ‘segments’, ‘strwidth’) +
+importFrom(‘stats’, ‘cov.wt’, ‘dist’, ‘model.matrix’) \* Add more smwr
+package functions: + Base; dectime, dectime2Date + Graphs; datePretty,
+namePretty, numericData, setColor, setGD, setMargin , setMultiPlot,
+timePretty \* Fix links in most recently added functions; comment out
+seealso. + datePretty, dectime, namePretty, setColor, setMargin,
+setMultiPlot \* Add importFrom; grDevices colors \* Add function from
+smwr packages; + smwrGraphs; month.USGS, renderPretty, setExplan,
+transData, linewt (framewt) \* Add importFrom for the newly added
+functions. + importFrom(‘grDevices’, ‘col2rgb’, ‘rgb’) +
+importFrom(‘graphics’, ‘axis’) \* Add function from smwr packages; +
+smwrGraphs; addCaption \* Fix ‘assign’ to global environment in
+smwrGraphs\_setPage.R + Line 180, comment out. Is setting to NULL as a
+precaution but function isn’t used by baytrends. \* Data with ‘no
+visible bindig for global variable’ error. + Add a line at the beginning
+of each affected function to reference the data; baytrends::xyz. + Peter
+Dalgaard’s proposed solution, 2014-Aug +
+<http://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html>
++ .chkParameter; parameterList + analysisOrganizeData; parameterList,
+stationMasterList, layerLukup + selectData; stationMasterList,
+parameterList, layerLukup \* gamDiff, bad usage of stat. Undefined. Line
+193. + Change to iSpec$stat \* Remaining issues: + .gamPlotCalc;
+salinity.detrended + .mergeSalinity; salinity.detrended + gamDiff;
+salinity.detrended
 
 # baytrends 1.0.2.9011
 
@@ -601,8 +582,10 @@ NEWS
     conversion of qw data to vector
   - added error handling to trap mgcv::gam non-convergence errors
 
-\======= baytrends 1.0.3 =========== \* Released - 2018-05-03 \* Release
-version
+# baytrends 1.0.3
+
+  - Released - 2018-05-03
+  - Release version
 
 # baytrends 1.0.2.9013
 

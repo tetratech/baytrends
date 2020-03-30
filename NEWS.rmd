@@ -20,6 +20,11 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+baytrends 1.2
+===========
+* Release 2020-03-30
+* Final version for resubmittal to CRAN.
+
 baytrends 1.1.0.9020
 ===========
 * Release 2020-03-30

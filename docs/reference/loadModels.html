@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Load Built-in GAM formulas — loadModels" />
 <meta property="og:description" content="Returns built-in GAM formulas" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
       </span>
     </div>
 
@@ -99,10 +102,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/tetratech/baytrends">
+  <a href="https://github.com/tetratech/baytrends/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -144,15 +150,126 @@ gam1, gam2, gam3, gam4, gam5)</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Returns a list with GAM formulas</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p>By default, the function analysisOrganizeData will store the formulas for
+  gam0-gam4 in the variable analySpec$gamModels as a list. The user can
+  customize this list with the function loadModels (see example).</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># run analysisOrganizeData function to create the list analySpec</span>
+<span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='analysisOrganizeData.html'>analysisOrganizeData</a></span> (<span class='no'>dataCensored</span>, <span class='kw'>report</span><span class='kw'>=</span><span class='fl'>NA</span>)
+<span class='no'>df</span>        <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"df"</span>]]
+<span class='no'>analySpec</span> <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"analySpec"</span>]]
+
+<span class='co'># current models in analySpec</span>
+<span class='no'>analySpec</span>$<span class='no'>gamModels</span></div><div class='output co'>#&gt; [[1]]
+#&gt; [[1]]$option
+#&gt; [1] 0
+#&gt; 
+#&gt; [[1]]$name
+#&gt; [1] "Linear Trend with Seasonality"
+#&gt; 
+#&gt; [[1]]$model
+#&gt; [1] "~ cyear+ s(doy,bs='cc')"
+#&gt; 
+#&gt; [[1]]$deriv
+#&gt; [1] TRUE
+#&gt; 
+#&gt; [[1]]$gamK1
+#&gt; [1] NA NA
+#&gt; 
+#&gt; [[1]]$gamK2
+#&gt; [1] NA NA
+#&gt; 
+#&gt; 
+#&gt; [[2]]
+#&gt; [[2]]$option
+#&gt; [1] 1
+#&gt; 
+#&gt; [[2]]$name
+#&gt; [1] "Non-linear Trend with Seasonality"
+#&gt; 
+#&gt; [[2]]$model
+#&gt; [1] "~ cyear + s(cyear, k=gamK1) + s(doy,bs='cc')"
+#&gt; 
+#&gt; [[2]]$deriv
+#&gt; [1] TRUE
+#&gt; 
+#&gt; [[2]]$gamK1
+#&gt; [1] 10.0000000  0.6666667
+#&gt; 
+#&gt; [[2]]$gamK2
+#&gt; [1] NA NA
+#&gt; 
+#&gt; 
+#&gt; [[3]]
+#&gt; [[3]]$option
+#&gt; [1] 2
+#&gt; 
+#&gt; [[3]]$name
+#&gt; [1] "Non-linear trend with Seas+Int"
+#&gt; 
+#&gt; [[3]]$model
+#&gt; [1] "~ cyear + s(cyear, k=gamK1) + s(doy,bs='cc') + ti(cyear,doy,bs=c('tp','cc'))"
+#&gt; 
+#&gt; [[3]]$deriv
+#&gt; [1] TRUE
+#&gt; 
+#&gt; [[3]]$gamK1
+#&gt; [1] 10.0000000  0.6666667
+#&gt; 
+#&gt; [[3]]$gamK2
+#&gt; [1] NA NA
+#&gt; 
+#&gt; 
+#&gt; [[4]]
+#&gt; [[4]]$option
+#&gt; [1] 3
+#&gt; 
+#&gt; [[4]]$name
+#&gt; [1] "Non-linear trend with Seas+Int. &amp; Intervention"
+#&gt; 
+#&gt; [[4]]$model
+#&gt; [1] "~ intervention + cyear + s(cyear, k=gamK1) + s(doy,bs='cc') + ti(cyear,doy,bs=c('tp','cc'))"
+#&gt; 
+#&gt; [[4]]$deriv
+#&gt; [1] TRUE
+#&gt; 
+#&gt; [[4]]$gamK1
+#&gt; [1] 10.0000000  0.6666667
+#&gt; 
+#&gt; [[4]]$gamK2
+#&gt; [1] NA NA
+#&gt; 
+#&gt; 
+#&gt; [[5]]
+#&gt; [[5]]$option
+#&gt; [1] 4
+#&gt; 
+#&gt; [[5]]$name
+#&gt; [1] "Non-linear trend with Seas+Int. &amp; Hydro Adj"
+#&gt; 
+#&gt; [[5]]$model
+#&gt; [1] "~ cyear + s(cyear, k=gamK1) + s(doy,bs='cc') + ti(cyear,doy,bs=c('tp','cc')) + s(flw_sal,k=gamK2) + ti(flw_sal,doy,bs=c('tp','cc')) + ti(flw_sal, cyear,bs=c('tp' ,'tp')) + ti(flw_sal,doy,cyear, bs=c('tp','cc','tp'))"
+#&gt; 
+#&gt; [[5]]$deriv
+#&gt; [1] TRUE
+#&gt; 
+#&gt; [[5]]$gamK1
+#&gt; [1] 10.0000000  0.3333333
+#&gt; 
+#&gt; [[5]]$gamK2
+#&gt; [1] 10.0000000  0.6666667
+#&gt; 
+#&gt; </div><div class='input'>
+<span class='co'># set models in analySpec to gam0, gam1, and gam2 only</span>
+<span class='no'>analySpec</span>$<span class='no'>gamModels</span> <span class='kw'>&lt;-</span> <span class='fu'>loadModels</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'gam0'</span>,<span class='st'>'gam1'</span>,<span class='st'>'gam2'</span>))</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -163,7 +280,7 @@ gam1, gam2, gam3, gam4, gam5)</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

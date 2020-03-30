@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vignette, QW • baytrends</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Vignette, QW">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="baytrends">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
       </span>
     </div>
 
@@ -61,10 +61,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/tetratech/baytrends">
+  <a href="https://github.com/tetratech/baytrends/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -82,12 +85,12 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Vignette, QW</h1>
+      <h1 data-toc-skip>Vignette, QW</h1>
                         <h4 class="author">
-<a href="mailto:Erik.Leppo@tetratech.com">Erik.Leppo@tetratech.com</a> and <a href="mailto:Jon.Harcum@tetratech.com">Jon.Harcum@tetratech.com</a>
+<a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a> and <a href="mailto:Jon.Harcum@tetratech.com" class="email">Jon.Harcum@tetratech.com</a>
 </h4>
             
-            <h4 class="date">2020-03-09</h4>
+            <h4 class="date">2020-03-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tetratech/baytrends/blob/master/vignettes/vignette_qw.Rmd"><code>vignettes/vignette_qw.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_qw.Rmd</code></div>
@@ -113,23 +116,12 @@
 <h1 class="hasAnchor">
 <a href="#export" class="anchor"></a>Export</h1>
 <p><strong>Use the function <em>qw.export</em> to export “qw” formatted data.</strong> The sample data set, <code>dataCensored</code>, included with <code>baytrends</code>, is used for demonstration.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)
+<div class="sourceCode" id="cb1"><html><body><pre class="r">library(baytrends)
 
-<span class="co"># load the included data frame, dataCensored, into the global environment</span>
-<span class="co"># dataCensored is a sample data set that includes qw formatted data and</span>
-<span class="co"># is included with baytrends.</span>
-myDF &lt;-<span class="st"> </span>dataCensored
-
-<span class="co"># identify the current working directory as the location to save </span>
-<span class="co"># the outputted data set</span>
-dir.save &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>()
-
-<span class="co"># identify the name of the comma delimited (csv) file for the </span>
-<span class="co"># outputted data set </span>
-fn.output &lt;-<span class="st"> "data_censored_test.csv"</span> 
-
-<span class="co"># run function</span>
-<span class="kw"><a href="../reference/qw.export.html">qw.export</a></span>(myDF, dir.save, fn.output)</code></pre></div>
+# load the included data frame, dataCensored, into the global environment
+# dataCensored is a sample data set that includes qw formatted data and
+# is included with baytrends.
+myDF </pre></body></html></div>
 <p>The above code chunk will output the raw data to a comma delimited (csv) file named <code>data_censored_test.csv</code>. For non-qw variables (such as station, date, and layer in this example), the column names in the csv file are the same as the data frame. For qw-formatted variables, the columns of the data file are in the format of X_Y.</p>
 <ul>
 <li>X = column name<br>
@@ -138,8 +130,7 @@ fn.output &lt;-<span class="st"> "data_censored_test.csv"</span>
 </ul>
 <p>In the context of water quality data, left-censored observations such as “&lt;0.1” would have a lo value of 0 and a hi value of 0.1. Interval-censored observations would have a non-zero lo value. The value of symbol would be “&lt;” and “i”, respectively for left- and interval-censored observations. Uncensored observations would have lo and hi values equal to each other.</p>
 <p>Selected columns from the first few records of the above example are shown below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(<span class="st">"data_censored_test.csv"</span>)
-<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(df[,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">16</span><span class="op">:</span><span class="dv">24</span>)])</code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r">df </pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">station</th>
@@ -249,42 +240,18 @@ fn.output &lt;-<span class="st"> "data_censored_test.csv"</span>
 <p><strong>Use the function <em>qw.import</em> to import “qw” formatted data.</strong> The above exported file, <code>data_censored_test.csv</code>, is used for demonstration.</p>
 <p>To create a data frame that includes qw objects, the data needs to be in the format that was generated by qw.export. That is, one file with each qw parameter having three columns (x_lo, x_hi, and x_symbol where x is the name of the parameter). The list of parameter codes that will be as column names of the qw-formatted variables are specifed in the argument <code>qw.names</code>.</p>
 <p>The output of the <code>qw.import</code> function must be directed to a variable. Any modification of column classes (e.g., POSIXct, numeric, or integer) will need to be performed by the user. The function str() is useful for examing the structure of the data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)
+<div class="sourceCode" id="cb3"><html><body><pre class="r">library(baytrends)
 
-<span class="co"># Define function arguments</span>
-fn.import &lt;-<span class="st"> "data_censored_test.csv"</span>
-qw.names &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"secchi"</span> ,  <span class="st">"salinity"</span>, <span class="st">"do"</span>  ,     <span class="st">"wtemp"</span>  ,  <span class="st">"chla"</span>
-              ,<span class="st">"tn"</span>     ,  <span class="st">"tp"</span>    ,   <span class="st">"tss"</span> ,     <span class="st">"din"</span>  ,    <span class="st">"po4"</span>      
-              ,<span class="st">"tdn"</span>     , <span class="st">"tdp"</span>  ,    <span class="st">"nh4"</span>  ,    <span class="st">"no23"</span>)
-
-<span class="co"># fun function </span>
-dataCensored.test&lt;-<span class="st"> </span><span class="kw"><a href="../reference/qw.import.html">qw.import</a></span>(fn.import, qw.names)
-
-<span class="co"># Check for qw class</span>
-<span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dataCensored.test)
-
-<span class="co"># convert date field to POSIXct  </span>
-dataCensored.test[,<span class="st">"date"</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(dataCensored.test[,<span class="st">"date"</span>])
-
-<span class="co"># recheck structure (other columns can be converted using</span>
-<span class="co"># as.numeric() and as.integer() if desired)</span>
-<span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dataCensored.test) 
-
-<span class="co"># save the data frame for future use</span>
-<span class="kw"><a href="https://rdrr.io/r/base/save.html">save</a></span>(dataCensored.test, <span class="dt">file=</span><span class="st">"data_censored_test.rda"</span>)</code></pre></div>
+# Define function arguments
+fn.import </pre></body></html></div>
 </div>
 <div id="combining-qw-data-frames" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-qw-data-frames" class="anchor"></a>Combining QW Data Frames</h1>
 <p><strong>Use the function <em>rbindQW</em> to combine two data frames with “qw” formatted data.</strong> The below code chunk demonstrates combining the data from two data frames.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(baytrends)
+<div class="sourceCode" id="cb4"><html><body><pre class="r">library(baytrends)
 
-newDF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rbindQW.html">rbindQW</a></span>(dataCensored[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,], dataCensored[<span class="dv">101</span><span class="op">:</span><span class="dv">120</span>,])
-<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(newDF)
-
-<span class="co"># Note, that it would have been equivalent and more efficient to</span>
-<span class="co"># use the below line of code to extract rows 1-20 and 101-120</span>
-newDF &lt;-<span class="st"> </span>dataCensored[<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,<span class="dv">101</span><span class="op">:</span><span class="dv">120</span>),]</code></pre></div>
+newDF </pre></body></html></div>
 <div id="additional-notes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#additional-notes" class="anchor"></a>Additional Notes</h3>
@@ -293,20 +260,11 @@ newDF &lt;-<span class="st"> </span>dataCensored[<span class="kw"><a href="https
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#purpose">Purpose</a></li>
-      <li><a href="#background">Background</a></li>
-      <li><a href="#export">Export</a></li>
-      <li><a href="#import">Import</a></li>
-      <li><a href="#combining-qw-data-frames">Combining QW Data Frames</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -317,7 +275,7 @@ newDF &lt;-<span class="st"> </span>dataCensored[<span class="kw"><a href="https
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

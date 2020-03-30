@@ -148,6 +148,12 @@ library(pkgdown)
 pkgdown::build_site()
 ```
 
+Downstream dependancies
+
+```{r DownstreamDependencies}
+# Downstream dependencies
+devtools::revdep("baytrends")
+```
 
 
 ## Check

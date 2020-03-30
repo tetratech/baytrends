@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -36,10 +40,10 @@
 
 
 <meta property="og:title" content="Analysis Organization &amp; Data Preparation — analysisOrganizeData" />
-<meta property="og:description" content="This function assesses the user supplied specifications and prepares data for
-analysis. In those cases where the user doesn't supply a needed
-specification, a basic option is supplied by this function." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:description" content="This function assesses the user supplied specifications in the argument,
+analySpec, and prepares the data (argument df) for analysis. In those cases
+where the user doesn't supply a needed specification, a basic option is
+supplied by this function." />
 
 
 
@@ -57,7 +61,7 @@ specification, a basic option is supplied by this function." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +75,7 @@ specification, a basic option is supplied by this function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
       </span>
     </div>
 
@@ -101,10 +105,13 @@ specification, a basic option is supplied by this function." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/tetratech/baytrends">
+  <a href="https://github.com/tetratech/baytrends/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -128,15 +135,16 @@ specification, a basic option is supplied by this function." />
     </div>
 
     <div class="ref-description">
-    <p>This function assesses the user supplied specifications and prepares data for
-analysis. In those cases where the user doesn't supply a needed
-specification, a basic option is supplied by this function.</p>
+    <p>This function assesses the user supplied specifications in the argument,
+analySpec, and prepares the data (argument df) for analysis. In those cases
+where the user doesn't supply a needed specification, a basic option is
+supplied by this function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>analysisOrganizeData</span>(
   <span class='no'>df</span>,
   <span class='kw'>analySpec</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>reports</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>reports</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>),
   <span class='kw'>parameterList</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>stationMasterList</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>layerLukup</span> <span class='kw'>=</span> <span class='fl'>NA</span>
@@ -160,15 +168,17 @@ specification, a basic option is supplied by this function.</p>
     </tr>
     <tr>
       <th>parameterList</th>
-      <td><p>User-supplied parameter list [default = NA]</p></td>
+      <td><p>User-supplied dataframe with list of parameters [default
+= NA]</p></td>
     </tr>
     <tr>
       <th>stationMasterList</th>
-      <td><p>User-supplied station list [default = NA]</p></td>
+      <td><p>User-supplied dataframe with list of stations
+[default = NA]</p></td>
     </tr>
     <tr>
       <th>layerLukup</th>
-      <td><p>User-supplied layer lookup list [default = NA]</p></td>
+      <td><p>User-supplied dataframe with list of layers [default = NA]</p></td>
     </tr>
     </table>
 
@@ -183,22 +193,39 @@ specification, a basic option is supplied by this function.</p>
 <p>dateFilt         - Date filter for data down selection</p>
 <p>setTZ            - time zone (default = "America/New_York")</p>
 <p>layerFilt        - Layer filter</p>
-<p>layerAggOption   - Layer averaging option (default = 0)</p>
+<p>layerAggOption   - Layer averaging option (default = 0). Other options are:
+  1: combine "S" &amp; "AP" ("SAP"); 2: combine "B" &amp; "BP" ("BBP"); 3: opt 1 &amp; 2
+  ("SAP", "BBP"); 4: combine all ("ALL")); 5: combine "S" and "B" ("SB")</p>
 <p>obsMin           - Minimum number of observations required to allow GAM
   analysis to proceed for a specific station, parameter, and layer
-  combination (default = 60).</p>
+  combination (default = 60).</p>  
+<p>obsMinInter      - Minimum number of observations required to allow GAM
+  analysis to proceed for a specific intervention (default = 10).</p>
 <p>gamAlpha         - Alpha level used GAM analyses (default = 0.05).</p>
 <p>censorTrim       - Values to apply for trimming data due to too much
-  censoring (default = c(0.5, 0.4)).</p>
-<p>gamModels        - model formulations</p>
+  censoring (default = c(0.5, 0.4)). First argument indicates fraction of
+  observations in a year that are allowed to be censored. Second argument is
+  the fraction of years, starting from the beginning of the record, that are
+  allowed to be "flagged" for too much censoring. A minimum of two years must
+  have too much censoring before data are removed. The default settings can
+  be read as no more than 40 percent of the beginning years of data are
+  allowed to have more than 50 percent censoring before the beginning portion
+  of the record is trimmed. For example, years 1 and 3 of data have more than
+  50 percent censoring then the first three years of data are trimmed.
+  Similarly, for years 1 and 4, then the first four years are removed. If
+  years 1 and 5 have more than 50 percent censoring the data are kept since
+  2/5 is not greater than 0.4.</p>
+<p>gamModels        - model formulations. See baytrends::loadModels() for 
+  simplified approach for selecting which built-in models to include</p>  
+<p>showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)</p>
 <p>gamDiffPeriods   - list of time periods (years) used for computing changes
   (differences). The default options are: full record, 1999/00-present, and
   2005/06-present.</p>
-<p>gamDiffSeasons   - list of seasons used for sub-annual analyses. The default
-  options include the following: All (months 1:12), Spring1 (3:5), Spring2
-  (months: 4:6)), Summer1 (months: 6:9)), Summer2 (months: 7:9)), SAV1
-  (months: 4:10)), SAV2 (months: 3:5,9:11)), Winter (months: 1:2)), and Fall
-  (months: 10:12))).</p>
+<p>gamDiffSeasons   - list List of seasons used for sub-annual analyses of
+  computing differences. The default options include the following: All
+  (months 1:12), Spring1 (3:5), Spring2 (months: 4:6)), Summer1 (months:
+  6:9)), Summer2 (months: 7:9)), SAV1 (months: 4:10)), SAV2 (months:
+  3:5,9:11)), Winter (months: 1:2)), and Fall (months: 10:12))).</p>
 <p>gamPenalty       - allow the user to set the mgcv::gam select argument to
   TRUE, FALSE, or baytrend algorithm default (default = NA). When the default
   option is specified, then the mgcv::gam select argument is set to FALSE
@@ -240,11 +267,12 @@ specification, a basic option is supplied by this function.</p>
  with baytrends.</p>
 <p>The following steps are performed by analysisOrganizeData:</p>
 <p>1) Review user supplied specifications through the analySpec argument. Fill
- in with default values. For example, if the user doesn't specify a list of
- stations, then all stations identified in the data set stationMasterList are
- used. Some other default values include the following: date range
- (1/1/1984-present), parameter list (all parameters in data set
- parameterList), layers (all layers in data set layerLukup), layer
+ in with default values. For example, if the user doesn't specify a dataframe
+ with a list of stations, parameters, or layers, then the built-in data
+ frames, baytrends::stationMasterList, baytrends::parameterList, and
+ baytrends::layerLukup are used. Some other default values include the
+ following: date range (1/1/1984-present), parameter list (all parameters in
+ data set parameterList), layers (all layers in data set layerLukup), layer
  aggregation option (0, no aggregation), minimum number of observations to
  perform a GAM analysis (60), GAM formulas (Linear Trend with Seasonality,
  Non-linear Trend with Seasonality, and Non-linear trend with Seasonality
@@ -276,6 +304,10 @@ specification, a basic option is supplied by this function.</p>
     <pre class="examples"><div class='input'><span class='co'># run analysis relying on default specifications, examine analySpec for</span>
 <span class='co'># default options</span>
 <span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'>analysisOrganizeData</span>(<span class='no'>dataCensored</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
 #&gt; ### Record Count
 #&gt; 
 #&gt; 
@@ -336,6 +368,25 @@ specification, a basic option is supplied by this function.</p>
 #&gt; BP        Below Pycnocline
 #&gt; B         Bottom          
 #&gt; 
+#&gt; ### Models
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: List of Models.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Option  Model                                         
+#&gt; ------  ----------------------------------------------
+#&gt;      0  Linear Trend with Seasonality                 
+#&gt;      1  Non-linear Trend with Seasonality             
+#&gt;      2  Non-linear trend with Seas+Int                
+#&gt;      3  Non-linear trend with Seas+Int. &amp; Intervention
+#&gt;      4  Non-linear trend with Seas+Int. &amp; Hydro Adj   
+#&gt; 
 #&gt; ## 
 #&gt; 
 #&gt; ### Stations
@@ -367,6 +418,10 @@ specification, a basic option is supplied by this function.</p>
 <span class='no'>analySpec</span>$<span class='no'>layerFilt</span>     <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'B'</span>)
 <span class='no'>analySpec</span>$<span class='no'>stationFilt</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'CB3.3C'</span>, <span class='st'>'CB5.4'</span>)
 <span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'>analysisOrganizeData</span>(<span class='no'>dataCensored</span>, <span class='no'>analySpec</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
 #&gt; ### Record Count
 #&gt; 
 #&gt; 
@@ -411,6 +466,25 @@ specification, a basic option is supplied by this function.</p>
 #&gt; --------  ----------
 #&gt; B         Bottom    
 #&gt; 
+#&gt; ### Models
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: List of Models.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Option  Model                                         
+#&gt; ------  ----------------------------------------------
+#&gt;      0  Linear Trend with Seasonality                 
+#&gt;      1  Non-linear Trend with Seasonality             
+#&gt;      2  Non-linear trend with Seas+Int                
+#&gt;      3  Non-linear trend with Seas+Int. &amp; Intervention
+#&gt;      4  Non-linear trend with Seas+Int. &amp; Hydro Adj   
+#&gt; 
 #&gt; ## 
 #&gt; 
 #&gt; ### Stations
@@ -430,15 +504,10 @@ specification, a basic option is supplied by this function.</p>
 #&gt; CB5.4        37.8001   -76.1747  CB5MH_VA    01578310        VA-All    </div><div class='input'><span class='no'>df</span>        <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"df"</span>]]
 <span class='no'>analySpec</span> <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"analySpec"</span>]]</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -449,7 +518,7 @@ specification, a basic option is supplied by this function.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

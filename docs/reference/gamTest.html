@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,7 +43,6 @@
 <meta property="og:description" content="Perform GAM analysis. Relies on mgcv::gam to perform general additive model.
 gam
 The baseDay function has been added to this package from the smwrBase package." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -57,7 +60,7 @@ The baseDay function has been added to this package from the smwrBase package." 
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +74,7 @@ The baseDay function has been added to this package from the smwrBase package." 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
       </span>
     </div>
 
@@ -101,10 +104,13 @@ The baseDay function has been added to this package from the smwrBase package." 
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/tetratech/baytrends">
+  <a href="https://github.com/tetratech/baytrends/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -163,7 +169,7 @@ The baseDay function has been added to this package from the smwrBase package.</
     </tr>
     <tr>
       <th>layer</th>
-      <td><p>layer (optional)</p></td>
+      <td><p>layer</p></td>
     </tr>
     <tr>
       <th>analySpec</th>
@@ -193,16 +199,93 @@ The baseDay function has been added to this package from the smwrBase package.</
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns a list with results</p>
+    <p>Returns a list with results</p><ul>
+<li><p><strong>stat.gam.result --</strong> Data frame with summary results in a tabular format suitable for output to a csv file</p></li>
+<li><p><strong>chng.gam.result --</strong> Data frame with estimate of change for sub-annual differences based on the 
+settings specified in <code>gamDiffModel</code>. Includes all data from stat.gam.result and sub-annual estimates of change
+in a tabular format suitable for output to a csv file.</p></li>
+<li><p><strong>data --</strong> Data frame of data used in analysis (for example years with large proportion of censored data might be removed from the analysis and not included in this data frame)</p></li>
+<li><p><strong>data.all --</strong> Data frame of all potential data available for analysis</p></li>
+<li><p><strong>iSpec --</strong> List of baytrends analysis settings used for a specific analysis of station and parameter</p></li>
+<li><p><strong>gamOutput0 --</strong>	Results including model predictions for gam formula 0 (i.e., gam0)</p></li>
+<li><p><strong>gamOutput1 --</strong>	Results including model predictions for gam formula 1 (i.e., gam1)</p></li>
+<li><p><strong>gamOutput2 --</strong>	Results including model predictions for gam formula 2 (i.e., gam2)</p></li>
+<li><p><strong>gamOutput3 --</strong>	Results including model predictions for gam formula 3 (i.e., gam3)</p></li>
+<li><p><strong>gamOutput4 --</strong>	Results including model predictions for gam formula 4 (i.e., gam4)</p></li>
+<li><p><strong>gamOutput5 --</strong>	Results including model predictions for gam formula 5 (i.e., gam5)</p></li>
+<li><p><strong>gamOutput6 --</strong>	Results including model predictions for gam formula 6 (i.e., gam6)</p></li>
+</ul>
+
+<p><strong>gamOutput* --</strong> For each evaluated model, <code>gamOutput*</code> (see above
+element list) is a list with the following elements:</p>
+<ul>
+<li><p><strong>gamOption --</strong> gam formula ID, i.e., 0, 1, 2, 3, 4 , 5, 6 corresponding to gam0, gam1, gam2, etc.</p></li>
+<li><p><strong>gamRslt --</strong> mgcv::gam output</p></li>
+<li><p><strong>gamRsltSum --</strong> "summary" of mgcv::gam, i.e., summary(mgcv::gam)</p></li>
+<li><p><strong>gamANOVAtbl --</strong> GAM Analysis of Variance table</p></li>
+<li><p><strong>gamCoefftbl --</strong> GAM Parameter Coefficients table</p></li>
+<li><p><strong>gamDiagnostics --</strong> GAM Diagnostics table(AIC, RMSE, and Adj. R-squared)</p></li>
+<li><p><strong>perChange --</strong> Estimates of Change table</p></li>
+<li><p><strong>porDiff.regular --</strong> Estimate of change in list format</p></li>
+<li><p><strong>porDiff.adjusted --</strong> Estimate of change adjusted for interventions in list format</p></li>
+<li><p><strong>predictions --</strong> Data frame of gam predictions (all information used to create baytrends graphics excluding measurements)</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Set <code>gamPlot=FALSE</code> to turn off plotting. Computing the information
+("predictions") to create plots is one of the more time consumings aspects of
+the <code>gamTest</code> function. Setting <code>gamPlot=FALSE</code> turns off these
+computations and speeds up <code>gamTest</code>. The disadvantage is that no
+predictions are returned; however, the tabularized results stored in
+<code>stat.gam.result</code> and, if requested, <code>chng.gam.result</code> are still
+returned.</p>
+<p>Setting <code>gamPlot</code> to a value between 1-30 changes the resolution of the
+resulting figure by setting the interval on which the prediction data set is
+made. By default <code>gamPlot</code> is set to 10. That is, a prediction is made
+every 10th day, or about 36 predictions per year. Values closer to 1 result
+in larger returned prediction data sets and take more computation time.
+Values closer to 30 result in smaller returned data sets and take less
+computation time. Although there is no change in the fitted model, values
+closer to 30 may have slight degraded figure quality if there is subtantial
+seasonality in the fitted model since the seasonal minimum and maximum might
+not be included in the prediction data set and therefore not plotted. Values
+greater than 30 are treated as 30. Setting <code>gamPlot=30</code> might be
+advantangeous when the analysis only requires cursory figure examination.</p>
+<p>Setting <code>gamTable=FALSE</code> will turn off table output to the console. This
+may be advantageous to reduce the amount of output. Since these computations
+do not significantly affect <code>gamTest</code> run time, the standard Analysis of
+Variance, GAM Parameter Coefficients, Diagnostics, and Estimates of Change
+tables are returned from <code>gamTest</code> regardless of the <code>gamTable</code>
+setting. Many of the values from these tables are also returned as part of 
+tabularized <code>stat.gam.result</code>.</p>
+<p>The default settings for <code>gamDiffModel</code> (i.e., <code>gamDiffModel=NA</code>)
+will not result in sub-annual (i.e., seasonal) differences being computed. In
+this default setting, the returned <code>chng.gam.result</code> that is returned
+from <code>gamTest</code> will be empty. If <code>gamDiffModel</code> is a value (i.e.,
+not <code>NA</code>), then <code>chng.gam.result</code> will include one row for each
+combination of years specified in <code>analySpec$gamDiffPeriods</code>, seasons
+specified in <code>analySpec$gamDiffSeason</code>, and the number of models listed
+in <code>gamDiffModel</code>. For example <code>gamDiffModel=c(0,1,2)</code> would
+result in sub-annual being computed for gam0, gam1, and gam2.</p>
+<p><strong>Flow and Salinity Adjustments (gam4).</strong> It is necessary to create and
+pass properly formatted data via the <code>flow.detrended</code> and
+<code>salinity.detrended</code> arguments to evaluate gam4 models. See
+<code><a href='detrended.flow.html'>detrended.flow</a></code> and <code><a href='detrended.salinity.html'>detrended.salinity</a></code> for more
+information on how to create properly formatted data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># specify parameter and station to analyze</span>
-<span class='no'>dep</span>        <span class='kw'>&lt;-</span> <span class='st'>'secchi'</span>
+    <pre class="examples"><div class='input'><span class='co'># Specify parameter and station to analyze</span>
+<span class='no'>dep</span>        <span class='kw'>&lt;-</span> <span class='st'>'do'</span>
 <span class='no'>stat</span>       <span class='kw'>&lt;-</span> <span class='st'>'CB5.4'</span>
-<span class='no'>layer</span>      <span class='kw'>&lt;-</span> <span class='st'>'S'</span>
+<span class='no'>layer</span>      <span class='kw'>&lt;-</span> <span class='st'>'B'</span>
 
-<span class='co'>#Using gamTest</span>
+<span class='co'># Prepare data and set up specifications for analysis</span>
 <span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='analysisOrganizeData.html'>analysisOrganizeData</a></span> (<span class='no'>dataCensored</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
 #&gt; ### Record Count
 #&gt; 
 #&gt; 
@@ -263,6 +346,25 @@ The baseDay function has been added to this package from the smwrBase package.</
 #&gt; BP        Below Pycnocline
 #&gt; B         Bottom          
 #&gt; 
+#&gt; ### Models
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: List of Models.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; Option  Model                                         
+#&gt; ------  ----------------------------------------------
+#&gt;      0  Linear Trend with Seasonality                 
+#&gt;      1  Non-linear Trend with Seasonality             
+#&gt;      2  Non-linear trend with Seas+Int                
+#&gt;      3  Non-linear trend with Seas+Int. &amp; Intervention
+#&gt;      4  Non-linear trend with Seas+Int. &amp; Hydro Adj   
+#&gt; 
 #&gt; ## 
 #&gt; 
 #&gt; ### Stations
@@ -287,201 +389,398 @@ The baseDay function has been added to this package from the smwrBase package.</
 #&gt; TF2.2        38.6907   -77.1111  POTTF_MD    01646500        MD-Potomac
 #&gt; LE2.2        38.1576   -76.5980  POTMH_MD    01646500        MD-Potomac</div><div class='input'><span class='no'>df</span>        <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='fl'>1</span>]]
 <span class='no'>analySpec</span> <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='fl'>2</span>]]
-<span class='no'>gamResult</span> <span class='kw'>&lt;-</span> <span class='fu'>gamTest</span>(<span class='no'>df</span>, <span class='no'>dep</span>, <span class='no'>stat</span>, <span class='no'>layer</span>, <span class='kw'>analySpec</span><span class='kw'>=</span><span class='no'>analySpec</span>)</div><div class='output co'>#&gt; 
-#&gt; #### Secchi Depth - Linear Trend with Seasonality</div><div class='img'><img src='gamTest-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Analysis of Variance.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Type             | Source|  edf|  F-stat| p-value|
-#&gt; |:----------------|------:|----:|-------:|-------:|
-#&gt; |parametric terms |  cyear| 1.00| 30.4598| &lt;0.0001|
-#&gt; |smoothed terms   | s(doy)| 3.24|  6.3729| &lt;0.0001|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Parameter Coefficients.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Parameter   |  Estimate| Std. Err.| t value| p-value|
-#&gt; |:-----------|---------:|---------:|-------:|-------:|
-#&gt; |(Intercept) |  1.889172|  0.025831| 73.1362| &lt;0.0001|
-#&gt; |cyear       | -0.014872|  0.002695| -5.5190| &lt;0.0001|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Diagnostics.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |    AIC|   RMSE| Adj. R-squared|
-#&gt; |------:|------:|--------------:|
-#&gt; | 744.93| 0.5462|         0.1538|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: Estimates of Change from 1985-2016.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Calculation                                  |      Estimate       |
-#&gt; |:--------------------------------------------|:-------------------:|
-#&gt; |Baseline mean                                |       2.1679        |
-#&gt; |Current mean                                 |       1.7217        |
-#&gt; |Estimated difference                         |       -0.4462       |
-#&gt; |Std. Err. difference                         |       0.0808        |
-#&gt; |95% Confidence interval for difference       | (-0.6046 , -0.2877) |
-#&gt; |Difference p-value                           |       &lt;0.0001       |
-#&gt; |Period of Record Percent Change Estimate (%) |       -20.58%       |
-#&gt; 
-#&gt; #### Secchi Depth - Non-linear Trend with Seasonality</div><div class='img'><img src='gamTest-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Analysis of Variance.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Type             |   Source|   edf| F-stat| p-value|
-#&gt; |:----------------|--------:|-----:|------:|-------:|
-#&gt; |parametric terms |    cyear|  1.00| 0.7937|  0.3735|
-#&gt; |smoothed terms   | s(cyear)| 18.62| 3.9457| &lt;0.0001|
-#&gt; |"      "         |   s(doy)|  3.32| 8.2502| &lt;0.0001|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Parameter Coefficients.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Parameter   |  Estimate| Std. Err.| t value| p-value|
-#&gt; |:-----------|---------:|---------:|-------:|-------:|
-#&gt; |(Intercept) |  1.739485|  0.187651|  9.2698| &lt;0.0001|
-#&gt; |cyear       | -0.152913|  0.171637| -0.8909|  0.3735|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Diagnostics.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |    AIC|   RMSE| Adj. R-squared|
-#&gt; |------:|------:|--------------:|
-#&gt; | 700.14| 0.5096|         0.2635|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: Estimates of Change from 1985-2016.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Calculation                                  |      Estimate       |
-#&gt; |:--------------------------------------------|:-------------------:|
-#&gt; |Baseline mean                                |       2.3224        |
-#&gt; |Current mean                                 |       1.9368        |
-#&gt; |Estimated difference                         |       -0.3856       |
-#&gt; |Std. Err. difference                         |       0.1225        |
-#&gt; |95% Confidence interval for difference       | (-0.6257 , -0.1455) |
-#&gt; |Difference p-value                           |       0.0018        |
-#&gt; |Period of Record Percent Change Estimate (%) |       -16.6%        |
-#&gt; 
-#&gt; #### Secchi Depth - Non-linear trend with Seas+Int</div><div class='img'><img src='gamTest-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Analysis of Variance.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Type             |        Source|   edf| F-stat| p-value|
-#&gt; |:----------------|-------------:|-----:|------:|-------:|
-#&gt; |parametric terms |         cyear|  1.00| 0.8417|  0.3594|
-#&gt; |smoothed terms   |      s(cyear)| 18.60| 3.9401| &lt;0.0001|
-#&gt; |"      "         |        s(doy)|  3.30| 8.2531| &lt;0.0001|
-#&gt; |"      "         | ti(cyear,doy)|  1.66| 0.2913|  0.0814|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Parameter Coefficients.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Parameter   |  Estimate| Std. Err.| t value| p-value|
-#&gt; |:-----------|---------:|---------:|-------:|-------:|
-#&gt; |(Intercept) |  1.733402|  0.187507|  9.2445| &lt;0.0001|
-#&gt; |cyear       | -0.157346|  0.171509| -0.9174|  0.3594|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: GAM Diagnostics.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |    AIC|   RMSE| Adj. R-squared|
-#&gt; |------:|------:|--------------:|
-#&gt; | 698.04| 0.5076|         0.2693|
-#&gt; 
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; *Table: Estimates of Change from 1985-2016.*
-#&gt; 
-#&gt;  
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |Calculation                                  |      Estimate       |
-#&gt; |:--------------------------------------------|:-------------------:|
-#&gt; |Baseline mean                                |       2.3199        |
-#&gt; |Current mean                                 |       1.9361        |
-#&gt; |Estimated difference                         |       -0.3838       |
-#&gt; |Std. Err. difference                         |       0.1222        |
-#&gt; |95% Confidence interval for difference       | (-0.6233 , -0.1442) |
-#&gt; |Difference p-value                           |       0.0018        |
-#&gt; |Period of Record Percent Change Estimate (%) |       -16.54%       |</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
 
+<span class='co'># Apply gamTest </span>
+<span class='no'>gamResult</span> <span class='kw'>&lt;-</span> <span class='fu'>gamTest</span>(<span class='no'>df</span>, <span class='no'>dep</span>, <span class='no'>stat</span>, <span class='no'>layer</span>, <span class='kw'>analySpec</span><span class='kw'>=</span><span class='no'>analySpec</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Detrended flow data (flow.detrended) not passed as argument in gamTest, but models included in analySpec include those with 'flw_sal' term. Consider passing detrended flow data or reducing models specified in analySpec.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Detrended salinity data (salinity.detrended) not passed as argument in gamTest, but models included in analySpec include those with 'flw_sal' term. Consider passing detrended salinity data or reducing models specified in analySpec.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: A methods list (methodsList) does not exist in Global environment; however, models included in analySpec include an intervention term. Consider creating a methods list or reducing models specified in analySpec.</span></div><div class='output co'>#&gt; 
+#&gt; #### Dissolved Oxygen - Linear Trend with Seasonality</div><div class='img'><img src='gamTest-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Analysis of Variance.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Type             | Source|  edf|   F-stat| p-value|
+#&gt; |:----------------|------:|----:|--------:|-------:|
+#&gt; |parametric terms |  cyear| 1.00|   2.4355|  0.1193|
+#&gt; |smoothed terms   | s(doy)| 5.96| 392.4418| &lt;0.0001|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Parameter Coefficients.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Parameter   | Estimate| Std. Err.| t value| p-value|
+#&gt; |:-----------|--------:|---------:|-------:|-------:|
+#&gt; |(Intercept) | 5.548336|  0.058309| 95.1532| &lt;0.0001|
+#&gt; |cyear       | 0.009617|  0.006162|  1.5606|  0.1193|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Diagnostics.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |    AIC|   RMSE| Adj. R-squared|
+#&gt; |------:|------:|--------------:|
+#&gt; | 1534.9| 1.2471|         0.8718|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: Estimates of Change from 1985-2016.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Calculation                                  |      Estimate      |
+#&gt; |:--------------------------------------------|:------------------:|
+#&gt; |Baseline mean                                |       6.2605       |
+#&gt; |Current mean                                 |       6.549        |
+#&gt; |Estimated difference                         |       0.2885       |
+#&gt; |Std. Err. difference                         |       0.1849       |
+#&gt; |95% Confidence interval for difference       | (-0.0738 , 0.6508) |
+#&gt; |Difference p-value                           |       0.1193       |
+#&gt; |Period of Record Percent Change Estimate (%) |       4.61%        |
+#&gt; 
+#&gt; #### Dissolved Oxygen - Non-linear Trend with Seasonality</div><div class='img'><img src='gamTest-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Analysis of Variance.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Type             |   Source|   edf|   F-stat| p-value|
+#&gt; |:----------------|--------:|-----:|--------:|-------:|
+#&gt; |parametric terms |    cyear|  1.00|   0.0396|  0.8424|
+#&gt; |smoothed terms   | s(cyear)| 14.07|   2.4102|  0.0014|
+#&gt; |"      "         |   s(doy)|  6.09| 417.6924| &lt;0.0001|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Parameter Coefficients.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Parameter   |  Estimate| Std. Err.| t value| p-value|
+#&gt; |:-----------|---------:|---------:|-------:|-------:|
+#&gt; |(Intercept) |  5.467504|  0.352441| 15.5132| &lt;0.0001|
+#&gt; |cyear       | -0.057488|  0.289014| -0.1989|  0.8424|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Diagnostics.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |     AIC|   RMSE| Adj. R-squared|
+#&gt; |-------:|------:|--------------:|
+#&gt; | 1515.53| 1.2036|         0.8806|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: Estimates of Change from 1985-2016.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Calculation                                  |      Estimate      |
+#&gt; |:--------------------------------------------|:------------------:|
+#&gt; |Baseline mean                                |       6.4261       |
+#&gt; |Current mean                                 |       6.5415       |
+#&gt; |Estimated difference                         |       0.1153       |
+#&gt; |Std. Err. difference                         |       0.2909       |
+#&gt; |95% Confidence interval for difference       | (-0.4549 , 0.6855) |
+#&gt; |Difference p-value                           |       0.6920       |
+#&gt; |Period of Record Percent Change Estimate (%) |       1.79%        |
+#&gt; 
+#&gt; #### Dissolved Oxygen - Non-linear trend with Seas+Int</div><div class='img'><img src='gamTest-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Analysis of Variance.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Type             |        Source|   edf|   F-stat| p-value|
+#&gt; |:----------------|-------------:|-----:|--------:|-------:|
+#&gt; |parametric terms |         cyear|  1.00|   0.0358|  0.8501|
+#&gt; |smoothed terms   |      s(cyear)| 14.18|   2.4300|  0.0012|
+#&gt; |"      "         |        s(doy)|  6.05| 419.4249| &lt;0.0001|
+#&gt; |"      "         | ti(cyear,doy)|  1.17|   0.1529|  0.1797|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Parameter Coefficients.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Parameter   |  Estimate| Std. Err.| t value| p-value|
+#&gt; |:-----------|---------:|---------:|-------:|-------:|
+#&gt; |(Intercept) |  5.471567|  0.355158| 15.4060| &lt;0.0001|
+#&gt; |cyear       | -0.055102|  0.291314| -0.1892|  0.8501|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Diagnostics.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |     AIC|  RMSE| Adj. R-squared|
+#&gt; |-------:|-----:|--------------:|
+#&gt; | 1514.72| 1.201|         0.8811|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: Estimates of Change from 1985-2016.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Calculation                                  |      Estimate      |
+#&gt; |:--------------------------------------------|:------------------:|
+#&gt; |Baseline mean                                |       6.4296       |
+#&gt; |Current mean                                 |       6.5403       |
+#&gt; |Estimated difference                         |       0.1107       |
+#&gt; |Std. Err. difference                         |       0.2906       |
+#&gt; |95% Confidence interval for difference       | (-0.4589 , 0.6803) |
+#&gt; |Difference p-value                           |       0.7034       |
+#&gt; |Period of Record Percent Change Estimate (%) |       1.72%        |</div><div class='input'><span class='fu'><a href='gamPlotDisp.html'>gamPlotDisp</a></span>(<span class='kw'>gamResult</span> <span class='kw'>=</span> <span class='no'>gamResult</span>, <span class='kw'>analySpec</span> <span class='kw'>=</span> <span class='no'>analySpec</span>,
+            <span class='kw'>fullModel</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>seasAvgModel</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>seasonalModel</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+            <span class='kw'>diffType</span> <span class='kw'>=</span> <span class='st'>"regular"</span>, <span class='kw'>obserPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>interventionPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+            <span class='kw'>seasAvgPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>seasAvgConfIntPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+            <span class='kw'>seasAvgSigPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fullModelPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>seasModelPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+            <span class='kw'>BaseCurrentMeanPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>adjustedPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='gamTest-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Apply gamTestSeason</span>
+<span class='no'>gamResult2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='gamTestSeason.html'>gamTestSeason</a></span>(<span class='no'>df</span>, <span class='no'>dep</span>, <span class='no'>stat</span>, <span class='no'>layer</span>, <span class='kw'>analySpec</span><span class='kw'>=</span><span class='no'>analySpec</span>,
+                            <span class='kw'>gamSeasonPlot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"7/15-8/15"</span>, <span class='st'>"purple"</span>, <span class='st'>"range"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Detrended flow data (flow.detrended) not passed as argument in gamTest, but models included in analySpec include those with 'flw_sal' term. Consider passing detrended flow data or reducing models specified in analySpec.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Detrended salinity data (salinity.detrended) not passed as argument in gamTest, but models included in analySpec include those with 'flw_sal' term. Consider passing detrended salinity data or reducing models specified in analySpec.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: A methods list (methodsList) does not exist in Global environment; however, models included in analySpec include an intervention term. Consider creating a methods list or reducing models specified in analySpec.</span></div><div class='output co'>#&gt; 
+#&gt; #### Dissolved Oxygen - Linear Trend with Seasonality</div><div class='img'><img src='gamTest-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Analysis of Variance.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Type             | Source|  edf|   F-stat| p-value|
+#&gt; |:----------------|------:|----:|--------:|-------:|
+#&gt; |parametric terms |  cyear| 1.00|   2.4355|  0.1193|
+#&gt; |smoothed terms   | s(doy)| 5.96| 392.4418| &lt;0.0001|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Parameter Coefficients.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Parameter   | Estimate| Std. Err.| t value| p-value|
+#&gt; |:-----------|--------:|---------:|-------:|-------:|
+#&gt; |(Intercept) | 5.548336|  0.058309| 95.1532| &lt;0.0001|
+#&gt; |cyear       | 0.009617|  0.006162|  1.5606|  0.1193|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Diagnostics.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |    AIC|   RMSE| Adj. R-squared|
+#&gt; |------:|------:|--------------:|
+#&gt; | 1534.9| 1.2471|         0.8718|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: Estimates of Change (season: 7/15-8/15) from 1985-2016.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Calculation                                  |      Estimate      |
+#&gt; |:--------------------------------------------|:------------------:|
+#&gt; |Baseline mean                                |       1.5004       |
+#&gt; |Current mean                                 |       1.7889       |
+#&gt; |Estimated difference                         |       0.2885       |
+#&gt; |Std. Err. difference                         |       0.1849       |
+#&gt; |95% Confidence interval for difference       | (-0.0738 , 0.6508) |
+#&gt; |Difference p-value                           |       0.1193       |
+#&gt; |Period of Record Percent Change Estimate (%) |       19.23%       |
+#&gt; 
+#&gt; #### Dissolved Oxygen - Non-linear Trend with Seasonality</div><div class='img'><img src='gamTest-6.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Analysis of Variance.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Type             |   Source|   edf|   F-stat| p-value|
+#&gt; |:----------------|--------:|-----:|--------:|-------:|
+#&gt; |parametric terms |    cyear|  1.00|   0.0396|  0.8424|
+#&gt; |smoothed terms   | s(cyear)| 14.07|   2.4102|  0.0014|
+#&gt; |"      "         |   s(doy)|  6.09| 417.6924| &lt;0.0001|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Parameter Coefficients.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Parameter   |  Estimate| Std. Err.| t value| p-value|
+#&gt; |:-----------|---------:|---------:|-------:|-------:|
+#&gt; |(Intercept) |  5.467504|  0.352441| 15.5132| &lt;0.0001|
+#&gt; |cyear       | -0.057488|  0.289014| -0.1989|  0.8424|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Diagnostics.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |     AIC|   RMSE| Adj. R-squared|
+#&gt; |-------:|------:|--------------:|
+#&gt; | 1515.53| 1.2036|         0.8806|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: Estimates of Change (season: 7/15-8/15) from 1985-2016.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Calculation                                  |     Estimate      |
+#&gt; |:--------------------------------------------|:-----------------:|
+#&gt; |Baseline mean                                |      1.6362       |
+#&gt; |Current mean                                 |       1.764       |
+#&gt; |Estimated difference                         |      0.1278       |
+#&gt; |Std. Err. difference                         |       0.295       |
+#&gt; |95% Confidence interval for difference       | (-0.4503 , 0.706) |
+#&gt; |Difference p-value                           |      0.6650       |
+#&gt; |Period of Record Percent Change Estimate (%) |       7.81%       |
+#&gt; 
+#&gt; #### Dissolved Oxygen - Non-linear trend with Seas+Int</div><div class='img'><img src='gamTest-7.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Analysis of Variance.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Type             |        Source|   edf|   F-stat| p-value|
+#&gt; |:----------------|-------------:|-----:|--------:|-------:|
+#&gt; |parametric terms |         cyear|  1.00|   0.0358|  0.8501|
+#&gt; |smoothed terms   |      s(cyear)| 14.18|   2.4300|  0.0012|
+#&gt; |"      "         |        s(doy)|  6.05| 419.4249| &lt;0.0001|
+#&gt; |"      "         | ti(cyear,doy)|  1.17|   0.1529|  0.1797|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Parameter Coefficients.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Parameter   |  Estimate| Std. Err.| t value| p-value|
+#&gt; |:-----------|---------:|---------:|-------:|-------:|
+#&gt; |(Intercept) |  5.471567|  0.355158| 15.4060| &lt;0.0001|
+#&gt; |cyear       | -0.055102|  0.291314| -0.1892|  0.8501|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: GAM Diagnostics.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |     AIC|  RMSE| Adj. R-squared|
+#&gt; |-------:|-----:|--------------:|
+#&gt; | 1514.72| 1.201|         0.8811|
+#&gt; 
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; *Table: Estimates of Change (season: 7/15-8/15) from 1985-2016.*
+#&gt; 
+#&gt;  
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |Calculation                                  |      Estimate      |
+#&gt; |:--------------------------------------------|:------------------:|
+#&gt; |Baseline mean                                |       1.6308       |
+#&gt; |Current mean                                 |       1.7624       |
+#&gt; |Estimated difference                         |       0.1316       |
+#&gt; |Std. Err. difference                         |       0.2982       |
+#&gt; |95% Confidence interval for difference       | (-0.4529 , 0.7161) |
+#&gt; |Difference p-value                           |       0.6593       |
+#&gt; |Period of Record Percent Change Estimate (%) |       8.07%        |</div><div class='input'><span class='fu'><a href='gamPlotDispSeason.html'>gamPlotDispSeason</a></span>(<span class='kw'>gamResult</span> <span class='kw'>=</span> <span class='no'>gamResult2</span>, <span class='kw'>analySpec</span> <span class='kw'>=</span> <span class='no'>analySpec</span>,
+                  <span class='kw'>fullModel</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>seasAvgModel</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>seasonalModel</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+                  <span class='kw'>diffType</span> <span class='kw'>=</span> <span class='st'>"regular"</span>, <span class='kw'>obserPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>interventionPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+                  <span class='kw'>seasAvgPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>seasAvgConfIntPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+                  <span class='kw'>seasAvgSigPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fullModelPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>seasModelPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+                  <span class='kw'>BaseCurrentMeanPlot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>adjustedPlot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>gamSeasonFocus</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='gamTest-8.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -492,7 +791,7 @@ The baseDay function has been added to this package from the smwrBase package.</
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>
