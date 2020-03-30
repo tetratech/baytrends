@@ -12,7 +12,7 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.1.0.9018
+Version: 1.1.0.9020
 Date: 2020-03-29
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:

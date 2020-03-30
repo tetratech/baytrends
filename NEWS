@@ -4,7 +4,33 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-03-20 15:02:20
+    #> Last Update: 2020-03-30 13:48:35
+
+# baytrends 1.1.0.9020
+
+  - Release 2020-03-30
+  - Recheck master branch.
+  - Update pdfs in “doc” folder.
+      - Replace ‘baytrends\_overview.pdf’..
+      - Add ‘statgam\_and\_statchng\_output\_fields.pdf’
+  - NEWS
+      - Not showing. Ensure NEWS.md available.
+      - Replace double-quotes with single-quotes.
+
+# baytrends 1.1.0.9019
+
+  - Release 2020-03-29
+  - Merge Dev\_04 branch with master branch.
+
+# baytrends 1.1.0.9018
+
+  - Release 2020-03-29
+  - Updates for CRAN in Dev\_04 branch.
+
+# baytrends 1.1.0.9017
+
+  - Release 2020-03-23
+  - Updates for CRAN prior to re-submittal to CRAN.
 
 # baytrends 1.1.0.9016
 
@@ -35,7 +61,7 @@ NEWS
           - smwrGraphs\_logPretty.R
           - smwrGraphs\_setAxis.R
   - Remove references to smwrGraphs package vignette in help files.
-      - Several function had in the “dont run” section of their
+      - Several function had in the ‘dont run’ section of their
         examples.
           - smwrGraphs\_addCaption.R
           - smwrGraphs\_colorPlot.R
@@ -132,11 +158,11 @@ NEWS
 # baytrends 1.0.7.9010
 
   - Release 2019-03-13
-  - Updates based on “check” to prepare for submittal to CRAN.
+  - Updates based on ‘check’ to prepare for submittal to CRAN.
       - Added some oxygen tags
       - Added .install\_extras to vignettes folder for additional PDF
         docs
-      - “dot” prefix functions with keyword internal
+      - ‘dot’ prefix functions with keyword internal
       - Removed example for hidden function .createResiduals
       - .findFile examples marked as do not run.
 
@@ -180,7 +206,7 @@ NEWS
 
   - Release 2018-08-01
   - added loadModels function to facilitate gam formula specification;
-    updated createResidual to include a “fall back” option to use gam2
+    updated createResidual to include a ‘fall back’ option to use gam2
     or gam4 if user had selected gam3 or gam5 and the model did not run
     (expected due to intervention)
 
@@ -235,7 +261,7 @@ NEWS
 # baytrends 1.0.5
 
   - Released 2018-07-06
-  - Create “release” on GitHub.
+  - Create ‘release’ on GitHub.
   - Submit to CRAN
 
 # baytrends 1.0.4.9012
@@ -250,23 +276,23 @@ NEWS
 
   - Released 2018-07-06
   - DESCRIPTION
-      - Change “maintainer” from Jon Harcum to Erik Leppo so Erik can
+      - Change ‘maintainer’ from Jon Harcum to Erik Leppo so Erik can
         submit to CRAN.
-      - Change “additional repositories” to GitHub. Was
+      - Change ‘additional repositories’ to GitHub. Was
         <http://owi.usgs.gov/R>.
   - .Rbuildignore
       - Add cran-comments.md
   - qw.import; example qw.names
-      - Rename variables without “f”; po4, no23, and nh4
+      - Rename variables without ‘f’; po4, no23, and nh4
       - Remove variables pp and pn.
   - detrended.flow
       - Fix CHECK NOTE for figNum.
-      - Added “figNum” to globalVariables in zzz.R
+      - Added ‘figNum’ to globalVariables in zzz.R
       - Assigned figNum as NULL before assign as zero.
   - dataCensored
       - Fix CHECK WARNING
   - selectData
-      - Example not working. Mark as “donotrun” while troubleshoot.
+      - Example not working. Mark as ‘donotrun’ while troubleshoot.
 
 # baytrends 1.0.4.9010
 
@@ -492,18 +518,18 @@ NEWS
   - branch of master based on v1.0.2 (release)
   - Clean up from check for CRAN
   - Note; NEWS.rmd. Add to git.ignore and .Rbuildignore
-  - Error; sensAdjflow2.R “figNum”. Add QC check to ensure is defined.
+  - Error; sensAdjflow2.R ‘figNum’. Add QC check to ensure is defined.
   - Warning; undocumented dataset; added param and default to mergeFlow,
     gamTest, gamPlotCalc, and gamDiff. Also added to data.R (was
     missing).
   - Note; Namespace, importFrom.
-      - importFrom(“stats”, “BIC”, “StructTS”, “aggregate”, “approx”,
-        “cov2cor”, “dnorm”, “filter”, “fitted”, “hat”, “integrate”,
-        “logLik”, “lowess”, “lsfit”, “na.omit”, “na.pass”, “naresid”,
-        “pchisq”, “ppoints”, “qf”, “residuals”, “sd”, “tsSmooth”,
-        “update”, “var”)
-      - importFrom(“utils”, “flush.console”, “getS3method”,
-        “modifyList”, “read.table”, “strOptions”, “write.table”)
+      - importFrom(‘stats’, ‘BIC’, ‘StructTS’, ‘aggregate’, ‘approx’,
+        ‘cov2cor’, ‘dnorm’, ‘filter’, ‘fitted’, ‘hat’, ‘integrate’,
+        ‘logLik’, ‘lowess’, ‘lsfit’, ‘na.omit’, ‘na.pass’, ‘naresid’,
+        ‘pchisq’, ‘ppoints’, ‘qf’, ‘residuals’, ‘sd’, ‘tsSmooth’,
+        ‘update’, ‘var’)
+      - importFrom(‘utils’, ‘flush.console’, ‘getS3method’,
+        ‘modifyList’, ‘read.table’, ‘strOptions’, ‘write.table’)
   - Added QC to define figNum.
       - Copied from seasAdjflow2.R to detrended.flow.R and
         detrended.salinity.R
@@ -516,16 +542,16 @@ NEWS
       - smwrBase; importRDB
   - Addition of xyPlot required more functions:
       - smwrGraphs; setPlot, linearPretty, setPage, timePlot, colorPlot
-  - Remove cross references in “seealso” for some of the imported smwr
+  - Remove cross references in ‘seealso’ for some of the imported smwr
     functions.
       - importRDB, isLike, linearPretty, refLinem, setPage, setplot,
         timePlot, cn
   - importFrom needed for 3 more packages in the newest smwr functions
     that were added.
-      - importFrom(“grDevices”, “Type1Font”, “dev.cur”, “extendrange”,
-        “gray”, “pdfFonts”, “rainbow”)
-      - importFrom(“graphics”, “box”, “segments”, “strwidth”)
-      - importFrom(“stats”, “cov.wt”, “dist”, “model.matrix”)
+      - importFrom(‘grDevices’, ‘Type1Font’, ‘dev.cur’, ‘extendrange’,
+        ‘gray’, ‘pdfFonts’, ‘rainbow’)
+      - importFrom(‘graphics’, ‘box’, ‘segments’, ‘strwidth’)
+      - importFrom(‘stats’, ‘cov.wt’, ‘dist’, ‘model.matrix’)
   - Add more smwr package functions:
       - Base; dectime, dectime2Date
       - Graphs; datePretty, namePretty, numericData, setColor, setGD,
@@ -538,14 +564,14 @@ NEWS
       - smwrGraphs; month.USGS, renderPretty, setExplan, transData,
         linewt (framewt)
   - Add importFrom for the newly added functions.
-      - importFrom(“grDevices”, “col2rgb”, “rgb”)
-      - importFrom(“graphics”, “axis”)
+      - importFrom(‘grDevices’, ‘col2rgb’, ‘rgb’)
+      - importFrom(‘graphics’, ‘axis’)
   - Add function from smwr packages;
       - smwrGraphs; addCaption
-  - Fix “assign” to global environment in smwrGraphs\_setPage.R
+  - Fix ‘assign’ to global environment in smwrGraphs\_setPage.R
       - Line 180, comment out. Is setting to NULL as a precaution but
         function isn’t used by baytrends.
-  - Data with “no visible bindig for global variable” error.
+  - Data with ‘no visible bindig for global variable’ error.
       - Add a line at the beginning of each affected function to
         reference the data; baytrends::xyz.
       - Peter Dalgaard’s proposed solution, 2014-Aug
@@ -672,7 +698,7 @@ version
       - detrended.flow
       - detrended.salinity
   - Update detrended vignette for changes in functions.
-  - Updates from “check”.
+  - Updates from ‘check’.
 
 # baytrends 1.0.1.9014
 
@@ -682,7 +708,7 @@ version
       - /vignettes/vignette\_qw.Rmd
   - New vignette
       - /vignettes/create\_Seasonally\_Detrended\_Flow\_and\_Salinity\_Data\_Sets.Rmd
-  - Update detrended.salinity.R for changes in names in “sal” data.
+  - Update detrended.salinity.R for changes in names in ‘sal’ data.
 
 # baytrends 1.0.1.9013
 
@@ -695,14 +721,14 @@ version
 # baytrends 1.0.1.9012
 
   - Released - 2018-03-21
-  - Add baytrends\_overview.pdf to “doc” as vignette.
+  - Add baytrends\_overview.pdf to ‘doc’ as vignette.
 
 # baytrends 1.0.1.9011
 
   - Released - 2018-03-21
   - Add detrended.salinity function.
       - Includes revised (smaller) data set (sal) for use with function.
-      - Updated data.R for “sal” data.
+      - Updated data.R for ‘sal’ data.
 
 # baytrends 1.0.1.9010
 
@@ -734,7 +760,7 @@ version
 # baytrends 1.0.1.9007
 
   - Released - 2018-03-16
-  - Fixes from “check”
+  - Fixes from ‘check’
       - data.R
       - file size
       - dlimit and censorLevels from smwrQW
@@ -861,12 +887,12 @@ version
 
   - Released - 2017-12-20
   - dataCensored
-      - Clean up “data-raw” folder and GenerateData script.
+      - Clean up ‘data-raw’ folder and GenerateData script.
       - Overwrite smwrQW dependant dataCensored.rda file with baytrends
         version.
       - Remove dataCensored CSV files from .
   - Move
-  - Rename temporary R scripts from “x\_*" to "smwrQW\_x\_*”.
+  - Rename temporary R scripts from ‘x\_*’ to ’smwrQW\_x\_*’.
       - Known files that are needed already have smwrQW prefix. Keep new
         ones different.
 
@@ -887,21 +913,21 @@ version
       - Modified include from qw-class.R to a1\_smwrQW\_qw-class.R.
       - Did not add as.lcens or as.mcens as they require other functions
         in smwrBase and smwrQW.
-  - Added “data-raw” folder.
-  - Created all parts of dataCensored object and saved to “data-raw”.
+  - Added ‘data-raw’ folder.
+  - Created all parts of dataCensored object and saved to ‘data-raw’.
   - Added script to build dataCensored.
   - Renamed back to baytrends on GitHub and in development code.
   - a1\_smwrQW\_qw-class.R
-      - Comment out “name”
+      - Comment out ‘name’
   - as.qw.R
-      - Comment out “See Also” (refers to function not ported from
+      - Comment out ‘See Also’ (refers to function not ported from
         smwrQW).
 
 # baytrends 0.3.3.9008
 
   - Released - 2017-12-05
   - Resave dataCensored.rda. Installed smwrQW so could open and resets
-    “qw” class to first reference in namespace (baytrends). Then saved
+    ‘qw’ class to first reference in namespace (baytrends). Then saved
     and removed smwr packages.
   - Add lscens class as well; a2\_smwrQW\_lcens-class.R.
   - Rename mscens from a2 to a3 to preserve collate order of smwrQW.
@@ -911,8 +937,8 @@ version
   - Released - 2017-12-05
   - Rename new class objects to appear in R folder first. And will load
     first.
-      - ‘smwrQW\_qw-class.R’ (prefix “a1\_”).
-      - ‘smwrQW\_mcens-class.R’ (prefix “a2\_”).
+      - ‘smwrQW\_qw-class.R’ (prefix ‘a1\_’).
+      - ‘smwrQW\_mcens-class.R’ (prefix ‘a2\_’).
   - Need to fix functions and examples that are looking for smwrQW.
       - analysisOrganizeData
       - selectData
@@ -944,8 +970,8 @@ version
 # baytrends 0.3.3.9003
 
   - Released - 2017-12-04
-  - Remove “smwrQW” from Depends in DESCRIPTION.
-  - Remove “smwrStats” from Suggests in DESCRIPTION.
+  - Remove ‘smwrQW’ from Depends in DESCRIPTION.
+  - Remove ‘smwrStats’ from Suggests in DESCRIPTION.
 
 # baytrends 0.3.3.9002
 

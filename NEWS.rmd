@@ -20,6 +20,32 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+baytrends 1.1.0.9020
+===========
+* Release 2020-03-30
+* Recheck master branch.
+* Update pdfs in "doc" folder.
+    + Replace 'baytrends_overview.pdf'..
+    + Add 'statgam_and_statchng_output_fields.pdf'
+* NEWS
+    + Not showing.  Ensure NEWS.md available.
+    + Replace double-quotes with single-quotes.
+
+baytrends 1.1.0.9019
+===========
+* Release 2020-03-29
+* Merge Dev_04 branch with master branch.
+
+baytrends 1.1.0.9018
+===========
+* Release 2020-03-29
+* Updates for CRAN in Dev_04 branch.
+
+baytrends 1.1.0.9017
+===========
+* Release 2020-03-23
+* Updates for CRAN prior to re-submittal to CRAN.
+
 baytrends 1.1.0.9016
 ===========
 * Release 2020-03-20
@@ -47,7 +73,7 @@ baytrends 1.1.0.9014
         - smwrGraphs_logPretty.R
         - smwrGraphs_setAxis.R
 * Remove references to smwrGraphs package vignette in help files.
-    + Several function had in the "dont run" section of their examples.
+    + Several function had in the 'dont run' section of their examples.
         - smwrGraphs_addCaption.R
         - smwrGraphs_colorPlot.R
         - smwrGraphs_month.USGS.R
@@ -137,10 +163,10 @@ baytrends 1.0.7.9011
 baytrends 1.0.7.9010
 ===========
 * Release 2019-03-13
-* Updates based on "check" to prepare for submittal to CRAN.
+* Updates based on 'check' to prepare for submittal to CRAN.
     + Added some oxygen tags
     + Added .install_extras to vignettes folder for additional PDF docs
-    + "dot" prefix functions with keyword internal
+    + 'dot' prefix functions with keyword internal
     + Removed example for hidden function .createResiduals
     + .findFile examples marked as do not run.
 
@@ -176,7 +202,7 @@ baytrends 1.0.7.9005
 baytrends 1.0.7.9004 
 ===========
 * Release 2018-08-01 
-* added loadModels function to facilitate gam formula specification; updated createResidual to include a "fall back" option to use gam2 or gam4 if user had selected gam3 or gam5 and the model did not run (expected due to intervention)
+* added loadModels function to facilitate gam formula specification; updated createResidual to include a 'fall back' option to use gam2 or gam4 if user had selected gam3 or gam5 and the model did not run (expected due to intervention)
 
 baytrends 1.0.7.9003
 ===========
@@ -225,7 +251,7 @@ baytrends 1.0.5.9001
 baytrends 1.0.5
 ===========
 * Released 2018-07-06
-* Create "release" on GitHub.
+* Create 'release' on GitHub.
 * Submit to CRAN
 
 baytrends 1.0.4.9012
@@ -240,21 +266,21 @@ baytrends 1.0.4.9011
 ===========
 * Released 2018-07-06
 * DESCRIPTION
-    + Change "maintainer" from Jon Harcum to Erik Leppo so Erik can submit to CRAN.
-    + Change "additional repositories" to GitHub.  Was http://owi.usgs.gov/R.
+    + Change 'maintainer' from Jon Harcum to Erik Leppo so Erik can submit to CRAN.
+    + Change 'additional repositories' to GitHub.  Was http://owi.usgs.gov/R.
 * .Rbuildignore
     + Add cran-comments.md
 * qw.import; example qw.names
-    + Rename variables without "f"; po4, no23, and nh4
+    + Rename variables without 'f'; po4, no23, and nh4
     + Remove variables pp and pn.
 * detrended.flow
     + Fix CHECK NOTE for figNum.
-    + Added "figNum" to globalVariables in zzz.R
+    + Added 'figNum' to globalVariables in zzz.R
     + Assigned figNum as NULL before assign as zero.
 * dataCensored
     + Fix CHECK WARNING
 * selectData
-    + Example not working.  Mark as "donotrun" while troubleshoot.
+    + Example not working.  Mark as 'donotrun' while troubleshoot.
 
 baytrends 1.0.4.9010
 ===========
@@ -457,22 +483,23 @@ baytrends 1.0.3.9001
     + mergeFlow.R
     + baytrends_LibraryCration.nb.html (left alone as will rebuild)
 
-baytrends 1.0.2.9012, development branch
+baytrends 1.0.2.9012 
 ===========
+development branch
 * Released - 2018-05-03
 * branch of master based on v1.0.2 (release)
 * Clean up from check for CRAN
 * Note; NEWS.rmd.  Add to git.ignore and .Rbuildignore
-* Error; sensAdjflow2.R "figNum".  Add QC check to ensure is defined.
+* Error; sensAdjflow2.R 'figNum'.  Add QC check to ensure is defined.
 * Warning; undocumented dataset; added param and default to mergeFlow, gamTest, gamPlotCalc, and gamDiff.  Also added to data.R (was missing).
 * Note; Namespace, importFrom.
-    + importFrom("stats", "BIC", "StructTS", "aggregate", "approx",
-             "cov2cor", "dnorm", "filter", "fitted", "hat", "integrate",
-             "logLik", "lowess", "lsfit", "na.omit", "na.pass",
-             "naresid", "pchisq", "ppoints", "qf", "residuals", "sd",
-             "tsSmooth", "update", "var")
-   + importFrom("utils", "flush.console", "getS3method", "modifyList",
-             "read.table", "strOptions", "write.table")
+    + importFrom('stats', 'BIC', 'StructTS', 'aggregate', 'approx',
+             'cov2cor', 'dnorm', 'filter', 'fitted', 'hat', 'integrate',
+             'logLik', 'lowess', 'lsfit', 'na.omit', 'na.pass',
+             'naresid', 'pchisq', 'ppoints', 'qf', 'residuals', 'sd',
+             'tsSmooth', 'update', 'var')
+   + importFrom('utils', 'flush.console', 'getS3method', 'modifyList',
+             'read.table', 'strOptions', 'write.table')
 * Added QC to define figNum.  
     + Copied from seasAdjflow2.R to detrended.flow.R and detrended.salinity.R
 * Add functions from swmwr packages:
@@ -484,13 +511,13 @@ baytrends 1.0.2.9012, development branch
     + smwrBase; importRDB
 * Addition of xyPlot required more functions:
     + smwrGraphs; setPlot, linearPretty, setPage, timePlot, colorPlot
-* Remove cross references in "seealso" for some of the imported smwr functions.
+* Remove cross references in 'seealso' for some of the imported smwr functions.
     + importRDB, isLike, linearPretty, refLinem, setPage, setplot, timePlot, cn
 * importFrom needed for 3 more packages in the newest smwr functions that were added.
-    + importFrom("grDevices", "Type1Font", "dev.cur", "extendrange", "gray",
-             "pdfFonts", "rainbow")
-    + importFrom("graphics", "box", "segments", "strwidth")
-    + importFrom("stats", "cov.wt", "dist", "model.matrix")
+    + importFrom('grDevices', 'Type1Font', 'dev.cur', 'extendrange', 'gray',
+             'pdfFonts', 'rainbow')
+    + importFrom('graphics', 'box', 'segments', 'strwidth')
+    + importFrom('stats', 'cov.wt', 'dist', 'model.matrix')
 * Add more smwr package functions:
     + Base; dectime, dectime2Date 
     + Graphs; datePretty, namePretty, numericData, setColor, setGD, setMargin
@@ -501,13 +528,13 @@ baytrends 1.0.2.9012, development branch
 * Add function from smwr packages;
     + smwrGraphs; month.USGS, renderPretty, setExplan, transData, linewt (framewt)
 * Add importFrom for the newly added functions.
-    + importFrom("grDevices", "col2rgb", "rgb")
-    + importFrom("graphics", "axis")
+    + importFrom('grDevices', 'col2rgb', 'rgb')
+    + importFrom('graphics', 'axis')
 * Add function from smwr packages;
     + smwrGraphs; addCaption
-* Fix "assign" to global environment in smwrGraphs_setPage.R
+* Fix 'assign' to global environment in smwrGraphs_setPage.R
     + Line 180, comment out.  Is setting to NULL as a precaution but function isn't used by baytrends.
-* Data with "no visible bindig for global variable" error.
+* Data with 'no visible bindig for global variable' error.
     + Add a line at the beginning of each affected function to reference the data; baytrends::xyz.
     + Peter Dalgaard's proposed solution, 2014-Aug
     + http://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html
@@ -532,7 +559,6 @@ baytrends 1.0.2.9011
 * expose impute function for simple substitution (0, 1/2dl, dl) conversion of qw data to vector
 * added error handling to trap mgcv::gam non-convergence errors
     
-=======
 baytrends 1.0.3
 ===========
 * Released - 2018-05-03
@@ -627,7 +653,7 @@ baytrends 1.0.1.9015
     + detrended.flow
     + detrended.salinity
 * Update detrended vignette for changes in functions.
-* Updates from "check".
+* Updates from 'check'.
 
 baytrends 1.0.1.9014
 ===========
@@ -637,7 +663,7 @@ baytrends 1.0.1.9014
     + /vignettes/vignette_qw.Rmd
 * New vignette
     + /vignettes/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.Rmd
-* Update detrended.salinity.R for changes in names in "sal" data.
+* Update detrended.salinity.R for changes in names in 'sal' data.
 
 baytrends 1.0.1.9013
 ===========
@@ -650,14 +676,14 @@ baytrends 1.0.1.9013
 baytrends 1.0.1.9012
 ===========
 * Released - 2018-03-21
-* Add baytrends_overview.pdf to "doc" as vignette.
+* Add baytrends_overview.pdf to 'doc' as vignette.
     
 baytrends 1.0.1.9011
 ===========
 * Released - 2018-03-21
 * Add detrended.salinity function.
     + Includes revised (smaller) data set (sal) for use with function.
-    + Updated data.R for "sal" data.
+    + Updated data.R for 'sal' data.
 
 baytrends 1.0.1.9010
 ===========
@@ -688,7 +714,7 @@ baytrends 1.0.1.9008
 baytrends 1.0.1.9007
 ===========
 * Released - 2018-03-16
-* Fixes from "check"
+* Fixes from 'check'
     + data.R
     + file size
     + dlimit and censorLevels from smwrQW
@@ -806,11 +832,11 @@ baytrends 0.3.3.9011
 ===========
 * Released - 2017-12-20
 * dataCensored
-    + Clean up "data-raw" folder and GenerateData script.
+    + Clean up 'data-raw' folder and GenerateData script.
     + Overwrite smwrQW dependant dataCensored.rda file with baytrends version.
     + Remove dataCensored CSV files from \inst\extdata.
 * Move 
-* Rename temporary R scripts from "x_*" to "smwrQW_x_*".
+* Rename temporary R scripts from 'x_*' to 'smwrQW_x_*'.
     + Known files that are needed already have smwrQW prefix.  Keep new ones different.
 
 
@@ -829,19 +855,19 @@ baytrends 0.3.3.9009
 * Added function as.qw from smwrQW.
     + Modified include from qw-class.R to a1_smwrQW_qw-class.R.
     + Did not add as.lcens or as.mcens as they require other functions in smwrBase and smwrQW.
-* Added "data-raw" folder.
-* Created all parts of dataCensored object and saved to "data-raw".
+* Added 'data-raw' folder.
+* Created all parts of dataCensored object and saved to 'data-raw'.
 * Added script to build dataCensored.
 * Renamed back to baytrends on GitHub and in development code.
 * a1_smwrQW_qw-class.R
-    + Comment out "name" 
+    + Comment out 'name' 
 * as.qw.R
-    + Comment out "See Also" (refers to function not ported from smwrQW).
+    + Comment out 'See Also' (refers to function not ported from smwrQW).
 
 baytrends 0.3.3.9008
 ===========
 * Released - 2017-12-05
-* Resave dataCensored.rda.  Installed smwrQW so could open and resets "qw" class to first reference in namespace (baytrends).  Then saved and removed smwr packages.
+* Resave dataCensored.rda.  Installed smwrQW so could open and resets 'qw' class to first reference in namespace (baytrends).  Then saved and removed smwr packages.
 * Add lscens class as well; a2_smwrQW_lcens-class.R.
 * Rename mscens from a2 to a3 to preserve collate order of smwrQW.
 
@@ -849,8 +875,8 @@ baytrends 0.3.3.9007
 ===========
 * Released - 2017-12-05
 * Rename new class objects to appear in R folder first.  And will load first.
-    + 'smwrQW_qw-class.R' (prefix "a1_").
-    + 'smwrQW_mcens-class.R' (prefix "a2_").
+    + 'smwrQW_qw-class.R' (prefix 'a1_').
+    + 'smwrQW_mcens-class.R' (prefix 'a2_').
 * Need to fix functions and examples that are looking for smwrQW.
     + analysisOrganizeData
     + selectData
@@ -881,8 +907,8 @@ baytrends 0.3.3.9004
 baytrends 0.3.3.9003
 ===========
 * Released - 2017-12-04
-* Remove "smwrQW" from Depends in DESCRIPTION.
-* Remove "smwrStats" from Suggests in DESCRIPTION.
+* Remove 'smwrQW' from Depends in DESCRIPTION.
+* Remove 'smwrStats' from Suggests in DESCRIPTION.
 
 baytrends 0.3.3.9002
 ===========
