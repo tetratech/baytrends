@@ -4,7 +4,12 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-03-31 09:38:40
+    #> Last Update: 2020-03-31 11:08:07
+
+# baytrends 1.2.1
+
+  - Release 2020-03-31
+  - Wrap up new version number for CRAN submittal.
 
 # baytrends 1.2.0.9001
 

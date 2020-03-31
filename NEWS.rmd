@@ -19,6 +19,10 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.2.1
+===========
+* Release 2020-03-31
+* Wrap up new version number for CRAN submittal.
 
 baytrends 1.2.0.9001
 ===========
