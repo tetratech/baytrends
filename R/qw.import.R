@@ -30,6 +30,7 @@
 #' @importFrom utils read.table
 #' 
 #' @examples
+#' \dontrun{
 #' # Use internal function to export dataCensored as example for import
 #' qw.export(dataCensored, getwd(), "data_censored_test.csv")
 #' 
@@ -60,6 +61,7 @@
 #' #dataCensored.test[,"date"] <- as.POSIXct(dataCensored.test[,"date"])
 #' # str(dataCensored.test)
 #' # as.numeric() and as.integer() can be used to convert columns of those types.
+#' }
 # # ~~~~~~~~~~~~~~~~
 # # QC / Testing
 # # ~~~~~~~~~~~~~~~~

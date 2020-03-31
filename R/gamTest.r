@@ -107,6 +107,7 @@
 #' information on how to create properly formatted data.
 #' 
 #' @examples
+#'\dontrun{
 #' # Specify parameter and station to analyze
 #' dep        <- 'do'
 #' stat       <- 'CB5.4'
@@ -137,7 +138,7 @@
 #'                   seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
 #'                   seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
 #'                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
-#'
+#'}
 # ----- Change history -------------------------------------------- ####
 # 03Jun2019: JBH: changes to minimize required variables and related QA/QC
 # 28Dec2018: JBH: set up doy (q2.doy) for computing seasonal mean  

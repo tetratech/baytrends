@@ -125,6 +125,7 @@ pass properly formatted data via the \code{flow.detrended} and
 information on how to create properly formatted data.
 }
 \examples{
+\dontrun{
 # Specify parameter and station to analyze
 dep        <- 'do'
 stat       <- 'CB5.4'
@@ -153,5 +154,5 @@ gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
                   seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
                   seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
-
+}
 }

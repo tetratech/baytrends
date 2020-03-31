@@ -67,6 +67,7 @@ the season mean. The option to specify seasons that "wrap" around end of
 year, i.e., 12/1-1/30, has not been implemented.
 }
 \examples{
+\dontrun{
 # Specify parameter and station to analyze
 dep        <- 'do'
 stat       <- 'CB5.4'
@@ -95,7 +96,7 @@ gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
                   seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
                   seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
-      
+}     
 }
 \seealso{
 \code{\link{gamTest}}

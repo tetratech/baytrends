@@ -60,6 +60,7 @@ gamPlotDispSeason(
 Plot censored gam fits vs. time
 }
 \examples{
+\dontrun{
 # Specify parameter and station to analyze
 dep        <- 'do'
 stat       <- 'CB5.4'
@@ -88,7 +89,7 @@ gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
                   seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
                   seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
-      
+}
 }
 \seealso{
 \code{\link{gamPlotDisp}}

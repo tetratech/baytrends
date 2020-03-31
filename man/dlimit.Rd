@@ -72,7 +72,6 @@ dlimit(c(2,2,3,1,1,2), c(" ", "<", " ", " ", "<", " "))
 Runkel, R.L., Crawford, C.G., and Cohn, T.A., 2004, Load
 estimator (LOADEST) a FORTRAN program for estiamting constituent laods in
 streams and rivers: U.S. Gelogical Survey Techniques and Methods 4-A5, 69.
-Available online as \url{https://pubs.er.usgs.gov/publication/tm4A5}.
 }
 \seealso{
 \code{\link{readNWQLdl}}

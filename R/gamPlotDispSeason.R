@@ -21,6 +21,7 @@
 #' @seealso \code{\link{gamPlotDisp}}
 #'
 #' @examples
+#'\dontrun{
 #' # Specify parameter and station to analyze
 #' dep        <- 'do'
 #' stat       <- 'CB5.4'
@@ -49,7 +50,7 @@
 #'                   seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
 #'                   seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
 #'                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
-#'       
+#'}
 #' @export
 #' 
 #' @importFrom stats quantile

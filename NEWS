@@ -4,7 +4,24 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-03-30 14:35:05
+    #> Last Update: 2020-03-31 09:38:40
+
+# baytrends 1.2.0.9001
+
+  - Release 2020-03-31
+  - Additional changes for CRAN.
+      - Bad URL, comment out.
+          - smwrQW\_x\_dlimit.R
+      - Example run time \> 10 seconds, add ‘dontrun’.
+          - gamPlotDispSeason
+          - gamTestSeason
+          - gamTest
+  - Changes for Linux build.
+      - data\_censored\_text.csv and data\_censored\_test.rda
+      - Remove from examples with ‘dontrun’.
+          - qw.export.R
+          - qw.import.R
+      - Leave in vignette\_qw.R
 
 # baytrends 1.2
 

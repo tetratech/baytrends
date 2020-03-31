@@ -32,6 +32,7 @@ The exported file will be in a directory specified by the user (defaults to work
 The file will be named as specified by the user.
 }
 \examples{
+\dontrun{
 # define data frame with qw column classes
 myDF <- dataCensored
 
@@ -43,4 +44,5 @@ fn.out <- "data_censored_test.csv"
 
 # run function
 qw.export(myDF, dir.save, fn.out)
+}
 }

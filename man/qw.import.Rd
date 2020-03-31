@@ -36,6 +36,7 @@ The function returns a data frame with QW enabled columns.  The user must save t
 Any modification of column classes needs to be handled by the user (e.g., character to date or POSIXct).
 }
 \examples{
+\dontrun{
 # Use internal function to export dataCensored as example for import
 qw.export(dataCensored, getwd(), "data_censored_test.csv")
 
@@ -66,4 +67,5 @@ slotNames("qw")
 #dataCensored.test[,"date"] <- as.POSIXct(dataCensored.test[,"date"])
 # str(dataCensored.test)
 # as.numeric() and as.integer() can be used to convert columns of those types.
+}
 }

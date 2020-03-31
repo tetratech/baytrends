@@ -34,6 +34,7 @@
 #' @seealso \code{\link{gamTest}}
 #'
 #' @examples
+#'\dontrun{
 #' # Specify parameter and station to analyze
 #' dep        <- 'do'
 #' stat       <- 'CB5.4'
@@ -62,7 +63,7 @@
 #'                   seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
 #'                   seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
 #'                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
-#'       
+#'}     
 #' @return Returns a list with results
 #' @export
 #' @import mgcv

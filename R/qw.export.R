@@ -24,6 +24,7 @@
 #' @importFrom utils write.table
 #' 
 #' @examples
+#'\dontrun{
 #' # define data frame with qw column classes
 #' myDF <- dataCensored
 #' 
@@ -35,6 +36,7 @@
 #' 
 #' # run function
 #' qw.export(myDF, dir.save, fn.out)
+#' }
 # ~~~~~~~~~~~~~~~~ 
 # # QC
 # myDF <- dataCensored
