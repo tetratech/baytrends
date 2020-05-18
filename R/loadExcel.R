@@ -60,7 +60,8 @@ loadExcel <- function(folder=NA, file=NA, sheet=1,  pk=NA, remDup=TRUE, remNAcol
                      convDates=TRUE, tzSel="America/New_York" ) {
 
 # ----- Change history --------------------------------------------
-# 20Jul2017: JBHP modified for excel files
+# 18May2020: JBH: updated to handle input of Excel sheets with just 1 column 
+# 20Jul2017: JBH: modified for excel files
 # 14Mar2017: JBH: added to baytrends package
 # 02Mar2017: JBH: added naChar option
 # 02Dec2016: JBH: moved file to first argument
@@ -142,12 +143,12 @@ loadExcel <- function(folder=NA, file=NA, sheet=1,  pk=NA, remDup=TRUE, remNAcol
   df[i] <- lapply(df[i], as.numeric)
 
 # Initialize load summary table ####
-  loadResult <- data.frame(Description= c("1) File Name",
+  loadResult <- data.frame(Description= c("1) File Name / Sheet",
                                           "2) Folder Name",
                                           "3) Primary Key",
                                           "4) Rows Read In",
                                           "5) Columns Read In") ,
-                           Value   =    c( fname ,
+                           Value   =    c( paste0(fname ," / ", sheet) ,
                                            folder ,
                                            paste(pk, collapse = ' + ') ,
                                            nrow(df) ,
@@ -156,7 +157,7 @@ loadExcel <- function(folder=NA, file=NA, sheet=1,  pk=NA, remDup=TRUE, remNAcol
 
 # Trim null rows, null columns, duplicates ####
   # trim records with null rows
-  if(remNArow) {
+  if(remNArow & ncol(df)>1) {
     df <- df[rowSums(is.na(df))<length(df), ]
     loadResult <- rbind(loadResult, data.frame(Description="6) Rows After Blank Rows Removed",
                                                Value=nrow(df)))
@@ -166,7 +167,7 @@ loadExcel <- function(folder=NA, file=NA, sheet=1,  pk=NA, remDup=TRUE, remNAcol
   }
 
   # trim records with null columns
-  if(remNAcol) {
+  if(remNAcol & ncol(df)>1) {
     df <- df[, colSums(is.na(df))<nrow(df)]
     loadResult <- rbind(loadResult, data.frame(Description="7) Columns After Blank Columns Removed",
                                                Value=length(df)))
@@ -176,7 +177,7 @@ loadExcel <- function(folder=NA, file=NA, sheet=1,  pk=NA, remDup=TRUE, remNAcol
   }
 
   # trim duplicate rows
-  if(remDup) {
+  if(remDup & ncol(df)>1) {
     df<-df[!duplicated(df), ]
     loadResult <- rbind(loadResult, data.frame(Description="8) Rows After Duplicate Rows Removed",
                                                Value=nrow(df)))
@@ -186,7 +187,7 @@ loadExcel <- function(folder=NA, file=NA, sheet=1,  pk=NA, remDup=TRUE, remNAcol
   }
 
   # trim duplicate rows based on pk and move pk file to first columns
-  if(!is.na(pk[1])) {
+  if(!is.na(pk[1]) & ncol(df)>1) {
     df<-df[!duplicated(df[pk]), ]
     df<-df[c(pk, setdiff(names(df), pk))]
     loadResult <- rbind(loadResult, data.frame(Description=paste("9) Rows After Duplicate PK Removed"),
