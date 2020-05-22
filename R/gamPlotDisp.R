@@ -70,7 +70,8 @@ gamPlotDisp <- function(gamResult=gamResult, analySpec=analySpec,
 # Review data points and set up x- and y-axis ranges ####
   conc          <- data.frame(tsdat.all$date,
                               tsdat.all$recensor,
-                              as.data.frame(tsdat.all[,dep], expand = TRUE)[c(1,2)])
+                              unSurv(tsdat.all[,dep])[,1:2]) 
+                              
   names(conc)   <- c("date", "recensor", "lower", "upper" )
   conc$point    <- "?"
 

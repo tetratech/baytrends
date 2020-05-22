@@ -179,6 +179,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
 # 27Apr2016: JBH: Explicit use of "::" for non-base functions added.
 
 # Error trap ####
+  {
   # make sure dep variable is in data frame
   if( !(dep %in% names(df)) ) {
     stop("Could not find dependent variable in data frame.")
@@ -193,10 +194,12 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   if(!exists("layerList")) stop("Layer look-up list not found. Operation stopped!")
 
   setTZ <- analySpec$setTZ
+  }
 
-# Initialize iSpec ####
+  # Initialize iSpec ####
   # iSpec includes a list of variables that are transferred
   # back with downselected data set. See @return for description.
+  {
   iSpec              <- list()
   iSpec$dep          <- dep     # changed to "ln + dep" if transform == TRUE
   iSpec$depOrig      <- dep
@@ -237,9 +240,10 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$dateEnd      <- NA            # always computed
   iSpec$seasModels   <- analySpec$gamLegend[analySpec$gamLegend$season,c("descrip","legend")]
   iSpec$baytrends.ver <- getNamespaceVersion("baytrends")
-  
+}  
 # Set up flow/salinity modeling parameters #21Jul2017 ####
   # split strings into vectors
+  {
   iSpec$flwAvgWin <- suppressWarnings(as.numeric(unlist(strsplit(iSpec$flwAvgWin, " "))))
   iSpec$flwParms  <- unlist(strsplit(iSpec$flwParms, " "))
   iSpec$salParms  <- unlist(strsplit(iSpec$salParms, " "))
@@ -256,7 +260,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   # they over-ride the default iSpec$hydroTerm specification 
   if (!is.na(iSpec$flwParms[1]) & iSpec$depOrig %in% iSpec$flwParms) iSpec$hydroTermSel <- 'flow'
   if (!is.na(iSpec$salParms[1]) & iSpec$depOrig %in% iSpec$salParms) iSpec$hydroTermSel <- 'salinity'
-
+  }
 # Down select data based on layer and stations ####
 
   # Select data from df based on station, layer and dependent variable
@@ -266,6 +270,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   # option 3: warning: layer not spec. but layer in df (proceed as ok)
   # option 4: error: layer specified but not in df
   #
+  {
   if(!is.na(layer) & ("layer" %in% names(df))) {
     df <- df[ df$station==stat & df$layer==layer, ]
     iSpec$statLayer <- paste0 (stat," (",layer,")")
@@ -287,14 +292,14 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   if("date" %in% names(df)) {
     df<-df[ order(df$date), ]
   }
+  }
 
-# Re-censor negative and non-less-than zero values to small positive value ####
+  # Re-censor negative and non-less-than zero values to small positive value ####
 
   # put data into temporary data frame
-  conc          <- as.data.frame(df[,dep], expand = TRUE)[c(1,2,3,5,8,9)]
-  conc          <- cbind(df[,"date"], conc)
-  names(conc)   <- c("date", "lower", "upper", "qualifier", "repLevel", "method", "lab")
-  
+  conc          <- unSurv(df[,dep])
+  conc          <- data.frame(date = df[,"date"], lower = conc[,1], upper = conc[,2])
+
   # compute 1/2 the minimum lower or upper bound greater than zero;
   recensor <- 0.5 * min(min(conc[!is.na(conc$lower) & conc$lower>0,'lower'], na.rm=TRUE),
                         min(conc[!is.na(conc$upper) & conc$upper>0,'upper'], na.rm=TRUE))
@@ -317,18 +322,8 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     df[,'recensor']   <- conc$treat
     
     # store re-censored qw variable
-    df[,dep] <- suppressWarnings (as.qw(values           = conc$lower,
-                                        value2           = conc$upper,
-                                        remark.codes     = conc$qualifier,
-                                        value.codes      = "",
-                                        reporting.level  = NA_real_,
-                                        reporting.method = "",
-                                        reporting.units  = "",
-                                        analyte.method   = "",
-                                        analyte.name     = "",
-                                        unique.code      = "")  )
-    df[,dep]@rounding <- c(3,4) 
-    
+    df[,dep] <- Surv( conc$lower, conc$upper, type = "interval2")
+
   } else {     #12Mar2018 pass through non-log transformed data 
     conc$treat <- FALSE
     
@@ -350,18 +345,8 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     conc$lower2 <- suppressWarnings(log(conc$lower))
     conc$upper2 <- suppressWarnings(log(conc$upper))
 
-    # make ln-transformed qw variable
-    df[,lnvar] <- suppressWarnings (as.qw(values           = conc$lower2,
-                                          value2           = conc$upper2,
-                                          remark.codes     = rep("",length(conc$lower2)),
-                                          value.codes      = "",
-                                          reporting.level  = NA_real_,
-                                          reporting.method = "",
-                                          reporting.units  = "",
-                                          analyte.method   = "",
-                                          analyte.name     = "",
-                                          unique.code      = "")  )
-    df[,lnvar]@rounding <- c(6,6)
+    # make ln-transformed variable
+    df[,lnvar] <- Surv( conc$lower2, conc$upper2, type = "interval2")
   }
 
 # Identify method/lab changes ####

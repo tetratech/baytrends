@@ -19,6 +19,16 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.2.1.8002
+===========
+* Release 2020-05-22
+* updated gamTest (and related support functions) to run using Surv fields
+
+baytrends 1.2.1.8001
+===========
+* Release 2020-03-31
+* migrated demonstration data set, dataCensored, from qw to Surv fields for censored data
+
 baytrends 1.2.1
 ===========
 * Release 2020-03-31

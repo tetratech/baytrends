@@ -12,7 +12,7 @@
 #  email:         eperry@chesapeake.net
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# 
+# 22May2020: JBH: Converted to survival::Surv objects (see ExpLNmCens and ExpNmCens)  
 # 01Jun2018: JBH: added "df$" to mu to create df$mu in lognormal functions
 # 23May2018: JBH: added "row.names = NULL"  to df <- data.frame(l=l, u=u, mu=mu)
 #                 to avoid warning message of row names were found from a short 
@@ -32,7 +32,7 @@
 .ExpLNmCens <- function(df,dep,mu,sigma)   {
   # computes expected value within a censoring window, for log-normal distribution
   # using an mCens object.
-  ec <- .ExpLNlCens(df[,dep]@.Data[,1],df[,dep]@.Data[,2],mu,sigma)
+  ec <- .ExpLNlCens(df$left,df$right,mu,sigma)
   ec <- .ExpLNrCens(ec$l,ec$u,mu,sigma)
   ec <- .ExpLNiCens(ec$l,ec$u,mu,sigma)
   ExpLNmCens.return <- ec
@@ -131,7 +131,7 @@
   # computes expected value within a censoring window, for normal distribution
   # using an mCens object.
   #  df <- tdf; dep <- 'tdep'; mu <- tdf$mu;
-  ec <- .ExpNlCens(df[,dep]@.Data[,1],df[,dep]@.Data[,2],mu,sigma)
+  ec <- .ExpNlCens(df$left,df$right,mu,sigma)
   ec <- .ExpNrCens(ec$l,ec$u,mu,sigma)
   ec <- .ExpNiCens(ec$l,ec$u,mu,sigma)
   ExpNmCens.return <- ec

@@ -3,7 +3,7 @@
 #'
 #' Impute value for multiply censored data.
 #'
-#' @param x vector of type baytrends::qw  
+#' @param x vector of type survival::Surv
 #' @param imputeOption imputation method [default= "mid"], valid impute options
 #'   are "lower", "upper", "mid", "norm", "lnorm"
 #' @details
@@ -26,6 +26,7 @@
 impute <-function(x, imputeOption="mid") { 
   
 # ----- Change history --------------------------------------------
+# 22May2020: JBH: Converted to survival::Surv objects  
 # 01Jun2018: JBH: Updated impute function to include maximum likelihood
 #                 estimation assuming normal and lognormal distribution
 # 01May2018: JBH: changed function name from .impute to impute; focus
@@ -36,14 +37,13 @@ impute <-function(x, imputeOption="mid") {
 # Initialization ####
   
   # Set valid imputeOption
-  validImpute <- c("lower", "upper", "mid", "uniform", "norm", "lnorm")  #21May2018
-  # validImpute <- c("lower", "upper", "mid", "uniform", "norm", "lnorm")
+  validImpute <- c("lower", "upper", "mid", "uniform", "norm", "lnorm")  
 
 # Error traps ####
   
   # Error trap ... make sure x variable is a qw class
-  if (!(class(x) %in% c("mcens", "qw"))) {
-    stop("input vector not of type qw.")
+  if (!(class(x) %in% c("Surv"))) {
+    stop("input vector not of type Surv.")
   }
   
   # Error trap ... make sure imputeOption is one of the valid choices
@@ -54,10 +54,13 @@ impute <-function(x, imputeOption="mid") {
   ### If there are -Inf lower limits or Inf upper limits, then reset the 
   ###    lower and upper limits to address -Inf and Inf values
   
-  if (any(x@.Data[,1] == -Inf, na.rm=TRUE) | any(x@.Data[,2] == Inf, na.rm=TRUE)) {  
+  # extract lower and upper limits from Surv object
+  x = unSurv(x)
+  
+  if (any(x[,1] == -Inf, na.rm=TRUE) | any(x[,2] == Inf, na.rm=TRUE)) {  
     # pull out lower/upper values into easy-to-read vectors
-    lower  <- x@.Data[,1]
-    upper  <- x@.Data[,2]
+    lower  <- x[,1]
+    upper  <- x[,2]
     
     # compute lower reset: 25% lower than smallest value 
     lowerReset1 <- min( lower [!(lower == -Inf)] , na.rm=TRUE) # smallest lower
@@ -72,41 +75,49 @@ impute <-function(x, imputeOption="mid") {
       0.25 * abs(max(upperReset1, upperReset2, na.rm=TRUE))
     
     # apply lower and upper reset values
-    x@.Data[x@.Data[,1] == -Inf , 1] <- lowerReset
-    x@.Data[x@.Data[,2] ==  Inf , 2] <- upperReset  
+    x[x[,1] == -Inf , 1] <- lowerReset
+    x[x[,2] ==  Inf , 2] <- upperReset  
   }
 
 # Impute censored values ####
   
   # 01May2018: update to accomodate vector with NA's
-  # create vector of NAs equal to the length of the input vector
-  x2 <- rep(NA,length(x))
   
+  # recreate Surv object after addressing non-finite boundaries
+  x2 = Surv(time = x[,1], time2 = x[,2], type = "interval2")
+  
+  # vector of NAs to receive imputted results
+  x3 <- rep(NA,nrow(x))
+  
+  # logical vector identifying data presence
+  not.miss <- !is.na(x[,1])
+  
+  # implement imputation, writing results into x3
   if (imputeOption == "lower") {
-    x2 <- x@.Data[,1]
+    x3 <- x[,1]
   } else if (imputeOption == "upper") {
-    x2 <- x@.Data[,2]
+    x3 <- x[,2]
   } else if (imputeOption == "mid") {
-    x2 <- 0.5 * (x@.Data[,1] + x@.Data[,2])
+    x3 <- 0.5 * (x[,1] + x[,2])
   } else if (imputeOption == "uniform") {
-    x2[!is.na(x)] <- stats::runif(sum(!is.na(x)), x@.Data[!is.na(x),1], x@.Data[!is.na(x),2])
+    x3[not.miss] <- stats::runif(sum(not.miss), x[not.miss,1], x[not.miss,2])
   } else if (imputeOption == "norm") {
-    myData1 <- data.frame(x=x, left=x@.Data[,1], right=x@.Data[,2])
-    fn1     <- fitdistrplus::fitdistcens(myData1[!is.na(myData1$x),], distr="norm")
+    myData1 <- data.frame(x=x2[not.miss], left=x[not.miss,1], right=x[not.miss,2])
+    fn1     <- fitdistrplus::fitdistcens(myData1, distr="norm")
     mu.norm <- fn1$estimate[1]
     sd.norm <- fn1$estimate[2]
     myData1$normExpec <- .ExpNmCens(myData1,dep="x",mu.norm,sd.norm)[,1]
-    x2 <- myData1$normExpec
+    x3[not.miss] <- myData1$normExpec
   } else if (imputeOption == "lnorm") {
-    myData1  <- data.frame(x=x, left=x@.Data[,1], right=x@.Data[,2])
-    fn1      <- fitdistrplus::fitdistcens(myData1[!is.na(myData1$x),], distr="lnorm")
+    myData1  <- data.frame(x=x2[not.miss], left=x[not.miss,1], right=x[not.miss,2])
+    fn1      <- fitdistrplus::fitdistcens(myData1, distr="lnorm")
     mu.lnorm <- fn1$estimate[1]
     sd.lnorm <- fn1$estimate[2]
     myData1$lnormExpec <- .ExpLNmCens(myData1,dep="x",mu.lnorm,sd.lnorm)[,1]
-    x2 <- myData1$lnormExpec
+    x3[not.miss] <- myData1$lnormExpec
   } 
   
-  x <- x2
+  x <- x3
 
 # Return ####   
   return(x)

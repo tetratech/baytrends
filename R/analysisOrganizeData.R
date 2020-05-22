@@ -19,8 +19,9 @@
 #' @details
 #'  The supplied data frame, df, is a data frame with the variables station,
 #'  date, and layer included along with multiple additional columns for a
-#'  variety of water quality variables structured as "qw" objects. An example
-#'  data frame, dataCensored, is included with baytrends as an example.
+#'  variety of water quality variables structured as numeric fields or 
+#'  survival::Surv objects. An example data frame, dataCensored, is included
+#'  with baytrends as an example.
 #'  
 #'  The argument, analySpec, is a list that includes basic specfications for
 #'  performing GAM analyses. The components in analySpec are identified below.
@@ -387,7 +388,9 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   # Check to make sure all variables are of class 'qw'
   for (dep in c(attr(df,"depVar"),attr(df,"othVar"))) {
     jCol <- grep(paste0("^",dep,"$") , colnames(df))
-    if(!(class(df[,jCol])=="qw")) stop(paste("Variable,",names(df[jCol]),"is not class qw!" ))
+    if(!(class(df[,jCol]) %in% c("Surv","numeric"))) {
+      stop(paste("Variable,",names(df[jCol]),"is not class Surv or num!" ))
+    }
   }
 
   # .chkParameter also brought back dependent variables, merge with parameter list to
