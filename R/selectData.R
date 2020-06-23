@@ -450,6 +450,11 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   conc[conc$lower>0 & conc$lower <conc$upper, "fracInt"] <- 1
   # recensored
   conc[conc$treat, "fracRecen"] <- 1
+  # recode fracLT if variable is not Surv
+  if (!iSpec$isSurv) {
+    conc[conc$fracLT==1, "fracUnc"] <- 1
+    conc[conc$fracLT==1, "fracLT"]  <- 0
+  }
 
   censorFrac <- data.frame(
     year      = unique(conc$year),
