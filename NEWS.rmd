@@ -19,15 +19,10 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-baytrends 1.2.1.8004
-===========
-* Release 2020-06-xx
-* <tbd>
-
 baytrends 1.2.1.8003
 ===========
-* Release 2020-06-23
-* updated gamTest (and related support functions) to run with Surv and numeric fields
+* Release 2020-0x-xx
+* needs: layer averaging, non-Surv objects
 
 baytrends 1.2.1.8002
 ===========
