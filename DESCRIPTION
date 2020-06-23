@@ -18,7 +18,8 @@ Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends:
     R (>= 3.5.0),
     lubridate,
-    mgcv
+    mgcv,
+    survival
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 7.1.0
