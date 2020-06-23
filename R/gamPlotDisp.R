@@ -68,9 +68,11 @@ gamPlotDisp <- function(gamResult=gamResult, analySpec=analySpec,
   seasAvgSiglwd <- 4
 
 # Review data points and set up x- and y-axis ranges ####
-  conc          <- data.frame(tsdat.all$date,
-                              tsdat.all$recensor,
-                              unSurv(tsdat.all[,dep])[,1:2]) 
+  conc <- if (iSpec$isSurv) {
+    data.frame(tsdat.all$date, tsdat.all$recensor, unSurv(tsdat.all[,dep])[,1:2]) 
+  } else {
+    data.frame(tsdat.all$date, tsdat.all$recensor, tsdat.all[,dep], tsdat.all[,dep]) 
+  }
                               
   names(conc)   <- c("date", "recensor", "lower", "upper" )
   conc$point    <- "?"

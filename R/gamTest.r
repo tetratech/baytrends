@@ -441,7 +441,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
 
     # impute plausible first guess. (impute in normal space, then convert)
     ct2 <- ct1
-    ct2[,iSpec$depOrig] <- impute(ct1[,iSpec$depOrig] )
+    ct2[,iSpec$depOrig] <- if (iSpec$isSurv) impute(ct1[,iSpec$depOrig] ) else ct1[,iSpec$depOrig]
     if(transform) ct2[,iSpec$dep] <- suppressWarnings(log(ct2[,iSpec$depOrig]))
 
     # run GAM on impute plausible first guess.  #01May2018 added try error trap

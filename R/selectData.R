@@ -203,6 +203,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec              <- list()
   iSpec$dep          <- dep     # changed to "ln + dep" if transform == TRUE
   iSpec$depOrig      <- dep
+  iSpec$isSurv       <- is.Surv(df[,dep])
   iSpec$stat         <- stat
   iSpec$stationMethodGroup <- stationList[stationList$stations==stat,"stationMethodGroup"]
   iSpec$hydroTerm <- tolower(stationList[stationList$stations==stat,"hydroTerm"]) #21Jul2017
@@ -297,8 +298,12 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   # Re-censor negative and non-less-than zero values to small positive value ####
 
   # put data into temporary data frame
-  conc          <- unSurv(df[,dep])
-  conc          <- data.frame(date = df[,"date"], lower = conc[,1], upper = conc[,2])
+  if (iSpec$isSurv) {                      # Surv objects
+    conc          <- unSurv(df[,dep])
+    conc          <- data.frame(date = df[,"date"], lower = conc[,1], upper = conc[,2])
+  } else {                                 # numeric variables
+    conc          <- data.frame(date = df[,"date"], lower = df[,dep], upper = df[,dep])
+  }
 
   # compute 1/2 the minimum lower or upper bound greater than zero;
   recensor <- 0.5 * min(min(conc[!is.na(conc$lower) & conc$lower>0,'lower'], na.rm=TRUE),
@@ -322,7 +327,11 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     df[,'recensor']   <- conc$treat
     
     # store re-censored qw variable
-    df[,dep] <- Surv( conc$lower, conc$upper, type = "interval2")
+    if (iSpec$isSurv) {
+      df[,dep] <- Surv( conc$lower, conc$upper, type = "interval2")
+    } else {
+      df[,dep] <- conc$upper
+    }
 
   } else {     #12Mar2018 pass through non-log transformed data 
     conc$treat <- FALSE
@@ -346,7 +355,12 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     conc$upper2 <- suppressWarnings(log(conc$upper))
 
     # make ln-transformed variable
-    df[,lnvar] <- Surv( conc$lower2, conc$upper2, type = "interval2")
+    if (iSpec$isSurv) {
+      df[,lnvar] <- Surv( conc$lower2, conc$upper2, type = "interval2")
+    } else {
+      df[,lnvar] <- conc$upper2
+    }
+    
   }
 
 # Identify method/lab changes ####
