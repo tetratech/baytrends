@@ -452,8 +452,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   conc[conc$treat, "fracRecen"] <- 1
   # recode fracLT if variable is not Surv
   if (!iSpec$isSurv) {
-    conc[conc$fracLT==1, "fracUnc"] <- 1
-    conc[conc$fracLT==1, "fracLT"]  <- 0
+    conc[conc$fracUnc==0, "fracUnc"] <- 1 # all obs are uncensored in non-Surv objects
   }
 
   censorFrac <- data.frame(
