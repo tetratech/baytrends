@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.2.1.8005
+===========
+* Release 2020-06-xx
+* remove depracated qw functions
+
 baytrends 1.2.1.8004
 ===========
 * Release 2020-06-23
