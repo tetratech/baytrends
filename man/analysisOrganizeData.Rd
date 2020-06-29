@@ -123,8 +123,9 @@ supplied by this function.
 \details{
 The supplied data frame, df, is a data frame with the variables station,
  date, and layer included along with multiple additional columns for a
- variety of water quality variables structured as "qw" objects. An example
- data frame, dataCensored, is included with baytrends as an example.
+ variety of water quality variables structured as numeric fields or 
+ survival::Surv objects. An example data frame, dataCensored, is included
+ with baytrends as an example.
  
  The argument, analySpec, is a list that includes basic specfications for
  performing GAM analyses. The components in analySpec are identified below.

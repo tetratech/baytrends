@@ -7,7 +7,7 @@
 impute(x, imputeOption = "mid")
 }
 \arguments{
-\item{x}{vector of type baytrends::qw}
+\item{x}{vector of type survival::Surv}
 
 \item{imputeOption}{imputation method [default= "mid"], valid impute options
 are "lower", "upper", "mid", "norm", "lnorm"}

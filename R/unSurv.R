@@ -15,7 +15,7 @@
 #'  
 #' @param x variable x
 #' 
-#' @example 
+#' @examples 
 #' \dontrun{
 #' x1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
 #' x2 <- unSurv(x1)
