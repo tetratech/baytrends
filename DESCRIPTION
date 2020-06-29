@@ -87,8 +87,6 @@ Collate:
     'loadModelsResid.R'
     'mergeFlow.R'
     'mergeSalinity.R'
-    'qw.export.R'
-    'qw.import.R'
     'reAttDF.R'
     'saveDF.R'
     'seasAdjflow2.R'
