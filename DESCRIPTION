@@ -22,7 +22,7 @@ Depends:
     survival
 License: GPL-3
 LazyData: TRUE
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Suggests:
     devtools,
