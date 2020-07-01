@@ -56,8 +56,9 @@ createResiduals <- function(df, dep
   }
   
   # error trap: is  variable of qw type
-  if (!class(df[,dep])=='qw') {
-    warning(paste0("Variable not of qw class: ",dep))
+  if (!(class(df[,dep]) %in% c('numeric','Surv'))) {
+  # if (!class(df[,dep])=='qw') {
+    warning(paste0("Variable not numeric or Surv class: ",dep))
     return(NA)
   }
   
