@@ -157,6 +157,7 @@ salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel, lowess.f, minObs, 
 It is now possible to run gam4 using the results of the above analyses. The below code chunk will run the gam4 for surface total nitrogen at station CB5.4.  
 
 ```{r gamTrendExample, eval=TRUE, results='asis', fig.height=3.5, fig.width=6.5}
+
 dfr       <- analysisOrganizeData(dataCensored, reports = NA)
 df        <- dfr[["df"]]
 analySpec <- dfr[["analySpec"]]
@@ -165,7 +166,8 @@ analySpec <- dfr[["analySpec"]]
 analySpec$gamModels <- analySpec$gamModels[5]
 
 stat = 'CB5.4'; dep = 'tn'; layer = 'S';
-gamResult <- gamTest(df, dep, stat, layer, analySpec
-                     , salinity.detrended=salinity.detrended)
+gamResult <- gamTest(df = df, dep = dep, stat = stat, layer = layer
+                     , analySpec = analySpec
+                     , salinity.detrended = salinity.detrended)
 
 ```

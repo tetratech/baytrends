@@ -131,6 +131,8 @@
 #'   data extraction. See examples for usage and details for further discussion of the data
 #'   processing and components of each element.
 #'
+#' @importFrom survival Surv
+#'
 # @examples
 # \dontrun{
 # # retrieve Secchi depth for Station CB5.4, no transformations are applied
@@ -203,7 +205,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec              <- list()
   iSpec$dep          <- dep     # changed to "ln + dep" if transform == TRUE
   iSpec$depOrig      <- dep
-  iSpec$isSurv       <- is.Surv(df[,dep])
+  iSpec$isSurv       <- survival::is.Surv(df[,dep])
   iSpec$stat         <- stat
   iSpec$stationMethodGroup <- stationList[stationList$stations==stat,"stationMethodGroup"]
   iSpec$hydroTerm <- tolower(stationList[stationList$stations==stat,"hydroTerm"]) #21Jul2017
@@ -328,7 +330,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     
     # store re-censored qw variable
     if (iSpec$isSurv) {
-      df[,dep] <- Surv( conc$lower, conc$upper, type = "interval2")
+      df[,dep] <- survival::Surv( conc$lower, conc$upper, type = "interval2")
     } else {
       df[,dep] <- conc$upper
     }

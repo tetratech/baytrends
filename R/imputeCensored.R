@@ -84,7 +84,7 @@ impute <-function(x, imputeOption="mid") {
   # 01May2018: update to accomodate vector with NA's
   
   # recreate Surv object after addressing non-finite boundaries
-  x2 = Surv(time = x[,1], time2 = x[,2], type = "interval2")
+  x2 = survival::Surv(time = x[,1], time2 = x[,2], type = "interval2")
   
   # vector of NAs to receive imputted results
   x3 <- rep(NA,nrow(x))

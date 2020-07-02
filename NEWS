@@ -4,7 +4,58 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-03-31 11:08:07
+    #> Last Update: 2020-07-02 13:37:15
+
+# baytrends 1.2.1.8009
+
+  - Release 2020-07-02
+  - Updates after “check”; Issue \#46
+      - Add survival::foo for new functions from survival package.
+          - selectData.R
+          - imputeCensored.R
+      - Add importFrom survival Suv to selectData.R
+
+# baytrends 1.2.1.8008
+
+  - Release 2020-07-01
+  - remove deprecated html files and data sets
+
+# baytrends 1.2.1.8007
+
+  - Release 2020-06-30
+  - createResiduals: corrected error for non-Surv objects
+
+# baytrends 1.2.1.8006
+
+  - Release 2020-06-30
+  - remove depracated qw functions
+
+# baytrends 1.2.1.8005
+
+  - Release 2020-06-29
+  - remove qw vignette
+
+# baytrends 1.2.1.8004
+
+  - Release 2020-06-23
+  - updated to gamTestSeason to process Surv and non-Surv objects
+
+# baytrends 1.2.1.8003
+
+  - Release 2020-06-23
+  - updated to gamTest to process non-Surv objects
+
+# baytrends 1.2.1.8002
+
+  - Release 2020-05-22
+  - updated gamTest (and related support functions) to run using Surv
+    fields
+
+# baytrends 1.2.1.8001
+
+  - Release 2020-03-31
+  - migrated demonstration data set, dataCensored, from qw to Surv
+    fields for censored data
 
 # baytrends 1.2.1
 
