@@ -4,12 +4,12 @@
 \alias{.layerAggregation}
 \title{Aggregate data layers}
 \usage{
-.layerAggregation(df, avgTechnique = "median", layerAggOption = 0)
+.layerAggregation(df, avgTechnique = "mean", layerAggOption = 3)
 }
 \arguments{
 \item{df}{data frame}
 
-\item{avgTechnique}{method for aggregating data ("median"[default]/mean)}
+\item{avgTechnique}{method for aggregating data ("mean" [default], "median")}
 
 \item{layerAggOption}{(0[default]: no aggregation; 1: combine "S" & "AP"
 ("SAP"); 2: combine "B" & "BP" ("BBP"); 3: opt 1 & 2 ("SAP", "BBP"); 4:
@@ -25,17 +25,16 @@ selected. 2) Perform second level error checking to make sure the aggregation op
 selection makes sense (e.g. cannot aggregate "S" and "AP" if no "AP" data are in the
 data set). 3) Average the data by taking the median or mean based on user input.
 }
-\details{
-NOTE (17May2019): Option to average by median is not currently working. Must use 'mean' option.
-}
 \examples{
+\dontrun{
 # retrieve all corrected chlorophyll-a concentrations for Station CB2.2.
 # A warning is displayed indicating that data set has layers but user did
-# not specify layer in retrieval. layerAggregation then aggregates across
-# all layers.
-#df  <- dataMB
-#df1 <- selectData(df, "chla", "CB2.2")
-#df2 <- layerAggregation(df1[[1]], avgTechnique="median", layerAggOption=4)
-#str(df2)
+# not specify layer in retrieval. layerAggregation then aggregates per 
+# specifications.
+df1 <- selectData(dataCensored, "chla", "CB2.2")
+df2 <- layerAggregation(df1[[1]], avgTechnique="mean", layerAggOption=4)
+str(df2)
+}
+
 }
 \keyword{internal}
