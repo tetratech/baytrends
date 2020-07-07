@@ -5,9 +5,9 @@
 \title{Load/Clean Excel sheet}
 \usage{
 loadExcel(
-  folder = NA,
   file = NA,
   sheet = 1,
+  folder = ".",
   pk = NA,
   remDup = TRUE,
   remNAcol = TRUE,
@@ -17,11 +17,11 @@ loadExcel(
 )
 }
 \arguments{
-\item{folder}{folder (i.e., directory to look in, can use relative path )}
-
 \item{file}{file (can use wildcards, e.g., "*.csv")}
 
 \item{sheet}{worksheet name to load from Excel file}
+
+\item{folder}{folder (i.e., directory to look in, can use relative path )}
 
 \item{pk}{vector of columns that form the primary key for data set}
 

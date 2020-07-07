@@ -6,7 +6,7 @@
 \usage{
 loadData(
   file = NA,
-  folder = NA,
+  folder = ".",
   pk = NA,
   remDup = TRUE,
   remNAcol = TRUE,

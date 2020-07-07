@@ -60,13 +60,13 @@
   tmp <- names(df[!(names(df) %in% c(c("station", "date", "layer"), parameterList$parm))])
   if (!length(tmp)==0) {
     warning(paste("Following variable(s) found in data set will",
-                  "be removed:",tmp))
+                  "be removed:", paste(tmp, collapse = " ")))
   }
 
   # identify parameters in user parameter filter list that are not in valid parameter list
   tmp <- parameterFilt[!(parameterFilt %in% parameterList$parm)]
   if (!length(tmp)==0) {
-    warning(paste("User selected parameter filter value not used: ",tmp))
+    warning(paste("User selected parameter filter value not used: ",paste(tmp, collapse = " ")))
   }
 
 #   # warning message commented out as per 04Dec2015 conference call with Jeni

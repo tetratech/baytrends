@@ -2,21 +2,21 @@
 % Please edit documentation in R/unSurv.R
 \name{unSurv}
 \alias{unSurv}
-\title{Converts Surv object into a 3 column matrix}
+\title{Converts Surv object into a 3-column matrix}
 \usage{
 unSurv(x)
 }
 \arguments{
-\item{x}{variable x}
+\item{x}{vector (Surv object)}
 }
 \value{
-Returns a 3 column matrix: lo, hi, type
+Returns a 3-column matrix: lo, hi, type
 }
 \description{
-Converts Surv object into a 3 column matrix
+Converts Surv object into a 3-column matrix
 }
 \details{
-The type column has teh following meanings:
+The type column has the following meanings:
 
  1  -- no censoring
  

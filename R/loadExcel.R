@@ -56,7 +56,7 @@
 #' @return Returns data frame
 #' @export
 # ####
-loadExcel <- function(folder=NA, file=NA, sheet=1,  pk=NA, remDup=TRUE, remNAcol=TRUE, remNArow=TRUE,
+loadExcel <- function(file=NA, sheet=1, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, remNArow=TRUE,
                      convDates=TRUE, tzSel="America/New_York" ) {
 
 # ----- Change history --------------------------------------------

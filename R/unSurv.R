@@ -1,9 +1,9 @@
 # ####
-#' @title Converts Surv object into a 3 column matrix
+#' @title Converts Surv object into a 3-column matrix
 #'
-#' @description Converts Surv object into a 3 column matrix
+#' @description Converts Surv object into a 3-column matrix
 #' 
-#' @details The type column has teh following meanings:
+#' @details The type column has the following meanings:
 #' 
 #'  1  -- no censoring
 #'  
@@ -13,7 +13,7 @@
 #'  
 #'  NA -- missing value
 #'  
-#' @param x variable x
+#' @param x vector (Surv object)
 #' 
 #' @examples 
 #' \dontrun{
@@ -21,7 +21,7 @@
 #' x2 <- unSurv(x1)
 #' }
 #' 
-#' @return Returns a 3 column matrix: lo, hi, type
+#' @return Returns a 3-column matrix: lo, hi, type
 #'  
 #' @export
 # ####
@@ -42,3 +42,36 @@ unSurv <- function(x) {
   
   return(cbind(lo,hi,type))
 }
+
+# ####
+#' @title Converts Surv object in dataframe to "lo" and "hi" values
+#'
+#' @description Converts Surv objects in dataframe to "lo" and "hi" values
+#' 
+#' @param df dataframe x
+#' 
+#' @examples 
+#' \dontrun{
+#' df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]
+#' df2 <- unSurvDF(df)
+#' }
+#' 
+#' @return Returns dataframe with censored data converted to lo/hi format
+#'  
+#' @export
+# ####
+unSurvDF <- function(df) {
+ 
+  df_out <- data.frame(row.names = rownames(df))
+  for (col in names(df)) {
+    if (survival::is.Surv(df[[col]])) {
+      df_out[paste0(col, '_lo')] <- baytrends::unSurv(df[[col]])[,1]
+      df_out[paste0(col, '_hi')] <- baytrends::unSurv(df[[col]])[,2]
+    } else {
+      df_out[[col]] <- df[[col]]
+    }
+  }
+  
+  return(df_out)
+}
+  
