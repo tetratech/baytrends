@@ -62,7 +62,7 @@
 #' @return Returns data frame
 #' @export
 # ####
-loadData <- function(file=NA, folder=NA, pk=NA, remDup=TRUE, remNAcol=TRUE, remNArow=TRUE,
+loadData <- function(file=NA, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, remNArow=TRUE,
                      convDates=TRUE, tzSel="America/New_York", commChar="#", naChar=NA ) {
 
 # ----- Change history --------------------------------------------

@@ -90,11 +90,12 @@
 #' df        <- dfr[["df"]]
 #' analySpec <- dfr[["analySpec"]]
 #'
-#' # analyze bottom dissolved oxygen at 2 stations
+#' # analyze bottom dissolved oxygen at 2 stations using only data from 1/1/1995-12/31/2015
 #' analySpec <-list()
 #' analySpec$parameterFilt <- c('do')
 #' analySpec$layerFilt     <- c('B')
 #' analySpec$stationFilt   <- c('CB3.3C', 'CB5.4')
+#' analySpec$dateFilt      <- as.POSIXct(c("1995-01-01", "2015-12-31"))
 #' dfr <- analysisOrganizeData(dataCensored, analySpec)
 #' df        <- dfr[["df"]]
 #' analySpec <- dfr[["analySpec"]]
@@ -109,7 +110,8 @@
 #'
 #'   stationFilt      - Station filter used for data down selection
 #'
-#'   dateFilt         - Date filter for data down selection
+#'   dateFilt         - Date filter for data down selection (default =  c( as.POSIXct('1984-01-01')
+#'                            , as.POSIXct(Sys.time())))
 #'
 #'   setTZ            - time zone (default = "America/New_York")
 #'
@@ -140,7 +142,8 @@
 #'   50 percent censoring then the first three years of data are trimmed.
 #'   Similarly, for years 1 and 4, then the first four years are removed. If
 #'   years 1 and 5 have more than 50 percent censoring the data are kept since
-#'   2/5 is not greater than 0.4.
+#'   2/5 is not greater than 0.4. Changing this setting to, say, c(0.2,0.4) would require
+#'   that 80% of the data in a year to be un-censored.
 #'
 #'   gamModels        - model formulations. See baytrends::loadModels() for 
 #'   simplified approach for selecting which built-in models to include

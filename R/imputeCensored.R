@@ -14,12 +14,14 @@
 #' can also be used.
 #' 
 #' @examples
+#' \dontrun{
 #' x  <- dataCensored[1:20,"tdp"]
 #' x.lower <- impute(x,'lower')
 #' x.mid   <- impute(x,'mid')
 #' x.upper <- impute(x,'upper')
 #' x.norm  <- impute(x,'norm')
 #' x.lnorm <- impute(x,'lnorm')
+#' }
 #' @return vector where x is transformed into a simple numeric variable
 #' @export
 #
@@ -123,37 +125,95 @@ impute <-function(x, imputeOption="mid") {
   return(x)
 }
 
-# simCensored ####
-#' Fit normal or log normal distribution; simulation in censored data
-#' provided by Elgin Perry
-#' phi.left and phi.right are distribution function, e.g., pnorm(q=10,mean=10,sd=1) =0.5
-#' phi.sim is a uniform random number between phi.left and phi.right
-#' sim is imputed value
+
+###############################################################################
+#' Impute Censored Values in dataframes   
+#'
+#' Impute value for multiply censored data in data frames
+#'
+#' @param df dataframe 
+#' @param imputeOption imputation method [default= "mid"], valid impute options
+#'   are "lower", "upper", "mid", "norm", "lnorm"
+#' @details
+#' The imputeOption values of lower, upper and mid impute the lower limit, upper limit,
+#' and midpoint between the lower and upper limit. In the context of typical water quality
+#' data, these options would be eqivalent to zero, detection limit and 1/2 detection limit
+#' substitution. Options for substituting the normal ["norm"] or lognormal ["lnorm"] expectation
+#' can also be used.
 #' 
-#' @param x data
-#' @param distr Distribution type; norm (default) or lnorm
-#' @return qnorm (or qlnorm) values for input data
-#' @keywords internal
+#' @examples
+#' \dontrun{
+#' df  <- dataCensored[1:20, ]
+#' df.lower <- imputeDF(df,'lower')
+#' df.mid   <- imputeDF(df,'mid')
+#' df.upper <- imputeDF(df,'upper')
+#' df.norm  <- imputeDF(df,'norm')
+#' df.lnorm <- imputeDF(df,'lnorm')
+#' }
+#' @return dataframe where fields with censored data are transformed into a simple numeric variable
 #' @export
-.simCensored <- function(x,distr="norm") {
-  # 12Mar2019: EWL: Added roxygen documentation  
-  tmp <- data.frame(left = x@.Data[,1], 
-                    right = x@.Data[,2])
-  fn1 <- fitdistrplus::fitdistcens(tmp, distr=distr)
-  summary(fn1)
-  if(distr=="norm")
-  {                    
-    tmp$phi.left  <- stats::pnorm(tmp$left,mean=fn1$estimate[1],sd=fn1$estimate[2])
-    tmp$phi.right <- stats::pnorm(tmp$right,mean=fn1$estimate[1],sd=fn1$estimate[2])
-    tmp$phi.sim   <- stats::runif(nrow(tmp),tmp$phi.left,tmp$phi.right)
-    tmp$sim       <- stats::qnorm(tmp$phi.sim,mean=fn1$estimate[1],sd=fn1$estimate[2])
+#
+imputeDF <- function(df, imputeOption = "mid") {
+  
+  # Initialization & Error Traps ####
+  {
+    # Set valid imputeOption
+    validImpute <- c("lower", "upper", "mid", "uniform", "norm", "lnorm")  
+    
+    # Error trap ... make sure df variable is a data frame
+    if (!(class(df) %in% c("data.frame"))) {
+      stop("input vector not of type Surv.")
+    }
+    
+    # Error trap ... make sure imputeOption is one of the valid choices
+    if (!(imputeOption %in% validImpute)) {
+      stop("imputeOption not valid.")
+    }
   }
-  if(distr=="lnorm")
-  {                    
-    tmp$phi.left  <- stats::plnorm(tmp$left,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
-    tmp$phi.right <- stats::plnorm(tmp$right,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
-    tmp$phi.sim   <- stats::runif(nrow(tmp),tmp$phi.left,tmp$phi.right)
-    tmp$sim       <- stats::qlnorm(tmp$phi.sim,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
+  
+  # Convert and return data frame ####
+  {
+    i <- sapply(df,survival::is.Surv)
+    df2 <- cbind(df[!i], sapply(df[i], impute, imputeOption=imputeOption))
+    df2 <- df2[,names(df)]
+    return(df2)
   }
-  return(tmp$sim)
 }
+
+
+
+
+#' # simCensored ####
+#' #' Fit normal or log normal distribution; simulation in censored data
+#' #' provided by Elgin Perry
+#' #' phi.left and phi.right are distribution function, e.g., pnorm(q=10,mean=10,sd=1) =0.5
+#' #' phi.sim is a uniform random number between phi.left and phi.right
+#' #' sim is imputed value
+#' #' 
+#' #' @param x data
+#' #' @param distr Distribution type; norm (default) or lnorm
+#' #' @return qnorm (or qlnorm) values for input data
+#' #' @keywords internal
+#' #' @export
+#' .simCensored <- function(x,distr="norm") {
+#'   # 12Mar2019: EWL: Added roxygen documentation  
+#'   tmp <- data.frame(left = x@.Data[,1], 
+#'                     right = x@.Data[,2])
+#'   fn1 <- fitdistrplus::fitdistcens(tmp, distr=distr)
+#'   summary(fn1)
+#'   if(distr=="norm")
+#'   {                    
+#'     tmp$phi.left  <- stats::pnorm(tmp$left,mean=fn1$estimate[1],sd=fn1$estimate[2])
+#'     tmp$phi.right <- stats::pnorm(tmp$right,mean=fn1$estimate[1],sd=fn1$estimate[2])
+#'     tmp$phi.sim   <- stats::runif(nrow(tmp),tmp$phi.left,tmp$phi.right)
+#'     tmp$sim       <- stats::qnorm(tmp$phi.sim,mean=fn1$estimate[1],sd=fn1$estimate[2])
+#'   }
+#'   if(distr=="lnorm")
+#'   {                    
+#'     tmp$phi.left  <- stats::plnorm(tmp$left,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
+#'     tmp$phi.right <- stats::plnorm(tmp$right,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
+#'     tmp$phi.sim   <- stats::runif(nrow(tmp),tmp$phi.left,tmp$phi.right)
+#'     tmp$sim       <- stats::qlnorm(tmp$phi.sim,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
+#'   }
+#'   return(tmp$sim)
+#' }
