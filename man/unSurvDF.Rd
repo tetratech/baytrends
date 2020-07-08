@@ -2,18 +2,18 @@
 % Please edit documentation in R/unSurv.R
 \name{unSurvDF}
 \alias{unSurvDF}
-\title{Converts Surv object in dataframe to "lo" and "hi" values}
+\title{Converts Surv objects in a dataframe to "lo" and "hi" values}
 \usage{
 unSurvDF(df)
 }
 \arguments{
-\item{df}{dataframe x}
+\item{df}{dataframe with Surv objects}
 }
 \value{
 Returns dataframe with censored data converted to lo/hi format
 }
 \description{
-Converts Surv objects in dataframe to "lo" and "hi" values
+Converts Surv objects in a dataframe to "lo" and "hi" values
 }
 \examples{
 \dontrun{

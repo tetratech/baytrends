@@ -48,7 +48,7 @@ perform some rudimentary data cleaning.
 }
 \details{
 This function reads in a single comma delimited (*.csv) or tab
-  delimited (*.txt) file using either utils::read.table or utils::read.csv
+  delimited (*.txt) file using either \code{utils::read.table} or \code{utils::read.csv}
   based on the file extension. The user can use the wildcard feature for the
   file argument (e.g., file='*.csv') and the function will identify the most
   recently modified csv or txt file in the folder for importing.
@@ -75,7 +75,7 @@ This function reads in a single comma delimited (*.csv) or tab
   the primary key. Columns corresponding to the primary key (when specified)
   are moved to the first columns.
 
-  6. If convDates is a vector (i.e., c('beginDate', 'endDate')), then a date
+  6. If convDates is a vector (i.e., \code{c('beginDate', 'endDate')}), then a date
   conversion is attempted for the corresponding columns found in the input
   file. If TRUE, then a date conversion is attempted for all columns found in
   the input file with 'date' in the name, If FALSE, no date conversion is

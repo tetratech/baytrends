@@ -44,11 +44,11 @@ unSurv <- function(x) {
 }
 
 # ####
-#' @title Converts Surv object in dataframe to "lo" and "hi" values
+#' @title Converts Surv objects in a dataframe to "lo" and "hi" values
 #'
-#' @description Converts Surv objects in dataframe to "lo" and "hi" values
+#' @description Converts Surv objects in a dataframe to "lo" and "hi" values
 #' 
-#' @param df dataframe x
+#' @param df dataframe with Surv objects 
 #' 
 #' @examples 
 #' \dontrun{

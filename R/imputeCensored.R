@@ -7,11 +7,12 @@
 #' @param imputeOption imputation method [default= "mid"], valid impute options
 #'   are "lower", "upper", "mid", "norm", "lnorm"
 #' @details
-#' The imputeOption values of lower, upper and mid impute the lower limit, upper limit,
-#' and midpoint between the lower and upper limit. In the context of typical water quality
-#' data, these options would be eqivalent to zero, detection limit and 1/2 detection limit
-#' substitution. Options for substituting the normal ["norm"] or lognormal ["lnorm"] expectation
-#' can also be used.
+#' The imputeOption values of \code{"lower"}, \code{"upper"} and \code{"mid"}
+#' impute the lower limit, upper limit, and midpoint between the lower and upper
+#' limit. In the context of typical water quality data, these options would be
+#' equivalent to zero, detection limit and 1/2 detection limit substitution.
+#' Options for substituting the normal [\code{"norm"}] or lognormal
+#' [\code{"lnorm"}] expectation can also be used.
 #' 
 #' @examples
 #' \dontrun{
@@ -135,11 +136,12 @@ impute <-function(x, imputeOption="mid") {
 #' @param imputeOption imputation method [default= "mid"], valid impute options
 #'   are "lower", "upper", "mid", "norm", "lnorm"
 #' @details
-#' The imputeOption values of lower, upper and mid impute the lower limit, upper limit,
-#' and midpoint between the lower and upper limit. In the context of typical water quality
-#' data, these options would be eqivalent to zero, detection limit and 1/2 detection limit
-#' substitution. Options for substituting the normal ["norm"] or lognormal ["lnorm"] expectation
-#' can also be used.
+#' The imputeOption values of \code{"lower"}, \code{"upper"} and \code{"mid"}
+#' impute the lower limit, upper limit, and midpoint between the lower and upper
+#' limit. In the context of typical water quality data, these options would be
+#' equivalent to zero, detection limit and 1/2 detection limit substitution.
+#' Options for substituting the normal [\code{"norm"}] or lognormal
+#' [\code{"lnorm"}] expectation can also be used.
 #' 
 #' @examples
 #' \dontrun{
@@ -150,7 +152,8 @@ impute <-function(x, imputeOption="mid") {
 #' df.norm  <- imputeDF(df,'norm')
 #' df.lnorm <- imputeDF(df,'lnorm')
 #' }
-#' @return dataframe where fields with censored data are transformed into a simple numeric variable
+#' @return dataframe where fields with censored data (i.e., Surv objects) are
+#'   transformed into a simple numeric fields
 #' @export
 #
 imputeDF <- function(df, imputeOption = "mid") {
