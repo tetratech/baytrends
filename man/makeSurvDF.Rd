@@ -2,7 +2,7 @@
 % Please edit documentation in R/makeSurvDF.R
 \name{makeSurvDF}
 \alias{makeSurvDF}
-\title{Convert data frame to include Surv objects}
+\title{Convert dataframe to include survival (Surv) objects}
 \usage{
 makeSurvDF(df)
 }
@@ -13,8 +13,16 @@ makeSurvDF(df)
 dataframe with Surv fields
 }
 \description{
-Examines/evaluates dataframe for fields with "_lo" and "_hi" suffixes to convert 
-to Surv objects.
+Within a dataframe, numeric fields using a "_lo" and "_hi" suffix 
+naming convention (e.g., "conc_lo" "conc_hi") are combined into a single Surv object
+(e.g., "conc") using the "interval2" option provided by through the
+\code{survival::Surv(conc_lo, conc_hi, type = "interval2")} syntax.
+}
+\details{
+Converting fields to Surv objects works with field pairs that have a "_lo" 
+and "_hi" suffix naming convention. The numeric value for "_hi" must be greater than 
+or equal to the "_lo" value. Source data that violate this requirement are 
+set to NA with a summary report outputted to the console.
 }
 \examples{
 \dontrun{
