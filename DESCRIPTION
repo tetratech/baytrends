@@ -23,9 +23,7 @@ Disclaimer: This software program is preliminary or provisional and is subject
     software is provided 'AS IS.
 Depends:
     R (>= 3.5.0),
-    lubridate,
-    mgcv,
-    survival
+    lubridate
 License: GPL-3    
 LazyData: TRUE
 RoxygenNote: 7.1.1
@@ -46,10 +44,13 @@ Imports:
     XML,
     dataRetrieval,
     digest,
+    dplyr,
     gdata,
     memoise,
     methods,
+    mgcv,
     plyr,
+    survival,
     zCompositions
 URL: https://github.com/tetratech/baytrends
 VignetteBuilder: knitr
