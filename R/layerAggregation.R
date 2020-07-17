@@ -25,11 +25,11 @@
 #' }
 #' 
 #' @return data frame with aggregated data
-#' @keywords internal
+# @keywords internal
 #' @export
 #' @importFrom survival Surv
 #' 
-.layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
+layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
   
   # -----< Change history >--------------------------------------------
   # 02Jul2020: JBH: migrated to Surv objects, fixed median calculation  

@@ -4,7 +4,34 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-02 13:37:15
+    #> Last Update: 2020-07-17 13:43:46
+
+# baytrends 1.2.1.8014
+
+  - Release 2020-07-17
+  - Expose layeraggregation as a function available to the user; Issue
+    \#47
+      - Update reference in analysisOrganizeData
+
+# baytrends 1.2.1.8013
+
+  - Release 2020-08-xx
+  - <tbd>
+
+# baytrends 1.2.1.8012
+
+  - Release 2020-07-07
+  - added makeSurvDF functions
+
+# baytrends 1.2.1.8011
+
+  - Release 2020-07-06
+  - added unSurvDF and imputeDF functions
+
+# baytrends 1.2.1.8010
+
+  - Release 2020-07-02
+  - updated .layerAggregation for Survival objects
 
 # baytrends 1.2.1.8009
 
