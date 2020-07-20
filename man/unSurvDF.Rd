@@ -4,21 +4,27 @@
 \alias{unSurvDF}
 \title{Converts Surv objects in a dataframe to "lo" and "hi" values}
 \usage{
-unSurvDF(df)
+unSurvDF(df, suf_lo = "_lo", suf_hi = "_hi")
 }
 \arguments{
 \item{df}{dataframe with Surv objects}
+
+\item{suf_lo}{Column name suffix for "lo" values.  Default = _lo}
+
+\item{suf_hi}{Column name suffix for "hi" values.  Default = _hi}
 }
 \value{
 Returns dataframe with censored data converted to lo/hi format
 }
 \description{
-Converts Surv objects in a dataframe to "lo" and "hi" values
+Converts Surv objects in a dataframe to "lo" and "hi" values.
+The user can specify their own values or use the defaults.
 }
 \examples{
-\dontrun{
 df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]
+# Default values
 df2 <- unSurvDF(df)
-}
+# User values
+df3 <- unSurvDF(df, "_LOW", "_HIGH")
 
 }

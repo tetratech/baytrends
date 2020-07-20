@@ -4,19 +4,26 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-17 13:43:46
+    #> Last Update: 2020-07-20 10:26:15
+
+# baytrends 1.2.1.8015
+
+  - Release 2020-07-20
+  - Allow user values for column names / suffixes in unSurv and
+    unSurvDF; Issue \#50
 
 # baytrends 1.2.1.8014
 
-  - Release 2020-07-17
+  - Release 2020-07-20
   - Expose layeraggregation as a function available to the user; Issue
     \#47
       - Update reference in analysisOrganizeData
 
 # baytrends 1.2.1.8013
 
-  - Release 2020-08-xx
-  - <tbd>
+  - Release 2020-07-14
+  - added dplyr to DESCRIPTION \> Imports
+  - move survival & mgcv to DESCRIPTION \> Imports
 
 # baytrends 1.2.1.8012
 

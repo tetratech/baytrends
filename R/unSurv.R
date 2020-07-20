@@ -13,19 +13,25 @@
 #'  
 #'  NA -- missing value
 #'  
+#' The user can specify the names of the low and high columns in the output.
+#' Defaults are "lo" and "hi".
+#'  
 #' @param x vector (Surv object)
+#' @param col_lo Output column name for "lo" values.  Default = lo
+#' @param col_hi Output column name for "hi" values.  Default = hi
 #' 
 #' @examples 
-#' \dontrun{
 #' x1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+#' # Default values
 #' x2 <- unSurv(x1)
-#' }
+#' # User values
+#' x3 <- unSurv(x1, "low", "high")
 #' 
 #' @return Returns a 3-column matrix: lo, hi, type
 #'  
 #' @export
 # ####
-unSurv <- function(x) {
+unSurv <- function(x, col_lo = "lo", col_hi = "hi") {
   # extract lo and hi columns from Surv objects and place into a 3 column matrix
   type = x[ , 3]
   
@@ -40,38 +46,44 @@ unSurv <- function(x) {
   lo[indx.2]  <- -Inf         # left cens:  replace lo with -Inf for 'survival-based' less thans
   hi[indx.0]  <- Inf          # right cens: replace hi with Inf 
   
-  return(cbind(lo,hi,type))
-}
+  df_result <- cbind(lo,hi,type)
+  colnames(df_result) <- c(col_lo, col_hi, "type")
+  return(df_result)
+}## FUNCTION ~ unSurv ~ END
 
 # ####
 #' @title Converts Surv objects in a dataframe to "lo" and "hi" values
 #'
-#' @description Converts Surv objects in a dataframe to "lo" and "hi" values
+#' @description Converts Surv objects in a dataframe to "lo" and "hi" values.
+#' The user can specify their own values or use the defaults.
 #' 
 #' @param df dataframe with Surv objects 
+#' @param suf_lo Column name suffix for "lo" values.  Default = _lo
+#' @param suf_hi Column name suffix for "hi" values.  Default = _hi
 #' 
 #' @examples 
-#' \dontrun{
 #' df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]
+#' # Default values
 #' df2 <- unSurvDF(df)
-#' }
+#' # User values
+#' df3 <- unSurvDF(df, "_LOW", "_HIGH")
 #' 
 #' @return Returns dataframe with censored data converted to lo/hi format
 #'  
 #' @export
 # ####
-unSurvDF <- function(df) {
- 
+unSurvDF <- function(df, suf_lo = "_lo", suf_hi = "_hi") {
+  
   df_out <- data.frame(row.names = rownames(df))
   for (col in names(df)) {
     if (survival::is.Surv(df[[col]])) {
-      df_out[paste0(col, '_lo')] <- baytrends::unSurv(df[[col]])[,1]
-      df_out[paste0(col, '_hi')] <- baytrends::unSurv(df[[col]])[,2]
+      df_out[paste0(col, suf_lo)] <- baytrends::unSurv(df[[col]])[,1]
+      df_out[paste0(col, suf_hi)] <- baytrends::unSurv(df[[col]])[,2]
     } else {
       df_out[[col]] <- df[[col]]
-    }
-  }
+    }## IF ~ END
+  }## FOR ~ END
   
   return(df_out)
-}
-  
+}## FUNCTION ~ unSurvDF ~ END
+

@@ -4,10 +4,14 @@
 \alias{unSurv}
 \title{Converts Surv object into a 3-column matrix}
 \usage{
-unSurv(x)
+unSurv(x, col_lo = "lo", col_hi = "hi")
 }
 \arguments{
 \item{x}{vector (Surv object)}
+
+\item{col_lo}{Output column name for "lo" values.  Default = lo}
+
+\item{col_hi}{Output column name for "hi" values.  Default = hi}
 }
 \value{
 Returns a 3-column matrix: lo, hi, type
@@ -25,11 +29,15 @@ The type column has the following meanings:
  3  -- interval censored ("less than in a water quality sense", i.e., "0 - <3", "1 - 3")
  
  NA -- missing value
+ 
+The user can specify the names of the low and high columns in the output.
+Defaults are "lo" and "hi".
 }
 \examples{
-\dontrun{
 x1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+# Default values
 x2 <- unSurv(x1)
-}
+# User values
+x3 <- unSurv(x1, "low", "high")
 
 }
