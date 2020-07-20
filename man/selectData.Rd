@@ -150,3 +150,20 @@ dateEnd - end date
 The baseDay and baseDay2decimal functions have been added to this package 
 from the smwrBase package.
 }
+\examples{
+\dontrun{
+dfr    <- analysisOrganizeData(dataCensored)
+
+# retrieve Secchi depth for Station CB5.4, no transformations are applied
+dfr1   <- selectData(dfr[["df"]], 'secchi', 'CB5.4', 'S', transform=FALSE,
+                    remMiss=FALSE, analySpec=dfr[["analySpec"]])
+df1    <- dfr1[[1]]   # data frame of selected data
+iSpec1 <- dfr1[[2]]   # meta data about selected data
+
+# retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
+# missing values are removed and transformation applied
+dfr2   <- selectData(dfr[["df"]], 'chla', 'CB5.4', 'S', analySpec=dfr[["analySpec"]])
+df2    <- dfr2[[1]]   # data frame of selected data
+iSpec2 <- dfr2[[2]]   # meta data about selected data
+}
+}

@@ -27,13 +27,17 @@ data set). 3) Average the data by taking the median or mean based on user input.
 }
 \examples{
 \dontrun{
-# retrieve all corrected chlorophyll-a concentrations for Station CB2.2.
-# A warning is displayed indicating that data set has layers but user did
+dfr    <- analysisOrganizeData(dataCensored)
+
+# retrieve all corrected chlorophyll-a concentrations for Station CB5.4,
+# missing values are removed and transformation applied. Note, a 
+# warning is displayed indicating that data set has layers but user did
 # not specify layer in retrieval. layerAggregation then aggregates per 
-# specifications.
-df1 <- selectData(dataCensored, "chla", "CB2.2")
-df2 <- layerAggregation(df1[[1]], avgTechnique="mean", layerAggOption=4)
-str(df2)
+# specifications
+dfr2   <- selectData(dfr[["df"]], 'chla', 'CB5.4', analySpec=dfr[["analySpec"]])
+df2    <- dfr2[[1]]   # data frame of selected data
+iSpec2 <- dfr2[[2]]   # meta data about selected data
+df2a   <- layerAggregation(df2, avgTechnique="mean", layerAggOption=4)
 }
 
 }

@@ -21,7 +21,7 @@ cat(paste0("Last Update: ",Sys.time()))
 ```
 baytrends 1.2.1.8014
 ===========
-* Release 2020-07-17
+* Release 2020-07-20
 * Expose layeraggregation as a function available to the user; Issue #47
     + Update reference in analysisOrganizeData
 

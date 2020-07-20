@@ -12,16 +12,19 @@
 #'   ("SAP"); 2: combine "B" & "BP" ("BBP"); 3: opt 1 & 2 ("SAP", "BBP"); 4:
 #'   combine all ("ALL")); 5: combine "S" and "B" ("SB")
 #'
-#'
 #' @examples
 #' \dontrun{
-#' # retrieve all corrected chlorophyll-a concentrations for Station CB2.2.
-#' # A warning is displayed indicating that data set has layers but user did
+#' dfr    <- analysisOrganizeData(dataCensored)
+#' 
+#' # retrieve all corrected chlorophyll-a concentrations for Station CB5.4,
+#' # missing values are removed and transformation applied. Note, a 
+#' # warning is displayed indicating that data set has layers but user did
 #' # not specify layer in retrieval. layerAggregation then aggregates per 
-#' # specifications.
-#' df1 <- selectData(dataCensored, "chla", "CB2.2")
-#' df2 <- layerAggregation(df1[[1]], avgTechnique="mean", layerAggOption=4)
-#' str(df2)
+#' # specifications
+#' dfr2   <- selectData(dfr[["df"]], 'chla', 'CB5.4', analySpec=dfr[["analySpec"]])
+#' df2    <- dfr2[[1]]   # data frame of selected data
+#' iSpec2 <- dfr2[[2]]   # meta data about selected data
+#' df2a   <- layerAggregation(df2, avgTechnique="mean", layerAggOption=4)
 #' }
 #' 
 #' @return data frame with aggregated data
@@ -221,7 +224,8 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
                        timevar=c("parameter"), drop=c(""), direction = "wide")
     
     # drop "conc" from "conc.tdn"
-    names(df.num) <- sub("^(.+[.])([^.]+)$", "\\2", names(df.num))
+    # names(df.num) <- sub("^(.+[.])([^.]+)$", "\\2", names(df.num))
+    names(df.num) <- sub("value.", "", names(df.num))
     df.num$key    <- with(df.num, paste(station, date, layer ,sep="|"))
     
     # merge outcome into 'keeping' df2, data frame    
@@ -288,7 +292,8 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
                         timevar=c("parameter"), drop=c(""), direction = "wide")
     
     # drop "conc" from "conc.tdn"
-    names(df.Surv) <- sub("^(.+[.])([^.]+)$", "\\2", names(df.Surv))
+    # names(df.Surv) <- sub("^(.+[.])([^.]+)$", "\\2", names(df.Surv))
+    names(df.Surv) <- sub("value.", "", names(df.Surv))
     df.Surv$key    <- with(df.Surv, paste(station, date, layer ,sep="|"))
     
     df2 <- merge(df2

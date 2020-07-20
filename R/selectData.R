@@ -133,22 +133,22 @@
 #'
 #' @importFrom survival Surv
 #'
-# @examples
-# \dontrun{
-# # retrieve Secchi depth for Station CB5.4, no transformations are applied
-# dfr <- analysisOrganizeData(dataCensored)
-# df        <- dfr[["df"]]
-# analySpec <- dfr[["analySpec"]]
-# dfr   <- selectData(dataCensored, 'secchi', 'CB5.4', 'S', transform=FALSE,
-#                     remMiss=FALSE, analySpec=analySpec)
-# dfr1  <- dfr[[1]]
-# iSpec <- dfr[[2]]
-# # retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
-# # missing values are removed and transformation applied
-# dfr   <- selectData(dataCensored, 'chla', 'CB5.4', 'S', analySpec=analySpec)
-# dfr2  <- dfr[[1]]
-# iSpec <- dfr[[2]]
-# }
+#' @examples
+#' \dontrun{
+#' dfr    <- analysisOrganizeData(dataCensored)
+#'
+#' # retrieve Secchi depth for Station CB5.4, no transformations are applied
+#' dfr1   <- selectData(dfr[["df"]], 'secchi', 'CB5.4', 'S', transform=FALSE,
+#'                     remMiss=FALSE, analySpec=dfr[["analySpec"]])
+#' df1    <- dfr1[[1]]   # data frame of selected data
+#' iSpec1 <- dfr1[[2]]   # meta data about selected data
+#'
+#' # retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
+#' # missing values are removed and transformation applied
+#' dfr2   <- selectData(dfr[["df"]], 'chla', 'CB5.4', 'S', analySpec=dfr[["analySpec"]])
+#' df2    <- dfr2[[1]]   # data frame of selected data
+#' iSpec2 <- dfr2[[2]]   # meta data about selected data
+#' }
 #' @export
 # Header ####
 selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
