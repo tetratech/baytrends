@@ -19,6 +19,16 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.2.1.8017
+===========
+* Release 2020-07-22
+* Add tests
+    + unSurv
+    + unSurvDF
+    + makeSurvDF
+* unSurv.R
+    + Tweak example text to match examples in unSurvDF and makeSurvDF.
+
 baytrends 1.2.1.8016
 ===========
 * Release 2020-07-22

@@ -4,7 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-22 08:58:46
+    #> Last Update: 2020-07-22 09:56:34
+
+# baytrends 1.2.1.8017
+
+  - Release 2020-07-22
+  - Add tests
+      - unSurv
+      - unSurvDF
+      - makeSurvDF
+  - unSurv.R
+      - Tweak example text to match examples in unSurvDF and makeSurvDF.
 
 # baytrends 1.2.1.8016
 

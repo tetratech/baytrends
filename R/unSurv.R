@@ -27,7 +27,7 @@
 #' df2 <- unSurv(df1)
 #' colnames(df2)
 #' # User values
-#' df3 <- unSurv(df1, "low", "high")
+#' df3 <- unSurv(df1, "LOW", "HIGH")
 #' colnames(df3)
 #' 
 #' @return Returns a 3-column matrix: lo, hi, type

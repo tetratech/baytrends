@@ -229,6 +229,11 @@ Then click on "HTML" to open.
 example(analysisOrganizeData)
 ```
 
+### Test
+Run all tests.
+```{r test, eval=FALSE}
+devtools::test()
+```
 
 
 
