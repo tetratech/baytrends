@@ -17,10 +17,11 @@ makeSurvDF(df, suf_lo = "_lo", suf_hi = "_hi")
 dataframe with Surv fields
 }
 \description{
-Within a dataframe, numeric fields using a "_lo" and "_hi" suffix 
-naming convention (e.g., "conc_lo" "conc_hi") are combined into a single Surv object
-(e.g., "conc") using the "interval2" option provided by through the
-\code{survival::Surv(conc_lo, conc_hi, type = "interval2")} syntax.
+Within a dataframe, paired numeric fields that use a "_lo" and
+  "_hi" suffix naming convention (e.g., "conc_lo" "conc_hi") are combined
+  into a single Surv object (e.g., "conc") using the "interval2" option
+  provided by through the \code{survival::Surv(conc_lo, conc_hi, type =
+  "interval2")} syntax.
 }
 \details{
 Converting fields to Surv objects works with field pairs that have a "_lo" 

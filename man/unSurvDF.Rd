@@ -17,8 +17,9 @@ unSurvDF(df, suf_lo = "_lo", suf_hi = "_hi")
 Returns dataframe with censored data converted to lo/hi format
 }
 \description{
-Converts Surv objects in a dataframe to "lo" and "hi" values.
-The user can specify their own values or use the defaults.
+Converts Surv objects in a dataframe to "lo" (i.e., lower) and
+  "hi" (i.e., upper) values. The user can specify their own values or use the
+  defaults.
 }
 \examples{
 df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]

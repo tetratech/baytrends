@@ -1,3 +1,5 @@
+# Confirm that the unSurvDF(dataCensored) -> makeSurvDF(dataCensored) workflow
+# using default settings will yield the expected column names
 test_that("makeSurvDF, colnames default", {
   # Example
   df <- dataCensored[1:20,]
@@ -14,6 +16,8 @@ test_that("makeSurvDF, colnames default", {
   expect_equal(colnames(df2), qc_col)
 })
 
+# Confirm that the unSurvDF(dataCensored) -> makeSurvDF(dataCensored) workflow
+# using user-specified settings will yield the expected column names
 test_that("makeSurvDF, colnames user", {
   # Example
   df <- dataCensored[1:20,]

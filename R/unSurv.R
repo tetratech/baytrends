@@ -3,13 +3,13 @@
 #'
 #' @description Converts Surv object into a 3-column matrix
 #' 
-#' @details The type column has the following meanings:
+#' @details The third column of the returned matrix (type) has the following meanings:
 #' 
 #'  1  -- no censoring
 #'  
-#'  2  -- left censored ("less than in a survival sense" [-Inf to 10], i.e., <10)
+#'  2  -- left censored ("less than in a survival sense", e.g., [-Inf to 10], <10)
 #'  
-#'  3  -- interval censored ("less than in a water quality sense", i.e., "0 - <3", "1 - 3")
+#'  3  -- interval censored ("less than in a water quality sense", e.g., "0 - <3", "1 - 3")
 #'  
 #'  NA -- missing value
 #'  
@@ -57,8 +57,9 @@ unSurv <- function(x, col_lo = "lo", col_hi = "hi") {
 # ####
 #' @title Converts Surv objects in a dataframe to "lo" and "hi" values
 #'
-#' @description Converts Surv objects in a dataframe to "lo" and "hi" values.
-#' The user can specify their own values or use the defaults.
+#' @description Converts Surv objects in a dataframe to "lo" (i.e., lower) and
+#'   "hi" (i.e., upper) values. The user can specify their own values or use the
+#'   defaults.
 #' 
 #' @param df dataframe with Surv objects 
 #' @param suf_lo Column name suffix for "lo" values.  Default = "_lo"

@@ -1,3 +1,5 @@
+# Confirm that the unSurvDF(dataCensored) workflow with default settings will
+# yield a 3-column matrix with correct names
 test_that("unSurvDF, colnames default", {
   # Example
   df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]
@@ -14,6 +16,8 @@ test_that("unSurvDF, colnames default", {
   expect_equal(colnames(df2), qc_col)
 })
 
+# Confirm that the unSurvDF(dataCensored) workflow with user-specified settings will
+# yield a 3-column matrix with correct names
 test_that("unSurvDF, colnames user", {
   # Example
   df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]
