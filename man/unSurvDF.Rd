@@ -9,9 +9,9 @@ unSurvDF(df, suf_lo = "_lo", suf_hi = "_hi")
 \arguments{
 \item{df}{dataframe with Surv objects}
 
-\item{suf_lo}{Column name suffix for "lo" values.  Default = _lo}
+\item{suf_lo}{Column name suffix for "lo" values.  Default = "_lo"}
 
-\item{suf_hi}{Column name suffix for "hi" values.  Default = _hi}
+\item{suf_hi}{Column name suffix for "hi" values.  Default = "_hi"}
 }
 \value{
 Returns dataframe with censored data converted to lo/hi format
@@ -22,9 +22,12 @@ The user can specify their own values or use the defaults.
 }
 \examples{
 df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]
+colnames(df)
 # Default values
 df2 <- unSurvDF(df)
+colnames(df2)
 # User values
 df3 <- unSurvDF(df, "_LOW", "_HIGH")
+colnames(df3)
 
 }

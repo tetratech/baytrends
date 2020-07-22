@@ -9,9 +9,9 @@ unSurv(x, col_lo = "lo", col_hi = "hi")
 \arguments{
 \item{x}{vector (Surv object)}
 
-\item{col_lo}{Output column name for "lo" values.  Default = lo}
+\item{col_lo}{Output column name for "lo" values.  Default = "lo"}
 
-\item{col_hi}{Output column name for "hi" values.  Default = hi}
+\item{col_hi}{Output column name for "hi" values.  Default = "hi"}
 }
 \value{
 Returns a 3-column matrix: lo, hi, type
@@ -34,10 +34,13 @@ The user can specify the names of the low and high columns in the output.
 Defaults are "lo" and "hi".
 }
 \examples{
-x1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+df1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+colnames(df1)
 # Default values
-x2 <- unSurv(x1)
+df2 <- unSurv(df1)
+colnames(df2)
 # User values
-x3 <- unSurv(x1, "low", "high")
+df3 <- unSurv(df1, "low", "high")
+colnames(df3)
 
 }

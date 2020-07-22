@@ -4,7 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-20 10:26:15
+    #> Last Update: 2020-07-22 08:58:46
+
+# baytrends 1.2.1.8016
+
+  - Release 2020-07-22
+  - Allow user values for column names / suffixes in makeSurvDF; Issue
+    \#49
+  - Update example in unSurv and unSurvDF to match example in
+    makeSurvDF; Issue \#50
 
 # baytrends 1.2.1.8015
 

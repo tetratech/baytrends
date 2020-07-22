@@ -17,15 +17,18 @@
 #' Defaults are "lo" and "hi".
 #'  
 #' @param x vector (Surv object)
-#' @param col_lo Output column name for "lo" values.  Default = lo
-#' @param col_hi Output column name for "hi" values.  Default = hi
+#' @param col_lo Output column name for "lo" values.  Default = "lo"
+#' @param col_hi Output column name for "hi" values.  Default = "hi"
 #' 
 #' @examples 
-#' x1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+#' df1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+#' colnames(df1)
 #' # Default values
-#' x2 <- unSurv(x1)
+#' df2 <- unSurv(df1)
+#' colnames(df2)
 #' # User values
-#' x3 <- unSurv(x1, "low", "high")
+#' df3 <- unSurv(df1, "low", "high")
+#' colnames(df3)
 #' 
 #' @return Returns a 3-column matrix: lo, hi, type
 #'  
@@ -58,15 +61,18 @@ unSurv <- function(x, col_lo = "lo", col_hi = "hi") {
 #' The user can specify their own values or use the defaults.
 #' 
 #' @param df dataframe with Surv objects 
-#' @param suf_lo Column name suffix for "lo" values.  Default = _lo
-#' @param suf_hi Column name suffix for "hi" values.  Default = _hi
+#' @param suf_lo Column name suffix for "lo" values.  Default = "_lo"
+#' @param suf_hi Column name suffix for "hi" values.  Default = "_hi"
 #' 
 #' @examples 
 #' df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]
+#' colnames(df)
 #' # Default values
 #' df2 <- unSurvDF(df)
+#' colnames(df2)
 #' # User values
 #' df3 <- unSurvDF(df, "_LOW", "_HIGH")
+#' colnames(df3)
 #' 
 #' @return Returns dataframe with censored data converted to lo/hi format
 #'  

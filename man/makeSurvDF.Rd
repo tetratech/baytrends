@@ -4,10 +4,14 @@
 \alias{makeSurvDF}
 \title{Convert dataframe to include survival (Surv) objects}
 \usage{
-makeSurvDF(df)
+makeSurvDF(df, suf_lo = "_lo", suf_hi = "_hi")
 }
 \arguments{
 \item{df}{name of data frame}
+
+\item{suf_lo}{Column name suffix for "lo" values.  Default = "_lo"}
+
+\item{suf_hi}{Column name suffix for "hi" values.  Default = "_hi"}
 }
 \value{
 dataframe with Surv fields
@@ -23,12 +27,21 @@ Converting fields to Surv objects works with field pairs that have a "_lo"
 and "_hi" suffix naming convention. The numeric value for "_hi" must be greater than 
 or equal to the "_lo" value. Source data that violate this requirement are 
 set to NA with a summary report outputted to the console.
+
+The user can specify their own values for the lo/hi suffixes or use the defaults.
 }
 \examples{
-\dontrun{
 df <- dataCensored[1:20,]
+colnames(df)
 df1 <- unSurvDF(df)
+colnames(df1)
+# Default values
 df2 <- makeSurvDF(df1)
-}
+colnames(df2)
+# User values
+df3 <- unSurvDF(df, "_LOW", "_HIGH")
+colnames(df3)
+df4 <- makeSurvDF(df3, "_LOW", "_HIGH")
+colnames(df4)
 
 }

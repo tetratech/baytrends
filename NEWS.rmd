@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 1.2.1.8016
+===========
+* Release 2020-07-22
+* Allow user values for column names / suffixes in makeSurvDF; Issue #49
+* Update example in unSurv and unSurvDF to match example in makeSurvDF; Issue #50
+
 baytrends 1.2.1.8015
 ===========
 * Release 2020-07-20

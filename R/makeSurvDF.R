@@ -11,20 +11,31 @@
 #' or equal to the "_lo" value. Source data that violate this requirement are 
 #' set to NA with a summary report outputted to the console.
 #' 
+#' The user can specify their own values for the lo/hi suffixes or use the defaults.
+#' 
 #' @param df name of data frame
+#' @param suf_lo Column name suffix for "lo" values.  Default = "_lo"
+#' @param suf_hi Column name suffix for "hi" values.  Default = "_hi"
 #' 
 #' @examples
-#' \dontrun{
 #' df <- dataCensored[1:20,]
+#' colnames(df)
 #' df1 <- unSurvDF(df)
+#' colnames(df1)
+#' # Default values
 #' df2 <- makeSurvDF(df1)
-#' }
+#' colnames(df2)
+#' # User values
+#' df3 <- unSurvDF(df, "_LOW", "_HIGH")
+#' colnames(df3)
+#' df4 <- makeSurvDF(df3, "_LOW", "_HIGH")
+#' colnames(df4)
 #'
 #' @return dataframe with Surv fields
 #' 
 #' @export
 #' 
-makeSurvDF <- function(df) {
+makeSurvDF <- function(df, suf_lo = "_lo", suf_hi = "_hi") {
   
   # list of input dataframe fields 
   varList <- names(df)
@@ -32,12 +43,12 @@ makeSurvDF <- function(df) {
   # look for fields to convert to Surv objects ####
   {
     # fields with "_lo" 
-    varSurv.lo     <- data.frame(lo = (varList[grepl("_lo",varList)]))
-    varSurv.lo$var <- sub("_lo","",varSurv.lo$lo)
+    varSurv.lo     <- data.frame(lo = (varList[grepl(suf_lo,varList)]))
+    varSurv.lo$var <- sub(suf_lo,"",varSurv.lo$lo)
     
     # fields with "_hi" 
-    varSurv.hi     <- data.frame(hi = (varList[grepl("_hi",varList)]))
-    varSurv.hi$var <- sub("_hi","",varSurv.hi$hi)
+    varSurv.hi     <- data.frame(hi = (varList[grepl(suf_hi,varList)]))
+    varSurv.hi$var <- sub(suf_hi,"",varSurv.hi$hi)
     
     # fields with "_lo" and "_hi" to process as Surv
     varSurv        <- data.frame(var = (unique(c(varSurv.lo$var, varSurv.hi$var))))
@@ -62,31 +73,31 @@ makeSurvDF <- function(df) {
       if (var == varSurv[varSurv$boo.to.Surv, "var"][1]) {
         num_bad = 0    
       }
-      var.lo <- paste0(var,"_lo")
-      var.hi <- paste0(var,"_hi")
+      var.lo <- paste0(var, suf_lo)
+      var.hi <- paste0(var, suf_hi)
       # identify, count, and report number of bad values
-      bad <- df[,var.lo] > df[,var.hi]
+      bad <- df[, var.lo] > df[, var.hi]
       bad[is.na(bad)] <- FALSE
       num_bad <- num_bad + sum(bad)
       if (sum(bad)>0) {
-        print(paste("Num obs w/ *_lo > *_hi:", var, "--> ",sum(bad)))
+        print(paste("Num obs w/ *", suf_lo, " > *", suf_hi, ":", var, "--> ",sum(bad)))
       }
       df[bad,c(var.lo,var.hi)] <- NA
       # print total number of observations set to NA on last iteration
-      if (num_bad > 0 & var ==varSurv[varSurv$boo.to.Surv,"var"][length(varSurv[varSurv$boo.to.Surv,"var"])]) {
+      if (num_bad > 0 & var ==varSurv[varSurv$boo.to.Surv, "var"][length(varSurv[varSurv$boo.to.Surv, "var"])]) {
         print(paste("  Number of observations set to NA ==> ",num_bad))
       }
-    }
+    }## FOR ~ var ~ END
   }
   
   # convert variables to Surv objects ####
   {
     for (var in varSurv[varSurv$boo.to.Surv, "var"]) {
-      var.lo <- paste0(var,"_lo")
-      var.hi <- paste0(var,"_hi")
-      df2[ ,var]  <- survival::Surv( df[ ,var.lo], df[ ,var.hi], type = "interval2")
-    }  
+      var.lo <- paste0(var, suf_lo)
+      var.hi <- paste0(var, suf_hi)
+      df2[ ,var]  <- survival::Surv(df[, var.lo], df[, var.hi], type = "interval2")
+    }## FOR ~ var ~ END  
   }
   
   return(df2)
-}
+}## FUNCTION ~ END
