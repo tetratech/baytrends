@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+
+baytrends 1.2.1.8019
+===========
+* Release 2020-07-29
+* added vignette for processing censored data
+
 baytrends 1.2.1.8018
 ===========
 * Release 2020-07-22
