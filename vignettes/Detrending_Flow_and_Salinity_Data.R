@@ -1,17 +1,17 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----initialize,echo=TRUE------------------------------------------------
+## ----initialize,echo=TRUE-----------------------------------------------------
 library(baytrends)
 
-## ----usgsgages, echo=FALSE, results='asis'-------------------------------
+## ----usgsgages, echo=FALSE, results='asis'------------------------------------
 .T("Chesapeake Bay River Input Monitoring Stations",1,'e')
 knitr::kable(usgsGages)
 
-## ----flow, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5-----
+## ----flow, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5----------
 #  # Define Function Inputs
 #  usgsGageID    <- usgsGages$usgsGageID # all RIM stations
 #  siteName      <- usgsGages$siteName   # all RIM stations
@@ -47,16 +47,16 @@ flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
                                  , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
                                  , lowess.f)
 
-## ----salinity0, echo=FALSE, results='asis'-------------------------------
+## ----salinity0, echo=FALSE, results='asis'------------------------------------
 .T("Example Salinity Data",2,'e')
 knitr::kable(head(sal[sal$layer %in% c('S', 'B') , ]),row.names = FALSE)
 
 .T("Data Structure Associated with sal",3,'e')
 
-## ----salinity1, echo=FALSE, results='markup'-----------------------------
+## ----salinity1, echo=FALSE, results='markup'----------------------------------
 str(sal)
 
-## ----salinity2, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5----
+## ----salinity2, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5-----
 #  
 #  # Define Function Inputs
 #  df.sal      <- sal
@@ -84,6 +84,7 @@ minObs.sd   <- 10
 salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel, lowess.f, minObs, minObs.sd) 
 
 ## ----gamTrendExample, eval=TRUE, results='asis', fig.height=3.5, fig.width=6.5----
+
 dfr       <- analysisOrganizeData(dataCensored, reports = NA)
 df        <- dfr[["df"]]
 analySpec <- dfr[["analySpec"]]
@@ -92,7 +93,8 @@ analySpec <- dfr[["analySpec"]]
 analySpec$gamModels <- analySpec$gamModels[5]
 
 stat = 'CB5.4'; dep = 'tn'; layer = 'S';
-gamResult <- gamTest(df, dep, stat, layer, analySpec
-                     , salinity.detrended=salinity.detrended)
+gamResult <- gamTest(df = df, dep = dep, stat = stat, layer = layer
+                     , analySpec = analySpec
+                     , salinity.detrended = salinity.detrended)
 
 

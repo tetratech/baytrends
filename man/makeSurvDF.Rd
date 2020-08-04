@@ -46,3 +46,6 @@ df4 <- makeSurvDF(df3, "_LOW", "_HIGH")
 colnames(df4)
 
 }
+\seealso{
+\code{\link{unSurv}},  \code{\link{unSurvDF}},  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},
+}

@@ -1,5 +1,5 @@
 ---
-title: "Vignette, Workflow for Processing Censored Water Quality Data Sets"
+title: "Processing Censored Water Quality Data"
 author: "Jon.Harcum@tetratech.com and Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: 
@@ -7,7 +7,7 @@ output:
     toc: TRUE
     toc_depth: 4
 vignette: >
-  %\VignetteIndexEntry{Vignette, Workflow for Processing Censored Water Quality Data Sets}
+  %\VignetteIndexEntry{Processing Censored Water Quality Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Purpose
-The purpose of this vignette is to demonstrate a workflow for managing data sets that have censored data. In the context of water quality data, we often think of censored values reported as not-detected, less-than the quantitation limit, between detection limit and limit of quantitation to name a few. For example, in water quality, the value “<0.5” is typically thought to have a lower and upper bound of 0 and 0.5, respectively. The package `baytrends` relies on the `survival` package which treats these values as “interval” censored data and are referred to as *Surv objects*. 
+The purpose of this vignette is to demonstrate a workflow for managing data sets that have censored data. In the context of water quality data, we often think of censored values as water quality measurements reported as not-detected, less-than the quantitation limit, between detection limit and limit of quantitation to name a few. For example, in water quality, the value "<0.5" is typically thought of as left censored. In the truest statistical sense of the meaning, left-censoring implies no knowledge about the lower bound; however, in most water resource applications, zero is a common lower bound. Therefore, a value "<0.5" should be thought of as a water quality measurement having a lower and upper bound of 0 and 0.5, respectively. This allow `baytrends` to rely on the `survival` package which treats these values as “interval” censored data and are referred to as *Surv objects*.
 
 This vignette is divided into three primary sections. The first section describes the process of importing data from csv files into a dataframe with Surv objects. The second section is a more general workflow. The third section provides a list of miscellaneous functions and notes.
 
@@ -30,7 +30,7 @@ This vignette is divided into three primary sections. The first section describe
 
 ## 1. Importing data from CSV files for baytrends 
 
-Importing CSV files that have censored data into R dataframes for analysis in baytrends is a critical data preparation step and involves **two lines of code**: 1) importing the CSV data into R and 2) converting fields with censored data to Surv objects (see below code).
+Importing CSV files that have censored data into R dataframes for analysis in baytrends is a critical data preparation step and involves **two lines of code**: 1) importing the CSV data into R and 2) converting water quality measurements with censored data to Surv objects (see below code).
 
 ### Example code
 
@@ -52,19 +52,19 @@ Figure 1 represents a portion of data from an example CSV file. **Note, there is
 
 **Fields with no censoring.** In the above example, Secchi depth (secchi), salinity (salinity), dissolved oxygen (do), water temperature (wtemp), total suspended solids (tss) are stored in the next group of columns as un-censored data. While possible, censoring is less common for these types of water quality variables and as a result the data are represented with a single column in the CSV file. The values entered in these columns should be numeric values with no symbols. Values shown as "NA" are un-reported entries. Un-reported values can happen for a number of reasons including not being measured, equipment failure, etc. CSV files can use "NA" or use blanks to represent un-reported entries. Depending on the situation and the user's sensitivity to fully evaluating censored data, a variable such as total suspended solids could be treated as an un-censored variable as shown in this example or could be treated as a variable with censored data as discussed next. 
 
-**Fields with censoring.** To the right of the break in Figure 1, water quality fields include lower and upper bounds to represent censoring. Note, the field naming syntax using a suffix of "_lo" and "_hi". For example, columns [T] and [U] show the lower and upper bounds for total dissolved phosphorus as tdp_lo and tdp_hi, respectively. The upper bound must be greater than or equal to the lower bound. When the upper bound is equal to the lower bound, it indicates that observation did not have censoring.
+**Fields with censoring.** To the right of the break in Figure 1, water quality fields include lower and upper bounds to represent censoring. Note, the field naming syntax using a suffix of "_lo" and "_hi". For example, columns [U] and [V] show the lower and upper bounds for total dissolved phosphorus as tdp_lo and tdp_hi, respectively. The upper bound must be greater than or equal to the lower bound. When the upper bound is equal to the lower bound, it indicates that observation did not have censoring.
 
 #### loadData
-The code `df_in <- loadData(file = "ExampleData.csv")` uses a baytrends' built-in function to load data from a CSV file. Experienced R programmers can use other functions to load data (e.g. `read.csv`, `read.table`); however, `loadData` outputs meta data about the number of columns and rows read and performs some useful steps such as converting date fields into an R date field (i.e., `POSIXct`) and is advantageous for further analyses with baytrends and other situations. There is also a companion baytrends function, `loadExcel`, with similar functionality to `loadData` and can be used to load data from an Excel workbook. See on-line help (i.e., ??loadData and ??loadExcel) for more information. 
+The code `df_in <- loadData(file = "ExampleData.csv")` uses a baytrends' built-in function to load data from a CSV file. Experienced R programmers can use other functions to load data (e.g. `read.csv`, `read.table`); however, `loadData` outputs meta data about the number of columns and rows read and performs some useful steps such as converting date fields into an R date field (i.e., `POSIXct`) and is advantageous for further analyses with baytrends and other situations. There is also a companion baytrends function, `loadExcel`, with similar functionality to `loadData` and can be used to load data from an Excel workbook. See help (i.e., ??loadData and ??loadExcel) for more information. 
 
 #### makeSurvDF
-After importing the above CSV file into an R dataframe, the next step is to convert fields with censored data to Surv objects as depicted in Figure 2 using the code `df_Surv <- makeSurvDF(df_in)`. Fields shaded in green or blue are directly comparable to columns from the CSV file. Columns to the right of the break, such as the yellow highlighted column, tdp, is a Surv object and is derived from the two corresponding columns shown in Figure 1, tdp_lo and tdp_hi. Again, experienced R programmers can make Surv objects indepently from baytrends by using the following syntax for each field with censored data using the total dissolved phosphorus data as an example. 
+After importing the above CSV file into an R dataframe, the next step is to convert fields with censored data to Surv objects as depicted in Figure 2 using the code `df_Surv <- makeSurvDF(df_in)`. Fields shaded in green or blue are column to column comparable to the CSV file. Columns to the right of the break, such as the yellow highlighted column, tdp, is a Surv object and is derived from the two corresponding columns, tdp_lo and tdp_hi in the CSV file (Figure 1). Again, experienced R programmers can make Surv objects independently from baytrends by using the following syntax for each field with censored data using the total dissolved phosphorus data as an example. 
 
 ```{r noRunCode2, eval=FALSE, echo=TRUE, results='asis'}
 df_in$tdp <- survival::Surv(df_in$tdp_lo, df_in$tdp_hi, type = "interval2") 
 ```
 
-The baytends function, `makeSurvDF`, peforms this process for all fields in a dataframe with censored data. By default, `makeSurvDF` assumes the dataframe employs a suffix of "_lo" to represent the lower bound and "_hi" to represent the upper bound although this can be changed by the user. See on-line help (i.e., ??makeSurvDF) for more information. The `makeSurvDF` function also performs a quality assurance review of the data to make sure the upper bound is greater than or equal to the lower bound. The function outputs the number of data integrity issues by parameter and sets those observations to missing (NA) so the code can continue whilst the analyst determines the appropriate corrective action.
+The baytends function, `makeSurvDF`, peforms this process for all fields in a dataframe with censored data. By default, `makeSurvDF` assumes the dataframe employs a suffix of "_lo" to represent the lower bound and "_hi" to represent the upper bound although this can be changed by the user. See help (i.e., ??makeSurvDF) for more information. The `makeSurvDF` function also performs a quality assurance review of the data to make sure the upper bound is greater than or equal to the lower bound. The function outputs the number of data integrity issues by parameter and sets those observations to missing (NA) so the code can continue whilst the analyst determines the appropriate corrective action.
 
 ![](wf_example_dataframe.png)
 
@@ -72,14 +72,14 @@ The baytends function, `makeSurvDF`, peforms this process for all fields in a da
 
 ## 2. baytrends data management workflow
 
-The previous section described the primary steps of importing CSV files into R and converting fields with censored data to Surv objects using the functions `loadData` and `makeSurvDF`. In addition to these two functions, baytrends includes two additional functions, `unSurvDF` and `saveDF` to facilitate extracting and saving lower and upper bounds from Surv objects. When combined with the previously described functions, it is possible to have a complete workflow as depicted in Figure 3. `unSurvDF` and `saveDF` are described next.
+The previous section described the primary steps of importing CSV files into R and converting fields with censored data to Surv objects using the functions `loadData` and `makeSurvDF`. Because many R functions do not recognize Surv objects, it may be necessary to convert to Surv objects to standard numeric vectors for some analyses. To address this need, baytrends includes two additional functions, `unSurvDF` and `saveDF` to facilitate extracting and saving lower and upper bounds from Surv objects. When combined with the previously described functions, it is possible to have a complete workflow as depicted in Figure 3. `unSurvDF` and `saveDF` are described next.
 
 ![](wf_workflow_small.png)
 
 *Figure 3. Workflow for handling censored water quality data with baytrends and Surv objects.*
 
 ### unSurvDF
-As the name suggests, this function does the opposite of `makeSurvDF`. That is, in the below example code, `df1 <- unSurvDF(df0)`, df0 is a dataframe with Surv objects. `unSurvDF` passes through fields from `df0` that are not Surv objects and splits Surv objects into two fields, the lower and upper bound, using a field naming syntax that includes a suffix of "_lo" and "_hi". The user can change the default suffix (see on-line help, i.e., ??unSurvDF for more information). 
+As the name suggests, this function does the opposite of `makeSurvDF`. That is, in the below example code, `df1 <- unSurvDF(df0)`, df0 is a dataframe with Surv objects. `unSurvDF` passes through fields from `df0` that are not Surv objects and splits Surv objects into two fields, the lower and upper bound, using a field naming syntax that includes a suffix of "_lo" and "_hi". The user can change the default suffix (see help, i.e., ??unSurvDF for more information). 
 
 ### saveDF
 This function saves a dataframe to a CSV file using a default naming convention that includes the name of the dataframe and a timestamp in the file name. In general, we have found that saving a dataframe that includes Surv objects do not facilitate analyses in other software such as Excel. As in the case of `loadData` it is straightforward to use other functions to create csv files  (e.g. `write.csv`, `write.table`).
@@ -201,7 +201,7 @@ df13
 
 #### unSurvDF and unSurv
 
-As described earlier, `unSurvDF` converts dataframes that contain Surv objects into dataframes with separate columns representing the lower and upper bounds. The companion function, `unSurv`, operates on a single field and returns a 3-column matrix as demonstrated in the below code. See on-line help (i.e., ??unSurv) for more information about the returned columns. 
+As described earlier, `unSurvDF` converts dataframes that contain Surv objects into dataframes with separate columns representing the lower and upper bounds. The companion function, `unSurv`, operates on a single field and returns a 3-column matrix as demonstrated in the below code. See help (i.e., ??unSurv) for more information about the returned columns. 
 
 ```{r RunCode6, eval=TRUE, echo=TRUE, results='markup'}
 dataCensored[1:10,c("station","date","layer","tss","tdp","tp")]
@@ -211,7 +211,7 @@ unSurv(dataCensored[1:10,"tdp"])
 
 #### imputeDF and impute
 
-In some instances, it is useful to simplify Surv objects to a single field instead of lower and upper bounds. By default `impute` and `imputeDF` will compute the midpoint between the lower and upper bound for a single Surv field or convert the entire dataframe, respectively as demonstrated with the below code.  See on-line help (i.e., ??imputeDF and ??impute) for more information on other imputation options including "lower", "upper", "mid", "norm", and "lnorm".
+In some instances, it is useful to simplify Surv objects to a single field instead of lower and upper bounds. By default `impute` and `imputeDF` will compute the midpoint between the lower and upper bound for a single Surv field or convert the entire dataframe, respectively as demonstrated with the below code.  See help (i.e., ??imputeDF and ??impute) for more information on other imputation options including "lower", "upper", "mid", "norm", and "lnorm".
 
 ```{r RunCode7, eval=TRUE, echo=TRUE, results='markup'}
 dataCensored[1:10,c("station","date","layer","tss","tdp","tp")]

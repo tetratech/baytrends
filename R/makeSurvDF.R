@@ -34,6 +34,8 @@
 #'
 #' @return dataframe with Surv fields
 #' 
+#' @seealso \code{\link{unSurv}},  \code{\link{unSurvDF}},  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},  
+#' 
 #' @export
 #' 
 makeSurvDF <- function(df, suf_lo = "_lo", suf_hi = "_hi") {

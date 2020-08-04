@@ -31,7 +31,9 @@
 #' colnames(df3)
 #' 
 #' @return Returns a 3-column matrix: lo, hi, type
-#'  
+#' 
+#' @seealso \code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},  
+#' 
 #' @export
 # ####
 unSurv <- function(x, col_lo = "lo", col_hi = "hi") {
@@ -76,7 +78,9 @@ unSurv <- function(x, col_lo = "lo", col_hi = "hi") {
 #' colnames(df3)
 #' 
 #' @return Returns dataframe with censored data converted to lo/hi format
-#'  
+#' 
+#' @seealso \code{\link{makeSurvDF}},  \code{\link{unSurv}},  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},  
+#' 
 #' @export
 # ####
 unSurvDF <- function(df, suf_lo = "_lo", suf_hi = "_hi") {

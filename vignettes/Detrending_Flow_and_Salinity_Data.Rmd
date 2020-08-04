@@ -1,10 +1,10 @@
 ---
-title: "Vignette, Create Seasonally Detrended Flow and Salinity Data Sets"
+title: "Flow and Salinity Data Sets"
 author: "Jon.Harcum@tetratech.com and Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Data Sets}
+  %\VignetteIndexEntry{Flow and Salinity Data Sets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

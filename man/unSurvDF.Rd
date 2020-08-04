@@ -32,3 +32,6 @@ df3 <- unSurvDF(df, "_LOW", "_HIGH")
 colnames(df3)
 
 }
+\seealso{
+\code{\link{makeSurvDF}},  \code{\link{unSurv}},  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},
+}

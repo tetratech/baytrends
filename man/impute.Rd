@@ -36,3 +36,6 @@ x.norm  <- impute(x,'norm')
 x.lnorm <- impute(x,'lnorm')
 }
 }
+\seealso{
+\code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{unSurv}},  \code{\link{imputeDF}},  \code{\link{imputeDF}},
+}

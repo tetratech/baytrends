@@ -24,6 +24,9 @@
 #' x.lnorm <- impute(x,'lnorm')
 #' }
 #' @return vector where x is transformed into a simple numeric variable
+#' 
+#' @seealso \code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{unSurv}},  \code{\link{imputeDF}},  \code{\link{imputeDF}},  
+#' 
 #' @export
 #
 impute <-function(x, imputeOption="mid") { 
@@ -154,6 +157,9 @@ impute <-function(x, imputeOption="mid") {
 #' }
 #' @return dataframe where fields with censored data (i.e., Surv objects) are
 #'   transformed into a simple numeric fields
+#'   
+#' @seealso \code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{unSurv}},  \code{\link{impute}},  \code{\link{imputeDF}},  
+#'   
 #' @export
 #
 imputeDF <- function(df, imputeOption = "mid") {
