@@ -20,6 +20,10 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+baytrends 2.0.0
+===========
+* Beta Release 2020-08-05
+
 baytrends 1.2.1.8020
 ===========
 * Release 2020-08-04
