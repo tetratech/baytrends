@@ -20,6 +20,13 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+baytrends 2.0.0.8003
+===========
+* Release 2020-11-09
+* Run rhub::check_for_cran
+    + Update date in DESCRIPTION
+* Add tests for impute function.
+
 baytrends 2.0.0.8002
 ===========
 * Release 2020-11-09
