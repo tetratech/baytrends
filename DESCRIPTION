@@ -12,9 +12,9 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 2.0.0
+Version: 2.0.0.8002
 Date: 2020-08-05
-Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
+Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
 Disclaimer: This software program is preliminary or provisional and is subject 
     to revision. This software program is for testing only, no warranty, expressed 
     or implied, is made as to the accuracy and functioning of the program and 
@@ -100,4 +100,5 @@ Collate: analysisOrganizeData.R
      smwrBase_na2miss.R
      supportFunctions.R
      unSurv.R
+     gdata_nobs.R
      zzz.R

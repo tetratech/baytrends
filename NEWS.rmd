@@ -20,6 +20,25 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+baytrends 2.0.0.8002
+===========
+* Release 2020-11-09
+* Import nobs from gdata as a new function.
+    + gdata in danger of being archived.  No meaningful response from maintainer after 6 weeks.
+    + Imported 'as is' with a note in the help section.
+* detrended.flow
+    + Modified to use baytrends::nobs instead of gdata::nobs.
+* Add tests for nobs function.
+        
+baytrends 2.0.0.8001
+===========
+* Release 2020-08-25
+* Test and check for CRAN.
+    + NEWS
+        - Two URLs from http to https
+    + DESCRIPTION
+        - Maintainer, add middle initial to match Authors
+
 baytrends 2.0.0
 ===========
 * Beta Release 2020-08-05
@@ -410,7 +429,7 @@ baytrends 1.0.4.9011
 * Released 2018-07-06
 * DESCRIPTION
     + Change 'maintainer' from Jon Harcum to Erik Leppo so Erik can submit to CRAN.
-    + Change 'additional repositories' to GitHub.  Was http://owi.usgs.gov/R.
+    + Change 'additional repositories' to GitHub.  Was https://owi.usgs.gov/R.
 * .Rbuildignore
     + Add cran-comments.md
 * qw.import; example qw.names
@@ -680,7 +699,7 @@ development branch
 * Data with 'no visible bindig for global variable' error.
     + Add a line at the beginning of each affected function to reference the data; baytrends::xyz.
     + Peter Dalgaard's proposed solution, 2014-Aug
-    + http://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html
+    + https://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html
     + .chkParameter; parameterList
     + analysisOrganizeData; parameterList, stationMasterList, layerLukup
     + selectData; stationMasterList, parameterList, layerLukup
