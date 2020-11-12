@@ -12,16 +12,21 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.2.1
-Date: 2020-03-31
-Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
+Version: 2.0.0.8003
+Date: 2020-11-09
+Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
+Disclaimer: This software program is preliminary or provisional and is subject 
+    to revision. This software program is for testing only, no warranty, expressed 
+    or implied, is made as to the accuracy and functioning of the program and 
+    related program material nor shall the fact of distribution constitute any 
+    such warranty, and no responsibility is assumed in connection therewith. This 
+    software is provided 'AS IS.
 Depends:
     R (>= 3.5.0),
-    lubridate,
-    mgcv
-License: GPL-3
+    lubridate
+License: GPL-3    
 LazyData: TRUE
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Suggests:
     devtools,
@@ -39,151 +44,61 @@ Imports:
     XML,
     dataRetrieval,
     digest,
+    dplyr,
     gdata,
     memoise,
     methods,
+    mgcv,
     plyr,
     survival,
     zCompositions
 URL: https://github.com/tetratech/baytrends
 VignetteBuilder: knitr
-Collate: 
-    'a1_smwrQW_qw-class.R'
-    'a2_smwrQW_lcens-class.R'
-    'a3_smwrQW_mcens-class.R'
-    'analysisOrganizeData.R'
-    'appendDateFeatures.R'
-    'as.lcens.R'
-    'as.mcens.R'
-    'as.qw.R'
-    'baytrends.R'
-    'checkRange.R'
-    'chkParameter.R'
-    'closeOut.R'
-    'createResiduals.R'
-    'data.R'
-    'detrended.flow.R'
-    'detrended.salinity.R'
-    'expectMaxFunctions.r'
-    'findFile.R'
-    'flwAveragePred.R'
-    'fmtPval.R'
-    'gamDiff.R'
-    'gamPlotCalc.r'
-    'gamPlotDisp.R'
-    'gamPlotDispSeason.R'
-    'gamTables.R'
-    'gamTest.r'
-    'gamTestSeason.r'
-    'getUSGSflow.R'
-    'headers2.R'
-    'imputeCensored.R'
-    'initializeResults.r'
-    'layerAggregation.R'
-    'loadData.R'
-    'loadExcel.R'
-    'loadModels.R'
-    'loadModelsResid.R'
-    'mergeFlow.R'
-    'mergeSalinity.R'
-    'qw.export.R'
-    'qw.import.R'
-    'reAttDF.R'
-    'saveDF.R'
-    'seasAdjflow2.R'
-    'selectData.R'
-    'smwrBase_baseDay.R'
-    'smwrBase_baseDay2decimal.R'
-    'smwrBase_dectime.R'
-    'smwrBase_dectime2Date.R'
-    'smwrBase_eventProcessing.R'
-    'smwrBase_fillMissing.R'
-    'smwrBase_group2row.R'
-    'smwrBase_importRDB.R'
-    'smwrBase_isLike.R'
-    'smwrBase_na2miss.R'
-    'smwrBase_z%cn%.R'
-    'smwrGraphs_addCaption.R'
-    'smwrGraphs_colorPlot.R'
-    'smwrGraphs_colors.R'
-    'smwrGraphs_datePretty.R'
-    'smwrGraphs_lineWt.R'
-    'smwrGraphs_linearPretty.R'
-    'smwrGraphs_logPretty.R'
-    'smwrGraphs_month.USGS.R'
-    'smwrGraphs_namePretty.R'
-    'smwrGraphs_numericData.R'
-    'smwrGraphs_refLine.R'
-    'smwrGraphs_renderPretty.R'
-    'smwrGraphs_setAxis.R'
-    'smwrGraphs_setColor.R'
-    'smwrGraphs_setExplan.R'
-    'smwrGraphs_setGD.R'
-    'smwrGraphs_setMargin.R'
-    'smwrGraphs_setMultiPlot.R'
-    'smwrGraphs_setPage.R'
-    'smwrGraphs_setPlot.R'
-    'smwrGraphs_strip.blanks.R'
-    'smwrGraphs_timePlot.R'
-    'smwrGraphs_timePretty.R'
-    'smwrGraphs_transData.R'
-    'smwrGraphs_xyPlot.R'
-    'smwrQW_censoring.R'
-    'smwrQW_is.na.R'
-    'smwrQW_mcenKM.R'
-    'smwrQW_mcenMLE.R'
-    'smwrQW_mcenROS.R'
-    'smwrQW_mdlMLE.R'
-    'smwrQW_mdlROS.R'
-    'smwrQW_pcodeNWISqw.R'
-    'smwrQW_x_Arith-censored.R'
-    'smwrQW_x_Math-censored.R'
-    'smwrQW_x_View.r'
-    'smwrQW_x_add.R'
-    'smwrQW_x_as.character.R'
-    'smwrQW_x_as.data.frame.R'
-    'smwrQW_x_as.double.R'
-    'smwrQW_x_c.R'
-    'smwrQW_x_censorlevels.R'
-    'smwrQW_x_censpp.R'
-    'smwrQW_x_convert2qw.R'
-    'smwrQW_x_convertFqw.R'
-    'smwrQW_x_dlimit.R'
-    'smwrQW_x_format.R'
-    'smwrQW_x_importNWISqw.R'
-    'smwrQW_x_importQW.R'
-    'smwrQW_x_imputeLessThans.R'
-    'smwrQW_x_length.R'
-    'smwrQW_x_makeColNames.R'
-    'smwrQW_x_mdlKM.R'
-    'smwrQW_x_mdlKMstats.R'
-    'smwrQW_x_mean.qw.R'
-    'smwrQW_x_meanStats.R'
-    'smwrQW_x_medianStats.R'
-    'smwrQW_x_print.censMCT.R'
-    'smwrQW_x_print.censQuantile.R'
-    'smwrQW_x_print.censReg.R'
-    'smwrQW_x_print.censStats.R'
-    'smwrQW_x_print.summary.censReg.R'
-    'smwrQW_x_printData.R'
-    'smwrQW_x_quantile.R'
-    'smwrQW_x_qw2mcens.R'
-    'smwrQW_x_qwCoalesce.R'
-    'smwrQW_x_ratio.R'
-    'smwrQW_x_rbindQW.R'
-    'smwrQW_x_readNWQLdl.R'
-    'smwrQW_x_residuals.censReg.R'
-    'smwrQW_x_sdlFill.R'
-    'smwrQW_x_show-censored.R'
-    'smwrQW_x_sort.censored.R'
-    'smwrQW_x_splitQual.R'
-    'smwrQW_x_str.R'
-    'smwrQW_x_subset.R'
-    'smwrQW_x_summary.R'
-    'smwrQW_x_summary.censReg.R'
-    'smwrQW_x_vcov.censReg.R'
-    'smwrQW_x_z%eq%.R'
-    'smwrStats_rmse.R'
-    'smwrStats_vif.R'
-    'supportFunctions.R'
-    'zzz.R'
+Collate: analysisOrganizeData.R
+     appendDateFeatures.R
+     baytrends.R
+     checkRange.R
+     chkParameter.R
+     closeOut.R
+     createResiduals.R
+     data.R
+     detrended.flow.R
+     detrended.salinity.R
+     expectMaxFunctions.r
+     findFile.R
+     flwAveragePred.R
+     fmtPval.R
+     gamDiff.R
+     gamPlotCalc.r
+     gamPlotDisp.R
+     gamPlotDispSeason.R
+     gamTables.R
+     gamTest.r
+     gamTestSeason.r
+     getUSGSflow.R
+     headers2.R
+     imputeCensored.R
+     initializeResults.r
+     layerAggregation.R
+     loadData.R
+     loadExcel.R
+     loadModels.R
+     loadModelsResid.R
+     makeSurvDF.R
+     mergeFlow.R
+     mergeSalinity.R
+     reAttDF.R
+     saveDF.R
+     seasAdjflow2.R
+     selectData.R
+     smwrBase_baseDay.R
+     smwrBase_baseDay2decimal.R
+     smwrBase_dectime.R
+     smwrBase_dectime2Date.R
+     smwrBase_eventProcessing.R
+     smwrBase_fillMissing.R
+     smwrBase_na2miss.R
+     supportFunctions.R
+     unSurv.R
+     gdata_nobs.R
+     zzz.R

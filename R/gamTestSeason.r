@@ -415,7 +415,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     
     # impute plausible first guess. (impute in normal space, then convert)
     ct2 <- ct1
-    ct2[,iSpec$depOrig] <- baytrends::impute(ct1[,iSpec$depOrig] )
+    ct2[,iSpec$depOrig] <- if (iSpec$isSurv) impute(ct1[,iSpec$depOrig] ) else ct1[,iSpec$depOrig]
     if(transform) ct2[,iSpec$dep] <- suppressWarnings(log(ct2[,iSpec$depOrig]))
     
     # run GAM on impute plausible first guess.  #01May2018 added try error trap
@@ -454,10 +454,16 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
           # variable ect, is in normal space (note that ect$l == etc$u), so ect is either
           # log transformed [or not] and substituted into ct2[, iSpec$dep]
           if(transform) {
-            ect <- .ExpLNmCens(ct1, iSpec$depOrig, mu, sigma)
+            ct1_tmp <- data.frame(ct1
+                                  , left = unSurv(ct1[,iSpec$depOrig])[,1]
+                                  , right = unSurv(ct1[,iSpec$depOrig])[,2])
+            ect <- .ExpLNmCens(ct1_tmp, iSpec$depOrig, mu, sigma)
             ct2[, iSpec$dep] <- log(ect$l)
           } else {
-            ect <- .ExpNmCens (ct1, iSpec$depOrig, mu, sigma)
+            ct1_tmp <- data.frame(ct1
+                                  , left = unSurv(ct1[,iSpec$depOrig])[,1]
+                                  , right = unSurv(ct1[,iSpec$depOrig])[,2])
+            ect <- .ExpNmCens(ct1_tmp, iSpec$depOrig, mu, sigma)
             ct2[, iSpec$dep] <- ect$l
           }
           

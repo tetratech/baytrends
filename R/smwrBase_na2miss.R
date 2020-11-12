@@ -52,7 +52,7 @@ miss2na <- function (x, from = -99999) {
   ## Special instructions for a factor:
   if(inherits(x, 'factor')) {
     levs <- levels(x)
-	from <- as.character(from)
+    from <- as.character(from)
     levs <- levs[which(levs != from)]
     return(factor(x, levels=levs))
   } # Otherwise everything else is OK

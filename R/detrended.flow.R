@@ -197,7 +197,8 @@ detrended.flow <- function(usgsGageID, siteName
     df      <- df[,!(names(df) %in% c("date", "q", "LogQ", paste0(var,".gam") ))]
     df.mean <- aggregate(. ~ doy, FUN = mean,        data = df, na.action=na.pass, na.rm=TRUE) 
     df.sd   <- aggregate(. ~ doy, FUN = sd,          data = df, na.action=na.pass, na.rm=TRUE) 
-    df.nobs <- aggregate(. ~ doy, FUN = gdata::nobs, data = df, na.action=na.pass, na.rm=TRUE) 
+    # df.nobs <- aggregate(. ~ doy, FUN = gdata::nobs, data = df, na.action=na.pass, na.rm=TRUE)
+    df.nobs <- aggregate(. ~ doy, FUN = baytrends::nobs, data = df, na.action=na.pass, na.rm=TRUE)
     
     # compute lowess smooth standard deviation (sd)
     if(exists("df.lowess")) rm("df.lowess")

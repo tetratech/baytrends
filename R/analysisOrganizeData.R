@@ -19,8 +19,9 @@
 #' @details
 #'  The supplied data frame, df, is a data frame with the variables station,
 #'  date, and layer included along with multiple additional columns for a
-#'  variety of water quality variables structured as "qw" objects. An example
-#'  data frame, dataCensored, is included with baytrends as an example.
+#'  variety of water quality variables structured as numeric fields or 
+#'  survival::Surv objects. An example data frame, dataCensored, is included
+#'  with baytrends as an example.
 #'  
 #'  The argument, analySpec, is a list that includes basic specfications for
 #'  performing GAM analyses. The components in analySpec are identified below.
@@ -89,11 +90,12 @@
 #' df        <- dfr[["df"]]
 #' analySpec <- dfr[["analySpec"]]
 #'
-#' # analyze bottom dissolved oxygen at 2 stations
+#' # analyze bottom dissolved oxygen at 2 stations using only data from 1/1/1995-12/31/2015
 #' analySpec <-list()
 #' analySpec$parameterFilt <- c('do')
 #' analySpec$layerFilt     <- c('B')
 #' analySpec$stationFilt   <- c('CB3.3C', 'CB5.4')
+#' analySpec$dateFilt      <- as.POSIXct(c("1995-01-01", "2015-12-31"))
 #' dfr <- analysisOrganizeData(dataCensored, analySpec)
 #' df        <- dfr[["df"]]
 #' analySpec <- dfr[["analySpec"]]
@@ -108,7 +110,8 @@
 #'
 #'   stationFilt      - Station filter used for data down selection
 #'
-#'   dateFilt         - Date filter for data down selection
+#'   dateFilt         - Date filter for data down selection (default =  c( as.POSIXct('1984-01-01')
+#'                            , as.POSIXct(Sys.time())))
 #'
 #'   setTZ            - time zone (default = "America/New_York")
 #'
@@ -139,7 +142,8 @@
 #'   50 percent censoring then the first three years of data are trimmed.
 #'   Similarly, for years 1 and 4, then the first four years are removed. If
 #'   years 1 and 5 have more than 50 percent censoring the data are kept since
-#'   2/5 is not greater than 0.4.
+#'   2/5 is not greater than 0.4. Changing this setting to, say, c(0.2,0.4) would require
+#'   that 80% of the data in a year to be un-censored.
 #'
 #'   gamModels        - model formulations. See baytrends::loadModels() for 
 #'   simplified approach for selecting which built-in models to include
@@ -387,7 +391,9 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   # Check to make sure all variables are of class 'qw'
   for (dep in c(attr(df,"depVar"),attr(df,"othVar"))) {
     jCol <- grep(paste0("^",dep,"$") , colnames(df))
-    if(!(class(df[,jCol])=="qw")) stop(paste("Variable,",names(df[jCol]),"is not class qw!" ))
+    if(!(class(df[,jCol]) %in% c("Surv","numeric"))) {
+      stop(paste("Variable,",names(df[jCol]),"is not class Surv or num!" ))
+    }
   }
 
   # .chkParameter also brought back dependent variables, merge with parameter list to
@@ -420,7 +426,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 # 3) Aggregate data layers. #####
 
   if ("layer" %in% names(df)) {
-    df<-.layerAggregation(df, avgTechnique=avgTechnique, layerAggOption=analySpec$layerAggOption)
+    df<-layerAggregation(df, avgTechnique=avgTechnique, layerAggOption=analySpec$layerAggOption)
 
     # create a "layer lookup table" that includes a proper layer name and has a built in preferred
     # order for which order to analyze the layers (mostly to get surface before bottom)

@@ -7,7 +7,7 @@
 impute(x, imputeOption = "mid")
 }
 \arguments{
-\item{x}{vector of type baytrends::qw}
+\item{x}{vector of type survival::Surv}
 
 \item{imputeOption}{imputation method [default= "mid"], valid impute options
 are "lower", "upper", "mid", "norm", "lnorm"}
@@ -19,17 +19,23 @@ vector where x is transformed into a simple numeric variable
 Impute value for multiply censored data.
 }
 \details{
-The imputeOption values of lower, upper and mid impute the lower limit, upper limit,
-and midpoint between the lower and upper limit. In the context of typical water quality
-data, these options would be eqivalent to zero, detection limit and 1/2 detection limit
-substitution. Options for substituting the normal ["norm"] or lognormal ["lnorm"] expectation
-can also be used.
+The imputeOption values of \code{"lower"}, \code{"upper"} and \code{"mid"}
+impute the lower limit, upper limit, and midpoint between the lower and upper
+limit. In the context of typical water quality data, these options would be
+equivalent to zero, detection limit and 1/2 detection limit substitution.
+Options for substituting the normal [\code{"norm"}] or lognormal
+[\code{"lnorm"}] expectation can also be used.
 }
 \examples{
+\dontrun{
 x  <- dataCensored[1:20,"tdp"]
 x.lower <- impute(x,'lower')
 x.mid   <- impute(x,'mid')
 x.upper <- impute(x,'upper')
 x.norm  <- impute(x,'norm')
 x.lnorm <- impute(x,'lnorm')
+}
+}
+\seealso{
+\code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{unSurv}},  \code{\link{imputeDF}},  \code{\link{imputeDF}},
 }

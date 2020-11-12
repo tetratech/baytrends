@@ -32,6 +32,7 @@ dataCensored
 \description{
 Selected 1985-2016 data for eight (8) stations from the
   Chesapeake Bay Monitoring Program. Water quality variables are stored as
-  class qw that allows for left- and interval-censored data.
+  either class 'num' for variables with no censoring or class 'Surv' 
+  (see survival::Surv) that allows for left- and interval-censored data.
 }
 \keyword{datasets}

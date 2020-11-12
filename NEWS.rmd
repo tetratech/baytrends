@@ -19,6 +19,149 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+
+baytrends 2.0.0.8003
+===========
+* Release 2020-11-09
+* Run rhub::check_for_cran
+    + Update date in DESCRIPTION
+* Add tests for impute function.
+
+baytrends 2.0.0.8002
+===========
+* Release 2020-11-09
+* Import nobs from gdata as a new function.
+    + gdata in danger of being archived.  No meaningful response from maintainer after 6 weeks.
+    + Imported 'as is' with a note in the help section.
+* detrended.flow
+    + Modified to use baytrends::nobs instead of gdata::nobs.
+* Add tests for nobs function.
+        
+baytrends 2.0.0.8001
+===========
+* Release 2020-08-25
+* Test and check for CRAN.
+    + NEWS
+        - Two URLs from http to https
+    + DESCRIPTION
+        - Maintainer, add middle initial to match Authors
+
+baytrends 2.0.0
+===========
+* Beta Release 2020-08-05
+
+baytrends 1.2.1.8020
+===========
+* Release 2020-08-04
+* vignette & documentation cleanup
+
+baytrends 1.2.1.8019
+===========
+* Release 2020-07-29
+* added vignette for processing censored data
+
+baytrends 1.2.1.8018
+===========
+* Release 2020-07-22
+* updated documentation for versions >v1.2.1.8015 code
+
+baytrends 1.2.1.8017
+===========
+* Release 2020-07-22
+* Add tests
+    + unSurv
+    + unSurvDF
+    + makeSurvDF
+* unSurv.R
+    + Tweak example text to match examples in unSurvDF and makeSurvDF.
+
+baytrends 1.2.1.8016
+===========
+* Release 2020-07-22
+* Allow user values for column names / suffixes in makeSurvDF; Issue #49
+* Update example in unSurv and unSurvDF to match example in makeSurvDF; Issue #50
+
+baytrends 1.2.1.8015
+===========
+* Release 2020-07-20
+* Allow user values for column names / suffixes in unSurv and unSurvDF; Issue #50
+
+baytrends 1.2.1.8014
+===========
+* Release 2020-07-20
+* Expose layeraggregation as a function available to the user; Issue #47
+    + Update reference in analysisOrganizeData
+
+baytrends 1.2.1.8013
+===========
+* Release 2020-07-14
+* added dplyr to DESCRIPTION > Imports
+* move survival & mgcv to DESCRIPTION > Imports
+
+baytrends 1.2.1.8012
+===========
+* Release 2020-07-07
+* added makeSurvDF functions
+
+baytrends 1.2.1.8011
+===========
+* Release 2020-07-06
+* added unSurvDF and imputeDF functions
+
+baytrends 1.2.1.8010
+===========
+* Release 2020-07-02
+* updated .layerAggregation for Survival objects
+
+baytrends 1.2.1.8009
+===========
+* Release 2020-07-02
+* Updates after "check"; Issue #46
+    + Add survival::foo for new functions from survival package.
+        - selectData.R
+        - imputeCensored.R
+    + Add importFrom survival Suv to selectData.R
+
+baytrends 1.2.1.8008
+===========
+* Release 2020-07-01
+* remove deprecated html files and data sets
+
+baytrends 1.2.1.8007
+===========
+* Release 2020-06-30
+* createResiduals: corrected error for non-Surv objects
+
+baytrends 1.2.1.8006
+===========
+* Release 2020-06-30
+* remove depracated qw functions
+
+baytrends 1.2.1.8005
+===========
+* Release 2020-06-29
+* remove qw vignette
+
+baytrends 1.2.1.8004
+===========
+* Release 2020-06-23
+* updated to gamTestSeason to process Surv and non-Surv objects
+
+baytrends 1.2.1.8003
+===========
+* Release 2020-06-23
+* updated to gamTest to process non-Surv objects
+
+baytrends 1.2.1.8002
+===========
+* Release 2020-05-22
+* updated gamTest (and related support functions) to run using Surv fields
+
+baytrends 1.2.1.8001
+===========
+* Release 2020-03-31
+* migrated demonstration data set, dataCensored, from qw to Surv fields for censored data
+
 baytrends 1.2.1
 ===========
 * Release 2020-03-31
@@ -293,7 +436,7 @@ baytrends 1.0.4.9011
 * Released 2018-07-06
 * DESCRIPTION
     + Change 'maintainer' from Jon Harcum to Erik Leppo so Erik can submit to CRAN.
-    + Change 'additional repositories' to GitHub.  Was http://owi.usgs.gov/R.
+    + Change 'additional repositories' to GitHub.  Was https://owi.usgs.gov/R.
 * .Rbuildignore
     + Add cran-comments.md
 * qw.import; example qw.names
@@ -563,7 +706,7 @@ development branch
 * Data with 'no visible bindig for global variable' error.
     + Add a line at the beginning of each affected function to reference the data; baytrends::xyz.
     + Peter Dalgaard's proposed solution, 2014-Aug
-    + http://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html
+    + https://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html
     + .chkParameter; parameterList
     + analysisOrganizeData; parameterList, stationMasterList, layerLukup
     + selectData; stationMasterList, parameterList, layerLukup

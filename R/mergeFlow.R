@@ -21,7 +21,7 @@
   tmp <- flow.detrended[[gageID]]
   tmp <- merge(ct1[, c("date",iSpec$dep)],
                tmp[ ,c("date",hydro.var)], by="date", all.x=TRUE)
-  tmp[,iSpec$dep] <- impute(tmp[,iSpec$dep] )
+  tmp[,iSpec$dep] <- if (iSpec$isSurv) impute(tmp[,iSpec$dep]) else tmp[,iSpec$dep]
   # set up data frame to store correlation results
   hydro.var.corr <- data.frame(hydro.var=hydro.var, spearman= NA_real_ ,
                                chosen="-", stringsAsFactors = FALSE)

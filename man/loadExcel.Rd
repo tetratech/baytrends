@@ -5,9 +5,9 @@
 \title{Load/Clean Excel sheet}
 \usage{
 loadExcel(
-  folder = NA,
   file = NA,
   sheet = 1,
+  folder = ".",
   pk = NA,
   remDup = TRUE,
   remNAcol = TRUE,
@@ -17,11 +17,11 @@ loadExcel(
 )
 }
 \arguments{
-\item{folder}{folder (i.e., directory to look in, can use relative path )}
-
-\item{file}{file (can use wildcards, e.g., "*.csv")}
+\item{file}{file (can use wildcards, e.g., "*.xlsx")}
 
 \item{sheet}{worksheet name to load from Excel file}
+
+\item{folder}{folder (i.e., directory to look in, can use relative path )}
 
 \item{pk}{vector of columns that form the primary key for data set}
 
@@ -67,11 +67,11 @@ This function reads in a single sheet from an Excel file using
   the primary key. Columns corresponding to the primary key (when specified)
   are moved to the first columns.
 
-  5. If convDates is a vector (i.e., c('beginDate', 'endDate')), then a date
-  conversion is attempted for the corresponding columns found in the input
-  file. If TRUE, then a date conversion is attempted for all columns found in
-  the input file with 'date' in the name, If FALSE, no date conversion is
-  attempted.
+  5. If convDates is a vector (i.e., \code{c('beginDate', 'endDate')}), then
+  a date conversion to \code{as.POSIXct} is attempted for the corresponding
+  columns found in the input file. If TRUE, then a date conversion is
+  attempted for all columns found in the input file with 'date' in the name,
+  If FALSE, no date conversion is attempted.
 
   Some other common time zones include the following: America/New_York,
   America/Chicago, America/Denver, America/Los_Angeles, America/Anchorage,

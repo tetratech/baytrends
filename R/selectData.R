@@ -131,22 +131,24 @@
 #'   data extraction. See examples for usage and details for further discussion of the data
 #'   processing and components of each element.
 #'
-# @examples
-# \dontrun{
-# # retrieve Secchi depth for Station CB5.4, no transformations are applied
-# dfr <- analysisOrganizeData(dataCensored)
-# df        <- dfr[["df"]]
-# analySpec <- dfr[["analySpec"]]
-# dfr   <- selectData(dataCensored, 'secchi', 'CB5.4', 'S', transform=FALSE,
-#                     remMiss=FALSE, analySpec=analySpec)
-# dfr1  <- dfr[[1]]
-# iSpec <- dfr[[2]]
-# # retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
-# # missing values are removed and transformation applied
-# dfr   <- selectData(dataCensored, 'chla', 'CB5.4', 'S', analySpec=analySpec)
-# dfr2  <- dfr[[1]]
-# iSpec <- dfr[[2]]
-# }
+#' @importFrom survival Surv
+#'
+#' @examples
+#' \dontrun{
+#' dfr    <- analysisOrganizeData(dataCensored)
+#'
+#' # retrieve Secchi depth for Station CB5.4, no transformations are applied
+#' dfr1   <- selectData(dfr[["df"]], 'secchi', 'CB5.4', 'S', transform=FALSE,
+#'                     remMiss=FALSE, analySpec=dfr[["analySpec"]])
+#' df1    <- dfr1[[1]]   # data frame of selected data
+#' iSpec1 <- dfr1[[2]]   # meta data about selected data
+#'
+#' # retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
+#' # missing values are removed and transformation applied
+#' dfr2   <- selectData(dfr[["df"]], 'chla', 'CB5.4', 'S', analySpec=dfr[["analySpec"]])
+#' df2    <- dfr2[[1]]   # data frame of selected data
+#' iSpec2 <- dfr2[[2]]   # meta data about selected data
+#' }
 #' @export
 # Header ####
 selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
@@ -179,6 +181,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
 # 27Apr2016: JBH: Explicit use of "::" for non-base functions added.
 
 # Error trap ####
+  {
   # make sure dep variable is in data frame
   if( !(dep %in% names(df)) ) {
     stop("Could not find dependent variable in data frame.")
@@ -193,13 +196,16 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   if(!exists("layerList")) stop("Layer look-up list not found. Operation stopped!")
 
   setTZ <- analySpec$setTZ
+  }
 
-# Initialize iSpec ####
+  # Initialize iSpec ####
   # iSpec includes a list of variables that are transferred
   # back with downselected data set. See @return for description.
+  {
   iSpec              <- list()
   iSpec$dep          <- dep     # changed to "ln + dep" if transform == TRUE
   iSpec$depOrig      <- dep
+  iSpec$isSurv       <- survival::is.Surv(df[,dep])
   iSpec$stat         <- stat
   iSpec$stationMethodGroup <- stationList[stationList$stations==stat,"stationMethodGroup"]
   iSpec$hydroTerm <- tolower(stationList[stationList$stations==stat,"hydroTerm"]) #21Jul2017
@@ -237,9 +243,10 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$dateEnd      <- NA            # always computed
   iSpec$seasModels   <- analySpec$gamLegend[analySpec$gamLegend$season,c("descrip","legend")]
   iSpec$baytrends.ver <- getNamespaceVersion("baytrends")
-  
+}  
 # Set up flow/salinity modeling parameters #21Jul2017 ####
   # split strings into vectors
+  {
   iSpec$flwAvgWin <- suppressWarnings(as.numeric(unlist(strsplit(iSpec$flwAvgWin, " "))))
   iSpec$flwParms  <- unlist(strsplit(iSpec$flwParms, " "))
   iSpec$salParms  <- unlist(strsplit(iSpec$salParms, " "))
@@ -256,7 +263,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   # they over-ride the default iSpec$hydroTerm specification 
   if (!is.na(iSpec$flwParms[1]) & iSpec$depOrig %in% iSpec$flwParms) iSpec$hydroTermSel <- 'flow'
   if (!is.na(iSpec$salParms[1]) & iSpec$depOrig %in% iSpec$salParms) iSpec$hydroTermSel <- 'salinity'
-
+  }
 # Down select data based on layer and stations ####
 
   # Select data from df based on station, layer and dependent variable
@@ -266,6 +273,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   # option 3: warning: layer not spec. but layer in df (proceed as ok)
   # option 4: error: layer specified but not in df
   #
+  {
   if(!is.na(layer) & ("layer" %in% names(df))) {
     df <- df[ df$station==stat & df$layer==layer, ]
     iSpec$statLayer <- paste0 (stat," (",layer,")")
@@ -287,14 +295,18 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   if("date" %in% names(df)) {
     df<-df[ order(df$date), ]
   }
+  }
 
-# Re-censor negative and non-less-than zero values to small positive value ####
+  # Re-censor negative and non-less-than zero values to small positive value ####
 
   # put data into temporary data frame
-  conc          <- as.data.frame(df[,dep], expand = TRUE)[c(1,2,3,5,8,9)]
-  conc          <- cbind(df[,"date"], conc)
-  names(conc)   <- c("date", "lower", "upper", "qualifier", "repLevel", "method", "lab")
-  
+  if (iSpec$isSurv) {                      # Surv objects
+    conc          <- unSurv(df[,dep])
+    conc          <- data.frame(date = df[,"date"], lower = conc[,1], upper = conc[,2])
+  } else {                                 # numeric variables
+    conc          <- data.frame(date = df[,"date"], lower = df[,dep], upper = df[,dep])
+  }
+
   # compute 1/2 the minimum lower or upper bound greater than zero;
   recensor <- 0.5 * min(min(conc[!is.na(conc$lower) & conc$lower>0,'lower'], na.rm=TRUE),
                         min(conc[!is.na(conc$upper) & conc$upper>0,'upper'], na.rm=TRUE))
@@ -317,18 +329,12 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     df[,'recensor']   <- conc$treat
     
     # store re-censored qw variable
-    df[,dep] <- suppressWarnings (as.qw(values           = conc$lower,
-                                        value2           = conc$upper,
-                                        remark.codes     = conc$qualifier,
-                                        value.codes      = "",
-                                        reporting.level  = NA_real_,
-                                        reporting.method = "",
-                                        reporting.units  = "",
-                                        analyte.method   = "",
-                                        analyte.name     = "",
-                                        unique.code      = "")  )
-    df[,dep]@rounding <- c(3,4) 
-    
+    if (iSpec$isSurv) {
+      df[,dep] <- survival::Surv( conc$lower, conc$upper, type = "interval2")
+    } else {
+      df[,dep] <- conc$upper
+    }
+
   } else {     #12Mar2018 pass through non-log transformed data 
     conc$treat <- FALSE
     
@@ -350,18 +356,13 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
     conc$lower2 <- suppressWarnings(log(conc$lower))
     conc$upper2 <- suppressWarnings(log(conc$upper))
 
-    # make ln-transformed qw variable
-    df[,lnvar] <- suppressWarnings (as.qw(values           = conc$lower2,
-                                          value2           = conc$upper2,
-                                          remark.codes     = rep("",length(conc$lower2)),
-                                          value.codes      = "",
-                                          reporting.level  = NA_real_,
-                                          reporting.method = "",
-                                          reporting.units  = "",
-                                          analyte.method   = "",
-                                          analyte.name     = "",
-                                          unique.code      = "")  )
-    df[,lnvar]@rounding <- c(6,6)
+    # make ln-transformed variable
+    if (iSpec$isSurv) {
+      df[,lnvar] <- Surv( conc$lower2, conc$upper2, type = "interval2")
+    } else {
+      df[,lnvar] <- conc$upper2
+    }
+    
   }
 
 # Identify method/lab changes ####
@@ -451,6 +452,10 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   conc[conc$lower>0 & conc$lower <conc$upper, "fracInt"] <- 1
   # recensored
   conc[conc$treat, "fracRecen"] <- 1
+  # recode fracLT if variable is not Surv
+  if (!iSpec$isSurv) {
+    conc[conc$fracUnc==0, "fracUnc"] <- 1 # all obs are uncensored in non-Surv objects
+  }
 
   censorFrac <- data.frame(
     year      = unique(conc$year),

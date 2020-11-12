@@ -142,10 +142,11 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
   analySpec$gamLegend$On <-FALSE
   
 # Review data points and set up x- and y-axis ranges ####
-  conc          <- data.frame(tsdat.all$date,
-                              tsdat.all$recensor,
-                              as.data.frame(tsdat.all[,dep], expand = TRUE)[c(1,2)],
-                              tsdat.all$doy) 
+  conc <- if (iSpec$isSurv) {
+    data.frame(tsdat.all$date, tsdat.all$recensor, unSurv(tsdat.all[,dep])[,1:2], tsdat.all$doy) 
+  } else {
+    data.frame(tsdat.all$date, tsdat.all$recensor, tsdat.all[,dep], tsdat.all[,dep], tsdat.all$doy) 
+  }
   names(conc)   <- c("date", "recensor", "lower", "upper", "doy" )
   conc$point    <- "?"
   
