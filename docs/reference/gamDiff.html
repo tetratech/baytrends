@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -95,10 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -135,17 +138,17 @@
     <p>Compute an estimate of difference based on GAM results</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gamDiff</span>(
-  <span class='no'>gamRslt</span>,
-  <span class='no'>iSpec</span>,
-  <span class='no'>analySpec</span>,
-  <span class='kw'>base.yr.set</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>test.yr.set</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>doy.set</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>flow.detrended</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>salinity.detrended</span> <span class='kw'>=</span> <span class='fl'>NA</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gamDiff</span><span class='op'>(</span>
+  <span class='va'>gamRslt</span>,
+  <span class='va'>iSpec</span>,
+  <span class='va'>analySpec</span>,
+  base.yr.set <span class='op'>=</span> <span class='cn'>NA</span>,
+  test.yr.set <span class='op'>=</span> <span class='cn'>NA</span>,
+  doy.set <span class='op'>=</span> <span class='cn'>NA</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.05</span>,
+  flow.detrended <span class='op'>=</span> <span class='cn'>NA</span>,
+  salinity.detrended <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,17 +229,18 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># run analysisOrganizeData function to create the list analySpec</span>
-<span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='analysisOrganizeData.html'>analysisOrganizeData</a></span> (<span class='no'>dataCensored</span>, <span class='kw'>report</span><span class='kw'>=</span><span class='fl'>NA</span>)
-<span class='no'>df</span>        <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"df"</span>]]
-<span class='no'>analySpec</span> <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"analySpec"</span>]]
+<span class='va'>dfr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='analysisOrganizeData.html'>analysisOrganizeData</a></span> <span class='op'>(</span><span class='va'>dataCensored</span>, report<span class='op'>=</span><span class='cn'>NA</span><span class='op'>)</span>
+<span class='va'>df</span>        <span class='op'>&lt;-</span> <span class='va'>dfr</span><span class='op'>[[</span><span class='st'>"df"</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>analySpec</span> <span class='op'>&lt;-</span> <span class='va'>dfr</span><span class='op'>[[</span><span class='st'>"analySpec"</span><span class='op'>]</span><span class='op'>]</span>
 
 <span class='co'># set GAM models to just one model</span>
-<span class='no'>analySpec</span>$<span class='no'>gamModels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>option</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>name</span><span class='kw'>=</span> <span class='st'>"Non-linear trend with Seasonality (plus Interactions)"</span>,
-       <span class='kw'>model</span><span class='kw'>=</span> <span class='st'>"~ cyear + s(cyear) + s(doy,bs='cc')+ ti(cyear,doy,bs=c('tp','cc'))"</span>, <span class='kw'>deriv</span><span class='kw'>=</span><span class='fl'>FALSE</span>))
+<span class='va'>analySpec</span><span class='op'>$</span><span class='va'>gamModels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>option<span class='op'>=</span><span class='fl'>2</span>, name<span class='op'>=</span> <span class='st'>"Non-linear trend with Seasonality (plus Interactions)"</span>,
+       model<span class='op'>=</span> <span class='st'>"~ cyear + s(cyear) + s(doy,bs='cc')+ ti(cyear,doy,bs=c('tp','cc'))"</span>, deriv<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># run GAM for a single water quality variable, station and layer</span>
-<span class='no'>gamResult</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='gamTest.html'>gamTest</a></span>(<span class='no'>df</span>, <span class='st'>'tn'</span>, <span class='st'>'CB5.4'</span>, <span class='st'>'S'</span>, <span class='kw'>analySpec</span><span class='kw'>=</span><span class='no'>analySpec</span>)</div><div class='output co'>#&gt; 
+<span class='va'>gamResult</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gamTest.html'>gamTest</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='st'>'tn'</span>, <span class='st'>'CB5.4'</span>, <span class='st'>'S'</span>, analySpec<span class='op'>=</span><span class='va'>analySpec</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; #### Total Nitrogen - Non-linear trend with Seasonality (plus Interactions)</div><div class='img'><img src='gamDiff-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt;  
@@ -251,8 +255,8 @@
 #&gt; |:----------------|-------------:|----:|-------:|-------:|
 #&gt; |parametric terms |         cyear| 1.00|  0.4344|  0.5102|
 #&gt; |smoothed terms   |      s(cyear)| 7.13|  3.9607|  0.0001|
-#&gt; |"      "         |        s(doy)| 6.41| 19.9427| &lt;0.0001|
-#&gt; |"      "         | ti(cyear,doy)| 5.49|  1.3716|  0.0021|
+#&gt; |"      "         |        s(doy)| 6.41| 19.9524| &lt;0.0001|
+#&gt; |"      "         | ti(cyear,doy)| 5.49|  1.3710|  0.0022|
 #&gt; 
 #&gt; 
 #&gt;  
@@ -300,10 +304,11 @@
 #&gt; |Difference p-value                           |      &lt;0.0001       |
 #&gt; |Period of Record Percent Change Estimate (%) |      -28.94%       |</div><div class='input'>
 <span class='co'># use gamDiff to replicate estimates of change calculated in the above</span>
-<span class='fu'>gamDiff</span>(<span class='kw'>gamRslt</span><span class='kw'>=</span><span class='no'>gamResult</span><span class='kw'>[[</span><span class='st'>"gamOutput2"</span>]]$<span class='no'>gamRslt</span>,
-        <span class='kw'>iSpec</span><span class='kw'>=</span><span class='no'>gamResult</span>$<span class='no'>iSpec</span>, <span class='kw'>analySpec</span><span class='kw'>=</span><span class='no'>analySpec</span>,
-        <span class='kw'>base.yr.set</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>test.yr.set</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-        <span class='kw'>doy.set</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</div><div class='output co'>#&gt; $gamDiff.regular
+<span class='fu'>gamDiff</span><span class='op'>(</span>gamRslt<span class='op'>=</span><span class='va'>gamResult</span><span class='op'>[[</span><span class='st'>"gamOutput2"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>gamRslt</span>,
+        iSpec<span class='op'>=</span><span class='va'>gamResult</span><span class='op'>$</span><span class='va'>iSpec</span>, analySpec<span class='op'>=</span><span class='va'>analySpec</span>,
+        base.yr.set <span class='op'>=</span> <span class='cn'>NA</span>, test.yr.set <span class='op'>=</span> <span class='cn'>NA</span>,
+        doy.set <span class='op'>=</span> <span class='cn'>NA</span>, alpha <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $gamDiff.regular
 #&gt; $gamDiff.regular$base.yr
 #&gt; [1] 1985 1986
 #&gt; 
@@ -394,10 +399,11 @@
 #&gt; 
 #&gt; </div><div class='input'>
 <span class='co'># use gamDiff to calculate changes from 2005/06 to 2013/14</span>
-<span class='fu'>gamDiff</span>(<span class='kw'>gamRslt</span><span class='kw'>=</span><span class='no'>gamResult</span><span class='kw'>[[</span><span class='st'>"gamOutput2"</span>]]$<span class='no'>gamRslt</span>,
-        <span class='kw'>iSpec</span><span class='kw'>=</span><span class='no'>gamResult</span>$<span class='no'>iSpec</span>, <span class='kw'>analySpec</span><span class='kw'>=</span><span class='no'>analySpec</span>,
-        <span class='kw'>base.yr.set</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2004</span>:<span class='fl'>2005</span>), <span class='kw'>test.yr.set</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2013</span>:<span class='fl'>2014</span>),
-        <span class='kw'>doy.set</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</div><div class='output co'>#&gt; $gamDiff.regular
+<span class='fu'>gamDiff</span><span class='op'>(</span>gamRslt<span class='op'>=</span><span class='va'>gamResult</span><span class='op'>[[</span><span class='st'>"gamOutput2"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>gamRslt</span>,
+        iSpec<span class='op'>=</span><span class='va'>gamResult</span><span class='op'>$</span><span class='va'>iSpec</span>, analySpec<span class='op'>=</span><span class='va'>analySpec</span>,
+        base.yr.set <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2004</span><span class='op'>:</span><span class='fl'>2005</span><span class='op'>)</span>, test.yr.set <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2013</span><span class='op'>:</span><span class='fl'>2014</span><span class='op'>)</span>,
+        doy.set <span class='op'>=</span> <span class='cn'>NA</span>, alpha <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $gamDiff.regular
 #&gt; $gamDiff.regular$base.yr
 #&gt; [1] 2004 2005
 #&gt; 
@@ -499,11 +505,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

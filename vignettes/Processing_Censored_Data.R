@@ -74,6 +74,7 @@ df3
 
 ## ----noRunCode5, eval=FALSE, echo=TRUE, results='asis'------------------------
 #  library(baytrends)
+#  #library(dplyr)
 #  
 #  # Create two dataframes with Surv objects.
 #  df11 <- dataCensored[1:10,c("station","date","layer","tss","tdp","tp")]
@@ -83,12 +84,12 @@ df3
 #  df12
 #  
 #  # Combine the two dataframe into one dataframe
-#  library(dplyr)
-#  df13 <- bind_rows(df11,df12)
+#  df13 <- dplyr::bind_rows(df11,df12)
 #  df13
 
 ## ----RunCode5, eval=TRUE, echo=TRUE, results='markup'-------------------------
 library(baytrends)
+#library(dplyr)
 
 # Create two dataframes with Surv objects. 
 df11 <- dataCensored[1:10,c("station","date","layer","tss","tdp","tp")]
@@ -98,8 +99,7 @@ df12 <- dataCensored[11:20,c("station","date","layer","tss","tdp","tp")]
 df12
 
 # Combine the two dataframe into one dataframe
-library(dplyr)
-df13 <- bind_rows(df11,df12)
+df13 <- dplyr::bind_rows(df11,df12)
 df13
 
 ## ----RunCode6, eval=TRUE, echo=TRUE, results='markup'-------------------------

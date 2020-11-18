@@ -46,7 +46,7 @@ The remainder of this section discusses the above lines of code by way of exampl
 
 Figure 1 represents a portion of data from an example CSV file. **Note, there is no requirement for the CSV file to have the data stored in the column order shown.** In this example, the three required fields: station, date, and layer are stored in the first three columns ([A]-[C]). Missing values for these columns are not permissable. The user can optionally include additional fields such as depth, time, etc.
 
-![](wf_example_csv_file.png)
+![](wf_example_csv_file.PNG)
 
 *Figure 1. Example CSV file.*
 
@@ -66,7 +66,7 @@ df_in$tdp <- survival::Surv(df_in$tdp_lo, df_in$tdp_hi, type = "interval2")
 
 The baytends function, `makeSurvDF`, peforms this process for all fields in a dataframe with censored data. By default, `makeSurvDF` assumes the dataframe employs a suffix of "_lo" to represent the lower bound and "_hi" to represent the upper bound although this can be changed by the user. See help (i.e., ??makeSurvDF) for more information. The `makeSurvDF` function also performs a quality assurance review of the data to make sure the upper bound is greater than or equal to the lower bound. The function outputs the number of data integrity issues by parameter and sets those observations to missing (NA) so the code can continue whilst the analyst determines the appropriate corrective action.
 
-![](wf_example_dataframe.png)
+![](wf_example_dataframe.PNG)
 
 *Figure 2. Example dataframe with Surv objects.*
 
@@ -74,7 +74,7 @@ The baytends function, `makeSurvDF`, peforms this process for all fields in a da
 
 The previous section described the primary steps of importing CSV files into R and converting fields with censored data to Surv objects using the functions `loadData` and `makeSurvDF`. Because many R functions do not recognize Surv objects, it may be necessary to convert to Surv objects to standard numeric vectors for some analyses. To address this need, baytrends includes two additional functions, `unSurvDF` and `saveDF` to facilitate extracting and saving lower and upper bounds from Surv objects. When combined with the previously described functions, it is possible to have a complete workflow as depicted in Figure 3. `unSurvDF` and `saveDF` are described next.
 
-![](wf_workflow_small.png)
+![](wf_workflow_small.PNG)
 
 *Figure 3. Workflow for handling censored water quality data with baytrends and Surv objects.*
 
@@ -165,6 +165,7 @@ Normally, dataframes can be appended by using `rbind` function within R. For dat
 
 ```{r noRunCode5, eval=FALSE, echo=TRUE, results='asis'}
 library(baytrends)
+#library(dplyr)
 
 # Create two dataframes with Surv objects. 
 df11 <- dataCensored[1:10,c("station","date","layer","tss","tdp","tp")]
@@ -174,8 +175,7 @@ df12 <- dataCensored[11:20,c("station","date","layer","tss","tdp","tp")]
 df12
 
 # Combine the two dataframe into one dataframe
-library(dplyr)
-df13 <- bind_rows(df11,df12)
+df13 <- dplyr::bind_rows(df11,df12)
 df13
 ```
 
@@ -183,6 +183,7 @@ df13
 
 ```{r RunCode5, eval=TRUE, echo=TRUE, results='markup'}
 library(baytrends)
+#library(dplyr)
 
 # Create two dataframes with Surv objects. 
 df11 <- dataCensored[1:10,c("station","date","layer","tss","tdp","tp")]
@@ -192,8 +193,7 @@ df12 <- dataCensored[11:20,c("station","date","layer","tss","tdp","tp")]
 df12
 
 # Combine the two dataframe into one dataframe
-library(dplyr)
-df13 <- bind_rows(df11,df12)
+df13 <- dplyr::bind_rows(df11,df12)
 df13
 ```
 

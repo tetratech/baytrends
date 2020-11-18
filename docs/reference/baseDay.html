@@ -73,7 +73,7 @@ used to group days for the computation of summary statistics.  From smwrBase pac
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -96,10 +96,13 @@ used to group days for the computation of summary statistics.  From smwrBase pac
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -137,7 +140,7 @@ used to group days for the computation of summary statistics.  From smwrBase pac
 used to group days for the computation of summary statistics.  From smwrBase package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>baseDay</span>(<span class='no'>x</span>, <span class='kw'>numeric</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"calendar"</span>, <span class='st'>"water"</span>, <span class='st'>"climate"</span>))</pre>
+    <pre class="usage"><span class='fu'>baseDay</span><span class='op'>(</span><span class='va'>x</span>, numeric <span class='op'>=</span> <span class='cn'>TRUE</span>, year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"calendar"</span>, <span class='st'>"water"</span>, <span class='st'>"climate"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,8 +177,10 @@ regardless of whether the year is a leap year or not. If <code>year</code> is
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># The default numeric result</span>
-<span class='fu'>baseDay</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2000-02-29"</span>, <span class='st'>"2000-03-01"</span>, <span class='st'>"2001-03-01"</span>))</div><div class='output co'>#&gt; [1] 60 61 61</div><div class='input'><span class='co'># The result as a factor</span>
-<span class='fu'>baseDay</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2000-02-29"</span>, <span class='st'>"2000-03-01"</span>, <span class='st'>"2001-03-01"</span>), <span class='kw'>numeric</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] Feb 29 Mar 01 Mar 01
+<span class='fu'>baseDay</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"2000-02-29"</span>, <span class='st'>"2000-03-01"</span>, <span class='st'>"2001-03-01"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 60 61 61</div><div class='input'><span class='co'># The result as a factor</span>
+<span class='fu'>baseDay</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"2000-02-29"</span>, <span class='st'>"2000-03-01"</span>, <span class='st'>"2001-03-01"</span><span class='op'>)</span>, numeric<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] Feb 29 Mar 01 Mar 01
 #&gt; 366 Levels: Jan 01 Jan 02 Jan 03 Jan 04 Jan 05 Jan 06 Jan 07 Jan 08 ... Dec 31</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -188,11 +193,11 @@ regardless of whether the year is a leap year or not. If <code>year</code> is
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

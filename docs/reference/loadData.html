@@ -73,7 +73,7 @@ perform some rudimentary data cleaning." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -96,10 +96,13 @@ perform some rudimentary data cleaning." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -137,18 +140,18 @@ perform some rudimentary data cleaning." />
 perform some rudimentary data cleaning.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>loadData</span>(
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>folder</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>pk</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>remDup</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>remNAcol</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>remNArow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>convDates</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>tzSel</span> <span class='kw'>=</span> <span class='st'>"America/New_York"</span>,
-  <span class='kw'>commChar</span> <span class='kw'>=</span> <span class='st'>"#"</span>,
-  <span class='kw'>naChar</span> <span class='kw'>=</span> <span class='fl'>NA</span>
-)</pre>
+    <pre class="usage"><span class='fu'>loadData</span><span class='op'>(</span>
+  file <span class='op'>=</span> <span class='cn'>NA</span>,
+  folder <span class='op'>=</span> <span class='st'>"."</span>,
+  pk <span class='op'>=</span> <span class='cn'>NA</span>,
+  remDup <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  remNAcol <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  remNArow <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  convDates <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  tzSel <span class='op'>=</span> <span class='st'>"America/New_York"</span>,
+  commChar <span class='op'>=</span> <span class='st'>"#"</span>,
+  naChar <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,7 +205,7 @@ should be converted to POSIXct format (see details)</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function reads in a single comma delimited (*.csv) or tab
-  delimited (*.txt) file using either utils::read.table or utils::read.csv
+  delimited (*.txt) file using either <code><a href='https://rdrr.io/r/utils/read.table.html'>utils::read.table</a></code> or <code><a href='https://rdrr.io/r/utils/read.table.html'>utils::read.csv</a></code>
   based on the file extension. The user can use the wildcard feature for the
   file argument (e.g., file='*.csv') and the function will identify the most
   recently modified csv or txt file in the folder for importing.</p>
@@ -222,7 +225,7 @@ should be converted to POSIXct format (see details)</p></td>
   function enforces the primary key by deleting duplicate entries based on
   the primary key. Columns corresponding to the primary key (when specified)
   are moved to the first columns.</p>
-<p>6. If convDates is a vector (i.e., c('beginDate', 'endDate')), then a date
+<p>6. If convDates is a vector (i.e., <code><a href='https://rdrr.io/r/base/c.html'>c('beginDate', 'endDate')</a></code>), then a date
   conversion is attempted for the corresponding columns found in the input
   file. If TRUE, then a date conversion is attempted for all columns found in
   the input file with 'date' in the name, If FALSE, no date conversion is
@@ -245,11 +248,11 @@ should be converted to POSIXct format (see details)</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

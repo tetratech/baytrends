@@ -4,7 +4,38 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-11-09 16:38:09
+    #> Last Update: 2020-11-18 09:26:54
+
+# baytrends 2.0.0
+
+  - Release 2020-11-18
+  - Ready for CRAN submittal
+
+# baytrends 2.0.0.8005
+
+  - Release 2020-11-13
+  - Run rhub::check\_for\_linux
+      - DESCRIPTION, Remove packages not being used.
+          - methods
+          - XML
+          - zCompositions
+      - DESCRIPTION, Move package from Import to Suggests (vignette
+        only)
+          - dplyr
+      - Processing\_Censored\_Data.R
+          - remove library(dplyr)
+          - Add dplyr:: to bind\_rows
+
+# baytrends 2.0.0.8004
+
+  - Release 2020-11-12
+  - Run rhub::check\_for\_linux
+      - Update png to PNG in vigenette for compatibility with Linux.
+  - detrended.flow.R
+      - baytrends::nobs to nobs
+  - Rebuild pkgdown site.
+  - DESCRIPTION
+      - Remove gdata from Imports.
 
 # baytrends 2.0.0.8003
 

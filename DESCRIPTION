@@ -12,8 +12,8 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 2.0.0.8003
-Date: 2020-11-09
+Version: 2.0.0
+Date: 2020-11-18
 Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
 Disclaimer: This software program is preliminary or provisional and is subject 
     to revision. This software program is for testing only, no warranty, expressed 
@@ -30,6 +30,7 @@ RoxygenNote: 7.1.1
 Encoding: UTF-8
 Suggests:
     devtools,
+    dplyr,
     fitdistrplus,
     grDevices, 
     imputeTS,
@@ -44,14 +45,10 @@ Imports:
     XML,
     dataRetrieval,
     digest,
-    dplyr,
-    gdata,
     memoise,
-    methods,
     mgcv,
     plyr,
-    survival,
-    zCompositions
+    survival
 URL: https://github.com/tetratech/baytrends
 VignetteBuilder: knitr
 Collate: analysisOrganizeData.R
