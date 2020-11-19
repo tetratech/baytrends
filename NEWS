@@ -4,7 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-11-18 09:26:54
+    #> Last Update: 2020-11-19 09:19:06
+
+# baytrends 2.0.0.9001
+
+  - Release 2020-11-19
+  - DESCRIPTION
+      - Remove Disclaimer.
+      - Add journal reference.
+  - baytrends package help.
+      - Added Disclaimer text.
 
 # baytrends 2.0.0
 

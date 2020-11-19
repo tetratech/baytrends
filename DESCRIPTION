@@ -10,17 +10,14 @@ Description: Enable users to evaluate long-term trends using a Generalized
     interval-censored data. The approach has been applied to water quality data 
     in the Chesapeake Bay, a major estuary on the east coast of the United 
     States to provide insights to a range of management- and research-focused 
-    questions.
+    questions.  Methodology described in Murphy, R.R., E. Perry, J. Harcum, and 
+    J. Keisman.  2019.  A Generalized Additive Model approach to evaluating water 
+    quality: Chesapeake Bay case study.  Environmental Modelling & Software, 118 
+    (2019) 1-13.  (https://doi.org/10.1016/j.envsoft.2019.03.027).
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 2.0.0
-Date: 2020-11-18
+Version: 2.0.0.9001
+Date: 2020-11-19
 Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
-Disclaimer: This software program is preliminary or provisional and is subject 
-    to revision. This software program is for testing only, no warranty, expressed 
-    or implied, is made as to the accuracy and functioning of the program and 
-    related program material nor shall the fact of distribution constitute any 
-    such warranty, and no responsibility is assumed in connection therewith. This 
-    software is provided 'AS IS.
 Depends:
     R (>= 3.5.0),
     lubridate

@@ -20,6 +20,15 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+baytrends 2.0.0.9001
+===========
+* Release 2020-11-19
+* DESCRIPTION
+    + Remove Disclaimer.
+    + Add journal reference.
+* baytrends package help.
+    + Added Disclaimer text.
+
 baytrends 2.0.0
 ===========
 * Release 2020-11-18
