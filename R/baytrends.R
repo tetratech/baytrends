@@ -10,10 +10,10 @@
 #' approach, which is fully transferable to other systems, allows for Chesapeake
 #' Bay water quality data to be evaluated in a statistically rigorous, yet
 #' flexible way to provide insights to a range of management- and
-#' research-focused questions. Methodology described in Murphy, R.R., E. Perry, 
-#' J. Harcum, and J. Keisman.  2019.  A Generalized Additive Model approach to 
+#' research-focused questions. Methodology described in Murphy, RR, E Perry, 
+#' J Harcum, and J Keisman  2019  A Generalized Additive Model approach to 
 #' evaluating water quality: Chesapeake Bay case study.  Environmental Modelling
-#' & Software, 118 (2019) 1-13.  https://doi.org/10.1016/j.envsoft.2019.03.027
+#' & Software, 118 (2019) 1-13.  <https://doi.org/10.1016/j.envsoft.2019.03.027>.
 #' 
 #' This software program is preliminary or provisional and is subject 
 #' to revision. This software program is for testing only, no warranty, expressed 

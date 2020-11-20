@@ -12,34 +12,112 @@
 
 <meta name="author" content="Jon.Harcum@tetratech.com and Erik.Leppo@tetratech.com" />
 
-<meta name="date" content="2020-08-04" />
+<meta name="date" content="2020-11-20" />
 
 <title>Flow and Salinity Data Sets</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+<style type="text/css">
+a.anchor-section {margin-left: 10px; visibility: hidden; color: inherit;}
+a.anchor-section::before {content: '#';}
+.hasAnchor:hover a.anchor-section {visibility: visible;}
+</style>
+<script>// Anchor sections v1.0 written by Atsushi Yasumoto on Oct 3rd, 2020.
+document.addEventListener('DOMContentLoaded', function() {
+  // Do nothing if AnchorJS is used
+  if (typeof window.anchors === 'object' && anchors.hasOwnProperty('hasAnchorJSLink')) {
+    return;
+  }
+
+  const h = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+  // Do nothing if sections are already anchored
+  if (Array.from(h).some(x => x.classList.contains('hasAnchor'))) {
+    return null;
+  }
+
+  // Use section id when pandoc runs with --section-divs
+  const section_id = function(x) {
+    return ((x.classList.contains('section') || (x.tagName === 'SECTION'))
+            ? x.id : '');
+  };
+
+  // Add anchors
+  h.forEach(function(x) {
+    const id = x.id || section_id(x.parentElement);
+    if (id === '') {
+      return null;
+    }
+    let anchor = document.createElement('a');
+    anchor.href = '#' + id;
+    anchor.classList = ['anchor-section'];
+    x.classList.add('hasAnchor');
+    x.appendChild(anchor);
+  });
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +126,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -301,7 +379,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Flow and Salinity Data Sets</h1>
 <h4 class="author"><a href="mailto:Jon.Harcum@tetratech.com" class="email">Jon.Harcum@tetratech.com</a> and <a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
-<h4 class="date">2020-08-04</h4>
+<h4 class="date">2020-11-20</h4>
 
 
 
@@ -314,7 +392,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="load-baytrends" class="section level2">
 <h2>Load baytrends</h2>
 <p>The first step is to load the baytrends library. Loading baytrends will result in loading multiple additional libraries as well.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(baytrends)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(baytrends)</span></code></pre></div>
 </div>
 <div id="seasonally-detrended-flow" class="section level2">
 <h2>Seasonally Detrended Flow</h2>
@@ -371,23 +449,24 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>The below code chunk is an example of retrieving and seasonally detrending daily flow data for all nine of the RIM stations from 1983-2017. To retrieve data for other USGS gages, the variables, usgsGagesID and siteName would be assigned with vectors that contain the list of USGS gage IDs and their site names. The vector of gage IDs are used to retrieve data while the vector of siteNames is used for diagnostic plots created by the function, detrend.flow.</p>
 <p>To best match up with water quality data, we recommend retrieving flow data for one year prior to the first year of water quality data. This allows for creating a time-averaged flow data set and not loose the first few months of water quality data due to lack of matching flow data. Data retrievals should also be made in light of the time needed by the USGS to review and approve their flow records.</p>
 <p>Information about the settings for dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel, lowess.f, span, and max.fill are described in the help file for this function.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Define Function Inputs</span></a>
-<a class="sourceLine" id="cb2-2" title="2">usgsGageID    &lt;-<span class="st"> </span>usgsGages<span class="op">$</span>usgsGageID <span class="co"># all RIM stations</span></a>
-<a class="sourceLine" id="cb2-3" title="3">siteName      &lt;-<span class="st"> </span>usgsGages<span class="op">$</span>siteName   <span class="co"># all RIM stations</span></a>
-<a class="sourceLine" id="cb2-4" title="4">yearStart     &lt;-<span class="st"> </span><span class="dv">1983</span></a>
-<a class="sourceLine" id="cb2-5" title="5">yearEnd       &lt;-<span class="st"> </span><span class="dv">2017</span></a>
-<a class="sourceLine" id="cb2-6" title="6">dvAvgWinSel   &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">90</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">210</span>)</a>
-<a class="sourceLine" id="cb2-7" title="7">dvAvgWgtSel   &lt;-<span class="st"> &quot;uniform&quot;</span></a>
-<a class="sourceLine" id="cb2-8" title="8">dvAvgSidesSel &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb2-9" title="9">lowess.f      &lt;-<span class="st"> </span><span class="fl">0.2</span></a>
-<a class="sourceLine" id="cb2-10" title="10"></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co"># Run detrended.flow function</span></a>
-<a class="sourceLine" id="cb2-12" title="12">flow.detrended &lt;-<span class="st"> </span><span class="kw">detrended.flow</span>(usgsGageID, siteName, yearStart, yearEnd</a>
-<a class="sourceLine" id="cb2-13" title="13">                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel</a>
-<a class="sourceLine" id="cb2-14" title="14">                                 , lowess.f)</a>
-<a class="sourceLine" id="cb2-15" title="15"></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co"># Save list to data file separate use</span></a>
-<a class="sourceLine" id="cb2-17" title="17"><span class="kw">save</span>(flow.detrended, <span class="dt">file=</span><span class="st">&#39;mySeasonallyDetrendedFlow.rda&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(baytrends)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># Define Function Inputs</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>usgsGageID    &lt;-<span class="st"> </span>usgsGages<span class="op">$</span>usgsGageID <span class="co"># all RIM stations</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>siteName      &lt;-<span class="st"> </span>usgsGages<span class="op">$</span>siteName   <span class="co"># all RIM stations</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>yearStart     &lt;-<span class="st"> </span><span class="dv">1983</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>yearEnd       &lt;-<span class="st"> </span><span class="dv">2017</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>dvAvgWinSel   &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">90</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">210</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a>dvAvgWgtSel   &lt;-<span class="st"> &quot;uniform&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>dvAvgSidesSel &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>lowess.f      &lt;-<span class="st"> </span><span class="fl">0.2</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># Run detrended.flow function</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>flow.detrended &lt;-<span class="st"> </span><span class="kw">detrended.flow</span>(usgsGageID, siteName, yearStart, yearEnd</span>
+<span id="cb2-14"><a href="#cb2-14"></a>                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel</span>
+<span id="cb2-15"><a href="#cb2-15"></a>                                 , lowess.f)</span>
+<span id="cb2-16"><a href="#cb2-16"></a></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co"># Save list to data file separate use</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="kw">save</span>(flow.detrended, <span class="dt">file=</span><span class="st">&#39;mySeasonallyDetrendedFlow.rda&#39;</span>)</span></code></pre></div>
 <div id="example" class="section level3">
 <h3>Example</h3>
 <p>The following five figures Figures 1-5 provide an example analysis for the USGS gage on the Susquehanna River at Conowingo, Maryland. Figure 1 displays the daily flow values [cms] as a function of the day of year for data from 2003-2017. The solid red line represents the predicted GAM using the function Log(Q)~s(doy,bs=‘cc’).</p>
@@ -476,20 +555,20 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 #&gt;  $ salinity: num  11.7 12.1 12.6 13.4 21.6 ...</code></pre>
 <p>The below code chunk is an example for analyzing all of the data contained in the sample data frame, sal. As currently developed, detrended.salinity will average salinity in the surface (‘S’) and above pycnocline (‘AP’) layers to create an average salinity value for the surface and above pycnocline (SAP) layer. detrended.salinity will also average salinity in the bottom (‘B’) and below pycnocline (‘AP’) layers to create an average salinity value for the bottom and below pycnocline (BAP) layer.</p>
 <p>The use and settings for dvAvgWinSel, lowess.f, minObs, and minObs.sd are described in the help file. The detrened.salinity function will assume the user wants to evaluate the salinity for all of the stations in sal and for all the years of available data.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co"># Define Function Inputs</span></a>
-<a class="sourceLine" id="cb4-3" title="3">df.sal      &lt;-<span class="st"> </span>sal</a>
-<a class="sourceLine" id="cb4-4" title="4">dvAvgWinSel &lt;-<span class="st"> </span><span class="dv">30</span></a>
-<a class="sourceLine" id="cb4-5" title="5">lowess.f    &lt;-<span class="st"> </span><span class="fl">0.2</span></a>
-<a class="sourceLine" id="cb4-6" title="6">minObs      &lt;-<span class="st"> </span><span class="dv">40</span></a>
-<a class="sourceLine" id="cb4-7" title="7">minObs.sd   &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb4-8" title="8">                 </a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co"># Run Function</span></a>
-<a class="sourceLine" id="cb4-10" title="10">salinity.detrended &lt;-<span class="st"> </span><span class="kw">detrended.salinity</span>(df.sal, dvAvgWinSel, </a>
-<a class="sourceLine" id="cb4-11" title="11">                                 lowess.f, minObs, minObs.sd)   </a>
-<a class="sourceLine" id="cb4-12" title="12"></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co"># Save list to data file separate use</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="kw">save</span>(salinity.detrended, <span class="dt">file=</span><span class="st">&#39;mySeasonallyDetrendedSalinity.rda&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># Define Function Inputs</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>df.sal      &lt;-<span class="st"> </span>sal</span>
+<span id="cb4-4"><a href="#cb4-4"></a>dvAvgWinSel &lt;-<span class="st"> </span><span class="dv">30</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>lowess.f    &lt;-<span class="st"> </span><span class="fl">0.2</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>minObs      &lt;-<span class="st"> </span><span class="dv">40</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>minObs.sd   &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>                 </span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># Run Function</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>salinity.detrended &lt;-<span class="st"> </span><span class="kw">detrended.salinity</span>(df.sal, dvAvgWinSel, </span>
+<span id="cb4-11"><a href="#cb4-11"></a>                                 lowess.f, minObs, minObs.sd)   </span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># Save list to data file separate use</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="kw">save</span>(salinity.detrended, <span class="dt">file=</span><span class="st">&#39;mySeasonallyDetrendedSalinity.rda&#39;</span>)</span></code></pre></div>
 <div id="example-1" class="section level3">
 <h3>Example</h3>
 <p>The below figures display summary statistics (mean, standard deviation [sd], and number of observations [Nobs.] for the SAP and BBP layers, respectively. The red line on the standard deviation plot is based on a lowess smooth. The standard deviations associated with the red line are used for computing confidence intervals.</p>
@@ -503,21 +582,21 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="example-gam-analysis" class="section level2">
 <h2>Example GAM Analysis</h2>
 <p>It is now possible to run gam4 using the results of the above analyses. The below code chunk will run the gam4 for surface total nitrogen at station CB5.4.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"></a>
-<a class="sourceLine" id="cb5-2" title="2">dfr       &lt;-<span class="st"> </span><span class="kw">analysisOrganizeData</span>(dataCensored, <span class="dt">reports =</span> <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">df        &lt;-<span class="st"> </span>dfr[[<span class="st">&quot;df&quot;</span>]]</a>
-<a class="sourceLine" id="cb5-4" title="4">analySpec &lt;-<span class="st"> </span>dfr[[<span class="st">&quot;analySpec&quot;</span>]]</a>
-<a class="sourceLine" id="cb5-5" title="5"></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co"># down select analyzed GAM</span></a>
-<a class="sourceLine" id="cb5-7" title="7">analySpec<span class="op">$</span>gamModels &lt;-<span class="st"> </span>analySpec<span class="op">$</span>gamModels[<span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb5-8" title="8"></a>
-<a class="sourceLine" id="cb5-9" title="9">stat =<span class="st"> &#39;CB5.4&#39;</span>; dep =<span class="st"> &#39;tn&#39;</span>; layer =<span class="st"> &#39;S&#39;</span>;</a>
-<a class="sourceLine" id="cb5-10" title="10">gamResult &lt;-<span class="st"> </span><span class="kw">gamTest</span>(<span class="dt">df =</span> df, <span class="dt">dep =</span> dep, <span class="dt">stat =</span> stat, <span class="dt">layer =</span> layer</a>
-<a class="sourceLine" id="cb5-11" title="11">                     , <span class="dt">analySpec =</span> analySpec</a>
-<a class="sourceLine" id="cb5-12" title="12">                     , <span class="dt">salinity.detrended =</span> salinity.detrended)</a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; Warning: Detrended flow data (flow.detrended) not passed as argument in gamTest,</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; but models included in analySpec include those with &#39;flw_sal&#39; term. Consider</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; passing detrended flow data or reducing models specified in analySpec.</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2"></a>dfr       &lt;-<span class="st"> </span><span class="kw">analysisOrganizeData</span>(dataCensored, <span class="dt">reports =</span> <span class="ot">NA</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>df        &lt;-<span class="st"> </span>dfr[[<span class="st">&quot;df&quot;</span>]]</span>
+<span id="cb5-4"><a href="#cb5-4"></a>analySpec &lt;-<span class="st"> </span>dfr[[<span class="st">&quot;analySpec&quot;</span>]]</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># down select analyzed GAM</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>analySpec<span class="op">$</span>gamModels &lt;-<span class="st"> </span>analySpec<span class="op">$</span>gamModels[<span class="dv">5</span>]</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a>stat =<span class="st"> &#39;CB5.4&#39;</span>; dep =<span class="st"> &#39;tn&#39;</span>; layer =<span class="st"> &#39;S&#39;</span>;</span>
+<span id="cb5-10"><a href="#cb5-10"></a>gamResult &lt;-<span class="st"> </span><span class="kw">gamTest</span>(<span class="dt">df =</span> df, <span class="dt">dep =</span> dep, <span class="dt">stat =</span> stat, <span class="dt">layer =</span> layer</span>
+<span id="cb5-11"><a href="#cb5-11"></a>                     , <span class="dt">analySpec =</span> analySpec</span>
+<span id="cb5-12"><a href="#cb5-12"></a>                     , <span class="dt">salinity.detrended =</span> salinity.detrended)</span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; Warning: Detrended flow data (flow.detrended) not passed as argument in gamTest,</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; but models included in analySpec include those with &#39;flw_sal&#39; term. Consider</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; passing detrended flow data or reducing models specified in analySpec.</span></span></code></pre></div>
 <div id="total-nitrogen---non-linear-trend-with-seasint.-hydro-adj" class="section level4">
 <h4>Total Nitrogen - Non-linear trend with Seas+Int. &amp; Hydro Adj</h4>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
@@ -551,14 +630,14 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">&quot; &quot;</td>
 <td align="right">s(doy)</td>
 <td align="right">7.06</td>
-<td align="right">36.0365</td>
+<td align="right">36.0578</td>
 <td align="right">&lt;0.0001</td>
 </tr>
 <tr class="even">
 <td align="left">&quot; &quot;</td>
 <td align="right">ti(cyear,doy)</td>
 <td align="right">5.64</td>
-<td align="right">2.7950</td>
+<td align="right">2.7925</td>
 <td align="right">&lt;0.0001</td>
 </tr>
 <tr class="odd">
@@ -572,7 +651,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">&quot; &quot;</td>
 <td align="right">ti(flw_sal,doy)</td>
 <td align="right">5.14</td>
-<td align="right">5.5458</td>
+<td align="right">5.5460</td>
 <td align="right">&lt;0.0001</td>
 </tr>
 <tr class="odd">
@@ -587,7 +666,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="right">ti(flw_sal,doy,cyear)</td>
 <td align="right">1.88</td>
 <td align="right">0.1106</td>
-<td align="right">0.0239</td>
+<td align="right">0.0236</td>
 </tr>
 </tbody>
 </table>

@@ -12,6 +12,7 @@ library(baytrends)
 knitr::kable(usgsGages)
 
 ## ----flow, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5----------
+#  library(baytrends)
 #  # Define Function Inputs
 #  usgsGageID    <- usgsGages$usgsGageID # all RIM stations
 #  siteName      <- usgsGages$siteName   # all RIM stations

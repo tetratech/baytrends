@@ -4,7 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-11-19 09:19:06
+    #> Last Update: 2020-11-20 09:18:56
+
+# baytrends 2.0.0.9002
+
+  - Release 2020-11-20
+  - Edit DESCRIPTION for CRAN.
+  - Tweak Detrending\_Flow\_and\_Salinity\_Data vignette for build
+    error.
 
 # baytrends 2.0.0.9001
 
