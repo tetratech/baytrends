@@ -4,7 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-11-20 11:19:37
+    #> Last Update: 2020-11-23 15:06:33
+
+# baytrends 2.0.1.9001
+
+  - Release 2020-11-23
+  - Add .git to .Rbuildignore
+  - Remove one RDA from vignette folder (too large).
 
 # baytrends 2.0.1
 
