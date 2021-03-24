@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -94,10 +94,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -229,6 +232,18 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="imputeDF.html">imputeDF()</a></code> </p>
+        </td>
+        <td><p>Impute Censored Values in dataframes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="layerAggregation.html">layerAggregation()</a></code> </p>
+        </td>
+        <td><p>Aggregate data layers</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="layerLukup.html">layerLukup</a></code> </p>
         </td>
         <td><p>Layer List</p></td>
@@ -259,51 +274,21 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="makeSurvDF.html">makeSurvDF()</a></code> </p>
+        </td>
+        <td><p>Convert dataframe to include survival (Surv) objects</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nobs.html">nobs()</a></code> </p>
+        </td>
+        <td><p>Compute the Number of Non-Missing Observations</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="parameterList.html">parameterList</a></code> </p>
         </td>
         <td><p>Parameter List</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pcodeColData.html">pcodeColData</a></code> </p>
-        </td>
-        <td><p>Selected USGS parameter Codes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Q05078470.html">Q05078470</a></code> </p>
-        </td>
-        <td><p>Daily Streamflow</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="qw.export.html">qw.export()</a></code> </p>
-        </td>
-        <td><p>qw.export</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="qw.import.html">qw.import()</a></code> </p>
-        </td>
-        <td><p>qw.import</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="QW05078470.html">QW05078470</a></code> </p>
-        </td>
-        <td><p>Stream Water Quality</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="QWstacked.html">QWstacked</a></code> </p>
-        </td>
-        <td><p>Stream Water Quality</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rbindQW.html">rbindQW()</a></code> </p>
-        </td>
-        <td><p>Combine Data by Rows</p></td>
       </tr><tr>
         
         <td>
@@ -331,6 +316,18 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="unSurv.html">unSurv()</a></code> </p>
+        </td>
+        <td><p>Converts Surv object into a 3-column matrix</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="unSurvDF.html">unSurvDF()</a></code> </p>
+        </td>
+        <td><p>Converts Surv objects in a dataframe to "lo" and "hi" values</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="usgsGages.html">usgsGages</a></code> </p>
         </td>
         <td><p>USGS Gages</p></td>
@@ -349,11 +346,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

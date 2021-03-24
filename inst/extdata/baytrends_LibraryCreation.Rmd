@@ -191,7 +191,7 @@ validate_email()
 check()
 
 # recommended prior to CRAN submission
-check_for_cran()
+check_for_cran() # win and linux
 
 check_on_linux()
 
@@ -206,6 +206,14 @@ devtools::run_examples(pkg = ".")
 ```
 
 Alternate is testthat::test_examples() but is redundant with R CMD check.
+
+**code coverage**
+```{r CodeCoverage}
+#library(covr)
+covr::report()
+```
+
+
 
 ## Check functions and such
 ### Index

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -95,10 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -135,7 +138,7 @@
     <p>Check Data Range -- function that checks for allowable values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.checkRange</span>(<span class='no'>df</span>, <span class='no'>var</span>, <span class='kw'>varScrn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>numNA</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>deleteOption</span> <span class='kw'>=</span> <span class='st'>"pass"</span>)</pre>
+    <pre class="usage"><span class='fu'>.checkRange</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>var</span>, varScrn <span class='op'>=</span> <span class='cn'>NULL</span>, numNA <span class='op'>=</span> <span class='cn'>FALSE</span>, deleteOption <span class='op'>=</span> <span class='st'>"pass"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,18 +175,19 @@ TRUE/FALSE for pass/fail)</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create an example data frame</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-       <span class='kw'>x1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"X1"</span>,<span class='st'>"Y2"</span>,<span class='st'>"A1"</span>,<span class='st'>"B2"</span>,<span class='st'>"C1"</span>, <span class='st'>"X1"</span>,<span class='st'>""</span>,<span class='st'>"A1"</span>,<span class='st'>""</span>,<span class='st'>"C1"</span>),
-       <span class='kw'>x2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>5</span>, <span class='fl'>14</span> ) + <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>10</span>) ,
-       <span class='kw'>x3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1/10/2008"</span>, <span class='st'>"1/21/2008"</span>, <span class='st'>"3/1/2008"</span>, <span class='st'>"3/26/1993"</span>,
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+       x1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"X1"</span>,<span class='st'>"Y2"</span>,<span class='st'>"A1"</span>,<span class='st'>"B2"</span>,<span class='st'>"C1"</span>, <span class='st'>"X1"</span>,<span class='st'>""</span>,<span class='st'>"A1"</span>,<span class='st'>""</span>,<span class='st'>"C1"</span><span class='op'>)</span>,
+       x2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>14</span> <span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> ,
+       x3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1/10/2008"</span>, <span class='st'>"1/21/2008"</span>, <span class='st'>"3/1/2008"</span>, <span class='st'>"3/26/1993"</span>,
                          <span class='st'>"11/1/2012"</span>, <span class='st'>"6/10/2000"</span>, <span class='st'>"8/2/1990"</span>, <span class='st'>"7/8/2005"</span>,
-                         <span class='st'>"1/6/2008"</span>, <span class='st'>"9/11/2008"</span>),
-                         <span class='kw'>format</span><span class='kw'>=</span><span class='st'>"%m/%d/%Y"</span>), <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span><span class='fl'>FALSE</span>)
+                         <span class='st'>"1/6/2008"</span>, <span class='st'>"9/11/2008"</span><span class='op'>)</span>,
+                         format<span class='op'>=</span><span class='st'>"%m/%d/%Y"</span><span class='op'>)</span>, stringsAsFactors <span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='co'># add a few missing values</span>
-<span class='no'>df</span>[<span class='fl'>1</span>,<span class='fl'>1</span>]<span class='kw'>=</span><span class='fl'>NA</span>
-<span class='no'>df</span>[<span class='fl'>3</span>,<span class='fl'>2</span>]<span class='kw'>=</span><span class='fl'>NA</span>
-<span class='no'>df</span>[<span class='fl'>5</span>,<span class='fl'>3</span>]<span class='kw'>=</span><span class='fl'>NA</span>
-<span class='no'>df</span></div><div class='output co'>#&gt;      x1        x2         x3
+<span class='va'>df</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>]</span><span class='op'>=</span><span class='cn'>NA</span>
+<span class='va'>df</span><span class='op'>[</span><span class='fl'>3</span>,<span class='fl'>2</span><span class='op'>]</span><span class='op'>=</span><span class='cn'>NA</span>
+<span class='va'>df</span><span class='op'>[</span><span class='fl'>5</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>=</span><span class='cn'>NA</span>
+<span class='va'>df</span>
+</div><div class='output co'>#&gt;      x1        x2         x3
 #&gt; 1  &lt;NA&gt;  5.080750 2008-01-10
 #&gt; 2    Y2  6.834333 2008-01-21
 #&gt; 3    A1        NA 2008-03-01
@@ -195,12 +199,13 @@ TRUE/FALSE for pass/fail)</p></td>
 #&gt; 9       13.732882 2008-01-06
 #&gt; 10   C1 14.772522 2008-09-11</div><div class='input'>
 <span class='co'># establish allowable values for screening</span>
-<span class='no'>x1Scrn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A1"</span>, <span class='st'>"B2"</span>, <span class='st'>"C1"</span>, <span class='st'>"Y2"</span>))   <span class='co'># character</span>
-<span class='no'>x2Scrn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>7</span>,<span class='fl'>13</span>)                                   <span class='co'># min/max value</span>
-<span class='no'>x3Scrn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1999-01-01"</span>, <span class='st'>"2008-09-10"</span>)) <span class='co'># min/max date (POSIXct format)</span>
+<span class='va'>x1Scrn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A1"</span>, <span class='st'>"B2"</span>, <span class='st'>"C1"</span>, <span class='st'>"Y2"</span><span class='op'>)</span><span class='op'>)</span>   <span class='co'># character</span>
+<span class='va'>x2Scrn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>7</span>,<span class='fl'>13</span><span class='op'>)</span>                                   <span class='co'># min/max value</span>
+<span class='va'>x3Scrn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1999-01-01"</span>, <span class='st'>"2008-09-10"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># min/max date (POSIXct format)</span>
 
 <span class='co'># return df with new column indicating pass [TRUE] / fail [FALSE]</span>
-<span class='fu'>.checkRange</span>(<span class='no'>df</span>, <span class='kw'>var</span><span class='kw'>=</span><span class='st'>"x1"</span>, <span class='kw'>varScrn</span><span class='kw'>=</span><span class='no'>x1Scrn</span>, <span class='kw'>numNA</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>deleteOption</span><span class='kw'>=</span><span class='st'>'mark'</span>)</div><div class='output co'>#&gt;      x1        x2         x3 dfScrn
+<span class='fu'>.checkRange</span><span class='op'>(</span><span class='va'>df</span>, var<span class='op'>=</span><span class='st'>"x1"</span>, varScrn<span class='op'>=</span><span class='va'>x1Scrn</span>, numNA<span class='op'>=</span><span class='cn'>FALSE</span>, deleteOption<span class='op'>=</span><span class='st'>'mark'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      x1        x2         x3 dfScrn
 #&gt; 1  &lt;NA&gt;  5.080750 2008-01-10  FALSE
 #&gt; 2    Y2  6.834333 2008-01-21   TRUE
 #&gt; 3    A1        NA 2008-03-01   TRUE
@@ -210,7 +215,8 @@ TRUE/FALSE for pass/fail)</p></td>
 #&gt; 7       11.497777 1990-08-02  FALSE
 #&gt; 8    A1 12.289767 2005-07-08   TRUE
 #&gt; 9       13.732882 2008-01-06  FALSE
-#&gt; 10   C1 14.772522 2008-09-11   TRUE</div><div class='input'><span class='fu'>.checkRange</span>(<span class='no'>df</span>, <span class='kw'>var</span><span class='kw'>=</span><span class='st'>"x2"</span>, <span class='kw'>varScrn</span><span class='kw'>=</span><span class='no'>x2Scrn</span>, <span class='kw'>numNA</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>deleteOption</span><span class='kw'>=</span><span class='st'>'mark'</span>)</div><div class='output co'>#&gt;      x1        x2         x3 dfScrn
+#&gt; 10   C1 14.772522 2008-09-11   TRUE</div><div class='input'><span class='fu'>.checkRange</span><span class='op'>(</span><span class='va'>df</span>, var<span class='op'>=</span><span class='st'>"x2"</span>, varScrn<span class='op'>=</span><span class='va'>x2Scrn</span>, numNA<span class='op'>=</span><span class='cn'>FALSE</span>, deleteOption<span class='op'>=</span><span class='st'>'mark'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      x1        x2         x3 dfScrn
 #&gt; 1  &lt;NA&gt;  5.080750 2008-01-10  FALSE
 #&gt; 2    Y2  6.834333 2008-01-21  FALSE
 #&gt; 3    A1        NA 2008-03-01  FALSE
@@ -220,7 +226,8 @@ TRUE/FALSE for pass/fail)</p></td>
 #&gt; 7       11.497777 1990-08-02   TRUE
 #&gt; 8    A1 12.289767 2005-07-08   TRUE
 #&gt; 9       13.732882 2008-01-06  FALSE
-#&gt; 10   C1 14.772522 2008-09-11  FALSE</div><div class='input'><span class='fu'>.checkRange</span>(<span class='no'>df</span>, <span class='kw'>var</span><span class='kw'>=</span><span class='st'>"x3"</span>, <span class='kw'>varScrn</span><span class='kw'>=</span><span class='no'>x3Scrn</span>, <span class='kw'>numNA</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>deleteOption</span><span class='kw'>=</span><span class='st'>'mark'</span>)</div><div class='output co'>#&gt;      x1        x2         x3 dfScrn
+#&gt; 10   C1 14.772522 2008-09-11  FALSE</div><div class='input'><span class='fu'>.checkRange</span><span class='op'>(</span><span class='va'>df</span>, var<span class='op'>=</span><span class='st'>"x3"</span>, varScrn<span class='op'>=</span><span class='va'>x3Scrn</span>, numNA<span class='op'>=</span><span class='cn'>FALSE</span>, deleteOption<span class='op'>=</span><span class='st'>'mark'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      x1        x2         x3 dfScrn
 #&gt; 1  &lt;NA&gt;  5.080750 2008-01-10   TRUE
 #&gt; 2    Y2  6.834333 2008-01-21   TRUE
 #&gt; 3    A1        NA 2008-03-01   TRUE
@@ -232,18 +239,21 @@ TRUE/FALSE for pass/fail)</p></td>
 #&gt; 9       13.732882 2008-01-06   TRUE
 #&gt; 10   C1 14.772522 2008-09-11  FALSE</div><div class='input'>
 <span class='co'># return df with only rows that pass check</span>
-<span class='fu'>.checkRange</span>(<span class='no'>df</span>, <span class='kw'>var</span><span class='kw'>=</span><span class='st'>"x1"</span>, <span class='kw'>varScrn</span><span class='kw'>=</span><span class='no'>x1Scrn</span>, <span class='kw'>numNA</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>deleteOption</span><span class='kw'>=</span><span class='st'>'pass'</span>)</div><div class='output co'>#&gt;    x1        x2         x3
+<span class='fu'>.checkRange</span><span class='op'>(</span><span class='va'>df</span>, var<span class='op'>=</span><span class='st'>"x1"</span>, varScrn<span class='op'>=</span><span class='va'>x1Scrn</span>, numNA<span class='op'>=</span><span class='cn'>FALSE</span>, deleteOption<span class='op'>=</span><span class='st'>'pass'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    x1        x2         x3
 #&gt; 2  Y2  6.834333 2008-01-21
 #&gt; 3  A1        NA 2008-03-01
 #&gt; 4  B2  8.157208 1993-03-26
 #&gt; 5  C1  9.007399       &lt;NA&gt;
 #&gt; 8  A1 12.289767 2005-07-08
-#&gt; 10 C1 14.772522 2008-09-11</div><div class='input'><span class='fu'>.checkRange</span>(<span class='no'>df</span>, <span class='kw'>var</span><span class='kw'>=</span><span class='st'>"x2"</span>, <span class='kw'>varScrn</span><span class='kw'>=</span><span class='no'>x2Scrn</span>, <span class='kw'>numNA</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>deleteOption</span><span class='kw'>=</span><span class='st'>'pass'</span>)</div><div class='output co'>#&gt;   x1        x2         x3
+#&gt; 10 C1 14.772522 2008-09-11</div><div class='input'><span class='fu'>.checkRange</span><span class='op'>(</span><span class='va'>df</span>, var<span class='op'>=</span><span class='st'>"x2"</span>, varScrn<span class='op'>=</span><span class='va'>x2Scrn</span>, numNA<span class='op'>=</span><span class='cn'>FALSE</span>, deleteOption<span class='op'>=</span><span class='st'>'pass'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   x1        x2         x3
 #&gt; 4 B2  8.157208 1993-03-26
 #&gt; 5 C1  9.007399       &lt;NA&gt;
 #&gt; 6 X1 10.466393 2000-06-10
 #&gt; 7    11.497777 1990-08-02
-#&gt; 8 A1 12.289767 2005-07-08</div><div class='input'><span class='fu'>.checkRange</span>(<span class='no'>df</span>, <span class='kw'>var</span><span class='kw'>=</span><span class='st'>"x3"</span>, <span class='kw'>varScrn</span><span class='kw'>=</span><span class='no'>x3Scrn</span>, <span class='kw'>numNA</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>deleteOption</span><span class='kw'>=</span><span class='st'>'pass'</span>)</div><div class='output co'>#&gt;     x1        x2         x3
+#&gt; 8 A1 12.289767 2005-07-08</div><div class='input'><span class='fu'>.checkRange</span><span class='op'>(</span><span class='va'>df</span>, var<span class='op'>=</span><span class='st'>"x3"</span>, varScrn<span class='op'>=</span><span class='va'>x3Scrn</span>, numNA<span class='op'>=</span><span class='cn'>FALSE</span>, deleteOption<span class='op'>=</span><span class='st'>'pass'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     x1        x2         x3
 #&gt; 1 &lt;NA&gt;  5.080750 2008-01-10
 #&gt; 2   Y2  6.834333 2008-01-21
 #&gt; 3   A1        NA 2008-03-01
@@ -261,11 +271,11 @@ TRUE/FALSE for pass/fail)</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

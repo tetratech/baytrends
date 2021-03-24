@@ -73,7 +73,7 @@ From smwrBase package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -96,10 +96,13 @@ From smwrBase package." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -137,7 +140,7 @@ From smwrBase package." />
 From smwrBase package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>baseDay2decimal</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>baseDay2decimal</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,12 +163,14 @@ values also result in missing values in the output.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># The baseDay ordered by calendar year</span>
-<span class='no'>bd.tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='baseDay.html'>baseDay</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2000-02-29"</span>, <span class='st'>"2000-03-01"</span>, <span class='st'>"2001-03-01"</span>),
-  <span class='kw'>numeric</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='fu'>baseDay2decimal</span>(<span class='no'>bd.tmp</span>)</div><div class='output co'>#&gt; [1] 0.1612022 0.1639344 0.1639344</div><div class='input'><span class='co'># ordered by water year, result should agree</span>
-<span class='no'>bd.tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='baseDay.html'>baseDay</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2000-02-29"</span>, <span class='st'>"2000-03-01"</span>, <span class='st'>"2001-03-01"</span>),
-  <span class='kw'>numeric</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>year</span><span class='kw'>=</span><span class='st'>"water"</span>)
-<span class='fu'>baseDay2decimal</span>(<span class='no'>bd.tmp</span>)</div><div class='output co'>#&gt; [1] 0.1612022 0.1639344 0.1639344</div></pre>
+<span class='va'>bd.tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='baseDay.html'>baseDay</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"2000-02-29"</span>, <span class='st'>"2000-03-01"</span>, <span class='st'>"2001-03-01"</span><span class='op'>)</span>, 
+  numeric<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>baseDay2decimal</span><span class='op'>(</span><span class='va'>bd.tmp</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.1612022 0.1639344 0.1639344</div><div class='input'><span class='co'># ordered by water year, result should agree</span>
+<span class='va'>bd.tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='baseDay.html'>baseDay</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"2000-02-29"</span>, <span class='st'>"2000-03-01"</span>, <span class='st'>"2001-03-01"</span><span class='op'>)</span>, 
+  numeric<span class='op'>=</span><span class='cn'>FALSE</span>, year<span class='op'>=</span><span class='st'>"water"</span><span class='op'>)</span>
+<span class='fu'>baseDay2decimal</span><span class='op'>(</span><span class='va'>bd.tmp</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.1612022 0.1639344 0.1639344</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -177,11 +182,11 @@ values also result in missing values in the output.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

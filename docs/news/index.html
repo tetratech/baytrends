@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -94,10 +94,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -129,6 +132,385 @@
       <small>Source: <a href='https://github.com/tetratech/baytrends/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="baytrends-200" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0">
+<a href="#baytrends-200" class="anchor"></a>baytrends 2.0.0<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-11-18</li>
+<li>Ready for CRAN submittal</li>
+</ul>
+</div>
+    <div id="baytrends-2008005" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0.8005">
+<a href="#baytrends-2008005" class="anchor"></a>baytrends 2.0.0.8005<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-11-13</li>
+<li>Run rhub::check_for_linux
+<ul>
+<li>DESCRIPTION, Remove packages not being used.
+<ul>
+<li>methods</li>
+<li>XML</li>
+<li>zCompositions</li>
+</ul>
+</li>
+<li>DESCRIPTION, Move package from Import to Suggests (vignette only)
+<ul>
+<li>dplyr</li>
+</ul>
+</li>
+<li>Processing_Censored_Data.R
+<ul>
+<li>remove library(dplyr)</li>
+<li>Add dplyr:: to bind_rows</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="baytrends-2008004" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0.8004">
+<a href="#baytrends-2008004" class="anchor"></a>baytrends 2.0.0.8004<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-11-12</li>
+<li>Run rhub::check_for_linux
+<ul>
+<li>Update png to PNG in vigenette for compatibility with Linux.</li>
+</ul>
+</li>
+<li>detrended.flow.R
+<ul>
+<li>baytrends::nobs to nobs</li>
+</ul>
+</li>
+<li>Rebuild pkgdown site.</li>
+<li>DESCRIPTION
+<ul>
+<li>Remove gdata from Imports.</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="baytrends-2008003" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0.8003">
+<a href="#baytrends-2008003" class="anchor"></a>baytrends 2.0.0.8003<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-11-09</li>
+<li>Run rhub::check_for_cran
+<ul>
+<li>Update date in DESCRIPTION</li>
+</ul>
+</li>
+<li>Add tests for impute function.</li>
+</ul>
+</div>
+    <div id="baytrends-2008002" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0.8002">
+<a href="#baytrends-2008002" class="anchor"></a>baytrends 2.0.0.8002<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-11-09</li>
+<li>Import nobs from gdata as a new function.
+<ul>
+<li>gdata in danger of being archived. No meaningful response from maintainer after 6 weeks.</li>
+<li>Imported ‘as is’ with a note in the help section.</li>
+</ul>
+</li>
+<li>detrended.flow
+<ul>
+<li>Modified to use baytrends::nobs instead of gdata::nobs.</li>
+</ul>
+</li>
+<li>Add tests for nobs function.</li>
+</ul>
+</div>
+    <div id="baytrends-2008001" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0.8001">
+<a href="#baytrends-2008001" class="anchor"></a>baytrends 2.0.0.8001<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-08-25</li>
+<li>Test and check for CRAN.
+<ul>
+<li>NEWS
+<ul>
+<li>Two URLs from http to https</li>
+</ul>
+</li>
+<li>DESCRIPTION
+<ul>
+<li>Maintainer, add middle initial to match Authors</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="baytrends-200-1" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0">
+<a href="#baytrends-200-1" class="anchor"></a>baytrends 2.0.0<small> Unreleased </small>
+</h1>
+<ul>
+<li>Beta Release 2020-08-05</li>
+</ul>
+</div>
+    <div id="baytrends-1218020" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8020">
+<a href="#baytrends-1218020" class="anchor"></a>baytrends 1.2.1.8020<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-08-04</li>
+<li>vignette &amp; documentation cleanup</li>
+</ul>
+</div>
+    <div id="baytrends-1218019" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8019">
+<a href="#baytrends-1218019" class="anchor"></a>baytrends 1.2.1.8019<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-29</li>
+<li>added vignette for processing censored data</li>
+</ul>
+</div>
+    <div id="baytrends-1218018" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8018">
+<a href="#baytrends-1218018" class="anchor"></a>baytrends 1.2.1.8018<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-22</li>
+<li>updated documentation for versions &gt;v1.2.1.8015 code</li>
+</ul>
+</div>
+    <div id="baytrends-1218017" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8017">
+<a href="#baytrends-1218017" class="anchor"></a>baytrends 1.2.1.8017<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-22</li>
+<li>Add tests
+<ul>
+<li>unSurv</li>
+<li>unSurvDF</li>
+<li>makeSurvDF</li>
+</ul>
+</li>
+<li>unSurv.R
+<ul>
+<li>Tweak example text to match examples in unSurvDF and makeSurvDF.</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="baytrends-1218016" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8016">
+<a href="#baytrends-1218016" class="anchor"></a>baytrends 1.2.1.8016<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-22</li>
+<li>Allow user values for column names / suffixes in makeSurvDF; Issue <a href='https://github.com/tetratech/baytrends/issues/49'>#49</a></li>
+<li>Update example in unSurv and unSurvDF to match example in makeSurvDF; Issue <a href='https://github.com/tetratech/baytrends/issues/50'>#50</a></li>
+</ul>
+</div>
+    <div id="baytrends-1218015" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8015">
+<a href="#baytrends-1218015" class="anchor"></a>baytrends 1.2.1.8015<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-20</li>
+<li>Allow user values for column names / suffixes in unSurv and unSurvDF; Issue <a href='https://github.com/tetratech/baytrends/issues/50'>#50</a></li>
+</ul>
+</div>
+    <div id="baytrends-1218014" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8014">
+<a href="#baytrends-1218014" class="anchor"></a>baytrends 1.2.1.8014<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-20</li>
+<li>Expose layeraggregation as a function available to the user; Issue <a href='https://github.com/tetratech/baytrends/issues/47'>#47</a>
+<ul>
+<li>Update reference in analysisOrganizeData</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="baytrends-1218013" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8013">
+<a href="#baytrends-1218013" class="anchor"></a>baytrends 1.2.1.8013<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-14</li>
+<li>added dplyr to DESCRIPTION &gt; Imports</li>
+<li>move survival &amp; mgcv to DESCRIPTION &gt; Imports</li>
+</ul>
+</div>
+    <div id="baytrends-1218012" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8012">
+<a href="#baytrends-1218012" class="anchor"></a>baytrends 1.2.1.8012<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-07</li>
+<li>added makeSurvDF functions</li>
+</ul>
+</div>
+    <div id="baytrends-1218011" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8011">
+<a href="#baytrends-1218011" class="anchor"></a>baytrends 1.2.1.8011<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-06</li>
+<li>added unSurvDF and imputeDF functions</li>
+</ul>
+</div>
+    <div id="baytrends-1218010" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8010">
+<a href="#baytrends-1218010" class="anchor"></a>baytrends 1.2.1.8010<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-02</li>
+<li>updated .layerAggregation for Survival objects</li>
+</ul>
+</div>
+    <div id="baytrends-1218009" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8009">
+<a href="#baytrends-1218009" class="anchor"></a>baytrends 1.2.1.8009<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-02</li>
+<li>Updates after “check”; Issue <a href='https://github.com/tetratech/baytrends/issues/46'>#46</a>
+<ul>
+<li>Add survival::foo for new functions from survival package.
+<ul>
+<li>selectData.R</li>
+<li>imputeCensored.R</li>
+</ul>
+</li>
+<li>Add importFrom survival Suv to selectData.R</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="baytrends-1218008" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8008">
+<a href="#baytrends-1218008" class="anchor"></a>baytrends 1.2.1.8008<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-07-01</li>
+<li>remove deprecated html files and data sets</li>
+</ul>
+</div>
+    <div id="baytrends-1218007" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8007">
+<a href="#baytrends-1218007" class="anchor"></a>baytrends 1.2.1.8007<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-06-30</li>
+<li>createResiduals: corrected error for non-Surv objects</li>
+</ul>
+</div>
+    <div id="baytrends-1218006" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8006">
+<a href="#baytrends-1218006" class="anchor"></a>baytrends 1.2.1.8006<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-06-30</li>
+<li>remove depracated qw functions</li>
+</ul>
+</div>
+    <div id="baytrends-1218005" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8005">
+<a href="#baytrends-1218005" class="anchor"></a>baytrends 1.2.1.8005<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-06-29</li>
+<li>remove qw vignette</li>
+</ul>
+</div>
+    <div id="baytrends-1218004" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8004">
+<a href="#baytrends-1218004" class="anchor"></a>baytrends 1.2.1.8004<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-06-23</li>
+<li>updated to gamTestSeason to process Surv and non-Surv objects</li>
+</ul>
+</div>
+    <div id="baytrends-1218003" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8003">
+<a href="#baytrends-1218003" class="anchor"></a>baytrends 1.2.1.8003<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-06-23</li>
+<li>updated to gamTest to process non-Surv objects</li>
+</ul>
+</div>
+    <div id="baytrends-1218002" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8002">
+<a href="#baytrends-1218002" class="anchor"></a>baytrends 1.2.1.8002<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-05-22</li>
+<li>updated gamTest (and related support functions) to run using Surv fields</li>
+</ul>
+</div>
+    <div id="baytrends-1218001" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1.8001">
+<a href="#baytrends-1218001" class="anchor"></a>baytrends 1.2.1.8001<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-03-31</li>
+<li>migrated demonstration data set, dataCensored, from qw to Surv fields for censored data</li>
+</ul>
+</div>
+    <div id="baytrends-121" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1">
+<a href="#baytrends-121" class="anchor"></a>baytrends 1.2.1<small> 2020-03-31 </small>
+</h1>
+<ul>
+<li>Release 2020-03-31</li>
+<li>Wrap up new version number for CRAN submittal.</li>
+</ul>
+</div>
+    <div id="baytrends-1209001" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.0.9001">
+<a href="#baytrends-1209001" class="anchor"></a>baytrends 1.2.0.9001<small> Unreleased </small>
+</h1>
+<ul>
+<li>Release 2020-03-31</li>
+<li>Additional changes for CRAN.
+<ul>
+<li>Bad URL, comment out.
+<ul>
+<li>smwrQW_x_dlimit.R</li>
+</ul>
+</li>
+<li>Example run time &gt; 10 seconds, add ‘dontrun’.
+<ul>
+<li>gamPlotDispSeason</li>
+<li>gamTestSeason</li>
+<li>gamTest</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Changes for Linux build.
+<ul>
+<li>data_censored_text.csv and data_censored_test.rda</li>
+<li>Remove from examples with ‘dontrun’.
+<ul>
+<li>qw.export.R</li>
+<li>qw.import.R</li>
+</ul>
+</li>
+<li>Leave in vignette_qw.R</li>
+</ul>
+</li>
+</ul>
+</div>
     <div id="baytrends-12" class="section level1">
 <h1 class="page-header" data-toc-text="1.2">
 <a href="#baytrends-12" class="anchor"></a>baytrends 1.2<small> Unreleased </small>
@@ -600,7 +982,7 @@
 <li>DESCRIPTION
 <ul>
 <li>Change ‘maintainer’ from Jon Harcum to Erik Leppo so Erik can submit to CRAN.</li>
-<li>Change ‘additional repositories’ to GitHub. Was <a href="http://owi.usgs.gov/R" class="uri">http://owi.usgs.gov/R</a>.</li>
+<li>Change ‘additional repositories’ to GitHub. Was <a href="https://owi.usgs.gov/R" class="uri">https://owi.usgs.gov/R</a>.</li>
 </ul>
 </li>
 <li>.Rbuildignore
@@ -980,7 +1362,7 @@
 <p>development branch * Released - 2018-05-03 * branch of master based on v1.0.2 (release) * Clean up from check for CRAN * Note; NEWS.rmd. Add to git.ignore and .Rbuildignore * Error; sensAdjflow2.R ‘figNum’. Add QC check to ensure is defined. * Warning; undocumented dataset; added param and default to mergeFlow, gamTest, gamPlotCalc, and gamDiff. Also added to data.R (was missing). * Note; Namespace, importFrom. + importFrom(‘stats’, ‘BIC’, ‘StructTS’, ‘aggregate’, ‘approx’, ‘cov2cor’, ‘dnorm’, ‘filter’, ‘fitted’, ‘hat’, ‘integrate’, ‘logLik’, ‘lowess’, ‘lsfit’, ‘na.omit’, ‘na.pass’, ‘naresid’, ‘pchisq’, ‘ppoints’, ‘qf’, ‘residuals’, ‘sd’, ‘tsSmooth’, ‘update’, ‘var’) + importFrom(‘utils’, ‘flush.console’, ‘getS3method’, ‘modifyList’, ‘read.table’, ‘strOptions’, ‘write.table’) * Added QC to define figNum.<br>
 + Copied from seasAdjflow2.R to detrended.flow.R and detrended.salinity.R * Add functions from swmwr packages: + smwrBase; %cn%, group2row, isDateLike + smwrQW; mcenKM, mcenMLE, mcenROS, mdlMLE, mdlROS, pcodeNWISqw + smwrStats; rmse, vif * Adding the above led to others that needed to be added: + smwrGraphs; refLine, xyPlot + smwrBase; importRDB * Addition of xyPlot required more functions: + smwrGraphs; setPlot, linearPretty, setPage, timePlot, colorPlot * Remove cross references in ‘seealso’ for some of the imported smwr functions. + importRDB, isLike, linearPretty, refLinem, setPage, setplot, timePlot, cn * importFrom needed for 3 more packages in the newest smwr functions that were added. + importFrom(‘grDevices’, ‘Type1Font’, ‘dev.cur’, ‘extendrange’, ‘gray’, ‘pdfFonts’, ‘rainbow’)</p>
 <ul>
-<li>importFrom(‘graphics’, ‘box’, ‘segments’, ‘strwidth’) + importFrom(‘stats’, ‘cov.wt’, ‘dist’, ‘model.matrix’) * Add more smwr package functions: + Base; dectime, dectime2Date + Graphs; datePretty, namePretty, numericData, setColor, setGD, setMargin , setMultiPlot, timePretty * Fix links in most recently added functions; comment out seealso. + datePretty, dectime, namePretty, setColor, setMargin, setMultiPlot * Add importFrom; grDevices colors * Add function from smwr packages; + smwrGraphs; month.USGS, renderPretty, setExplan, transData, linewt (framewt) * Add importFrom for the newly added functions. + importFrom(‘grDevices’, ‘col2rgb’, ‘rgb’) + importFrom(‘graphics’, ‘axis’) * Add function from smwr packages; + smwrGraphs; addCaption * Fix ‘assign’ to global environment in smwrGraphs_setPage.R + Line 180, comment out. Is setting to NULL as a precaution but function isn’t used by baytrends. * Data with ‘no visible bindig for global variable’ error. + Add a line at the beginning of each affected function to reference the data; baytrends::xyz. + Peter Dalgaard’s proposed solution, 2014-Aug + <a href="http://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html" class="uri">http://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html</a>
+<li>importFrom(‘graphics’, ‘box’, ‘segments’, ‘strwidth’) + importFrom(‘stats’, ‘cov.wt’, ‘dist’, ‘model.matrix’) * Add more smwr package functions: + Base; dectime, dectime2Date + Graphs; datePretty, namePretty, numericData, setColor, setGD, setMargin , setMultiPlot, timePretty * Fix links in most recently added functions; comment out seealso. + datePretty, dectime, namePretty, setColor, setMargin, setMultiPlot * Add importFrom; grDevices colors * Add function from smwr packages; + smwrGraphs; month.USGS, renderPretty, setExplan, transData, linewt (framewt) * Add importFrom for the newly added functions. + importFrom(‘grDevices’, ‘col2rgb’, ‘rgb’) + importFrom(‘graphics’, ‘axis’) * Add function from smwr packages; + smwrGraphs; addCaption * Fix ‘assign’ to global environment in smwrGraphs_setPage.R + Line 180, comment out. Is setting to NULL as a precaution but function isn’t used by baytrends. * Data with ‘no visible bindig for global variable’ error. + Add a line at the beginning of each affected function to reference the data; baytrends::xyz. + Peter Dalgaard’s proposed solution, 2014-Aug + <a href="https://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html" class="uri">https://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html</a>
 </li>
 <li>.chkParameter; parameterList + analysisOrganizeData; parameterList, stationMasterList, layerLukup + selectData; stationMasterList, parameterList, layerLukup * gamDiff, bad usage of stat. Undefined. Line</li>
 </ul>
@@ -1768,11 +2150,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

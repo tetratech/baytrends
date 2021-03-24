@@ -73,8 +73,6 @@ myPkgs <- c("lubridate"
             , "dataRetrieval"
             , "digest"
             , "memoise"
-            , "XML"
-            , "zCompositions"
             , "pander")
 lapply(myPkgs, function(x) install.packages(x))
 ```

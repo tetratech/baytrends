@@ -1,8 +1,8 @@
 Erik.Leppo@tetratech.com
-2020-03-30
+2020-11-20
 
 # Test environments
-* local Win 10, R 3.6.3
+* local Win 10, R 4.0.3
 * win-builder (release)
 
 # R CMD check results

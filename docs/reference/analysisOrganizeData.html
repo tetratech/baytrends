@@ -75,7 +75,7 @@ supplied by this function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -98,10 +98,13 @@ supplied by this function." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -141,14 +144,14 @@ where the user doesn't supply a needed specification, a basic option is
 supplied by this function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>analysisOrganizeData</span>(
-  <span class='no'>df</span>,
-  <span class='kw'>analySpec</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>reports</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>),
-  <span class='kw'>parameterList</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>stationMasterList</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>layerLukup</span> <span class='kw'>=</span> <span class='fl'>NA</span>
-)</pre>
+    <pre class="usage"><span class='fu'>analysisOrganizeData</span><span class='op'>(</span>
+  <span class='va'>df</span>,
+  analySpec <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  reports <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>)</span>,
+  parameterList <span class='op'>=</span> <span class='cn'>NA</span>,
+  stationMasterList <span class='op'>=</span> <span class='cn'>NA</span>,
+  layerLukup <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,7 +193,8 @@ supplied by this function.</p>
 <p>analyTitle       - Analysis trend title</p>
 <p>parameterFilt    - Parameter filter used for data down selection</p>
 <p>stationFilt      - Station filter used for data down selection</p>
-<p>dateFilt         - Date filter for data down selection</p>
+<p>dateFilt         - Date filter for data down selection (default =  c( as.POSIXct('1984-01-01')
+                           , as.POSIXct(Sys.time())))</p>
 <p>setTZ            - time zone (default = "America/New_York")</p>
 <p>layerFilt        - Layer filter</p>
 <p>layerAggOption   - Layer averaging option (default = 0). Other options are:
@@ -214,7 +218,8 @@ supplied by this function.</p>
   50 percent censoring then the first three years of data are trimmed.
   Similarly, for years 1 and 4, then the first four years are removed. If
   years 1 and 5 have more than 50 percent censoring the data are kept since
-  2/5 is not greater than 0.4.</p>
+  2/5 is not greater than 0.4. Changing this setting to, say, c(0.2,0.4) would require
+  that 80<!-- % of the data in a year to be un-censored. --></p>
 <p>gamModels        - model formulations. See baytrends::loadModels() for 
   simplified approach for selecting which built-in models to include</p>  
 <p>showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)</p>
@@ -247,8 +252,9 @@ supplied by this function.</p>
 
     <p>The supplied data frame, df, is a data frame with the variables station,
  date, and layer included along with multiple additional columns for a
- variety of water quality variables structured as "qw" objects. An example
- data frame, dataCensored, is included with baytrends as an example.</p> 
+ variety of water quality variables structured as numeric fields or 
+ survival::Surv objects. An example data frame, dataCensored, is included
+ with baytrends as an example.</p> 
 <p>The argument, analySpec, is a list that includes basic specfications for
  performing GAM analyses. The components in analySpec are identified below.
  The user may create analySpec (which can include all or some of the below
@@ -303,7 +309,8 @@ supplied by this function.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># run analysis relying on default specifications, examine analySpec for</span>
 <span class='co'># default options</span>
-<span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'>analysisOrganizeData</span>(<span class='no'>dataCensored</span>)</div><div class='output co'>#&gt; 
+<span class='va'>dfr</span> <span class='op'>&lt;-</span> <span class='fu'>analysisOrganizeData</span><span class='op'>(</span><span class='va'>dataCensored</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt;  
 #&gt; 
@@ -403,21 +410,23 @@ supplied by this function.</p>
 #&gt; Station ID  Latitude  Longitude  CB 92 Seg.  Flow Adj. Gage  Mth. Group
 #&gt; ----------  --------  ---------  ----------  --------------  ----------
 #&gt; CB3.3C       38.9960   -76.3597  CB3MH       01578310        MD-Main   
-#&gt; CB4.1C       38.8259   -76.3995  CB4MH       01578310        MD-Main   
+#&gt; CB4.1C       38.8259   -76.3994  CB4MH       01578310        MD-Main   
 #&gt; CB5.4        37.8001   -76.1747  CB5MH_VA    01578310        VA-All    
 #&gt; TF5.5        37.3126   -77.2328  JMSTF1      02035000        VA-All    
 #&gt; EE2.1        38.6549   -76.2643  CHOMH1      01491000        MD-Trib   
 #&gt; EE3.0        38.2809   -76.0103  FSBMH       01578310        MD-Trib   
 #&gt; TF2.2        38.6907   -77.1111  POTTF_MD    01646500        MD-Potomac
-#&gt; LE2.2        38.1576   -76.5980  POTMH_MD    01646500        MD-Potomac</div><div class='input'><span class='no'>df</span>        <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"df"</span>]]
-<span class='no'>analySpec</span> <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"analySpec"</span>]]
+#&gt; LE2.2        38.1576   -76.5980  POTMH_MD    01646500        MD-Potomac</div><div class='input'><span class='va'>df</span>        <span class='op'>&lt;-</span> <span class='va'>dfr</span><span class='op'>[[</span><span class='st'>"df"</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>analySpec</span> <span class='op'>&lt;-</span> <span class='va'>dfr</span><span class='op'>[[</span><span class='st'>"analySpec"</span><span class='op'>]</span><span class='op'>]</span>
 
-<span class='co'># analyze bottom dissolved oxygen at 2 stations</span>
-<span class='no'>analySpec</span> <span class='kw'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
-<span class='no'>analySpec</span>$<span class='no'>parameterFilt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'do'</span>)
-<span class='no'>analySpec</span>$<span class='no'>layerFilt</span>     <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'B'</span>)
-<span class='no'>analySpec</span>$<span class='no'>stationFilt</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'CB3.3C'</span>, <span class='st'>'CB5.4'</span>)
-<span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'>analysisOrganizeData</span>(<span class='no'>dataCensored</span>, <span class='no'>analySpec</span>)</div><div class='output co'>#&gt; 
+<span class='co'># analyze bottom dissolved oxygen at 2 stations using only data from 1/1/1995-12/31/2015</span>
+<span class='va'>analySpec</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>analySpec</span><span class='op'>$</span><span class='va'>parameterFilt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'do'</span><span class='op'>)</span>
+<span class='va'>analySpec</span><span class='op'>$</span><span class='va'>layerFilt</span>     <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'B'</span><span class='op'>)</span>
+<span class='va'>analySpec</span><span class='op'>$</span><span class='va'>stationFilt</span>   <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'CB3.3C'</span>, <span class='st'>'CB5.4'</span><span class='op'>)</span>
+<span class='va'>analySpec</span><span class='op'>$</span><span class='va'>dateFilt</span>      <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1995-01-01"</span>, <span class='st'>"2015-12-31"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>dfr</span> <span class='op'>&lt;-</span> <span class='fu'>analysisOrganizeData</span><span class='op'>(</span><span class='va'>dataCensored</span>, <span class='va'>analySpec</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt;  
 #&gt; 
@@ -431,7 +440,7 @@ supplied by this function.</p>
 #&gt; 
 #&gt;  
 #&gt; 
-#&gt; `Number of Records After Processing:  1015`
+#&gt; `Number of Records After Processing:  608`
 #&gt; 
 #&gt;  
 #&gt; 
@@ -501,8 +510,10 @@ supplied by this function.</p>
 #&gt; Station ID  Latitude  Longitude  CB 92 Seg.  Flow Adj. Gage  Mth. Group
 #&gt; ----------  --------  ---------  ----------  --------------  ----------
 #&gt; CB3.3C       38.9960   -76.3597  CB3MH       01578310        MD-Main   
-#&gt; CB5.4        37.8001   -76.1747  CB5MH_VA    01578310        VA-All    </div><div class='input'><span class='no'>df</span>        <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"df"</span>]]
-<span class='no'>analySpec</span> <span class='kw'>&lt;-</span> <span class='no'>dfr</span><span class='kw'>[[</span><span class='st'>"analySpec"</span>]]</div></pre>
+#&gt; CB5.4        37.8001   -76.1747  CB5MH_VA    01578310        VA-All    </div><div class='input'><span class='va'>df</span>        <span class='op'>&lt;-</span> <span class='va'>dfr</span><span class='op'>[[</span><span class='st'>"df"</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>analySpec</span> <span class='op'>&lt;-</span> <span class='va'>dfr</span><span class='op'>[[</span><span class='st'>"analySpec"</span><span class='op'>]</span><span class='op'>]</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -514,11 +525,11 @@ supplied by this function.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

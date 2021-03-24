@@ -15,3 +15,7 @@ cran-comments\.md$
 ^README\.Rmd$
 ^_save_df$
 ^\./vignettes/data$
+
+# RStudio files
+.Rproj.user/
+^\.git$

@@ -76,7 +76,7 @@ around the issue of changed structure.)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -99,10 +99,13 @@ around the issue of changed structure.)" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -143,7 +146,7 @@ to the new df whenever the new df doesn't have a particular attribute. (This nav
 around the issue of changed structure.)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.reAttDF</span>(<span class='no'>df1</span>, <span class='no'>df0</span>)</pre>
+    <pre class="usage"><span class='fu'>.reAttDF</span><span class='op'>(</span><span class='va'>df1</span>, <span class='va'>df0</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,14 +167,15 @@ around the issue of changed structure.)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create data frame</span>
-<span class='no'>df0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span> (<span class='kw'>sta</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>,<span class='st'>"A"</span>), <span class='kw'>lay</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"B"</span>,<span class='st'>"C"</span>), <span class='kw'>x1</span> <span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>,<span class='fl'>2</span>), <span class='kw'>x2</span> <span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='fl'>4</span>,<span class='fl'>14</span>))
+<span class='va'>df0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span> <span class='op'>(</span>sta<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>,<span class='st'>"A"</span><span class='op'>)</span>, lay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"B"</span>,<span class='st'>"C"</span><span class='op'>)</span>, x1 <span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>,<span class='fl'>2</span><span class='op'>)</span>, x2 <span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='fl'>4</span>,<span class='fl'>14</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>#add simple attribute</span>
-<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>df0</span>, <span class='st'>"Attribute1"</span>) <span class='kw'>&lt;-</span> <span class='st'>"Test attribute1"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>df0</span>, <span class='st'>"Attribute1"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"Test attribute1"</span>
 
 <span class='co'>#run aggregate -- loose attributes</span>
-<span class='no'>df1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='no'>x2</span> ~ <span class='no'>sta</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>df0</span>, <span class='no'>mean</span>, <span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.pass</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'>.reAttDF</span>(<span class='no'>df1</span>, <span class='no'>df0</span>)</div></pre>
+<span class='va'>df1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>x2</span> <span class='op'>~</span> <span class='va'>sta</span>, data<span class='op'>=</span><span class='va'>df0</span>, <span class='va'>mean</span>, na.action<span class='op'>=</span><span class='va'>na.pass</span>, na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>df2</span> <span class='op'>&lt;-</span> <span class='fu'>.reAttDF</span><span class='op'>(</span><span class='va'>df1</span>, <span class='va'>df0</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -183,11 +187,11 @@ around the issue of changed structure.)</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

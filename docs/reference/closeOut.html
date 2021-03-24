@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -95,10 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.html">Vignette, Create Seasonally Detrended Flow and Salinity Data Sets</a>
+      <a href="../articles/Detrending_Flow_and_Salinity_Data.html">Flow and Salinity Data Sets</a>
     </li>
     <li>
-      <a href="../articles/vignette_qw.html">Vignette, QW</a>
+      <a href="../articles/Processing_Censored_Data.html">Processing Censored Water Quality Data</a>
+    </li>
+    <li>
+      <a href="../articles/test.html">xyz abc</a>
     </li>
   </ul>
 </li>
@@ -135,7 +138,7 @@
     <p>Document Processing Time and Other Session Time</p>
     </div>
 
-    <pre class="usage"><span class='fu'>closeOut</span>(<span class='kw'>timeProcess</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>contInfo</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sessInfo</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>closeOut</span><span class='op'>(</span>timeProcess <span class='op'>=</span> <span class='cn'>TRUE</span>, contInfo <span class='op'>=</span> <span class='cn'>TRUE</span>, sessInfo <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,13 +162,14 @@
     <p>Reports out processing time, contact information and session information</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>closeOut</span>()</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'>closeOut</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; ##  
 #&gt; 
 #&gt; # Close Out
 #&gt; 
 #&gt; ### Total Processing Time
-#&gt; `End processing time 2020-03-30 14:27:46.`
+#&gt; `End processing time 2020-11-18 09:21:12.`
 #&gt; 
 #&gt;  
 #&gt; 
@@ -233,7 +237,7 @@
 #&gt; 
 #&gt; #### Platform
 #&gt;  setting  value                       
-#&gt;  version  R version 3.6.3 (2020-02-29)
+#&gt;  version  R version 4.0.3 (2020-10-10)
 #&gt;  os       Windows 10 x64              
 #&gt;  system   i386, mingw32               
 #&gt;  ui       RTerm                       
@@ -241,68 +245,63 @@
 #&gt;  collate  English_United States.1252  
 #&gt;  ctype    English_United States.1252  
 #&gt;  tz       America/New_York            
-#&gt;  date     2020-03-30                  
+#&gt;  date     2020-11-18                  
 #&gt; 
 #&gt; #### Packages
 #&gt; 
 #&gt; 
-#&gt; |              |package       |loadedversion |path                                                                                 |
-#&gt; |:-------------|:-------------|:-------------|:------------------------------------------------------------------------------------|
-#&gt; |assertthat    |assertthat    |0.2.1         |C:/Programs/R/R-3.6.3/library/assertthat                                             |
-#&gt; |backports     |backports     |1.1.5         |C:/Programs/R/R-3.6.3/library/backports                                              |
-#&gt; |baytrends     |baytrends     |1.2           |C:/Users/Erik.Leppo/AppData/Local/Temp/Rtmp0gy7P6/temp_libpath4e403c46274b/baytrends |
-#&gt; |cli           |cli           |2.0.2         |C:/Programs/R/R-3.6.3/library/cli                                                    |
-#&gt; |crayon        |crayon        |1.3.4         |C:/Programs/R/R-3.6.3/library/crayon                                                 |
-#&gt; |curl          |curl          |4.3           |C:/Programs/R/R-3.6.3/library/curl                                                   |
-#&gt; |dataRetrieval |dataRetrieval |2.7.6         |C:/Programs/R/R-3.6.3/library/dataRetrieval                                          |
-#&gt; |desc          |desc          |1.2.0         |C:/Programs/R/R-3.6.3/library/desc                                                   |
-#&gt; |digest        |digest        |0.6.25        |C:/Programs/R/R-3.6.3/library/digest                                                 |
-#&gt; |ellipsis      |ellipsis      |0.3.0         |C:/Programs/R/R-3.6.3/library/ellipsis                                               |
-#&gt; |evaluate      |evaluate      |0.14          |C:/Programs/R/R-3.6.3/library/evaluate                                               |
-#&gt; |fansi         |fansi         |0.4.1         |C:/Programs/R/R-3.6.3/library/fansi                                                  |
-#&gt; |fs            |fs            |1.3.2         |C:/Programs/R/R-3.6.3/library/fs                                                     |
-#&gt; |glue          |glue          |1.3.2         |C:/Programs/R/R-3.6.3/library/glue                                                   |
-#&gt; |highlight     |highlight     |0.5.0         |C:/Programs/R/R-3.6.3/library/highlight                                              |
-#&gt; |highr         |highr         |0.8           |C:/Programs/R/R-3.6.3/library/highr                                                  |
-#&gt; |htmltools     |htmltools     |0.4.0         |C:/Programs/R/R-3.6.3/library/htmltools                                              |
-#&gt; |httr          |httr          |1.4.1         |C:/Programs/R/R-3.6.3/library/httr                                                   |
-#&gt; |knitr         |knitr         |1.28          |C:/Programs/R/R-3.6.3/library/knitr                                                  |
-#&gt; |lattice       |lattice       |0.20-40       |C:/Programs/R/R-3.6.3/library/lattice                                                |
-#&gt; |lifecycle     |lifecycle     |0.2.0         |C:/Programs/R/R-3.6.3/library/lifecycle                                              |
-#&gt; |lubridate     |lubridate     |1.7.4         |C:/Programs/R/R-3.6.3/library/lubridate                                              |
-#&gt; |magrittr      |magrittr      |1.5           |C:/Programs/R/R-3.6.3/library/magrittr                                               |
-#&gt; |MASS          |MASS          |7.3-51.5      |C:/Programs/R/R-3.6.3/library/MASS                                                   |
-#&gt; |Matrix        |Matrix        |1.2-18        |C:/Programs/R/R-3.6.3/library/Matrix                                                 |
-#&gt; |memoise       |memoise       |1.1.0         |C:/Programs/R/R-3.6.3/library/memoise                                                |
-#&gt; |mgcv          |mgcv          |1.8-31        |C:/Programs/R/R-3.6.3/library/mgcv                                                   |
-#&gt; |NADA          |NADA          |1.6-1.1       |C:/Programs/R/R-3.6.3/library/NADA                                                   |
-#&gt; |nlme          |nlme          |3.1-145       |C:/Programs/R/R-3.6.3/library/nlme                                                   |
-#&gt; |pander        |pander        |0.6.3         |C:/Programs/R/R-3.6.3/library/pander                                                 |
-#&gt; |pillar        |pillar        |1.4.3         |C:/Programs/R/R-3.6.3/library/pillar                                                 |
-#&gt; |pkgconfig     |pkgconfig     |2.0.3         |C:/Programs/R/R-3.6.3/library/pkgconfig                                              |
-#&gt; |pkgdown       |pkgdown       |1.5.0         |C:/Programs/R/R-3.6.3/library/pkgdown                                                |
-#&gt; |plyr          |plyr          |1.8.6         |C:/Programs/R/R-3.6.3/library/plyr                                                   |
-#&gt; |purrr         |purrr         |0.3.3         |C:/Programs/R/R-3.6.3/library/purrr                                                  |
-#&gt; |R6            |R6            |2.4.1         |C:/Programs/R/R-3.6.3/library/R6                                                     |
-#&gt; |Rcpp          |Rcpp          |1.0.4         |C:/Programs/R/R-3.6.3/library/Rcpp                                                   |
-#&gt; |rlang         |rlang         |0.4.5         |C:/Programs/R/R-3.6.3/library/rlang                                                  |
-#&gt; |rmarkdown     |rmarkdown     |2.1           |C:/Programs/R/R-3.6.3/library/rmarkdown                                              |
-#&gt; |rprojroot     |rprojroot     |1.3-2         |C:/Programs/R/R-3.6.3/library/rprojroot                                              |
-#&gt; |rstudioapi    |rstudioapi    |0.11          |C:/Programs/R/R-3.6.3/library/rstudioapi                                             |
-#&gt; |sessioninfo   |sessioninfo   |1.1.1         |C:/Programs/R/R-3.6.3/library/sessioninfo                                            |
-#&gt; |stringi       |stringi       |1.4.6         |C:/Programs/R/R-3.6.3/library/stringi                                                |
-#&gt; |stringr       |stringr       |1.4.0         |C:/Programs/R/R-3.6.3/library/stringr                                                |
-#&gt; |survival      |survival      |3.1-11        |C:/Programs/R/R-3.6.3/library/survival                                               |
-#&gt; |tibble        |tibble        |3.0.0         |C:/Programs/R/R-3.6.3/library/tibble                                                 |
-#&gt; |truncnorm     |truncnorm     |1.0-8         |C:/Programs/R/R-3.6.3/library/truncnorm                                              |
-#&gt; |vctrs         |vctrs         |0.2.4         |C:/Programs/R/R-3.6.3/library/vctrs                                                  |
-#&gt; |whisker       |whisker       |0.4           |C:/Programs/R/R-3.6.3/library/whisker                                                |
-#&gt; |withr         |withr         |2.1.2         |C:/Programs/R/R-3.6.3/library/withr                                                  |
-#&gt; |xfun          |xfun          |0.12          |C:/Programs/R/R-3.6.3/library/xfun                                                   |
-#&gt; |XML           |XML           |3.99-0.3      |C:/Programs/R/R-3.6.3/library/XML                                                    |
-#&gt; |xml2          |xml2          |1.2.5         |C:/Programs/R/R-3.6.3/library/xml2                                                   |
-#&gt; |yaml          |yaml          |2.2.1         |C:/Programs/R/R-3.6.3/library/yaml                                                   |
-#&gt; |zCompositions |zCompositions |1.3.4         |C:/Programs/R/R-3.6.3/library/zCompositions                                          |</div></pre>
+#&gt; |            |package     |loadedversion |path                                                                                |
+#&gt; |:-----------|:-----------|:-------------|:-----------------------------------------------------------------------------------|
+#&gt; |assertthat  |assertthat  |0.2.1         |C:/Programs/R/R-4.0.3/library/assertthat                                            |
+#&gt; |baytrends   |baytrends   |2.0.0         |C:/Users/Erik.Leppo/AppData/Local/Temp/RtmpiQ4QTX/temp_libpath3cb4223104a/baytrends |
+#&gt; |cli         |cli         |2.1.0         |C:/Programs/R/R-4.0.3/library/cli                                                   |
+#&gt; |crayon      |crayon      |1.3.4         |C:/Programs/R/R-4.0.3/library/crayon                                                |
+#&gt; |curl        |curl        |4.3           |C:/Programs/R/R-4.0.3/library/curl                                                  |
+#&gt; |desc        |desc        |1.2.0         |C:/Programs/R/R-4.0.3/library/desc                                                  |
+#&gt; |digest      |digest      |0.6.27        |C:/Programs/R/R-4.0.3/library/digest                                                |
+#&gt; |downlit     |downlit     |0.2.1         |C:/Programs/R/R-4.0.3/library/downlit                                               |
+#&gt; |ellipsis    |ellipsis    |0.3.1         |C:/Programs/R/R-4.0.3/library/ellipsis                                              |
+#&gt; |evaluate    |evaluate    |0.14          |C:/Programs/R/R-4.0.3/library/evaluate                                              |
+#&gt; |fansi       |fansi       |0.4.1         |C:/Programs/R/R-4.0.3/library/fansi                                                 |
+#&gt; |fs          |fs          |1.5.0         |C:/Programs/R/R-4.0.3/library/fs                                                    |
+#&gt; |generics    |generics    |0.1.0         |C:/Programs/R/R-4.0.3/library/generics                                              |
+#&gt; |glue        |glue        |1.4.2         |C:/Programs/R/R-4.0.3/library/glue                                                  |
+#&gt; |highr       |highr       |0.8           |C:/Programs/R/R-4.0.3/library/highr                                                 |
+#&gt; |htmltools   |htmltools   |0.5.0         |C:/Programs/R/R-4.0.3/library/htmltools                                             |
+#&gt; |httr        |httr        |1.4.2         |C:/Programs/R/R-4.0.3/library/httr                                                  |
+#&gt; |knitr       |knitr       |1.30          |C:/Programs/R/R-4.0.3/library/knitr                                                 |
+#&gt; |lattice     |lattice     |0.20-41       |C:/Programs/R/R-4.0.3/library/lattice                                               |
+#&gt; |lifecycle   |lifecycle   |0.2.0         |C:/Programs/R/R-4.0.3/library/lifecycle                                             |
+#&gt; |lubridate   |lubridate   |1.7.9.2       |C:/Programs/R/R-4.0.3/library/lubridate                                             |
+#&gt; |magrittr    |magrittr    |1.5           |C:/Programs/R/R-4.0.3/library/magrittr                                              |
+#&gt; |Matrix      |Matrix      |1.2-18        |C:/Programs/R/R-4.0.3/library/Matrix                                                |
+#&gt; |memoise     |memoise     |1.1.0         |C:/Programs/R/R-4.0.3/library/memoise                                               |
+#&gt; |mgcv        |mgcv        |1.8-33        |C:/Programs/R/R-4.0.3/library/mgcv                                                  |
+#&gt; |nlme        |nlme        |3.1-150       |C:/Programs/R/R-4.0.3/library/nlme                                                  |
+#&gt; |pander      |pander      |0.6.3         |C:/Programs/R/R-4.0.3/library/pander                                                |
+#&gt; |pillar      |pillar      |1.4.6         |C:/Programs/R/R-4.0.3/library/pillar                                                |
+#&gt; |pkgconfig   |pkgconfig   |2.0.3         |C:/Programs/R/R-4.0.3/library/pkgconfig                                             |
+#&gt; |pkgdown     |pkgdown     |1.6.1         |C:/Programs/R/R-4.0.3/library/pkgdown                                               |
+#&gt; |plyr        |plyr        |1.8.6         |C:/Programs/R/R-4.0.3/library/plyr                                                  |
+#&gt; |purrr       |purrr       |0.3.4         |C:/Programs/R/R-4.0.3/library/purrr                                                 |
+#&gt; |R6          |R6          |2.5.0         |C:/Programs/R/R-4.0.3/library/R6                                                    |
+#&gt; |ragg        |ragg        |0.4.0         |C:/Programs/R/R-4.0.3/library/ragg                                                  |
+#&gt; |Rcpp        |Rcpp        |1.0.5         |C:/Programs/R/R-4.0.3/library/Rcpp                                                  |
+#&gt; |rlang       |rlang       |0.4.8         |C:/Programs/R/R-4.0.3/library/rlang                                                 |
+#&gt; |rmarkdown   |rmarkdown   |2.5           |C:/Programs/R/R-4.0.3/library/rmarkdown                                             |
+#&gt; |rprojroot   |rprojroot   |2.0.2         |C:/Programs/R/R-4.0.3/library/rprojroot                                             |
+#&gt; |rstudioapi  |rstudioapi  |0.13          |C:/Programs/R/R-4.0.3/library/rstudioapi                                            |
+#&gt; |sessioninfo |sessioninfo |1.1.1         |C:/Programs/R/R-4.0.3/library/sessioninfo                                           |
+#&gt; |survival    |survival    |3.2-7         |C:/Programs/R/R-4.0.3/library/survival                                              |
+#&gt; |systemfonts |systemfonts |0.3.2         |C:/Programs/R/R-4.0.3/library/systemfonts                                           |
+#&gt; |textshaping |textshaping |0.2.1         |C:/Programs/R/R-4.0.3/library/textshaping                                           |
+#&gt; |tibble      |tibble      |3.0.4         |C:/Programs/R/R-4.0.3/library/tibble                                                |
+#&gt; |vctrs       |vctrs       |0.3.4         |C:/Programs/R/R-4.0.3/library/vctrs                                                 |
+#&gt; |whisker     |whisker     |0.4           |C:/Programs/R/R-4.0.3/library/whisker                                               |
+#&gt; |withr       |withr       |2.3.0         |C:/Programs/R/R-4.0.3/library/withr                                                 |
+#&gt; |xfun        |xfun        |0.19          |C:/Programs/R/R-4.0.3/library/xfun                                                  |
+#&gt; |xml2        |xml2        |1.3.2         |C:/Programs/R/R-4.0.3/library/xml2                                                  |
+#&gt; |yaml        |yaml        |2.2.1         |C:/Programs/R/R-4.0.3/library/yaml                                                  |</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -314,11 +313,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erik Leppo.</p>
+  <p>Developed by Erik W Leppo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

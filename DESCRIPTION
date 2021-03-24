@@ -10,17 +10,12 @@ Description: Enable users to evaluate long-term trends using a Generalized
     interval-censored data. The approach has been applied to water quality data 
     in the Chesapeake Bay, a major estuary on the east coast of the United 
     States to provide insights to a range of management- and research-focused 
-    questions.
+    questions.  Methodology described in Murphy (2019) 
+    <doi:10.1016/j.envsoft.2019.03.027>.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 2.0.0.8003
-Date: 2020-11-09
+Version: 2.0.2
+Date: 2020-11-23
 Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
-Disclaimer: This software program is preliminary or provisional and is subject 
-    to revision. This software program is for testing only, no warranty, expressed 
-    or implied, is made as to the accuracy and functioning of the program and 
-    related program material nor shall the fact of distribution constitute any 
-    such warranty, and no responsibility is assumed in connection therewith. This 
-    software is provided 'AS IS.
 Depends:
     R (>= 3.5.0),
     lubridate
@@ -30,6 +25,7 @@ RoxygenNote: 7.1.1
 Encoding: UTF-8
 Suggests:
     devtools,
+    dplyr,
     fitdistrplus,
     grDevices, 
     imputeTS,
@@ -44,14 +40,10 @@ Imports:
     XML,
     dataRetrieval,
     digest,
-    dplyr,
-    gdata,
     memoise,
-    methods,
     mgcv,
     plyr,
-    survival,
-    zCompositions
+    survival
 URL: https://github.com/tetratech/baytrends
 VignetteBuilder: knitr
 Collate: analysisOrganizeData.R
