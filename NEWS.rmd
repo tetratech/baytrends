@@ -19,6 +19,10 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.2.9001
+===========
+* Change default number of years used in computing differences from 2 years to 3 years. New parameter analySpec$gamDiffNumChgYrs set to 3 years, but can be set back to 2 years (or any number of years based on user input).
+
 baytrends 2.0.2
 ===========
 * Release 2020-11-23
