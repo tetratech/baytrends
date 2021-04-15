@@ -80,6 +80,7 @@
 gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy.set=NA,alpha=0.05
                     , flow.detrended=NA, salinity.detrended=NA) {
 # -----< Change history >--------------------------------------------
+# 24Mar2021: JBH: add parameter to of gamDiffNumChgYrs as 3 years
 # 11Jul2018: JBH: add additional independent variables to pdat excluding dependent
 #                 variable and "gamK*"
 # 30Sep2017: JBH: added salinity interpolation to merge up with pdat
@@ -112,6 +113,7 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
   centerYear <- iSpec$centerYear
   transform  <- iSpec$transform
   logConst   <- iSpec$logConst
+  gamDiffNumChgYrs <- analySpec$gamDiffNumChgYrs
 
   # does model include intervention term 11Aug2017 [added from gamPlotCalc]
   intervention <- ifelse (length(grep('intervention',gamRslt$formula  )) == 0, FALSE, TRUE)
@@ -141,10 +143,11 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
         doy.set <-  baseDay(as.POSIXct(paste(2000,1:12,15,sep='-')))
       }
 
-      # set up base and test years to first two and last two records if base.yr.set
+      # set up base and test years to first "gamDiffNumChgYrs" and last 
+      # "gamDiffNumChgYrs" years if base.yr.set
       # and/or test.yr.set not specified; otherwise concatenate the values
-      if(is.na(base.yr.set[1])) {base.yr.set <-  c(por.rng[1],por.rng[1]+1)}
-      if(is.na(test.yr.set[1])) {test.yr.set <-  c(por.rng[2]-1,por.rng[2])}
+      if(is.na(base.yr.set[1])) {base.yr.set <-  c(por.rng[1],por.rng[1]+gamDiffNumChgYrs-1)}
+      if(is.na(test.yr.set[1])) {test.yr.set <-  c(por.rng[2]-gamDiffNumChgYrs+1,por.rng[2])}
       Nbase.yr <- length(base.yr.set)       # count years in each period
       Ntest.yr <- length(test.yr.set)
       yr.set <- c(base.yr.set,test.yr.set)  # combine base years and test years

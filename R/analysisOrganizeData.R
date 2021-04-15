@@ -159,6 +159,8 @@
 #'   (months 1:12), Spring1 (3:5), Spring2 (months: 4:6)), Summer1 (months:
 #'   6:9)), Summer2 (months: 7:9)), SAV1 (months: 4:10)), SAV2 (months:
 #'   3:5,9:11)), Winter (months: 1:2)), and Fall (months: 10:12))).
+#'   
+#'   gamDiffNumChgYrs - number of years to use in computing differences.
 #'
 #'   gamPenalty       - allow the user to set the mgcv::gam select argument to
 #'   TRUE, FALSE, or baytrend algorithm default (default = NA). When the default
@@ -195,6 +197,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 24Mar2021: JBH: add a default of gamDiffNumChgYrs as 3 years
 # 03Jun2019: JBH: add report of which models are loaded; mod's to reduce required data elements
 #                 in look up tables: min number of obs for an intervention
 # 17May2019: JBH: minor documentation clarifications
@@ -372,6 +375,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
     list ( seasonName = "SAV2",    seasonMonths = c(3:5,9:11)),
     list ( seasonName = "Winter",  seasonMonths = c(1:2)),
     list ( seasonName = "Fall",    seasonMonths = c(10:12)))
+  
+  if (!"gamDiffNumChgYrs"  %in% names(analySpec)) analySpec$gamDiffNumChgYrs  <- 3
 
   if (!"gamPenalty"           %in% names(analySpec)) analySpec$gamPenalty           <- NA        #02Feb2017
   if (!"gamPenaltyCrit"       %in% names(analySpec)) analySpec$gamPenaltyCrit       <- c(1,9e9)  #02Feb2017
