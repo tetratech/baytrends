@@ -38,7 +38,7 @@
 # ####
 unSurv <- function(x, col_lo = "lo", col_hi = "hi") {
   # extract lo and hi columns from Surv objects and place into a 3 column matrix
-  type = x[ , 3]
+  type <- x[ , 3]
   
   indx.0  <- !is.na(type) &  type == 0 # right censored ("greater thans in a survival sense" [10 to Inf], e.g., >1000)
   indx.1  <- !is.na(type) &  type == 1 # no censoring

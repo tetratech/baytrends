@@ -61,7 +61,7 @@ impute <-function(x, imputeOption="mid") {
   ###    lower and upper limits to address -Inf and Inf values
   
   # extract lower and upper limits from Surv object
-  x = unSurv(x)
+  x <- unSurv(x)
   
   if (any(x[,1] == -Inf, na.rm=TRUE) | any(x[,2] == Inf, na.rm=TRUE)) {  
     # pull out lower/upper values into easy-to-read vectors
@@ -90,7 +90,7 @@ impute <-function(x, imputeOption="mid") {
   # 01May2018: update to accomodate vector with NA's
   
   # recreate Surv object after addressing non-finite boundaries
-  x2 = survival::Surv(time = x[,1], time2 = x[,2], type = "interval2")
+  x2 <- survival::Surv(time = x[,1], time2 = x[,2], type = "interval2")
   
   # vector of NAs to receive imputted results
   x3 <- rep(NA,nrow(x))

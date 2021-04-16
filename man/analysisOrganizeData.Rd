@@ -89,6 +89,8 @@ Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
   (months 1:12), Spring1 (3:5), Spring2 (months: 4:6)), Summer1 (months:
   6:9)), Summer2 (months: 7:9)), SAV1 (months: 4:10)), SAV2 (months:
   3:5,9:11)), Winter (months: 1:2)), and Fall (months: 10:12))).
+  
+  gamDiffNumChgYrs - number of years to use in computing differences.
 
   gamPenalty       - allow the user to set the mgcv::gam select argument to
   TRUE, FALSE, or baytrend algorithm default (default = NA). When the default
@@ -129,7 +131,7 @@ The supplied data frame, df, is a data frame with the variables station,
  survival::Surv objects. An example data frame, dataCensored, is included
  with baytrends as an example.
  
- The argument, analySpec, is a list that includes basic specfications for
+ The argument, analySpec, is a list that includes basic specifications for
  performing GAM analyses. The components in analySpec are identified below.
  The user may create analySpec (which can include all or some of the below
  components; and pass the user-supplied analySpec to this function. Or, the

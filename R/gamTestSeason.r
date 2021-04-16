@@ -141,7 +141,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     
     has.flw_sal <- has.intervention <- FALSE
     for (iRow in 1:numModels) {
-      gamModel.model  = analySpec[["gamModels"]][[iRow]]$model
+      gamModel.model   <- analySpec[["gamModels"]][[iRow]]$model
       has.intervention <- ifelse(grepl('intervention',gamModel.model),TRUE,has.intervention)
       has.flw_sal      <- ifelse(grepl('flw_sal',gamModel.model),TRUE,has.flw_sal)
     }
@@ -179,18 +179,18 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     
     #set up plot resolution
     if(gamPlot==TRUE) {
-      figRes=1
+      figRes <- 1
     } else if(gamPlot %in% c(1:30)) {
-      figRes=gamPlot
-      gamPlot=TRUE
+      figRes <- gamPlot
+      gamPlot <- TRUE
     } else if(gamPlot >30) {  #30Nov2016: set figRes to 30
-      figRes=30
-      gamPlot=TRUE
+      figRes <- 30
+      gamPlot <- TRUE
     } else {
       gamPlot<-FALSE
     }
     
-    step.pt='none'
+    step.pt <- 'none'
     
     # 24May2019 - modify gamLegend to address season plot
     {
@@ -198,7 +198,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
       gamLegend <- analySpec$gamLegend
       
       # find and modify "seasMean" legend entry
-      rowT = which(gamLegend$descrip == "seasMean")
+      rowT <- which(gamLegend$descrip == "seasMean")
       gamLegend[rowT,c("legend","colSel","colLegend")] <-
         c(gamSeasonPlot[1], gamSeasonPlot[2], gamSeasonPlot[2])
       gamLegend[rowT,c("lwdLegend")] <- 2
@@ -303,12 +303,12 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     
     # GAM loop: model initialization ####
     {
-      gamModel.option = analySpec[["gamModels"]][[iRow]]$option
-      gamModel.name   = analySpec[["gamModels"]][[iRow]]$name
-      gamModel.model  = analySpec[["gamModels"]][[iRow]]$model
-      gamModel.deriv  = analySpec[["gamModels"]][[iRow]]$deriv
-      gamModel.gamK1  = analySpec[["gamModels"]][[iRow]]$gamK1 #22Jul2017
-      gamModel.gamK2  = analySpec[["gamModels"]][[iRow]]$gamK2 #22Jul2017
+      gamModel.option <- analySpec[["gamModels"]][[iRow]]$option
+      gamModel.name   <- analySpec[["gamModels"]][[iRow]]$name
+      gamModel.model  <- analySpec[["gamModels"]][[iRow]]$model
+      gamModel.deriv  <- analySpec[["gamModels"]][[iRow]]$deriv
+      gamModel.gamK1  <- analySpec[["gamModels"]][[iRow]]$gamK1 #22Jul2017
+      gamModel.gamK2  <- analySpec[["gamModels"]][[iRow]]$gamK2 #22Jul2017
       
       # set whether model includes intervention, flw_sal, gamK1 and/or gamK2 term  #22Jul2017
       intervention <- ifelse (length(grep('intervention',gamModel.model)) == 0, FALSE, TRUE)
@@ -317,11 +317,11 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
       has.flw_sal  <- ifelse (length(grep('flw_sal',gamModel.model)) == 0, FALSE, TRUE) #22Jul2017
       
       # compute gamK1 if 'has.gamK1' is TRUE
-      gamK1 = ifelse (has.gamK1, max(gamModel.gamK1[1],
+      gamK1 <- ifelse (has.gamK1, max(gamModel.gamK1[1],
                                      ceiling(gamModel.gamK1[2] * (iSpec$yearEnd - iSpec$yearBegin + 1))) , NA)
       
       # compute gamK2 if 'has.gamK2' is TRUE
-      gamK2 = ifelse (has.gamK2, max(gamModel.gamK2[1],
+      gamK2 <- ifelse (has.gamK2, max(gamModel.gamK2[1],
                                      ceiling(gamModel.gamK2[2] * (iSpec$yearEnd - iSpec$yearBegin + 1))) , NA)
       
       # error trap for gamModel.option
@@ -425,7 +425,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     
     if(inherits(gamRslt, "try-error")) {
       .P('Warning: mgcv convergence failed')
-      stat.gam.res1$mgcvOK = FALSE
+      stat.gam.res1$mgcvOK <- FALSE
       # next
     }
     
@@ -474,7 +474,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
             silent=TRUE)
           if(inherits(gamRslt0, "try-error")) {
             .P('Warning: mgcv convergence failed')
-            stat.gam.res1$mgcvOK = FALSE
+            stat.gam.res1$mgcvOK <- FALSE
             break
           }
           

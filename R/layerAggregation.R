@@ -100,7 +100,7 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
       &  "S" %in% layerList
       & "AP" %in% layerList) {
     df$layer[df$layer=="S" | df$layer=="AP"] <- "SAP"
-    iAggregate=TRUE
+    iAggregate <- TRUE
   } else if (layerAggOption == 1 | layerAggOption == 3) {
     warning("Either 'S' or 'AP' layer not detected -- 'S'&'AP' aggregation not performed.")
   }
@@ -112,7 +112,7 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
       &  "B" %in% layerList
       & "BP" %in% layerList) {
     df$layer[df$layer=="B" | df$layer=="BP"] <- "BBP"
-    iAggregate=TRUE
+    iAggregate <- TRUE
   } else if (layerAggOption == 2 | layerAggOption == 3) {
     warning("Either 'B' or 'BP' layer not detected -- 'B'&'BP' aggregation not performed.")
   }
@@ -121,7 +121,7 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
   # more than one layer of data (layerlist>=1) in the df. If ok layer set to ALL
   if(layerAggOption == 4 & length(layerList) >= 1) {
     df$layer <- "ALL"
-    iAggregate=TRUE
+    iAggregate <- TRUE
   } else if (layerAggOption == 4) {
     warning("Need more than one layer to perform aggregation -- no aggregation performed.")
   }
@@ -133,7 +133,7 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
       &  "S" %in% layerList
       &  "B" %in% layerList) {
     df$layer[df$layer=="S" | df$layer=="B"] <- "SB"
-    iAggregate=TRUE
+    iAggregate <- TRUE
   } else if (layerAggOption == 5) {
     warning("Either 'S' or 'B' layer not detected -- 'S'&'B' aggregation not performed.")
   }

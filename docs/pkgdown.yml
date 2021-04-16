@@ -1,9 +1,0 @@
-pandoc: 2.9.2.1
-pkgdown: 1.6.1
-pkgdown_sha: ~
-articles:
-  Detrending_Flow_and_Salinity_Data: Detrending_Flow_and_Salinity_Data.html
-  Processing_Censored_Data: Processing_Censored_Data.html
-  test: test.html
-last_built: 2020-11-18T14:21Z
-

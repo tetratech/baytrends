@@ -30,7 +30,7 @@ baseDay <- function(x, numeric=TRUE, year=c("calendar", "water", "climate")) {
   ##
   x <- as.POSIXlt(x)
   retval <- format(x, format="%b %d")
-  year=match.arg(year)
+  year <- match.arg(year)
   if(year == "calendar") {
     levels <- format(seq(as.Date("2000-01-01"), by=1, length.out=366),
                      format="%b %d")

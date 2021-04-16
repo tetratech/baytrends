@@ -48,6 +48,7 @@
 
 # Store current working directory and change to subdirectory ####
   tmpSave <- getwd()
+  on.exit(tmpSave) # Reset working directory
   tmpwd   <- file.path(folder)
   setwd(tmpwd)
 
@@ -60,9 +61,10 @@
 
 # Reset working directory
   setwd(tmpSave)
+  on.exit(tmpSave) # Reset working directory
 
 # Down select file information to match user request
-  if(n=='all') n=nrow(fileInfo)
+  if(n == 'all') n <- nrow(fileInfo)
 
   if(fileNameOnly) {
     return(fileInfo[1:n,"fileName"])

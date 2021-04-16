@@ -251,9 +251,9 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   iSpec$flwParms  <- unlist(strsplit(iSpec$flwParms, " "))
   iSpec$salParms  <- unlist(strsplit(iSpec$salParms, " "))
   
-  if (length(iSpec$flwAvgWin) == 0) iSpec$flwAvgWin = NA_real_  # 03June2016
-  if (length(iSpec$flwParms) == 0) iSpec$flwParms = NA_character_
-  if (length(iSpec$salParms) == 0) iSpec$salParms = NA_character_
+  if (length(iSpec$flwAvgWin) == 0) iSpec$flwAvgWin <- NA_real_  # 03June2016
+  if (length(iSpec$flwParms) == 0) iSpec$flwParms <- NA_character_
+  if (length(iSpec$salParms) == 0) iSpec$salParms <- NA_character_
 
   # fill in iSpec$hydroTerm w/ 'flow' if not specified; then initialize iSpec$hydroTermSel
   iSpec$hydroTerm    <- if(is.na(iSpec$hydroTerm)) 'flow' else iSpec$hydroTerm
@@ -408,7 +408,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
 
   # calculate number of observations for each method and merge to intervention table  04Feb2018
   tmp <- as.data.frame(table(df$intervention))
-  intervenList = merge(intervenList,tmp, by.x="intervention", by.y="Var1", all.x=TRUE)
+  intervenList <- merge(intervenList,tmp, by.x="intervention", by.y="Var1", all.x=TRUE)
   intervenList$Freq[is.na(intervenList$Freq)] <- 0
   
   # if there is an intervention period with insufficient data then, 

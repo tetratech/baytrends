@@ -107,7 +107,7 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
   analySpec$gamLegend$On <-FALSE
   showGamNumOnPlot <- analySpec$showGamNumOnPlot
   
-  gridCol <- 'gray80'; gridlty =6
+  gridCol <- 'gray80'; gridlty <- 6
   censorlty <- 3; censorlwd <- 1
   seasAvgSiglwd <- 4
   
@@ -122,7 +122,7 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
       gamLegend <- analySpec$gamLegend
       
       # find and modify "seasMean" legend entry
-      rowT = which(gamLegend$descrip == "seasMean")
+      rowT <- which(gamLegend$descrip == "seasMean")
       gamLegend[rowT,c("legend","colSel","colLegend")] <-
         c(gamSeasonPlot[1], gamSeasonPlot[2], gamSeasonPlot[2])
       gamLegend[rowT,c("lwdLegend")] <- 2
@@ -197,22 +197,25 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
   
 # add flow or salinity indicators #05Aug2017 ####
   if('flw_sal' %in% names(tsdat)) {
-    myPCH = 124; myCEX=1.0; HiFlw_LoSal = "springgreen"; LoFlw_HiSal = "darkblue"
+    myPCH <- 124
+    myCEX <- 1.0
+    HiFlw_LoSal <- "springgreen" 
+    LoFlw_HiSal <- "darkblue"
     y_hydro <- ifelse(transform, exp(yRange[2]), yRange[2])
     prob_hydro <- 0.80
     if(iSpec$hydroTermSel == 'flow') {
-      tmp =  data.frame(x=tsdat[tsdat$flw_sal > quantile(tsdat$flw_sal,probs=prob_hydro), "date"],
+      tmp <-  data.frame(x=tsdat[tsdat$flw_sal > quantile(tsdat$flw_sal,probs=prob_hydro), "date"],
                         y=y_hydro)
       points(y=tmp$y , x=tmp$x, col=HiFlw_LoSal, pch=myPCH, cex=myCEX)
-      tmp =  data.frame(x=tsdat[tsdat$flw_sal < quantile(tsdat$flw_sal,probs=(1-prob_hydro)), "date"],
+      tmp <-  data.frame(x=tsdat[tsdat$flw_sal < quantile(tsdat$flw_sal,probs=(1-prob_hydro)), "date"],
                         y=y_hydro)
       points(y=tmp$y , x=tmp$x, col=LoFlw_HiSal, pch=myPCH, cex=myCEX)
       
     } else if(iSpec$hydroTermSel == 'salinity') {
-      tmp =  data.frame(x=tsdat[tsdat$flw_sal < quantile(tsdat$flw_sal,probs=(1-prob_hydro)), "date"],
+      tmp <-  data.frame(x=tsdat[tsdat$flw_sal < quantile(tsdat$flw_sal,probs=(1-prob_hydro)), "date"],
                         y=y_hydro)
       points(y=tmp$y , x=tmp$x, col=HiFlw_LoSal, pch=myPCH, cex=myCEX)
-      tmp =  data.frame(x=tsdat[tsdat$flw_sal > quantile(tsdat$flw_sal,probs=prob_hydro), "date"],
+      tmp <-  data.frame(x=tsdat[tsdat$flw_sal > quantile(tsdat$flw_sal,probs=prob_hydro), "date"],
                         y=y_hydro)
       points(y=tmp$y , x=tmp$x, col=LoFlw_HiSal, pch=myPCH, cex=myCEX)
     }
@@ -427,7 +430,7 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
     pdat <- gamResult[[paste0("gamOutput",seasonalModel)]]$predictions
     
     for (i in 1:length(analySpec$gamLegend[analySpec$gamLegend$season, "legend"])) {
-      descrip = paste0("season",i)
+      descrip  <- paste0("season",i)
       colSelA  <- analySpec$gamLegend$colSel[which(analySpec$gamLegend$descrip ==descrip)]
       lwdSelA  <- analySpec$gamLegend$lwdLegend[which(analySpec$gamLegend$descrip ==descrip)]
       ltySelA  <- analySpec$gamLegend$ltyLegend[which(analySpec$gamLegend$descrip ==descrip)]
@@ -592,7 +595,7 @@ gamPlotDispSeason <- function(gamResult=gamResult, analySpec=analySpec,
     myLegend[myLegend$legend=="Adj.GAM", "legend"] <- "Fit.GAM"
   }
   
-  ncolSel=1
+  ncolSel <- 1
   ncolSel <- ifelse(nrow(myLegend)>7, ceiling(nrow(myLegend)/2) , nrow(myLegend))
   
   par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(.5, 3, 0, 2), new = TRUE)

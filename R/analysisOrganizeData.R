@@ -23,7 +23,7 @@
 #'  survival::Surv objects. An example data frame, dataCensored, is included
 #'  with baytrends as an example.
 #'  
-#'  The argument, analySpec, is a list that includes basic specfications for
+#'  The argument, analySpec, is a list that includes basic specifications for
 #'  performing GAM analyses. The components in analySpec are identified below.
 #'  The user may create analySpec (which can include all or some of the below
 #'  components; and pass the user-supplied analySpec to this function. Or, the
@@ -285,7 +285,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
     # fill in missing fields 
     varList <- c("parmRO1", "parmRO2","trendIncrease","parmSource"
                  , "parmCat", "parmCalc", "parmNamelc" , "parmTrend")
-    varListType <- c('n', 'n', 'c', 'c', 'c', 'c', 'c', 'c');
+    varListType <- c('n', 'n', 'c', 'c', 'c', 'c', 'c', 'c')
     for (i in 1:length(varList)) {
       if (!varList[i] %in% names(parameterList)) {
         parameterList[,varList[i]] <- ifelse (varListType[i] == 'c', NA_character_, NA_real_ )
@@ -315,7 +315,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
                     "locationType", "waterbody"))
     varListType <- c('n', 'n', 'n', 'n', 'c', 'c', 'c', 'c'
                      , 'c', 'c', 'c', 'c', 'c', 'c'
-                     , 'c', 'c', 'c', 'c', 'c');
+                     , 'c', 'c', 'c', 'c', 'c')
     for (i in 1:length(varList)) {
       if (!varList[i] %in% names(stationMasterList)) {
         stationMasterList[,varList[i]] <- ifelse (varListType[i] == 'c', NA_character_, NA_real_ )

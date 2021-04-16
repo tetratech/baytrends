@@ -74,7 +74,7 @@ makeSurvDF <- function(df, suf_lo = "_lo", suf_hi = "_hi") {
     for (var in varSurv[varSurv$boo.to.Surv, "var"]) {
       # initialize counter
       if (var == varSurv[varSurv$boo.to.Surv, "var"][1]) {
-        num_bad = 0    
+        num_bad <- 0    
       }
       var.lo <- paste0(var, suf_lo)
       var.hi <- paste0(var, suf_hi)
