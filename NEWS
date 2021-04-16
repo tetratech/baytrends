@@ -4,7 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-16 10:51:47
+    #> Last Update: 2021-04-16 11:09:03
+
+# baytrends 2.0.2.9003
+
+-   Release 2021-04-16
+-   refactor: DESCRIPTION
+    -   Add markdown to Suggests
 
 # baytrends 2.0.2.9002
 

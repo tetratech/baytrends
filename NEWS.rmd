@@ -19,6 +19,13 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.2.9003
+===========
+* Release 2021-04-16
+* refactor: DESCRIPTION
+   + Add markdown to Suggests
+
+
 baytrends 2.0.2.9002
 ===========
 * Release 2021-04-16
