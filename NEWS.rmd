@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.3
+===========
+* Release 2021-04-16
+* refactor: Update for CRAN resubmission, Issue #61
+
 baytrends 2.0.2.9003
 ===========
 * Release 2021-04-16
