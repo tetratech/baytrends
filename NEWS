@@ -4,7 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-16 12:36:05
+    #> Last Update: 2021-04-19 12:34:50
+
+# baytrends 2.0.4
+
+-   Release 2021-04-19
+-   refactor: Update for CRAN resubmission, Issue \#61
+    -   Fix lifecycle badge URL
 
 # baytrends 2.0.3
 

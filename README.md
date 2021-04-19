@@ -16,7 +16,7 @@ Linux[![cran
 checks](https://cranchecks.info/badges/flavor/linux/baytrends)](https://cranchecks.info/badges/flavor/linux/baytrends)
 
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/tetratech/baytrends/graphs/commit-activity)
 <!-- badges: end --> <!-- CRAN version and downloads have errors -->
 
