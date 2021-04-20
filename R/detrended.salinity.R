@@ -237,7 +237,7 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     # ** compute mean, sd, and obs for doy from 1:366 ----
     window <- salinity.detrended[["dvAvgWinSel"]]/2
     for (j in 1:1098) {
-      j_day=df.mean[j,"doy"]
+      j_day <- df.mean[j,"doy"]
       tmp         <- (df[df$doy >= j_day-window & df$doy <= j_day+window, ])
       df.mean[j,"SAP"] <- mean  (tmp$SAP, na.rm=TRUE) 
       df.sd  [j,"SAP"] <- sd    (tmp$SAP, na.rm=TRUE)
@@ -317,7 +317,7 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     par(mfrow = c(3, 1))
     
     plot(station.doy, station.mean , ylim=c(-3.,3.),
-         xlab=NA, ylab="mean"); title(paste0(station,"--SAP"));
+         xlab=NA, ylab="mean"); title(paste0(station,"--SAP"))
     
     plot(station.doy, station.sd , ylim=c(0,6), col='grey',
          xlab=NA, ylab="sd"); #title(station); 
@@ -350,7 +350,7 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     par(mfrow = c(3, 1))
     
     plot(station.doy, station.mean , ylim=c(-3.,3.),
-         xlab=NA, ylab="mean"); title(paste0(station,"--BBP"));
+         xlab=NA, ylab="mean"); title(paste0(station,"--BBP"))
     
     plot(station.doy, station.sd , ylim=c(0,6), col='grey',
          xlab=NA, ylab="sd"); #title(station); 

@@ -102,7 +102,7 @@ loadData <- function(file=NA, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, rem
   }
 
 # append naChar check 02Mar2017
-  if(!is.na(naChar)) naChar = c(NA, naChar)
+  if(!is.na(naChar)) naChar <- c(NA, naChar)
 
 # Read in file as either csv or tab delimited ####
   if (fileExtension(fname)=="csv") {
@@ -229,12 +229,12 @@ loadData <- function(file=NA, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, rem
       # pick date format (opt 1: perfect match; opt 2: save column as *.Orig and pick best format
       if (length(which(dateFormat$Freq == sum(!is.na(df[,i])))) > 0) {
         dateFormat <- dateFormat$dateFormat[min(which(sum(!is.na(df[,i])) == dateFormat$Freq))]
-        dateFormatChkWrn = ""
+        dateFormatChkWrn <- ""
       } else {
         df[, paste0(names(df)[i],".Orig")] <- df[,i]
         dateFormat <- dateFormat[sum(!is.na(df[,i])) > dateFormat$Freq ,]
         dateFormat <- dateFormat$dateFormat[min(which.min(sum(!is.na(df[,i])) - dateFormat$Freq))]
-        dateFormatChkWrn = paste0("(Col: ",names(df)[i],".Orig added)")
+        dateFormatChkWrn <- paste0("(Col: ",names(df)[i],".Orig added)")
       }
 
       # apply selected format

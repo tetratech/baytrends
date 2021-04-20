@@ -130,7 +130,7 @@ detrended.flow <- function(usgsGageID, siteName
                            , max.fill = 10) {##FUNCTION.START
 
   # Initialization #### 
-  fill = TRUE
+  fill <- TRUE
   
   # create gageList data frame
   gageList <- data.frame(usgsGageID=usgsGageID,
@@ -193,7 +193,7 @@ detrended.flow <- function(usgsGageID, siteName
     flow.detrended  <- modifyList(flow.detrended, tmp.list)
     
     # calculate mean, sd, & nobs by doy
-    df      <- flow.detrended[[var]];   
+    df      <- flow.detrended[[var]]   
     df      <- df[,!(names(df) %in% c("date", "q", "LogQ", paste0(var,".gam") ))]
     df.mean <- aggregate(. ~ doy, FUN = mean,        data = df, na.action=na.pass, na.rm=TRUE) 
     df.sd   <- aggregate(. ~ doy, FUN = sd,          data = df, na.action=na.pass, na.rm=TRUE) 

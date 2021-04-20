@@ -47,7 +47,7 @@ eventNum <- function(event, reset=FALSE, na.fix=FALSE) {
   number <- 0L
   ret.val <- rep(0L, length(event) + 1L)
   i <- 1L
-  beg=1L
+  beg <- 1L
   while(i < length(event.rle$values)) {
     if(event.rle$values[i]) {
       number <- number + 1L

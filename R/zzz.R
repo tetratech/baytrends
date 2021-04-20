@@ -3,8 +3,8 @@
 
 .onLoad <- function(libname = find.package("baytrends"), pkgname = "baytrends"){
 
-  repos = getOption("repos")
-  repos["USGS"] = "http://owi.usgs.gov/R"
+  repos <- getOption("repos")
+  repos["USGS"] <- "http://owi.usgs.gov/R"
   options(repos = repos)
   invisible(repos)
 

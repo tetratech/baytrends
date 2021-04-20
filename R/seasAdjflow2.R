@@ -134,8 +134,8 @@ seasAdjflow <- function(dvFlow=dvFlow, siteNumber=NULL, dvAvgWin=c(7,31),
   .F(title, figNum)
   
   # get y range on sa1LogQ so that graphics have same scale
-  yrange= max(abs(dvFlow[,varsa1LogQ]), na.rm=TRUE )
-  yrange= c(-1.0*yrange,yrange)
+  yrange <- max(abs(dvFlow[,varsa1LogQ]), na.rm=TRUE )
+  yrange <- c(-1.0*yrange,yrange)
   
 # 5) Compute average seasonally adjusted Log flow residuals ####
   #    by smoothing windows and store as "saxLogQ..."

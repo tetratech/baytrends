@@ -19,9 +19,74 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.4
+===========
+* Release 2021-04-19
+* refactor: Update for CRAN resubmission, Issue #61
+    + Fix lifecycle badge URL
+
+baytrends 2.0.3
+===========
+* Release 2021-04-16
+* refactor: Update for CRAN resubmission, Issue #61
+
+baytrends 2.0.2.9003
+===========
+* Release 2021-04-16
+* refactor: DESCRIPTION
+   + Add markdown to Suggests
+
+
+baytrends 2.0.2.9002
+===========
+* Release 2021-04-16
+* docs: README
+    + Install text update
+    + Removed date field
+    + Trim to 80 characters
+* refactor: DESCRIPTION
+    + Move lubridate from depends to imports
+    + Remove XML (not used), 2.0.0.8005
+    + Add BugReports
+* refactor: Fix misspellings detected with devtools::spell_check()
+    + DESCRIPTION
+    + analysisOrganizeData
+* refactor: Remove unneeded vignette "test"
+* refactor: Use '<-' instead of '=' for assignment
+    + detrended.flow
+    + detrended.salinity
+    + findFile
+    + gamPlotDisp
+    + gamPlotDispSeason
+    + gamTest
+    + gamTestSeason
+    + imputeCensored
+    + layerAggregation
+    + loadData
+    + makeSurvDF
+    + seasAdjFlow2
+    + selectData
+    + smwrBase_baseDay
+    + smwrBase_eventProcessing
+    + unSurv
+    + zzz
+* refactor: Omit trailing semicolons
+    + analysisOrganizeData
+    + detrendedFlow
+    + detrendedSalinity
+* refactor: findFile
+    + Use on.exit() after setwd() to ensure it returns the previous value
+* refactor: Set up GitHub Actions
+    + check
+    + pkgdown
+       - Remove 'docs' folder
+
 baytrends 2.0.2.9001
 ===========
-* Change default number of years used in computing differences from 2 years to 3 years. New parameter analySpec$gamDiffNumChgYrs set to 3 years, but can be set back to 2 years (or any number of years based on user input).
+* Release 2021-04-15
+* Change default number of years used in computing differences from 2 years to 
+3 years. New parameter analySpec$gamDiffNumChgYrs set to 3 years, but can be set
+back to 2 years (or any number of years based on user input).
 
 baytrends 2.0.2
 ===========
@@ -77,7 +142,7 @@ baytrends 2.0.0.8004
 ===========
 * Release 2020-11-12
 * Run rhub::check_for_linux
-    + Update png to PNG in vigenette for compatibility with Linux.
+    + Update png to PNG in vignette for compatibility with Linux.
 * detrended.flow.R
     + baytrends::nobs to nobs
 * Rebuild pkgdown site.
@@ -614,7 +679,7 @@ baytrends 1.0.3.9016
 * GitHub commit; v1.0.4
 * Added passing of salinity.detrended and flow.detrended to gamTest
 * Added passing stationMasterList, parameterList, and layerLukup to analyzeOrganizeData
-* Corrected getUSGSflow function to accomodate missing values at beginning/ending of record
+* Corrected getUSGSflow function to accommodate missing values at beginning/ending of record
 * Moved package `plyr` from Suggests to Imports in DESCRIPTION
 * Remaining Check issue with no visible binding for global variable; salinity.detrended
     + .gamPlotCalc
@@ -694,7 +759,7 @@ baytrends 1.0.3.9003
 ===========    
 * Released 2018-05-07
 * GitHub commit; v1.0.3.9003
-* Last fix for Check.  Ready for sumittal to CRAN.  Issue #1
+* Last fix for Check.  Ready for submittal to CRAN.  Issue #1
 
 baytrends 1.0.3.9002
 ===========   
@@ -735,7 +800,7 @@ development branch
              'read.table', 'strOptions', 'write.table')
 * Added QC to define figNum.  
     + Copied from seasAdjflow2.R to detrended.flow.R and detrended.salinity.R
-* Add functions from swmwr packages:
+* Add functions from swmr packages:
     + smwrBase; %cn%, group2row, isDateLike
     + smwrQW; mcenKM, mcenMLE, mcenROS, mdlMLE, mdlROS, pcodeNWISqw
     + smwrStats; rmse, vif
@@ -842,7 +907,7 @@ baytrends 1.0.2.9007
 baytrends 1.0.2.9006
 ===========
 * Released - 2018-05-01
-* corrected storage of usgs codes
+* corrected storage of USGS codes
 
 baytrends 1.0.2.9005
 ===========
@@ -867,7 +932,7 @@ baytrends 1.0.2.9003
 baytrends 1.0.2.9002
 ===========
 * Released - 2018-05-01
-*  added usgs gage id, usgs gage name, and gam diff standard error to to stat.gam.result and chng.gam.result output data sets
+*  added USGS gage id, USGS gage name, and gam diff standard error to to stat.gam.result and chng.gam.result output data sets
 
 baytrends 1.0.2.9001
 ===========
@@ -1004,7 +1069,7 @@ baytrends 1.0.0.9002
 baytrends 1.0.0.9001
 ===========
 * Released - 2018-02-05
-* Improve error trapp for when to allow baytrends to run an intervention model.
+* Improve error trap for when to allow baytrends to run an intervention model.
     + selectData.R
     + gamTest.R
 

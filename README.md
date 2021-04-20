@@ -4,17 +4,19 @@
 # baytrends
 
 <!-- badges: start -->
-
 <!--
 CRAN check ALL
 [![cran checks](https://cranchecks.info/badges/summary/baytrends)](https://cranchecks.info/badges/summary/baytrends) All flavors-->
 
-Windows<https://cranchecks.info/badges/flavor/windows/baytrends>
-OSX<https://cranchecks.info/badges/flavor/osx/baytrends>
-Linux<https://cranchecks.info/badges/flavor/linux/baytrends>
+Windows[![cran
+checks](https://cranchecks.info/badges/flavor/windows/baytrends)](https://cranchecks.info/badges/flavor/windows/baytrends)
+OSX[![cran
+checks](https://cranchecks.info/badges/flavor/osx/baytrends)](https://cranchecks.info/badges/flavor/osx/baytrends)
+Linux[![cran
+checks](https://cranchecks.info/badges/flavor/linux/baytrends)](https://cranchecks.info/badges/flavor/linux/baytrends)
 
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/tetratech/baytrends/graphs/commit-activity)
 <!-- badges: end --> <!-- CRAN version and downloads have errors -->
 
@@ -39,9 +41,14 @@ You can install the released version of baytrends from
 install.packages("baytrends")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version (with vignettes) from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("tetratech/baytrends")
+
+if(!require(devtools)){install.packages("devtools")}  #install if needed
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+
 ```

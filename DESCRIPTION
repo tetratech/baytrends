@@ -13,12 +13,10 @@ Description: Enable users to evaluate long-term trends using a Generalized
     questions.  Methodology described in Murphy (2019) 
     <doi:10.1016/j.envsoft.2019.03.027>.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 2.0.2.9001
-Date: 2021-03-24
+Version: 2.0.4
 Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
 Depends:
-    R (>= 3.5.0),
-    lubridate
+    R (>= 3.5.0)
 License: GPL-3    
 LazyData: TRUE
 RoxygenNote: 7.1.1
@@ -30,6 +28,7 @@ Suggests:
     grDevices, 
     imputeTS,
     knitr,
+    markdown,
     nlme,
     pander,
     readxl,
@@ -37,14 +36,15 @@ Suggests:
     sessioninfo,
     testthat
 Imports:
-    XML,
     dataRetrieval,
     digest,
+    lubridate,
     memoise,
     mgcv,
     plyr,
     survival
 URL: https://github.com/tetratech/baytrends
+BugReports:  https://github.com/tetratech/baytrends/issues
 VignetteBuilder: knitr
 Collate: analysisOrganizeData.R
      appendDateFeatures.R
