@@ -431,7 +431,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 # 3) Aggregate data layers. #####
 
   if ("layer" %in% names(df)) {
-    df<-layerAggregation(df, avgTechnique=avgTechnique, layerAggOption=analySpec$layerAggOption)
+    df<-layerAggregation(df, avgTechnique=analySpec$avgTechnique, layerAggOption=analySpec$layerAggOption)
 
     # create a "layer lookup table" that includes a proper layer name and has a built in preferred
     # order for which order to analyze the layers (mostly to get surface before bottom)
