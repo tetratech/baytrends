@@ -35,6 +35,7 @@
 layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
   
   # -----< Change history >--------------------------------------------
+  # 10May2021: JBH: migrated rbind to dplyr::bind_rows (to handle Surv objects)
   # 02Jul2020: JBH: migrated to Surv objects, fixed median calculation  
   # 17May2018: JBH: removed "exist" stmt 
   # 29Oct2016: JBH: migrated to helper function
@@ -189,7 +190,7 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
       if(tmpVar == varNum[1]) { 
         df1 <- conc
       } else {
-        df1 <- rbind (df1 , conc)
+        df1 <- dplyr::bind_rows (df1 , conc)
       }
     }
     
@@ -215,7 +216,7 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
     }
     
     # combine df11 and df12
-    df.num <- rbind(df11, df12)
+    df.num <- dplyr::bind_rows(df11, df12)
     
     # reshape to wide
     kVar <- c("station", "date", "layer", "parameter", "value")
@@ -250,7 +251,7 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
       if(tmpVar == varSurv[1]) { 
         df1 <- conc
       } else {
-        df1 <- rbind (df1 , conc)
+        df1 <- dplyr::bind_rows (df1 , conc)
       }
     }
     
@@ -283,7 +284,7 @@ layerAggregation <- function(df, avgTechnique="mean", layerAggOption=3) {
     }
     
     # combine df11 and df12
-    df.Surv <- rbind(df11, df12)
+    df.Surv <- dplyr::bind_rows(df11, df12)
     
     # reshape to wide
     kVar <- c("station", "date", "layer", "parameter", "value")

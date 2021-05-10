@@ -323,8 +323,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
     }
   }
 
-  # specify the average technique to be mean (median option was removed 01May2018)
-  avgTechnique     <- "mean"
+  # specify the average technique to be mean if not specified by user (changed 2021May10)
+  if (!"avgTechnique" %in% names(analySpec)) analySpec$avgTechnique <- "mean"
   
 # 1) Review user supplied specifications.  ####
 
