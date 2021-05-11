@@ -197,6 +197,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 12May2021: JBH: update time periods to 3yr span
 # 24Mar2021: JBH: add a default of gamDiffNumChgYrs as 3 years
 # 03Jun2019: JBH: add report of which models are loaded; mod's to reduce required data elements
 #                 in look up tables: min number of obs for an intervention
@@ -362,8 +363,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   # load periods of record to evaluate 
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(
     list( periodName = "Full Record",     periodStart = c(NA),        periodEnd = c(NA)),
-    list( periodName = "1999/00-Present", periodStart = c(1999:2000), periodEnd = c(NA)),
-    list( periodName = "2005/06-Present", periodStart = c(2005:2006), periodEnd = c(NA)))
+    list( periodName = "1999/01-Present", periodStart = c(1999:2001), periodEnd = c(NA)),
+    list( periodName = "2010/12-Present", periodStart = c(2010:2012), periodEnd = c(NA)))
 
   if (!"gamDiffSeasons"  %in% names(analySpec)) analySpec$gamDiffSeasons   <- list(
     list ( seasonName = "All",     seasonMonths = c(1:12)),
