@@ -19,10 +19,13 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-baytrends 2.0.4.9001
+baytrends 2.0.4.9002
 ===========
-* Release 2021-05-10
-* Updated row binding to dplyr::bind_rows to accommodate data frames with Surv objects.
+* Release 2021-05-12
+* Updated layer aggregration to use dplyr::bind_rows to combine data frames with Surv objects.
+* Updated default gamDiffPeriods to 1999-2001 and 2011-2013
+* Updated calculation of fraction of observations that are censored
+* Updated layer aggregation to allow for computing medians in addition to mean
 
 baytrends 2.0.4
 ===========

@@ -364,7 +364,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(
     list( periodName = "Full Record",     periodStart = c(NA),        periodEnd = c(NA)),
     list( periodName = "1999/01-Present", periodStart = c(1999:2001), periodEnd = c(NA)),
-    list( periodName = "2010/12-Present", periodStart = c(2010:2012), periodEnd = c(NA)))
+    list( periodName = "2011/13-Present", periodStart = c(2011:2013), periodEnd = c(NA)))
 
   if (!"gamDiffSeasons"  %in% names(analySpec)) analySpec$gamDiffSeasons   <- list(
     list ( seasonName = "All",     seasonMonths = c(1:12)),
