@@ -155,6 +155,11 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
                        remMiss=TRUE, analySpec) {
 
 # -----< Change history >-------------------------------------------- ####
+# 11May2021: JBH: changed counts of less-thans to allow for things like a salinity
+#                 of 0.0 to be counted as not censored. (Outcome is that 
+#                 selectSetting will be TRUE for data sets with this situation
+#                 which is a change from state analyses in year 2020. See
+#                 mgcv::gam argument 'select' for more information)
 # 03Jun2016: JBH: set flwAvgWin, flwParms, and salParms to NA if listed in 
 #                 user provided station file as ""
 # 02Jul2018: JBH: return NA if no data in lowCensor years  
@@ -445,9 +450,9 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   # lower < 0
   conc[conc$lower< 0, "fracLT0"] <- 1
   # 'less-thans' (29Oct2016: exclude recensored)
-  conc[conc$lower==0 & conc$upper>=0 & !conc$treat, "fracLT"] <- 1
+  conc[conc$lower==0 & conc$upper>0 & !conc$treat, "fracLT"] <- 1  
   # lower=upper
-  conc[conc$lower>0 & conc$lower==conc$upper, "fracUnc"] <- 1
+  conc[conc$lower>=0 & conc$lower==conc$upper, "fracUnc"] <- 1  
   # lower<upper
   conc[conc$lower>0 & conc$lower <conc$upper, "fracInt"] <- 1
   # recensored
