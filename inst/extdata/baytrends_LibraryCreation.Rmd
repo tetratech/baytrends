@@ -94,7 +94,7 @@ Need to remove end of line after Collate.
 Need first entry on the same line as "Collate:".
 
 ```{r PKG_BUILD, eval=FALSE}
-# Library Name
+                                     # Library Name
 myLibrary <- "baytrends"
 # Load Library
 #library(devtools)
@@ -142,6 +142,8 @@ help(package="baytrends")
 ```
 
 Use `pkgdown` to build website.  Will need to rebuild the package to include the new material.
+
+Can use GitHub Actions to build instead of doing manually.
 
 ```{r, eval = FALSE}
 library(pkgdown)
