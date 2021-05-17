@@ -41,22 +41,17 @@ management- and research-focused questions.
 
 ## Installation
 
-You can install the released version of baytrends from 
-[CRAN](https://CRAN.R-project.org) with:
+The CRAN version of baytrends from [CRAN](https://CRAN.R-project.org) 
+can be installed with the code below.
 
 ``` r
 install.packages("baytrends")
 ```
 
-And the development version (with vignettes) from 
-[GitHub](https://github.com/) with:
+The development version (with vignettes) from [GitHub](https://github.com/) 
+can be installed with the code example below using the `remotes` package.
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("tetratech/baytrends")
-
-if(!require(devtools)){install.packages("devtools")}  #install if needed
-install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
-
-
+if(!require(remotes)){install.packages("remotes")}  #install if needed
+install_github("tetratech/baytrends", force = TRUE, build_vignettes = TRUE)
 ```

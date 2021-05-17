@@ -19,13 +19,27 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.5
+===========
+* Release 2021-05-14
+* refactor: Update for CRAN resubmission, Issue #64
+
+baytrends 2.0.4.9003
+===========
+* Release 2021-05-14
+* refactor: Merge pull request to main branch with updates in 2.0.4.9002
+, Issue #64
+* refactor: Update README install example
+
 baytrends 2.0.4.9002
 ===========
 * Release 2021-05-12
-* Updated layer aggregration to use dplyr::bind_rows to combine data frames with Surv objects.
-* Updated default gamDiffPeriods to 1999-2001 and 2011-2013
-* Updated calculation of fraction of observations that are censored
-* Updated layer aggregation to allow for computing medians in addition to mean
+* fix: Updated layer aggregration to use dplyr::bind_rows to combine data frames
+with Surv objects
+* refactor: Updated default gamDiffPeriods to 1999-2001 and 2011-2013
+* refactor: Updated calculation of fraction of observations that are censored
+* refactor: Updated layer aggregation to allow for computing medians in addition
+to mean
 
 baytrends 2.0.4
 ===========
