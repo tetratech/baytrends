@@ -42,6 +42,7 @@ createResiduals <- function(df, dep
 # 30Jul2018: JBH: function renamed to createResiduals; extended to allow for
 #                 any gam0-gam5 model
 # 12Mar2019: EWL: Add library references to functions.  Add ProjRoot as input parameter.
+# 23Jun2019: JBH: Included fitted values in returned result
   
   # create graph folder if not existing
   if (gamPlot) dir.create(file.path(ProjRoot, folder_r), showWarnings = FALSE)
@@ -150,7 +151,10 @@ createResiduals <- function(df, dep
         residuals <- eval(parse(text = paste0("gamResult$gamOutput"
                                               , analySpec$gamModels[[1]]$option
                                               ,"$gamRslt$residuals")))
-        dep.res0 <- cbind(gamResult$data[,c("station","date","layer")],residuals)
+        fitted.values <- eval(parse(text = paste0("gamResult$gamOutput"
+                                                  , analySpec$gamModels[[1]]$option
+                                                  ,"$gamRslt$fitted.values")))
+        dep.res0 <- cbind(gamResult$data[,c("station","date","layer")],residuals, fitted.values)
         if (!exists("dep.res1")) {
           dep.res1 <- dep.res0
         } else { 

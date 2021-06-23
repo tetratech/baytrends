@@ -146,8 +146,8 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
       # set up base and test years to first "gamDiffNumChgYrs" and last 
       # "gamDiffNumChgYrs" years if base.yr.set
       # and/or test.yr.set not specified; otherwise concatenate the values
-      if(is.na(base.yr.set[1])) {base.yr.set <-  c(por.rng[1],por.rng[1]+gamDiffNumChgYrs-1)}
-      if(is.na(test.yr.set[1])) {test.yr.set <-  c(por.rng[2]-gamDiffNumChgYrs+1,por.rng[2])}
+      if(is.na(base.yr.set[1])) {base.yr.set <-  c(por.rng[1]:(por.rng[1]+gamDiffNumChgYrs-1))}
+      if(is.na(test.yr.set[1])) {test.yr.set <-  c((por.rng[2]-gamDiffNumChgYrs+1):por.rng[2])}
       Nbase.yr <- length(base.yr.set)       # count years in each period
       Ntest.yr <- length(test.yr.set)
       yr.set <- c(base.yr.set,test.yr.set)  # combine base years and test years
