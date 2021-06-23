@@ -79,33 +79,33 @@
 # ####
 gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy.set=NA,alpha=0.05
                     , flow.detrended=NA, salinity.detrended=NA) {
-# -----< Change history >--------------------------------------------
-# 24Mar2021: JBH: add parameter to of gamDiffNumChgYrs as 3 years
-# 11Jul2018: JBH: add additional independent variables to pdat excluding dependent
-#                 variable and "gamK*"
-# 30Sep2017: JBH: added salinity interpolation to merge up with pdat
-# 11Aug2017: JBH: added analySpec to function input parameters; renamed pct.chg.dta to pdat
-#                 updated setting for flw_sal to be observed flow
-# 29Jul2017: JBH: enhance for flw_sal
-# 09NOv2016: JBH: update documentation
-# 04Nov2016: JBH: update to accomodate models with intervention terms. specifically
-#            update returned list to have gamDiff.regular (baseline mean computed as
-#            per the prediction model) and gamDiff.adjusted (baseline meam computed
-#            assuming last intervention method used throughout the record)
-# 20Oct2016: JBH: add intervention term to prediction data set (pdat)
-# 09Jun2016: JBH: migrated from .gamDiff to gamDiff; revised help file
-# 04Jun2016: JBH: migrated name convention from gam1 to gamRslt; migrated percent change calculation
-#            from function gamDiffPORtbl to this function; other misc. code formatting
-# 24May2016: ESP: modified gamDiffPOR to create gamDiffYrs that allows user to specify
-#            a base year period and a test year period for the difference computation
-#            the user may also specify as set of days of year (doy.set) for computing this difference.
-#            If base and test years are not specified, default if first 2 and last 2 years of POR
-#            If yr.set not specified, default is once a month on the 15th.
-# 27Apr2016: JBH: depricated porBegin, porEnd, porLength; switched to
-#            dyear*, see por.rng assignment
-
+  # -----< Change history >--------------------------------------------
+  # 24Mar2021: JBH: add parameter to of gamDiffNumChgYrs as 3 years
+  # 11Jul2018: JBH: add additional independent variables to pdat excluding dependent
+  #                 variable and "gamK*"
+  # 30Sep2017: JBH: added salinity interpolation to merge up with pdat
+  # 11Aug2017: JBH: added analySpec to function input parameters; renamed pct.chg.dta to pdat
+  #                 updated setting for flw_sal to be observed flow
+  # 29Jul2017: JBH: enhance for flw_sal
+  # 09NOv2016: JBH: update documentation
+  # 04Nov2016: JBH: update to accomodate models with intervention terms. specifically
+  #            update returned list to have gamDiff.regular (baseline mean computed as
+  #            per the prediction model) and gamDiff.adjusted (baseline meam computed
+  #            assuming last intervention method used throughout the record)
+  # 20Oct2016: JBH: add intervention term to prediction data set (pdat)
+  # 09Jun2016: JBH: migrated from .gamDiff to gamDiff; revised help file
+  # 04Jun2016: JBH: migrated name convention from gam1 to gamRslt; migrated percent change calculation
+  #            from function gamDiffPORtbl to this function; other misc. code formatting
+  # 24May2016: ESP: modified gamDiffPOR to create gamDiffYrs that allows user to specify
+  #            a base year period and a test year period for the difference computation
+  #            the user may also specify as set of days of year (doy.set) for computing this difference.
+  #            If base and test years are not specified, default if first 2 and last 2 years of POR
+  #            If yr.set not specified, default is once a month on the 15th.
+  # 27Apr2016: JBH: depricated porBegin, porEnd, porLength; switched to
+  #            dyear*, see por.rng assignment
   
-# unpack ####
+  
+  # unpack ####
   
   # base.yr.set=NA; test.yr.set=NA; doy.set=NA; alpha=alpha
   # extract selected values from iSpec
@@ -114,10 +114,10 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
   transform  <- iSpec$transform
   logConst   <- iSpec$logConst
   gamDiffNumChgYrs <- analySpec$gamDiffNumChgYrs
-
+  
   # does model include intervention term 11Aug2017 [added from gamPlotCalc]
   intervention <- ifelse (length(grep('intervention',gamRslt$formula  )) == 0, FALSE, TRUE)
-
+  
   # does model include flw_sal term 11Aug2017 [added from gamPlotCalc]
   has.flw_sal <- ifelse (length(grep('flw_sal',gamRslt$formula  )) == 0, FALSE, TRUE)
   if(has.flw_sal) {
@@ -130,19 +130,19 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
                           normD   = stats::dnorm(stats::qnorm(0.5)))
   }
   pdatWgt$flw.wgt <- pdatWgt$normD/sum(pdatWgt$normD)
-
-# matrix set up ####
+  
+  # matrix set up ####
   # diffType="regular"; diffType="adjusted"  #(04Nov2016)
   for(diffType in c("regular","adjusted")) {
-
-# matrix: set up prediction table pdat for regular calculation ####
+    
+    # matrix: set up prediction table pdat for regular calculation ####
     if(diffType=="regular") {                           #(04Nov2016)
-
+      
       # if doy.set is NA, then assume doy.set = 15th of each month
       if(is.na(doy.set[1])){
         doy.set <-  baseDay(as.POSIXct(paste(2000,1:12,15,sep='-')))
       }
-
+      
       # set up base and test years to first "gamDiffNumChgYrs" and last 
       # "gamDiffNumChgYrs" years if base.yr.set
       # and/or test.yr.set not specified; otherwise concatenate the values
@@ -151,11 +151,11 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
       Nbase.yr <- length(base.yr.set)       # count years in each period
       Ntest.yr <- length(test.yr.set)
       yr.set <- c(base.yr.set,test.yr.set)  # combine base years and test years
-
+      
       Ndoy  <- length(doy.set) # count predictions per year
       Nbase <- Ndoy*Nbase.yr   # calculate total predictions in base period
       Ntest <- Ndoy*Ntest.yr   # calculate total predictions in test period
-
+      
       # create a data frame with Nrow rows where Nrow= (Nbase*Ndoy) + (Ntest*Ndoy)...
       # Nbase yrs of Ndoy baseline dates and Ntest-yrs
       # of Ndoy current dates. Include: doy, year, logical field (bl) indicating baseline
@@ -165,23 +165,23 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
       names(pdat) <- c('doy','year')                   # rename variables
       pdat$bl     <- pdat$year <= base.yr.set[Nbase.yr] # create logical field indicating baseline
       pdat$cyear  <- (pdat$year + (pdat$doy-1)/366) - centerYear # compute cyear
-
+      
       # calculate date based on doy to set up adding intervention term (added 20Oct2016)
       pdat$month <- lubridate::month(as.Date(pdat$doy, origin = "1999-12-31"))
       pdat$day   <- lubridate::day  (as.Date(pdat$doy, origin = "1999-12-31"))
       pdat$date  <- as.POSIXct(paste(pdat$year,pdat$month,pdat$day,sep='-'))
-
+      
       # add intervention term to prediction data set (added 20Oct2016)
       intervenList <- iSpec$intervenList
       intervenList$intervention <- as.character(intervenList$intervention)
-
+      
       tmp <- lapply(1:nrow(pdat), function(x)
         list(intervenList[ intervenList$beginDate <= pdat$date[x] &
                              intervenList$endDate +(24*3600)-1 >= pdat$date[x], c("intervention")]))
       tmp[sapply(tmp, is.null)] <- NA
       pdat$intervention <- sapply(1:nrow(pdat), function(x) unname(unlist(tmp[x])[1]))
       pdat$intervention <- factor(pdat$intervention, levels = intervenList$intervention)
-
+      
       # add flw_sal and flw_sal.sd term for models with flw_sal  # 11Aug2017
       if(has.flw_sal) {
         # populate flw_sal
@@ -211,7 +211,7 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
         pdat$flw_sal    <- NA_real_
         pdat$flw_sal.sd <- NA_real_
       }
-
+      
       # add a row id number and sort columns # 11Aug2017
       pdat$rowID <- seq.int(nrow( pdat))
       tmp <- c("rowID","date","year","cyear","doy")
@@ -222,84 +222,84 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
       indVar <- setdiff (all.vars(gamRslt$formula), c(iSpec$dep, names(pdat)))
       indVar <- indVar[-grep("^gamK", indVar)]
       pdat[,indVar] <- 0
-
-# matrix: "adjust" prediction table pdat to use last intervention value for all calculations ####
+      
+      # matrix: "adjust" prediction table pdat to use last intervention value for all calculations ####
       #(04Nov2016)
     } else if (diffType=="adjusted") {
       pdat$intervention <- pdat$intervention[length(pdat$intervention)]
     }      
     
-      # create pdatLong from pdat with a downselected number of columns for merging
-      # with pdatWgt; in the merge of pdatWgt and pdatLong (each row of pdat is repeated
-      # for each record in pdatWgt, then goes to next row of pdat); flw_sal based on
-      # z stat and sd
-      pdatLong <- pdat[,c("rowID", "cyear", "doy", "bl", "intervention", "flw_sal", "flw_sal.sd", indVar)]
-      pdatLong <- merge( pdatWgt[,c("Z","flw.wgt")], pdat[,c("rowID", "cyear", "doy", "bl", "intervention",
-                                                             "flw_sal", "flw_sal.sd", indVar  )])
-      pdatLong$flw_sal <- pdatLong$Z * pdatLong$flw_sal.sd
-
-      # JBH(24Nov2017): original construction of xa and avg.per.mat
-      # construct 2xNrow matrix (for averaging baseline and current periods). Since pdat is constructed
-      # with Nrow rows (see above)
-      # the weighting here is set to 1/Nbase for base period and 1/Ntest for test period.
-      # xa <- c(rep(1/Nbase,Nbase),rep(0,Ntest),rep(0,Nbase),rep(1/Ntest,Ntest)) 
-      # avg.per.mat <- matrix(xa,nrow=2,ncol=Nbase+Ntest, byrow=TRUE)
-      
-      # JBH(24Nov2017): extension of above xa and avg.per.mat
-      #   keeping weight the same--just extending number of values by "*nrow(pdatWgt)"
-      xa <- c(rep(1/Nbase,Nbase*nrow(pdatWgt)),
-              rep(0,Ntest*nrow(pdatWgt)),
-              rep(0,Nbase*nrow(pdatWgt)),
-              rep(1/Ntest,Ntest*nrow(pdatWgt))) # construct a matrix to average baseline and current periods
-      avg.per.mat <- matrix(xa,nrow=2,ncol=(Nbase+Ntest)*nrow(pdatWgt), byrow=TRUE)
-      
-      # now apply flow weighting to the averaging matrix (probably could have combined into above
-      # but this is ok such that each row of avg.per.mat is == 1) 
-      avg.per.mat[1,] <- avg.per.mat[1,] * t(pdatLong$flw.wgt)
-      avg.per.mat[2,] <- avg.per.mat[2,] * t(pdatLong$flw.wgt)
-
-      # construct matrix to get difference of current minus baseline
-      diff.mat <- c(-1,1)
-
-      # Extract coefficients (number of terms depends on complexity of GAM formula)
-      beta    <- gamRslt$coefficients        # coefficients vector
-      VCmat   <- gamRslt$Vp                  # variance-covariance matrix of coefficents
-
-# Begin calculations to compute differences ####
+    # create pdatLong from pdat with a downselected number of columns for merging
+    # with pdatWgt; in the merge of pdatWgt and pdatLong (each row of pdat is repeated
+    # for each record in pdatWgt, then goes to next row of pdat); flw_sal based on
+    # z stat and sd
+    pdatLong <- pdat[,c("rowID", "cyear", "doy", "bl", "intervention", "flw_sal", "flw_sal.sd", indVar)]
+    pdatLong <- merge( pdatWgt[,c("Z","flw.wgt")], pdat[,c("rowID", "cyear", "doy", "bl", "intervention",
+                                                           "flw_sal", "flw_sal.sd", indVar  )])
+    pdatLong$flw_sal <- pdatLong$Z * pdatLong$flw_sal.sd
+    
+    # JBH(24Nov2017): original construction of xa and avg.per.mat
+    # construct 2xNrow matrix (for averaging baseline and current periods). Since pdat is constructed
+    # with Nrow rows (see above)
+    # the weighting here is set to 1/Nbase for base period and 1/Ntest for test period.
+    # xa <- c(rep(1/Nbase,Nbase),rep(0,Ntest),rep(0,Nbase),rep(1/Ntest,Ntest)) 
+    # avg.per.mat <- matrix(xa,nrow=2,ncol=Nbase+Ntest, byrow=TRUE)
+    
+    # JBH(24Nov2017): extension of above xa and avg.per.mat
+    #   keeping weight the same--just extending number of values by "*nrow(pdatWgt)"
+    xa <- c(rep(1/Nbase,Nbase*nrow(pdatWgt)),
+            rep(0,Ntest*nrow(pdatWgt)),
+            rep(0,Nbase*nrow(pdatWgt)),
+            rep(1/Ntest,Ntest*nrow(pdatWgt))) # construct a matrix to average baseline and current periods
+    avg.per.mat <- matrix(xa,nrow=2,ncol=(Nbase+Ntest)*nrow(pdatWgt), byrow=TRUE)
+    
+    # now apply flow weighting to the averaging matrix (probably could have combined into above
+    # but this is ok such that each row of avg.per.mat is == 1) 
+    avg.per.mat[1,] <- avg.per.mat[1,] * t(pdatLong$flw.wgt)
+    avg.per.mat[2,] <- avg.per.mat[2,] * t(pdatLong$flw.wgt)
+    
+    # construct matrix to get difference of current minus baseline
+    diff.mat <- c(-1,1)
+    
+    # Extract coefficients (number of terms depends on complexity of GAM formula)
+    beta    <- gamRslt$coefficients        # coefficients vector
+    VCmat   <- gamRslt$Vp                  # variance-covariance matrix of coefficents
+    
+    # Begin calculations to compute differences ####
     # extract matrix of linear predicters
     Xpc     <- predict(gamRslt,newdata=pdatLong,type="lpmatrix")
-
+    
     # Compute predictions based on linear predictors (Nrow x 1 matrix)
     pdep    <- Xpc%*%beta               # equivalent to "predict(gamRslt,newdata=pdatLong)"
-
+    
     # Calc. average baseline and average current; stores as a 2x1 matrix
     period.avg <- avg.per.mat %*% pdep
-
+    
     # Calc. average current - average baseline; stores as a 1x1 matrix
     diff.avg  <- diff.mat %*% period.avg # pre-multiply by differencing matrix to check results
-
+    
     # Calc standard errors and confidence intervals on difference predictions
     xpd       <- diff.mat%*%avg.per.mat%*%Xpc # premultiply linear predictors by averaging and differencing matrices.
     diff.est  <- xpd%*%beta                   # compute estimate of difference
     diff.se   <- sqrt(xpd%*%VCmat%*%t(xpd))   # compute Std. Err. by usual rules
     diff.t    <- diff.est / diff.se
     diff.pval <- 2*pt(abs(diff.t), gamRslt$df.null, 0, lower.tail = FALSE)
-
+    
     #compute CI for differnce
     halpha    <- alpha/2
     diff.ci   <- c(diff.est - qnorm(1-halpha) * diff.se,diff.est + qnorm(1-halpha) *diff.se)
-
+    
     # back transform mean (03Nov)
     per.mn.obs <- if(transform) exp(period.avg) - logConst else period.avg
-
+    
     # calculate percent change (03Nov)
     pct.chg <- 100*((per.mn.obs[2] - per.mn.obs[1])/per.mn.obs[1])
-
+    
     # difference in obs units (03Nov)
     diff.est.obs <- per.mn.obs[2] - per.mn.obs[1]
-
-# pack up and return results ####
-
+    
+    # pack up and return results ####
+    
     gamDiff.tmp <- list(base.yr    = base.yr.set,
                         test.yr    = test.yr.set,
                         doys       = doy.set,
@@ -313,17 +313,17 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
                         diff.t     = diff.t,
                         diff.pval  = diff.pval,
                         alpha      = alpha)
-
+    
     #(04Nov2016)
     if(diffType=="regular") {
       gamDiff.regular <- gamDiff.tmp
     } else if(diffType=="adjusted") {
       gamDiff.adjusted <- gamDiff.tmp
     }
-
+    
   }
-
+  
   gamDiff.return <- list(gamDiff.regular=gamDiff.regular, gamDiff.adjusted=gamDiff.adjusted)
   return(gamDiff.return)
-
+  
 }
