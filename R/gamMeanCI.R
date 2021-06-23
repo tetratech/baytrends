@@ -77,7 +77,7 @@
 #' @export
 #'
 # ####
-gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy.set=NA,alpha=0.05
+gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy.set=NA,alpha=0.05
                     , flow.detrended=NA, salinity.detrended=NA) {
   # -----< Change history >--------------------------------------------
   # 24Mar2021: JBH: add parameter to of gamDiffNumChgYrs as 3 years
