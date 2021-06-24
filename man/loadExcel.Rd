@@ -13,7 +13,8 @@ loadExcel(
   remNAcol = TRUE,
   remNArow = TRUE,
   convDates = TRUE,
-  tzSel = "America/New_York"
+  tzSel = "America/New_York",
+  tables = TRUE
 )
 }
 \arguments{

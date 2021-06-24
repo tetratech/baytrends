@@ -14,7 +14,8 @@ loadData(
   convDates = TRUE,
   tzSel = "America/New_York",
   commChar = "#",
-  naChar = NA
+  naChar = NA,
+  tables = TRUE
 )
 }
 \arguments{
