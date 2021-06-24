@@ -19,6 +19,10 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.5.9005
+===========
+* gamDiffPlot updated to correct where baseline and current means are plotted
+
 baytrends 2.0.5.9004
 ===========
 * loadData and loadExcel updated to allow table suppression (needs qc)

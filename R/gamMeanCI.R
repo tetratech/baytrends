@@ -248,6 +248,7 @@ gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,d
     
     # pack up results ####
     gamMeanCI.tmp <- list(base.yr    = base.yr.set,
+                          base.plot  = mean(range(pdat$date[pdat$bl])),
                           doys       = doy.set,
                           per.mn     = as.vector(period.avg),
                           per.mn.obs = as.vector(per.mn.obs),

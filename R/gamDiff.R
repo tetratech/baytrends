@@ -301,7 +301,9 @@ gamDiff <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,doy
 # pack up and return results ####
 
     gamDiff.tmp <- list(base.yr    = base.yr.set,
+                        base.plot  = mean(range(pdat$date[pdat$bl])),
                         test.yr    = test.yr.set,
+                        test.plot  = mean(range(pdat$date[!pdat$bl])),
                         doys       = doy.set,
                         per.mn     = as.vector(period.avg),
                         per.mn.obs = as.vector(per.mn.obs),
