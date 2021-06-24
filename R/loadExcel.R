@@ -57,7 +57,8 @@
 #' @export
 # ####
 loadExcel <- function(file=NA, sheet=1, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, remNArow=TRUE,
-                     convDates=TRUE, tzSel="America/New_York" ) {
+                     convDates=TRUE, tzSel="America/New_York"
+                     , tables = TRUE) {
 
 # ----- Change history --------------------------------------------
 # 18May2020: JBH: updated to handle input of Excel sheets with just 1 column 
@@ -219,7 +220,9 @@ loadExcel <- function(file=NA, sheet=1, folder='.', pk=NA, remDup=TRUE, remNAcol
 
 
 # Print a summary report and return ####
-  print(knitr::kable(loadResult))
+  if (tables) {
+    print(knitr::kable(loadResult))
+  }
 
   return(df)
 

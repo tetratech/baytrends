@@ -63,7 +63,8 @@
 #' @export
 # ####
 loadData <- function(file=NA, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, remNArow=TRUE,
-                     convDates=TRUE, tzSel="America/New_York", commChar="#", naChar=NA ) {
+                     convDates=TRUE, tzSel="America/New_York", commChar="#", naChar=NA
+                     , tables = TRUE) {
 
 # ----- Change history --------------------------------------------
 # 14Mar2017: JBH: added to baytrends package
@@ -221,8 +222,10 @@ loadData <- function(file=NA, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, rem
   # perform evaluation for each field
   for (i in iDateFields) {
     # test many date formats
-    dateFormat<- lubridate::guess_formats(df[!is.na(df[,i]),i], c("dbY", "bdY", "mdY", "dmY", "Ymd", "Ymd HM",
-                                         "mdY HM",  "Ymd HM p", "mdY HM p","dmy"))
+    dateFormat<- lubridate::guess_formats(df[!is.na(df[,i]),i]
+                                          , c("dbY", "bdY", "mdY", "dmY", "Ymd"
+                                              , "Ymd HM", "mdY HM", "Ymd HM p"
+                                              , "mdY HM p","dmy" , "mdy HMS p", "ymd HMS p"))
     if (!is.null(dateFormat))  {
       # summarize potential options into a frequency table
       dateFormat <- as.data.frame(table(dateFormat))
@@ -250,7 +253,9 @@ loadData <- function(file=NA, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, rem
 
 
 # Print a summary report and return ####
-  print(knitr::kable(loadResult))
+  if (tables) {
+    print(knitr::kable(loadResult))
+  }
 
   return(df)
 
