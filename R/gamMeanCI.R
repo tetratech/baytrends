@@ -147,7 +147,11 @@ gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,d
       # "gamDiffNumChgYrs" years if base.yr.set
       # and/or test.yr.set not specified; otherwise concatenate the values
       if(is.na(base.yr.set[1])) {base.yr.set <-  c(por.rng[1]:(por.rng[1]+gamDiffNumChgYrs-1))}
-      if(is.na(test.yr.set[1])) {test.yr.set <-  c((por.rng[2]-gamDiffNumChgYrs+1):por.rng[2])}
+
+      #JBH(24Jun2021)-do not need a test.yr data set
+      # if(is.na(test.yr.set[1])) {test.yr.set <-  c((por.rng[2]-gamDiffNumChgYrs+1):por.rng[2])}
+      test.yr.set <- NULL
+      
       Nbase.yr <- length(base.yr.set)       # count years in each period
       Ntest.yr <- length(test.yr.set)
       yr.set <- c(base.yr.set,test.yr.set)  # combine base years and test years
@@ -258,8 +262,15 @@ gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,d
     avg.per.mat[1,] <- avg.per.mat[1,] * t(pdatLong$flw.wgt)
     avg.per.mat[2,] <- avg.per.mat[2,] * t(pdatLong$flw.wgt)
     
+    #JBH(24Jun2021)-only need the first row for the base year
+    avg.per.mat <- avg.per.mat[1,]
+    
     # construct matrix to get difference of current minus baseline
-    diff.mat <- c(-1,1)
+    
+    #JBH(24Jun2021)-simplify difference matrix to 1
+    # diff.mat <- c(-1,1)
+    diff.mat <- c(1)
+    
     
     # Extract coefficients (number of terms depends on complexity of GAM formula)
     beta    <- gamRslt$coefficients        # coefficients vector
