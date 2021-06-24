@@ -376,7 +376,7 @@ gamPlotDisp <- function(gamResult=gamResult, analySpec=analySpec,
 
       analySpec$gamLegend$On[which(analySpec$gamLegend$descrip =="BaseCurrentMean")] <- TRUE
 
-      por <-  date.range + c(365*24*60*60,-365*24*60*60)
+      por <-  c(porDiff$base.plot, porDiff$test.plot)
       if(transform) {
         points(exp(c(porDiff$per.mn))~por,pch=pchSelA,col=colSelA,cex=1.5)
       } else {
@@ -391,7 +391,7 @@ gamPlotDisp <- function(gamResult=gamResult, analySpec=analySpec,
 
       analySpec$gamLegend$On[which(analySpec$gamLegend$descrip =="BaseCurrentMeanAdj")] <- TRUE
 
-      por <-  date.range + c(365*24*60*60,-365*24*60*60)
+      por <-  c(porDiff$base.plot, porDiff$test.plot)
       if(transform) {
         points(exp(c(porDiff$per.mn))~por,pch=pchSelA,col=colSelA,cex=1.0)
       } else {
