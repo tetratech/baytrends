@@ -38,6 +38,7 @@ Suggests:
 Imports:
     dataRetrieval,
     digest,
+    dplyr,
     lubridate,
     memoise,
     mgcv,
