@@ -98,9 +98,9 @@ gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,d
   # does model include an intervention term 
   intervention <- ifelse (length(grep('intervention',gamRslt$formula  )) == 0, FALSE, TRUE)
   
-  # prep intervention list tibble
-  intervenList <- tibble(iSpec$intervenList) %>%
-    mutate(., intervention = as.character(intervention))
+  # prep intervention list dplyr::tibble
+  intervenList <- (dplyr::tibble(iSpec$intervenList)) (dplyr::`%>%`)
+    dplyr::mutate(., intervention = as.character(intervention))
   
   # Hydrologic Term ####
   
@@ -131,12 +131,12 @@ gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,d
     }
   }
   
-  # Flow weighting tibble creation ####
-  pdatWgt <- tibble(normPct = if (has.flw_sal) {analySpec$gamFlw_Sal.Wgt.Perc} else 0.5) %>%
-    mutate(.,  Z       = stats::qnorm(normPct)
+  # Flow weighting dplyr::tibble creation ####
+  pdatWgt <- dplyr::tibble(normPct = if (has.flw_sal) {analySpec$gamFlw_Sal.Wgt.Perc} else 0.5) (dplyr::`%>%`)
+    dplyr::mutate(.,  Z       = stats::qnorm(normPct)
            , normD   = stats::dnorm(Z)
-           , flw.wgt = normD/sum(normD)) %>%
-    select(., Z, flw.wgt)
+           , flw.wgt = normD/sum(normD)) (dplyr::`%>%`)
+    dplyr::select(., Z, flw.wgt)
   
   # diffType Loop ####  
   
@@ -158,10 +158,10 @@ gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,d
       Nbase    <- Ndoy*Nbase.yr         # calculate total predictions in base period
       
       # create prediction data set (one row for each Nbase)
-      pdat <- tibble(expand.grid(doy.set,yr.set))  %>%  # make all combinations of doy.set & yr.set    
-        rename(., "doy" = "Var1"
-               ,  "year" = "Var2") %>%
-        mutate(., bl = (year <= base.yr.set[Nbase.yr])         # TRUE for years in baseline (all should be true)
+      pdat <- dplyr::tibble(expand.grid(doy.set,yr.set))  (dplyr::`%>%`)  # make all combinations of doy.set & yr.set    
+        dplyr::rename(., "doy" = "Var1"
+               ,  "year" = "Var2") (dplyr::`%>%`)
+        dplyr::mutate(., bl = (year <= base.yr.set[Nbase.yr])         # TRUE for years in baseline (all should be true)
                ,  cyear  = (year + (doy-1)/366) - centerYear   # compute cyear (centered year)
                ,  month  = lubridate::month(as.Date(doy, origin = "1999-12-31"))
                ,  day    = lubridate::day  (as.Date(doy, origin = "1999-12-31"))
@@ -172,19 +172,19 @@ gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,d
       
       # pdat - Expansion for hydrologic term ####
       if(has.flw_sal) {
-        pdat <- pdat %>%
-          mutate(., flw_sal = 0) %>%
-          left_join(., flw_sal.dat, by="doy") %>%
-          arrange(., date)
+        pdat <- (pdat)  (dplyr::`%>%`)
+          dplyr::mutate(., flw_sal = 0) (dplyr::`%>%`)
+          dplyr::left_join(., flw_sal.dat, by="doy") (dplyr::`%>%`)
+          dplyr::arrange(., date)
       } else {
-        pdat <- pdat %>%
-          mutate(., flw_sal = NA_real_
+        pdat <- (pdat) (dplyr::`%>%`)
+          dplyr::mutate(., flw_sal = NA_real_
                  ,  flw_sal.sd = NA_real_)
       }
       
       # Sort columns  
-      pdat <- pdat %>%
-        relocate(., "rowID","date","year","cyear","doy")
+      pdat <- (pdat) (dplyr::`%>%`)
+        dplyr::relocate(., "rowID","date","year","cyear","doy")
       
       # expand prediction data set to include additional variables (excluding dependent variable and "gamK*" )
       indVar <- setdiff (all.vars(gamRslt$formula), c(iSpec$dep, names(pdat)))
@@ -202,10 +202,10 @@ gamMeanCI <- function(gamRslt, iSpec, analySpec, base.yr.set=NA,test.yr.set=NA,d
     # in the merge of pdatWgt and pdatLong (each row of pdat is repeated for
     # each record in pdatWgt, then goes to next row of pdat); flw_sal based on z
     # stat and sd
-    pdatLong <- pdat %>%
-      select(., c("rowID", "cyear", "doy", "bl", "intervention", "flw_sal", "flw_sal.sd", all_of(indVar))) %>%
-      merge(pdatWgt, .) %>%
-      mutate(., flw_sal = Z * flw_sal.sd)
+    pdatLong <- (pdat) (dplyr::`%>%`)
+      dplyr::select(., c("rowID", "cyear", "doy", "bl", "intervention", "flw_sal", "flw_sal.sd", all_of(indVar))) (dplyr::`%>%`)
+      dplyr::merge(pdatWgt, .) (dplyr::`%>%`)
+      dplyr::mutate(., flw_sal = Z * flw_sal.sd)
     
     # Begin mean calculations ####
     {
