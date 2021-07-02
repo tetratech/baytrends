@@ -15,7 +15,8 @@
 #' @param tzSel time zone to use for date conversions (default: "America/New_York")
 #' @param commChar character for comment line to be skipped
 #' @param naChar characters to treat as NA
-#' @param tables logical field indicating to use tables
+#' @param tables logical field indicating print table of meta information about 
+#'   data import
 #'
 #' @details This function reads in a single comma delimited (*.csv) or tab
 #'   delimited (*.txt) file using either \code{utils::read.table} or \code{utils::read.csv}

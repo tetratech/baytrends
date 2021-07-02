@@ -19,12 +19,20 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.5.9008
+===========
+* Release 2021-07-02
+* docs: qc'ed parameter definitions in function documentation
+    + gamMeanCI
+    + loadData
+    + loadExcel
+
 baytrends 2.0.5.9007
 ===========
 * Release 2021-07-02
 * refactor: Update gamMeanCI with package prefixes, Issue #69
 * refactor: Remove . from piped dplyr statements in gamMeanCI
-* docs: Add missing paramters to function documentation
+* docs: Add missing parameters to function documentation
     + gamMeanCI
     + loadData
     + loadExcel

@@ -13,7 +13,8 @@
 #' @param convDates vector or logical field indicating whether date-like columns
 #'   should be converted to POSIXct format (see details)
 #' @param tzSel time zone to use for date conversions (default: "America/New_York")
-#' @param tables logical field indicating to use tables
+#' @param tables logical field indicating print table of meta information about 
+#'   data import
 #'
 #' @details This function reads in a single sheet from an Excel file using
 #'   readxl::read_excel to load the data
