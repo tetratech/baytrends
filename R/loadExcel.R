@@ -13,6 +13,7 @@
 #' @param convDates vector or logical field indicating whether date-like columns
 #'   should be converted to POSIXct format (see details)
 #' @param tzSel time zone to use for date conversions (default: "America/New_York")
+#' @param tables logical field indicating to use tables
 #'
 #' @details This function reads in a single sheet from an Excel file using
 #'   readxl::read_excel to load the data
@@ -56,9 +57,16 @@
 #' @return Returns data frame
 #' @export
 # ####
-loadExcel <- function(file=NA, sheet=1, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, remNArow=TRUE,
-                     convDates=TRUE, tzSel="America/New_York"
-                     , tables = TRUE) {
+loadExcel <- function(file=NA
+                      , sheet=1
+                      , folder='.'
+                      , pk=NA
+                      , remDup=TRUE
+                      , remNAcol=TRUE
+                      , remNArow=TRUE
+                      , convDates=TRUE
+                      , tzSel="America/New_York"
+                      , tables = TRUE) {
 
 # ----- Change history --------------------------------------------
 # 18May2020: JBH: updated to handle input of Excel sheets with just 1 column 

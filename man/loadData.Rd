@@ -39,6 +39,8 @@ should be converted to POSIXct format (see details)}
 \item{commChar}{character for comment line to be skipped}
 
 \item{naChar}{characters to treat as NA}
+
+\item{tables}{logical field indicating to use tables}
 }
 \value{
 Returns data frame

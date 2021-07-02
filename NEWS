@@ -4,7 +4,49 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-14 15:59:35
+    #> Last Update: 2021-07-02 11:26:31
+
+# baytrends 2.0.5.9007
+
+-   Release 2021-07-02
+-   refactor: Update gamMeanCI with package prefixes, Issue \#69
+-   refactor: Remove . from piped dplyr statements in gamMeanCI
+-   docs: Add missing paramters to function documentation
+    -   gamMeanCI
+    -   loadData
+    -   loadExcel
+
+# baytrends 2.0.5.9006
+
+-   Release 2021-06-25
+-   refactor: Additional gamMeanCI updates
+
+# baytrends 2.0.5.9005
+
+-   Release
+-   gamDiffPlot updated to correct where baseline and current means are
+    plotted
+
+# baytrends 2.0.5.9004
+
+-   Release
+-   loadData and loadExcel updated to allow table suppression (needs qc)
+
+# baytrends 2.0.5.9003
+
+-   Release
+-   gamMeanCI function beta version (needs qc)
+
+# baytrends 2.0.5.9002
+
+-   Release
+-   gamMeanCI function added to calculate mean CI (needs substantial
+    clean up)
+
+# baytrends 2.0.5.9001
+
+-   Release
+-   update function createResiduals to return fitted values
 
 # baytrends 2.0.5
 

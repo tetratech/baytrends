@@ -15,6 +15,7 @@
 #' @param tzSel time zone to use for date conversions (default: "America/New_York")
 #' @param commChar character for comment line to be skipped
 #' @param naChar characters to treat as NA
+#' @param tables logical field indicating to use tables
 #'
 #' @details This function reads in a single comma delimited (*.csv) or tab
 #'   delimited (*.txt) file using either \code{utils::read.table} or \code{utils::read.csv}
@@ -62,8 +63,16 @@
 #' @return Returns data frame
 #' @export
 # ####
-loadData <- function(file=NA, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, remNArow=TRUE,
-                     convDates=TRUE, tzSel="America/New_York", commChar="#", naChar=NA
+loadData <- function(file=NA
+                     , folder='.'
+                     , pk=NA
+                     , remDup=TRUE
+                     , remNAcol=TRUE
+                     , remNArow=TRUE
+                     , convDates=TRUE
+                     , tzSel="America/New_York"
+                     , commChar="#"
+                     , naChar=NA
                      , tables = TRUE) {
 
 # ----- Change history --------------------------------------------
