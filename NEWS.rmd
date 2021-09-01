@@ -19,6 +19,13 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.5.9009
+===========
+* Release 2021-09-01
+* refactor: Set default gam years back to 2 from 3, Issue #70
+    + analysisOrganizeData.R
+    + This undoes the edit in Issue #59
+
 baytrends 2.0.5.9008
 ===========
 * Release 2021-07-02

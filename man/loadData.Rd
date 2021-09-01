@@ -40,7 +40,8 @@ should be converted to POSIXct format (see details)}
 
 \item{naChar}{characters to treat as NA}
 
-\item{tables}{logical field indicating to use tables}
+\item{tables}{logical field indicating print table of meta information about 
+data import}
 }
 \value{
 Returns data frame

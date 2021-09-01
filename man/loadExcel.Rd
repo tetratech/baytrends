@@ -37,7 +37,8 @@ should be converted to POSIXct format (see details)}
 
 \item{tzSel}{time zone to use for date conversions (default: "America/New_York")}
 
-\item{tables}{logical field indicating to use tables}
+\item{tables}{logical field indicating print table of meta information about 
+data import}
 }
 \value{
 Returns data frame

@@ -9,7 +9,6 @@ gamMeanCI(
   iSpec,
   analySpec,
   base.yr.set = NA,
-  test.yr.set = NA,
   doy.set = NA,
   alpha = 0.05,
   flow.detrended = NA,
@@ -24,8 +23,6 @@ gamMeanCI(
 \item{analySpec}{analytical specifications}
 
 \item{base.yr.set}{vector of years used for baseline period}
-
-\item{test.yr.set}{vector of years used for test period}
 
 \item{doy.set}{vector of days used to establish sub-annual analyses (see details)}
 
@@ -101,10 +98,10 @@ gamMeanCI(gamRslt=gamResult[["gamOutput2"]]$gamRslt,
         iSpec=gamResult$iSpec, analySpec=analySpec,
         base.yr.set = NA, doy.set = NA, alpha = 0.05)
 
-# use gamMeanCI to calculate the mean during from 2005-2009
+# use gamMeanCI to calculate the mean during from 2004-2005
 gamMeanCI(gamRslt=gamResult[["gamOutput2"]]$gamRslt,
         iSpec=gamResult$iSpec, analySpec=analySpec,
-        base.yr.set = c(2004:2005), test.yr.set = c(2013:2014),
+        base.yr.set = c(2004:2005), 
         doy.set = NA, alpha = 0.05)
 
 }

@@ -4,14 +4,29 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-07-02 11:26:31
+    #> Last Update: 2021-09-01 13:57:38
+
+# baytrends 2.0.5.9009
+
+-   Release 2021-09-01
+-   refactor: Set default gam years back to 2 from 3, Issue \#70
+    -   analysisOrganizeData.R
+    -   This undoes the edit in Issue \#59
+
+# baytrends 2.0.5.9008
+
+-   Release 2021-07-02
+-   docs: qc’ed parameter definitions in function documentation
+    -   gamMeanCI
+    -   loadData
+    -   loadExcel
 
 # baytrends 2.0.5.9007
 
 -   Release 2021-07-02
 -   refactor: Update gamMeanCI with package prefixes, Issue \#69
 -   refactor: Remove . from piped dplyr statements in gamMeanCI
--   docs: Add missing paramters to function documentation
+-   docs: Add missing parameters to function documentation
     -   gamMeanCI
     -   loadData
     -   loadExcel
