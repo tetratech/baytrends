@@ -48,6 +48,13 @@ can be installed with the code below.
 install.packages("baytrends")
 ```
 
+In some cases not all dependent packages are available on the user's system.
+In these cases installing all dependencies is necessary.
+
+```r
+install.packages("baytrends", dependencies = TRUE)
+```
+
 The development version (with vignettes) from [GitHub](https://github.com/) 
 can be installed with the code example below using the `remotes` package.
 
