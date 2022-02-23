@@ -4,7 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-23 16:55:44
+    #> Last Update: 2022-02-23 17:08:31
+
+# baytrends 2.0.5.8002
+
+-   Release 2022-02-23
+-   refactor: Set default gam years back to 2 from 3, Issue #70
+    -   analysisOrganizeData.R
+    -   This undoes the edit in Issue #59
 
 # baytrends 2.0.5.8001
 

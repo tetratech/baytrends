@@ -377,7 +377,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
     list ( seasonName = "Winter",  seasonMonths = c(1:2)),
     list ( seasonName = "Fall",    seasonMonths = c(10:12)))
   
-  if (!"gamDiffNumChgYrs"  %in% names(analySpec)) analySpec$gamDiffNumChgYrs  <- 3
+  if (!"gamDiffNumChgYrs"  %in% names(analySpec)) analySpec$gamDiffNumChgYrs  <- 2
 
   if (!"gamPenalty"           %in% names(analySpec)) analySpec$gamPenalty           <- NA        #02Feb2017
   if (!"gamPenaltyCrit"       %in% names(analySpec)) analySpec$gamPenaltyCrit       <- c(1,9e9)  #02Feb2017
