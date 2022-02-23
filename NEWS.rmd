@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.5.9010
+===========
+* Release 2022-02-23
+* docs: Move packages from suggests to imports, Issue #71
+    + Force required packages to install by default
+
 baytrends 2.0.5.9009
 ===========
 * Release 2021-09-01
