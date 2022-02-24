@@ -4,7 +4,20 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-23 17:08:31
+    #> Last Update: 2022-02-24 09:00:21
+
+# baytrends 2.0.5.8004
+
+-   Release 2022-02-24
+-   docs: Move unused packages to suggests in DESCRIPTION
+    -   imputeTS and nlme
+-   docs: Remove bad URL in NEWS
+    -   1.0.2.9012, URL no longer exists
+
+# baytrends 2.0.5.8003
+
+-   Release 2022-02-23
+-   refactor: Update analysisOrganizeData time periods, Issue #72
 
 # baytrends 2.0.5.8002
 
@@ -899,9 +912,9 @@ smwrGraphs_setPage.R + Line 180, comment out. Is setting to NULL as a
 precaution but function isn’t used by baytrends. \* Data with ‘no
 visible bindig for global variable’ error. + Add a line at the beginning
 of each affected function to reference the data; baytrends::xyz. + Peter
-Dalgaard’s proposed solution, 2014-Aug +
-<https://r.789695.n4.nabble.com/no-visible-binding-for-global-variable-for-data-sets-in-a-package-td4696053.html>
-+ .chkParameter; parameterList + analysisOrganizeData; parameterList,
+Dalgaard’s proposed solution, 2014-Aug -
+no-visible-binding-for-global-variable-for-data-sets-in-a-package +
+.chkParameter; parameterList + analysisOrganizeData; parameterList,
 stationMasterList, layerLukup + selectData; stationMasterList,
 parameterList, layerLukup \* gamDiff, bad usage of stat. Undefined. Line
 193. + Change to iSpec$stat \* Remaining issues: + .gamPlotCalc;
