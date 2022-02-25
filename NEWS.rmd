@@ -19,6 +19,19 @@ knitr::opts_chunk$set(
 ```{r LastUpdate, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+baytrends 2.0.6.9001
+===========
+* Release 2022-02-25
+* refactor: Update for CRAN resubmission
+    + Modify if(class) for text comparison in createResiduals.R
+    + Failed check for r-devel-linux-x86_64-debian-gcc, r-devel-windows-x86_64
+    + Trim to 80 character lines
+
+baytrends 2.0.6
+===========
+* Release 2022-02-24
+* refactor: Update for CRAN resubmission
+
 baytrends 2.0.5.8004
 ===========
 * Release 2022-02-24
