@@ -279,7 +279,7 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
     
     # set mgcv:gam select option based on gamPenalty setting and          #04Feb2017
     # level of censoring (iSpec$censorFracSum$fracUnc)
-    if(!is.na(gamPenalty) && gamPenalty %in% c(TRUE,FALSE)) {
+    if(!is.na(gamPenalty[1]) && gamPenalty %in% c(TRUE,FALSE)) {
       selectSetting <- gamPenalty
     } else {
       if (iSpec$censorFracSum$fracUnc <1) {

@@ -261,7 +261,7 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   if (length(iSpec$salParms) == 0) iSpec$salParms <- NA_character_
 
   # fill in iSpec$hydroTerm w/ 'flow' if not specified; then initialize iSpec$hydroTermSel
-  iSpec$hydroTerm    <- if(is.na(iSpec$hydroTerm)) 'flow' else iSpec$hydroTerm
+  iSpec$hydroTerm    <- if(is.na(iSpec$hydroTerm[1])) 'flow' else iSpec$hydroTerm
   iSpec$hydroTermSel <- iSpec$hydroTerm    
 
   # inspect iSpec$flwParms and iSpec$salParms to see if            #05Aug2017
@@ -279,14 +279,14 @@ selectData <- function(df, dep, stat, layer=NA, transform=TRUE,
   # option 4: error: layer specified but not in df
   #
   {
-  if(!is.na(layer) & ("layer" %in% names(df))) {
+  if(!is.na(layer[1]) & ("layer" %in% names(df))) {
     df <- df[ df$station==stat & df$layer==layer, ]
     iSpec$statLayer <- paste0 (stat," (",layer,")")
     iSpec$layerName<- layerList[layerList$layers==layer, "name"]
-  } else if (is.na(layer) & !("layer" %in% names(df))) {
+  } else if (is.na(layer[1]) & !("layer" %in% names(df))) {
     df <- df[ df$station==stat , ]
     iSpec$statLayer <- paste0 (stat)
-  } else if (is.na(layer) & ("layer" %in% names(df))) {
+  } else if (is.na(layer[1]) & ("layer" %in% names(df))) {
     warning("Layer not specified, but layer occurs in data set.")
     df <- df[ df$station==stat , ]
   } else {
