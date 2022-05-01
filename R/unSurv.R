@@ -21,14 +21,16 @@
 #' @param col_hi Output column name for "hi" values.  Default = "hi"
 #' 
 #' @examples 
-#' df1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+#' df1 <- dataCensored[dataCensored$station=="CB3.3C"
+#'           & dataCensored$date < as.POSIXct("1985-08-01") 
+#'           , c("station","date","chla")]
 #' colnames(df1)
 #' # Default values
-#' df2 <- unSurv(df1)
-#' colnames(df2)
+#' chla_1 <- unSurv(df1$chla)
+#' colnames(chla_1)
 #' # User values
-#' df3 <- unSurv(df1, "LOW", "HIGH")
-#' colnames(df3)
+#' chla_2 <- unSurv(df1$chla, "LOW", "HIGH")
+#' colnames(chla_2)
 #' 
 #' @return Returns a 3-column matrix: lo, hi, type
 #' 

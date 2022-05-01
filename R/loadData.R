@@ -102,7 +102,7 @@ loadData <- function(file=NA, folder='.', pk=NA, remDup=TRUE, remNAcol=TRUE, rem
   }
 
 # append naChar check 02Mar2017
-  if(!is.na(naChar)) naChar <- c(NA, naChar)
+  if(!is.na(naChar[1])) naChar <- c(NA, naChar)
 
 # Read in file as either csv or tab delimited ####
   if (fileExtension(fname)=="csv") {

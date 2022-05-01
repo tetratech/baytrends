@@ -197,6 +197,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 01May2022: JBH: update is.na(...) to is.null(nrow(...))
 # 01May2022: JBH: corrected periodName data per RM 2/22/2022 email
 # 22Feb2022: JBH: reverted time periods to 2yr span
 # 12May2021: JBH: update time periods to 3yr span
@@ -244,10 +245,10 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   # Store number of rows of data
   beginRecords <- nrow(df)
   
-  # Use built-in data frames if not supplied by user 
-  suppressWarnings(if (is.na(parameterList))     parameterList     <- baytrends::parameterList)
-  suppressWarnings(if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList)
-  suppressWarnings(if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup)
+  # Use built-in data frames if not supplied by user #01May2022
+  if (is.null(nrow(parameterList)))     parameterList     <- baytrends::parameterList
+  if (is.null(nrow(stationMasterList))) stationMasterList <- baytrends::stationMasterList
+  if (is.null(nrow(layerLukup)))        layerLukup        <- baytrends::layerLukup
 
   # checkFieldNames function ####
   checkFieldNames <- function(df
