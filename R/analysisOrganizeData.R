@@ -197,6 +197,9 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 01May2022: JBH: corrected periodName data per RM 2/22/2022 email
+# 22Feb2022: JBH: reverted time periods to 2yr span
+# 12May2021: JBH: update time periods to 3yr span
 # 12May2021: JBH: update time periods to 3yr span
 # 24Mar2021: JBH: add a default of gamDiffNumChgYrs as 3 years
 # 03Jun2019: JBH: add report of which models are loaded; mod's to reduce required data elements
@@ -363,8 +366,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   # load periods of record to evaluate 
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(
     list( periodName = "Full Record",     periodStart = c(NA),        periodEnd = c(NA)),
-    list( periodName = "1999/01-Present", periodStart = c(1999:2001), periodEnd = c(NA)),
-    list( periodName = "2011/13-Present", periodStart = c(2011:2013), periodEnd = c(NA)))
+    list( periodName = "1999/00-Present", periodStart = c(1999:2000), periodEnd = c(NA)),
+    list( periodName = "2012/13-Present", periodStart = c(2012:2013), periodEnd = c(NA)))
 
   if (!"gamDiffSeasons"  %in% names(analySpec)) analySpec$gamDiffSeasons   <- list(
     list ( seasonName = "All",     seasonMonths = c(1:12)),
