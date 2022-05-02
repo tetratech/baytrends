@@ -104,16 +104,16 @@ TRUE/FALSE for pass/fail)</p></dd>
 <span class="r-in"><span class="va">df</span><span class="op">[</span><span class="fl">5</span>,<span class="fl">3</span><span class="op">]</span><span class="op">=</span><span class="cn">NA</span></span>
 <span class="r-in"><span class="va">df</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      x1        x2         x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.330476 2008-01-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.486992 2008-01-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.843887 2008-01-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.626732 2008-01-21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    A1        NA 2008-03-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.390217 1993-03-26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.757789       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.128892 2000-06-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.062604 1990-08-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.433051 2005-07-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.971880 2008-01-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.644023 2008-09-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.321942 1993-03-26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.074985       &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.723987 2000-06-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.328080 1990-08-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.206925 2005-07-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.679566 2008-01-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.497265 2008-09-11</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># establish allowable values for screening</span></span>
 <span class="r-in"><span class="va">x1Scrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"B2"</span>, <span class="st">"C1"</span>, <span class="st">"Y2"</span><span class="op">)</span><span class="op">)</span>   <span class="co"># character</span></span>
@@ -123,65 +123,65 @@ TRUE/FALSE for pass/fail)</p></dd>
 <span class="r-in"><span class="co"># return df with new column indicating pass [TRUE] / fail [FALSE]</span></span>
 <span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x1"</span>, varScrn<span class="op">=</span><span class="va">x1Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      x1        x2         x3 dfScrn</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.330476 2008-01-10  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.486992 2008-01-21   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.843887 2008-01-10  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.626732 2008-01-21   TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    A1        NA 2008-03-01   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.390217 1993-03-26   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.757789       &lt;NA&gt;   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.128892 2000-06-10  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.062604 1990-08-02  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.433051 2005-07-08   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.971880 2008-01-06  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.644023 2008-09-11   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.321942 1993-03-26   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.074985       &lt;NA&gt;   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.723987 2000-06-10  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.328080 1990-08-02  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.206925 2005-07-08   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.679566 2008-01-06  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.497265 2008-09-11   TRUE</span>
 <span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x2"</span>, varScrn<span class="op">=</span><span class="va">x2Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      x1        x2         x3 dfScrn</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.330476 2008-01-10  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.486992 2008-01-21  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.843887 2008-01-10  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.626732 2008-01-21  FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    A1        NA 2008-03-01  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.390217 1993-03-26   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.757789       &lt;NA&gt;   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.128892 2000-06-10   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.062604 1990-08-02   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.433051 2005-07-08   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.971880 2008-01-06  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.644023 2008-09-11  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.321942 1993-03-26   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.074985       &lt;NA&gt;   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.723987 2000-06-10   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.328080 1990-08-02   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.206925 2005-07-08   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.679566 2008-01-06  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.497265 2008-09-11  FALSE</span>
 <span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x3"</span>, varScrn<span class="op">=</span><span class="va">x3Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      x1        x2         x3 dfScrn</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.330476 2008-01-10   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.486992 2008-01-21   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.843887 2008-01-10   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.626732 2008-01-21   TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    A1        NA 2008-03-01   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.390217 1993-03-26  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.757789       &lt;NA&gt;  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.128892 2000-06-10   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.062604 1990-08-02  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.433051 2005-07-08   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.971880 2008-01-06   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.644023 2008-09-11  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.321942 1993-03-26  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.074985       &lt;NA&gt;  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.723987 2000-06-10   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.328080 1990-08-02  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.206925 2005-07-08   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.679566 2008-01-06   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.497265 2008-09-11  FALSE</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># return df with only rows that pass check</span></span>
 <span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x1"</span>, varScrn<span class="op">=</span><span class="va">x1Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    x1        x2         x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Y2  6.486992 2008-01-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Y2  6.626732 2008-01-21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  A1        NA 2008-03-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  B2  8.390217 1993-03-26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  C1  9.757789       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  A1 12.433051 2005-07-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 C1 14.644023 2008-09-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  B2  8.321942 1993-03-26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  C1  9.074985       &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  A1 12.206925 2005-07-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 C1 14.497265 2008-09-11</span>
 <span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x2"</span>, varScrn<span class="op">=</span><span class="va">x2Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   x1        x2         x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 B2  8.390217 1993-03-26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 C1  9.757789       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 X1 10.128892 2000-06-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    11.062604 1990-08-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8 A1 12.433051 2005-07-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 B2  8.321942 1993-03-26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 C1  9.074985       &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 X1 10.723987 2000-06-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    11.328080 1990-08-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8 A1 12.206925 2005-07-08</span>
 <span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x3"</span>, varScrn<span class="op">=</span><span class="va">x3Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     x1        x2         x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt;NA&gt;  5.330476 2008-01-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Y2  6.486992 2008-01-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt;NA&gt;  5.843887 2008-01-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Y2  6.626732 2008-01-21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   A1        NA 2008-03-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   X1 10.128892 2000-06-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   A1 12.433051 2005-07-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      13.971880 2008-01-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   X1 10.723987 2000-06-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   A1 12.206925 2005-07-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      13.679566 2008-01-06</span>
 </code></pre></div>
     </div>
   </div>
