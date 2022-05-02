@@ -34,14 +34,16 @@ The user can specify the names of the low and high columns in the output.
 Defaults are "lo" and "hi".
 }
 \examples{
-df1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+df1 <- dataCensored[dataCensored$station=="CB3.3C"
+          & dataCensored$date < as.POSIXct("1985-08-01") 
+          , c("station","date","chla")]
 colnames(df1)
 # Default values
-df2 <- unSurv(df1)
-colnames(df2)
+chla_1 <- unSurv(df1$chla)
+colnames(chla_1)
 # User values
-df3 <- unSurv(df1, "LOW", "HIGH")
-colnames(df3)
+chla_2 <- unSurv(df1$chla, "LOW", "HIGH")
+colnames(chla_2)
 
 }
 \seealso{
