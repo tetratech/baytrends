@@ -4,7 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-05-05 14:51:50
+    #> Last Update: 2022-05-05 16:32:02
+
+# baytrends 2.0.8.9001
+
+-   Release 2022-05-05
+-   docs: Remove logo
+
+# baytrends 2.0.8
+
+-   Release 2022-05-05
+-   refactor: Update for CRAN submittal
+    -   Fixed error associated with update to R 4.2
 
 # baytrends 2.0.7.9003
 
@@ -35,8 +46,8 @@ NEWS
 # baytrends 2.0.7.9002
 
 -   Release 2022-05-02
--   updated is.na(…) usage: analysisOrganizeData, gamTest,
-    gamTestSeason, loadData, selectData, unSurv
+-   updated is.na(…) usage: analysisOrganizeData, gamTest, gamTestSeason
+    , loadData, selectData, unSurv
 
 # baytrends 2.0.7.9001
 

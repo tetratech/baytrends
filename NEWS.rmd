@@ -20,6 +20,17 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+baytrends 2.0.8.9001
+===========
+* Release 2022-05-05
+* docs: Remove logo
+
+baytrends 2.0.8
+===========
+* Release 2022-05-05
+* refactor: Update for CRAN submittal
+    + Fixed error associated with update to R 4.2
+
 baytrends 2.0.7.9003
 ===========
 * Release 2022-05-05
@@ -48,7 +59,8 @@ baytrends 2.0.7.9003
 baytrends 2.0.7.9002
 ===========
 * Release 2022-05-02
-* updated is.na(...) usage: analysisOrganizeData, gamTest, gamTestSeason, loadData, selectData, unSurv
+* updated is.na(...) usage: analysisOrganizeData, gamTest, gamTestSeason
+, loadData, selectData, unSurv
 
 baytrends 2.0.7.9001
 ===========
