@@ -20,13 +20,16 @@ Returns a 3-column matrix: lo, hi, type
 Converts Surv object into a 3-column matrix
 }
 \details{
-The third column of the returned matrix (type) has the following meanings:
+The third column of the returned matrix (type) has the following 
+meanings:
 
  1  -- no censoring
  
- 2  -- left censored ("less than in a survival sense", e.g., [-Inf to 10], <10)
+ 2  -- left censored ("less than in a survival sense"
+ , e.g., [-Inf to 10], <10)
  
- 3  -- interval censored ("less than in a water quality sense", e.g., "0 - <3", "1 - 3")
+ 3  -- interval censored ("less than in a water quality sense", 
+ e.g., "0 - <3", "1 - 3")
  
  NA -- missing value
  
@@ -47,5 +50,6 @@ colnames(chla_2)
 
 }
 \seealso{
-\code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},
+\code{\link{makeSurvDF}},  \code{\link{unSurvDF}}
+,  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},
 }

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# baytrends
+# baytrends <img src="man/figures/logo.png" align="right" height="130" />
 
 <!-- badges: start -->
 <!--

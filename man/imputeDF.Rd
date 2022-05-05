@@ -38,5 +38,6 @@ df.lnorm <- imputeDF(df,'lnorm')
 }
 }
 \seealso{
-\code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{unSurv}},  \code{\link{impute}},  \code{\link{imputeDF}},
+\code{\link{makeSurvDF}},  \code{\link{unSurvDF}}
+,  \code{\link{unSurv}},  \code{\link{impute}},  \code{\link{imputeDF}},
 }

@@ -14,7 +14,8 @@ closeOut(timeProcess = TRUE, contInfo = TRUE, sessInfo = TRUE)
 \item{sessInfo}{Session information}
 }
 \value{
-Reports out processing time, contact information and session information
+Reports out processing time, contact information,
+ and session information
 }
 \description{
 Document Processing Time and Other Session Time

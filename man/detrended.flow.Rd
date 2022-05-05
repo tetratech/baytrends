@@ -61,12 +61,12 @@ This function creates a seasonally detrended flow data set for
   use with baytrends.
 }
 \details{
-This function returns a list of seasonally detrended flow and companion
-  statistics; and relies on USGS' dataRetrieval package to retrieve daily
-  flow data.   
+This function returns a list of seasonally detrended flow and 
+  companion statistics; and relies on USGS' dataRetrieval package to retrieve
+  daily flow data.   
   
-  It is the user responsibility to save the resulting list as \bold{flow.detrended} 
-  for integration with baytrends.  
+  It is the user responsibility to save the resulting list as 
+  \bold{flow.detrended} for integration with baytrends.  
   
   For the purposes of baytrends, it is expected that the user 
   would identify all USGS gages that are expected to be evaluated so that a 
@@ -112,8 +112,9 @@ This function returns a list of seasonally detrended flow and companion
   \bold{sd} -- For each doy (i.e., 366 days of year), the standard deviation 
   across all years for each value of d in the above data frame, qNNNNNNNN.  
   
-  \bold{nobs} -- For each doy (i.e., 366 days of year), the number of observations 
-  across all years for each value of d in the above data frame, qNNNNNNNN.  
+  \bold{nobs} -- For each doy (i.e., 366 days of year), the number of 
+  observations across all years for each value of d in the above data frame
+  , qNNNNNNNN.  
   
   \bold{lowess.sd} -- Lowess smoothed standard deviations. (These values are
   used for computing confidence intervals in the flow averaged GAM.)  

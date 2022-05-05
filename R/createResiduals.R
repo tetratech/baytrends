@@ -55,6 +55,12 @@ createResiduals <- function(df
 #  File 'baytrends/R/createResiduals.R': if (class(residualModel) == "list") ...
 #  File 'baytrends/R/createResiduals.R': if (class(residualModel) == "list") ...
 #  instead of class() use typeof().  is() not quite right.
+# 05 May2022: EWL:  More CRAN check failures for if(class()) string comparisons.
+#  if (class(residualModel) == "character" && (residualModel 
+#           %in% c("gam0", "gam1", "gam2", "gam3", "gam4", "gam5"))) ...
+#  if (class(residualModel) == "character" && (residualModel 
+#           %in% c("doy", "doy_flw_sal", "doy_flw_sal_int"))) ...
+# This is the last of the changes
   
   # create graph folder if not existing
   if (gamPlot) dir.create(file.path(ProjRoot, folder_r), showWarnings = FALSE)
@@ -70,7 +76,7 @@ createResiduals <- function(df
   }
 
   # error trap: is  variable of qw type
-  if (!(class(df[, dep]) %in% c('numeric','Surv'))) {
+  if (!(typeof(df[, dep]) %in% c('numeric','Surv'))) {
   # if (!class(df[, dep]) == 'qw') {
     warning(paste0("Variable not numeric or Surv class: ", dep))
     return(NA)
@@ -82,7 +88,7 @@ createResiduals <- function(df
     analySpec$gamModels <- residualModel
 
     # set up computing residuals model for standard gam models ####
-  } else if (class(residualModel) == "character" &&
+  } else if (typeof(residualModel) == "character" &&
              (residualModel %in% c('gam0'
                                    , 'gam1'
                                    , 'gam2'
@@ -92,7 +98,7 @@ createResiduals <- function(df
     analySpec$gamModels   <- loadModels(residualModel)
     
     # set up computing residuals model ####
-  } else if (class(residualModel) == "character" &&
+  } else if (typeof(residualModel) == "character" &&
              (residualModel %in% c('doy', 'doy_flw_sal', 'doy_flw_sal_int'))) {
     analySpec$gamModels   <- loadModelsResid(residualModel)
     

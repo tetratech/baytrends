@@ -70,7 +70,8 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
 
 # Retrieve daily flow data data and rename variables ####
   for (i in 1:length(siteNumber)) {
-    df1       <- dataRetrieval::readNWISdv(siteNumber[i], parameterCd, dateStart, dateEnd)
+    df1       <- dataRetrieval::readNWISdv(siteNumber[i], parameterCd, dateStart
+                                           , dateEnd)
     df1       <- dataRetrieval::renameNWISColumns(df1)
     df1$Flow  <- 0.028316847 * df1$Flow   #convert from cfs to cms
     names(df1)[names(df1) == 'Date']    <- 'date'
@@ -100,18 +101,21 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
       last.val.loc <- max(which(!is.na(df0[, vColq])))
       last.val     <- df0[last.val.loc,vColq]
       if (last.val.loc != nrow(df0) && nrow(df0)-last.val.loc <= max.fill) {
-        df0[is.na(df0[, vColq]) & as.numeric(rownames(df0)) > last.val.loc , vColq] <- last.val
+        df0[is.na(df0[, vColq]) & as.numeric(rownames(df0)) > last.val.loc 
+            , vColq] <- last.val
       }
       # fill beginning NAs  #10May2018
       first.val.loc <- min(which(!is.na(df0[, vColq])))
       first.val     <- df0[first.val.loc,vColq]
       if (first.val.loc != 1 && first.val.loc < max.fill) {
-        df0[is.na(df0[, vColq]) & as.numeric(rownames(df0)) < first.val.loc , vColq] <- first.val
+        df0[is.na(df0[, vColq]) & as.numeric(rownames(df0)) < first.val.loc 
+            , vColq] <- first.val
       }
       # warn user if flow data set has missing observations.
       val.miss <- sum(is.na(df0[, vColq]))
       if (val.miss>0) {
-        warning(paste('Flow data for USGS gage:',siteNumber,'has',val.miss,'missing observations.'))
+        warning(paste('Flow data for USGS gage:',siteNumber,'has',val.miss
+                      ,'missing observations.'))
       }
     }
   }

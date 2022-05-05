@@ -12,7 +12,8 @@
 #  email:         eperry@chesapeake.net
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# 22May2020: JBH: Converted to survival::Surv objects (see ExpLNmCens and ExpNmCens)  
+# 22May2020: JBH: Converted to survival::Surv objects (see ExpLNmCens and 
+#                 ExpNmCens)  
 # 01Jun2018: JBH: added "df$" to mu to create df$mu in lognormal functions
 # 23May2018: JBH: added "row.names = NULL"  to df <- data.frame(l=l, u=u, mu=mu)
 #                 to avoid warning message of row names were found from a short 
@@ -30,7 +31,8 @@
 #' @keywords internal
 #' @export
 .ExpLNmCens <- function(df,dep,mu,sigma)   {
-  # computes expected value within a censoring window, for log-normal distribution
+  # computes expected value within a censoring window, for log-normal 
+  #                                                                 distribution
   # using an mCens object.
   ec <- .ExpLNlCens(df$left,df$right,mu,sigma)
   ec <- .ExpLNrCens(ec$l,ec$u,mu,sigma)
@@ -56,7 +58,8 @@
 
   if (any(df$lcens)) {
     df$zu[df$lcens] <- (log(df$u[df$lcens]) - df$mu[df$lcens])/sigma # 01Jun2018
-    df$ec[df$lcens] <- exp(df$mu[df$lcens] + sigma**2/2)* stats::pnorm(df$zu[df$lcens]-sigma) / stats::pnorm(df$zu[df$lcens])
+    df$ec[df$lcens] <- exp(df$mu[df$lcens] + sigma**2/2)* 
+      stats::pnorm(df$zu[df$lcens]-sigma) / stats::pnorm(df$zu[df$lcens])
     df$l[df$lcens] <- df$ec[df$lcens]
     df$u[df$lcens] <- df$ec[df$lcens]
   }
@@ -81,7 +84,9 @@
 
   if (any(df$rcens))  {
     df$zl[df$rcens] <- (log(df$l[df$rcens]) - df$mu[df$rcens])/sigma # 01Jun2018
-    df$ec[df$rcens] <- exp(df$mu[df$rcens] + sigma**2/2)* (1-stats::pnorm(df$zl[df$rcens]-sigma)) / (1-stats::pnorm(df$zl[df$rcens]))
+    df$ec[df$rcens] <- exp(df$mu[df$rcens] + sigma**2/2)* 
+      (1-stats::pnorm(df$zl[df$rcens]-sigma)) / 
+      (1-stats::pnorm(df$zl[df$rcens]))
     df$l[df$rcens] <- df$ec[df$rcens]
     df$u[df$rcens] <- df$ec[df$rcens]
   }
@@ -108,7 +113,8 @@
     df$zl[df$icens] <- (log(df$l[df$icens]) - df$mu[df$icens])/sigma # 01Jun2018
     df$zu[df$icens] <- (log(df$u[df$icens]) - df$mu[df$icens])/sigma # 01Jun2018
     df$ec[df$icens] <- exp(df$mu[df$icens] + sigma**2/2)*
-      (stats::pnorm(df$zu[df$icens]-sigma)-stats::pnorm(df$zl[df$icens]-sigma)) /
+      (stats::pnorm(df$zu[df$icens]-sigma)-
+         stats::pnorm(df$zl[df$icens]-sigma)) /
       (stats::pnorm(df$zu[df$icens])-stats::pnorm(df$zl[df$icens]))
     df$l[df$icens] <- df$ec[df$icens]
     df$u[df$icens] <- df$ec[df$icens]
@@ -155,7 +161,8 @@
 
   if (any(df$lcens)) {
     df$zu[df$lcens] <- (df$u[df$lcens] - df$mu[df$lcens])/sigma
-    df$ec[df$lcens] <- df$mu[df$lcens] - sigma*(stats::dnorm(df$zu[df$lcens])/stats::pnorm(df$zu[df$lcens]))
+    df$ec[df$lcens] <- df$mu[df$lcens] - sigma*(stats::dnorm(df$zu[df$lcens])/
+                                                  stats::pnorm(df$zu[df$lcens]))
     df$l[df$lcens] <- df$ec[df$lcens]
     df$u[df$lcens] <- df$ec[df$lcens]
   }
@@ -180,7 +187,8 @@
 
   if (any(df$rcens))  {
     df$zl[df$rcens] <- (df$l[df$rcens] - df$mu[df$rcens])/sigma
-    df$ec[df$rcens] <- df$mu[df$rcens] + sigma*(stats::dnorm(df$zl[df$rcens])/(1-stats::pnorm(df$zl[df$rcens])))
+    df$ec[df$rcens] <- df$mu[df$rcens] + sigma*(stats::dnorm(df$zl[df$rcens])/
+                                              (1-stats::pnorm(df$zl[df$rcens])))
     df$l[df$rcens] <- df$ec[df$rcens]
     df$u[df$rcens] <- df$ec[df$rcens]
   }
@@ -205,8 +213,10 @@
   if (any(df$icens)) {
     df$zl[df$icens] <- (df$l[df$icens] - df$mu[df$icens])/sigma
     df$zu[df$icens] <- (df$u[df$icens] - df$mu[df$icens])/sigma
-    df$ec[df$icens] <- df$mu[df$icens] - sigma*((stats::dnorm(df$zu[df$icens])- stats::dnorm(df$zl[df$icens]))/
-                       (stats::pnorm(df$zu[df$icens])-stats::pnorm(df$zl[df$icens])))
+    df$ec[df$icens] <- df$mu[df$icens] - sigma*((stats::dnorm(df$zu[df$icens])- 
+                                                stats::dnorm(df$zl[df$icens]))/
+                       (stats::pnorm(df$zu[df$icens])-
+                          stats::pnorm(df$zl[df$icens])))
     df$l[df$icens] <- df$ec[df$icens]
     df$u[df$icens] <- df$ec[df$icens]
   }

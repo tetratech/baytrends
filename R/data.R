@@ -104,8 +104,8 @@
 #'    \item{flwAvgWin}{list of averaging windows if flow is selected in
 #'    hydroTerm (options are: 1, 5, 10, 15, 20, 30, 40, 50, 60, 90, 120, 150,
 #'    180, 210)}
-#'    \item{flwParms}{list of parameters to model with flow (regardless of hydroTerm
-#'    value), each parameter separated by a space}
+#'    \item{flwParms}{list of parameters to model with flow (regardless of
+#'     hydroTerm value), each parameter separated by a space}
 #'    \item{salParms}{list of parameters to model with salinity (regardless of
 #'    hydroTerm value), each parameter separated by a space}
 #'    \item{notes}{Optional note to track updates}

@@ -25,7 +25,8 @@
 #' }
 #' @return vector where x is transformed into a simple numeric variable
 #' 
-#' @seealso \code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{unSurv}},  \code{\link{imputeDF}},  \code{\link{imputeDF}},  
+#' @seealso \code{\link{makeSurvDF}},  \code{\link{unSurvDF}}
+#' ,  \code{\link{unSurv}},  \code{\link{imputeDF}},  \code{\link{imputeDF}},  
 #' 
 #' @export
 #
@@ -75,8 +76,10 @@ impute <-function(x, imputeOption="mid") {
       0.25 * abs(min(lowerReset1, lowerReset2, na.rm=TRUE))
     
     # compute upper reset: 25% larger than non-Inf value
-    upperReset1 <- max( lower [!(lower == Inf)], na.rm=TRUE) # largest non-Inf lower
-    upperReset2 <- max( upper [!(upper == Inf)], na.rm=TRUE) # largest non-Inf upper
+    upperReset1 <- max( lower [!(lower == Inf)], na.rm=TRUE) 
+    # largest non-Inf lower
+    upperReset2 <- max( upper [!(upper == Inf)], na.rm=TRUE) 
+    # largest non-Inf upper
     upperReset  <- max(upperReset1, upperReset2, na.rm=TRUE) + 
       0.25 * abs(max(upperReset1, upperReset2, na.rm=TRUE))
     
@@ -108,14 +111,16 @@ impute <-function(x, imputeOption="mid") {
   } else if (imputeOption == "uniform") {
     x3[not.miss] <- stats::runif(sum(not.miss), x[not.miss,1], x[not.miss,2])
   } else if (imputeOption == "norm") {
-    myData1 <- data.frame(x=x2[not.miss], left=x[not.miss,1], right=x[not.miss,2])
+    myData1 <- data.frame(x=x2[not.miss], left=x[not.miss,1]
+                          , right=x[not.miss,2])
     fn1     <- fitdistrplus::fitdistcens(myData1, distr="norm")
     mu.norm <- fn1$estimate[1]
     sd.norm <- fn1$estimate[2]
     myData1$normExpec <- .ExpNmCens(myData1,dep="x",mu.norm,sd.norm)[,1]
     x3[not.miss] <- myData1$normExpec
   } else if (imputeOption == "lnorm") {
-    myData1  <- data.frame(x=x2[not.miss], left=x[not.miss,1], right=x[not.miss,2])
+    myData1  <- data.frame(x=x2[not.miss], left=x[not.miss,1]
+                           , right=x[not.miss,2])
     fn1      <- fitdistrplus::fitdistcens(myData1, distr="lnorm")
     mu.lnorm <- fn1$estimate[1]
     sd.lnorm <- fn1$estimate[2]
@@ -158,7 +163,8 @@ impute <-function(x, imputeOption="mid") {
 #' @return dataframe where fields with censored data (i.e., Surv objects) are
 #'   transformed into a simple numeric fields
 #'   
-#' @seealso \code{\link{makeSurvDF}},  \code{\link{unSurvDF}},  \code{\link{unSurv}},  \code{\link{impute}},  \code{\link{imputeDF}},  
+#' @seealso \code{\link{makeSurvDF}},  \code{\link{unSurvDF}}
+#' ,  \code{\link{unSurv}},  \code{\link{impute}},  \code{\link{imputeDF}},  
 #'   
 #' @export
 #
@@ -195,7 +201,8 @@ imputeDF <- function(df, imputeOption = "mid") {
 #' # simCensored ####
 #' #' Fit normal or log normal distribution; simulation in censored data
 #' #' provided by Elgin Perry
-#' #' phi.left and phi.right are distribution function, e.g., pnorm(q=10,mean=10,sd=1) =0.5
+#' #' phi.left and phi.right are distribution function, e.g., 
+#' # pnorm(q=10,mean=10,sd=1) =0.5
 #' #' phi.sim is a uniform random number between phi.left and phi.right
 #' #' sim is imputed value
 #' #' 
@@ -212,17 +219,24 @@ imputeDF <- function(df, imputeOption = "mid") {
 #'   summary(fn1)
 #'   if(distr=="norm")
 #'   {                    
-#'     tmp$phi.left  <- stats::pnorm(tmp$left,mean=fn1$estimate[1],sd=fn1$estimate[2])
-#'     tmp$phi.right <- stats::pnorm(tmp$right,mean=fn1$estimate[1],sd=fn1$estimate[2])
+#'     tmp$phi.left  <- stats::pnorm(tmp$left,mean=fn1$estimate[1]
+#'                                   ,sd=fn1$estimate[2])
+#'     tmp$phi.right <- stats::pnorm(tmp$right,mean=fn1$estimate[1]
+#'                                   ,sd=fn1$estimate[2])
 #'     tmp$phi.sim   <- stats::runif(nrow(tmp),tmp$phi.left,tmp$phi.right)
-#'     tmp$sim       <- stats::qnorm(tmp$phi.sim,mean=fn1$estimate[1],sd=fn1$estimate[2])
+#'     tmp$sim       <- stats::qnorm(tmp$phi.sim,mean=fn1$estimate[1]
+#'                                   ,sd=fn1$estimate[2])
 #'   }
 #'   if(distr=="lnorm")
 #'   {                    
-#'     tmp$phi.left  <- stats::plnorm(tmp$left,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
-#'     tmp$phi.right <- stats::plnorm(tmp$right,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
+#'     tmp$phi.left  <- stats::plnorm(tmp$left,meanlog=fn1$estimate[1]
+#'                                    ,sdlog=fn1$estimate[2])
+#'     tmp$phi.right <- stats::plnorm(tmp$right,meanlog=fn1$estimate[1]
+#'                                    ,sdlog=fn1$estimate[2])
 #'     tmp$phi.sim   <- stats::runif(nrow(tmp),tmp$phi.left,tmp$phi.right)
-#'     tmp$sim       <- stats::qlnorm(tmp$phi.sim,meanlog=fn1$estimate[1],sdlog=fn1$estimate[2])
+#'     tmp$sim       <- stats::qlnorm(tmp$phi.sim,meanlog=fn1$estimate[1]
+#'                                    ,sdlog=fn1$estimate[2])
 #'   }
 #'   return(tmp$sim)
 #' }
+#' 

@@ -1,10 +1,10 @@
 #' @title Create Seasonally Detrended Salinty Data Set
 #'
-#' @description This function creates a seasonally detrended salinity data set for selected
-#'   stations. The created data set is used to support application of GAMs
-#'   that include a hydrologic term as one of the independent variables. The output
-#'   from this function should be stored as an .rda file for repeated use with 
-#'   baytrends.
+#' @description This function creates a seasonally detrended salinity data set 
+#'   for selected stations. The created data set is used to support application 
+#'   of GAMs that include a hydrologic term as one of the independent variables.
+#'   The output from this function should be stored as an .rda file for repeated
+#'   use with baytrends.
 #'   
 #' @param df.sal data frame with salinty data (required variables in data frame
 #'   are: station, date, layer, and salinity)
@@ -23,9 +23,9 @@
 #'   function also creates diagnostic plots that can be saved to a report when
 #'   this function is called from an .Rmd script.
 #' 
-#' @details This function returns a list of seasonally detrended salinity and companion 
-#'   statistics; and relies on a user supplied data frame that contains the
-#'   following variables: station, date, layer, and salinity. See
+#' @details This function returns a list of seasonally detrended salinity and 
+#'   companion statistics; and relies on a user supplied data frame that 
+#'   contains the following variables: station, date, layer, and salinity. See
 #'   structure of sal data in example below.  
 #'   
 #'   It is the user responsibility to save the resulting list as
@@ -33,30 +33,31 @@
 #'   
 #'   For the purposes of baytrends, it is expected that the user would identify
 #'   a data set with all salinity data that are expected to be evaluated so that
-#'   a single data file is created. The following computation steps are performed: 
+#'   a single data file is created. The following computation steps are
+#'   performed: 
 #'   
-#'   1) Extract the list of stations, minimum year, and maximum year in data set.
-#'   Initialize the \bold{salinity.detrended} list with this information along with
-#'   meta data documenting the retrieval parameters. 
+#'   1) Extract the list of stations, minimum year, and maximum year in data 
+#'   set. Initialize the \bold{salinity.detrended} list with this information 
+#'   along with meta data documenting the retrieval parameters. 
 #'   
 #'   2) Downselect the input data frame to only include data where the 
 #'   layer is equal to 'S', 'AP', 'BP' or 'B'.
 #'   
 #'   3) Average the 'S' and 'AP' salinity data; and the 'B' and 'BP salinity
-#'   data together to create average salinity values for SAP (surface and above pycnocline)
-#'   and BBP (bottom and below pycnocline), respectively. These values are stored
-#'   as the variables, \bold{salinity.SAP} and \bold{salinity.BBP} together with the 
-#'   \bold{date} and day of year (\bold{doy}) in a data frame corresponding to the
-#'   station ID.
+#'   data together to create average salinity values for SAP (surface and above 
+#'   pycnocline) and BBP (bottom and below pycnocline), respectively. These 
+#'   values are stored as the variables, \bold{salinity.SAP} and 
+#'   \bold{salinity.BBP} together with the \bold{date} and day of year 
+#'   (\bold{doy}) in a data frame corresponding to the station ID.
 #'   
-#'   4) For each station/layer combination with atleast \bold{minObs} observations,
-#'   a seasonal GAM, i.e., gamoutput <- gam(salinity ~  s(doy, bs='cc')) is
-#'   evaluated and the predicted values stored in the above data frame 
-#'   as \bold{salinity.SAP.gam} and \bold{salinity.BBP.gam}.  
+#'   4) For each station/layer combination with atleast \bold{minObs}
+#'   observations, a seasonal GAM, i.e., gamoutput <- gam(salinity ~  s(doy, 
+#'   bs='cc')) is evaluated and the predicted values stored in the above data 
+#'   frame as \bold{salinity.SAP.gam} and \bold{salinity.BBP.gam}.  
 #'   
 #'   5) The GAM residuals, i.e., "residuals(gamoutput)" are extracted and stored
-#'   as the variable, \bold{SAP} or \bold{BBP} in the above data frame. (These are the 
-#'   values that are used for GAMs that include salinity.) 
+#'   as the variable, \bold{SAP} or \bold{BBP} in the above data frame. 
+#'   (These are the values that are used for GAMs that include salinity.) 
 #'   
 #'   6) After the above data frame is created and appended to the 
 #'   list \bold{salinity.detrended}, the following four (4) additional
@@ -68,13 +69,16 @@
 #'   \bold{dvAvgWinSel}-day window around d. (This includes wrapping around the
 #'   calendar year. That is, the values near the beginning of the year, say
 #'   January 2, would include values from the last part of December and the
-#'   first part of January. The variables in the mean data frame are doy, SAP, and BBP.   
+#'   first part of January. The variables in the mean data frame are doy, SAP, 
+#'   and BBP.   
 #'   
 #'   \bold{sd} -- For each doy (i.e., 366 days of year), the standard deviation 
-#'   across all years for each value of d. (See mean calculations for additional details.)    
+#'   across all years for each value of d. (See mean calculations for additional
+#'   details.)    
 #'   
-#'   \bold{nobs} -- For each doy (i.e., 366 days of year), the number of observations 
-#'   across all years for each value of d. (See mean calculations for additional details.)     
+#'   \bold{nobs} -- For each doy (i.e., 366 days of year), the number of 
+#'   observations across all years for each value of d. (See mean calculations 
+#'   for additional details.)     
 #'   
 #'   \bold{lowess.sd} -- Lowess smoothed standard deviations. It is noted that
 #'   some stations do not include regular sampling in all months of the year or
@@ -85,9 +89,9 @@
 #'   \bold{minObs.sd}, the corresponding value of lowess.sd is removed and
 #'   interpolated from the remaining observations.
 #'    
-#'   The above four data frames (mean, sd, nobs, and lowess.sd) are created, they
-#'   are added to a list using a \bold{station.sum} naming convention and appended to the 
-#'   list \bold{salinity.detrended}.
+#'   The above four data frames (mean, sd, nobs, and lowess.sd) are created, 
+#'   they are added to a list using a \bold{station.sum} naming convention and 
+#'   appended to the list \bold{salinity.detrended}.
 #'  
 #' @importFrom utils modifyList  
 #' @importFrom stats aggregate
@@ -188,7 +192,8 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     # * Perform gam modeling ----
     # ** add doy; sort column order ----
     df$doy   <- as.numeric(baytrends::baseDay(df$date))
-    df<-df[,c('station', 'date', 'doy', setdiff(names(df), c('station', 'date','doy')))]
+    df<-df[,c('station', 'date', 'doy', setdiff(names(df),
+                                                c('station', 'date','doy')))]
     
     # ** SAP gam model ----
     if(hasSAP) {
@@ -230,9 +235,12 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     df <- rbind( df.neg, df, df.pos); remove(df.neg, df.pos)
     
     # ** initialize data frames for mean, sd, and nobs ----
-    df.mean <- data.frame(doy = as.numeric(c((1-366):(366+366)), SAP=NA_real_, BBP=NA_real_))
-    df.sd   <- data.frame(doy = as.numeric(c((1-366):(366+366)), SAP=NA_real_, BBP=NA_real_))
-    df.nobs <- data.frame(doy = as.numeric(c((1-366):(366+366)), SAP=NA_real_, BBP=NA_real_))
+    df.mean <- data.frame(doy = as.numeric(c((1-366):(366+366))
+                                           , SAP=NA_real_, BBP=NA_real_))
+    df.sd   <- data.frame(doy = as.numeric(c((1-366):(366+366))
+                                           , SAP=NA_real_, BBP=NA_real_))
+    df.nobs <- data.frame(doy = as.numeric(c((1-366):(366+366))
+                                           , SAP=NA_real_, BBP=NA_real_))
     
     # ** compute mean, sd, and obs for doy from 1:366 ----
     window <- salinity.detrended[["dvAvgWinSel"]]/2
@@ -277,7 +285,8 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     # ** put mean, sd, nobs, & lowess by doy into a list ----
     # set embedded df to correspond to station.sum
     # append list to overall list
-    tmp.list        <- list(list(mean = df.mean, sd = df.sd, nobs = df.nobs, lowess.sd = df.lowess.sd))
+    tmp.list        <- list(list(mean = df.mean, sd = df.sd, nobs = df.nobs
+                                 , lowess.sd = df.lowess.sd))
     names(tmp.list) <- var.sum
     salinity.detrended  <- modifyList(salinity.detrended, tmp.list)
     
@@ -286,7 +295,8 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
   # Post processing check ----
   # are the list of stations in salinity.detrended the same as what i stored in 
   # salinity.detrended$stations
-  names(salinity.detrended)[names(salinity.detrended) %in% salinity.detrended[["stations"]] ] ==
+  names(salinity.detrended)[names(salinity.detrended) %in% 
+                              salinity.detrended[["stations"]] ] ==
     salinity.detrended$stations
   
   # Plot results ----
@@ -307,7 +317,7 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     station.mean      <- salinity.detrended[[station.sum]][["mean"]][["SAP"]]
     station.sd        <- salinity.detrended[[station.sum]][["sd"]][["SAP"]]
     station.doy       <- salinity.detrended[[station.sum]][["sd"]][["doy"]]
-    station.lowess.sd <- salinity.detrended[[station.sum]][["lowess.sd"]][["SAP"]]
+  station.lowess.sd <- salinity.detrended[[station.sum]][["lowess.sd"]][["SAP"]]
     station.nobs      <- salinity.detrended[[station.sum]][["nobs"]][["SAP"]]
     
     if(is.null(station.mean)) next
@@ -328,7 +338,7 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     #
     
     figNum <<- figNum + 1
-    title <- paste0( "SAP mean, standard deviation, and number of observations ",
+  title <- paste0( "SAP mean, standard deviation, and number of observations ",
                      " as a Function of Day of Year.")
     .F(title, figNum)
   }
@@ -340,7 +350,7 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     station.mean      <- salinity.detrended[[station.sum]][["mean"]][["BBP"]]
     station.sd        <- salinity.detrended[[station.sum]][["sd"]][["BBP"]]
     station.doy       <- salinity.detrended[[station.sum]][["sd"]][["doy"]]
-    station.lowess.sd <- salinity.detrended[[station.sum]][["lowess.sd"]][["BBP"]]
+  station.lowess.sd <- salinity.detrended[[station.sum]][["lowess.sd"]][["BBP"]]
     station.nobs      <- salinity.detrended[[station.sum]][["nobs"]][["BBP"]]
     
     if(is.null(station.mean)) next
@@ -361,7 +371,7 @@ detrended.salinity <- function(df.sal, dvAvgWinSel=30, lowess.f=0.2,
     #
     
     figNum <<- figNum + 1
-    title <- paste0( "BBP mean, standard deviation, and number of observations ",
+  title <- paste0( "BBP mean, standard deviation, and number of observations ",
                      "as a Function of Day of Year.")
     .F(title, figNum)
   }

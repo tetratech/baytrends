@@ -32,7 +32,8 @@
 #' # establish allowable values for screening
 #' x1Scrn <- as.character(c("A1", "B2", "C1", "Y2"))   # character
 #' x2Scrn <- c(7,13)                                   # min/max value
-#' x3Scrn <- as.POSIXct(c("1999-01-01", "2008-09-10")) # min/max date (POSIXct format)
+#' x3Scrn <- as.POSIXct(c("1999-01-01", "2008-09-10")) # min/max date 
+#' # (POSIXct format)
 #'
 #' # return df with new column indicating pass [TRUE] / fail [FALSE]
 #' .checkRange(df, var="x1", varScrn=x1Scrn, numNA=FALSE, deleteOption='mark')
@@ -45,7 +46,11 @@
 #' .checkRange(df, var="x3", varScrn=x3Scrn, numNA=FALSE, deleteOption='pass')
 #' @export
 #'
-.checkRange <-function(df, var, varScrn=NULL, numNA=FALSE, deleteOption="pass") {
+.checkRange <-function(df
+                       , var
+                       , varScrn=NULL
+                       , numNA=FALSE
+                       , deleteOption="pass") {
 
   # internal function
   is.POSIXct <- function(x) inherits(x, "POSIXct")
@@ -64,21 +69,26 @@
 
   # error trap ... stop if the domain list or range contained in varScrn is null
   if (length(varScrn) == 0) {
-    warning(paste0("The domain list or range for checking was NULL. No screen check performed."))
+m<- "The domain list or range for checking was NULL. No screen check performed."
+    warning(paste0(m))
     attr(df,paste0(var,"NotInRangeNum")) <- "Not evaluated"
     return(df)
   }
 
-  # Begin checking. There are currently three options: i) character/factor,
-  #                 ii) POSIXct, and iii) numeric executed in an if/else structure
-  #                 There is an error trap "iv)" if one of the above 3 dont catch the
+  # Begin checking. There are currently three options: 
+  #     i) character/factor,
+  #    ii) POSIXct, and 
+  #   iii) numeric executed in an if/else structure
+  #           There is an error trap "iv)" if one of the above 3 dont catch the
   #                 variable type
 
   # i) Process for character or factor variables
   if (is.factor(df[,iCol]) | is.character(df[,iCol])) {
     # error trap ... varScrn has to be same object type as var
     if  (!(is.factor(varScrn) | is.character(varScrn)))  {
-      warning(paste0("The domain list in varScrn is not same type as ", var,"."))
+      warning(paste0("The domain list in varScrn is not same type as "
+                     , var
+                     ,"."))
       attr(df,paste0(var,"NotInRangeNum")) <- "Not evaluated"
       return(df)
     }
@@ -95,7 +105,9 @@
   } else if (is.POSIXct(df[,iCol]) ) {
     # error trap ... varScrn has to be same object type as var
     if  (!(is.POSIXct(varScrn) ))  {
-      warning(paste0("The domain list in varScrn is not same type as ", var,"."))
+      warning(paste0("The domain list in varScrn is not same type as "
+                     , var
+                     ,"."))
       attr(df,paste0(var,"NotInRangeNum")) <- "Not evaluated"
       return(df)
     }
@@ -119,7 +131,9 @@
   } else if (is.numeric(df[,iCol]) ) {
     # error trap ... varScrn has to be same object type as var
     if  (!(is.numeric(varScrn) ))  {
-      warning(paste0("The domain list in varScrn is not same type as ", var,"."))
+      warning(paste0("The domain list in varScrn is not same type as "
+                     , var
+                     ,"."))
       attr(df,paste0(var,"NotInRangeNum")) <- "Not evaluated"
       return(df)
     }
@@ -139,7 +153,8 @@
       attr(df,paste0(var,"NotInRangeNum")) <- 0
     }
 
-    # iv) throw error ... if the variable, var, doesn't fit in one of the above categories
+    # iv) throw error ... if the variable, var
+    #                              , doesn't fit in one of the above categories
   } else {
     warning(paste0("Error checking is not enabled for this variable type."))
     return(df)

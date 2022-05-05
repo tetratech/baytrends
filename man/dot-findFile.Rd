@@ -47,7 +47,8 @@ This function is used to search a selected directory for information
 .findFile("..")     # one directory up
 #
 # list of files and common attributes one directory up
-.findFile(folder="..", file="*.*", n=2, fileNameOnly=FALSE)      #two most recent files
+.findFile(folder="..", file="*.*", n=2, fileNameOnly=FALSE)      
+                                                       #two most recent files
 .findFile(folder="..", file="*.*", n="all", fileNameOnly=FALSE)  #all files
 }
 }

@@ -33,5 +33,6 @@ colnames(df3)
 
 }
 \seealso{
-\code{\link{makeSurvDF}},  \code{\link{unSurv}},  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},
+\code{\link{makeSurvDF}},  \code{\link{unSurv}}
+,  \code{\link{impute}},  \code{\link{imputeDF}},  \code{\link{saveDF}},
 }

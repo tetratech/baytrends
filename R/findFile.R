@@ -30,7 +30,8 @@
 #' .findFile("..")     # one directory up
 #' #
 #' # list of files and common attributes one directory up
-#' .findFile(folder="..", file="*.*", n=2, fileNameOnly=FALSE)      #two most recent files
+#' .findFile(folder="..", file="*.*", n=2, fileNameOnly=FALSE)      
+#'                                                        #two most recent files
 #' .findFile(folder="..", file="*.*", n="all", fileNameOnly=FALSE)  #all files
 #' }
 #' @return returns file name as a character string
@@ -44,7 +45,9 @@
 # 12Mar2019: EWL: Add "dot" to examples.
 
 # Access list of files #####
-  fileName <- data.frame(fileName=list.files(path = folder, utils::glob2rx(file), ignore.case=TRUE))
+  fileName <- data.frame(fileName=list.files(path = folder
+                                             , utils::glob2rx(file)
+                                             , ignore.case=TRUE))
 
 # Store current working directory and change to subdirectory ####
   tmpSave <- getwd()

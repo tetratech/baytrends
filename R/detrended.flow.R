@@ -31,12 +31,12 @@
 #'   also creates diagnostic plots that can be saved to a report when this
 #'   function is called from an .Rmd script.
 #'   
-#' @details This function returns a list of seasonally detrended flow and companion
-#'   statistics; and relies on USGS' dataRetrieval package to retrieve daily
-#'   flow data.   
+#' @details This function returns a list of seasonally detrended flow and 
+#'   companion statistics; and relies on USGS' dataRetrieval package to retrieve
+#'   daily flow data.   
 #'   
-#'   It is the user responsibility to save the resulting list as \bold{flow.detrended} 
-#'   for integration with baytrends.  
+#'   It is the user responsibility to save the resulting list as 
+#'   \bold{flow.detrended} for integration with baytrends.  
 #'   
 #'   For the purposes of baytrends, it is expected that the user 
 #'   would identify all USGS gages that are expected to be evaluated so that a 
@@ -82,8 +82,9 @@
 #'   \bold{sd} -- For each doy (i.e., 366 days of year), the standard deviation 
 #'   across all years for each value of d in the above data frame, qNNNNNNNN.  
 #'   
-#'   \bold{nobs} -- For each doy (i.e., 366 days of year), the number of observations 
-#'   across all years for each value of d in the above data frame, qNNNNNNNN.  
+#'   \bold{nobs} -- For each doy (i.e., 366 days of year), the number of 
+#'   observations across all years for each value of d in the above data frame
+#'   , qNNNNNNNN.  
 #'   
 #'   \bold{lowess.sd} -- Lowess smoothed standard deviations. (These values are
 #'   used for computing confidence intervals in the flow averaged GAM.)  
@@ -122,7 +123,8 @@
 #' @export
 detrended.flow <- function(usgsGageID, siteName
                            , yearStart, yearEnd
-                           , dvAvgWinSel = c(1, 5, 10, 15, 20, 30, 40, 50, 60, 90, 120, 150, 180, 210)
+                           , dvAvgWinSel = c(1, 5, 10, 15, 20, 30, 40, 50, 60
+                                             , 90, 120, 150, 180, 210)
                            , dvAvgWgtSel = "uniform"
                            , dvAvgSidesSel = 1
                            , lowess.f = 0.2
@@ -151,7 +153,8 @@ detrended.flow <- function(usgsGageID, siteName
                          fill          = fill)
   
   #  reduce number of output plots 
-    selectPlots <- unique(flow.detrended$dvAvgWinSel[c(1,2,length(flow.detrended$dvAvgWinSel))])
+    selectPlots <- unique(flow.detrended$dvAvgWinSel[c(1,2
+                                          ,length(flow.detrended$dvAvgWinSel))])
 
   # set figure number
     #utils::globalVariables("figNum")
@@ -177,7 +180,8 @@ detrended.flow <- function(usgsGageID, siteName
                            max.fill   = max.fill,
                            fill       = fill)
     
-    # compute seasonally adjusted (i.e., detrended) flows and compute seasonal averages
+    # compute seasonally adjusted (i.e., detrended) flows and 
+    #     compute seasonal averages
     df.flow <- seasAdjflow(dvFlow     = df.flow,
                            siteNumber = flow.detrended$gages$usgsGageID[i.gage],
                            dvAvgWin   = flow.detrended$dvAvgWinSel,
@@ -194,11 +198,25 @@ detrended.flow <- function(usgsGageID, siteName
     
     # calculate mean, sd, & nobs by doy
     df      <- flow.detrended[[var]]   
-    df      <- df[,!(names(df) %in% c("date", "q", "LogQ", paste0(var,".gam") ))]
-    df.mean <- aggregate(. ~ doy, FUN = mean,        data = df, na.action=na.pass, na.rm=TRUE) 
-    df.sd   <- aggregate(. ~ doy, FUN = sd,          data = df, na.action=na.pass, na.rm=TRUE) 
-    # df.nobs <- aggregate(. ~ doy, FUN = gdata::nobs, data = df, na.action=na.pass, na.rm=TRUE)
-    df.nobs <- aggregate(. ~ doy, FUN = nobs, data = df, na.action=na.pass, na.rm=TRUE)
+    df      <- df[,!(names(df) %in% 
+                       c("date", "q", "LogQ", paste0(var,".gam") ))]
+    df.mean <- aggregate(. ~ doy
+                         , FUN = mean
+                         , data = df
+                         , na.action=na.pass,
+                         na.rm=TRUE) 
+    df.sd   <- aggregate(. ~ doy
+                         , FUN = sd
+                         , data = df
+                         , na.action=na.pass
+                         , na.rm=TRUE) 
+    # df.nobs <- aggregate(. ~ doy, FUN = gdata::nobs, data = df
+    # , na.action=na.pass, na.rm=TRUE)
+    df.nobs <- aggregate(. ~ doy
+                         , FUN = nobs
+                         , data = df
+                         , na.action=na.pass
+                         , na.rm=TRUE)
     
     # compute lowess smooth standard deviation (sd)
     if(exists("df.lowess")) rm("df.lowess")
@@ -223,7 +241,10 @@ detrended.flow <- function(usgsGageID, siteName
     # put mean, sd, nobs, & lowess by doy into a list; 
     # set embedded df to correspond to GageID.sum
     # append list to overall list
-    tmp.list        <- list(list(mean = df.mean, sd = df.sd, nobs = df.nobs, lowess.sd = df.lowess))
+    tmp.list        <- list(list(mean = df.mean
+                                 , sd = df.sd
+                                 , nobs = df.nobs
+                                 , lowess.sd = df.lowess))
     names(tmp.list) <- var.sum
     flow.detrended  <- modifyList(flow.detrended, tmp.list)
     
@@ -249,7 +270,9 @@ detrended.flow <- function(usgsGageID, siteName
       par(mfrow = c(3, 1))
       {
         plot(gage.doy, gage.mean , ylim=c(-0.4,0.4),
-             xlab=NA, ylab="mean"); title(paste0(gage," (Avg. Per.: ",dvAvgWinSel,")"))
+             xlab=NA, ylab="mean"); title(paste0(gage
+                                                 ," (Avg. Per.: "
+                                                 ,dvAvgWinSel,")"))
         
         plot(gage.doy, gage.sd , ylim=c(0,2), col='grey',
         xlab=NA, ylab="sd") #title(gage)
@@ -257,8 +280,9 @@ detrended.flow <- function(usgsGageID, siteName
         plot(gage.doy, gage.nobs , ylim=c(0,60),
         xlab='Day of Year', ylab="Nobs.") #title(gage)
         figNum <<- figNum + 1
-        title <- paste0( dvAvgWinSel, ": Mean, standard deviation, and number of observations ",
-                         " as a Function of Day of Year.")
+        title <- paste0( dvAvgWinSel
+                    , ": Mean, standard deviation, and number of observations "
+                    , " as a Function of Day of Year.")
         .F(title, figNum)
       }
     }

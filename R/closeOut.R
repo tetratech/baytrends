@@ -8,7 +8,8 @@
 #' @param sessInfo Session information
 #' @examples
 #' closeOut()
-#' @return Reports out processing time, contact information and session information
+#' @return Reports out processing time, contact information,
+#'  and session information
 #' @export
 #
 closeOut <-function(timeProcess=TRUE, contInfo=TRUE, sessInfo=TRUE) {

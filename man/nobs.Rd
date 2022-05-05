@@ -18,26 +18,31 @@ Provides a 'default' method to handle vectors, and a method for data frames.
 \details{
 Calculate the number of observations in `object`.
 
-* For numeric vectors, this is simply the number of non-NA elements, as computed by `sum(!is.na(object))`.
+* For numeric vectors, this is simply the number of non-NA elements, as 
+computed by `sum(!is.na(object))`.
 
-* For dataframe objects, the result is a vector containing the number of non-NA elementes of each column.
+* For dataframe objects, the result is a vector containing the number of 
+non-NA elementes of each column.
 
-The `nobs` and `nobs.lm` functions defined in gtools are simply aliases for the 
-functions in the base R `stats` package, provided for backwards compatibility.
+The `nobs` and `nobs.lm` functions defined in gtools are simply aliases for 
+the functions in the base R `stats` package, provided for backwards 
+compatibility.
 
 `baytrends` borrowed `gdata::nobs` 'as is' to avoid being archived in 2020.
 https://github.com/tetratech/baytrends/issues/56
 }
 \note{
-The base R package `stats` now provides a S3 dispatch function for nobs, and methods 
-for for objects of classes "lm", "glm", "nls" and "logLik", as well as a default method.
+The base R package `stats` now provides a S3 dispatch function for nobs, and
+methods for for objects of classes "lm", "glm", "nls" and "logLik", as well
+as a default method.
 
-Since they provided a subset of the the functionality, the base method dispatch 
-(nobs) function and method for "lm" objects (`nobs.lm`) are, as of gdata version 2.10.1, 
-simply aliases for the equivalent functions in the base R `stats` package.
+Since they provided a subset of the the functionality, the base method 
+dispatch (nobs) function and method for "lm" objects (`nobs.lm`) are, as of 
+gdata version 2.10.1, simply aliases for the equivalent functions in the base
+ R `stats` package.
 
-Since `gdata`'s default method (`nobs.default`) processes vectors and hands any other 
-data/object types to `stats:::nobs.default`.
+Since `gdata`'s default method (`nobs.default`) processes vectors and hands 
+any other data/object types to `stats:::nobs.default`.
 }
 \examples{
 x <- c(1,2,3,5,NA,6,7,1,NA )

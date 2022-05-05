@@ -13,14 +13,15 @@
 #' research-focused questions. Methodology described in Murphy, RR, E Perry, 
 #' J Harcum, and J Keisman  2019  A Generalized Additive Model approach to 
 #' evaluating water quality: Chesapeake Bay case study.  Environmental Modelling
-#' & Software, 118 (2019) 1-13.  <https://doi.org/10.1016/j.envsoft.2019.03.027>.
+#' & Software, 118 (2019) 1-13. 
+#' <https://doi.org/10.1016/j.envsoft.2019.03.027>.
 #' 
 #' This software program is preliminary or provisional and is subject 
-#' to revision. This software program is for testing only, no warranty, expressed 
-#' or implied, is made as to the accuracy and functioning of the program and 
-#' related program material nor shall the fact of distribution constitute any 
-#' such warranty, and no responsibility is assumed in connection therewith. This 
-#' software is provided 'AS IS.
+#' to revision. This software program is for testing only, no warranty, 
+#' expressed or implied, is made as to the accuracy and functioning of the
+#' program and related program material nor shall the fact of distribution 
+#' constitute any such warranty, and no responsibility is assumed in connection 
+#' therewith. This software is provided 'AS IS.
 #' 
 #'
 #' @docType package

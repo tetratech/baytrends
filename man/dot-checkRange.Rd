@@ -45,7 +45,8 @@ df
 # establish allowable values for screening
 x1Scrn <- as.character(c("A1", "B2", "C1", "Y2"))   # character
 x2Scrn <- c(7,13)                                   # min/max value
-x3Scrn <- as.POSIXct(c("1999-01-01", "2008-09-10")) # min/max date (POSIXct format)
+x3Scrn <- as.POSIXct(c("1999-01-01", "2008-09-10")) # min/max date 
+# (POSIXct format)
 
 # return df with new column indicating pass [TRUE] / fail [FALSE]
 .checkRange(df, var="x1", varScrn=x1Scrn, numNA=FALSE, deleteOption='mark')
