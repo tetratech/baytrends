@@ -140,6 +140,7 @@
 #'                   BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
 #'}
 # ----- Change history -------------------------------------------- ####
+# 04Apr2023: JBH: changed || to | to remove coercion to 'logical(1)' warning
 # 03Jun2019: JBH: changes to minimize required variables and related QA/QC
 # 28Dec2018: JBH: set up doy (q2.doy) for computing seasonal mean  
 # 18Jul2018: JBH: added na.rm=TRUE to min/max functions  
@@ -617,17 +618,21 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       
       # evaluate F-stat in ANOVA table     #04Feb2017
       FstatFlag <- ""
+      # selectSetting == FALSE indicates data set has censored data. Rest of the
+      # if checks if any df are less than 1 or F > 9e9
       if(selectSetting==FALSE &&
-         (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] ||  #18Jul2018
+         (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] |  #18Jul2018
           max(gamANOVAtbl$F, na.rm=TRUE) > gamPenaltyCrit[2])) {  #18Jul2018
+        # initialize column for note
         gamANOVAtbl$Note <- '-'
-        if (length(gamANOVAtbl$df < gamPenaltyCrit[1] ||      #18Jul2018
+        
+        if (length(gamANOVAtbl$df < gamPenaltyCrit[1] |      #18Jul2018
                    gamANOVAtbl$F > gamPenaltyCrit[2]) == 1 &  #18Jul2018
-            is.na(gamANOVAtbl$df < gamPenaltyCrit[1] ||       #18Jul2018
+            is.na(gamANOVAtbl$df < gamPenaltyCrit[1] |       #18Jul2018
                   gamANOVAtbl$F > gamPenaltyCrit[2])[1]) {    #18Jul2018
           FstatFlag <- ""                                     #18Jul2018
         } else {
-          gamANOVAtbl[gamANOVAtbl$df < gamPenaltyCrit[1] ||
+          gamANOVAtbl[gamANOVAtbl$df < gamPenaltyCrit[1] |
                         gamANOVAtbl$F > gamPenaltyCrit[2],"Note"] <- "F-stat maybe unreliable"
           FstatFlag <- "***"
         }
@@ -637,7 +642,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       if(gamTable) {
         
         if(selectSetting==FALSE &&
-           (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] ||  #18Jul2018
+           (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] |  #18Jul2018
             max(gamANOVAtbl$F, na.rm=TRUE) > gamPenaltyCrit[2])) {  #18Jul2018
           .T("GAM Analysis of Variance.")
           print(knitr::kable(gamANOVAtbl[,],
