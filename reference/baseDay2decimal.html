@@ -18,7 +18,7 @@ From smwrBase package."><!-- mathjax --><script src="https://cdnjs.cloudflare.co
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -65,7 +65,7 @@ From smwrBase package.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">baseDay2decimal</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">baseDay2decimal</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -75,10 +75,13 @@ From smwrBase package.</p>
 abbreviation and day number, generally created from <code>baseDay</code>. Missing 
 values are permitted and result in missing values in the output. Unmatched 
 values also result in missing values in the output.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric value representing the base day.</p>
+    
+
+<p>A numeric value representing the base day.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -87,15 +90,15 @@ values also result in missing values in the output.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># The baseDay ordered by calendar year</span></span>
-<span class="r-in"><span class="va">bd.tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="baseDay.html">baseDay</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2000-02-29"</span>, <span class="st">"2000-03-01"</span>, <span class="st">"2001-03-01"</span><span class="op">)</span>, </span>
-<span class="r-in">  numeric<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">baseDay2decimal</span><span class="op">(</span><span class="va">bd.tmp</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># The baseDay ordered by calendar year</span></span></span>
+<span class="r-in"><span><span class="va">bd.tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="baseDay.html">baseDay</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2000-02-29"</span>, <span class="st">"2000-03-01"</span>, <span class="st">"2001-03-01"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>  numeric<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">baseDay2decimal</span><span class="op">(</span><span class="va">bd.tmp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1612022 0.1639344 0.1639344</span>
-<span class="r-in"><span class="co"># ordered by water year, result should agree</span></span>
-<span class="r-in"><span class="va">bd.tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="baseDay.html">baseDay</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2000-02-29"</span>, <span class="st">"2000-03-01"</span>, <span class="st">"2001-03-01"</span><span class="op">)</span>, </span>
-<span class="r-in">  numeric<span class="op">=</span><span class="cn">FALSE</span>, year<span class="op">=</span><span class="st">"water"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">baseDay2decimal</span><span class="op">(</span><span class="va">bd.tmp</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># ordered by water year, result should agree</span></span></span>
+<span class="r-in"><span><span class="va">bd.tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="baseDay.html">baseDay</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2000-02-29"</span>, <span class="st">"2000-03-01"</span>, <span class="st">"2001-03-01"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>  numeric<span class="op">=</span><span class="cn">FALSE</span>, year<span class="op">=</span><span class="st">"water"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">baseDay2decimal</span><span class="op">(</span><span class="va">bd.tmp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1612022 0.1639344 0.1639344</span>
 </code></pre></div>
     </div>
@@ -111,7 +114,7 @@ values also result in missing values in the output.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

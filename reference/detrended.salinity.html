@@ -21,7 +21,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -71,13 +71,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">detrended.salinity</span><span class="op">(</span>
-  <span class="va">df.sal</span>,
-  dvAvgWinSel <span class="op">=</span> <span class="fl">30</span>,
-  lowess.f <span class="op">=</span> <span class="fl">0.2</span>,
-  minObs <span class="op">=</span> <span class="fl">40</span>,
-  minObs.sd <span class="op">=</span> <span class="fl">10</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">detrended.salinity</span><span class="op">(</span></span>
+<span>  <span class="va">df.sal</span>,</span>
+<span>  dvAvgWinSel <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>  lowess.f <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>  minObs <span class="op">=</span> <span class="fl">40</span>,</span>
+<span>  minObs.sd <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -85,23 +85,34 @@
     <dl><dt>df.sal</dt>
 <dd><p>data frame with salinty data (required variables in data frame
 are: station, date, layer, and salinity)</p></dd>
+
+
 <dt>dvAvgWinSel</dt>
 <dd><p>Averaging window (days) selection for pooling data to 
 compute summary statistics</p></dd>
+
+
 <dt>lowess.f</dt>
 <dd><p>lowess smoother span applied to computed standard deviation
 (see Details). This gives the proportion of points which influence the
 smooth at each value. Larger values give more smoothness.</p></dd>
+
+
 <dt>minObs</dt>
 <dd><p>Minimum number of observations for performing analysis (default
 is 40)</p></dd>
+
+
 <dt>minObs.sd</dt>
 <dd><p>Minimum number of observations in averaging window for
 calculation of the standard deviation (default is 10)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a list of seasonally detrended salinity data. You should save
+    
+
+<p>Returns a list of seasonally detrended salinity data. You should save
   the resulting list as salinity.detrended for use with baytrends.  This
   function also creates diagnostic plots that can be saved to a report when
   this function is called from an .Rmd script.</p>
@@ -168,21 +179,21 @@ calculation of the standard deviation (default is 10)</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># Show Example Dataset (sal)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sal</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Define Function Inputs</span></span>
-<span class="r-in"><span class="va">df.sal</span>        <span class="op">&lt;-</span> <span class="va">sal</span></span>
-<span class="r-in"><span class="va">dvAvgWinSel</span>   <span class="op">&lt;-</span> <span class="fl">30</span></span>
-<span class="r-in"><span class="va">lowess.f</span>      <span class="op">&lt;-</span> <span class="fl">0.2</span></span>
-<span class="r-in"><span class="va">minObs</span>        <span class="op">&lt;-</span> <span class="fl">40</span></span>
-<span class="r-in"><span class="va">minObs.sd</span>    <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span class="r-in">                 </span>
-<span class="r-in"><span class="co"># Run Function</span></span>
-<span class="r-in"><span class="va">salinity.detrended</span> <span class="op">&lt;-</span> <span class="fu">detrended.salinity</span><span class="op">(</span><span class="va">df.sal</span>, <span class="va">dvAvgWinSel</span>, </span>
-<span class="r-in">                                 <span class="va">lowess.f</span>, <span class="va">minObs</span>, <span class="va">minObs.sd</span><span class="op">)</span> </span>
-<span class="r-in"><span class="op">}</span>              </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Show Example Dataset (sal)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sal</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Define Function Inputs</span></span></span>
+<span class="r-in"><span><span class="va">df.sal</span>        <span class="op">&lt;-</span> <span class="va">sal</span></span></span>
+<span class="r-in"><span><span class="va">dvAvgWinSel</span>   <span class="op">&lt;-</span> <span class="fl">30</span></span></span>
+<span class="r-in"><span><span class="va">lowess.f</span>      <span class="op">&lt;-</span> <span class="fl">0.2</span></span></span>
+<span class="r-in"><span><span class="va">minObs</span>        <span class="op">&lt;-</span> <span class="fl">40</span></span></span>
+<span class="r-in"><span><span class="va">minObs.sd</span>    <span class="op">&lt;-</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span>                 </span></span>
+<span class="r-in"><span><span class="co"># Run Function</span></span></span>
+<span class="r-in"><span><span class="va">salinity.detrended</span> <span class="op">&lt;-</span> <span class="fu">detrended.salinity</span><span class="op">(</span><span class="va">df.sal</span>, <span class="va">dvAvgWinSel</span>, </span></span>
+<span class="r-in"><span>                                 <span class="va">lowess.f</span>, <span class="va">minObs</span>, <span class="va">minObs.sd</span><span class="op">)</span> </span></span>
+<span class="r-in"><span><span class="op">}</span>              </span></span>
 </code></pre></div>
     </div>
   </div>
@@ -197,7 +208,7 @@ calculation of the standard deviation (default is 10)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

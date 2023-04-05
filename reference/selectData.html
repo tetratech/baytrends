@@ -20,7 +20,7 @@ performed based on settings."><!-- mathjax --><script src="https://cdnjs.cloudfl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -69,38 +69,53 @@ performed based on settings.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">selectData</span><span class="op">(</span>
-  <span class="va">df</span>,
-  <span class="va">dep</span>,
-  <span class="va">stat</span>,
-  layer <span class="op">=</span> <span class="cn">NA</span>,
-  transform <span class="op">=</span> <span class="cn">TRUE</span>,
-  remMiss <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">analySpec</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">selectData</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  <span class="va">dep</span>,</span>
+<span>  <span class="va">stat</span>,</span>
+<span>  layer <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  transform <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  remMiss <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">analySpec</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>data frame</p></dd>
+
+
 <dt>dep</dt>
 <dd><p>dependent variable</p></dd>
+
+
 <dt>stat</dt>
 <dd><p>station</p></dd>
+
+
 <dt>layer</dt>
 <dd><p>layer (optional)</p></dd>
+
+
 <dt>transform</dt>
 <dd><p>logical field to return log-transformed value (TRUE [default])</p></dd>
+
+
 <dt>remMiss</dt>
 <dd><p>logical field to remove records where dependent
 variable, dep, is a missing value (TRUE [default])</p></dd>
+
+
 <dt>analySpec</dt>
 <dd><p>analytical specifications</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A nest list is returned. The first element of the nest list is the down-selected
+    
+
+<p>A nest list is returned. The first element of the nest list is the down-selected
   data frame. The second element is the list, iSpec, contains specifications for
   data extraction. See examples for usage and details for further discussion of the data
   processing and components of each element.</p>
@@ -181,21 +196,21 @@ from the smwrBase package.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">dfr</span>    <span class="op">&lt;-</span> <span class="fu"><a href="analysisOrganizeData.html">analysisOrganizeData</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># retrieve Secchi depth for Station CB5.4, no transformations are applied</span></span>
-<span class="r-in"><span class="va">dfr1</span>   <span class="op">&lt;-</span> <span class="fu">selectData</span><span class="op">(</span><span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span>, <span class="st">'secchi'</span>, <span class="st">'CB5.4'</span>, <span class="st">'S'</span>, transform<span class="op">=</span><span class="cn">FALSE</span>,</span>
-<span class="r-in">                    remMiss<span class="op">=</span><span class="cn">FALSE</span>, analySpec<span class="op">=</span><span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df1</span>    <span class="op">&lt;-</span> <span class="va">dfr1</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>   <span class="co"># data frame of selected data</span></span>
-<span class="r-in"><span class="va">iSpec1</span> <span class="op">&lt;-</span> <span class="va">dfr1</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>   <span class="co"># meta data about selected data</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,</span></span>
-<span class="r-in"><span class="co"># missing values are removed and transformation applied</span></span>
-<span class="r-in"><span class="va">dfr2</span>   <span class="op">&lt;-</span> <span class="fu">selectData</span><span class="op">(</span><span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span>, <span class="st">'chla'</span>, <span class="st">'CB5.4'</span>, <span class="st">'S'</span>, analySpec<span class="op">=</span><span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df2</span>    <span class="op">&lt;-</span> <span class="va">dfr2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>   <span class="co"># data frame of selected data</span></span>
-<span class="r-in"><span class="va">iSpec2</span> <span class="op">&lt;-</span> <span class="va">dfr2</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>   <span class="co"># meta data about selected data</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">dfr</span>    <span class="op">&lt;-</span> <span class="fu"><a href="analysisOrganizeData.html">analysisOrganizeData</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># retrieve Secchi depth for Station CB5.4, no transformations are applied</span></span></span>
+<span class="r-in"><span><span class="va">dfr1</span>   <span class="op">&lt;-</span> <span class="fu">selectData</span><span class="op">(</span><span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span>, <span class="st">'secchi'</span>, <span class="st">'CB5.4'</span>, <span class="st">'S'</span>, transform<span class="op">=</span><span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                    remMiss<span class="op">=</span><span class="cn">FALSE</span>, analySpec<span class="op">=</span><span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df1</span>    <span class="op">&lt;-</span> <span class="va">dfr1</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>   <span class="co"># data frame of selected data</span></span></span>
+<span class="r-in"><span><span class="va">iSpec1</span> <span class="op">&lt;-</span> <span class="va">dfr1</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>   <span class="co"># meta data about selected data</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,</span></span></span>
+<span class="r-in"><span><span class="co"># missing values are removed and transformation applied</span></span></span>
+<span class="r-in"><span><span class="va">dfr2</span>   <span class="op">&lt;-</span> <span class="fu">selectData</span><span class="op">(</span><span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span>, <span class="st">'chla'</span>, <span class="st">'CB5.4'</span>, <span class="st">'S'</span>, analySpec<span class="op">=</span><span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df2</span>    <span class="op">&lt;-</span> <span class="va">dfr2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>   <span class="co"># data frame of selected data</span></span></span>
+<span class="r-in"><span><span class="va">iSpec2</span> <span class="op">&lt;-</span> <span class="va">dfr2</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>   <span class="co"># meta data about selected data</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -210,7 +225,7 @@ from the smwrBase package.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

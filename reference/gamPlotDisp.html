@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -63,57 +63,86 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">gamPlotDisp</span><span class="op">(</span>
-  gamResult <span class="op">=</span> <span class="va">gamResult</span>,
-  analySpec <span class="op">=</span> <span class="va">analySpec</span>,
-  fullModel <span class="op">=</span> <span class="fl">2</span>,
-  seasAvgModel <span class="op">=</span> <span class="fl">2</span>,
-  seasonalModel <span class="op">=</span> <span class="fl">2</span>,
-  diffType <span class="op">=</span> <span class="st">"regular"</span>,
-  obserPlot <span class="op">=</span> <span class="cn">TRUE</span>,
-  interventionPlot <span class="op">=</span> <span class="cn">TRUE</span>,
-  seasAvgPlot <span class="op">=</span> <span class="cn">TRUE</span>,
-  seasAvgConfIntPlot <span class="op">=</span> <span class="cn">TRUE</span>,
-  seasAvgSigPlot <span class="op">=</span> <span class="cn">TRUE</span>,
-  fullModelPlot <span class="op">=</span> <span class="cn">TRUE</span>,
-  seasModelPlot <span class="op">=</span> <span class="cn">TRUE</span>,
-  BaseCurrentMeanPlot <span class="op">=</span> <span class="cn">TRUE</span>,
-  adjustedPlot <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gamPlotDisp</span><span class="op">(</span></span>
+<span>  gamResult <span class="op">=</span> <span class="va">gamResult</span>,</span>
+<span>  analySpec <span class="op">=</span> <span class="va">analySpec</span>,</span>
+<span>  fullModel <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  seasAvgModel <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  seasonalModel <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  diffType <span class="op">=</span> <span class="st">"regular"</span>,</span>
+<span>  obserPlot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  interventionPlot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  seasAvgPlot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  seasAvgConfIntPlot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  seasAvgSigPlot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  fullModelPlot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  seasModelPlot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  BaseCurrentMeanPlot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  adjustedPlot <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>gamResult</dt>
 <dd><p>output from procedure gamTest</p></dd>
+
+
 <dt>analySpec</dt>
 <dd><p>analytical specifications</p></dd>
+
+
 <dt>fullModel</dt>
 <dd><p>GAM # for displaying full GAM (e.g., 0, 1, 2)</p></dd>
+
+
 <dt>seasAvgModel</dt>
 <dd><p>GAM # for displaying seasonally average GAM</p></dd>
+
+
 <dt>seasonalModel</dt>
 <dd><p>GAM # for displaying seasonal GAM</p></dd>
+
+
 <dt>diffType</dt>
 <dd><p>plot predicted baseline mean ('regular') or adjusted baseline mean ('adjusted')</p></dd>
+
+
 <dt>obserPlot</dt>
 <dd><p>logical field indicating whether to plot observations</p></dd>
+
+
 <dt>interventionPlot</dt>
 <dd><p>logical field indicating whether to plot interventions (e.g., method changes)</p></dd>
+
+
 <dt>seasAvgPlot</dt>
 <dd><p>logical field indicating whether to plot seasonal average GAM</p></dd>
+
+
 <dt>seasAvgConfIntPlot</dt>
 <dd><p>logical field indicating whether to plot confidence interval for seasonal average GAM</p></dd>
+
+
 <dt>seasAvgSigPlot</dt>
 <dd><p>logical field indicating whether to plot significant increasing and decreasing trends for seasonal average GAM</p></dd>
+
+
 <dt>fullModelPlot</dt>
 <dd><p>logical field indicating whether to plot full GAM</p></dd>
+
+
 <dt>seasModelPlot</dt>
 <dd><p>logical field indicating whether to plot seasonal GAM</p></dd>
+
+
 <dt>BaseCurrentMeanPlot</dt>
 <dd><p>logical field indicating whether to plot baseline and current mean</p></dd>
+
+
 <dt>adjustedPlot</dt>
 <dd><p>logical field indicating whether to plot adjusted model</p></dd>
+
 </dl></div>
 
   </div>
@@ -128,7 +157,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

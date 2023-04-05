@@ -21,7 +21,7 @@ meters per second [cms].'><!-- mathjax --><script src="https://cdnjs.cloudflare.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -71,36 +71,49 @@ meters per second [cms].</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getUSGSflow</span><span class="op">(</span>
-  <span class="va">siteNumber</span>,
-  <span class="va">yearStart</span>,
-  <span class="va">yearEnd</span>,
-  fill <span class="op">=</span> <span class="cn">TRUE</span>,
-  span <span class="op">=</span> <span class="fl">10</span>,
-  max.fill <span class="op">=</span> <span class="fl">10</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getUSGSflow</span><span class="op">(</span></span>
+<span>  <span class="va">siteNumber</span>,</span>
+<span>  <span class="va">yearStart</span>,</span>
+<span>  <span class="va">yearEnd</span>,</span>
+<span>  fill <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  span <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  max.fill <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>siteNumber</dt>
 <dd><p>List of site numbers</p></dd>
+
+
 <dt>yearStart</dt>
 <dd><p>Beginning year of data retrieval</p></dd>
+
+
 <dt>yearEnd</dt>
 <dd><p>Ending year of data retrieval</p></dd>
+
+
 <dt>fill</dt>
 <dd><p>TRUE[default]/FALSE field indicating whether to fill in missing
 values using with USGS' fillMissing function</p></dd>
+
+
 <dt>span</dt>
 <dd><p>the maximum number of observations on each side of each range of
 missing values to use in constructing the time series model [default=10]</p></dd>
+
+
 <dt>max.fill</dt>
 <dd><p>the maximum gap to fill [default=10]</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>USGS daily flow data for sites in a wide format</p>
+    
+
+<p>USGS daily flow data for sites in a wide format</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -113,14 +126,14 @@ value is missing, then the corresponding data qualifier fields is set to
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># set retrieval parameters</span></span>
-<span class="r-in"><span class="va">yearStart</span>   <span class="op">&lt;-</span> <span class="fl">2014</span></span>
-<span class="r-in"><span class="va">yearEnd</span>     <span class="op">&lt;-</span> <span class="fl">2014</span></span>
-<span class="r-in"><span class="va">siteNumber</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'01578310'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># regular retrieval (default usage)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">getUSGSflow</span><span class="op">(</span><span class="va">siteNumber</span>, <span class="va">yearStart</span>, <span class="va">yearEnd</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># set retrieval parameters</span></span></span>
+<span class="r-in"><span><span class="va">yearStart</span>   <span class="op">&lt;-</span> <span class="fl">2014</span></span></span>
+<span class="r-in"><span><span class="va">yearEnd</span>     <span class="op">&lt;-</span> <span class="fl">2014</span></span></span>
+<span class="r-in"><span><span class="va">siteNumber</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'01578310'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># regular retrieval (default usage)</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">getUSGSflow</span><span class="op">(</span><span class="va">siteNumber</span>, <span class="va">yearStart</span>, <span class="va">yearEnd</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -135,7 +148,7 @@ value is missing, then the corresponding data qualifier fields is set to
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

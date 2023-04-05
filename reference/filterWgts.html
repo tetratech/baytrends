@@ -19,7 +19,7 @@ be used as a vector of weights in stats::filter"><!-- mathjax --><script src="ht
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -67,29 +67,34 @@ be used as a vector of weights in stats::filter</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">filterWgts</span><span class="op">(</span>n <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"weighted"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">filterWgts</span><span class="op">(</span>n <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"weighted"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n</dt>
 <dd><p>number of values</p></dd>
+
+
 <dt>type</dt>
 <dd><p>Averaging method ("uniform" [even], "weighted" [default], or "centered") for creating weights.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns vector of weights</p>
+    
+
+<p>Returns vector of weights</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">wgts</span><span class="op">&lt;-</span> <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">0</span>,<span class="st">"uniform"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">wgts</span><span class="op">&lt;-</span> <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">7</span>,<span class="st">"uniform"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">wgts</span><span class="op">&lt;-</span> <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">7</span>,<span class="st">"centered"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">wgts</span><span class="op">&lt;-</span> <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">7</span>,<span class="st">"weighted"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">7</span>,<span class="st">"weighted"</span><span class="op">)</span>, sides<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">wgts</span><span class="op">&lt;-</span> <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">0</span>,<span class="st">"uniform"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wgts</span><span class="op">&lt;-</span> <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">7</span>,<span class="st">"uniform"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wgts</span><span class="op">&lt;-</span> <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">7</span>,<span class="st">"centered"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wgts</span><span class="op">&lt;-</span> <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">7</span>,<span class="st">"weighted"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu">filterWgts</span><span class="op">(</span><span class="fl">7</span>,<span class="st">"weighted"</span><span class="op">)</span>, sides<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> End = 100 </span>
@@ -112,7 +117,7 @@ be used as a vector of weights in stats::filter</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

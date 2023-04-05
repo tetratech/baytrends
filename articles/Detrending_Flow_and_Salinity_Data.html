@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
 <a href="mailto:Jon.Harcum@tetratech.com" class="email">Jon.Harcum@tetratech.com</a> and <a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a>
 </h4>
             
-            <h4 data-toc-skip class="date">2022-05-05</h4>
+            <h4 data-toc-skip class="date">2023-04-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tetratech/baytrends/blob/HEAD/vignettes/Detrending_Flow_and_Salinity_Data.Rmd" class="external-link"><code>vignettes/Detrending_Flow_and_Salinity_Data.Rmd</code></a></small>
       <div class="hidden name"><code>Detrending_Flow_and_Salinity_Data.Rmd</code></div>
@@ -104,13 +104,13 @@
 </h2>
 <p>The first step is to load the baytrends library. Loading baytrends will result in loading multiple additional libraries as well.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading:baytrends v2.0.8.9001</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'baytrends'</span>
-<span class="co">#&gt; The following object is masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     nobs</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading:baytrends v2.0.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'baytrends'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     nobs</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="seasonally-detrended-flow">Seasonally Detrended Flow<a class="anchor" aria-label="anchor" href="#seasonally-detrended-flow"></a>
@@ -167,24 +167,24 @@
 <p>To best match up with water quality data, we recommend retrieving flow data for one year prior to the first year of water quality data. This allows for creating a time-averaged flow data set and not loose the first few months of water quality data due to lack of matching flow data. Data retrievals should also be made in light of the time needed by the USGS to review and approve their flow records.</p>
 <p>Information about the settings for dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel, lowess.f, span, and max.fill are described in the help file for this function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span>
-<span class="co"># Define Function Inputs</span>
-<span class="va">usgsGageID</span>    <span class="op">&lt;-</span> <span class="va">usgsGages</span><span class="op">$</span><span class="va">usgsGageID</span> <span class="co"># all RIM stations</span>
-<span class="va">siteName</span>      <span class="op">&lt;-</span> <span class="va">usgsGages</span><span class="op">$</span><span class="va">siteName</span>   <span class="co"># all RIM stations</span>
-<span class="va">yearStart</span>     <span class="op">&lt;-</span> <span class="fl">1983</span>
-<span class="va">yearEnd</span>       <span class="op">&lt;-</span> <span class="fl">2017</span>
-<span class="va">dvAvgWinSel</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">90</span>, <span class="fl">120</span>, <span class="fl">150</span>, <span class="fl">180</span>, <span class="fl">210</span><span class="op">)</span>
-<span class="va">dvAvgWgtSel</span>   <span class="op">&lt;-</span> <span class="st">"uniform"</span>
-<span class="va">dvAvgSidesSel</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">lowess.f</span>      <span class="op">&lt;-</span> <span class="fl">0.2</span>
-
-<span class="co"># Run detrended.flow function</span>
-<span class="va">flow.detrended</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/detrended.flow.html">detrended.flow</a></span><span class="op">(</span><span class="va">usgsGageID</span>, <span class="va">siteName</span>, <span class="va">yearStart</span>, <span class="va">yearEnd</span>
-                                 , <span class="va">dvAvgWinSel</span>, <span class="va">dvAvgWgtSel</span>, <span class="va">dvAvgSidesSel</span>
-                                 , <span class="va">lowess.f</span><span class="op">)</span>
-
-<span class="co"># Save list to data file separate use</span>
-<span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">flow.detrended</span>, file<span class="op">=</span><span class="st">'mySeasonallyDetrendedFlow.rda'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
+<span><span class="co"># Define Function Inputs</span></span>
+<span><span class="va">usgsGageID</span>    <span class="op">&lt;-</span> <span class="va">usgsGages</span><span class="op">$</span><span class="va">usgsGageID</span> <span class="co"># all RIM stations</span></span>
+<span><span class="va">siteName</span>      <span class="op">&lt;-</span> <span class="va">usgsGages</span><span class="op">$</span><span class="va">siteName</span>   <span class="co"># all RIM stations</span></span>
+<span><span class="va">yearStart</span>     <span class="op">&lt;-</span> <span class="fl">1983</span></span>
+<span><span class="va">yearEnd</span>       <span class="op">&lt;-</span> <span class="fl">2017</span></span>
+<span><span class="va">dvAvgWinSel</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">90</span>, <span class="fl">120</span>, <span class="fl">150</span>, <span class="fl">180</span>, <span class="fl">210</span><span class="op">)</span></span>
+<span><span class="va">dvAvgWgtSel</span>   <span class="op">&lt;-</span> <span class="st">"uniform"</span></span>
+<span><span class="va">dvAvgSidesSel</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">lowess.f</span>      <span class="op">&lt;-</span> <span class="fl">0.2</span></span>
+<span></span>
+<span><span class="co"># Run detrended.flow function</span></span>
+<span><span class="va">flow.detrended</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/detrended.flow.html">detrended.flow</a></span><span class="op">(</span><span class="va">usgsGageID</span>, <span class="va">siteName</span>, <span class="va">yearStart</span>, <span class="va">yearEnd</span></span>
+<span>                                 , <span class="va">dvAvgWinSel</span>, <span class="va">dvAvgWgtSel</span>, <span class="va">dvAvgSidesSel</span></span>
+<span>                                 , <span class="va">lowess.f</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Save list to data file separate use</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">flow.detrended</span>, file<span class="op">=</span><span class="st">'mySeasonallyDetrendedFlow.rda'</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h3>
@@ -269,28 +269,28 @@
 </tbody>
 </table>
 <p><em>Table 3. Data Structure Associated with sal</em></p>
-<pre><code><span class="co">#&gt; 'data.frame':    51092 obs. of  4 variables:</span>
-<span class="co">#&gt;  $ station : chr  "LE3.6" "LE3.6" "LE3.6" "LE3.6" ...</span>
-<span class="co">#&gt;  $ date    : POSIXct, format: "1984-06-27 04:00:00" "1984-06-27 04:00:00" ...</span>
-<span class="co">#&gt;  $ layer   : chr  "S" "M" "M" "B" ...</span>
-<span class="co">#&gt;  $ salinity: num  11.7 12.1 12.6 13.4 21.6 ...</span></code></pre>
+<pre><code><span><span class="co">#&gt; 'data.frame':    51092 obs. of  4 variables:</span></span>
+<span><span class="co">#&gt;  $ station : chr  "LE3.6" "LE3.6" "LE3.6" "LE3.6" ...</span></span>
+<span><span class="co">#&gt;  $ date    : POSIXct, format: "1984-06-27 04:00:00" "1984-06-27 04:00:00" ...</span></span>
+<span><span class="co">#&gt;  $ layer   : chr  "S" "M" "M" "B" ...</span></span>
+<span><span class="co">#&gt;  $ salinity: num  11.7 12.1 12.6 13.4 21.6 ...</span></span></code></pre>
 <p>The below code chunk is an example for analyzing all of the data contained in the sample data frame, sal. As currently developed, detrended.salinity will average salinity in the surface (‘S’) and above pycnocline (‘AP’) layers to create an average salinity value for the surface and above pycnocline (SAP) layer. detrended.salinity will also average salinity in the bottom (‘B’) and below pycnocline (‘AP’) layers to create an average salinity value for the bottom and below pycnocline (BAP) layer.</p>
 <p>The use and settings for dvAvgWinSel, lowess.f, minObs, and minObs.sd are described in the help file. The detrened.salinity function will assume the user wants to evaluate the salinity for all of the stations in sal and for all the years of available data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># Define Function Inputs</span>
-<span class="va">df.sal</span>      <span class="op">&lt;-</span> <span class="va">sal</span>
-<span class="va">dvAvgWinSel</span> <span class="op">&lt;-</span> <span class="fl">30</span>
-<span class="va">lowess.f</span>    <span class="op">&lt;-</span> <span class="fl">0.2</span>
-<span class="va">minObs</span>      <span class="op">&lt;-</span> <span class="fl">40</span>
-<span class="va">minObs.sd</span>   <span class="op">&lt;-</span> <span class="fl">10</span>
-                 
-<span class="co"># Run Function</span>
-<span class="va">salinity.detrended</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/detrended.salinity.html">detrended.salinity</a></span><span class="op">(</span><span class="va">df.sal</span>, <span class="va">dvAvgWinSel</span>, 
-                                 <span class="va">lowess.f</span>, <span class="va">minObs</span>, <span class="va">minObs.sd</span><span class="op">)</span>   
-
-<span class="co"># Save list to data file separate use</span>
-<span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">salinity.detrended</span>, file<span class="op">=</span><span class="st">'mySeasonallyDetrendedSalinity.rda'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="co"># Define Function Inputs</span></span>
+<span><span class="va">df.sal</span>      <span class="op">&lt;-</span> <span class="va">sal</span></span>
+<span><span class="va">dvAvgWinSel</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
+<span><span class="va">lowess.f</span>    <span class="op">&lt;-</span> <span class="fl">0.2</span></span>
+<span><span class="va">minObs</span>      <span class="op">&lt;-</span> <span class="fl">40</span></span>
+<span><span class="va">minObs.sd</span>   <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span>                 </span>
+<span><span class="co"># Run Function</span></span>
+<span><span class="va">salinity.detrended</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/detrended.salinity.html">detrended.salinity</a></span><span class="op">(</span><span class="va">df.sal</span>, <span class="va">dvAvgWinSel</span>, </span>
+<span>                                 <span class="va">lowess.f</span>, <span class="va">minObs</span>, <span class="va">minObs.sd</span><span class="op">)</span>   </span>
+<span></span>
+<span><span class="co"># Save list to data file separate use</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">salinity.detrended</span>, file<span class="op">=</span><span class="st">'mySeasonallyDetrendedSalinity.rda'</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="example-1">Example<a class="anchor" aria-label="anchor" href="#example-1"></a>
 </h3>
@@ -307,21 +307,21 @@
 </h2>
 <p>It is now possible to run gam4 using the results of the above analyses. The below code chunk will run the gam4 for surface total nitrogen at station CB5.4.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">dfr</span>       <span class="op">&lt;-</span> <span class="fu"><a href="../reference/analysisOrganizeData.html">analysisOrganizeData</a></span><span class="op">(</span><span class="va">dataCensored</span>, reports <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
-<span class="va">df</span>        <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span>
-<span class="va">analySpec</span> <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span>
-
-<span class="co"># down select analyzed GAM</span>
-<span class="va">analySpec</span><span class="op">$</span><span class="va">gamModels</span> <span class="op">&lt;-</span> <span class="va">analySpec</span><span class="op">$</span><span class="va">gamModels</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>
-
-<span class="va">stat</span> <span class="op">=</span> <span class="st">'CB5.4'</span>; <span class="va">dep</span> <span class="op">=</span> <span class="st">'tn'</span>; <span class="va">layer</span> <span class="op">=</span> <span class="st">'S'</span>;
-<span class="va">gamResult</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gamTest.html">gamTest</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, dep <span class="op">=</span> <span class="va">dep</span>, stat <span class="op">=</span> <span class="va">stat</span>, layer <span class="op">=</span> <span class="va">layer</span>
-                     , analySpec <span class="op">=</span> <span class="va">analySpec</span>
-                     , salinity.detrended <span class="op">=</span> <span class="va">salinity.detrended</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Detrended flow data (flow.detrended) not passed as argument in gamTest,</span>
-<span class="co">#&gt; but models included in analySpec include those with 'flw_sal' term. Consider</span>
-<span class="co">#&gt; passing detrended flow data or reducing models specified in analySpec.</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">dfr</span>       <span class="op">&lt;-</span> <span class="fu"><a href="../reference/analysisOrganizeData.html">analysisOrganizeData</a></span><span class="op">(</span><span class="va">dataCensored</span>, reports <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
+<span><span class="va">df</span>        <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">analySpec</span> <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># down select analyzed GAM</span></span>
+<span><span class="va">analySpec</span><span class="op">$</span><span class="va">gamModels</span> <span class="op">&lt;-</span> <span class="va">analySpec</span><span class="op">$</span><span class="va">gamModels</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">stat</span> <span class="op">=</span> <span class="st">'CB5.4'</span>; <span class="va">dep</span> <span class="op">=</span> <span class="st">'tn'</span>; <span class="va">layer</span> <span class="op">=</span> <span class="st">'S'</span>;</span>
+<span><span class="va">gamResult</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gamTest.html">gamTest</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, dep <span class="op">=</span> <span class="va">dep</span>, stat <span class="op">=</span> <span class="va">stat</span>, layer <span class="op">=</span> <span class="va">layer</span></span>
+<span>                     , analySpec <span class="op">=</span> <span class="va">analySpec</span></span>
+<span>                     , salinity.detrended <span class="op">=</span> <span class="va">salinity.detrended</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Detrended flow data (flow.detrended) not passed as argument in</span></span>
+<span><span class="co">#&gt; gamTest, but models included in analySpec include those with 'flw_sal' term.</span></span>
+<span><span class="co">#&gt; Consider passing detrended flow data or reducing models specified in analySpec.</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="total-nitrogen---non-linear-trend-with-seasint--hydro-adj">Total Nitrogen - Non-linear trend with Seas+Int. &amp; Hydro Adj<a class="anchor" aria-label="anchor" href="#total-nitrogen---non-linear-trend-with-seasint--hydro-adj"></a>
 </h4>
@@ -347,7 +347,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

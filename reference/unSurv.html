@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -63,21 +63,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">unSurv</span><span class="op">(</span><span class="va">x</span>, col_lo <span class="op">=</span> <span class="st">"lo"</span>, col_hi <span class="op">=</span> <span class="st">"hi"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">unSurv</span><span class="op">(</span><span class="va">x</span>, col_lo <span class="op">=</span> <span class="st">"lo"</span>, col_hi <span class="op">=</span> <span class="st">"hi"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector (Surv object)</p></dd>
+
+
 <dt>col_lo</dt>
 <dd><p>Output column name for "lo" values.  Default = "lo"</p></dd>
+
+
 <dt>col_hi</dt>
 <dd><p>Output column name for "hi" values.  Default = "hi"</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a 3-column matrix: lo, hi, type</p>
+    
+
+<p>Returns a 3-column matrix: lo, hi, type</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -100,20 +107,20 @@ Defaults are "lo" and "hi".</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="va">dataCensored</span><span class="op">$</span><span class="va">station</span><span class="op">==</span><span class="st">"CB3.3C"</span></span>
-<span class="r-in">          <span class="op">&amp;</span> <span class="va">dataCensored</span><span class="op">$</span><span class="va">date</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"1985-08-01"</span><span class="op">)</span> </span>
-<span class="r-in">          , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"chla"</span><span class="op">)</span><span class="op">]</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="va">dataCensored</span><span class="op">$</span><span class="va">station</span><span class="op">==</span><span class="st">"CB3.3C"</span></span></span>
+<span class="r-in"><span>          <span class="op">&amp;</span> <span class="va">dataCensored</span><span class="op">$</span><span class="va">date</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"1985-08-01"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>          , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"chla"</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "station" "date"    "chla"   </span>
-<span class="r-in"><span class="co"># Default values</span></span>
-<span class="r-in"><span class="va">chla_1</span> <span class="op">&lt;-</span> <span class="fu">unSurv</span><span class="op">(</span><span class="va">df1</span><span class="op">$</span><span class="va">chla</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">chla_1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Default values</span></span></span>
+<span class="r-in"><span><span class="va">chla_1</span> <span class="op">&lt;-</span> <span class="fu">unSurv</span><span class="op">(</span><span class="va">df1</span><span class="op">$</span><span class="va">chla</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">chla_1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "lo"   "hi"   "type"</span>
-<span class="r-in"><span class="co"># User values</span></span>
-<span class="r-in"><span class="va">chla_2</span> <span class="op">&lt;-</span> <span class="fu">unSurv</span><span class="op">(</span><span class="va">df1</span><span class="op">$</span><span class="va">chla</span>, <span class="st">"LOW"</span>, <span class="st">"HIGH"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">chla_2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># User values</span></span></span>
+<span class="r-in"><span><span class="va">chla_2</span> <span class="op">&lt;-</span> <span class="fu">unSurv</span><span class="op">(</span><span class="va">df1</span><span class="op">$</span><span class="va">chla</span>, <span class="st">"LOW"</span>, <span class="st">"HIGH"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">chla_2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "LOW"  "HIGH" "type"</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -128,7 +135,7 @@ Defaults are "lo" and "hi".</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -19,7 +19,7 @@ event eventSeq.  Added from smwrBase."><!-- mathjax --><script src="https://cdnj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -67,11 +67,11 @@ event <code>eventSeq</code>.  Added from smwrBase.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">eventNum</span><span class="op">(</span><span class="va">event</span>, reset <span class="op">=</span> <span class="cn">FALSE</span>, na.fix <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">eventSeq</span><span class="op">(</span><span class="va">eventno</span><span class="op">)</span>
-
-<span class="fu">eventLen</span><span class="op">(</span><span class="va">eventno</span>, summary <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">eventNum</span><span class="op">(</span><span class="va">event</span>, reset <span class="op">=</span> <span class="cn">FALSE</span>, na.fix <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">eventSeq</span><span class="op">(</span><span class="va">eventno</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">eventLen</span><span class="op">(</span><span class="va">eventno</span>, summary <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,48 +79,70 @@ event <code>eventSeq</code>.  Added from smwrBase.</p>
     <dl><dt>event</dt>
 <dd><p>a logical vector where <code>TRUE</code> indicates that an event
 occurred. Missing values are treated as instructed by <code>na.fix</code>.</p></dd>
+
+
 <dt>reset</dt>
 <dd><p>a logical value indicating whether the event is assumed to
 continue until the next event, or only while event is <code>TRUE</code>.</p></dd>
+
+
 <dt>na.fix</dt>
 <dd><p>the value to use where event has missing values (<code>NA</code>s).</p></dd>
+
+
 <dt>eventno</dt>
 <dd><p>an integer vector indicating the event number. Generally the
 output from the <code>eventNum</code> function.</p></dd>
+
+
 <dt>summary</dt>
 <dd><p>a logical value, controlling output. See <b>Value</b> for
 details.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The function <code>eventNum</code> returns an integer vector the same
-length as <code>event</code> indicating the event sequence number.<br>The function <code>eventLen</code> returns an integer vector the same length as
-<code>eventno</code> indicating the sequence length of the event if <code>summary</code>is <code>FALSE</code>, or a named integer vector indicating the sequence length of
-each event if <code>summary</code> is <code>TRUE</code>.<br>The function <code>eventSeq</code> returns an integer vector the same length as
+    
+
+<p>The function <code>eventNum</code> returns an integer vector the same
+length as <code>event</code> indicating the event sequence number.<br></p>
+
+
+
+<p>The function <code>eventLen</code> returns an integer vector the same length as
+<code>eventno</code> indicating the sequence length of the event if <code>summary</code></p>
+
+
+<p>is <code>FALSE</code>, or a named integer vector indicating the sequence length of
+each event if <code>summary</code> is <code>TRUE</code>.<br></p>
+
+
+
+<p>The function <code>eventSeq</code> returns an integer vector the same length as
 <code>eventno</code> indicating the sequence number of each element in the
 event.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co">## Notice the difference caused by setting reset to TRUE</span></span>
-<span class="r-in"><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Notice the difference caused by setting reset to TRUE</span></span></span>
+<span class="r-in"><span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 1 1 1 2 2</span>
-<span class="r-in"><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>, reset<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>, reset<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 1 0 0 2 0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Notice the difference caused by setting reset to TRUE</span></span>
-<span class="r-in"><span class="fu">eventSeq</span><span class="op">(</span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Notice the difference caused by setting reset to TRUE</span></span></span>
+<span class="r-in"><span><span class="fu">eventSeq</span><span class="op">(</span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3 4 1 2</span>
-<span class="r-in"><span class="fu">eventSeq</span><span class="op">(</span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>, reset<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">eventSeq</span><span class="op">(</span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>, reset<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 0 0 1 0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Notice the difference caused by setting reset to TRUE</span></span>
-<span class="r-in"><span class="fu">eventLen</span><span class="op">(</span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>, reset<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Notice the difference caused by setting reset to TRUE</span></span></span>
+<span class="r-in"><span><span class="fu">eventLen</span><span class="op">(</span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>, reset<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 2 0 0 1 0</span>
-<span class="r-in"><span class="co">## This is an example of the summary option</span></span>
-<span class="r-in"><span class="fu">eventLen</span><span class="op">(</span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>, reset<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, summary<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## This is an example of the summary option</span></span></span>
+<span class="r-in"><span><span class="fu">eventLen</span><span class="op">(</span><span class="fu">eventNum</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>, reset<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, summary<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 1 </span>
 </code></pre></div>
@@ -137,7 +159,7 @@ event.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -63,37 +63,52 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">saveDF</span><span class="op">(</span>
-  <span class="va">rObj</span>,
-  note <span class="op">=</span> <span class="cn">NULL</span>,
-  rData <span class="op">=</span> <span class="cn">FALSE</span>,
-  csv <span class="op">=</span> <span class="cn">TRUE</span>,
-  attr <span class="op">=</span> <span class="cn">FALSE</span>,
-  timeStamp <span class="op">=</span> <span class="cn">TRUE</span>,
-  folder <span class="op">=</span> <span class="st">"_save_df"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">saveDF</span><span class="op">(</span></span>
+<span>  <span class="va">rObj</span>,</span>
+<span>  note <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rData <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  csv <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  attr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  timeStamp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  folder <span class="op">=</span> <span class="st">"_save_df"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>rObj</dt>
 <dd><p>Name of R object to save.</p></dd>
+
+
 <dt>note</dt>
 <dd><p>Suffix to include in file name.</p></dd>
+
+
 <dt>rData</dt>
 <dd><p>Logical field to save rObj as an rData file (FALSE [default]).</p></dd>
+
+
 <dt>csv</dt>
 <dd><p>Logical field to save rObj as an a csv file (TRUE [default]).</p></dd>
+
+
 <dt>attr</dt>
 <dd><p>Logical field to save data frame attributes as a text file (FALSE [default]).</p></dd>
+
+
 <dt>timeStamp</dt>
 <dd><p>Logical field to include date/time stamp in file name (TRUE [default]).</p></dd>
+
+
 <dt>folder</dt>
 <dd><p>Subdirectory for saving file ('_save_df is default)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Nothing returned. Saves R object to disk using csv and/or Rdata format.</p>
+    
+
+<p>Nothing returned. Saves R object to disk using csv and/or Rdata format.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -109,11 +124,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">saveDF</span><span class="op">(</span><span class="va">df</span>, <span class="st">'test_note'</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">saveDF</span><span class="op">(</span><span class="va">df</span>, <span class="st">'test_note'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -128,7 +143,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

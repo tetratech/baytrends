@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -63,20 +63,25 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>, imputeOption <span class="op">=</span> <span class="st">"mid"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>, imputeOption <span class="op">=</span> <span class="st">"mid"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>dataframe</p></dd>
+
+
 <dt>imputeOption</dt>
 <dd><p>imputation method [default= "mid"], valid impute options
 are "lower", "upper", "mid", "norm", "lnorm"</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>dataframe where fields with censored data (i.e., Surv objects) are
+    
+
+<p>dataframe where fields with censored data (i.e., Surv objects) are
   transformed into a simple numeric fields</p>
     </div>
     <div id="details">
@@ -96,14 +101,14 @@ Options for substituting the normal [<code>"norm"</code>] or lognormal
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">df</span>  <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="op">]</span></span>
-<span class="r-in"><span class="va">df.lower</span> <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'lower'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df.mid</span>   <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'mid'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df.upper</span> <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'upper'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df.norm</span>  <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'norm'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df.lnorm</span> <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'lnorm'</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">df</span>  <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">df.lower</span> <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'lower'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df.mid</span>   <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'mid'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df.upper</span> <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'upper'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df.norm</span>  <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'norm'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df.lnorm</span> <span class="op">&lt;-</span> <span class="fu">imputeDF</span><span class="op">(</span><span class="va">df</span>,<span class="st">'lnorm'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -118,7 +123,7 @@ Options for substituting the normal [<code>"norm"</code>] or lognormal
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

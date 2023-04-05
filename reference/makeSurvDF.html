@@ -21,7 +21,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -71,21 +71,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">makeSurvDF</span><span class="op">(</span><span class="va">df</span>, suf_lo <span class="op">=</span> <span class="st">"_lo"</span>, suf_hi <span class="op">=</span> <span class="st">"_hi"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">makeSurvDF</span><span class="op">(</span><span class="va">df</span>, suf_lo <span class="op">=</span> <span class="st">"_lo"</span>, suf_hi <span class="op">=</span> <span class="st">"_hi"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>name of data frame</p></dd>
+
+
 <dt>suf_lo</dt>
 <dd><p>Column name suffix for "lo" values.  Default = "_lo"</p></dd>
+
+
 <dt>suf_hi</dt>
 <dd><p>Column name suffix for "hi" values.  Default = "_hi"</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>dataframe with Surv fields</p>
+    
+
+<p>dataframe with Surv fields</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -102,38 +109,38 @@ set to NA with a summary report outputted to the console.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "station"  "date"     "layer"    "secchi"   "salinity" "do"      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "wtemp"    "tss"      "chla"     "din"      "nh4"      "no23"    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "po4"      "tdn"      "tdp"      "tn"       "tp"      </span>
-<span class="r-in"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "station"  "date"     "layer"    "secchi"   "salinity" "do"      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "wtemp"    "tss"      "chla_lo"  "chla_hi"  "din_lo"   "din_hi"  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "nh4_lo"   "nh4_hi"   "no23_lo"  "no23_hi"  "po4_lo"   "po4_hi"  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] "tdn_lo"   "tdn_hi"   "tdp_lo"   "tdp_hi"   "tn_lo"    "tn_hi"   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [25] "tp_lo"    "tp_hi"   </span>
-<span class="r-in"><span class="co"># Default values</span></span>
-<span class="r-in"><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu">makeSurvDF</span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Default values</span></span></span>
+<span class="r-in"><span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu">makeSurvDF</span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "station"  "date"     "layer"    "secchi"   "salinity" "do"      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "wtemp"    "tss"      "chla"     "din"      "nh4"      "no23"    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "po4"      "tdn"      "tdp"      "tn"       "tp"      </span>
-<span class="r-in"><span class="co"># User values</span></span>
-<span class="r-in"><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"_LOW"</span>, <span class="st">"_HIGH"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># User values</span></span></span>
+<span class="r-in"><span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"_LOW"</span>, <span class="st">"_HIGH"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "station"   "date"      "layer"     "secchi"    "salinity"  "do"       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "wtemp"     "tss"       "chla_LOW"  "chla_HIGH" "din_LOW"   "din_HIGH" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "nh4_LOW"   "nh4_HIGH"  "no23_LOW"  "no23_HIGH" "po4_LOW"   "po4_HIGH" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] "tdn_LOW"   "tdn_HIGH"  "tdp_LOW"   "tdp_HIGH"  "tn_LOW"    "tn_HIGH"  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [25] "tp_LOW"    "tp_HIGH"  </span>
-<span class="r-in"><span class="va">df4</span> <span class="op">&lt;-</span> <span class="fu">makeSurvDF</span><span class="op">(</span><span class="va">df3</span>, <span class="st">"_LOW"</span>, <span class="st">"_HIGH"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df4</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df4</span> <span class="op">&lt;-</span> <span class="fu">makeSurvDF</span><span class="op">(</span><span class="va">df3</span>, <span class="st">"_LOW"</span>, <span class="st">"_HIGH"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "station"  "date"     "layer"    "secchi"   "salinity" "do"      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "wtemp"    "tss"      "chla"     "din"      "nh4"      "no23"    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "po4"      "tdn"      "tdp"      "tn"       "tp"      </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -148,7 +155,7 @@ set to NA with a summary report outputted to the console.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

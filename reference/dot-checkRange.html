@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -63,126 +63,137 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, <span class="va">var</span>, varScrn <span class="op">=</span> <span class="cn">NULL</span>, numNA <span class="op">=</span> <span class="cn">FALSE</span>, deleteOption <span class="op">=</span> <span class="st">"pass"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, <span class="va">var</span>, varScrn <span class="op">=</span> <span class="cn">NULL</span>, numNA <span class="op">=</span> <span class="cn">FALSE</span>, deleteOption <span class="op">=</span> <span class="st">"pass"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>Data frame with data to check</p></dd>
+
+
 <dt>var</dt>
 <dd><p>Variable to perform screen check on</p></dd>
+
+
 <dt>varScrn</dt>
 <dd><p>Range to check (see examples)</p></dd>
+
+
 <dt>numNA</dt>
 <dd><p>How to treat missing numeric values (TRUE: treat as pass,
 FALSE[default]: treat as fail)</p></dd>
+
+
 <dt>deleteOption</dt>
 <dd><p>Option for how to return df ("pass": return rows that
 pass check, "fail": return rows that fail check, "mark": return column with
 TRUE/FALSE for pass/fail)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data frame modified based on user selected options. see attributes
+    
+
+<p>data frame modified based on user selected options. see attributes
   for screening results</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># create an example data frame</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">       x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X1"</span>,<span class="st">"Y2"</span>,<span class="st">"A1"</span>,<span class="st">"B2"</span>,<span class="st">"C1"</span>, <span class="st">"X1"</span>,<span class="st">""</span>,<span class="st">"A1"</span>,<span class="st">""</span>,<span class="st">"C1"</span><span class="op">)</span>,</span>
-<span class="r-in">       x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">14</span> <span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> ,</span>
-<span class="r-in">       x3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1/10/2008"</span>, <span class="st">"1/21/2008"</span>, <span class="st">"3/1/2008"</span>, <span class="st">"3/26/1993"</span>,</span>
-<span class="r-in">                         <span class="st">"11/1/2012"</span>, <span class="st">"6/10/2000"</span>, <span class="st">"8/2/1990"</span>, <span class="st">"7/8/2005"</span>,</span>
-<span class="r-in">                         <span class="st">"1/6/2008"</span>, <span class="st">"9/11/2008"</span><span class="op">)</span>,</span>
-<span class="r-in">                         format<span class="op">=</span><span class="st">"%m/%d/%Y"</span><span class="op">)</span>, stringsAsFactors <span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># add a few missing values</span></span>
-<span class="r-in"><span class="va">df</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span><span class="op">=</span><span class="cn">NA</span></span>
-<span class="r-in"><span class="va">df</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span><span class="op">=</span><span class="cn">NA</span></span>
-<span class="r-in"><span class="va">df</span><span class="op">[</span><span class="fl">5</span>,<span class="fl">3</span><span class="op">]</span><span class="op">=</span><span class="cn">NA</span></span>
-<span class="r-in"><span class="va">df</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># create an example data frame</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>       x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X1"</span>,<span class="st">"Y2"</span>,<span class="st">"A1"</span>,<span class="st">"B2"</span>,<span class="st">"C1"</span>, <span class="st">"X1"</span>,<span class="st">""</span>,<span class="st">"A1"</span>,<span class="st">""</span>,<span class="st">"C1"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">14</span> <span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> ,</span></span>
+<span class="r-in"><span>       x3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1/10/2008"</span>, <span class="st">"1/21/2008"</span>, <span class="st">"3/1/2008"</span>, <span class="st">"3/26/1993"</span>,</span></span>
+<span class="r-in"><span>                         <span class="st">"11/1/2012"</span>, <span class="st">"6/10/2000"</span>, <span class="st">"8/2/1990"</span>, <span class="st">"7/8/2005"</span>,</span></span>
+<span class="r-in"><span>                         <span class="st">"1/6/2008"</span>, <span class="st">"9/11/2008"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                         format<span class="op">=</span><span class="st">"%m/%d/%Y"</span><span class="op">)</span>, stringsAsFactors <span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># add a few missing values</span></span></span>
+<span class="r-in"><span><span class="va">df</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span><span class="op">=</span><span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="va">df</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span><span class="op">=</span><span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="va">df</span><span class="op">[</span><span class="fl">5</span>,<span class="fl">3</span><span class="op">]</span><span class="op">=</span><span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="va">df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      x1        x2         x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.135507 2008-01-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.420539 2008-01-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.296587 2008-01-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.556860 2008-01-21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    A1        NA 2008-03-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.964021 1993-03-26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.191043       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.242800 2000-06-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.021523 1990-08-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.787449 2005-07-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.824324 2008-01-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.283719 2008-09-11</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># establish allowable values for screening</span></span>
-<span class="r-in"><span class="va">x1Scrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"B2"</span>, <span class="st">"C1"</span>, <span class="st">"Y2"</span><span class="op">)</span><span class="op">)</span>   <span class="co"># character</span></span>
-<span class="r-in"><span class="va">x2Scrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">13</span><span class="op">)</span>                                   <span class="co"># min/max value</span></span>
-<span class="r-in"><span class="va">x3Scrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1999-01-01"</span>, <span class="st">"2008-09-10"</span><span class="op">)</span><span class="op">)</span> <span class="co"># min/max date </span></span>
-<span class="r-in"><span class="co"># (POSIXct format)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># return df with new column indicating pass [TRUE] / fail [FALSE]</span></span>
-<span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x1"</span>, varScrn<span class="op">=</span><span class="va">x1Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.128554 1993-03-26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.200456       &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.975209 2000-06-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.304979 1990-08-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.094617 2005-07-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.184442 2008-01-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.529047 2008-09-11</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># establish allowable values for screening</span></span></span>
+<span class="r-in"><span><span class="va">x1Scrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"B2"</span>, <span class="st">"C1"</span>, <span class="st">"Y2"</span><span class="op">)</span><span class="op">)</span>   <span class="co"># character</span></span></span>
+<span class="r-in"><span><span class="va">x2Scrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">13</span><span class="op">)</span>                                   <span class="co"># min/max value</span></span></span>
+<span class="r-in"><span><span class="va">x3Scrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1999-01-01"</span>, <span class="st">"2008-09-10"</span><span class="op">)</span><span class="op">)</span> <span class="co"># min/max date </span></span></span>
+<span class="r-in"><span><span class="co"># (POSIXct format)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># return df with new column indicating pass [TRUE] / fail [FALSE]</span></span></span>
+<span class="r-in"><span><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x1"</span>, varScrn<span class="op">=</span><span class="va">x1Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      x1        x2         x3 dfScrn</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.135507 2008-01-10  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.420539 2008-01-21   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.296587 2008-01-10  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.556860 2008-01-21   TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    A1        NA 2008-03-01   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.964021 1993-03-26   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.191043       &lt;NA&gt;   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.242800 2000-06-10  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.021523 1990-08-02  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.787449 2005-07-08   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.824324 2008-01-06  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.283719 2008-09-11   TRUE</span>
-<span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x2"</span>, varScrn<span class="op">=</span><span class="va">x2Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.128554 1993-03-26   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.200456       &lt;NA&gt;   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.975209 2000-06-10  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.304979 1990-08-02  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.094617 2005-07-08   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.184442 2008-01-06  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.529047 2008-09-11   TRUE</span>
+<span class="r-in"><span><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x2"</span>, varScrn<span class="op">=</span><span class="va">x2Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      x1        x2         x3 dfScrn</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.135507 2008-01-10  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.420539 2008-01-21  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.296587 2008-01-10  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.556860 2008-01-21  FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    A1        NA 2008-03-01  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.964021 1993-03-26   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.191043       &lt;NA&gt;   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.242800 2000-06-10   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.021523 1990-08-02   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.787449 2005-07-08   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.824324 2008-01-06  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.283719 2008-09-11  FALSE</span>
-<span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x3"</span>, varScrn<span class="op">=</span><span class="va">x3Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.128554 1993-03-26   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.200456       &lt;NA&gt;   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.975209 2000-06-10   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.304979 1990-08-02   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.094617 2005-07-08   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.184442 2008-01-06  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.529047 2008-09-11  FALSE</span>
+<span class="r-in"><span><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x3"</span>, varScrn<span class="op">=</span><span class="va">x3Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'mark'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      x1        x2         x3 dfScrn</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.135507 2008-01-10   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.420539 2008-01-21   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  &lt;NA&gt;  5.296587 2008-01-10   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Y2  6.556860 2008-01-21   TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    A1        NA 2008-03-01   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.964021 1993-03-26  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.191043       &lt;NA&gt;  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.242800 2000-06-10   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.021523 1990-08-02  FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.787449 2005-07-08   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.824324 2008-01-06   TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.283719 2008-09-11  FALSE</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># return df with only rows that pass check</span></span>
-<span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x1"</span>, varScrn<span class="op">=</span><span class="va">x1Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    B2  8.128554 1993-03-26  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    C1  9.200456       &lt;NA&gt;  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    X1 10.975209 2000-06-10   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       11.304979 1990-08-02  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    A1 12.094617 2005-07-08   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       13.184442 2008-01-06   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   C1 14.529047 2008-09-11  FALSE</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># return df with only rows that pass check</span></span></span>
+<span class="r-in"><span><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x1"</span>, varScrn<span class="op">=</span><span class="va">x1Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    x1        x2         x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Y2  6.420539 2008-01-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Y2  6.556860 2008-01-21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  A1        NA 2008-03-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  B2  8.964021 1993-03-26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  C1  9.191043       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  A1 12.787449 2005-07-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 C1 14.283719 2008-09-11</span>
-<span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x2"</span>, varScrn<span class="op">=</span><span class="va">x2Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  B2  8.128554 1993-03-26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  C1  9.200456       &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  A1 12.094617 2005-07-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 C1 14.529047 2008-09-11</span>
+<span class="r-in"><span><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x2"</span>, varScrn<span class="op">=</span><span class="va">x2Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   x1        x2         x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 B2  8.964021 1993-03-26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 C1  9.191043       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 X1 10.242800 2000-06-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    11.021523 1990-08-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8 A1 12.787449 2005-07-08</span>
-<span class="r-in"><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x3"</span>, varScrn<span class="op">=</span><span class="va">x3Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 B2  8.128554 1993-03-26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 C1  9.200456       &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 X1 10.975209 2000-06-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    11.304979 1990-08-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8 A1 12.094617 2005-07-08</span>
+<span class="r-in"><span><span class="fu">.checkRange</span><span class="op">(</span><span class="va">df</span>, var<span class="op">=</span><span class="st">"x3"</span>, varScrn<span class="op">=</span><span class="va">x3Scrn</span>, numNA<span class="op">=</span><span class="cn">FALSE</span>, deleteOption<span class="op">=</span><span class="st">'pass'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     x1        x2         x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt;NA&gt;  5.135507 2008-01-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Y2  6.420539 2008-01-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt;NA&gt;  5.296587 2008-01-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Y2  6.556860 2008-01-21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   A1        NA 2008-03-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   X1 10.242800 2000-06-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   A1 12.787449 2005-07-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      13.824324 2008-01-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   X1 10.975209 2000-06-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   A1 12.094617 2005-07-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      13.184442 2008-01-06</span>
 </code></pre></div>
     </div>
   </div>
@@ -197,7 +208,7 @@ TRUE/FALSE for pass/fail)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

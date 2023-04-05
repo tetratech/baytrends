@@ -26,7 +26,7 @@ an averaged values based on dvAvgWin, dvAvgWgt, and dvAvgSides and store as
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -81,14 +81,14 @@ an averaged values based on dvAvgWin, dvAvgWgt, and dvAvgSides and store as
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">seasAdjflow</span><span class="op">(</span>
-  dvFlow <span class="op">=</span> <span class="va">dvFlow</span>,
-  siteNumber <span class="op">=</span> <span class="cn">NULL</span>,
-  dvAvgWin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">31</span><span class="op">)</span>,
-  dvAvgWgt <span class="op">=</span> <span class="st">"weighted"</span>,
-  dvAvgSides <span class="op">=</span> <span class="fl">1</span>,
-  plotResid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">seasAdjflow</span><span class="op">(</span></span>
+<span>  dvFlow <span class="op">=</span> <span class="va">dvFlow</span>,</span>
+<span>  siteNumber <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dvAvgWin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">31</span><span class="op">)</span>,</span>
+<span>  dvAvgWgt <span class="op">=</span> <span class="st">"weighted"</span>,</span>
+<span>  dvAvgSides <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  plotResid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -97,37 +97,50 @@ an averaged values based on dvAvgWin, dvAvgWgt, and dvAvgSides and store as
 <dd><p>data frame with daily flow data. The flow and data qualifier
 code for each site is organized into two columns (e.g., "q01594440",
 "q01594440cd" for USGS gage 01594440)</p></dd>
+
+
 <dt>siteNumber</dt>
 <dd><p>a single USGS gage ID</p></dd>
+
+
 <dt>dvAvgWin</dt>
 <dd><p>Averaging window (days) for smoothing the residuals of the
 seasonally adjusted daily flow values.</p></dd>
+
+
 <dt>dvAvgWgt</dt>
 <dd><p>Averaging method ("uniform", "weighted" [default], or
 "centered") for creating weights. If using "weighted" then use
 dvAvgSides=1.  If using "centered" then use dvAvgSides=2.</p></dd>
+
+
 <dt>dvAvgSides</dt>
 <dd><p>If dvAvgSides=1 only past values are used, if dvAvgSides=2
 then values are centered around lag 0.</p></dd>
+
+
 <dt>plotResid</dt>
 <dd><p>plot residuals for selected averaging windows.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>return data frame of flow data with additional seasonally adjusted values</p>
+    
+
+<p>return data frame of flow data with additional seasonally adjusted values</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#Set Retrieval Parameters</span></span>
-<span class="r-in"><span class="va">yearStart</span>   <span class="op">&lt;-</span> <span class="fl">1983</span></span>
-<span class="r-in"><span class="va">yearEnd</span>     <span class="op">&lt;-</span> <span class="fl">2015</span></span>
-<span class="r-in"><span class="va">siteNumbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01578310"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Regular Retrieval (default usage)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="getUSGSflow.html">getUSGSflow</a></span><span class="op">(</span><span class="va">siteNumbers</span>, <span class="va">yearStart</span>, <span class="va">yearEnd</span>, fill<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Apply default smoothing</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">seasAdjflow</span><span class="op">(</span><span class="va">df</span>,<span class="st">"01578310"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#Set Retrieval Parameters</span></span></span>
+<span class="r-in"><span><span class="va">yearStart</span>   <span class="op">&lt;-</span> <span class="fl">1983</span></span></span>
+<span class="r-in"><span><span class="va">yearEnd</span>     <span class="op">&lt;-</span> <span class="fl">2015</span></span></span>
+<span class="r-in"><span><span class="va">siteNumbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01578310"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Regular Retrieval (default usage)</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="getUSGSflow.html">getUSGSflow</a></span><span class="op">(</span><span class="va">siteNumbers</span>, <span class="va">yearStart</span>, <span class="va">yearEnd</span>, fill<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Apply default smoothing</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">seasAdjflow</span><span class="op">(</span><span class="va">df</span>,<span class="st">"01578310"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="seasAdjflow-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -137,7 +150,7 @@ then values are centered around lag 0.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -152,7 +165,7 @@ then values are centered around lag 0.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

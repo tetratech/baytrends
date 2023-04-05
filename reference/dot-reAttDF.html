@@ -21,7 +21,7 @@ around the issue of changed structure.)"><!-- mathjax --><script src="https://cd
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -71,32 +71,37 @@ around the issue of changed structure.)</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">.reAttDF</span><span class="op">(</span><span class="va">df1</span>, <span class="va">df0</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.reAttDF</span><span class="op">(</span><span class="va">df1</span>, <span class="va">df0</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df1</dt>
 <dd><p>new data frame</p></dd>
+
+
 <dt>df0</dt>
 <dd><p>old data frame</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>n/a</p>
+    
+
+<p>n/a</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># create data frame</span></span>
-<span class="r-in"><span class="va">df0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span> <span class="op">(</span>sta<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"A"</span><span class="op">)</span>, lay<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>,<span class="st">"C"</span><span class="op">)</span>, x1 <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fl">2</span><span class="op">)</span>, x2 <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="fl">4</span>,<span class="fl">14</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#add simple attribute</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">df0</span>, <span class="st">"Attribute1"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"Test attribute1"</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#run aggregate -- loose attributes</span></span>
-<span class="r-in"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">x2</span> <span class="op">~</span> <span class="va">sta</span>, data<span class="op">=</span><span class="va">df0</span>, <span class="va">mean</span>, na.action<span class="op">=</span><span class="va">na.pass</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu">.reAttDF</span><span class="op">(</span><span class="va">df1</span>, <span class="va">df0</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># create data frame</span></span></span>
+<span class="r-in"><span><span class="va">df0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span> <span class="op">(</span>sta<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"A"</span><span class="op">)</span>, lay<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>,<span class="st">"C"</span><span class="op">)</span>, x1 <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fl">2</span><span class="op">)</span>, x2 <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="fl">4</span>,<span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#add simple attribute</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">df0</span>, <span class="st">"Attribute1"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"Test attribute1"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#run aggregate -- loose attributes</span></span></span>
+<span class="r-in"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">x2</span> <span class="op">~</span> <span class="va">sta</span>, data<span class="op">=</span><span class="va">df0</span>, <span class="va">mean</span>, na.action<span class="op">=</span><span class="va">na.pass</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu">.reAttDF</span><span class="op">(</span><span class="va">df1</span>, <span class="va">df0</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -111,7 +116,7 @@ around the issue of changed structure.)</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

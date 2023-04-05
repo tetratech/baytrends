@@ -20,7 +20,7 @@ supplied by this function."><!-- mathjax --><script src="https://cdnjs.cloudflar
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -69,56 +69,91 @@ supplied by this function.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">analysisOrganizeData</span><span class="op">(</span>
-  <span class="va">df</span>,
-  analySpec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,
-  reports <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,
-  parameterList <span class="op">=</span> <span class="cn">NA</span>,
-  stationMasterList <span class="op">=</span> <span class="cn">NA</span>,
-  layerLukup <span class="op">=</span> <span class="cn">NA</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">analysisOrganizeData</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  analySpec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  reports <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>  parameterList <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  stationMasterList <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  layerLukup <span class="op">=</span> <span class="cn">NA</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>Data frame of water quality data</p></dd>
+
+
 <dt>analySpec</dt>
 <dd><p>Specifications for analysis</p></dd>
+
+
 <dt>reports</dt>
 <dd><p>Optional reports about parameters, layers and stations
 [default = c(0,1,2,3)]</p></dd>
+
+
 <dt>parameterList</dt>
 <dd><p>User-supplied dataframe with list of parameters [default
 = NA]</p></dd>
+
+
 <dt>stationMasterList</dt>
 <dd><p>User-supplied dataframe with list of stations
 [default = NA]</p></dd>
+
+
 <dt>layerLukup</dt>
 <dd><p>User-supplied dataframe with list of layers [default = NA]</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
+    
+
+<p>Returns a list. Use dfr[["df"]] and dfr[["analySpec"]] to extract
   updated data frame and updated (or created) analySpec. analySpec is a list
-  that includes the following components:
-  analyTitle       - Analysis trend title
-  parameterFilt    - Parameter filter used for data down selection
-  stationFilt      - Station filter used for data down selection
-  dateFilt         - Date filter for data down selection (default =  c( as.POSIXct('1984-01-01')
-                           , as.POSIXct(Sys.time())))
-  setTZ            - time zone (default = "America/New_York")
-  layerFilt        - Layer filter
-  layerAggOption   - Layer averaging option (default = 0). Other options are:
+  that includes the following components:</p>
+
+
+<p>analyTitle       - Analysis trend title</p>
+
+
+<p>parameterFilt    - Parameter filter used for data down selection</p>
+
+
+<p>stationFilt      - Station filter used for data down selection</p>
+
+
+<p>dateFilt         - Date filter for data down selection (default =  c( as.POSIXct('1984-01-01')
+                           , as.POSIXct(Sys.time())))</p>
+
+
+<p>setTZ            - time zone (default = "America/New_York")</p>
+
+
+<p>layerFilt        - Layer filter</p>
+
+
+<p>layerAggOption   - Layer averaging option (default = 0). Other options are:
   1: combine "S" &amp; "AP" ("SAP"); 2: combine "B" &amp; "BP" ("BBP"); 3: opt 1 &amp; 2
-  ("SAP", "BBP"); 4: combine all ("ALL")); 5: combine "S" and "B" ("SB")
-  obsMin           - Minimum number of observations required to allow GAM
+  ("SAP", "BBP"); 4: combine all ("ALL")); 5: combine "S" and "B" ("SB")</p>
+
+
+<p>obsMin           - Minimum number of observations required to allow GAM
   analysis to proceed for a specific station, parameter, and layer
-  combination (default = 60).
-  obsMinInter      - Minimum number of observations required to allow GAM
-  analysis to proceed for a specific intervention (default = 10).
-  gamAlpha         - Alpha level used GAM analyses (default = 0.05).
-  censorTrim       - Values to apply for trimming data due to too much
+  combination (default = 60).</p>
+  
+
+<p>obsMinInter      - Minimum number of observations required to allow GAM
+  analysis to proceed for a specific intervention (default = 10).</p>
+
+
+<p>gamAlpha         - Alpha level used GAM analyses (default = 0.05).</p>
+
+
+<p>censorTrim       - Values to apply for trimming data due to too much
   censoring (default = c(0.5, 0.4)). First argument indicates fraction of
   observations in a year that are allowed to be censored. Second argument is
   the fraction of years, starting from the beginning of the record, that are
@@ -131,35 +166,65 @@ supplied by this function.</p>
   Similarly, for years 1 and 4, then the first four years are removed. If
   years 1 and 5 have more than 50 percent censoring the data are kept since
   2/5 is not greater than 0.4. Changing this setting to, say, c(0.2,0.4) would require
-  that 80<!-- % of the data in a year to be un-censored. -->  gamModels        - model formulations. See baytrends::loadModels() for 
-  simplified approach for selecting which built-in models to include
-  showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)
-  gamDiffPeriods   - list of time periods (years) used for computing changes
+  that 80<!-- % of the data in a year to be un-censored. --></p>
+
+
+
+<p>gamModels        - model formulations. See baytrends::loadModels() for 
+  simplified approach for selecting which built-in models to include</p>
+  
+
+<p>showGamNumOnPlot	- Show gam option (i.e., 0-6) on gam plots (TRUE/FALSE)</p>
+
+
+<p>gamDiffPeriods   - list of time periods (years) used for computing changes
   (differences). The default options are: full record, 1999/00-present, and
-  2005/06-present.  
-  gamDiffSeasons   - list List of seasons used for sub-annual analyses of
+  2005/06-present.</p>
+
+
+<p>gamDiffSeasons   - list List of seasons used for sub-annual analyses of
   computing differences. The default options include the following: All
   (months 1:12), Spring1 (3:5), Spring2 (months: 4:6)), Summer1 (months:
   6:9)), Summer2 (months: 7:9)), SAV1 (months: 4:10)), SAV2 (months:
-  3:5,9:11)), Winter (months: 1:2)), and Fall (months: 10:12))).
-  gamDiffNumChgYrs - number of years to use in computing differences.
-  gamPenalty       - allow the user to set the mgcv::gam select argument to
+  3:5,9:11)), Winter (months: 1:2)), and Fall (months: 10:12))).</p>
+  
+
+<p>gamDiffNumChgYrs - number of years to use in computing differences.</p>
+
+
+<p>gamPenalty       - allow the user to set the mgcv::gam select argument to
   TRUE, FALSE, or baytrend algorithm default (default = NA). When the default
   option is specified, then the mgcv::gam select argument is set to FALSE
   when none of the data are censored; otherwise (when some censoring exists
-  in the data set) the select argument is set to TRUE
-  gamPenaltyCrit   - edf and F-stat values used to flag ANOVA table results
-  (default = c(1, 9e9))
-  gamCoeffDeltaMaxCrit - convergence criteria for expectation maximization
-  (default = 1e-6)
-  gamFlw_Sal.Wgt.Perc - percentiles of flow [or salinity] to use for
+  in the data set) the select argument is set to TRUE</p>
+
+
+<p>gamPenaltyCrit   - edf and F-stat values used to flag ANOVA table results
+  (default = c(1, 9e9))</p>
+
+
+<p>gamCoeffDeltaMaxCrit - convergence criteria for expectation maximization
+  (default = 1e-6)</p>
+
+
+<p>gamFlw_Sal.Wgt.Perc - percentiles of flow [or salinity] to use for
   computing flow [salinity] averaged result (default = c(0.05, 0.25, 0.50,
-  0.75, 0.95))
-  gamLegend        - default settings for gam figure legend
-  idVar            - primary key for data frame returned as df
-  depVarList       - data frame of dependent variables (useful for setting up gam analyses in for loops)
-  stationList      - data frame of stations (useful for setting up gam analyses in for loops)
-  layerList        - data frame of layers (useful for setting up gam analyses in for loops)</p>
+  0.75, 0.95))</p>
+
+
+<p>gamLegend        - default settings for gam figure legend</p>
+
+
+<p>idVar            - primary key for data frame returned as df</p>
+
+
+<p>depVarList       - data frame of dependent variables (useful for setting up gam analyses in for loops)</p>
+
+
+<p>stationList      - data frame of stations (useful for setting up gam analyses in for loops)</p>
+
+
+<p>layerList        - data frame of layers (useful for setting up gam analyses in for loops)</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -222,9 +287,9 @@ supplied by this function.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># run analysis relying on default specifications, examine analySpec for</span></span>
-<span class="r-in"><span class="co"># default options</span></span>
-<span class="r-in"><span class="va">dfr</span> <span class="op">&lt;-</span> <span class="fu">analysisOrganizeData</span><span class="op">(</span><span class="va">dataCensored</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># run analysis relying on default specifications, examine analySpec for</span></span></span>
+<span class="r-in"><span><span class="co"># default options</span></span></span>
+<span class="r-in"><span><span class="va">dfr</span> <span class="op">&lt;-</span> <span class="fu">analysisOrganizeData</span><span class="op">(</span><span class="va">dataCensored</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
@@ -332,16 +397,16 @@ supplied by this function.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EE3.0        38.2809   -76.0103  FSBMH       01578310        MD-Trib   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TF2.2        38.6907   -77.1111  POTTF_MD    01646500        MD-Potomac</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LE2.2        38.1576   -76.5980  POTMH_MD    01646500        MD-Potomac</span>
-<span class="r-in"><span class="va">df</span>        <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">analySpec</span> <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># analyze bottom dissolved oxygen at 2 stations using only data from 1/1/1995-12/31/2015</span></span>
-<span class="r-in"><span class="va">analySpec</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">analySpec</span><span class="op">$</span><span class="va">parameterFilt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'do'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">analySpec</span><span class="op">$</span><span class="va">layerFilt</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'B'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">analySpec</span><span class="op">$</span><span class="va">stationFilt</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'CB3.3C'</span>, <span class="st">'CB5.4'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">analySpec</span><span class="op">$</span><span class="va">dateFilt</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1995-01-01"</span>, <span class="st">"2015-12-31"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">dfr</span> <span class="op">&lt;-</span> <span class="fu">analysisOrganizeData</span><span class="op">(</span><span class="va">dataCensored</span>, <span class="va">analySpec</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span>        <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">analySpec</span> <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># analyze bottom dissolved oxygen at 2 stations using only data from 1/1/1995-12/31/2015</span></span></span>
+<span class="r-in"><span><span class="va">analySpec</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">analySpec</span><span class="op">$</span><span class="va">parameterFilt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'do'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">analySpec</span><span class="op">$</span><span class="va">layerFilt</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'B'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">analySpec</span><span class="op">$</span><span class="va">stationFilt</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'CB3.3C'</span>, <span class="st">'CB5.4'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">analySpec</span><span class="op">$</span><span class="va">dateFilt</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1995-01-01"</span>, <span class="st">"2015-12-31"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dfr</span> <span class="op">&lt;-</span> <span class="fu">analysisOrganizeData</span><span class="op">(</span><span class="va">dataCensored</span>, <span class="va">analySpec</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
@@ -427,9 +492,9 @@ supplied by this function.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------  --------  ---------  ----------  --------------  ----------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CB3.3C       38.9960   -76.3597  CB3MH       01578310        MD-Main   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CB5.4        37.8001   -76.1747  CB5MH_VA    01578310        VA-All    </span>
-<span class="r-in"><span class="va">df</span>        <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">analySpec</span> <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span><span class="va">df</span>        <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"df"</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">analySpec</span> <span class="op">&lt;-</span> <span class="va">dfr</span><span class="op">[[</span><span class="st">"analySpec"</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -444,7 +509,7 @@ supplied by this function.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

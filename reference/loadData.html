@@ -18,7 +18,7 @@ perform some rudimentary data cleaning."><!-- mathjax --><script src="https://cd
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -65,47 +65,68 @@ perform some rudimentary data cleaning.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">loadData</span><span class="op">(</span>
-  file <span class="op">=</span> <span class="cn">NA</span>,
-  folder <span class="op">=</span> <span class="st">"."</span>,
-  pk <span class="op">=</span> <span class="cn">NA</span>,
-  remDup <span class="op">=</span> <span class="cn">TRUE</span>,
-  remNAcol <span class="op">=</span> <span class="cn">TRUE</span>,
-  remNArow <span class="op">=</span> <span class="cn">TRUE</span>,
-  convDates <span class="op">=</span> <span class="cn">TRUE</span>,
-  tzSel <span class="op">=</span> <span class="st">"America/New_York"</span>,
-  commChar <span class="op">=</span> <span class="st">"#"</span>,
-  naChar <span class="op">=</span> <span class="cn">NA</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">loadData</span><span class="op">(</span></span>
+<span>  file <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  folder <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  pk <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  remDup <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  remNAcol <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  remNArow <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  convDates <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  tzSel <span class="op">=</span> <span class="st">"America/New_York"</span>,</span>
+<span>  commChar <span class="op">=</span> <span class="st">"#"</span>,</span>
+<span>  naChar <span class="op">=</span> <span class="cn">NA</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>file</dt>
 <dd><p>file (can use wildcards, e.g., "*.csv")</p></dd>
+
+
 <dt>folder</dt>
 <dd><p>folder (i.e., directory to look in, can use relative path )</p></dd>
+
+
 <dt>pk</dt>
 <dd><p>vector of columns that form the primary key for data set</p></dd>
+
+
 <dt>remDup</dt>
 <dd><p>logical field indicating whether duplicate rows are deleted</p></dd>
+
+
 <dt>remNAcol</dt>
 <dd><p>logical field indicating whether columns with all NA are deleted</p></dd>
+
+
 <dt>remNArow</dt>
 <dd><p>logical field indicating whether rows with all NA are deleted</p></dd>
+
+
 <dt>convDates</dt>
 <dd><p>vector or logical field indicating whether date-like columns
 should be converted to POSIXct format (see details)</p></dd>
+
+
 <dt>tzSel</dt>
 <dd><p>time zone to use for date conversions (default: "America/New_York")</p></dd>
+
+
 <dt>commChar</dt>
 <dd><p>character for comment line to be skipped</p></dd>
+
+
 <dt>naChar</dt>
 <dd><p>characters to treat as NA</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns data frame</p>
+    
+
+<p>Returns data frame</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -155,7 +176,7 @@ should be converted to POSIXct format (see details)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.8.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
 <a href="mailto:Jon.Harcum@tetratech.com" class="email">Jon.Harcum@tetratech.com</a> and <a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a>
 </h4>
             
-            <h4 data-toc-skip class="date">2022-05-05</h4>
+            <h4 data-toc-skip class="date">2023-04-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tetratech/baytrends/blob/HEAD/vignettes/Processing_Censored_Data.Rmd" class="external-link"><code>vignettes/Processing_Censored_Data.Rmd</code></a></small>
       <div class="hidden name"><code>Processing_Censored_Data.Rmd</code></div>
@@ -112,9 +112,9 @@
 <h3 id="example-code">Example code<a class="anchor" aria-label="anchor" href="#example-code"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span>
-<span class="va">df_in</span>   <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadData.html">loadData</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"ExampleData.csv"</span><span class="op">)</span>
-<span class="va">df_Surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeSurvDF.html">makeSurvDF</a></span><span class="op">(</span><span class="va">df_in</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
+<span><span class="va">df_in</span>   <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadData.html">loadData</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"ExampleData.csv"</span><span class="op">)</span></span>
+<span><span class="va">df_Surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeSurvDF.html">makeSurvDF</a></span><span class="op">(</span><span class="va">df_in</span><span class="op">)</span></span></code></pre></div>
 <p>The remainder of this section discusses the above lines of code by way of example.</p>
 </div>
 <div class="section level3">
@@ -135,7 +135,7 @@
 </h4>
 <p>After importing the above CSV file into an R dataframe, the next step is to convert fields with censored data to Surv objects as depicted in Figure 2 using the code <code>df_Surv &lt;- makeSurvDF(df_in)</code>. Fields shaded in green or blue are column to column comparable to the CSV file. Columns to the right of the break, such as the yellow highlighted column, tdp, is a Surv object and is derived from the two corresponding columns, tdp_lo and tdp_hi in the CSV file (Figure 1). Again, experienced R programmers can make Surv objects independently from baytrends by using the following syntax for each field with censored data using the total dissolved phosphorus data as an example.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_in</span><span class="op">$</span><span class="va">tdp</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">df_in</span><span class="op">$</span><span class="va">tdp_lo</span>, <span class="va">df_in</span><span class="op">$</span><span class="va">tdp_hi</span>, type <span class="op">=</span> <span class="st">"interval2"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_in</span><span class="op">$</span><span class="va">tdp</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">df_in</span><span class="op">$</span><span class="va">tdp_lo</span>, <span class="va">df_in</span><span class="op">$</span><span class="va">tdp_hi</span>, type <span class="op">=</span> <span class="st">"interval2"</span><span class="op">)</span> </span></code></pre></div>
 <p>The baytends function, <code>makeSurvDF</code>, peforms this process for all fields in a dataframe with censored data. By default, <code>makeSurvDF</code> assumes the dataframe employs a suffix of "_lo" to represent the lower bound and "_hi" to represent the upper bound although this can be changed by the user. See help (i.e., ??makeSurvDF) for more information. The <code>makeSurvDF</code> function also performs a quality assurance review of the data to make sure the upper bound is greater than or equal to the lower bound. The function outputs the number of data integrity issues by parameter and sets those observations to missing (NA) so the code can continue whilst the analyst determines the appropriate corrective action.</p>
 <p><img src="wf_example_dataframe.PNG"></p>
 <p><em>Figure 2. Example dataframe with Surv objects.</em></p>
@@ -163,130 +163,130 @@
 </h3>
 <p>In the previous section, the sample code started at the top of the diagram shown in Figure 3 and used <code>loadData</code> and <code>makeSurvDF</code> to arrive at a dataframe with Surv objects as shown at the bottom of the diagram. The example code in this section starts at the bottom of the diagram and goes full circle such that the dataframe df0 is identical to df3.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span>
-
-<span class="co"># Load the first 10 rows of the built-in baytrends dataframe</span>
-<span class="co"># dataCensored into a dataframe and just a few fields.</span>
-<span class="va">df0</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">df0</span>
-
-<span class="co"># Convert the dataframe, df0, that has Surv objects to a </span>
-<span class="co"># dataframe where censored data are represented with </span>
-<span class="co"># "_lo/_hi" field name syntax. </span>
-<span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">df0</span><span class="op">)</span>
-<span class="va">df1</span>
-
-<span class="co"># Save dataframe, df1, where censored data are represented with</span>
-<span class="co"># "_lo/_hi" field name syntax to a csv file in the working </span>
-<span class="co"># directory.</span>
-<span class="fu"><a href="../reference/saveDF.html">saveDF</a></span><span class="op">(</span><span class="va">df1</span>, folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span>
-
-<span class="co"># Load data from csv file where censored data are represented</span>
-<span class="co"># with "_lo/_hi“ field name syntax to a dataframe of same </span>
-<span class="co"># structure.</span>
-<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadData.html">loadData</a></span><span class="op">(</span><span class="st">"*.csv"</span> ,folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span>
-<span class="va">df2</span>
-
-<span class="co"># Convert dataframe, df2, where censored data are represented</span>
-<span class="co"># with "_lo/_hi“ field name syntax to a dataframe with Surv objects.</span>
-<span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeSurvDF.html">makeSurvDF</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
-<span class="va">df3</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Load the first 10 rows of the built-in baytrends dataframe</span></span>
+<span><span class="co"># dataCensored into a dataframe and just a few fields.</span></span>
+<span><span class="va">df0</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">df0</span></span>
+<span></span>
+<span><span class="co"># Convert the dataframe, df0, that has Surv objects to a </span></span>
+<span><span class="co"># dataframe where censored data are represented with </span></span>
+<span><span class="co"># "_lo/_hi" field name syntax. </span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">df0</span><span class="op">)</span></span>
+<span><span class="va">df1</span></span>
+<span></span>
+<span><span class="co"># Save dataframe, df1, where censored data are represented with</span></span>
+<span><span class="co"># "_lo/_hi" field name syntax to a csv file in the working </span></span>
+<span><span class="co"># directory.</span></span>
+<span><span class="fu"><a href="../reference/saveDF.html">saveDF</a></span><span class="op">(</span><span class="va">df1</span>, folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Load data from csv file where censored data are represented</span></span>
+<span><span class="co"># with "_lo/_hi“ field name syntax to a dataframe of same </span></span>
+<span><span class="co"># structure.</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadData.html">loadData</a></span><span class="op">(</span><span class="st">"*.csv"</span> ,folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span></span>
+<span><span class="va">df2</span></span>
+<span></span>
+<span><span class="co"># Convert dataframe, df2, where censored data are represented</span></span>
+<span><span class="co"># with "_lo/_hi“ field name syntax to a dataframe with Surv objects.</span></span>
+<span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeSurvDF.html">makeSurvDF</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span></span>
+<span><span class="va">df3</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="example-output">Example output<a class="anchor" aria-label="anchor" href="#example-output"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading:baytrends v2.0.8.9001</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'baytrends'</span>
-<span class="co">#&gt; The following object is masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     nobs</span>
-
-<span class="co"># Load the first 10 rows of the built-in baytrends dataframe</span>
-<span class="co"># dataCensored into a dataframe and just a few fields. </span>
-<span class="va">df0</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">df0</span>
-<span class="co">#&gt;    station                date layer  tss              tdp                 tp</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span>
-
-<span class="co"># Convert the dataframe, df0, that has Surv objects to a </span>
-<span class="co"># dataframe where censored data are represented with </span>
-<span class="co"># "_lo/_hi" field name syntax. </span>
-<span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">df0</span><span class="op">)</span>
-<span class="va">df1</span>
-<span class="co">#&gt;    station                date layer  tss tdp_lo tdp_hi   tp_lo   tp_hi</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.0360 0.0360 0.05120 0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6 0.0170 0.0170 0.03100 0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8 0.0080 0.0080 0.02520 0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0 0.0255 0.0255 0.04760 0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 0.0000 0.0050 0.02310 0.02810</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 0.0040 0.0065 0.02375 0.02625</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6 0.0320 0.0320 0.04500 0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8 0.0640 0.0640 0.08410 0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5 0.0370 0.0370 0.05510 0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2 0.0140 0.0140 0.02770 0.02770</span>
-
-<span class="co"># Save dataframe, df1, where censored data are represented with</span>
-<span class="co"># "_lo/_hi" field name syntax to a csv file in the working </span>
-<span class="co"># directory.</span>
-<span class="fu"><a href="../reference/saveDF.html">saveDF</a></span><span class="op">(</span><span class="va">df1</span>, folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span>
-
-<span class="co"># Load data from csv file where censored data are represented</span>
-<span class="co"># with "_lo/_hi“ field name syntax to a dataframe of same </span>
-<span class="co"># structure.</span>
-<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadData.html">loadData</a></span><span class="op">(</span><span class="st">"*.csv"</span> ,folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; |Description                            |Value                     |</span>
-<span class="co">#&gt; |:--------------------------------------|:-------------------------|</span>
-<span class="co">#&gt; |1) File Name                           |df1_2022_05_05_203854.csv |</span>
-<span class="co">#&gt; |2) Folder Name                         |.                         |</span>
-<span class="co">#&gt; |3) Primary Key                         |NA                        |</span>
-<span class="co">#&gt; |4) Rows Read In                        |10                        |</span>
-<span class="co">#&gt; |5) Columns Read In                     |8                         |</span>
-<span class="co">#&gt; |6) Rows After Blank Rows Removed       |10                        |</span>
-<span class="co">#&gt; |7) Columns After Blank Columns Removed |8                         |</span>
-<span class="co">#&gt; |8) Rows After Duplicate Rows Removed   |10                        |</span>
-<span class="co">#&gt; |9) Rows After Duplicate PK Removed     |n/a                       |</span>
-<span class="va">df2</span>
-<span class="co">#&gt;    station                date layer  tss tdp_lo tdp_hi   tp_lo   tp_hi</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.0360 0.0360 0.05120 0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6 0.0170 0.0170 0.03100 0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8 0.0080 0.0080 0.02520 0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0 0.0255 0.0255 0.04760 0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 0.0000 0.0050 0.02310 0.02810</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 0.0040 0.0065 0.02375 0.02625</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6 0.0320 0.0320 0.04500 0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8 0.0640 0.0640 0.08410 0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5 0.0370 0.0370 0.05510 0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2 0.0140 0.0140 0.02770 0.02770</span>
-
-<span class="co"># Convert dataframe, df2, where censored data are represented</span>
-<span class="co"># with "_lo/_hi“ field name syntax to a dataframe with Surv objects.</span>
-<span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeSurvDF.html">makeSurvDF</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
-<span class="va">df3</span>
-<span class="co">#&gt;    station                date layer  tss              tdp                 tp</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading:baytrends v2.0.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'baytrends'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     nobs</span></span>
+<span></span>
+<span><span class="co"># Load the first 10 rows of the built-in baytrends dataframe</span></span>
+<span><span class="co"># dataCensored into a dataframe and just a few fields. </span></span>
+<span><span class="va">df0</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">df0</span></span>
+<span><span class="co">#&gt;    station                date layer  tss              tdp                 tp</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span></span>
+<span></span>
+<span><span class="co"># Convert the dataframe, df0, that has Surv objects to a </span></span>
+<span><span class="co"># dataframe where censored data are represented with </span></span>
+<span><span class="co"># "_lo/_hi" field name syntax. </span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">df0</span><span class="op">)</span></span>
+<span><span class="va">df1</span></span>
+<span><span class="co">#&gt;    station                date layer  tss tdp_lo tdp_hi   tp_lo   tp_hi</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.0360 0.0360 0.05120 0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6 0.0170 0.0170 0.03100 0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8 0.0080 0.0080 0.02520 0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0 0.0255 0.0255 0.04760 0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 0.0000 0.0050 0.02310 0.02810</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 0.0040 0.0065 0.02375 0.02625</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6 0.0320 0.0320 0.04500 0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8 0.0640 0.0640 0.08410 0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5 0.0370 0.0370 0.05510 0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2 0.0140 0.0140 0.02770 0.02770</span></span>
+<span></span>
+<span><span class="co"># Save dataframe, df1, where censored data are represented with</span></span>
+<span><span class="co"># "_lo/_hi" field name syntax to a csv file in the working </span></span>
+<span><span class="co"># directory.</span></span>
+<span><span class="fu"><a href="../reference/saveDF.html">saveDF</a></span><span class="op">(</span><span class="va">df1</span>, folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Load data from csv file where censored data are represented</span></span>
+<span><span class="co"># with "_lo/_hi“ field name syntax to a dataframe of same </span></span>
+<span><span class="co"># structure.</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadData.html">loadData</a></span><span class="op">(</span><span class="st">"*.csv"</span> ,folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; |Description                            |Value                     |</span></span>
+<span><span class="co">#&gt; |:--------------------------------------|:-------------------------|</span></span>
+<span><span class="co">#&gt; |1) File Name                           |df1_2023_04_05_005614.csv |</span></span>
+<span><span class="co">#&gt; |2) Folder Name                         |.                         |</span></span>
+<span><span class="co">#&gt; |3) Primary Key                         |NA                        |</span></span>
+<span><span class="co">#&gt; |4) Rows Read In                        |10                        |</span></span>
+<span><span class="co">#&gt; |5) Columns Read In                     |8                         |</span></span>
+<span><span class="co">#&gt; |6) Rows After Blank Rows Removed       |10                        |</span></span>
+<span><span class="co">#&gt; |7) Columns After Blank Columns Removed |8                         |</span></span>
+<span><span class="co">#&gt; |8) Rows After Duplicate Rows Removed   |10                        |</span></span>
+<span><span class="co">#&gt; |9) Rows After Duplicate PK Removed     |n/a                       |</span></span>
+<span><span class="va">df2</span></span>
+<span><span class="co">#&gt;    station                date layer  tss tdp_lo tdp_hi   tp_lo   tp_hi</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.0360 0.0360 0.05120 0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6 0.0170 0.0170 0.03100 0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8 0.0080 0.0080 0.02520 0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0 0.0255 0.0255 0.04760 0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 0.0000 0.0050 0.02310 0.02810</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 0.0040 0.0065 0.02375 0.02625</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6 0.0320 0.0320 0.04500 0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8 0.0640 0.0640 0.08410 0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5 0.0370 0.0370 0.05510 0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2 0.0140 0.0140 0.02770 0.02770</span></span>
+<span></span>
+<span><span class="co"># Convert dataframe, df2, where censored data are represented</span></span>
+<span><span class="co"># with "_lo/_hi“ field name syntax to a dataframe with Surv objects.</span></span>
+<span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeSurvDF.html">makeSurvDF</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span></span>
+<span><span class="va">df3</span></span>
+<span><span class="co">#&gt;    station                date layer  tss              tdp                 tp</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -301,80 +301,80 @@
 <h4 id="example-code-2">Example code<a class="anchor" aria-label="anchor" href="#example-code-2"></a>
 </h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span>
-<span class="co">#library(dplyr)</span>
-
-<span class="co"># Create two dataframes with Surv objects. </span>
-<span class="va">df11</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">df11</span>
-
-<span class="va">df12</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">11</span><span class="op">:</span><span class="fl">20</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">df12</span>
-
-<span class="co"># Combine the two dataframe into one dataframe</span>
-<span class="va">df13</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df11</span>,<span class="va">df12</span><span class="op">)</span>
-<span class="va">df13</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
+<span><span class="co">#library(dplyr)</span></span>
+<span></span>
+<span><span class="co"># Create two dataframes with Surv objects. </span></span>
+<span><span class="va">df11</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">df11</span></span>
+<span></span>
+<span><span class="va">df12</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">11</span><span class="op">:</span><span class="fl">20</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">df12</span></span>
+<span></span>
+<span><span class="co"># Combine the two dataframe into one dataframe</span></span>
+<span><span class="va">df13</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df11</span>,<span class="va">df12</span><span class="op">)</span></span>
+<span><span class="va">df13</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="example-output-1">Example output<a class="anchor" aria-label="anchor" href="#example-output-1"></a>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span>
-<span class="co">#library(dplyr)</span>
-
-<span class="co"># Create two dataframes with Surv objects. </span>
-<span class="va">df11</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">df11</span>
-<span class="co">#&gt;    station                date layer  tss              tdp                 tp</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span>
-
-<span class="va">df12</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">11</span><span class="op">:</span><span class="fl">20</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">df12</span>
-<span class="co">#&gt;    station                date layer   tss    tdp     tp</span>
-<span class="co">#&gt; 11  CB3.3C 1985-06-18 04:00:00    BP 21.30 0.0160 0.0353</span>
-<span class="co">#&gt; 12  CB3.3C 1985-06-18 04:00:00     S 29.10 0.0260 0.0486</span>
-<span class="co">#&gt; 13  CB3.3C 1985-07-09 04:00:00    AP 12.00 0.0270 0.0488</span>
-<span class="co">#&gt; 14  CB3.3C 1985-07-09 04:00:00     B 20.80 0.0400 0.0539</span>
-<span class="co">#&gt; 15  CB3.3C 1985-07-09 04:00:00    BP  9.45 0.0180 0.0419</span>
-<span class="co">#&gt; 16  CB3.3C 1985-07-09 04:00:00     S 12.20 0.0190 0.0562</span>
-<span class="co">#&gt; 17  CB3.3C 1985-07-24 04:00:00    AP 16.40 0.0150 0.0490</span>
-<span class="co">#&gt; 18  CB3.3C 1985-07-24 04:00:00     B 17.00 0.0470 0.0560</span>
-<span class="co">#&gt; 19  CB3.3C 1985-07-24 04:00:00    BP 34.60 0.0430 0.0580</span>
-<span class="co">#&gt; 20  CB3.3C 1985-07-24 04:00:00     S 16.60 0.0145 0.0490</span>
-
-<span class="co"># Combine the two dataframe into one dataframe</span>
-<span class="va">df13</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df11</span>,<span class="va">df12</span><span class="op">)</span>
-<span class="va">df13</span>
-<span class="co">#&gt;    station                date layer   tss              tdp                 tp</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.90           0.0360            0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.60           0.0170            0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.80           0.0080            0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.00           0.0255            0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.00 [0.0000, 0.0050] [0.02310, 0.02810]</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.40 [0.0040, 0.0065] [0.02375, 0.02625]</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.60           0.0320            0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.80           0.0640            0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.50           0.0370            0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.20           0.0140            0.02770</span>
-<span class="co">#&gt; 11  CB3.3C 1985-06-18 04:00:00    BP 21.30           0.0160            0.03530</span>
-<span class="co">#&gt; 12  CB3.3C 1985-06-18 04:00:00     S 29.10           0.0260            0.04860</span>
-<span class="co">#&gt; 13  CB3.3C 1985-07-09 04:00:00    AP 12.00           0.0270            0.04880</span>
-<span class="co">#&gt; 14  CB3.3C 1985-07-09 04:00:00     B 20.80           0.0400            0.05390</span>
-<span class="co">#&gt; 15  CB3.3C 1985-07-09 04:00:00    BP  9.45           0.0180            0.04190</span>
-<span class="co">#&gt; 16  CB3.3C 1985-07-09 04:00:00     S 12.20           0.0190            0.05620</span>
-<span class="co">#&gt; 17  CB3.3C 1985-07-24 04:00:00    AP 16.40           0.0150            0.04900</span>
-<span class="co">#&gt; 18  CB3.3C 1985-07-24 04:00:00     B 17.00           0.0470            0.05600</span>
-<span class="co">#&gt; 19  CB3.3C 1985-07-24 04:00:00    BP 34.60           0.0430            0.05800</span>
-<span class="co">#&gt; 20  CB3.3C 1985-07-24 04:00:00     S 16.60           0.0145            0.04900</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
+<span><span class="co">#library(dplyr)</span></span>
+<span></span>
+<span><span class="co"># Create two dataframes with Surv objects. </span></span>
+<span><span class="va">df11</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">df11</span></span>
+<span><span class="co">#&gt;    station                date layer  tss              tdp                 tp</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span></span>
+<span></span>
+<span><span class="va">df12</span> <span class="op">&lt;-</span> <span class="va">dataCensored</span><span class="op">[</span><span class="fl">11</span><span class="op">:</span><span class="fl">20</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">df12</span></span>
+<span><span class="co">#&gt;    station                date layer   tss    tdp     tp</span></span>
+<span><span class="co">#&gt; 11  CB3.3C 1985-06-18 04:00:00    BP 21.30 0.0160 0.0353</span></span>
+<span><span class="co">#&gt; 12  CB3.3C 1985-06-18 04:00:00     S 29.10 0.0260 0.0486</span></span>
+<span><span class="co">#&gt; 13  CB3.3C 1985-07-09 04:00:00    AP 12.00 0.0270 0.0488</span></span>
+<span><span class="co">#&gt; 14  CB3.3C 1985-07-09 04:00:00     B 20.80 0.0400 0.0539</span></span>
+<span><span class="co">#&gt; 15  CB3.3C 1985-07-09 04:00:00    BP  9.45 0.0180 0.0419</span></span>
+<span><span class="co">#&gt; 16  CB3.3C 1985-07-09 04:00:00     S 12.20 0.0190 0.0562</span></span>
+<span><span class="co">#&gt; 17  CB3.3C 1985-07-24 04:00:00    AP 16.40 0.0150 0.0490</span></span>
+<span><span class="co">#&gt; 18  CB3.3C 1985-07-24 04:00:00     B 17.00 0.0470 0.0560</span></span>
+<span><span class="co">#&gt; 19  CB3.3C 1985-07-24 04:00:00    BP 34.60 0.0430 0.0580</span></span>
+<span><span class="co">#&gt; 20  CB3.3C 1985-07-24 04:00:00     S 16.60 0.0145 0.0490</span></span>
+<span></span>
+<span><span class="co"># Combine the two dataframe into one dataframe</span></span>
+<span><span class="va">df13</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df11</span>,<span class="va">df12</span><span class="op">)</span></span>
+<span><span class="va">df13</span></span>
+<span><span class="co">#&gt;    station                date layer   tss              tdp                 tp</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.90           0.0360            0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.60           0.0170            0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.80           0.0080            0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.00           0.0255            0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.00 [0.0000, 0.0050] [0.02310, 0.02810]</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.40 [0.0040, 0.0065] [0.02375, 0.02625]</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.60           0.0320            0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.80           0.0640            0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.50           0.0370            0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.20           0.0140            0.02770</span></span>
+<span><span class="co">#&gt; 11  CB3.3C 1985-06-18 04:00:00    BP 21.30           0.0160            0.03530</span></span>
+<span><span class="co">#&gt; 12  CB3.3C 1985-06-18 04:00:00     S 29.10           0.0260            0.04860</span></span>
+<span><span class="co">#&gt; 13  CB3.3C 1985-07-09 04:00:00    AP 12.00           0.0270            0.04880</span></span>
+<span><span class="co">#&gt; 14  CB3.3C 1985-07-09 04:00:00     B 20.80           0.0400            0.05390</span></span>
+<span><span class="co">#&gt; 15  CB3.3C 1985-07-09 04:00:00    BP  9.45           0.0180            0.04190</span></span>
+<span><span class="co">#&gt; 16  CB3.3C 1985-07-09 04:00:00     S 12.20           0.0190            0.05620</span></span>
+<span><span class="co">#&gt; 17  CB3.3C 1985-07-24 04:00:00    AP 16.40           0.0150            0.04900</span></span>
+<span><span class="co">#&gt; 18  CB3.3C 1985-07-24 04:00:00     B 17.00           0.0470            0.05600</span></span>
+<span><span class="co">#&gt; 19  CB3.3C 1985-07-24 04:00:00    BP 34.60           0.0430            0.05800</span></span>
+<span><span class="co">#&gt; 20  CB3.3C 1985-07-24 04:00:00     S 16.60           0.0145            0.04900</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -385,75 +385,75 @@
 </h4>
 <p>As described earlier, <code>unSurvDF</code> converts dataframes that contain Surv objects into dataframes with separate columns representing the lower and upper bounds. The companion function, <code>unSurv</code>, operates on a single field and returns a 3-column matrix as demonstrated in the below code. See help (i.e., ??unSurv) for more information about the returned columns.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt;    station                date layer  tss              tdp                 tp</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span>
-<span class="fu"><a href="../reference/unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;    station                date layer  tss tdp_lo tdp_hi   tp_lo   tp_hi</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.0360 0.0360 0.05120 0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6 0.0170 0.0170 0.03100 0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8 0.0080 0.0080 0.02520 0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0 0.0255 0.0255 0.04760 0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 0.0000 0.0050 0.02310 0.02810</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 0.0040 0.0065 0.02375 0.02625</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6 0.0320 0.0320 0.04500 0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8 0.0640 0.0640 0.08410 0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5 0.0370 0.0370 0.05510 0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2 0.0140 0.0140 0.02770 0.02770</span>
-<span class="fu"><a href="../reference/unSurv.html">unSurv</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="st">"tdp"</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;           lo     hi type</span>
-<span class="co">#&gt;  [1,] 0.0360 0.0360    1</span>
-<span class="co">#&gt;  [2,] 0.0170 0.0170    1</span>
-<span class="co">#&gt;  [3,] 0.0080 0.0080    1</span>
-<span class="co">#&gt;  [4,] 0.0255 0.0255    1</span>
-<span class="co">#&gt;  [5,] 0.0000 0.0050    3</span>
-<span class="co">#&gt;  [6,] 0.0040 0.0065    3</span>
-<span class="co">#&gt;  [7,] 0.0320 0.0320    1</span>
-<span class="co">#&gt;  [8,] 0.0640 0.0640    1</span>
-<span class="co">#&gt;  [9,] 0.0370 0.0370    1</span>
-<span class="co">#&gt; [10,] 0.0140 0.0140    1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt;    station                date layer  tss              tdp                 tp</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span></span>
+<span><span class="fu"><a href="../reference/unSurvDF.html">unSurvDF</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    station                date layer  tss tdp_lo tdp_hi   tp_lo   tp_hi</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.0360 0.0360 0.05120 0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6 0.0170 0.0170 0.03100 0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8 0.0080 0.0080 0.02520 0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0 0.0255 0.0255 0.04760 0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 0.0000 0.0050 0.02310 0.02810</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 0.0040 0.0065 0.02375 0.02625</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6 0.0320 0.0320 0.04500 0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8 0.0640 0.0640 0.08410 0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5 0.0370 0.0370 0.05510 0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2 0.0140 0.0140 0.02770 0.02770</span></span>
+<span><span class="fu"><a href="../reference/unSurv.html">unSurv</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="st">"tdp"</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           lo     hi type</span></span>
+<span><span class="co">#&gt;  [1,] 0.0360 0.0360    1</span></span>
+<span><span class="co">#&gt;  [2,] 0.0170 0.0170    1</span></span>
+<span><span class="co">#&gt;  [3,] 0.0080 0.0080    1</span></span>
+<span><span class="co">#&gt;  [4,] 0.0255 0.0255    1</span></span>
+<span><span class="co">#&gt;  [5,] 0.0000 0.0050    3</span></span>
+<span><span class="co">#&gt;  [6,] 0.0040 0.0065    3</span></span>
+<span><span class="co">#&gt;  [7,] 0.0320 0.0320    1</span></span>
+<span><span class="co">#&gt;  [8,] 0.0640 0.0640    1</span></span>
+<span><span class="co">#&gt;  [9,] 0.0370 0.0370    1</span></span>
+<span><span class="co">#&gt; [10,] 0.0140 0.0140    1</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="imputedf-and-impute">imputeDF and impute<a class="anchor" aria-label="anchor" href="#imputedf-and-impute"></a>
 </h4>
 <p>In some instances, it is useful to simplify Surv objects to a single field instead of lower and upper bounds. By default <code>impute</code> and <code>imputeDF</code> will compute the midpoint between the lower and upper bound for a single Surv field or convert the entire dataframe, respectively as demonstrated with the below code. See help (i.e., ??imputeDF and ??impute) for more information on other imputation options including “lower”, “upper”, “mid”, “norm”, and “lnorm”.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt;    station                date layer  tss              tdp                 tp</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span>
-<span class="fu"><a href="../reference/imputeDF.html">imputeDF</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;    station                date layer  tss     tdp     tp</span>
-<span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.03600 0.0512</span>
-<span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6 0.01700 0.0310</span>
-<span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8 0.00800 0.0252</span>
-<span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0 0.02550 0.0476</span>
-<span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 0.00250 0.0256</span>
-<span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 0.00525 0.0250</span>
-<span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6 0.03200 0.0450</span>
-<span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8 0.06400 0.0841</span>
-<span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5 0.03700 0.0551</span>
-<span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2 0.01400 0.0277</span>
-<span class="fu"><a href="../reference/impute.html">impute</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="st">"tdp"</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 0.03600 0.01700 0.00800 0.02550 0.00250 0.00525 0.03200 0.06400 0.03700</span>
-<span class="co">#&gt; [10] 0.01400</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt;    station                date layer  tss              tdp                 tp</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9           0.0360            0.05120</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6           0.0170            0.03100</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8           0.0080            0.02520</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0           0.0255            0.04760</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 [0.0000, 0.0050] [0.02310, 0.02810]</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 [0.0040, 0.0065] [0.02375, 0.02625]</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6           0.0320            0.04500</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8           0.0640            0.08410</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5           0.0370            0.05510</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2           0.0140            0.02770</span></span>
+<span><span class="fu"><a href="../reference/imputeDF.html">imputeDF</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    station                date layer  tss     tdp     tp</span></span>
+<span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.03600 0.0512</span></span>
+<span><span class="co">#&gt; 2   CB3.3C 1985-05-21 04:00:00     B  7.6 0.01700 0.0310</span></span>
+<span><span class="co">#&gt; 3   CB3.3C 1985-05-21 04:00:00    BP  7.8 0.00800 0.0252</span></span>
+<span><span class="co">#&gt; 4   CB3.3C 1985-05-21 04:00:00     S  7.0 0.02550 0.0476</span></span>
+<span><span class="co">#&gt; 5   CB3.3C 1985-06-04 04:00:00    AP  5.0 0.00250 0.0256</span></span>
+<span><span class="co">#&gt; 6   CB3.3C 1985-06-04 04:00:00     B 10.4 0.00525 0.0250</span></span>
+<span><span class="co">#&gt; 7   CB3.3C 1985-06-04 04:00:00    BP  6.6 0.03200 0.0450</span></span>
+<span><span class="co">#&gt; 8   CB3.3C 1985-06-04 04:00:00     S  5.8 0.06400 0.0841</span></span>
+<span><span class="co">#&gt; 9   CB3.3C 1985-06-18 04:00:00    AP 17.5 0.03700 0.0551</span></span>
+<span><span class="co">#&gt; 10  CB3.3C 1985-06-18 04:00:00     B 31.2 0.01400 0.0277</span></span>
+<span><span class="fu"><a href="../reference/impute.html">impute</a></span><span class="op">(</span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="st">"tdp"</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] 0.03600 0.01700 0.00800 0.02550 0.00250 0.00525 0.03200 0.06400 0.03700</span></span>
+<span><span class="co">#&gt; [10] 0.01400</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -476,7 +476,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
