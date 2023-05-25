@@ -6,14 +6,19 @@
 <!-- badges: start -->
 <!--
 CRAN check ALL
-[![cran checks](https://cranchecks.info/badges/summary/baytrends)](https://cranchecks.info/badges/summary/baytrends) All flavors-->
+[![cran checks](https://badges.cranchecks.info/summary/baytrends.svg)](https://cran.r-project.org/web/checks/check_results_baytrends.html) All flavors
 
-Windows[![cran
-checks](https://cranchecks.info/badges/flavor/windows/baytrends)](https://cranchecks.info/badges/flavor/windows/baytrends)
-OSX[![cran
-checks](https://cranchecks.info/badges/flavor/osx/baytrends)](https://cranchecks.info/badges/flavor/osx/baytrends)
-Linux[![cran
-checks](https://cranchecks.info/badges/flavor/linux/baytrends)](https://cranchecks.info/badges/flavor/linux/baytrends)
+[![R-CMD-check](https://github.com/tetratech/baytrends/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tetratech/baytrends/actions/workflows/R-CMD-check.yaml)
+-->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/baytrends)](https://cran.r-project.org/package=baytrends)
+Windows [![cran
+checks](https://badges.cranchecks.info/flavor/windows/baytrends.svg)](https://cran.r-project.org/web/checks/check_results_baytrends.html)
+Linux [![cran
+checks](https://badges.cranchecks.info/flavor/linux/baytrends.svg)](https://cran.r-project.org/web/checks/check_results_baytrends.html)
+OSX [![cran
+checks](https://badges.cranchecks.info/flavor/macos/baytrends.svg)](https://cran.r-project.org/web/checks/check_results_baytrends.html)
 
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)

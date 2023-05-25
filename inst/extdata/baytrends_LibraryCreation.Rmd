@@ -100,7 +100,8 @@ myLibrary <- "baytrends"
 #library(devtools)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # NEWS
-setwd(file.path(".", myLibrary))
+#setwd(file.path(".", myLibrary))
+
 # Render then Copy NEWS so picked up in help
 rmarkdown::render("NEWS.rmd", "all")
 file.copy("NEWS.md", "NEWS", overwrite = TRUE)

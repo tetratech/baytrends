@@ -1,10 +1,11 @@
 Erik.Leppo@tetratech.com
-2022-05-05
+2023-05-25
 
 # Test environments
-* local Win 10, R 4.2.0
+* local Win 10, R 4.3.0
 * win-builder (release)
 * win-builder (devel)
+* r-hub
 
 # R CMD check results
 
@@ -22,7 +23,11 @@ zero
   Unable to find GhostScript executable to run checks on size reduction
 
 # Downstream dependencies
-devtools::revdep("baytrends")
-tools::dependsOnPkgs("baytrends")
 
-There are currently no downstream dependencies for this package.
+devtools::revdep("baytrends")
+character(0)
+
+tools::dependsOnPkgs("baytrends")
+[1] "baytrendsmap"
+
+There are currently no downstream CRAN dependencies for this package.
