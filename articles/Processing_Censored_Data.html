@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9.9003</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
 
       
 
-      </header><script src="Processing_Censored_Data_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Processing Censored Water Quality Data</h1>
@@ -83,7 +83,7 @@
 <a href="mailto:Jon.Harcum@tetratech.com" class="email">Jon.Harcum@tetratech.com</a> and <a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a>
 </h4>
             
-            <h4 data-toc-skip class="date">2023-04-05</h4>
+            <h4 data-toc-skip class="date">2024-02-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tetratech/baytrends/blob/HEAD/vignettes/Processing_Censored_Data.Rmd" class="external-link"><code>vignettes/Processing_Censored_Data.Rmd</code></a></small>
       <div class="hidden name"><code>Processing_Censored_Data.Rmd</code></div>
@@ -96,8 +96,25 @@
 <div class="section level2">
 <h2 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
 </h2>
-<p>The purpose of this vignette is to demonstrate a workflow for managing data sets that have censored data. In the context of water quality data, we often think of censored values as water quality measurements reported as not-detected, less-than the quantitation limit, between detection limit and limit of quantitation to name a few. For example, in water quality, the value “&lt;0.5” is typically thought of as left censored. In the truest statistical sense of the meaning, left-censoring implies no knowledge about the lower bound; however, in most water resource applications, zero is a common lower bound. Therefore, a value “&lt;0.5” should be thought of as a water quality measurement having a lower and upper bound of 0 and 0.5, respectively. This allow <code>baytrends</code> to rely on the <code>survival</code> package which treats these values as “interval” censored data and are referred to as <em>Surv objects</em>.</p>
-<p>This vignette is divided into three primary sections. The first section describes the process of importing data from csv files into a dataframe with Surv objects. The second section is a more general workflow. The third section provides a list of miscellaneous functions and notes.</p>
+<p>The purpose of this vignette is to demonstrate a workflow for
+managing data sets that have censored data. In the context of water
+quality data, we often think of censored values as water quality
+measurements reported as not-detected, less-than the quantitation limit,
+between detection limit and limit of quantitation to name a few. For
+example, in water quality, the value “&lt;0.5” is typically thought of
+as left censored. In the truest statistical sense of the meaning,
+left-censoring implies no knowledge about the lower bound; however, in
+most water resource applications, zero is a common lower bound.
+Therefore, a value “&lt;0.5” should be thought of as a water quality
+measurement having a lower and upper bound of 0 and 0.5, respectively.
+This allow <code>baytrends</code> to rely on the <code>survival</code>
+package which treats these values as “interval” censored data and are
+referred to as <em>Surv objects</em>.</p>
+<p>This vignette is divided into three primary sections. The first
+section describes the process of importing data from csv files into a
+dataframe with Surv objects. The second section is a more general
+workflow. The third section provides a list of miscellaneous functions
+and notes.</p>
 <ol style="list-style-type: decimal">
 <li>Importing data from CSV files for baytrends</li>
 <li>baytrends data management workflow</li>
@@ -107,7 +124,11 @@
 <div class="section level2">
 <h2 id="importing-data-from-csv-files-for-baytrends">1. Importing data from CSV files for baytrends<a class="anchor" aria-label="anchor" href="#importing-data-from-csv-files-for-baytrends"></a>
 </h2>
-<p>Importing CSV files that have censored data into R dataframes for analysis in baytrends is a critical data preparation step and involves <strong>two lines of code</strong>: 1) importing the CSV data into R and 2) converting water quality measurements with censored data to Surv objects (see below code).</p>
+<p>Importing CSV files that have censored data into R dataframes for
+analysis in baytrends is a critical data preparation step and involves
+<strong>two lines of code</strong>: 1) importing the CSV data into R and
+2) converting water quality measurements with censored data to Surv
+objects (see below code).</p>
 <div class="section level3">
 <h3 id="example-code">Example code<a class="anchor" aria-label="anchor" href="#example-code"></a>
 </h3>
@@ -115,28 +136,87 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
 <span><span class="va">df_in</span>   <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadData.html">loadData</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"ExampleData.csv"</span><span class="op">)</span></span>
 <span><span class="va">df_Surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeSurvDF.html">makeSurvDF</a></span><span class="op">(</span><span class="va">df_in</span><span class="op">)</span></span></code></pre></div>
-<p>The remainder of this section discusses the above lines of code by way of example.</p>
+<p>The remainder of this section discusses the above lines of code by
+way of example.</p>
 </div>
 <div class="section level3">
 <h3 id="discussion">Discussion<a class="anchor" aria-label="anchor" href="#discussion"></a>
 </h3>
-<p>Figure 1 represents a portion of data from an example CSV file. <strong>Note, there is no requirement for the CSV file to have the data stored in the column order shown.</strong> In this example, the three required fields: station, date, and layer are stored in the first three columns ([A]-[C]). Missing values for these columns are not permissable. The user can optionally include additional fields such as depth, time, etc.</p>
+<p>Figure 1 represents a portion of data from an example CSV file.
+<strong>Note, there is no requirement for the CSV file to have the data
+stored in the column order shown.</strong> In this example, the three
+required fields: station, date, and layer are stored in the first three
+columns ([A]-[C]). Missing values for these columns are not permissable.
+The user can optionally include additional fields such as depth, time,
+etc.</p>
 <p><img src="wf_example_csv_file.PNG"></p>
 <p><em>Figure 1. Example CSV file.</em></p>
-<p><strong>Fields with no censoring.</strong> In the above example, Secchi depth (secchi), salinity (salinity), dissolved oxygen (do), water temperature (wtemp), total suspended solids (tss) are stored in the next group of columns as un-censored data. While possible, censoring is less common for these types of water quality variables and as a result the data are represented with a single column in the CSV file. The values entered in these columns should be numeric values with no symbols. Values shown as “NA” are un-reported entries. Un-reported values can happen for a number of reasons including not being measured, equipment failure, etc. CSV files can use “NA” or use blanks to represent un-reported entries. Depending on the situation and the user’s sensitivity to fully evaluating censored data, a variable such as total suspended solids could be treated as an un-censored variable as shown in this example or could be treated as a variable with censored data as discussed next.</p>
-<p><strong>Fields with censoring.</strong> To the right of the break in Figure 1, water quality fields include lower and upper bounds to represent censoring. Note, the field naming syntax using a suffix of "_lo" and "_hi". For example, columns [U] and [V] show the lower and upper bounds for total dissolved phosphorus as tdp_lo and tdp_hi, respectively. The upper bound must be greater than or equal to the lower bound. When the upper bound is equal to the lower bound, it indicates that observation did not have censoring.</p>
+<p><strong>Fields with no censoring.</strong> In the above example,
+Secchi depth (secchi), salinity (salinity), dissolved oxygen (do), water
+temperature (wtemp), total suspended solids (tss) are stored in the next
+group of columns as un-censored data. While possible, censoring is less
+common for these types of water quality variables and as a result the
+data are represented with a single column in the CSV file. The values
+entered in these columns should be numeric values with no symbols.
+Values shown as “NA” are un-reported entries. Un-reported values can
+happen for a number of reasons including not being measured, equipment
+failure, etc. CSV files can use “NA” or use blanks to represent
+un-reported entries. Depending on the situation and the user’s
+sensitivity to fully evaluating censored data, a variable such as total
+suspended solids could be treated as an un-censored variable as shown in
+this example or could be treated as a variable with censored data as
+discussed next.</p>
+<p><strong>Fields with censoring.</strong> To the right of the break in
+Figure 1, water quality fields include lower and upper bounds to
+represent censoring. Note, the field naming syntax using a suffix of
+“_lo” and “_hi”. For example, columns [U] and [V] show the lower and
+upper bounds for total dissolved phosphorus as tdp_lo and tdp_hi,
+respectively. The upper bound must be greater than or equal to the lower
+bound. When the upper bound is equal to the lower bound, it indicates
+that observation did not have censoring.</p>
 <div class="section level4">
 <h4 id="loaddata">loadData<a class="anchor" aria-label="anchor" href="#loaddata"></a>
 </h4>
-<p>The code <code>df_in &lt;- loadData(file = "ExampleData.csv")</code> uses a baytrends’ built-in function to load data from a CSV file. Experienced R programmers can use other functions to load data (e.g. <code>read.csv</code>, <code>read.table</code>); however, <code>loadData</code> outputs meta data about the number of columns and rows read and performs some useful steps such as converting date fields into an R date field (i.e., <code>POSIXct</code>) and is advantageous for further analyses with baytrends and other situations. There is also a companion baytrends function, <code>loadExcel</code>, with similar functionality to <code>loadData</code> and can be used to load data from an Excel workbook. See help (i.e., ??loadData and ??loadExcel) for more information.</p>
+<p>The code <code>df_in &lt;- loadData(file = "ExampleData.csv")</code>
+uses a baytrends’ built-in function to load data from a CSV file.
+Experienced R programmers can use other functions to load data
+(e.g. <code>read.csv</code>, <code>read.table</code>); however,
+<code>loadData</code> outputs meta data about the number of columns and
+rows read and performs some useful steps such as converting date fields
+into an R date field (i.e., <code>POSIXct</code>) and is advantageous
+for further analyses with baytrends and other situations. There is also
+a companion baytrends function, <code>loadExcel</code>, with similar
+functionality to <code>loadData</code> and can be used to load data from
+an Excel workbook. See help (i.e., ??loadData and ??loadExcel) for more
+information.</p>
 </div>
 <div class="section level4">
 <h4 id="makesurvdf">makeSurvDF<a class="anchor" aria-label="anchor" href="#makesurvdf"></a>
 </h4>
-<p>After importing the above CSV file into an R dataframe, the next step is to convert fields with censored data to Surv objects as depicted in Figure 2 using the code <code>df_Surv &lt;- makeSurvDF(df_in)</code>. Fields shaded in green or blue are column to column comparable to the CSV file. Columns to the right of the break, such as the yellow highlighted column, tdp, is a Surv object and is derived from the two corresponding columns, tdp_lo and tdp_hi in the CSV file (Figure 1). Again, experienced R programmers can make Surv objects independently from baytrends by using the following syntax for each field with censored data using the total dissolved phosphorus data as an example.</p>
+<p>After importing the above CSV file into an R dataframe, the next step
+is to convert fields with censored data to Surv objects as depicted in
+Figure 2 using the code <code>df_Surv &lt;- makeSurvDF(df_in)</code>.
+Fields shaded in green or blue are column to column comparable to the
+CSV file. Columns to the right of the break, such as the yellow
+highlighted column, tdp, is a Surv object and is derived from the two
+corresponding columns, tdp_lo and tdp_hi in the CSV file (Figure 1).
+Again, experienced R programmers can make Surv objects independently
+from baytrends by using the following syntax for each field with
+censored data using the total dissolved phosphorus data as an
+example.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_in</span><span class="op">$</span><span class="va">tdp</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">df_in</span><span class="op">$</span><span class="va">tdp_lo</span>, <span class="va">df_in</span><span class="op">$</span><span class="va">tdp_hi</span>, type <span class="op">=</span> <span class="st">"interval2"</span><span class="op">)</span> </span></code></pre></div>
-<p>The baytends function, <code>makeSurvDF</code>, peforms this process for all fields in a dataframe with censored data. By default, <code>makeSurvDF</code> assumes the dataframe employs a suffix of "_lo" to represent the lower bound and "_hi" to represent the upper bound although this can be changed by the user. See help (i.e., ??makeSurvDF) for more information. The <code>makeSurvDF</code> function also performs a quality assurance review of the data to make sure the upper bound is greater than or equal to the lower bound. The function outputs the number of data integrity issues by parameter and sets those observations to missing (NA) so the code can continue whilst the analyst determines the appropriate corrective action.</p>
+<p>The baytends function, <code>makeSurvDF</code>, peforms this process
+for all fields in a dataframe with censored data. By default,
+<code>makeSurvDF</code> assumes the dataframe employs a suffix of “_lo”
+to represent the lower bound and “_hi” to represent the upper bound
+although this can be changed by the user. See help (i.e., ??makeSurvDF)
+for more information. The <code>makeSurvDF</code> function also performs
+a quality assurance review of the data to make sure the upper bound is
+greater than or equal to the lower bound. The function outputs the
+number of data integrity issues by parameter and sets those observations
+to missing (NA) so the code can continue whilst the analyst determines
+the appropriate corrective action.</p>
 <p><img src="wf_example_dataframe.PNG"></p>
 <p><em>Figure 2. Example dataframe with Surv objects.</em></p>
 </div>
@@ -145,23 +225,52 @@
 <div class="section level2">
 <h2 id="baytrends-data-management-workflow">2. baytrends data management workflow<a class="anchor" aria-label="anchor" href="#baytrends-data-management-workflow"></a>
 </h2>
-<p>The previous section described the primary steps of importing CSV files into R and converting fields with censored data to Surv objects using the functions <code>loadData</code> and <code>makeSurvDF</code>. Because many R functions do not recognize Surv objects, it may be necessary to convert to Surv objects to standard numeric vectors for some analyses. To address this need, baytrends includes two additional functions, <code>unSurvDF</code> and <code>saveDF</code> to facilitate extracting and saving lower and upper bounds from Surv objects. When combined with the previously described functions, it is possible to have a complete workflow as depicted in Figure 3. <code>unSurvDF</code> and <code>saveDF</code> are described next.</p>
+<p>The previous section described the primary steps of importing CSV
+files into R and converting fields with censored data to Surv objects
+using the functions <code>loadData</code> and <code>makeSurvDF</code>.
+Because many R functions do not recognize Surv objects, it may be
+necessary to convert to Surv objects to standard numeric vectors for
+some analyses. To address this need, baytrends includes two additional
+functions, <code>unSurvDF</code> and <code>saveDF</code> to facilitate
+extracting and saving lower and upper bounds from Surv objects. When
+combined with the previously described functions, it is possible to have
+a complete workflow as depicted in Figure 3. <code>unSurvDF</code> and
+<code>saveDF</code> are described next.</p>
 <p><img src="wf_workflow_small.PNG"></p>
-<p><em>Figure 3. Workflow for handling censored water quality data with baytrends and Surv objects.</em></p>
+<p><em>Figure 3. Workflow for handling censored water quality data with
+baytrends and Surv objects.</em></p>
 <div class="section level3">
 <h3 id="unsurvdf">unSurvDF<a class="anchor" aria-label="anchor" href="#unsurvdf"></a>
 </h3>
-<p>As the name suggests, this function does the opposite of <code>makeSurvDF</code>. That is, in the below example code, <code>df1 &lt;- unSurvDF(df0)</code>, df0 is a dataframe with Surv objects. <code>unSurvDF</code> passes through fields from <code>df0</code> that are not Surv objects and splits Surv objects into two fields, the lower and upper bound, using a field naming syntax that includes a suffix of "_lo" and "_hi". The user can change the default suffix (see help, i.e., ??unSurvDF for more information).</p>
+<p>As the name suggests, this function does the opposite of
+<code>makeSurvDF</code>. That is, in the below example code,
+<code>df1 &lt;- unSurvDF(df0)</code>, df0 is a dataframe with Surv
+objects. <code>unSurvDF</code> passes through fields from
+<code>df0</code> that are not Surv objects and splits Surv objects into
+two fields, the lower and upper bound, using a field naming syntax that
+includes a suffix of “_lo” and “_hi”. The user can change the default
+suffix (see help, i.e., ??unSurvDF for more information).</p>
 </div>
 <div class="section level3">
 <h3 id="savedf">saveDF<a class="anchor" aria-label="anchor" href="#savedf"></a>
 </h3>
-<p>This function saves a dataframe to a CSV file using a default naming convention that includes the name of the dataframe and a timestamp in the file name. In general, we have found that saving a dataframe that includes Surv objects do not facilitate analyses in other software such as Excel. As in the case of <code>loadData</code> it is straightforward to use other functions to create csv files (e.g. <code>write.csv</code>, <code>write.table</code>).</p>
+<p>This function saves a dataframe to a CSV file using a default naming
+convention that includes the name of the dataframe and a timestamp in
+the file name. In general, we have found that saving a dataframe that
+includes Surv objects do not facilitate analyses in other software such
+as Excel. As in the case of <code>loadData</code> it is straightforward
+to use other functions to create csv files (e.g. <code>write.csv</code>,
+<code>write.table</code>).</p>
 </div>
 <div class="section level3">
 <h3 id="example-code-1">Example code<a class="anchor" aria-label="anchor" href="#example-code-1"></a>
 </h3>
-<p>In the previous section, the sample code started at the top of the diagram shown in Figure 3 and used <code>loadData</code> and <code>makeSurvDF</code> to arrive at a dataframe with Surv objects as shown at the bottom of the diagram. The example code in this section starts at the bottom of the diagram and goes full circle such that the dataframe df0 is identical to df3.</p>
+<p>In the previous section, the sample code started at the top of the
+diagram shown in Figure 3 and used <code>loadData</code> and
+<code>makeSurvDF</code> to arrive at a dataframe with Surv objects as
+shown at the bottom of the diagram. The example code in this section
+starts at the bottom of the diagram and goes full circle such that the
+dataframe df0 is identical to df3.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
 <span></span>
@@ -197,7 +306,7 @@
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading:baytrends v2.0.9</span></span>
+<span><span class="co">#&gt; Loading:baytrends v2.0.9.9003</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'baytrends'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
@@ -248,17 +357,17 @@
 <span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadData.html">loadData</a></span><span class="op">(</span><span class="st">"*.csv"</span> ,folder <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; |Description                            |Value                     |</span></span>
-<span><span class="co">#&gt; |:--------------------------------------|:-------------------------|</span></span>
-<span><span class="co">#&gt; |1) File Name                           |df1_2023_04_05_005614.csv |</span></span>
-<span><span class="co">#&gt; |2) Folder Name                         |.                         |</span></span>
-<span><span class="co">#&gt; |3) Primary Key                         |NA                        |</span></span>
-<span><span class="co">#&gt; |4) Rows Read In                        |10                        |</span></span>
-<span><span class="co">#&gt; |5) Columns Read In                     |8                         |</span></span>
-<span><span class="co">#&gt; |6) Rows After Blank Rows Removed       |10                        |</span></span>
-<span><span class="co">#&gt; |7) Columns After Blank Columns Removed |8                         |</span></span>
-<span><span class="co">#&gt; |8) Rows After Duplicate Rows Removed   |10                        |</span></span>
-<span><span class="co">#&gt; |9) Rows After Duplicate PK Removed     |n/a                       |</span></span>
+<span><span class="co">#&gt; |Description                            |Value                            |</span></span>
+<span><span class="co">#&gt; |:--------------------------------------|:--------------------------------|</span></span>
+<span><span class="co">#&gt; |1) File Name                           |df1_2024_02_07_181610.068791.csv |</span></span>
+<span><span class="co">#&gt; |2) Folder Name                         |.                                |</span></span>
+<span><span class="co">#&gt; |3) Primary Key                         |NA                               |</span></span>
+<span><span class="co">#&gt; |4) Rows Read In                        |10                               |</span></span>
+<span><span class="co">#&gt; |5) Columns Read In                     |8                                |</span></span>
+<span><span class="co">#&gt; |6) Rows After Blank Rows Removed       |10                               |</span></span>
+<span><span class="co">#&gt; |7) Columns After Blank Columns Removed |8                                |</span></span>
+<span><span class="co">#&gt; |8) Rows After Duplicate Rows Removed   |10                               |</span></span>
+<span><span class="co">#&gt; |9) Rows After Duplicate PK Removed     |n/a                              |</span></span>
 <span><span class="va">df2</span></span>
 <span><span class="co">#&gt;    station                date layer  tss tdp_lo tdp_hi   tp_lo   tp_hi</span></span>
 <span><span class="co">#&gt; 1   CB3.3C 1985-05-21 04:00:00    AP  6.9 0.0360 0.0360 0.05120 0.05120</span></span>
@@ -295,8 +404,14 @@
 <div class="section level3">
 <h3 id="combining-data-frames-that-contain-surv-objects">Combining data frames that contain Surv objects<a class="anchor" aria-label="anchor" href="#combining-data-frames-that-contain-surv-objects"></a>
 </h3>
-<p>It is reasonable to assemble newly collected data with previous data in an environment outside of R and import the data <em>en masse</em> as described earlier. However, this step can also be performed inside R.</p>
-<p>Normally, dataframes can be appended by using <code>rbind</code> function within R. For dataframes that include Surv objects is is necessary to use the <code>bind_rows</code> function from the <code>dplyr</code> library as demonstrated in the below code.</p>
+<p>It is reasonable to assemble newly collected data with previous data
+in an environment outside of R and import the data <em>en masse</em> as
+described earlier. However, this step can also be performed inside
+R.</p>
+<p>Normally, dataframes can be appended by using <code>rbind</code>
+function within R. For dataframes that include Surv objects is is
+necessary to use the <code>bind_rows</code> function from the
+<code>dplyr</code> library as demonstrated in the below code.</p>
 <div class="section level4">
 <h4 id="example-code-2">Example code<a class="anchor" aria-label="anchor" href="#example-code-2"></a>
 </h4>
@@ -383,7 +498,12 @@
 <div class="section level4">
 <h4 id="unsurvdf-and-unsurv">unSurvDF and unSurv<a class="anchor" aria-label="anchor" href="#unsurvdf-and-unsurv"></a>
 </h4>
-<p>As described earlier, <code>unSurvDF</code> converts dataframes that contain Surv objects into dataframes with separate columns representing the lower and upper bounds. The companion function, <code>unSurv</code>, operates on a single field and returns a 3-column matrix as demonstrated in the below code. See help (i.e., ??unSurv) for more information about the returned columns.</p>
+<p>As described earlier, <code>unSurvDF</code> converts dataframes that
+contain Surv objects into dataframes with separate columns representing
+the lower and upper bounds. The companion function, <code>unSurv</code>,
+operates on a single field and returns a 3-column matrix as demonstrated
+in the below code. See help (i.e., ??unSurv) for more information about
+the returned columns.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;    station                date layer  tss              tdp                 tp</span></span>
@@ -425,7 +545,13 @@
 <div class="section level4">
 <h4 id="imputedf-and-impute">imputeDF and impute<a class="anchor" aria-label="anchor" href="#imputedf-and-impute"></a>
 </h4>
-<p>In some instances, it is useful to simplify Surv objects to a single field instead of lower and upper bounds. By default <code>impute</code> and <code>imputeDF</code> will compute the midpoint between the lower and upper bound for a single Surv field or convert the entire dataframe, respectively as demonstrated with the below code. See help (i.e., ??imputeDF and ??impute) for more information on other imputation options including “lower”, “upper”, “mid”, “norm”, and “lnorm”.</p>
+<p>In some instances, it is useful to simplify Surv objects to a single
+field instead of lower and upper bounds. By default <code>impute</code>
+and <code>imputeDF</code> will compute the midpoint between the lower
+and upper bound for a single Surv field or convert the entire dataframe,
+respectively as demonstrated with the below code. See help (i.e.,
+??imputeDF and ??impute) for more information on other imputation
+options including “lower”, “upper”, “mid”, “norm”, and “lnorm”.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataCensored</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station"</span>,<span class="st">"date"</span>,<span class="st">"layer"</span>,<span class="st">"tss"</span>,<span class="st">"tdp"</span>,<span class="st">"tp"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;    station                date layer  tss              tdp                 tp</span></span>

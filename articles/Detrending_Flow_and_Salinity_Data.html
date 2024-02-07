@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">baytrends</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.9.9003</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
 
       
 
-      </header><script src="Detrending_Flow_and_Salinity_Data_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Flow and Salinity Data Sets</h1>
@@ -83,7 +83,7 @@
 <a href="mailto:Jon.Harcum@tetratech.com" class="email">Jon.Harcum@tetratech.com</a> and <a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a>
 </h4>
             
-            <h4 data-toc-skip class="date">2023-04-05</h4>
+            <h4 data-toc-skip class="date">2024-02-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tetratech/baytrends/blob/HEAD/vignettes/Detrending_Flow_and_Salinity_Data.Rmd" class="external-link"><code>vignettes/Detrending_Flow_and_Salinity_Data.Rmd</code></a></small>
       <div class="hidden name"><code>Detrending_Flow_and_Salinity_Data.Rmd</code></div>
@@ -96,16 +96,28 @@
 <div class="section level2">
 <h2 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
 </h2>
-<p>The purpose of this vignette is to cover the basics for creating seasonally detrended flow and seasonally detrended salinity data sets. These data sets are used in support of applying <strong>gam4</strong>. In gam4, the dependent variable is modeled with a non-linear term as a function of year; a seasonality term includes an interaction term which allows seasonality to vary over the period of record; and includes a hydrologic term that allows for factoring wet/dry conditions in the model.</p>
-<p>The seasonally detrended flow and salinity data sets are created using the detrended.flow and detrended.salinity functions included in baytrends. Refer to the help for each of these functions (e.g., ??detrended.flow or ??detrended.salinity) for the specific computational steps involved with each function.</p>
+<p>The purpose of this vignette is to cover the basics for creating
+seasonally detrended flow and seasonally detrended salinity data sets.
+These data sets are used in support of applying <strong>gam4</strong>.
+In gam4, the dependent variable is modeled with a non-linear term as a
+function of year; a seasonality term includes an interaction term which
+allows seasonality to vary over the period of record; and includes a
+hydrologic term that allows for factoring wet/dry conditions in the
+model.</p>
+<p>The seasonally detrended flow and salinity data sets are created
+using the detrended.flow and detrended.salinity functions included in
+baytrends. Refer to the help for each of these functions (e.g.,
+??detrended.flow or ??detrended.salinity) for the specific computational
+steps involved with each function.</p>
 </div>
 <div class="section level2">
 <h2 id="load-baytrends">Load baytrends<a class="anchor" aria-label="anchor" href="#load-baytrends"></a>
 </h2>
-<p>The first step is to load the baytrends library. Loading baytrends will result in loading multiple additional libraries as well.</p>
+<p>The first step is to load the baytrends library. Loading baytrends
+will result in loading multiple additional libraries as well.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading:baytrends v2.0.9</span></span>
+<span><span class="co">#&gt; Loading:baytrends v2.0.9.9003</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'baytrends'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
@@ -115,9 +127,17 @@
 <div class="section level2">
 <h2 id="seasonally-detrended-flow">Seasonally Detrended Flow<a class="anchor" aria-label="anchor" href="#seasonally-detrended-flow"></a>
 </h2>
-<p>The function, <strong>detrended.flow</strong>, returns a list of seasonally detrended flow and companion statistics. It relies on USGS’ dataRetrieval package to retrieve daily flow data.</p>
-<p><strong>It is the user’s responsibility to save the list that is returned from the detrended.flow function as flow.detrended for integration with baytrends.</strong></p>
-<p>For purposes of the Chesapeake Bay Program, it is expected that the user would typically identify all nine of the <em>River Input Monitoring</em> (RIM) stations. The nine RIM stations for the Chesapeake Bay have been loaded as a data frame in baytrends, <strong>usgsGages</strong>.</p>
+<p>The function, <strong>detrended.flow</strong>, returns a list of
+seasonally detrended flow and companion statistics. It relies on USGS’
+dataRetrieval package to retrieve daily flow data.</p>
+<p><strong>It is the user’s responsibility to save the list that is
+returned from the detrended.flow function as flow.detrended for
+integration with baytrends.</strong></p>
+<p>For purposes of the Chesapeake Bay Program, it is expected that the
+user would typically identify all nine of the <em>River Input
+Monitoring</em> (RIM) stations. The nine RIM stations for the Chesapeake
+Bay have been loaded as a data frame in baytrends,
+<strong>usgsGages</strong>.</p>
 <p><em>Table 1. Chesapeake Bay River Input Monitoring Stations</em></p>
 <table class="table">
 <thead><tr class="header">
@@ -163,9 +183,22 @@
 </tr>
 </tbody>
 </table>
-<p>The below code chunk is an example of retrieving and seasonally detrending daily flow data for all nine of the RIM stations from 1983-2017. To retrieve data for other USGS gages, the variables, usgsGagesID and siteName would be assigned with vectors that contain the list of USGS gage IDs and their site names. The vector of gage IDs are used to retrieve data while the vector of siteNames is used for diagnostic plots created by the function, detrend.flow.</p>
-<p>To best match up with water quality data, we recommend retrieving flow data for one year prior to the first year of water quality data. This allows for creating a time-averaged flow data set and not loose the first few months of water quality data due to lack of matching flow data. Data retrievals should also be made in light of the time needed by the USGS to review and approve their flow records.</p>
-<p>Information about the settings for dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel, lowess.f, span, and max.fill are described in the help file for this function.</p>
+<p>The below code chunk is an example of retrieving and seasonally
+detrending daily flow data for all nine of the RIM stations from
+1983-2017. To retrieve data for other USGS gages, the variables,
+usgsGagesID and siteName would be assigned with vectors that contain the
+list of USGS gage IDs and their site names. The vector of gage IDs are
+used to retrieve data while the vector of siteNames is used for
+diagnostic plots created by the function, detrend.flow.</p>
+<p>To best match up with water quality data, we recommend retrieving
+flow data for one year prior to the first year of water quality data.
+This allows for creating a time-averaged flow data set and not loose the
+first few months of water quality data due to lack of matching flow
+data. Data retrievals should also be made in light of the time needed by
+the USGS to review and approve their flow records.</p>
+<p>Information about the settings for dvAvgWinSel, dvAvgWgtSel,
+dvAvgSidesSel, lowess.f, span, and max.fill are described in the help
+file for this function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tetratech/baytrends" class="external-link">baytrends</a></span><span class="op">)</span></span>
 <span><span class="co"># Define Function Inputs</span></span>
@@ -188,39 +221,72 @@
 <div class="section level3">
 <h3 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h3>
-<p>The following five figures Figures 1-5 provide an example analysis for the USGS gage on the Susquehanna River at Conowingo, Maryland. Figure 1 displays the daily flow values [cms] as a function of the day of year for data from 2003-2017. The solid red line represents the predicted GAM using the function Log(Q)~s(doy,bs=‘cc’).</p>
-<p>Subtracting the predicted GAM from the observations yields the observations plotted in Figure 2. The ordinate is plotted on a log scale since the predicted GAM and observations were log transformed. We also refer to this as the 1-day-smoothed residuals. A 10-day-smoothed residual is displayed in Figure 3. Using the above settings for dvAvgWgtSel (“uniform”) and dvAvgSidesSel (1), the 10-day smoothed residual is the average of the preceeding nine days and the current day of the 1-day-smoothed residual. That is, the value on June 10, 2015 is equal to the average of the values from June 1-10, 2015. As the number of days used in the averaging process increases, the range of residuals decreases. These x-day smoothed residuals are used in gam4 and can be thought of an indicator of how wet or dry a particular time period is relative to the average.</p>
-<p>Figures 4 and 5 display summary statistics (mean, standard deviation [sd], and number of observations [Nobs.] for the 1-day and 10-day smoothed residuals. The red line on the standard deviation plot is based on a lowess smooth. The standard deviations associated with the red line are used for computing confidence intervals.</p>
+<p>The following five figures Figures 1-5 provide an example analysis
+for the USGS gage on the Susquehanna River at Conowingo, Maryland.
+Figure 1 displays the daily flow values [cms] as a function of the day
+of year for data from 2003-2017. The solid red line represents the
+predicted GAM using the function Log(Q)~s(doy,bs=‘cc’).</p>
+<p>Subtracting the predicted GAM from the observations yields the
+observations plotted in Figure 2. The ordinate is plotted on a log scale
+since the predicted GAM and observations were log transformed. We also
+refer to this as the 1-day-smoothed residuals. A 10-day-smoothed
+residual is displayed in Figure 3. Using the above settings for
+dvAvgWgtSel (“uniform”) and dvAvgSidesSel (1), the 10-day smoothed
+residual is the average of the preceeding nine days and the current day
+of the 1-day-smoothed residual. That is, the value on June 10, 2015 is
+equal to the average of the values from June 1-10, 2015. As the number
+of days used in the averaging process increases, the range of residuals
+decreases. These x-day smoothed residuals are used in gam4 and can be
+thought of an indicator of how wet or dry a particular time period is
+relative to the average.</p>
+<p>Figures 4 and 5 display summary statistics (mean, standard deviation
+[sd], and number of observations [Nobs.] for the 1-day and 10-day
+smoothed residuals. The red line on the standard deviation plot is based
+on a lowess smooth. The standard deviations associated with the red line
+are used for computing confidence intervals.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="susquehanna-river-at-conowingo-md">01578310-Susquehanna River at Conowingo, MD<a class="anchor" aria-label="anchor" href="#susquehanna-river-at-conowingo-md"></a>
 </h2>
 <p><img src="Detrending_Flow_and_Salinity_Data_files/figure-html/flow1-1.png" width="624"></p>
-<p><em>Figure 1. Daily Flow [cms] as a Function of Day of Year. (Solid red line is the predicted GAM model using the model: gam(LogQ ~ s(doy,bs=‘cc’)).)</em></p>
+<p><em>Figure 1. Daily Flow [cms] as a Function of Day of Year. (Solid
+red line is the predicted GAM model using the model: gam(LogQ ~
+s(doy,bs=‘cc’)).)</em></p>
 <p><img src="Detrending_Flow_and_Salinity_Data_files/figure-html/flow1-2.png" width="624"></p>
-<p><em>Figure 2. 1-day-smoothed Seasonally-adjusted Log Flow Residuals as a Function of Day of Year.</em></p>
+<p><em>Figure 2. 1-day-smoothed Seasonally-adjusted Log Flow Residuals
+as a Function of Day of Year.</em></p>
 <p><img src="Detrending_Flow_and_Salinity_Data_files/figure-html/flow1-3.png" width="624"></p>
-<p><em>Figure 3. 10-day-smoothed Seasonally-adjusted Log Flow Residuals as a Function of Day of Year.</em></p>
+<p><em>Figure 3. 10-day-smoothed Seasonally-adjusted Log Flow Residuals
+as a Function of Day of Year.</em></p>
 </div>
 <div class="section level2">
 <h2 id="susquehanna-river-at-conowingo-md-avg--per--d1">01578310-Susquehanna River at Conowingo, MD (Avg. Per.: d1)<a class="anchor" aria-label="anchor" href="#susquehanna-river-at-conowingo-md-avg--per--d1"></a>
 </h2>
 <p><img src="Detrending_Flow_and_Salinity_Data_files/figure-html/flow1-4.png" width="624"></p>
-<p><em>Figure: d1: Mean, standard deviation, and number of observations as a Function of Day of Year.</em></p>
+<p><em>Figure: d1: Mean, standard deviation, and number of observations
+as a Function of Day of Year.</em></p>
 </div>
 <div class="section level2">
 <h2 id="susquehanna-river-at-conowingo-md-avg--per--d10">01578310-Susquehanna River at Conowingo, MD (Avg. Per.: d10)<a class="anchor" aria-label="anchor" href="#susquehanna-river-at-conowingo-md-avg--per--d10"></a>
 </h2>
 <p><img src="Detrending_Flow_and_Salinity_Data_files/figure-html/flow1-5.png" width="624"></p>
-<p><em>Figure: d10: Mean, standard deviation, and number of observations as a Function of Day of Year.</em></p>
+<p><em>Figure: d10: Mean, standard deviation, and number of observations
+as a Function of Day of Year.</em></p>
 </div>
 <div class="section level2">
 <h2 id="seasonally-detrended-salinity">Seasonally Detrended Salinity<a class="anchor" aria-label="anchor" href="#seasonally-detrended-salinity"></a>
 </h2>
-<p>The function, <strong>detrended.salinity</strong>, returns a list of seasonally detrended salinity and companion statistics.</p>
-<p><strong>It is the user’s responsibility to save the list that is returned from the detrended.salinity function as salinity.detrended for integration with baytrends.</strong></p>
-<p>The detrended.salinity evaluates a user-supplied data set. baytrends includes a sample salinity data set, <strong>sal</strong>, that corresponds to the water quality data stored in <strong>dataCensored</strong>. Table 2 and Table 3 display some sample data and the structure of <strong>sal</strong>.</p>
+<p>The function, <strong>detrended.salinity</strong>, returns a list of
+seasonally detrended salinity and companion statistics.</p>
+<p><strong>It is the user’s responsibility to save the list that is
+returned from the detrended.salinity function as salinity.detrended for
+integration with baytrends.</strong></p>
+<p>The detrended.salinity evaluates a user-supplied data set. baytrends
+includes a sample salinity data set, <strong>sal</strong>, that
+corresponds to the water quality data stored in
+<strong>dataCensored</strong>. Table 2 and Table 3 display some sample
+data and the structure of <strong>sal</strong>.</p>
 <p><em>Table 2. Example Salinity Data</em></p>
 <table class="table">
 <thead><tr class="header">
@@ -274,8 +340,18 @@
 <span><span class="co">#&gt;  $ date    : POSIXct, format: "1984-06-27 04:00:00" "1984-06-27 04:00:00" ...</span></span>
 <span><span class="co">#&gt;  $ layer   : chr  "S" "M" "M" "B" ...</span></span>
 <span><span class="co">#&gt;  $ salinity: num  11.7 12.1 12.6 13.4 21.6 ...</span></span></code></pre>
-<p>The below code chunk is an example for analyzing all of the data contained in the sample data frame, sal. As currently developed, detrended.salinity will average salinity in the surface (‘S’) and above pycnocline (‘AP’) layers to create an average salinity value for the surface and above pycnocline (SAP) layer. detrended.salinity will also average salinity in the bottom (‘B’) and below pycnocline (‘AP’) layers to create an average salinity value for the bottom and below pycnocline (BAP) layer.</p>
-<p>The use and settings for dvAvgWinSel, lowess.f, minObs, and minObs.sd are described in the help file. The detrened.salinity function will assume the user wants to evaluate the salinity for all of the stations in sal and for all the years of available data.</p>
+<p>The below code chunk is an example for analyzing all of the data
+contained in the sample data frame, sal. As currently developed,
+detrended.salinity will average salinity in the surface (‘S’) and above
+pycnocline (‘AP’) layers to create an average salinity value for the
+surface and above pycnocline (SAP) layer. detrended.salinity will also
+average salinity in the bottom (‘B’) and below pycnocline (‘AP’) layers
+to create an average salinity value for the bottom and below pycnocline
+(BAP) layer.</p>
+<p>The use and settings for dvAvgWinSel, lowess.f, minObs, and minObs.sd
+are described in the help file. The detrened.salinity function will
+assume the user wants to evaluate the salinity for all of the stations
+in sal and for all the years of available data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Define Function Inputs</span></span>
@@ -294,18 +370,29 @@
 <div class="section level3">
 <h3 id="example-1">Example<a class="anchor" aria-label="anchor" href="#example-1"></a>
 </h3>
-<p>The below figures display summary statistics (mean, standard deviation [sd], and number of observations [Nobs.] for the SAP and BBP layers, respectively. The red line on the standard deviation plot is based on a lowess smooth. The standard deviations associated with the red line are used for computing confidence intervals.</p>
-<p>The reader is referred to the help file for detrend.salinity to learn more about the procedure used to compute these statistics and how windowing is used address the issues related to sparse sampling.</p>
-<p>[1] “CB5.4 (Surface: TRUE / Bottom: TRUE)” <img src="Detrending_Flow_and_Salinity_Data_files/figure-html/salinity3-1.png" width="624"></p>
-<p><em>Figure 1. SAP mean, standard deviation, and number of observations as a Function of Day of Year.</em></p>
+<p>The below figures display summary statistics (mean, standard
+deviation [sd], and number of observations [Nobs.] for the SAP and BBP
+layers, respectively. The red line on the standard deviation plot is
+based on a lowess smooth. The standard deviations associated with the
+red line are used for computing confidence intervals.</p>
+<p>The reader is referred to the help file for detrend.salinity to learn
+more about the procedure used to compute these statistics and how
+windowing is used address the issues related to sparse sampling.</p>
+<p>[1] “CB5.4 (Surface: TRUE / Bottom: TRUE)”
+<img src="Detrending_Flow_and_Salinity_Data_files/figure-html/salinity3-1.png" width="624"></p>
+<p><em>Figure 1. SAP mean, standard deviation, and number of
+observations as a Function of Day of Year.</em></p>
 <p><img src="Detrending_Flow_and_Salinity_Data_files/figure-html/salinity3-2.png" width="624"></p>
-<p><em>Figure 2. BBP mean, standard deviation, and number of observations as a Function of Day of Year.</em></p>
+<p><em>Figure 2. BBP mean, standard deviation, and number of
+observations as a Function of Day of Year.</em></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="example-gam-analysis">Example GAM Analysis<a class="anchor" aria-label="anchor" href="#example-gam-analysis"></a>
 </h2>
-<p>It is now possible to run gam4 using the results of the above analyses. The below code chunk will run the gam4 for surface total nitrogen at station CB5.4.</p>
+<p>It is now possible to run gam4 using the results of the above
+analyses. The below code chunk will run the gam4 for surface total
+nitrogen at station CB5.4.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">dfr</span>       <span class="op">&lt;-</span> <span class="fu"><a href="../reference/analysisOrganizeData.html">analysisOrganizeData</a></span><span class="op">(</span><span class="va">dataCensored</span>, reports <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
@@ -323,7 +410,8 @@
 <span><span class="co">#&gt; gamTest, but models included in analySpec include those with 'flw_sal' term.</span></span>
 <span><span class="co">#&gt; Consider passing detrended flow data or reducing models specified in analySpec.</span></span></code></pre></div>
 <div class="section level4">
-<h4 id="total-nitrogen---non-linear-trend-with-seasint--hydro-adj">Total Nitrogen - Non-linear trend with Seas+Int. &amp; Hydro Adj<a class="anchor" aria-label="anchor" href="#total-nitrogen---non-linear-trend-with-seasint--hydro-adj"></a>
+<h4 id="total-nitrogen---non-linear-trend-with-seasint--hydro-adj">Total Nitrogen - Non-linear trend with Seas+Int. &amp; Hydro
+Adj<a class="anchor" aria-label="anchor" href="#total-nitrogen---non-linear-trend-with-seasint--hydro-adj"></a>
 </h4>
 <p>Warning: mgcv convergence failed</p>
 </div>
