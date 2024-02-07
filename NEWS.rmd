@@ -20,6 +20,11 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# baytrends 2.0.9.9003
+
+-   Release 2024-02-07
+-   refactor: Update GitHub Actions to v2; usethis::use_github_actions("foo")
+
 # baytrends 2.0.9.9002
 
 -   Release 2024-02-07
@@ -29,7 +34,7 @@ cat(paste0("Last Update: ",Sys.time()))
 # baytrends 2.0.9.9001
 
 -   Release 2024-02-07
--   docs: Add URL to DESCRIPTION per Pull Request, #81
+-   docs: Add URL to DESCRIPTION per Pull Request, PR #81
 
 # baytrends 2.0.9
 

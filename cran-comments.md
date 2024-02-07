@@ -1,8 +1,8 @@
 Erik.Leppo@tetratech.com
-2023-05-25
+2024-02-07
 
 # Test environments
-* local Win 10, R 4.3.0
+* local Win 10, R 4.3.2
 * win-builder (release)
 * win-builder (devel)
 * r-hub
@@ -28,6 +28,6 @@ devtools::revdep("baytrends")
 character(0)
 
 tools::dependsOnPkgs("baytrends")
-[1] "baytrendsmap"
+character(0)
 
 There are currently no downstream CRAN dependencies for this package.

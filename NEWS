@@ -4,7 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-02-07 12:38:16.89177
+    #> Last Update: 2024-02-07 13:08:28.987169
+
+# baytrends 2.0.9.9003
+
+- Release 2024-02-07
+- refactor: Update GitHub Actions to v2;
+  usethis::use_github_actions(“foo”)
 
 # baytrends 2.0.9.9002
 
