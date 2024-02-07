@@ -43,7 +43,7 @@ Suggests:
     nlme,
     rmarkdown,
     testthat
-URL: https://github.com/tetratech/baytrends
+URL: https://github.com/tetratech/baytrends, https://tetratech.github.io/baytrends/
 BugReports: https://github.com/tetratech/baytrends/issues
 VignetteBuilder: knitr
 Collate: analysisOrganizeData.R
