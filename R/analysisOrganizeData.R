@@ -238,6 +238,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 # 07Mar2016: JBH: Adjusted merging station filter with stationMasterList to keep
 #            all all 'station filter' values even if not found in stationMasterList.
 #            (Previously it would only keep those that are in stationMasterList.
+# xxMay2022: EWL, default to 2-yr time perioeds (from 3)
+# 07Feb2024: EWL, periodName 12/13 to 14/15
 
 # 0) Perform some useful housekeeping ####
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
@@ -368,18 +370,18 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(
     list( periodName = "Full Record",     periodStart = c(NA),        periodEnd = c(NA)),
     list( periodName = "1999/00-Present", periodStart = c(1999:2000), periodEnd = c(NA)),
-    list( periodName = "2012/13-Present", periodStart = c(2012:2013), periodEnd = c(NA)))
+    list( periodName = "2014/15-Present", periodStart = c(2014:2015), periodEnd = c(NA)))
 
   if (!"gamDiffSeasons"  %in% names(analySpec)) analySpec$gamDiffSeasons   <- list(
-    list ( seasonName = "All",     seasonMonths = c(1:12)),
-    list ( seasonName = "Spring1", seasonMonths = c(3:5)),
-    list ( seasonName = "Spring2", seasonMonths = c(4:6)),
-    list ( seasonName = "Summer1", seasonMonths = c(6:9)),
-    list ( seasonName = "Summer2", seasonMonths = c(7:9)),
-    list ( seasonName = "SAV1",    seasonMonths = c(4:10)),
-    list ( seasonName = "SAV2",    seasonMonths = c(3:5,9:11)),
-    list ( seasonName = "Winter",  seasonMonths = c(1:2)),
-    list ( seasonName = "Fall",    seasonMonths = c(10:12)))
+    list( seasonName = "All",     seasonMonths = c(1:12)),
+    list( seasonName = "Spring1", seasonMonths = c(3:5)),
+    list( seasonName = "Spring2", seasonMonths = c(4:6)),
+    list( seasonName = "Summer1", seasonMonths = c(6:9)),
+    list( seasonName = "Summer2", seasonMonths = c(7:9)),
+    list( seasonName = "SAV1",    seasonMonths = c(4:10)),
+    list( seasonName = "SAV2",    seasonMonths = c(3:5,9:11)),
+    list( seasonName = "Winter",  seasonMonths = c(1:2)),
+    list( seasonName = "Fall",    seasonMonths = c(10:12)))
   
   if (!"gamDiffNumChgYrs"  %in% names(analySpec)) analySpec$gamDiffNumChgYrs  <- 2
 
@@ -395,7 +397,7 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 #    from updated specifications
 
   # Evaluate columns as idVar, depVar, or othVar
-  df<-.chkParameter(df,analySpec$parameterFilt, parameterList)
+  df <-.chkParameter(df,analySpec$parameterFilt, parameterList)
   idVar  <- attr(df,"idVar")
 
   # Check to make sure all variables are of class 'qw'

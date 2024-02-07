@@ -20,10 +20,20 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# baytrends 2.0.9.9002
+
+-   Release 2024-02-07
+-   docs: Update package documentation, Issue #80
+-   refactor: Update analysisOrganizeData for time periods, 12/13 to 14/15
+
+# baytrends 2.0.9.9001
+
+-   Release 2024-02-07
+-   docs: Add URL to DESCRIPTION per Pull Request, #81
+
 # baytrends 2.0.9
 
 -   Release 2023-04-04
-
 -   gamTest.R: updated \|\| to \| to remove coercion to 'logical(1)' warning
 
 # baytrends 2.0.8.9001

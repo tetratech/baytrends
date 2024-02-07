@@ -4,12 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-05-25 08:07:34.383787
+    #> Last Update: 2024-02-07 12:38:16.89177
+
+# baytrends 2.0.9.9002
+
+- Release 2024-02-07
+- docs: Update package documentation, Issue \#80
+- refactor: Update analysisOrganizeData for time periods, 12/13 to 14/15
+
+# baytrends 2.0.9.9001
+
+- Release 2024-02-07
+- docs: Add URL to DESCRIPTION per Pull Request, \#81
 
 # baytrends 2.0.9
 
 - Release 2023-04-04
-
 - gamTest.R: updated \|\| to \| to remove coercion to ‘logical(1)’
   warning
 
@@ -420,7 +430,7 @@ NEWS
 - Release 2020-03-31
 - Additional changes for CRAN.
   - Bad URL, comment out.
-    - smwrQW_x\_dlimit.R
+    - smwrQW_x_dlimit.R
   - Example run time \> 10 seconds, add ‘dontrun’.
     - gamPlotDispSeason
     - gamTestSeason
@@ -512,7 +522,7 @@ NEWS
   - QWstacked
 - Comment out examples.
   - smwrBase_importRDB.R
-  - swmrQW_x\_readNWQLdl.R
+  - swmrQW_x_readNWQLdl.R
 - DESCRIPTION
   - R \>= 3.5.0 based on Check warning.
 

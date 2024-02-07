@@ -24,6 +24,5 @@
 #' therewith. This software is provided 'AS IS.
 #' 
 #'
-#' @docType package
-#' @name baytrends
+"_PACKAGE"
 NULL
