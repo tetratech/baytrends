@@ -20,6 +20,11 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# baytrends 2.0.10
+
+-   Release 2024-02-09
+-   refactor: Bump version for CRAN submittal
+
 # baytrends 2.0.9.9003
 
 -   Release 2024-02-07
