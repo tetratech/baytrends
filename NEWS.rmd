@@ -20,6 +20,12 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# baytrends 2.0.10.9001
+
+-   Release 2024-02-12
+-   fix: Bad URL in NEWS (1.0.4.9011)
+    Remove, no longer valid
+
 # baytrends 2.0.10
 
 -   Release 2024-02-09
@@ -703,7 +709,7 @@ cat(paste0("Last Update: ",Sys.time()))
 -   Released 2018-07-06
 -   DESCRIPTION
     -   Change 'maintainer' from Jon Harcum to Erik Leppo so Erik can submit to CRAN.
-    -   Change 'additional repositories' to GitHub. Was <https://owi.usgs.gov/R>.
+    -   Change 'additional repositories' to GitHub. Was owi USGS gov slash R.
 -   .Rbuildignore
     -   Add cran-comments.md
 -   qw.import; example qw.names
