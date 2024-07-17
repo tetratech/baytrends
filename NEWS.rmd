@@ -20,6 +20,11 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+
+# baytrends 2.0.11.9001
+
+-   refactor gamTestSeason to address logic error with gamPenaltyCrit
+
 # baytrends 2.0.11
 
 -   Release 2024-02-12

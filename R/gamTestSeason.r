@@ -615,17 +615,17 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
       
       # evaluate F-stat in ANOVA table     #04Feb2017
       FstatFlag <- ""
-      if(selectSetting==FALSE &&
-         (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] ||  #18Jul2018
+      if(selectSetting==FALSE &
+         (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] |  #18Jul2018
           max(gamANOVAtbl$F, na.rm=TRUE) > gamPenaltyCrit[2])) {  #18Jul2018
         gamANOVAtbl$Note <- '-'
-        if (length(gamANOVAtbl$df < gamPenaltyCrit[1] ||      #18Jul2018
+        if (length(gamANOVAtbl$df < gamPenaltyCrit[1] |      #18Jul2018
                    gamANOVAtbl$F > gamPenaltyCrit[2]) == 1 &  #18Jul2018
-            is.na(gamANOVAtbl$df < gamPenaltyCrit[1] ||       #18Jul2018
+            is.na(gamANOVAtbl$df < gamPenaltyCrit[1] |       #18Jul2018
                   gamANOVAtbl$F > gamPenaltyCrit[2])[1]) {    #18Jul2018
           FstatFlag <- ""                                     #18Jul2018
         } else {
-          gamANOVAtbl[gamANOVAtbl$df < gamPenaltyCrit[1] ||
+          gamANOVAtbl[gamANOVAtbl$df < gamPenaltyCrit[1] |
                         gamANOVAtbl$F > gamPenaltyCrit[2],"Note"] <- "F-stat maybe unreliable"
           FstatFlag <- "***"
         }
@@ -634,8 +634,8 @@ gamTestSeason <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamP
       # Output GAM ANOVA table          #04Feb2017
       if(gamTable) {
         
-        if(selectSetting==FALSE &&
-           (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] ||  #18Jul2018
+        if(selectSetting==FALSE &
+           (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] |  #18Jul2018
             max(gamANOVAtbl$F, na.rm=TRUE) > gamPenaltyCrit[2])) {  #18Jul2018
           .T("GAM Analysis of Variance.")
           print(knitr::kable(gamANOVAtbl[,],
