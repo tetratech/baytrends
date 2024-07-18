@@ -21,9 +21,14 @@ cat(paste0("Last Update: ",Sys.time()))
 ```
 
 
+
+# baytrends 2.0.11.9002
+
+-   refactor function impute to pass a dataframe with two columns named left and right to fitdistrplus::fitdistcens.
+
 # baytrends 2.0.11.9001
 
--   refactor gamTestSeason to address logic error with gamPenaltyCrit
+-   refactor function gamTestSeason to address logic error with gamPenaltyCrit
 
 # baytrends 2.0.11
 
