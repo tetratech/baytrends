@@ -123,14 +123,15 @@ file.remove("NEWS.html")
 #setwd(paste0("./", myLibrary))
 devtools::document()
 ## Install New Package (locally)
-setwd("..") # return to root directory first
-devtools::install(myLibrary, quick=FALSE, reload=TRUE, build_vignettes = TRUE)
+#setwd("..") # return to root directory first
+devtools::install(".", quick=FALSE, reload=TRUE, build_vignettes = TRUE)
 
 # blank line above ensures no "updates" to packages.
 # ## Reload library
 # library(myLibrary, character.only = TRUE)
 # change wd back to package
-setwd(file.path(".", myLibrary))
+#setwd(file.path(".", myLibrary))
+help(package=(myLibrary))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
@@ -158,6 +159,11 @@ Downstream dependancies
 devtools::revdep("baytrends")
 ```
 
+URL check
+```{r URL_Check}
+urlchecker::url_check()
+```
+
 
 ## Check
 
@@ -174,9 +180,11 @@ Check failures
 but puts it all in one place.  Have to run *after* using Check.
 ```{r CheckFailures, eval=FALSE}
 library(devtools)
-dir.check <- "C:\\Users\\Erik.Leppo\\OneDrive - Tetra Tech, Inc\\MyDocs_OneDrive\\GitHub\\baytrends.Rcheck"
+# dir.check <- "C:\\Users\\Erik.Leppo\\OneDrive - Tetra Tech, Inc\\MyDocs_OneDrive\\GitHub\\baytrends.Rcheck"
+dir.check <- file.path(dirname(getwd()), "baytrends.Rcheck")
 #
 check_failures(dir.check)
+# 20240726, no longer a function
 
 
 ```
@@ -199,7 +207,7 @@ check_for_cran() # win and linux
 check_on_linux()
 
 ```
-
+20240726, above no longer works since v2
 
 
 Run all Examples.
