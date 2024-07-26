@@ -13,13 +13,13 @@ Description: Enable users to evaluate long-term trends using a Generalized
     questions.  Methodology described in Murphy (2019) 
     <doi:10.1016/j.envsoft.2019.03.027>.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 2.0.11
+Version: 2.0.11.9002
 Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
 Depends:
     R (>= 3.5.0)
 License: GPL-3    
 LazyData: TRUE
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 Imports:
     dataRetrieval,

@@ -48,7 +48,7 @@ impute <-function(x, imputeOption="mid") {
 
 # Error traps ####
   
-  # Error trap ... make sure x variable is a qw class
+  # Error trap ... make sure x variable is a Surv class
   if (!(class(x) %in% c("Surv"))) {
     stop("input vector not of type Surv.")
   }
@@ -111,9 +111,9 @@ impute <-function(x, imputeOption="mid") {
   } else if (imputeOption == "uniform") {
     x3[not.miss] <- stats::runif(sum(not.miss), x[not.miss,1], x[not.miss,2])
   } else if (imputeOption == "norm") {
-    myData1 <- data.frame(x=x2[not.miss], left=x[not.miss,1]
-                          , right=x[not.miss,2])
-    fn1     <- fitdistrplus::fitdistcens(myData1, distr="norm")
+    myData1  <- data.frame(x=x2[not.miss], left=x[not.miss,1]
+                           , right=x[not.miss,2])
+    fn1     <- fitdistrplus::fitdistcens(myData1[,c("left", "right")], distr="norm")
     mu.norm <- fn1$estimate[1]
     sd.norm <- fn1$estimate[2]
     myData1$normExpec <- .ExpNmCens(myData1,dep="x",mu.norm,sd.norm)[,1]
@@ -121,7 +121,7 @@ impute <-function(x, imputeOption="mid") {
   } else if (imputeOption == "lnorm") {
     myData1  <- data.frame(x=x2[not.miss], left=x[not.miss,1]
                            , right=x[not.miss,2])
-    fn1      <- fitdistrplus::fitdistcens(myData1, distr="lnorm")
+    fn1      <- fitdistrplus::fitdistcens(myData1[,c("left", "right")], distr="lnorm")
     mu.lnorm <- fn1$estimate[1]
     sd.lnorm <- fn1$estimate[2]
     myData1$lnormExpec <- .ExpLNmCens(myData1,dep="x",mu.lnorm,sd.lnorm)[,1]
