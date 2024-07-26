@@ -4,12 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-07-25 13:50:16.146636
+    #> Last Update: 2024-07-26 09:33:40.813854
+
+# baytrends 2.0.11.9004
+
+- release 2024-07-27
+- refactor: Update CRAN comments
 
 # baytrends 2.0.11.9003
 
 - release 2024-07-26
-- docs: Add rhubv2 for testing befor posting to CRAN
+- docs: Add rhubv2 for testing before posting to CRAN
 
 # baytrends 2.0.11.9002
 

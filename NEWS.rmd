@@ -20,11 +20,15 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# baytrends 2.0.11.9004
+
+- release 2024-07-27
+- refactor: Update CRAN comments
+
 # baytrends 2.0.11.9003
 
 - release 2024-07-26
-- docs: Add rhubv2 for testing befor posting to CRAN
-
+- docs: Add rhubv2 for testing before posting to CRAN
 
 # baytrends 2.0.11.9002
 

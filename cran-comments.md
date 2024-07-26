@@ -1,12 +1,15 @@
 Erik.Leppo@tetratech.com
-2024-02-12
+2024-07-26
 
 # Test environments
-* local Win 10, R 4.3.2
+* local Win 10, R 4.4.1
 * win-builder (release)
 * win-builder (devel)
-* r-hub
-* GitHub Actions
+* GitHub Actions (Win release)
+* GitHub Actions (Ubuntu release)
+* GitHub Actions (Ubuntu devel)
+* GitHub Actions (Ubuntu old)
+* MacOS (release)
 
 # R CMD check results
 
