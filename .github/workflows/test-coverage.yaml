@@ -1,67 +1,49 @@
-name: R package binary build
-
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches:
-      - main
+    branches: [main, master]
   pull_request:
-    branches:
-      - main
+    branches: [main, master]
+
+name: R-CMD-check
 
 jobs:
-  build:
-    runs-on: windows-latest
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macos-latest,   r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,   r: 'release'}
+          - {os: ubuntu-latest,   r: 'oldrel-1'}
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Step 2: Set up R on the runner
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-pandoc@v2
 
-      # Step 3: Install Pandoc (if you're building vignettes)
-      - name: Install Pandoc
-        run: |
-          choco install pandoc
-          pandoc --version
-
-      # Step 4: Install R dependencies
-      - name: Install dependencies
-        run: |
-          Rscript -e 'install.packages("remotes")'
-          Rscript -e 'remotes::install_deps(dependencies = TRUE)'
-
-      # Step 5: Build the package and binary
-      - name: Build package and binary
-        run: |
-          Rscript -e 'devtools::build(binary = TRUE)'  # Build the binary package
-
-      # Step 6: Get the Version from DESCRIPTION
-      - name: Get Version from DESCRIPTION
-        id: get_version  # An ID to reference this step's output later
-        run: |
-          VERSION=$(grep -E '^Version:' DESCRIPTION | awk '{print $2}')
-          echo "::set-output name=version::$VERSION"
-      
-      # Step 7: Create a Release and upload the binary to GitHub Releases using the version
-      - name: Create GitHub Release
-        uses: actions/create-release@v1
+      - uses: r-lib/actions/setup-r@v2
         with:
-          tag_name: "v${{ steps.get_version.outputs.version }}"  # Dynamically use the version
-          release_name: "v${{ steps.get_version.outputs.version }} Release"
-          body: "Release notes for version ${{ steps.get_version.outputs.version }}."
-          draft: false  # Set to true if you want to manually review before publishing
-          prerelease: false  # Set to true if this is a pre-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided by GitHub
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
 
-      # Step 8: Upload the binary as a release asset
-      - name: Upload Binary to Release
-        uses: actions/upload-release-asset@v1
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: "D:/a/tidBIT/tidBIT_*.zip"  # Adjust the path to match your binary file
-          asset_name: "tidBIT-windows-binary.zip"
-          asset_content_type: application/zip
+          extra-packages: any::rcmdcheck
+          needs: check
+
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true
