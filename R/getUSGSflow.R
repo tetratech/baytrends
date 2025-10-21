@@ -21,12 +21,17 @@
 #'   missing values to use in constructing the time series model [default=10]
 #' @param max.fill the maximum gap to fill [default=10]
 #' @return USGS daily flow data for sites in a wide format
+#' 
+#' @importFrom dplyr %>% transmute mutate distinct arrange left_join select
+#' @importFrom tibble as_tibble
+#' @importFrom tidyr pivot_wider
+#' 
 #' @keywords internal
 #' @examples
 #' # set retrieval parameters
 #' yearStart   <- 2014
 #' yearEnd     <- 2014
-#' siteNumber <- c('01578310')
+#' siteNumber <- c('USGS-01578310')
 #'
 #' # regular retrieval (default usage)
 #' df <- getUSGSflow(siteNumber, yearStart, yearEnd)
@@ -42,6 +47,7 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
 # 10May2018: JBH: fill in beginning/ending NAs (currently written to
 #                 fill in *all* begin/end NAs. need to migrate to max.fill) 
 # 24Nov2017: JBH: transitioned to internalized smwrBase functions
+# 20Oct2025: JBH: updated to  dataRetrieval::read_waterdata_daily 
 
 # fill=TRUE; span=10; max.fill=10; siteNumber=usgsGageID[1]
 
@@ -69,17 +75,54 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
   df0 <- data.frame( date=seq.Date(as.Date(dateStart),as.Date(dateEnd),by="day"))
 
 # Retrieve daily flow data data and rename variables ####
-  for (i in 1:length(siteNumber)) {
-    df1       <- dataRetrieval::readNWISdv(siteNumber[i], parameterCd, dateStart
-                                           , dateEnd)
-    df1       <- dataRetrieval::renameNWISColumns(df1)
-    df1$Flow  <- 0.028316847 * df1$Flow   #convert from cfs to cms
-    names(df1)[names(df1) == 'Date']    <- 'date'
-    names(df1)[names(df1) == 'Flow']    <- paste0('q',siteNumber[i])
-    names(df1)[names(df1) == 'Flow_cd'] <- paste0('q',siteNumber[i],'cd')
-    df1 <- df1[,!(names(df1) %in% c("agency_cd","site_no"))]
-    df0<-merge(df0,df1, by="date" ,all=TRUE)
-  }
+  dv_ok <- suppressMessages(
+    dataRetrieval::read_waterdata_daily(
+      monitoring_location_id = siteNumber,
+      parameter_code         = parameterCd,
+      statistic_id           = "00003", 
+      properties             = c("monitoring_location_id","time","value","approval_status"),
+      time                   = c(dateStart, dateEnd),
+      skipGeometry           = TRUE
+    )
+  ) %>%
+    tibble::as_tibble() %>%
+    dplyr::mutate(value = 0.028316847 * value)
+  
+  dv_wide <- dv_ok %>%
+    dplyr::transmute(
+      site_no = sub("^USGS-", "", monitoring_location_id),
+      date    = lubridate::date(time),
+      value   = suppressWarnings(as.numeric(value)),
+      cd      = ifelse(approval_status == "Approved", "A", "P")
+    ) %>%
+    dplyr::distinct(site_no, date, .keep_all = TRUE) %>%        # guard against accidental dupes
+    dplyr::arrange(date) %>%
+    {
+      # pivot values and codes separately, then join for exact names
+      q_vals <- dplyr::select(., site_no, date, value) %>%
+        tidyr::pivot_wider(names_from = site_no, values_from = value,
+                           names_glue = "q{site_no}")
+      
+      q_cd   <- dplyr::select(., site_no, date, cd) %>%
+        tidyr::pivot_wider(names_from = site_no, values_from = cd,
+                           names_glue = "q{site_no}cd")
+      
+      dplyr::left_join(q_vals, q_cd, by = "date")
+    }
+  
+  # for (i in 1:length(siteNumber)) {
+  #   df1       <- dataRetrieval::readNWISdv(siteNumber[i], parameterCd, dateStart
+  #                                          , dateEnd)
+  #   df1       <- dataRetrieval::renameNWISColumns(df1)
+  #   df1$Flow  <- 0.028316847 * df1$Flow   #convert from cfs to cms
+  #   names(df1)[names(df1) == 'Date']    <- 'date'
+  #   names(df1)[names(df1) == 'Flow']    <- paste0('q',siteNumber[i])
+  #   names(df1)[names(df1) == 'Flow_cd'] <- paste0('q',siteNumber[i],'cd')
+  #   df1 <- df1[,!(names(df1) %in% c("agency_cd","site_no"))]
+  #   df0<-merge(df0,df1, by="date" ,all=TRUE)
+  # }
+  
+  df0<-merge(df0,dv_wide, by="date" ,all=TRUE)
 
 # Convert date to POSIXct ####
   df0$date <- as.POSIXct(strptime(df0$date, "%Y-%m-%d"))
@@ -91,8 +134,8 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
     for (i in 1:length(siteNumber)) {
       # find column with flow and qualifier code for the particular site
       vColq<-NaN; vColcd<-NaN
-      vColq  <- which(names(df0) %in% paste0('q',siteNumber[i]))
-      vColcd <- which(names(df0) %in% paste0('q',siteNumber[i], 'cd'))
+      vColq  <- which(names(df0) %in% paste0('q',sub("^USGS-", "", siteNumber[i])))
+      vColcd <- which(names(df0) %in% paste0('q',sub("^USGS-", "", siteNumber[i]), 'cd'))
       # if there is missing flow data, then assign the qualifier cd to NA
       df0[, vColcd] <- ifelse(is.na(df0[, vColq]), "NA", df0[, vColcd])
       # fill in missing flow values within the time series

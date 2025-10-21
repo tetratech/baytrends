@@ -49,7 +49,7 @@ value is missing, then the corresponding data qualifier fields is set to
 # set retrieval parameters
 yearStart   <- 2014
 yearEnd     <- 2014
-siteNumber <- c('01578310')
+siteNumber <- c('USGS-01578310')
 
 # regular retrieval (default usage)
 df <- getUSGSflow(siteNumber, yearStart, yearEnd)

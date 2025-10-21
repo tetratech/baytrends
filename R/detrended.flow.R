@@ -165,14 +165,17 @@ detrended.flow <- function(usgsGageID, siteName
   # Retrieve data and do analysis for each gage ####
   for (i.gage in 1:length(flow.detrended$gages$usgsGageID)) {
     
-    .H2(paste0(flow.detrended$gages$usgsGageID[i.gage],"-",
+    site_alias <-sub("^USGS-", "", flow.detrended$gages$usgsGageID[i.gage])
+    
+    .H2(paste0(site_alias,"-",
                flow.detrended$gages$siteName[i.gage]))
     
     # set up variable names for raw and summary data
-    var       <- paste0("q",flow.detrended$gages$usgsGageID[i.gage])
-    var.sum   <- paste0("q",flow.detrended$gages$usgsGageID[i.gage],".sum") 
+    var       <- paste0("q",site_alias)
+    var.sum   <- paste0("q",site_alias,".sum") 
     
-    # getUSGSflow relies on dataRetrieval::readNWISdv
+    
+    # getUSGSflow relies on dataRetrieval::read_waterdata_functions
     df.flow <- getUSGSflow(siteNumber = flow.detrended$gages$usgsGageID[i.gage], 
                            yearStart  = flow.detrended$yearStart, 
                            yearEnd    = flow.detrended$yearEnd, 
@@ -183,7 +186,7 @@ detrended.flow <- function(usgsGageID, siteName
     # compute seasonally adjusted (i.e., detrended) flows and 
     #     compute seasonal averages
     df.flow <- seasAdjflow(dvFlow     = df.flow,
-                           siteNumber = flow.detrended$gages$usgsGageID[i.gage],
+                           siteNumber = site_alias,
                            dvAvgWin   = flow.detrended$dvAvgWinSel,
                            dvAvgWgt   = flow.detrended$dvAvgWgtSel, 
                            dvAvgSides = flow.detrended$dvAvgSidesSel,
@@ -254,11 +257,12 @@ detrended.flow <- function(usgsGageID, siteName
   for (i.gage in 1:length(flow.detrended$gages$usgsGageID)) {
     
     # set up variable names for raw and summary data
-    gage       <- paste0("q",flow.detrended$gages$usgsGageID[i.gage])
-    gage.sum   <- paste0("q",flow.detrended$gages$usgsGageID[i.gage],".sum") 
+    site_alias <-sub("^USGS-", "", flow.detrended$gages$usgsGageID[i.gage])
+    gage       <- paste0("q",site_alias)
+    gage.sum   <- paste0("q",site_alias,".sum") 
     
     for (dvAvgWinSel in paste0("d",selectPlots) ) {
-      .H2(paste0(flow.detrended$gages$usgsGageID[i.gage],"-",
+      .H2(paste0(site_alias,"-",
                  flow.detrended$gages$siteName[i.gage],
                  "  (Avg. Per.: ",dvAvgWinSel,")"))    
       gage.mean      <- flow.detrended[[gage.sum]][["mean"]][[dvAvgWinSel]]
@@ -291,4 +295,4 @@ detrended.flow <- function(usgsGageID, siteName
     return(flow.detrended)  
 
   #
-}##FUNCTIOIN.END
+} ##FUNCTION.END
