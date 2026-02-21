@@ -1,10 +1,11 @@
 
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples 
+
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 
 on:
   push:
-    branches: ["**"]
+    branches: ["**"]   # for testing on all branches; change back later if desired
   pull_request:
     branches: [main, master]
 
@@ -42,21 +43,11 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      # ---- Explicitly install pak so setup-r-dependencies won't fail with
-      #      "there is no package called 'pak'"
-      - name: Install pak (fallback)
-        shell: Rscript {0}
-        run: |
-          options(repos = c(CRAN = "https://cloud.r-project.org"))
-          if (!requireNamespace("pak", quietly = TRUE)) {
-            install.packages("pak")
-          }
-          packageVersion("pak")
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: rcmdcheck
           needs: check
+          pak-version: none
 
       - uses: r-lib/actions/check-r-package@v2
         with:
