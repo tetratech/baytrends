@@ -5,7 +5,7 @@
 
 on:
   push:
-    branches: ["**"]   # for testing on all branches; change back later if desired
+    branches: ["**"]
   pull_request:
     branches: [main, master]
 
@@ -45,9 +45,8 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: rcmdcheck
+          extra-packages: any::rcmdcheck
           needs: check
-          pak-version: none
 
       - uses: r-lib/actions/check-r-package@v2
         with:
