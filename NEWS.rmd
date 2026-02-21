@@ -20,7 +20,10 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
-# baytrends 2.0.12.9002-.9004
+# baytrends 2.0.13
+- for 2025 trend results
+
+# baytrends 2.0.12.9002-.9006
 - devtools::check() clean up
 
 # baytrends 2.0.12.9001

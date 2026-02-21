@@ -22,7 +22,6 @@ devtools::build_vignettes()
 devtools::check(build_vignettes = FALSE) # Faster iterating
 devtools::check()                        # Recommended before building binary (optional, but strongly advised)
 devtools::check(cran = TRUE)             # CRAN pre-check
-usethis::use_github_action("check-standard")
 
 # ===== Build binary and copy to Dropbox folder =====
 install_file <- devtools::build(path = "C:/Users/jharc/", binary = TRUE)
@@ -32,8 +31,18 @@ file.copy(
   overwrite = TRUE
 )
 
+# install with vignette TRUE option
+remotes::install_github(
+  "tetratech/baytrends",
+  ref             = "issue_89_getUSGSflow",  
+  force           = TRUE,
+  build_vignettes = TRUE
+)
+
 # ===== Install binary locally =====
 detach("package:baytrends", unload = TRUE)
 install.packages(install_file, repos = NULL, type = "win.binary")
+
+
 
 

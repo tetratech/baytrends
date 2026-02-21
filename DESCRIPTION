@@ -12,7 +12,7 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.  Methodology described in Murphy (2019) 
     <doi:10.1016/j.envsoft.2019.03.027>.
-Version: 2.0.12.9006
+Version: 2.0.13
 Authors@R: c(
   person(given  = "Rebecca",
          family = "Murphy",

@@ -105,7 +105,7 @@
 #' @examples
 #' \dontrun{
 #' # Define Function Inputs
-#' usgsGageID    <- c("01491000", "01578310")
+#' usgsGageID    <- c("USGS-01491000", "USGS-01578310")
 #' siteName      <- c("Choptank River near Greensboro, MD",
 #'                    "Susquehanna River at Conowingo, MD")
 #' yearStart     <- 1983
