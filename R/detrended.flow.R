@@ -101,7 +101,7 @@
 #' @importFrom stats na.pass
 #' @importFrom stats sd
 #' @importFrom stats lowess
-# @importFrom utils globalVariables
+#' @importFrom utils globalVariables
 #' @examples
 #' \dontrun{
 #' # Define Function Inputs

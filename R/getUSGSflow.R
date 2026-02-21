@@ -25,6 +25,7 @@
 #' @importFrom dplyr %>% transmute mutate distinct arrange left_join select
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr pivot_wider
+#' @importFrom dataRetrieval read_waterdata_daily 
 #' 
 #' @keywords internal
 #' @examples
@@ -48,8 +49,12 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
 #                 fill in *all* begin/end NAs. need to migrate to max.fill) 
 # 24Nov2017: JBH: transitioned to internalized smwrBase functions
 # 20Oct2025: JBH: updated to  dataRetrieval::read_waterdata_daily 
+# 20Feb2026: JBH: addressed devtools::check() issues  
 
 # fill=TRUE; span=10; max.fill=10; siteNumber=usgsGageID[1]
+
+  # set NULL  
+  approval_status <- cd <- monitoring_location_id <- site_no <- time <- value <- NULL
 
 # Error traps and Initialization ####
   # Set yearEnd if not supplied
@@ -95,32 +100,25 @@ getUSGSflow <- function(siteNumber, yearStart, yearEnd, fill=TRUE,
       value   = suppressWarnings(as.numeric(value)),
       cd      = ifelse(approval_status == "Approved", "A", "P")
     ) %>%
-    dplyr::distinct(site_no, date, .keep_all = TRUE) %>%        # guard against accidental dupes
+    dplyr::distinct(site_no, date, .keep_all = TRUE) %>%
     dplyr::arrange(date) %>%
-    {
-      # pivot values and codes separately, then join for exact names
-      q_vals <- dplyr::select(., site_no, date, value) %>%
-        tidyr::pivot_wider(names_from = site_no, values_from = value,
-                           names_glue = "q{site_no}")
+    (\(x) {
+      q_vals <- dplyr::select(x, site_no, date, value) %>%
+        tidyr::pivot_wider(
+          names_from  = site_no,
+          values_from = value,
+          names_glue  = "q{site_no}"
+        )
       
-      q_cd   <- dplyr::select(., site_no, date, cd) %>%
-        tidyr::pivot_wider(names_from = site_no, values_from = cd,
-                           names_glue = "q{site_no}cd")
+      q_cd <- dplyr::select(x, site_no, date, cd) %>%
+        tidyr::pivot_wider(
+          names_from  = site_no,
+          values_from = cd,
+          names_glue  = "q{site_no}cd"
+        )
       
       dplyr::left_join(q_vals, q_cd, by = "date")
-    }
-  
-  # for (i in 1:length(siteNumber)) {
-  #   df1       <- dataRetrieval::readNWISdv(siteNumber[i], parameterCd, dateStart
-  #                                          , dateEnd)
-  #   df1       <- dataRetrieval::renameNWISColumns(df1)
-  #   df1$Flow  <- 0.028316847 * df1$Flow   #convert from cfs to cms
-  #   names(df1)[names(df1) == 'Date']    <- 'date'
-  #   names(df1)[names(df1) == 'Flow']    <- paste0('q',siteNumber[i])
-  #   names(df1)[names(df1) == 'Flow_cd'] <- paste0('q',siteNumber[i],'cd')
-  #   df1 <- df1[,!(names(df1) %in% c("agency_cd","site_no"))]
-  #   df0<-merge(df0,df1, by="date" ,all=TRUE)
-  # }
+    })()
   
   df0<-merge(df0,dv_wide, by="date" ,all=TRUE)
 

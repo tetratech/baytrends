@@ -12,11 +12,16 @@ if ("baytrends" %in% rownames(installed.packages())) remove.packages("baytrends"
 # ===== Rebuild package documentation and content =====
 # roxygen2::roxygenise(clean = TRUE)
 devtools::document()            # Regenerate NAMESPACE and .Rd files
-devtools::build_vignettes()     # Rebuild vignettes
 devtools::test()                # Run unit tests
 
+# ===== Rebuild vignettes =====
+unlink("doc", recursive = TRUE, force = TRUE)
+devtools::build_vignettes()
+
 # ===== Run full R CMD check =====
-devtools::check()               # Recommended before building binary (optional, but strongly advised)
+devtools::check(build_vignettes = FALSE) # Faster iterating
+devtools::check()                        # Recommended before building binary (optional, but strongly advised)
+devtools::check(cran = TRUE)             # CRAN pre-check
 
 # ===== Build binary and copy to Dropbox folder =====
 install_file <- devtools::build(path = "C:/Users/jharc/", binary = TRUE)
@@ -29,4 +34,5 @@ file.copy(
 # ===== Install binary locally =====
 detach("package:baytrends", unload = TRUE)
 install.packages(install_file, repos = NULL, type = "win.binary")
+
 

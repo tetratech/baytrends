@@ -51,7 +51,7 @@ an averaged values based on dvAvgWin, dvAvgWgt, and dvAvgSides and store as
 #Set Retrieval Parameters
 yearStart   <- 1983
 yearEnd     <- 2015
-siteNumbers <- c("01578310")
+siteNumbers <- c("USGS-01578310")
 
 # Regular Retrieval (default usage)
 df <- getUSGSflow(siteNumbers, yearStart, yearEnd, fill=TRUE)
