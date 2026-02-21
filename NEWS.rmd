@@ -20,6 +20,12 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# baytrends 2.0.12.9003
+- devtools::check() clean up
+
+# baytrends 2.0.12.9002
+- devtools::check() clean up
+
 # baytrends 2.0.12.9001
 - refactor: getUSGSflow migrated to use dataRetrieval::read_waterdata_daily
 - refactor: detrended.flow to reflect getUSGSflow changes
