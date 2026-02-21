@@ -41,13 +41,23 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
+      # ---- Explicitly install pak so setup-r-dependencies won't fail with
+      #      "there is no package called 'pak'"
+      - name: Install pak (fallback)
+        shell: Rscript {0}
+        run: |
+          options(repos = c(CRAN = "https://cloud.r-project.org"))
+          if (!requireNamespace("pak", quietly = TRUE)) {
+            install.packages("pak")
+          }
+          packageVersion("pak")
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          pak-version: none
 
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'          
+          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
