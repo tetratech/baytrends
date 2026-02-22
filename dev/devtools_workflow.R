@@ -34,10 +34,13 @@ file.copy(
 # install with vignette TRUE option
 remotes::install_github(
   "tetratech/baytrends",
-  ref             = "issue_89_getUSGSflow",  
+  ref             = "maint_2026",  
   force           = TRUE,
   build_vignettes = TRUE
 )
+
+if(!require(remotes)){install.packages("remotes")}  #install if needed
+install_github("tetratech/baytrends", force = TRUE, build_vignettes = TRUE)
 
 # ===== Install binary locally =====
 detach("package:baytrends", unload = TRUE)

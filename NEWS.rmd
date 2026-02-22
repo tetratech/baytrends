@@ -20,6 +20,9 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# baytrends 2.0.13.9001
+- initialize maintenance branch
+
 # baytrends 2.0.13
 - for 2025 trend results
 
