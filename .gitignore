@@ -1,15 +1,24 @@
-Meta
-doc
-.Rproj.user
+# R / RStudio user files
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
-inst/doc
-baytrends.Rproj
-NEWS.rmd
-NEWS.html
-data-raw/salinity_1984to2016.rdata
-NEWS.md
-/doc/
+
+# R package build artifacts
+*.tar.gz
+*.Rcheck/
+
+# R package generated documentation
 /Meta/
-/dev/
+/doc/
+inst/doc/
+
+# Project file
+baytrends.Rproj
+
+# NEWS outputs
+NEWS.md
+NEWS.html
+
+# Data raw large/local files
+data-raw/salinity_1984to2016.rdata
