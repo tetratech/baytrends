@@ -5,7 +5,7 @@
 
 on:
   push:
-    branches: [main, 'x_maint*']
+    branches: [main, 'maint*']
   pull_request:
     branches: [main, master]
 

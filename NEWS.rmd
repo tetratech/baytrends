@@ -20,6 +20,10 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+
+# baytrends 2.0.13.9003
+- Published and verified the pkgdown site URL (https://tetratech.github.io/baytrends/) referenced in package metadata/documentation.
+
 # baytrends 2.0.13.9002
 - clean up github yaml
 

@@ -37,20 +37,19 @@ There are currently no downstream CRAN dependencies for this package.
 
 `tools::dependsOnPkgs("baytrends")` identifies one locally installed downstream package (`baycluster`), which is currently GitHub-based (not on CRAN).
 
-
-
-
 # Comment
 
-This submission updates baytrends (version 2.0.13). Local checks were run on
-Windows 11 x64 with R 4.5.2 (ucrt), including R CMD check --as-cran, and
-completed with 0 errors, 0 warnings, and 0 notes. GitHub Actions CI also passed
-on macOS (release), Windows (release), Ubuntu (devel), Ubuntu (release), and
-Ubuntu (oldrel-1). This submission is being made by a co-author/collaborator on
-behalf of the designated maintainer, Erik W. Leppo, who remains the package
-maintainer in DESCRIPTION and will confirm the CRAN submission email.
+This is a resubmission of baytrends with version incremented to 2.0.14 to
+address CRAN feedback on an invalid URL. The previously flagged pkgdown site URL
+(https://tetratech.github.io/baytrends/) is now live and publicly resolves.
+Local R CMD check --as-cran completed cleanly (0 errors, 0 warnings, 0 notes),
+and GitHub Actions CI passed across the existing matrix (macOS release, Windows
+release, Ubuntu devel/release/oldrel-1). This submission is made by a
+co-author/collaborator on behalf of the designated maintainer, Erik W. Leppo,
+who remains the maintainer in DESCRIPTION and will confirm the CRAN submission
+email.
 
-baytrends 2.0.13 is a maintenance/update release focused on package robustness
+baytrends 2.0.14 is a maintenance/update release focused on package robustness
 and release-readiness, including updates related to USGS flow
 handling/retrieval, documentation/vignette build behavior, and CRAN compliance
 cleanup (metadata/checks).
