@@ -4,7 +4,40 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-07-26 09:35:21.683005
+    #> Last Update: 2026-02-24 11:58:42.276103
+
+# baytrends 2.0.13.9004
+
+- docs: Removed pkgdown website on GitHub from DESCRIPTION
+- docs: Remove ‘maintainer’ from DESCRIPTION
+- docs: Updated cran-comments.md
+
+# baytrends 2.0.13.9003
+
+- github yaml updaetd
+
+# baytrends 2.0.13.9002
+
+- clean up github yaml
+
+# baytrends 2.0.13.9001
+
+- initialize maintenance branch
+
+# baytrends 2.0.13
+
+- for 2025 trend results
+
+# baytrends 2.0.12.9002-.9006
+
+- devtools::check() clean up
+
+# baytrends 2.0.12.9001
+
+- refactor: getUSGSflow migrated to use
+  dataRetrieval::read_waterdata_daily
+- refactor: detrended.flow to reflect getUSGSflow changes
+- refactor: event processing vectorized (eventNum, eventSeq, eventLen)
 
 # baytrends 2.0.12
 

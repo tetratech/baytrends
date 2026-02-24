@@ -34,7 +34,6 @@ therewith. This software is provided 'AS IS.
 Useful links:
 \itemize{
   \item \url{https://github.com/tetratech/baytrends}
-  \item \url{https://tetratech.github.io/baytrends/}
   \item Report bugs at \url{https://github.com/tetratech/baytrends/issues}
 }
 
